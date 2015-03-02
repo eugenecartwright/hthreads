@@ -1,0 +1,52 @@
+<PROCESSORS>
+  
+   <!-- Processor ISA is in Hthreads naming convention ('mblaze' as opposed to 'microblaze') -->
+   <PROCESSOR HTHREADS_ISA="mblaze" HWVERSION="9.3">
+      <DOCUMENT SOURCE="http://www.origin.xilinx.com/support/documentation/sw_manuals/xilinx2014_1/ug1043-embedded-system-tools.pdf"/>
+      
+      <PARAMETER NAME="HWVERSION">
+         <OPTION VALUE="9.3" FLAG="-mcpu=v9.3"/>
+      </PARAMETER> 
+      <PARAMETER NAME="C_USE_FPU">
+         <OPTION VALUE="0" FLAG="-msoft-float"/>
+         <OPTION VALUE="1" FLAG="-mhard-float"/>
+         <OPTION VALUE="2" FLAG="-mhard-float -mxl-float-convert -mxl-float-sqrt"/>
+      </PARAMETER>
+      <PARAMETER NAME="C_USE_BARREL">
+         <OPTION VALUE="0" FLAG="-mno-xl-barrel-shift"/>
+         <OPTION VALUE="1" FLAG="-mxl-barrel-shift"/>
+      </PARAMETER>
+      <PARAMETER NAME="C_USE_DIV">
+         <!-- -small-divides flag gives some internal compiler (mb-gcc). Removing from OPTION="0" -->
+         <OPTION VALUE="0" FLAG="-mxl-soft-div"/>
+         <OPTION VALUE="1" FLAG="-mno-xl-soft-div"/>
+      </PARAMETER>
+      <PARAMETER NAME="C_USE_HW_MUL">
+         <OPTION VALUE="0" FLAG="-mxl-soft-mul -mno-xl-multiply-high"/>
+         <OPTION VALUE="1" FLAG="-mno-xl-soft-mul -mno-xl-multiply-high"/>
+         <OPTION VALUE="2" FLAG="-mno-xl-soft-mul -mxl-multiply-high"/>
+      </PARAMETER>
+      <PARAMETER NAME="C_ENDIANNESS">
+         <OPTION VALUE="0" FLAG="-mbig-endian"/>
+         <OPTION VALUE="1" FLAG="-mlittle-endian"/>
+      </PARAMETER>
+      <PARAMETER NAME="C_USE_REORDER_INSTR">
+         <OPTION VALUE="0" FLAG=""/>
+         <OPTION VALUE="1" FLAG="-mxl-reorder"/> <!-- Seems to have no effect -->
+      </PARAMETER>
+      <PARAMETER NAME="C_USE_PCMP_INSTR">
+         <OPTION VALUE="0" FLAG="-mno-xl-pattern-compare"/>
+         <OPTION VALUE="1" FLAG="-mxl-pattern-compare"/>
+      </PARAMETER>
+      <PARAMETER NAME="C_USE_ICACHE">
+         <OPTION VALUE="0" FLAG=""/>
+         <OPTION VALUE="1" FLAG="-DHT_ENABLE_MB_ICACHE"/>
+      </PARAMETER>
+      <PARAMETER NAME="C_USE_DCACHE">
+         <OPTION VALUE="0" FLAG=""/>
+         <OPTION VALUE="1" FLAG="-DHT_ENABLE_MB_DCACHE"/>
+      </PARAMETER>
+
+   </PROCESSOR>
+
+</PROCESSORS>

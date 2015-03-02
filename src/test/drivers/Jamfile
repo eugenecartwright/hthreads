@@ -1,0 +1,50 @@
+################################################################################
+# File:     src/test/drivers/Jamfile
+# Author:   Wesley Peck
+# Date:     24 October 2006
+#
+# Desc:     This is the Jam build file for the driver test subdirectory of
+#           the Hthreads project. This file instructs the Jam build system
+#           on how to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (24 October 2006) Jam file initially created
+################################################################################
+SubDir TOP src test drivers ;
+LOCATE_TARGET = test/drivers ;
+
+################################################################################
+# Compile the DMA executable if the driver is configured
+################################################################################
+if $(DRIVER_DMA) = "yes"
+{ Hobjects dma.c ; Hexes dma.o ; }
+
+################################################################################
+# Compile the GPIO executable if the driver is configured
+################################################################################
+if $(DRIVER_GPIO) = "yes"
+{ Hobjects gpio.c ; Hexes gpio.o ; }
+
+################################################################################
+# Compile the PS2 executables if the driver is configured
+################################################################################
+if $(DRIVER_PS2) = "yes"
+{ Hobjects ps2.c keyboard.c ; Hexes ps2.o keyboard.o ; }
+
+################################################################################
+# Compile the SYSACE executable if the driver is configured
+################################################################################
+if $(DRIVER_SYSACE) = "yes"
+{ Hobjects sysace.c ; Hexes sysace.o ; }
+
+################################################################################
+# Compile the ETHLITE executable if the driver is configured
+################################################################################
+if $(DRIVER_ETHLITE) = "yes"
+{  Hobjects ethlite.c ; Hexes ethlite.o ; }
+
+################################################################################
+# Compile the LWIP executables if the driver is configured
+################################################################################
+if $(DRIVER_LWIP) = "yes" && $(DRIVER_ETHLITE) = "yes"
+{ Hobjects tcpip.c tcptest.c ; Hexes tcpip.o tcptest.o ; }

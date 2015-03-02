@@ -1,0 +1,68 @@
+################################################################################
+# File:     build/flags
+# Author:   Wesley Peck
+# Date:     29 August 2006
+#
+# Desc:     This is the Jam file which defines the rules used by the build
+#           system. These rules control what targets the build system supports
+#           and how those targets perform their actions.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (29 August 2006) Compiler rules initially created
+################################################################################
+
+################################################################################
+# Flags for compilation of source files
+################################################################################
+CCFLAGS += -Wall -Winline -pipe -Wno-unused-function ;
+
+################################################################################
+# Defined symbols during compilation
+################################################################################
+DEFINES += HARDWARE=0 TRACE_SYSCALL=1 TRACE_MUTEX=1 TRACE_SCHED=1 ;
+DEFINES += REENTRANT_SYSCALLS_PROVIDED ;
+DEFINES += __DYNAMIC_REENT__ ;
+
+################################################################################
+# Directories to search for headers in
+################################################################################
+HDRS += $(TOP)$(SLASH)include ;
+HDRS += $(TOP)$(SLASH)src$(SLASH)archs$(SLASH)$(PLATFORM_CREATE_TO_ARCH)$(SLASH)include ;
+HDRS += $(SLASH)opt$(SLASH)local$(SLASH)include ;
+if $(PLATFORM_VENDOR) != "pthreads"
+{
+    HDRS    += $(TOP)$(SLASH)include$(SLASH)hthread ;
+    HDRS    += $(TOP)$(SLASH)include$(SLASH)drivers ;
+    HDRS    += $(TOP)$(SLASH)include$(SLASH)lwip ;
+    HDRS    += $(TOP)$(SLASH)include$(SLASH)lwip$(SLASH)ipv4 ;
+    HDRS    += $(TOP)$(SLASH)include$(SLASH)accelerators ;
+}
+
+################################################################################
+# Extra flags for compilation of system source files
+################################################################################
+SYS_CFLAGS  += ;
+SYS_DEFINES += ;
+SYS_HDRS    += ;
+SYS_LINK    += -L$(TOP)$(SLASH)lib -L$(SLASH)opt$(SLASH)local$(SLASH)lib ;
+
+################################################################################
+# Extra flags for compilation of user source files
+################################################################################
+USER_CFLAGS  += ;
+USER_DEFINES += ;
+USER_HDRS    += ;
+USER_LINK    += -L$(TOP)$(SLASH)lib -L$(SLASH)opt$(SLASH)local$(SLASH)lib ;
+
+################################################################################
+# Flags for compilation of user source files
+################################################################################
+HOST_CFLAGS  += -Wall -pipe ;
+HOST_DEFINES += ;
+
+################################################################################
+# Flags for linking user applications
+################################################################################
+HOST_LINK   += $(HOST_CFLAGS) ;
+HOST_LINK   += -L$(TOP)$(SLASH)lib -L$(SLASH)opt$(SLASH)local$(SLASH)lib ;
+HOST_LIBS   += -lm ;

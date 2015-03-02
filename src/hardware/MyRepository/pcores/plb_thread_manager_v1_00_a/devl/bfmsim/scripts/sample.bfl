@@ -1,0 +1,207 @@
+------------------------------------------------------------------------------
+-- Filename:          /home/jstevens/tmp/plb_cores/test_system/edk_user_repository/MyProcessorIPLib/pcores/plb_thread_manager_v1_00_a/devl/bfmsim/scripts/sample.bfl
+-- Description:       Sample BFL command script to test peripheral
+-- Date:              Tue Apr 14 15:01:55 2009 (by Create and Import Peripheral Wizard)
+------------------------------------------------------------------------------
+
+
+------------------------------
+-- Define Alias
+------------------------------
+
+-- Byte Enable Alias
+set_alias(IGNOR = 00000000_00000000)
+set_alias(BYTE0 = 10000000_00000000)
+set_alias(BYTE1 = 01000000_00000000)
+set_alias(BYTE2 = 00100000_00000000)
+set_alias(BYTE3 = 00010000_00000000)
+set_alias(BYTE4 = 00001000_00000000)
+set_alias(BYTE5 = 00000100_00000000)
+set_alias(BYTE6 = 00000010_00000000)
+set_alias(BYTE7 = 00000001_00000000)
+set_alias(BYTE8 = 00000000_10000000)
+set_alias(BYTE9 = 00000000_01000000)
+set_alias(BYTEA = 00000000_00100000)
+set_alias(BYTEB = 00000000_00010000)
+set_alias(BYTEC = 00000000_00001000)
+set_alias(BYTED = 00000000_00000100)
+set_alias(BYTEE = 00000000_00000010)
+set_alias(BYTEF = 00000000_00000001)
+set_alias(HWRD0 = 11000000_00000000)
+set_alias(HWRD2 = 00110000_00000000)
+set_alias(HWRD4 = 00001100_00000000)
+set_alias(HWRD6 = 00000011_00000000)
+set_alias(HWRD8 = 00000000_11000000)
+set_alias(HWRDA = 00000000_00110000)
+set_alias(HWRDC = 00000000_00001100)
+set_alias(HWRDE = 00000000_00000011)
+set_alias(WORD0 = 11110000_00000000)
+set_alias(WORD4 = 00001111_00000000)
+set_alias(WORD8 = 00000000_11110000)
+set_alias(WORDC = 00000000_00001111)
+set_alias(DWRD0 = 11111111_00000000)
+set_alias(DWRD8 = 00000000_11111111)
+set_alias(QWORD = 11111111_11111111)
+
+-- PLB BE aliases (fixed length burst)
+set_alias(IBURST   = 00000000_00000000)
+set_alias(FBURST2  = 00010000_00000000)
+set_alias(FBURST3  = 00100000_00000000)
+set_alias(FBURST4  = 00110000_00000000)
+set_alias(FBURST5  = 01000000_00000000)
+set_alias(FBURST6  = 01010000_00000000)
+set_alias(FBURST7  = 01100000_00000000)
+set_alias(FBURST8  = 01110000_00000000)
+set_alias(FBURST9  = 10000000_00000000)
+set_alias(FBURST10 = 10010000_00000000)
+set_alias(FBURST11 = 10100000_00000000)
+set_alias(FBURST12 = 10110000_00000000)
+set_alias(FBURST13 = 11000000_00000000)
+set_alias(FBURST14 = 11010000_00000000)
+set_alias(FBURST15 = 11100000_00000000)
+set_alias(FBURST16 = 11110000_00000000)
+
+-- PLB Size Alias
+set_alias(SINGLE_NORMAL  = 0000)
+set_alias(CACHELN_4WRD   = 0001)
+set_alias(CACHELN_8WRD   = 0010)
+set_alias(CACHELN_16WRD  = 0011)
+set_alias(BYTE_BURST     = 1000)
+set_alias(HLFWORD_BURST  = 1001)
+set_alias(WORD_BURST     = 1010)
+set_alias(DBLWORD_BURST  = 1011)
+set_alias(QUADWORD_BURST = 1100)
+set_alias(OCTWORD_BURST  = 1101)
+
+-- UUT Address Space Alias
+set_alias(USER_SLV_BASEADDR    = 30000000)
+
+-- System Memory Address Alias
+set_alias(SYS_MEM0_BASEADDR = 10000000)
+set_alias(SYS_MEM1_BASEADDR = 20000000)
+
+-- UUT User Logic Slave Register(s)
+set_alias(SLV_REG0 = 30000000)
+set_alias(SLV_REG0_BE = WORD0)
+
+------------------------------
+-- Data Alias
+------------------------------
+
+-- Common Data
+set_alias(ALL_CLEARED         = 00000000)
+
+------------------------------
+-- BFL/VHDL communication alias
+------------------------------
+
+set_alias(NOP        = 0)
+set_alias(START      = 1)
+set_alias(STOP       = 2)
+set_alias(WAIT_IN    = 3)
+set_alias(WAIT_OUT   = 4)
+set_alias(ASSERT_IN  = 5)
+set_alias(ASSERT_OUT = 6)
+set_alias(ASSIGN_IN  = 7)
+set_alias(ASSIGN_OUT = 8)
+set_alias(RESET_WDT  = 9)
+set_alias(MST_ERROR  = 30)
+set_alias(INTERRUPT  = 31)
+
+------------------------------
+-- Initialize the PLB Slave as 128-bit slave memory ...
+--
+-- Note:
+--
+-- 	The instance name for bfm_memory is duplicated in the path due to the
+-- 	wrapper level inserted by SimGen to support mixed language simulation.
+------------------------------
+
+set_device(path = /bfm_system/bfm_memory/bfm_memory/slave, device_type = plb_slave)
+configure
+(
+  ssize = 10,
+  fixed_burst_mode = 1,
+  read_addr_pipeline_disable=1,
+  write_addr_pipeline_disable=1,
+  data_pipeline_mode=1,
+  burst_term_mode=CYCLE,
+  aack_delay = 1
+)
+
+-- initialize the source data memory (first 16 locations) ...
+mem_init(addr = 10000000, data = 00010203_04050607_08090A0B_0C0D0E0F)
+mem_init(addr = 10000010, data = 10111213_14151617_18191A1B_1C1D1E1F)
+mem_init(addr = 10000020, data = 20212223_24252627_28292A2B_2C2D2E2F)
+mem_init(addr = 10000030, data = 30313233_34353637_38393A3B_3C3D3E3F)
+mem_init(addr = 10000040, data = 40414243_44454647_48494A4B_4C4D4E4F)
+mem_init(addr = 10000050, data = 50515253_54555657_58595A5B_5C5D5E5F)
+mem_init(addr = 10000060, data = 60616263_64656667_68696A6B_6C6D6E6F)
+mem_init(addr = 10000070, data = 70717273_74757677_78797A7B_7C7D7E7F)
+mem_init(addr = 10000080, data = 80818283_84858687_88898A8B_8C8D8E8F)
+mem_init(addr = 10000090, data = 90919293_94959697_98999A9B_9C9D9E9F)
+mem_init(addr = 100000A0, data = A0A1A2A3_A4A5A6A7_A8A9AAAB_ACADAEAF)
+mem_init(addr = 100000B0, data = B0B1B2B3_B4B5B6B7_B8B9BABB_BCBDBEBF)
+mem_init(addr = 100000C0, data = C0C1C2C3_C4C5C6C7_C8C9CACB_CCCDCECF)
+mem_init(addr = 100000D0, data = D0D1D2D3_D4D5D6D7_D8D9DADB_DCDDDEDF)
+mem_init(addr = 100000E0, data = E0E1E2E3_E4E5E6E7_E8E9EAEB_ECEDEEEF)
+mem_init(addr = 100000F0, data = F0F1F2F3_F4F5F6F7_F8F9FAFB_FCFDFEFF)
+
+-- initialize the destination data memory (first 16 locations) ...
+mem_init(addr = 20000000, data = DEADBEEF_DEADBEEF_DEADBEEF_DEADBEEF)
+mem_init(addr = 20000010, data = DEADBEEF_DEADBEEF_DEADBEEF_DEADBEEF)
+mem_init(addr = 20000020, data = DEADBEEF_DEADBEEF_DEADBEEF_DEADBEEF)
+mem_init(addr = 20000030, data = DEADBEEF_DEADBEEF_DEADBEEF_DEADBEEF)
+mem_init(addr = 20000040, data = DEADBEEF_DEADBEEF_DEADBEEF_DEADBEEF)
+mem_init(addr = 20000050, data = DEADBEEF_DEADBEEF_DEADBEEF_DEADBEEF)
+mem_init(addr = 20000060, data = DEADBEEF_DEADBEEF_DEADBEEF_DEADBEEF)
+mem_init(addr = 20000070, data = DEADBEEF_DEADBEEF_DEADBEEF_DEADBEEF)
+mem_init(addr = 20000080, data = DEADBEEF_DEADBEEF_DEADBEEF_DEADBEEF)
+mem_init(addr = 20000090, data = DEADBEEF_DEADBEEF_DEADBEEF_DEADBEEF)
+mem_init(addr = 200000A0, data = DEADBEEF_DEADBEEF_DEADBEEF_DEADBEEF)
+mem_init(addr = 200000B0, data = DEADBEEF_DEADBEEF_DEADBEEF_DEADBEEF)
+mem_init(addr = 200000C0, data = DEADBEEF_DEADBEEF_DEADBEEF_DEADBEEF)
+mem_init(addr = 200000D0, data = DEADBEEF_DEADBEEF_DEADBEEF_DEADBEEF)
+mem_init(addr = 200000E0, data = DEADBEEF_DEADBEEF_DEADBEEF_DEADBEEF)
+mem_init(addr = 200000F0, data = DEADBEEF_DEADBEEF_DEADBEEF_DEADBEEF)
+
+------------------------------
+-- Initialize the PLB Master as 128-bit master processor ...
+--
+-- Note:
+--
+-- 	The instance name for bfm_processor is duplicated in the path due to the
+-- 	wrapper level inserted by SimGen to support mixed language simulation.
+------------------------------
+
+set_device(path = /bfm_system/bfm_processor/bfm_processor/master, device_type = plb_master)
+configure(msize = 10)
+
+------------------------------
+-- Start Testing ...
+------------------------------
+
+------------------------------------------------------------
+-- Test User Logic S/W Register(s)
+--
+-- In the following section, we will test the software
+-- accessible slave register(s) in User Logic through single
+-- beat write and read.
+------------------------------------------------------------
+
+wait(level = START)
+
+-- setup data for single beat write/read slave register(s)...
+mem_update(addr = SLV_REG0, data = 13131313)
+
+-- single beat write to slave register(s) ...
+write(addr = SLV_REG0, size = SINGLE_NORMAL, be = SLV_REG0_BE)
+
+-- single beat read from slave register(s) ...
+read(addr = SLV_REG0, size = SINGLE_NORMAL, be = SLV_REG0_BE)
+
+send(level = STOP)
+
+------------------------------
+-- End of Testing.
+------------------------------

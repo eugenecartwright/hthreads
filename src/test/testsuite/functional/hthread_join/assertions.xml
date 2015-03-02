@@ -1,0 +1,19 @@
+<assertions>
+  <assertion id="1">
+   The function hthread_join(hthread_t thread, void **value_ptr); shall suspend
+   the execution of the calling thread until the target 'thread' terminates,
+   unless 'thread' has already terminated. 
+  </assertion>
+  <assertion id="2">  
+  On return from a successful hthread_join() call with a non-NULL 'value_ptr'
+  argument, the value passed to hthread_exit() by the terminating thread shall
+  be made available in the location referenced by 'value_ptr'.
+  </assertion> 
+  <assertion id="3">
+  When hthread_join() returns successfully, the target thread has been
+  terminated.
+  </assertion> 
+   <assertion id="5"> 
+  Upon successful completion, hthread_join returns 0;
+  </assertion> 
+</assertions>

@@ -1,0 +1,9 @@
+-p
+xc5vfx70tff1136-3
+-lang
+vhdl
+-lp
+/home/eugene/hthreads/src/hardware/
+-msg
+__xps/ise/xmsgprops.lst
+system.mhs

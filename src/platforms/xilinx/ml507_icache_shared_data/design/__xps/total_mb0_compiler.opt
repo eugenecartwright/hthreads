@@ -1,0 +1,22 @@
+microblaze_0
+TOTAL_MB0_SOURCES = my_sw/dct.o 
+TOTAL_MB0_HEADERS = 
+TOTAL_MB0_CC = mb-gcc
+TOTAL_MB0_CC_SIZE = mb-size
+TOTAL_MB0_CC_OPT = -O2
+TOTAL_MB0_CFLAGS = 
+TOTAL_MB0_CC_SEARCH = # -B
+TOTAL_MB0_LIBPATH = -L./microblaze_0/lib/ # -L
+TOTAL_MB0_INCLUDES = -I./microblaze_0/include/ # -I
+TOTAL_MB0_LFLAGS = # -l
+TOTAL_MB0_LINKER_SCRIPT = 
+TOTAL_MB0_CC_DEBUG_FLAG =  -g 
+TOTAL_MB0_CC_PROFILE_FLAG = # -pg
+TOTAL_MB0_CC_GLOBPTR_FLAG= # -mxl-gp-opt
+TOTAL_MB0_MODE = executable
+TOTAL_MB0_LIBG_OPT = -$(TOTAL_MB0_MODE) microblaze_0
+TOTAL_MB0_CC_INFERRED_FLAGS= -mno-xl-soft-mul -mno-xl-soft-div -mcpu=v7.10.d 
+TOTAL_MB0_CC_START_ADDR_FLAG=  # -Wl,-defsym -Wl,_TEXT_START_ADDR=
+TOTAL_MB0_CC_STACK_SIZE_FLAG=  # -Wl,-defsym -Wl,_STACK_SIZE=
+TOTAL_MB0_CC_HEAP_SIZE_FLAG=  # -Wl,-defsym -Wl,_HEAP_SIZE=
+                  $(TOTAL_MB0_CC_INFERRED_FLAGS)  \

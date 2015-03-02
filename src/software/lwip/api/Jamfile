@@ -1,0 +1,32 @@
+################################################################################
+# File:     src/software/lwip/api/Jamfile
+# Author:   Wesley Peck
+# Date:     26 October 2006
+#
+# Desc:     This is the Jam build file for the lwip api subdirectory of the
+#           Hthreads project. This file instructs the Jam build system on how
+#           to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (26 October 2006) Jam file initially created
+################################################################################
+SubDir TOP src software lwip api ;
+LOCATE_TARGET = lwip$(SLASH)api ;
+
+################################################################################
+# Compile the source files into object files
+################################################################################
+Hsysobject api_lib.o    : api_lib.c ;
+Hsysobject api_msg.o    : api_msg.c ;
+Hsysobject err.o        : err.c ;
+Hsysobject sockets.o    : sockets.c ;
+Hsysobject tcpip.o      : tcpip.c ;
+
+################################################################################
+# Compile executable files from the object files
+################################################################################
+Hlib hthread : api_lib.o ;
+Hlib hthread : api_msg.o ;
+Hlib hthread : err.o ;
+Hlib hthread : sockets.o ;
+Hlib hthread : tcpip.o ;

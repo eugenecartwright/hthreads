@@ -1,0 +1,22 @@
+microblaze_19
+MB_HWT19_SOURCES = my_sw/hw_thread.c my_sw/proc_hw_thread.c 
+MB_HWT19_HEADERS = my_sw/proc_hw_thread.h 
+MB_HWT19_CC = mb-gcc
+MB_HWT19_CC_SIZE = mb-size
+MB_HWT19_CC_OPT = -O2
+MB_HWT19_CFLAGS = 
+MB_HWT19_CC_SEARCH = # -B
+MB_HWT19_LIBPATH = -L./microblaze_19/lib/ # -L
+MB_HWT19_INCLUDES = -I./microblaze_19/include/  -Imy_sw/ # -I
+MB_HWT19_LFLAGS = # -l
+MB_HWT19_LINKER_SCRIPT = my_sw/fast_lmb_linkerscript.ld
+MB_HWT19_CC_DEBUG_FLAG =  -g 
+MB_HWT19_CC_PROFILE_FLAG = # -pg
+MB_HWT19_CC_GLOBPTR_FLAG= # -mxl-gp-opt
+MB_HWT19_MODE = executable
+MB_HWT19_LIBG_OPT = -$(MB_HWT19_MODE) microblaze_19
+MB_HWT19_CC_INFERRED_FLAGS= -mno-xl-soft-mul -mhard-float -mxl-barrel-shift -mno-xl-soft-div -mcpu=v8.00.a 
+MB_HWT19_CC_START_ADDR_FLAG=  #  # -Wl,-defsym -Wl,_TEXT_START_ADDR=
+MB_HWT19_CC_STACK_SIZE_FLAG=  #  # -Wl,-defsym -Wl,_STACK_SIZE=
+MB_HWT19_CC_HEAP_SIZE_FLAG=  #  # -Wl,-defsym -Wl,_HEAP_SIZE=
+                  $(MB_HWT19_CC_INFERRED_FLAGS)  \

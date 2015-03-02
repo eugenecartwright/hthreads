@@ -1,0 +1,22 @@
+microblaze_mb7
+MB_HWT7_SOURCES = my_sw/hw_thread.c my_sw/proc_hw_thread.c 
+MB_HWT7_HEADERS = my_sw/proc_hw_thread.h 
+MB_HWT7_CC = mb-gcc
+MB_HWT7_CC_SIZE = mb-size
+MB_HWT7_CC_OPT = -O2
+MB_HWT7_CFLAGS = 
+MB_HWT7_CC_SEARCH = # -B
+MB_HWT7_LIBPATH = -L./microblaze_mb7/lib/ # -L
+MB_HWT7_INCLUDES = -I./microblaze_mb7/include/  -Imy_sw/ # -I
+MB_HWT7_LFLAGS = # -l
+MB_HWT7_LINKER_SCRIPT = 
+MB_HWT7_CC_DEBUG_FLAG =  -g 
+MB_HWT7_CC_PROFILE_FLAG = # -pg
+MB_HWT7_CC_GLOBPTR_FLAG= # -mxl-gp-opt
+MB_HWT7_MODE = executable
+MB_HWT7_LIBG_OPT = -$(MB_HWT7_MODE) microblaze_mb7
+MB_HWT7_CC_INFERRED_FLAGS= -mno-xl-soft-mul -mno-xl-soft-div -mcpu=v7.10.d 
+MB_HWT7_CC_START_ADDR_FLAG=  # -Wl,-defsym -Wl,_TEXT_START_ADDR=
+MB_HWT7_CC_STACK_SIZE_FLAG=  # -Wl,-defsym -Wl,_STACK_SIZE=
+MB_HWT7_CC_HEAP_SIZE_FLAG=  # -Wl,-defsym -Wl,_HEAP_SIZE=
+                  $(MB_HWT7_CC_INFERRED_FLAGS)  \

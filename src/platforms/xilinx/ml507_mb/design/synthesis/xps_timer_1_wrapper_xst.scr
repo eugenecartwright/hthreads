@@ -1,0 +1,12 @@
+run
+-opt_mode speed
+-netlist_hierarchy as_optimized
+-opt_level 1
+-p xc5vfx70tff1136-1
+-top xps_timer_1_wrapper
+-ifmt MIXED
+-ifn xps_timer_1_wrapper_xst.prj
+-ofn ../implementation/xps_timer_1_wrapper.ngc
+-hierarchy_separator /
+-iobuf NO
+-sd {../implementation/xps_timer_1_wrapper}

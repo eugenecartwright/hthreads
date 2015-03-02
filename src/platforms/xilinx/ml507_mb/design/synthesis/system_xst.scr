@@ -1,0 +1,14 @@
+run
+-opt_mode speed
+-netlist_hierarchy as_optimized
+-opt_level 1
+-p xc5vfx70tff1136-1
+-top system
+-ifmt MIXED
+-ifn system_xst.prj
+-ofn ../implementation/system.ngc
+-hierarchy_separator /
+-iobuf YES
+-max_fanout 10000
+-sd {../implementation}
+-vlgincdir {"/home/swarn/port/work/src/platforms/xilinx/ml507_mb/design/pcores/" "/home/swarn/port/work/src/hardware/MyRepository/pcores/" "/home/swarn/port/work/src/hardware/XilinxProcessorIP/pcores/" "/opt/Xilinx/10.1/EDK/hw/XilinxBFMinterface/pcores/" "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/" "/opt/Xilinx/10.1/EDK/hw/XilinxReferenceDesigns/pcores/" }

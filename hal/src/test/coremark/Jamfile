@@ -1,0 +1,25 @@
+################################################################################
+# File:     src/test/system/Jamfile
+# Author:   Wesley Peck
+# Date:     29 August 2006
+#
+# Desc:     This is the Jam build file for the src/test/system subdirectory of
+#           the Hthreads project. This file instructs the Jam build system on
+#           how to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (29 August 2006) Jam file initially created
+################################################################################
+SubDir TOP src test coremark ;
+LOCATE_TARGET = test$(SLASH)coremark ;
+
+################################################################################
+# Compile the source files into object files
+################################################################################
+Hobjects [ Hglob *.c ] ;
+
+################################################################################
+# Compile executable files from the object files
+################################################################################
+#Hexes [ Hglob *.c : .o ] ;
+Hexe coremark : core_list_join.o core_main.o core_matrix.o core_state.o core_util.o core_portme.o ;

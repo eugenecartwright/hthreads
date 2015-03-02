@@ -1,0 +1,275 @@
+# Reading /opt/ModelSim/6.4/modeltech/tcl/vsim/pref.tcl 
+# //  ModelSim SE-64 6.4a Aug 28 2008 Linux 2.6.18-128.el5
+# //
+# //  Copyright 1991-2008 Mentor Graphics Corporation
+# //              All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND 
+# //  PROPRIETARY INFORMATION WHICH IS THE PROPERTY
+# //  OF MENTOR GRAPHICS CORPORATION OR ITS LICENSORS
+# //  AND IS SUBJECT TO LICENSE TERMS.
+# //
+# do ../../scripts/run.do 
+# ** Warning: (vlib-34) Library already exists at "plbv46_bfm".
+# Modifying modelsim.ini
+# ** Warning: (vlib-34) Library already exists at "plbv46_master_bfm_v1_00_a".
+# Modifying modelsim.ini
+# ** Warning: (vlib-34) Library already exists at "plbv46_slave_bfm_v1_00_a".
+# Modifying modelsim.ini
+# ** Warning: (vlib-34) Library already exists at "plbv46_monitor_bfm_v1_00_a".
+# Modifying modelsim.ini
+# ** Warning: (vlib-34) Library already exists at "bfm_synch_v1_00_a".
+# Modifying modelsim.ini
+# ** Warning: (vlib-34) Library already exists at "proc_common_v2_00_a".
+# Modifying modelsim.ini
+# ** Warning: (vlib-34) Library already exists at "plb_v46_v1_00_a".
+# Modifying modelsim.ini
+# ** Warning: (vlib-34) Library already exists at "plbv46_slave_single_v1_00_a".
+# Modifying modelsim.ini
+# ** Warning: (vlib-34) Library already exists at "plbv46_master_single_v1_00_a".
+# Modifying modelsim.ini
+# ** Warning: (vlib-34) Library already exists at "plb_scheduler_v1_00_a".
+# Modifying modelsim.ini
+# ** Warning: (vlib-34) Library already exists at "plb_scheduler_tb_v1_00_a".
+# Modifying modelsim.ini
+# ** Warning: (vlib-34) Library already exists at "work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE-64 vcom 6.4a Compiler 2008.08 Aug 28 2008
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package std_logic_unsigned
+# -- Loading package attributes
+# -- Loading package std_logic_misc
+# -- Loading package numeric_std
+# -- Compiling entity infer_bram
+# -- Compiling architecture implementation of infer_bram
+# Model Technology ModelSim SE-64 vcom 6.4a Compiler 2008.08 Aug 28 2008
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity parallel
+# -- Compiling architecture imp of parallel
+# Model Technology ModelSim SE-64 vcom 6.4a Compiler 2008.08 Aug 28 2008
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package std_logic_unsigned
+# -- Loading package proc_common_pkg
+# -- Loading entity srl_fifo_f
+# -- Compiling entity user_logic
+# -- Compiling architecture imp of user_logic
+# Model Technology ModelSim SE-64 vcom 6.4a Compiler 2008.08 Aug 28 2008
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package std_logic_unsigned
+# -- Loading package proc_common_pkg
+# -- Loading package ipif_pkg
+# -- Loading package numeric_std
+# -- Loading package attributes
+# -- Loading package std_logic_misc
+# -- Loading package family_support
+# -- Loading entity or_gate128
+# -- Loading package vcomponents
+# -- Loading entity plbv46_slave_single
+# -- Loading entity data_width_adapter
+# -- Loading entity data_mirror_128
+# -- Loading entity plbv46_master_single
+# -- Loading entity srl_fifo_f
+# -- Loading entity user_logic
+# -- Compiling entity plb_scheduler
+# -- Compiling architecture imp of plb_scheduler
+# Model Technology ModelSim SE-64 vcom 6.4a Compiler 2008.08 Aug 28 2008
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package std_logic_unsigned
+# -- Compiling entity plb_scheduler_tb
+# -- Compiling architecture testbench of plb_scheduler_tb
+# -- Loading package proc_common_pkg
+# -- Loading package ipif_pkg
+# -- Loading package numeric_std
+# -- Loading package attributes
+# -- Loading package std_logic_misc
+# -- Loading package family_support
+# -- Loading entity or_gate128
+# -- Loading package vcomponents
+# -- Loading entity plbv46_slave_single
+# -- Loading entity data_width_adapter
+# -- Loading entity data_mirror_128
+# -- Loading entity plbv46_master_single
+# -- Loading entity srl_fifo_f
+# -- Loading entity user_logic
+# -- Loading entity plb_scheduler
+# Model Technology ModelSim SE-64 vcom 6.4a Compiler 2008.08 Aug 28 2008
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Compiling entity bfm_processor_wrapper
+# -- Compiling architecture structure of bfm_processor_wrapper
+# Model Technology ModelSim SE-64 vcom 6.4a Compiler 2008.08 Aug 28 2008
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Compiling entity bfm_memory_wrapper
+# -- Compiling architecture structure of bfm_memory_wrapper
+# Model Technology ModelSim SE-64 vcom 6.4a Compiler 2008.08 Aug 28 2008
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Compiling entity bfm_monitor_wrapper
+# -- Compiling architecture structure of bfm_monitor_wrapper
+# Model Technology ModelSim SE-64 vcom 6.4a Compiler 2008.08 Aug 28 2008
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Compiling entity synch_bus_wrapper
+# -- Compiling architecture structure of synch_bus_wrapper
+# Model Technology ModelSim SE-64 vcom 6.4a Compiler 2008.08 Aug 28 2008
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Compiling entity plb_bus_wrapper
+# -- Compiling architecture structure of plb_bus_wrapper
+# Model Technology ModelSim SE-64 vcom 6.4a Compiler 2008.08 Aug 28 2008
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Compiling entity my_core_wrapper
+# -- Compiling architecture structure of my_core_wrapper
+# Model Technology ModelSim SE-64 vcom 6.4a Compiler 2008.08 Aug 28 2008
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Compiling entity bfm_system
+# -- Compiling architecture structure of bfm_system
+# vsim bfm_system 
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading unisim.vcomponents
+# Loading work.bfm_system(structure)#1
+# Loading work.bfm_processor_wrapper(structure)#1
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading plbv46_bfm.plb_dcl
+# Loading plbv46_master_bfm_v1_00_a.plbv46_master_bfm(structural)#1
+# Loading plbv46_bfm.plb_master(behav)#1
+# Loading plbv46_bfm.plb_pkg(body)
+# Loading plbv46_bfm.plb_master_comp(behav)#1
+# Loading work.bfm_memory_wrapper(structure)#1
+# Loading plbv46_slave_bfm_v1_00_a.plbv46_slave_bfm(structural)#1
+# Loading plbv46_bfm.plb_slave(behav)#1
+# Loading plbv46_bfm.plb_slave_comp(behav)#1
+# Loading work.bfm_monitor_wrapper(structure)#1
+# Loading plbv46_monitor_bfm_v1_00_a.plbv46_monitor_bfm(structural)#1
+# Loading plbv46_bfm.plb_monitor(behav)#1
+# Loading plbv46_bfm.plb_monitor_comp(behav)#1
+# Loading work.synch_bus_wrapper(structure)#1
+# Loading bfm_synch_v1_00_a.bfm_synch(structure)#1
+# Loading work.plb_bus_wrapper(structure)#1
+# Loading proc_common_v2_00_a.proc_common_pkg(body)
+# Loading plb_v46_v1_00_a.plb_v46(simulation)#1
+# Loading unisim.fds(fds_v)#1
+# ** Warning: (vsim-3479) Time unit 'ps' is less than the simulator resolution (1ns).
+#    Time: 0 ns  Iteration: 0  Region: /bfm_system/plb_bus/plb_bus/por_ff2_i
+# Loading proc_common_v2_00_a.family_support(body)
+# Loading plb_v46_v1_00_a.plb_addrpath(implementation)#1
+# Loading proc_common_v2_00_a.mux_onehot_f(imp)#1
+# Loading proc_common_v2_00_a.mux_onehot_f(imp)#2
+# Loading proc_common_v2_00_a.mux_onehot_f(imp)#3
+# Loading proc_common_v2_00_a.mux_onehot_f(imp)#4
+# Loading proc_common_v2_00_a.mux_onehot_f(imp)#5
+# Loading proc_common_v2_00_a.mux_onehot_f(imp)#6
+# Loading plb_v46_v1_00_a.plb_wr_datapath(simulation)#1
+# Loading proc_common_v2_00_a.mux_onehot_f(imp)#7
+# Loading plb_v46_v1_00_a.plb_rd_datapath(simulation)#1
+# Loading plb_v46_v1_00_a.plb_slave_ors(implementation)#1
+# Loading plb_v46_v1_00_a.or_gate(imp)#1
+# Loading plb_v46_v1_00_a.or_gate(imp)#2
+# Loading plb_v46_v1_00_a.or_gate(imp)#3
+# Loading plb_v46_v1_00_a.or_gate(imp)#4
+# Loading plb_v46_v1_00_a.plb_arbiter_logic(implementation)#1
+# Loading plb_v46_v1_00_a.plb_priority_encoder(simulation)#1
+# Loading plb_v46_v1_00_a.priority_encoder(simulation)#1
+# Loading plb_v46_v1_00_a.qual_request(simulation)#1
+# Loading unisim.muxcy(muxcy_v)#1
+# Loading std.textio(body)
+# Loading ieee.vital_timing(body)
+# Loading ieee.vital_primitives(body)
+# Loading unisim.vpkg(body)
+# Loading unisim.lut4(lut4_v)#1
+# Loading plb_v46_v1_00_a.pending_priority(simulation)#1
+# Loading plb_v46_v1_00_a.qual_priority(qual_priority)#1
+# Loading plb_v46_v1_00_a.pend_request(simulation)#1
+# Loading plb_v46_v1_00_a.arb_control_sm(simulation)#1
+# Loading plb_v46_v1_00_a.gen_qual_req(simulation)#1
+# Loading plb_v46_v1_00_a.muxed_signals(implementation)#1
+# Loading proc_common_v2_00_a.or_bits(implementation)#1
+# Loading plb_v46_v1_00_a.watchdog_timer(simulation)#1
+# Loading proc_common_v2_00_a.down_counter(simulation)#1
+# Loading plb_v46_v1_00_a.plb_interrupt(plb_interrupt)#1
+# Loading unisim.fdre(fdre_v)#1
+# Loading work.my_core_wrapper(structure)#1
+# Loading proc_common_v2_00_a.ipif_pkg(body)
+# Loading ieee.numeric_std(body)
+# Loading synopsys.attributes
+# Loading ieee.std_logic_misc(body)
+# Loading plb_scheduler_tb_v1_00_a.plb_scheduler_tb(testbench)#1
+# Loading plb_scheduler_v1_00_a.plb_scheduler(imp)#1
+# Loading plbv46_slave_single_v1_00_a.plbv46_slave_single(implementation)#1
+# Loading plbv46_slave_single_v1_00_a.plb_slave_attachment(implementation)#1
+# Loading plbv46_slave_single_v1_00_a.plb_address_decoder(imp)#1
+# Loading proc_common_v2_00_a.pselect_f(imp)#1
+# Loading proc_common_v2_00_a.or_gate128(imp)#1
+# Loading proc_common_v2_00_a.or_muxcy(implementation)#1
+# Loading plbv46_master_single_v1_00_a.plbv46_master_single(implementation)#1
+# Loading plbv46_master_single_v1_00_a.data_width_adapter(implementation)#1
+# Loading plbv46_master_single_v1_00_a.data_mirror_128(implementation)#1
+# Loading plb_scheduler_v1_00_a.user_logic(imp)#1
+# Loading plb_scheduler_v1_00_a.parallel(imp)#1
+# Loading plb_scheduler_v1_00_a.infer_bram(implementation)#1
+# sim:/bfm_system/bfm_memory/bfm_memory/slave/slave
+# sim:/bfm_system/bfm_memory/bfm_memory/slave/slave/read_req_cmd
+# ** Warning: (vsim-3933) 'read_cmd(24:31)' is considered a constant, changing its value may have no effect.
+# 
+# sim:/bfm_system/bfm_memory/bfm_memory/slave/slave/write_req_cmd
+# ** Warning: (vsim-3933) 'write_cmd(24:31)' is considered a constant, changing its value may have no effect.
+# 
+# sim:/bfm_system/bfm_memory/bfm_memory/slave/slave/slave_mem
+# sim:/bfm_system/bfm_processor/bfm_processor/master/master
+# sim:/bfm_system/bfm_processor/bfm_processor/master/master/decoder
+# sim:/bfm_system
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ns  Iteration: 0  Instance: /bfm_system/plb_bus/plb_bus/gen_shared/i_plb_arbiter_logic/i_wdt/wdt_timeout_cntr_i
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 20 ns  Iteration: 0  Instance: /bfm_system/plb_bus/plb_bus/gen_shared/i_plb_arbiter_logic/i_wdt/wdt_timeout_cntr_i
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 20 ns  Iteration: 0  Instance: /bfm_system/plb_bus/plb_bus/gen_shared/i_plb_arbiter_logic/i_wdt/wdt_timeout_cntr_i
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 20 ns  Iteration: 1  Instance: /bfm_system/plb_bus/plb_bus/gen_shared/i_plb_arbiter_logic/i_wdt/wdt_timeout_cntr_i
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 80 ns  Iteration: 0  Instance: /bfm_system/my_core/my_core/uut/plbv46_slave_single_i/i_slave_attachment/gen_xfer_qual_shrd
+# ** Note: *** Real simulation starts here ***
+#    Time: 220 ns  Iteration: 2  Instance: /bfm_system/my_core/my_core
+# ** Note: *** Start User Logic Slave Register Test ***
+#    Time: 440 ns  Iteration: 0  Instance: /bfm_system/my_core/my_core
+# ** Error: <PLB><MASTER><0> READ DATA COMPARISON ERROR, BYTE 1 : Read Addr=x0000000030000060 Expect data=x00 Actual data=x40
+#    Time: 5500 ns  Iteration: 2  Instance: /bfm_system/bfm_processor/bfm_processor/master/master
+# ** Error: <PLB><MASTER><0> READ DATA COMPARISON ERROR, BYTE 1 : Read Addr=x0000000030000160 Expect data=x00 Actual data=x40
+#    Time: 5720 ns  Iteration: 2  Instance: /bfm_system/bfm_processor/bfm_processor/master/master
+# ** Error: <PLB><MASTER><0> READ DATA COMPARISON ERROR, BYTE 3 : Read Addr=x0000000030000160 Expect data=x00 Actual data=x01
+#    Time: 5720 ns  Iteration: 2  Instance: /bfm_system/bfm_processor/bfm_processor/master/master
+# ** Error: <PLB><MASTER><0> READ DATA COMPARISON ERROR, BYTE 4 : Read Addr=x0000000030000064 Expect data=x00 Actual data=x12
+#    Time: 6280 ns  Iteration: 2  Instance: /bfm_system/bfm_processor/bfm_processor/master/master
+# ** Error: <PLB><MASTER><0> READ DATA COMPARISON ERROR, BYTE 5 : Read Addr=x0000000030000064 Expect data=x00 Actual data=x34
+#    Time: 6280 ns  Iteration: 2  Instance: /bfm_system/bfm_processor/bfm_processor/master/master
+# ** Error: <PLB><MASTER><0> READ DATA COMPARISON ERROR, BYTE 6 : Read Addr=x0000000030000064 Expect data=x00 Actual data=x12
+#    Time: 6280 ns  Iteration: 2  Instance: /bfm_system/bfm_processor/bfm_processor/master/master
+# ** Error: <PLB><MASTER><0> READ DATA COMPARISON ERROR, BYTE 7 : Read Addr=x0000000030000064 Expect data=x00 Actual data=x34
+#    Time: 6280 ns  Iteration: 2  Instance: /bfm_system/bfm_processor/bfm_processor/master/master
+# ** Note: *** User Logic Slave Register Test Complete ***
+#    Time: 6302 ns  Iteration: 3  Instance: /bfm_system/my_core/my_core
+# ** Note: *** Start User Logic IP Master Read Test ***
+#    Time: 7320 ns  Iteration: 0  Instance: /bfm_system/my_core/my_core

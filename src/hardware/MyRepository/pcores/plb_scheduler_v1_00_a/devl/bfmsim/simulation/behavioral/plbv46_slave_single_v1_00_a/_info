@@ -1,0 +1,164 @@
+m255
+K3
+13
+cModel Technology
+Z0 d/home/jagron/uark_research/plb_cores/edk_user_repository/MyProcessorIPLib/pcores/plb_scheduler_v1_00_a/devl/bfmsim/simulation/behavioral
+Eplb_address_decoder
+Z1 w1185293854
+Z2 DPx6 unisim 11 vcomponents 0 22 S[1UK2T>En3_?_4iibizc2
+Z3 DPx19 proc_common_v2_00_a 8 ipif_pkg 0 22 CLI3mgoYmE?M1[87K7=ig0
+Z4 DEx19 proc_common_v2_00_a 10 or_gate128 0 22 9gLFjCLh2fE_i2TbC6NTO1
+Z5 DPx19 proc_common_v2_00_a 14 family_support 0 22 IL;e9D5YRmXkX:9Ec5AAX1
+Z6 DEx19 proc_common_v2_00_a 9 pselect_f 0 22 a@3P:lzFVV;24Ahol6zA32
+Z7 DPx4 ieee 18 std_logic_unsigned 0 22 hEMVMlaNCR^<OOoVNV;m90
+Z8 DPx4 ieee 15 std_logic_arith 0 22 GJbAT?7@hRQU9IQ702DT]2
+Z9 DPx19 proc_common_v2_00_a 15 proc_common_pkg 0 22 T59NgOEWgCi=^mn4:N_TT1
+Z10 DPx4 ieee 11 numeric_std 0 22 =NSdli^?T5OD8;4F<blj<3
+Z11 DPx4 ieee 14 std_logic_1164 0 22 GH1=`jDDBJ=`LM;:Ak`kf2
+Z12 8/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_00_a/hdl/vhdl/plb_address_decoder.vhd
+Z13 F/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_00_a/hdl/vhdl/plb_address_decoder.vhd
+l0
+L112
+VUm^_6PChU0]k_3R7g>Doo2
+Z14 OL;C;6.4a;39
+31
+Z15 o-93 -work plbv46_slave_single_v1_00_a
+Z16 tExplicit 1
+!s100 :]K>JMi5YJQkn90]K7KTU0
+Aimp
+R4
+R6
+R2
+R3
+R5
+R7
+R8
+R9
+R10
+R11
+DEx4 work 19 plb_address_decoder 0 22 Um^_6PChU0]k_3R7g>Doo2
+l310
+L170
+Vj1lI`><5I7aB`<BTDm:J33
+R14
+31
+Z17 Mx8 4 ieee 14 std_logic_1164
+Z18 Mx7 4 ieee 11 numeric_std
+Mx6 19 proc_common_v2_00_a 15 proc_common_pkg
+Z19 Mx5 4 ieee 15 std_logic_arith
+Mx4 4 ieee 18 std_logic_unsigned
+Z20 Mx3 19 proc_common_v2_00_a 14 family_support
+Z21 Mx2 19 proc_common_v2_00_a 8 ipif_pkg
+Z22 Mx1 6 unisim 11 vcomponents
+R15
+R16
+!s100 o29T0>HWd;8<=ZGkn8mRP2
+Eplb_slave_attachment
+Z23 w1187296408
+R2
+Z24 DEx19 proc_common_v2_00_a 9 counter_f 0 22 8<6ZBn;J=odNO2@hQ^SYN1
+R5
+R3
+R9
+Z25 DPx8 synopsys 10 attributes 0 22 2Q8I4L@H0S1aHEXkjUYDC1
+Z26 DPx4 ieee 14 std_logic_misc 0 22 D2f;@P3IKJA9T^H8HI[9K0
+R8
+R7
+R10
+R11
+Z27 8/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_00_a/hdl/vhdl/plb_slave_attachment.vhd
+Z28 F/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_00_a/hdl/vhdl/plb_slave_attachment.vhd
+l0
+L139
+V^z;f^AOWGO<oH;BIOWl3C1
+R14
+31
+R15
+R16
+!s100 C85fIRSi93?e7]oI1^ECH0
+Aimplementation
+R24
+DEx27 plbv46_slave_single_v1_00_a 19 plb_address_decoder 0 22 Um^_6PChU0]k_3R7g>Doo2
+R2
+R5
+R3
+R9
+R25
+R26
+R8
+R7
+R10
+R11
+DEx4 work 20 plb_slave_attachment 0 22 ^z;f^AOWGO<oH;BIOWl3C1
+l360
+L222
+VOSAN@g]jaIX3oQ<Mk^kZJ3
+!s100 @c[<2F=GnnPBAQJEfg>=03
+R14
+31
+Z29 Mx10 4 ieee 14 std_logic_1164
+Mx9 4 ieee 11 numeric_std
+Mx8 4 ieee 18 std_logic_unsigned
+Z30 Mx7 4 ieee 15 std_logic_arith
+Z31 Mx6 4 ieee 14 std_logic_misc
+Z32 Mx5 8 synopsys 10 attributes
+Z33 Mx4 19 proc_common_v2_00_a 15 proc_common_pkg
+Mx3 19 proc_common_v2_00_a 8 ipif_pkg
+Mx2 19 proc_common_v2_00_a 14 family_support
+R22
+R15
+R16
+Eplbv46_slave_single
+R23
+R2
+R4
+R3
+R5
+R9
+R25
+R26
+R10
+R8
+R7
+R11
+Z34 8/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_00_a/hdl/vhdl/plbv46_slave_single.vhd
+Z35 F/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_00_a/hdl/vhdl/plbv46_slave_single.vhd
+l0
+L156
+VIHj[fZm@fE6HK250mm9lK0
+!s100 SLFINEhfadaIBb;1hI>NH0
+R14
+31
+R15
+R16
+Aimplementation
+Z36 DEx27 plbv46_slave_single_v1_00_a 20 plb_slave_attachment 0 22 ^z;f^AOWGO<oH;BIOWl3C1
+R2
+R3
+R5
+R9
+R25
+R26
+R10
+R8
+R7
+R11
+Z37 DEx4 work 19 plbv46_slave_single 0 22 IHj[fZm@fE6HK250mm9lK0
+l436
+L355
+Z38 VeI;o>hmdLF48UfH_Yh6fH2
+Z39 !s100 ]@NRe4KzYh9?jMPWe<Dhh3
+R14
+31
+R29
+Z40 Mx9 4 ieee 18 std_logic_unsigned
+Z41 Mx8 4 ieee 15 std_logic_arith
+R18
+R31
+R32
+R33
+R20
+R21
+R22
+R15
+R16

@@ -1,0 +1,27 @@
+################################################################################
+# File:     src/test/system/Jamfile
+# Author:   Wesley Peck
+# Date:     29 August 2006
+#
+# Desc:     This is the Jam build file for the performance test subdirectory of
+#           the Hthreads project. This file instructs the Jam build system on
+#           how to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (29 August 2006) Jam file initially created
+################################################################################
+SubDir TOP src test performance ;
+LOCATE_TARGET = test/performance ;
+
+################################################################################
+# Compile the source files into object files
+################################################################################
+Hobjects [ Hglob *.c ] ;
+Hsysobject time.o : time.c ;
+#Hobjects tester.c ;
+
+################################################################################
+# Compile executable files from the object files
+################################################################################
+Hexes [ Hglob *.c : .o ] ;
+#Hexes tester.o ;

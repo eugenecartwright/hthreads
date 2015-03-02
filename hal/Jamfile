@@ -1,0 +1,37 @@
+################################################################################
+# File:     Jamfile
+# Author:   Wesley Peck
+# Date:     20 August 2006
+#
+# Desc:     This is the Jam build file for the main directory of the Hthreads
+#           project. This file instructs the Jam build system on how to build
+#           the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (20 August 2006) Jam file initially created
+################################################################################
+SubDir TOP ;
+
+################################################################################
+# Tell the build system that it can clean the lib and test directories
+################################################################################
+#Hclean clobber : $(TOP)$(SLASH)lib ;
+#Hclean clobber : $(TOP)$(SLASH)test ;
+Hclean clobber : $(TOP)$(SLASH)docs$(SLASH)hthreads ;
+Hclean clobber : $(TOP)$(SLASH)docs$(SLASH)internal ;
+
+################################################################################
+# Tell the build system how to create documentation for Hthreads
+################################################################################
+Hdox extdoc : config$(SLASH)extdoc ;
+Hdox intdoc : config$(SLASH)intdoc ;
+
+################################################################################
+# Include all of the subdirectories to build 
+################################################################################
+SubInclude TOP src ;
+
+################################################################################
+# Run ranlib on the libraries
+################################################################################
+# Hranlib ;

@@ -1,0 +1,43 @@
+########################################################################################
+# File:     src/test/system/Jamfile
+# Author:   Wesley Peck
+# Date:     29 August 2006
+#
+# Desc:     This is the Jam build file for the src/test/system subdirectory of the
+#           Hthreads project. This file instructs the Jam build system on how to build
+#           the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (29 August 2006) Jam file initially created
+########################################################################################
+SubDir TOP src tools hterm ;
+LOCATE_TARGET = tools ;
+
+####################################################################################
+# Add an include directory to the list of includes
+####################################################################################
+SUBDIRHDRS = $(TOP)/src/tools/hterm/include ;
+
+####################################################################################
+# Compile the source files into object files
+####################################################################################
+HHobject hterm.o        : src/hterm.c ;
+HHobject hinput.o       : src/hinput.c ;
+HHobject hlog.o         : src/hlog.c ;
+HHobject hkey.o         : src/hkey.c ;
+HHobject hwin.o         : src/hwin.c ;
+HHobject hcommand.o     : src/hcommand.c ;
+HHobject keys.o         : src/keys.c ;
+HHobject callbacks.o    : src/callbacks.c ;
+HHobject commands.o     : src/commands.c ;
+
+####################################################################################
+# Set the libraries to link against
+####################################################################################
+LINKLIBS on <src!tools!hterm>hterm      = -lncurses ;
+
+####################################################################################
+# Compile executable files from the object files
+####################################################################################
+HHexe hterm : hterm.o hinput.o hlog.o hkey.o hwin.o hcommand.o
+              keys.o callbacks.o commands.o ;

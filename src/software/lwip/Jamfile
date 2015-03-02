@@ -1,0 +1,24 @@
+################################################################################
+# File:     src/software/lwip
+# Author:   Wesley Peck
+# Date:     26 October 2006
+#
+# Desc:     This is the Jam build file for the lwip subdirectory of the Hthreads
+#           project. This file instructs the Jam build system on how to build
+#           the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (26 October 2006) Jam file initially created
+################################################################################
+SubDir TOP src software lwip ;
+
+################################################################################
+# Build the core lwip code and the provided network interfaces
+################################################################################
+SubInclude TOP src software lwip core ;
+SubInclude TOP src software lwip netif ;
+
+################################################################################
+# For now don't build the high level API code
+################################################################################
+# SubInclude TOP src software lwip api ;

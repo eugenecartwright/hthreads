@@ -1,0 +1,12 @@
+run
+-opt_mode speed
+-netlist_hierarchy as_optimized
+-opt_level 1
+-p xc5vfx70tff1136-1
+-top mb4_plb_bridge_wrapper
+-ifmt MIXED
+-ifn mb4_plb_bridge_wrapper_xst.prj
+-ofn ../implementation/mb4_plb_bridge_wrapper.ngc
+-hierarchy_separator /
+-iobuf NO
+-sd {../implementation/mb4_plb_bridge_wrapper}

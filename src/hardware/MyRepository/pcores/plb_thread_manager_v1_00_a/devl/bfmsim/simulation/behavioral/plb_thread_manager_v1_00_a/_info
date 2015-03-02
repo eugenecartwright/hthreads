@@ -1,0 +1,135 @@
+m255
+K3
+13
+cModel Technology
+Z0 d/home/jstevens/tmp/plb_cores/test_system/edk_user_repository/MyProcessorIPLib/pcores/plb_thread_manager_v1_00_a/devl/bfmsim/simulation/behavioral
+Einfer_bram_dual_port
+Z1 w1239740078
+Z2 DPx4 ieee 11 numeric_std 0 22 =NSdli^?T5OD8;4F<blj<3
+Z3 DPx8 synopsys 10 attributes 0 22 2Q8I4L@H0S1aHEXkjUYDC1
+Z4 DPx4 ieee 14 std_logic_misc 0 22 D2f;@P3IKJA9T^H8HI[9K0
+Z5 DPx4 ieee 18 std_logic_unsigned 0 22 hEMVMlaNCR^<OOoVNV;m90
+Z6 DPx4 ieee 15 std_logic_arith 0 22 GJbAT?7@hRQU9IQ702DT]2
+Z7 DPx4 ieee 14 std_logic_1164 0 22 GH1=`jDDBJ=`LM;:Ak`kf2
+Z8 8/home/jstevens/tmp/plb_cores/test_system/edk_user_repository/MyProcessorIPLib/pcores/plb_thread_manager_v1_00_a/hdl/vhdl/infer_bram_dual_port.vhd
+Z9 F/home/jstevens/tmp/plb_cores/test_system/edk_user_repository/MyProcessorIPLib/pcores/plb_thread_manager_v1_00_a/hdl/vhdl/infer_bram_dual_port.vhd
+l0
+L57
+VkV:bB0UYoNnTY4NfN]B]40
+Z10 OL;C;6.4a;39
+31
+Z11 o-93 -work plb_thread_manager_v1_00_a
+Z12 tExplicit 1
+!s100 A:5]Y]QIk4B<W2FbS?AT01
+Aimplementation
+R2
+R3
+R4
+R5
+R6
+R7
+DEx4 work 20 infer_bram_dual_port 0 22 kV:bB0UYoNnTY4NfN]B]40
+l92
+L83
+V9QcIXaPPCF>`;o^BdPC453
+R10
+31
+Z13 Mx6 4 ieee 14 std_logic_1164
+Z14 Mx5 4 ieee 15 std_logic_arith
+Z15 Mx4 4 ieee 18 std_logic_unsigned
+Mx3 4 ieee 14 std_logic_misc
+Mx2 8 synopsys 10 attributes
+Z16 Mx1 4 ieee 11 numeric_std
+R11
+R12
+!s100 1<E52DBE885@1KL3nh:2R1
+Eplb_thread_manager
+Z17 w1239824227
+Z18 DEx26 plb_thread_manager_v1_00_a 10 user_logic 0 22 Az6TSfX2Bj2T=@hFll96P3
+Z19 DPx6 unisim 11 vcomponents 0 22 _V:BH]7RE^[3OjzQ67J?81
+Z20 DPx19 proc_common_v2_00_a 14 family_support 0 22 MIeC`3E6h47Co`<j:<j]M0
+R3
+R4
+R2
+Z21 DEx27 plbv46_slave_single_v1_00_a 19 plbv46_slave_single 0 22 QPTRMK7XQAM>Sjjm2b3_E0
+Z22 DPx19 proc_common_v2_00_a 8 ipif_pkg 0 22 oh_S2`[L;n=i=aQSG>m050
+Z23 DPx19 proc_common_v2_00_a 15 proc_common_pkg 0 22 mQkS[49VfNX_mj<izVm2I3
+R5
+R6
+R7
+Z24 8/home/jstevens/tmp/plb_cores/test_system/edk_user_repository/MyProcessorIPLib/pcores/plb_thread_manager_v1_00_a/hdl/vhdl/plb_thread_manager.vhd
+Z25 F/home/jstevens/tmp/plb_cores/test_system/edk_user_repository/MyProcessorIPLib/pcores/plb_thread_manager_v1_00_a/hdl/vhdl/plb_thread_manager.vhd
+l0
+L138
+VDQQVKhQVU[7m2>OQJ7L1U1
+!s100 <Qf[I3cflZeY`0DSaNZhQ1
+R10
+31
+R11
+R12
+Aimp
+R18
+R21
+R19
+R20
+R3
+R4
+R2
+R22
+R23
+R5
+R6
+R7
+DEx4 work 18 plb_thread_manager 0 22 DQQVKhQVU[7m2>OQJ7L1U1
+l332
+L261
+VE=H0>hBl2]gYnA6Z;J>DQ3
+!s100 =WJ3YTn>ZL]BBY7zQW2S40
+R10
+31
+Z26 Mx10 4 ieee 14 std_logic_1164
+Mx9 4 ieee 15 std_logic_arith
+Z27 Mx8 4 ieee 18 std_logic_unsigned
+Mx7 19 proc_common_v2_00_a 15 proc_common_pkg
+Mx6 19 proc_common_v2_00_a 8 ipif_pkg
+Mx5 4 ieee 11 numeric_std
+Mx4 4 ieee 14 std_logic_misc
+Mx3 8 synopsys 10 attributes
+Z28 Mx2 19 proc_common_v2_00_a 14 family_support
+Z29 Mx1 6 unisim 11 vcomponents
+R11
+R12
+Euser_logic
+Z30 w1240566559
+R23
+R5
+R6
+R7
+Z31 8/home/jstevens/tmp/plb_cores/test_system/edk_user_repository/MyProcessorIPLib/pcores/plb_thread_manager_v1_00_a/hdl/vhdl/user_logic.vhd
+Z32 F/home/jstevens/tmp/plb_cores/test_system/edk_user_repository/MyProcessorIPLib/pcores/plb_thread_manager_v1_00_a/hdl/vhdl/user_logic.vhd
+l0
+L91
+VAz6TSfX2Bj2T=@hFll96P3
+R10
+31
+R11
+R12
+!s100 7NZW0FH5Hf?P?YGc53RHe2
+Aimp
+R23
+R5
+R6
+R7
+DEx4 work 10 user_logic 0 22 Az6TSfX2Bj2T=@hFll96P3
+l468
+L171
+VG4GWLBI^09I2KY5oLj?>^3
+R10
+31
+Z33 Mx4 4 ieee 14 std_logic_1164
+Z34 Mx3 4 ieee 15 std_logic_arith
+Z35 Mx2 4 ieee 18 std_logic_unsigned
+Z36 Mx1 19 proc_common_v2_00_a 15 proc_common_pkg
+R11
+R12
+!s100 P;MQYB[;UoM1KHSbS`AMM2

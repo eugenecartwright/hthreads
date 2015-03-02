@@ -1,0 +1,24 @@
+########################################################################################
+# File:     src/software/fs/memfs/Jamfile
+# Author:   Wesley Peck
+# Date:     22 January 2007
+#
+# Desc:     This is the Jam build file for the memfs file system subdirectory of the
+#           Hthreads project. This file instructs the Jam build system on how to build
+#           the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (22 January 2007) Jam file initially created
+########################################################################################
+SubDir TOP src software fs memfs ;
+LOCATE_TARGET = software$(SLASH)fs$(SLASH)memfs ;
+
+########################################################################################
+# Compile the source files into object files
+########################################################################################
+Hsysobjects [ Hglob *.c ] ;
+
+########################################################################################
+# Add the object files to the hthreads library
+########################################################################################
+Hlib hthread : [ Hglob *.c : .o ] ;

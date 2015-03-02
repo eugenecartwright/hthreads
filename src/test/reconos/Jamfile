@@ -1,0 +1,35 @@
+################################################################################
+# File:     test/reconos/Jamfile
+# Author:   Wesley Peck
+# Date:     24 October 2007
+#
+# Desc:     This is the Jam build file for the reconos test subdirectory of the
+#           Hthreads project. This file instructs the Jam build system on how
+#           to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (14 November 2006) Jam file initially created
+################################################################################
+SubDir TOP src test reconos ;
+LOCATE_TARGET = test$(SLASH)reconos ;
+
+################################################################################
+# Build the object files
+################################################################################
+SUBDIRHDRS += $(TOP)$(SLASH)src$(SLASH)test$(SLASH)reconos$(SLASH)include ;
+#LIBS += -L $(TOP)$(SLASH)src$(SLASH)platforms$(SLASH)xilinx$(SLASH)xup$(SLASH)design$(SLASH)ppc405_0$(SLASH)lib -lxil ;
+LIBS += -L $(TOP)$(SLASH)src$(SLASH)platforms$(SLASH)xilinx$(SLASH)ml507$(SLASH)design$(SLASH)ppc440_0$(SLASH)lib -lxil ;
+
+################################################################################
+# Build the object files
+################################################################################
+Hobjects [ Hglob *.c ] ;
+
+################################################################################
+# Build the executables
+################################################################################
+Hexe stsw : bubblesort.o data.o merge.o timing.o stsw.o ;
+Hexe mutexes : xil_timing.o timing.o mutexes.o ;
+Hexe mtsw : bubblesort.o data.o merge.o timing.o sort8k.o mailbox.o mtsw.o ;
+Hexe mtsw_no_globals : bubblesort.o data.o merge_no_globals.o timing.o sort8k_no_globals.o mailbox_no_globals.o mtsw_no_globals.o ;
+Hexe cache_test : cache_test.o ;

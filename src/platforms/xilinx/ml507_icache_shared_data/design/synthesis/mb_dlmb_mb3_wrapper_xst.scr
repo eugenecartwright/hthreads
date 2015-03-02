@@ -1,0 +1,12 @@
+run
+-opt_mode speed
+-netlist_hierarchy as_optimized
+-opt_level 1
+-p xc5vfx70tff1136-1
+-top mb_dlmb_mb3_wrapper
+-ifmt MIXED
+-ifn mb_dlmb_mb3_wrapper_xst.prj
+-ofn ../implementation/mb_dlmb_mb3_wrapper.ngc
+-hierarchy_separator /
+-iobuf NO
+-sd {../implementation/mb_dlmb_mb3_wrapper}

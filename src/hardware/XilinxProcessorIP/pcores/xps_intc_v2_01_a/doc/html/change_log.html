@@ -1,0 +1,418 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns:mso="urn:schemas-microsoft-com:office:office"
+ xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+  <title>Change log for xps_intc, 2.01.a</title>
+  <link href="../../../../../../doc/usenglish/css/xilhtml.css"
+ rel="stylesheet" type="text/css">
+  <style>
+		P.Level1Heading {
+			color: #000000;
+			font-weight: bold;
+			font-size: 1.05em;
+			margin-bottom: 0em;
+			margin-top: 0em;
+		}
+		P.Level2Heading  {
+			font-weight: bold;
+			margin-top: 2em;
+			margin-bottom: 0em;
+		}
+		P.Level3Heading {
+			font-weight: bold;
+			margin-top: 2em;
+		}
+		.GreyBackground {
+			background-color:#CCCCCC;
+		}
+		.PreformatFont  {
+			font-family: Fixed, Mono, Courier New, Courier;
+			font-size: .95em;
+		}
+	</style><!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:Location msdt:dt="string">New Mexico</mso:Location>
+<mso:Description0 msdt:dt="string"></mso:Description0>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+<body>
+<h3 class="PageHeader">Xilinx Processor IP Library</h3>
+<h1>Change log for xps_intc<br>
+</h1>
+<hr class="whs1">
+<table
+ style="vertical-align: top; text-align: left; width: 534px; height: 160px;"
+ border="0" cellpadding="1" cellspacing="0">
+  <tbody>
+<!-- BEGIN CHANGELOG FOR New core version --><!--spacer--> <tr>
+      <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v2.01.a, introduced in 12.1 </p>
+      </td>
+    </tr>
+    <tr style="font-weight: bold;">
+      <td style="vertical-align: top;">12.1 - Changes in
+VHDL/Verilog/Netlist
+sources (.vhd, .v, .ngc, .edn)</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <pre><font size="-1"><span style="font-family: Arial;"><br></span></font><span
+ style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li><font size="-1"><span style="font-family: Arial;">None</span></font><br>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Resolved Issues:</span><font
+ size="+1"><span style="font-family: Arial;"><br></span></font></pre>
+      <ul>
+        <li><font size="-1"><span style="font-family: Arial;">Fixed [CR
+&lt;539693</span></font><span
+ style="font-size: 10pt; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;;"></span><font
+ size="-1"><span style="font-family: Arial;">&gt;]<br>
+          </span></font></li>
+        <li><font size="-1"><span style="font-family: Arial;">To fix
+this CR following attributes added </span></font>in intc_core.vhd</li>
+        <ul>
+          <li>attribute buffer_type: string;</li>
+          <li>attribute buffer_type of Intr: signal is "none";</li>
+        </ul>
+      </ul>
+      <font size="-1"><span style="font-family: Arial;">Known Issues /
+Limitations:</span></font><br style="font-family: Arial;">
+      <ul>
+        <li style="font-family: Arial;"><font size="-1">None</font></li>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v2.00.a, introduced in 11.3 </p>
+      </td>
+    </tr>
+    <tr style="font-weight: bold;">
+      <td style="vertical-align: top;"><br>
+11.3 - Changes in tool interface files
+(.mpd)</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <hr class="whs1"></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <ul>
+        <li>Added system level DRC to generate error if interrupt
+sensitivity is missing for ports connected to Intr.<br>
+        </li>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <p class="Level2Heading">11.3 - Changes in Tcl script files
+associated with core (.tcl)</p>
+      <hr class="whs1"> </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <ul>
+        <li><font size="-1"><span style="font-family: Arial;">Updated
+to return correct default values of parameters</span></font></li>
+        <li><font size="-1"><span style="font-family: Arial;">Added
+check for missing sensitivity for ports connected to Intr<br>
+          </span></font></li>
+      </ul>
+      </td>
+    </tr>
+    <tr style="font-weight: bold;">
+      <td style="vertical-align: top;"><br>
+11.3 - Changes in&nbsp;documentation
+associated with core</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <hr class="whs1"></td>
+    </tr>
+    <tr>
+      <td colspan="1" rowspan="1">
+      <ul>
+        <li><font size="-1"><span style="font-family: Arial;">Added
+resource utilization table for V6lxt, V6cxt, S6lxt</span></font><font
+ size="-1"><span style="font-family: Arial;"></span></font></li>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+    </tr>
+<!-- End section --> <tr>
+    </tr>
+    <tr>
+    </tr>
+<!-- End section --> <tr>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+    </tr>
+  </tbody>
+</table>
+<table style="vertical-align: top; text-align: left;" border="0"
+ cellpadding="1" cellspacing="0">
+  <tbody>
+    <tr>
+      <td>
+      <hr class="whs1"></td>
+    </tr>
+    <tr>
+      <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v2.00.a, introduced in 11.1 </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <p class="Level2Heading">11.1 - Changes in VHDL/Verilog/Netlist
+sources (.vhd, .v, .ngc, .edn) </p>
+      <hr class="whs1"> </td>
+    </tr>
+    <tr>
+      <td>
+      <pre><span style="font-style: italic;"></span><font size="-1"><span
+ style="font-family: Arial;"><br></span></font><span
+ style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li><font size="-1"><span style="font-family: Arial;">Changed
+the helper libraries</span></font><font size="-1"><span
+ style="font-family: Arial;"></span></font></li>
+        <ul>
+          <li><font size="-1"><span style="font-family: Arial;">proc_common
+version from v2.00.a to v3.00.a</span></font></li>
+          <li><font size="-1"><span style="font-family: Arial;">plbv46_slave_single
+from v1.00.a to v1.01.a</span></font></li>
+        </ul>
+      </ul>
+      <pre><span style="font-family: Arial;">Resolved Issues:</span><font
+ size="+1"><span style="font-family: Arial;"><br></span></font></pre>
+      <ul>
+        <li><font size="-1"><span style="font-family: Arial;">Fixed [CR
+&lt;442790&gt;] to support edge on Irq<br>
+          </span></font></li>
+        <ul>
+          <li><font size="-1"><span style="font-family: Arial;">Versions
+that have this issue: v1.00.a</span></font></li>
+          <li><font size="-1"><span style="font-family: Arial;">Added
+generic C_IRQ_LEVEL<br>
+            </span></font></li>
+        </ul>
+      </ul>
+      <font size="-1"><span style="font-family: Arial;">Known Issues /
+Limitations:</span></font><br style="font-family: Arial;">
+      <ul>
+        <li style="font-family: Arial;"><font size="-1">None</font></li>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <p class="Level2Heading">11.1 - Changes in tool interface files
+(.mpd) </p>
+      <hr class="whs1"> </td>
+    </tr>
+    <tr>
+      <td>
+      <ul>
+        <li><font size="-1"><span style="font-family: Arial;">Fixed [CR
+&lt;466873&gt;]</span></font></li>
+        <ul>
+          <li><font size="-1"><span style="font-family: Arial;">Removed
+the system level DRC<br>
+            </span></font></li>
+        </ul>
+        <li><font size="-1"><span style="font-family: Arial;">Added
+generic C_IRQ_IS_LEVEL<br>
+          </span></font></li>
+      </ul>
+      </td>
+    </tr>
+<!-- End section --> <tr>
+      <td>
+      <p class="Level2Heading">11.1 - Changes in Tcl script files
+associated with core (.tcl) </p>
+      <hr class="whs1"> </td>
+    </tr>
+    <tr>
+      <td>
+      <ul>
+        <li><font size="-1"><span style="font-family: Arial;">Changed
+the call </span></font><font size="-1"><span
+ style="font-family: Arial;">hw_library intc_core_v1_00_b to </span></font><font
+ size="-1"><span style="font-family: Arial;">hw_library xps_intc_v2_00_a<br>
+          </span></font></li>
+      </ul>
+      </td>
+    </tr>
+<!-- End section --> <tr>
+      <td>
+      <p class="Level2Heading"> 11.1 - Changes in&nbsp;documentation
+associated with core </p>
+      <hr class="whs1"> </td>
+    </tr>
+    <tr>
+      <td>
+      <ul>
+        <li><font size="-1"><span style="font-family: Arial;">Removed
+Virtex-2p support<br>
+          </span></font></li>
+        <li><font size="-1"><span style="font-family: Arial;">Added
+generic C_IRQ_IS_LEVEL<br>
+          </span></font></li>
+        <li><font size="-1"><span style="font-family: Arial;">Changed
+the usage of generic C_IRQ_ACTIVE</span></font></li>
+        <ul>
+          <li><font size="-1"><span style="font-family: Arial;">Defines
+the active edge on Irq if C_IRQ_IS_LEVEL=0</span></font></li>
+          <li><font size="-1"><span style="font-family: Arial;">Defines
+the active level on Irq if C_IRQ_IS_LEVEL=1</span></font></li>
+        </ul>
+      </ul>
+      </td>
+    </tr>
+<!-- End section --> <tr>
+      <td>
+      <hr class="whs1"> </td>
+    </tr>
+<!-- END CHANGELOG FOR New core version. BEGIN change logs for new version here --><!--spacer-->
+    <tr>
+      <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v1.00.a, introduced in 10.1.2
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <p class="Level2Heading">10.1.2 - Changes in tool interface files
+(.mpd) </p>
+      <hr class="whs1"> </td>
+    </tr>
+    <tr>
+      <td>
+      <ul>
+        <li><font size="-1"><span style="font-family: Arial;">Added
+preferred support for aspartan3a</span></font></li>
+        <li><font size="-1"><span style="font-family: Arial;">Added
+preferred support for aspartan3</span></font></li>
+        <li><font size="-1"><span style="font-family: Arial;">Added
+preferred support for aspartan3e</span></font></li>
+        <li><font size="-1"><span style="font-family: Arial;">Added
+preferred support for virtex5fx</span></font></li>
+        <li><font size="-1"><span style="font-family: Arial;">Added
+preferred support for aspartan3adsp</span></font></li>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <hr style="width: 100%; height: 2px;"></td>
+    </tr>
+    <tr style="font-weight: bold;">
+      <td
+ style="vertical-align: top; background-color: rgb(204, 204, 204);">Changes
+in v1.00.a, introduced in 10.1</td>
+    </tr>
+    <tr style="font-weight: bold;">
+      <td style="vertical-align: top;"><br>
+      <br>
+10.1 - Changes in tool interface files
+(.mpd)<br>
+      <hr style="width: 100%; height: 2px;"></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <ul>
+        <li><font size="-1"><span style="font-family: Arial;">Added
+preferred support for </span></font><font size="-1"><span
+ style="font-family: Arial;">virtex2p</span></font></li>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <hr style="width: 100%; height: 2px;"></td>
+    </tr>
+    <tr style="font-weight: bold;">
+      <td
+ style="vertical-align: top; background-color: rgb(204, 204, 204);">Changes
+in v1.00.a, introduced in 9.2</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><br>
+      <br>
+      <span style="font-weight: bold;">9.2 - Changes in
+VHDL/Verilog/Netlist
+sources (.vhd, .v, .ngc, .edn)</span><br>
+      <hr style="width: 100%; height: 2px;"></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <pre><span style="font-family: Arial;">New Features:</span><font
+ size="-1"><br></font></pre>
+      <ul>
+        <li><font size="-1"><span style="font-family: Arial;">New core
+- xps_intc_v1_00_a<br>
+          </span></font></li>
+      </ul>
+      <pre><span style="font-family: Arial;">Resolved Issues:</span><font
+ size="+1"><span style="font-family: Arial;"><br></span></font></pre>
+      <ul>
+        <li><font size="-1"><span style="font-family: Arial;">None</span></font><font
+ size="-1"><span style="font-family: Arial;"></span></font></li>
+      </ul>
+      <font size="-1"><span style="font-family: Arial;">Known Issues /
+Limitations:</span></font><br style="font-family: Arial;">
+      <ul>
+        <li style="font-family: Arial;"><font size="-1">Does not
+support the edge (falling/rising) on Irq</font></li>
+      </ul>
+      </td>
+    </tr>
+    <tr style="font-weight: bold;">
+      <td style="vertical-align: top;"><br>
+9.2 - Changes in tool interface
+files
+(.mpd)<br>
+      <hr style="width: 100%; height: 2px;"></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <ul>
+        <li><font size="-1"><span style="font-family: Arial;">Added
+ASSIGNMENT = REQUIRE to parameters C_BASEADDR and C_HIGHADDR</span></font></li>
+        <li><font size="-1"><span style="font-family: Arial;">Added
+preferred support for spartan3a</span></font></li>
+        <li><font size="-1"><span style="font-family: Arial;">Added
+preferred support for spartan3adsp</span></font></li>
+        <li><font size="-1"><span style="font-family: Arial;">Added
+preferred support for virtex5</span></font></li>
+        <li><font size="-1"><span style="font-family: Arial;">Added
+preferred support for virtex4</span></font></li>
+        <li><font size="-1"><span style="font-family: Arial;">Added
+preferred support for spartan3</span></font></li>
+        <li><font size="-1"><span style="font-family: Arial;">Added
+preferred support for virtex5fx</span></font></li>
+        <li><font size="-1"><span style="font-family: Arial;">Added
+preferred support for spartan3e</span></font></li>
+      </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="Copyright">copyright &copy; 1995-2009 Xilinx, Inc. All
+rights reserved. </p>
+</body>
+</html>

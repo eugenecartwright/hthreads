@@ -1,0 +1,491 @@
+// BMM LOC annotation file.
+//
+// Release 10.1i - Data2MEM K.39, build 1.5.7 Nov 8, 2007
+// Copyright (c) 1995-2009 Xilinx, Inc.  All rights reserved.
+//
+// Created on 04/28/09 05:14 pm
+//
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// Processor 'ppc440_0', ID 100, memory map.
+//
+///////////////////////////////////////////////////////////////////////////////
+
+ADDRESS_MAP ppc440_0 PPC440 100
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //
+    // Processor 'ppc440_0' address space 'hw_thread_bram_combined' 0xB0000000:0x33B0001FFF (8 KB).
+    //
+    ///////////////////////////////////////////////////////////////////////////////
+
+    ADDRESS_SPACE hw_thread_bram_combined RAMB32 [0xB0000000:0xB0001FFF]
+        BUS_BLOCK
+            hw_thread_bram/hw_thread_bram/ramb36_0 [31:16] PLACED = X3Y16;
+            hw_thread_bram/hw_thread_bram/ramb36_1 [15:0] PLACED = X4Y16;
+        END_BUS_BLOCK;
+    END_ADDRESS_SPACE;
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //
+    // Processor 'ppc440_0' address space 'bram_block_0_combined' 0xFFF80000:0x33FFF8FFFF (64 KB).
+    //
+    ///////////////////////////////////////////////////////////////////////////////
+
+    ADDRESS_SPACE bram_block_0_combined RAMB32 [0xFFF80000:0xFFF8FFFF]
+        BUS_BLOCK
+            bram_block_0/bram_block_0/ramb36_0 [31:30] PLACED = X4Y18;
+            bram_block_0/bram_block_0/ramb36_1 [29:28] PLACED = X3Y18;
+            bram_block_0/bram_block_0/ramb36_2 [27:26] PLACED = X3Y20;
+            bram_block_0/bram_block_0/ramb36_3 [25:24] PLACED = X3Y19;
+            bram_block_0/bram_block_0/ramb36_4 [23:22] PLACED = X4Y22;
+            bram_block_0/bram_block_0/ramb36_5 [21:20] PLACED = X3Y22;
+            bram_block_0/bram_block_0/ramb36_6 [19:18] PLACED = X3Y23;
+            bram_block_0/bram_block_0/ramb36_7 [17:16] PLACED = X3Y24;
+            bram_block_0/bram_block_0/ramb36_8 [15:14] PLACED = X3Y21;
+            bram_block_0/bram_block_0/ramb36_9 [13:12] PLACED = X4Y21;
+            bram_block_0/bram_block_0/ramb36_10 [11:10] PLACED = X2Y20;
+            bram_block_0/bram_block_0/ramb36_11 [9:8] PLACED = X2Y22;
+            bram_block_0/bram_block_0/ramb36_12 [7:6] PLACED = X4Y19;
+            bram_block_0/bram_block_0/ramb36_13 [5:4] PLACED = X4Y20;
+            bram_block_0/bram_block_0/ramb36_14 [3:2] PLACED = X4Y24;
+            bram_block_0/bram_block_0/ramb36_15 [1:0] PLACED = X4Y23;
+        END_BUS_BLOCK;
+    END_ADDRESS_SPACE;
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //
+    // Processor 'ppc440_0' address space 'xps_bram_if_cntlr_1_bram_combined' 0xFFFFC000:0x33FFFFFFFF (16 KB).
+    //
+    ///////////////////////////////////////////////////////////////////////////////
+
+    ADDRESS_SPACE xps_bram_if_cntlr_1_bram_combined RAMB32 [0xFFFFC000:0xFFFFFFFF]
+        BUS_BLOCK
+            xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/ramb36_0 [63:48] PLACED = X3Y17;
+            xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/ramb36_1 [47:32] PLACED = X4Y15;
+            xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/ramb36_2 [31:16] PLACED = X3Y15;
+            xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/ramb36_3 [15:0] PLACED = X4Y17;
+        END_BUS_BLOCK;
+    END_ADDRESS_SPACE;
+
+END_ADDRESS_MAP;
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// Processor 'microblaze_0', ID 101, memory map.
+//
+///////////////////////////////////////////////////////////////////////////////
+
+ADDRESS_MAP microblaze_0 MICROBLAZE 101
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //
+    // Processor 'microblaze_0' address space 'mb_bram_combined' 0x00000000:0x3300003FFF (16 KB).
+    //
+    ///////////////////////////////////////////////////////////////////////////////
+
+    ADDRESS_SPACE mb_bram_combined RAMB32 [0x00000000:0x00003FFF]
+        BUS_BLOCK
+            mb_bram/mb_bram/ramb36_0 [31:24] PLACED = X2Y1;
+            mb_bram/mb_bram/ramb36_1 [23:16] PLACED = X2Y2;
+            mb_bram/mb_bram/ramb36_2 [15:8] PLACED = X1Y2;
+            mb_bram/mb_bram/ramb36_3 [7:0] PLACED = X2Y3;
+        END_BUS_BLOCK;
+    END_ADDRESS_SPACE;
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //
+    // Processor 'microblaze_0' address space 'bram_block_0_combined' 0x10000000:0x331000FFFF (64 KB).
+    //
+    ///////////////////////////////////////////////////////////////////////////////
+
+    ADDRESS_SPACE bram_block_0_combined RAMB32 [0x10000000:0x1000FFFF]
+        BUS_BLOCK
+            bram_block_0/bram_block_0/ramb36_0 [31:30] PLACED = X4Y18;
+            bram_block_0/bram_block_0/ramb36_1 [29:28] PLACED = X3Y18;
+            bram_block_0/bram_block_0/ramb36_2 [27:26] PLACED = X3Y20;
+            bram_block_0/bram_block_0/ramb36_3 [25:24] PLACED = X3Y19;
+            bram_block_0/bram_block_0/ramb36_4 [23:22] PLACED = X4Y22;
+            bram_block_0/bram_block_0/ramb36_5 [21:20] PLACED = X3Y22;
+            bram_block_0/bram_block_0/ramb36_6 [19:18] PLACED = X3Y23;
+            bram_block_0/bram_block_0/ramb36_7 [17:16] PLACED = X3Y24;
+            bram_block_0/bram_block_0/ramb36_8 [15:14] PLACED = X3Y21;
+            bram_block_0/bram_block_0/ramb36_9 [13:12] PLACED = X4Y21;
+            bram_block_0/bram_block_0/ramb36_10 [11:10] PLACED = X2Y20;
+            bram_block_0/bram_block_0/ramb36_11 [9:8] PLACED = X2Y22;
+            bram_block_0/bram_block_0/ramb36_12 [7:6] PLACED = X4Y19;
+            bram_block_0/bram_block_0/ramb36_13 [5:4] PLACED = X4Y20;
+            bram_block_0/bram_block_0/ramb36_14 [3:2] PLACED = X4Y24;
+            bram_block_0/bram_block_0/ramb36_15 [1:0] PLACED = X4Y23;
+        END_BUS_BLOCK;
+    END_ADDRESS_SPACE;
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //
+    // Processor 'microblaze_0' address space 'hw_thread_bram_combined' 0xB0000000:0x33B0001FFF (8 KB).
+    //
+    ///////////////////////////////////////////////////////////////////////////////
+
+    ADDRESS_SPACE hw_thread_bram_combined RAMB32 [0xB0000000:0xB0001FFF]
+        BUS_BLOCK
+            hw_thread_bram/hw_thread_bram/ramb36_0 [31:16] PLACED = X3Y16;
+            hw_thread_bram/hw_thread_bram/ramb36_1 [15:0] PLACED = X4Y16;
+        END_BUS_BLOCK;
+    END_ADDRESS_SPACE;
+
+END_ADDRESS_MAP;
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// Processor 'microblaze_1', ID 102, memory map.
+//
+///////////////////////////////////////////////////////////////////////////////
+
+ADDRESS_MAP microblaze_1 MICROBLAZE 102
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //
+    // Processor 'microblaze_1' address space 'mb_bram1_combined' 0x00000000:0x3300003FFF (16 KB).
+    //
+    ///////////////////////////////////////////////////////////////////////////////
+
+    ADDRESS_SPACE mb_bram1_combined RAMB32 [0x00000000:0x00003FFF]
+        BUS_BLOCK
+            mb_bram1/mb_bram1/ramb36_0 [31:24] PLACED = X2Y25;
+            mb_bram1/mb_bram1/ramb36_1 [23:16] PLACED = X2Y23;
+            mb_bram1/mb_bram1/ramb36_2 [15:8] PLACED = X2Y24;
+            mb_bram1/mb_bram1/ramb36_3 [7:0] PLACED = X1Y25;
+        END_BUS_BLOCK;
+    END_ADDRESS_SPACE;
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //
+    // Processor 'microblaze_1' address space 'bram_block_0_combined' 0x10000000:0x331000FFFF (64 KB).
+    //
+    ///////////////////////////////////////////////////////////////////////////////
+
+    ADDRESS_SPACE bram_block_0_combined RAMB32 [0x10000000:0x1000FFFF]
+        BUS_BLOCK
+            bram_block_0/bram_block_0/ramb36_0 [31:30] PLACED = X4Y18;
+            bram_block_0/bram_block_0/ramb36_1 [29:28] PLACED = X3Y18;
+            bram_block_0/bram_block_0/ramb36_2 [27:26] PLACED = X3Y20;
+            bram_block_0/bram_block_0/ramb36_3 [25:24] PLACED = X3Y19;
+            bram_block_0/bram_block_0/ramb36_4 [23:22] PLACED = X4Y22;
+            bram_block_0/bram_block_0/ramb36_5 [21:20] PLACED = X3Y22;
+            bram_block_0/bram_block_0/ramb36_6 [19:18] PLACED = X3Y23;
+            bram_block_0/bram_block_0/ramb36_7 [17:16] PLACED = X3Y24;
+            bram_block_0/bram_block_0/ramb36_8 [15:14] PLACED = X3Y21;
+            bram_block_0/bram_block_0/ramb36_9 [13:12] PLACED = X4Y21;
+            bram_block_0/bram_block_0/ramb36_10 [11:10] PLACED = X2Y20;
+            bram_block_0/bram_block_0/ramb36_11 [9:8] PLACED = X2Y22;
+            bram_block_0/bram_block_0/ramb36_12 [7:6] PLACED = X4Y19;
+            bram_block_0/bram_block_0/ramb36_13 [5:4] PLACED = X4Y20;
+            bram_block_0/bram_block_0/ramb36_14 [3:2] PLACED = X4Y24;
+            bram_block_0/bram_block_0/ramb36_15 [1:0] PLACED = X4Y23;
+        END_BUS_BLOCK;
+    END_ADDRESS_SPACE;
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //
+    // Processor 'microblaze_1' address space 'hw_thread_bram_combined' 0xB0000000:0x33B0001FFF (8 KB).
+    //
+    ///////////////////////////////////////////////////////////////////////////////
+
+    ADDRESS_SPACE hw_thread_bram_combined RAMB32 [0xB0000000:0xB0001FFF]
+        BUS_BLOCK
+            hw_thread_bram/hw_thread_bram/ramb36_0 [31:16] PLACED = X3Y16;
+            hw_thread_bram/hw_thread_bram/ramb36_1 [15:0] PLACED = X4Y16;
+        END_BUS_BLOCK;
+    END_ADDRESS_SPACE;
+
+END_ADDRESS_MAP;
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// Processor 'microblaze_2', ID 103, memory map.
+//
+///////////////////////////////////////////////////////////////////////////////
+
+ADDRESS_MAP microblaze_2 MICROBLAZE 103
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //
+    // Processor 'microblaze_2' address space 'mb_bram2_combined' 0x00000000:0x3300003FFF (16 KB).
+    //
+    ///////////////////////////////////////////////////////////////////////////////
+
+    ADDRESS_SPACE mb_bram2_combined RAMB32 [0x00000000:0x00003FFF]
+        BUS_BLOCK
+            mb_bram2/mb_bram2/ramb36_0 [31:24] PLACED = X2Y5;
+            mb_bram2/mb_bram2/ramb36_1 [23:16] PLACED = X1Y6;
+            mb_bram2/mb_bram2/ramb36_2 [15:8] PLACED = X2Y4;
+            mb_bram2/mb_bram2/ramb36_3 [7:0] PLACED = X2Y6;
+        END_BUS_BLOCK;
+    END_ADDRESS_SPACE;
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //
+    // Processor 'microblaze_2' address space 'bram_block_0_combined' 0x10000000:0x331000FFFF (64 KB).
+    //
+    ///////////////////////////////////////////////////////////////////////////////
+
+    ADDRESS_SPACE bram_block_0_combined RAMB32 [0x10000000:0x1000FFFF]
+        BUS_BLOCK
+            bram_block_0/bram_block_0/ramb36_0 [31:30] PLACED = X4Y18;
+            bram_block_0/bram_block_0/ramb36_1 [29:28] PLACED = X3Y18;
+            bram_block_0/bram_block_0/ramb36_2 [27:26] PLACED = X3Y20;
+            bram_block_0/bram_block_0/ramb36_3 [25:24] PLACED = X3Y19;
+            bram_block_0/bram_block_0/ramb36_4 [23:22] PLACED = X4Y22;
+            bram_block_0/bram_block_0/ramb36_5 [21:20] PLACED = X3Y22;
+            bram_block_0/bram_block_0/ramb36_6 [19:18] PLACED = X3Y23;
+            bram_block_0/bram_block_0/ramb36_7 [17:16] PLACED = X3Y24;
+            bram_block_0/bram_block_0/ramb36_8 [15:14] PLACED = X3Y21;
+            bram_block_0/bram_block_0/ramb36_9 [13:12] PLACED = X4Y21;
+            bram_block_0/bram_block_0/ramb36_10 [11:10] PLACED = X2Y20;
+            bram_block_0/bram_block_0/ramb36_11 [9:8] PLACED = X2Y22;
+            bram_block_0/bram_block_0/ramb36_12 [7:6] PLACED = X4Y19;
+            bram_block_0/bram_block_0/ramb36_13 [5:4] PLACED = X4Y20;
+            bram_block_0/bram_block_0/ramb36_14 [3:2] PLACED = X4Y24;
+            bram_block_0/bram_block_0/ramb36_15 [1:0] PLACED = X4Y23;
+        END_BUS_BLOCK;
+    END_ADDRESS_SPACE;
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //
+    // Processor 'microblaze_2' address space 'hw_thread_bram_combined' 0xB0000000:0x33B0001FFF (8 KB).
+    //
+    ///////////////////////////////////////////////////////////////////////////////
+
+    ADDRESS_SPACE hw_thread_bram_combined RAMB32 [0xB0000000:0xB0001FFF]
+        BUS_BLOCK
+            hw_thread_bram/hw_thread_bram/ramb36_0 [31:16] PLACED = X3Y16;
+            hw_thread_bram/hw_thread_bram/ramb36_1 [15:0] PLACED = X4Y16;
+        END_BUS_BLOCK;
+    END_ADDRESS_SPACE;
+
+END_ADDRESS_MAP;
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// Processor 'microblaze_mb3', ID 104, memory map.
+//
+///////////////////////////////////////////////////////////////////////////////
+
+ADDRESS_MAP microblaze_mb3 MICROBLAZE 104
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //
+    // Processor 'microblaze_mb3' address space 'mb3_bram_combined' 0x00000000:0x3300003FFF (16 KB).
+    //
+    ///////////////////////////////////////////////////////////////////////////////
+
+    ADDRESS_SPACE mb3_bram_combined RAMB32 [0x00000000:0x00003FFF]
+        BUS_BLOCK
+            mb3_bram/mb3_bram/ramb36_0 [31:24] PLACED = X4Y27;
+            mb3_bram/mb3_bram/ramb36_1 [23:16] PLACED = X3Y28;
+            mb3_bram/mb3_bram/ramb36_2 [15:8] PLACED = X2Y27;
+            mb3_bram/mb3_bram/ramb36_3 [7:0] PLACED = X3Y29;
+        END_BUS_BLOCK;
+    END_ADDRESS_SPACE;
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //
+    // Processor 'microblaze_mb3' address space 'bram_block_0_combined' 0x10000000:0x331000FFFF (64 KB).
+    //
+    ///////////////////////////////////////////////////////////////////////////////
+
+    ADDRESS_SPACE bram_block_0_combined RAMB32 [0x10000000:0x1000FFFF]
+        BUS_BLOCK
+            bram_block_0/bram_block_0/ramb36_0 [31:30] PLACED = X4Y18;
+            bram_block_0/bram_block_0/ramb36_1 [29:28] PLACED = X3Y18;
+            bram_block_0/bram_block_0/ramb36_2 [27:26] PLACED = X3Y20;
+            bram_block_0/bram_block_0/ramb36_3 [25:24] PLACED = X3Y19;
+            bram_block_0/bram_block_0/ramb36_4 [23:22] PLACED = X4Y22;
+            bram_block_0/bram_block_0/ramb36_5 [21:20] PLACED = X3Y22;
+            bram_block_0/bram_block_0/ramb36_6 [19:18] PLACED = X3Y23;
+            bram_block_0/bram_block_0/ramb36_7 [17:16] PLACED = X3Y24;
+            bram_block_0/bram_block_0/ramb36_8 [15:14] PLACED = X3Y21;
+            bram_block_0/bram_block_0/ramb36_9 [13:12] PLACED = X4Y21;
+            bram_block_0/bram_block_0/ramb36_10 [11:10] PLACED = X2Y20;
+            bram_block_0/bram_block_0/ramb36_11 [9:8] PLACED = X2Y22;
+            bram_block_0/bram_block_0/ramb36_12 [7:6] PLACED = X4Y19;
+            bram_block_0/bram_block_0/ramb36_13 [5:4] PLACED = X4Y20;
+            bram_block_0/bram_block_0/ramb36_14 [3:2] PLACED = X4Y24;
+            bram_block_0/bram_block_0/ramb36_15 [1:0] PLACED = X4Y23;
+        END_BUS_BLOCK;
+    END_ADDRESS_SPACE;
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //
+    // Processor 'microblaze_mb3' address space 'hw_thread_bram_combined' 0xB0000000:0x33B0001FFF (8 KB).
+    //
+    ///////////////////////////////////////////////////////////////////////////////
+
+    ADDRESS_SPACE hw_thread_bram_combined RAMB32 [0xB0000000:0xB0001FFF]
+        BUS_BLOCK
+            hw_thread_bram/hw_thread_bram/ramb36_0 [31:16] PLACED = X3Y16;
+            hw_thread_bram/hw_thread_bram/ramb36_1 [15:0] PLACED = X4Y16;
+        END_BUS_BLOCK;
+    END_ADDRESS_SPACE;
+
+END_ADDRESS_MAP;
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// Processor 'microblaze_mb4', ID 105, memory map.
+//
+///////////////////////////////////////////////////////////////////////////////
+
+ADDRESS_MAP microblaze_mb4 MICROBLAZE 105
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //
+    // Processor 'microblaze_mb4' address space 'mb4_bram_combined' 0x00000000:0x3300003FFF (16 KB).
+    //
+    ///////////////////////////////////////////////////////////////////////////////
+
+    ADDRESS_SPACE mb4_bram_combined RAMB32 [0x00000000:0x00003FFF]
+        BUS_BLOCK
+            mb4_bram/mb4_bram/ramb36_0 [31:24] PLACED = X4Y7;
+            mb4_bram/mb4_bram/ramb36_1 [23:16] PLACED = X4Y9;
+            mb4_bram/mb4_bram/ramb36_2 [15:8] PLACED = X4Y8;
+            mb4_bram/mb4_bram/ramb36_3 [7:0] PLACED = X4Y10;
+        END_BUS_BLOCK;
+    END_ADDRESS_SPACE;
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //
+    // Processor 'microblaze_mb4' address space 'bram_block_0_combined' 0x10000000:0x331000FFFF (64 KB).
+    //
+    ///////////////////////////////////////////////////////////////////////////////
+
+    ADDRESS_SPACE bram_block_0_combined RAMB32 [0x10000000:0x1000FFFF]
+        BUS_BLOCK
+            bram_block_0/bram_block_0/ramb36_0 [31:30] PLACED = X4Y18;
+            bram_block_0/bram_block_0/ramb36_1 [29:28] PLACED = X3Y18;
+            bram_block_0/bram_block_0/ramb36_2 [27:26] PLACED = X3Y20;
+            bram_block_0/bram_block_0/ramb36_3 [25:24] PLACED = X3Y19;
+            bram_block_0/bram_block_0/ramb36_4 [23:22] PLACED = X4Y22;
+            bram_block_0/bram_block_0/ramb36_5 [21:20] PLACED = X3Y22;
+            bram_block_0/bram_block_0/ramb36_6 [19:18] PLACED = X3Y23;
+            bram_block_0/bram_block_0/ramb36_7 [17:16] PLACED = X3Y24;
+            bram_block_0/bram_block_0/ramb36_8 [15:14] PLACED = X3Y21;
+            bram_block_0/bram_block_0/ramb36_9 [13:12] PLACED = X4Y21;
+            bram_block_0/bram_block_0/ramb36_10 [11:10] PLACED = X2Y20;
+            bram_block_0/bram_block_0/ramb36_11 [9:8] PLACED = X2Y22;
+            bram_block_0/bram_block_0/ramb36_12 [7:6] PLACED = X4Y19;
+            bram_block_0/bram_block_0/ramb36_13 [5:4] PLACED = X4Y20;
+            bram_block_0/bram_block_0/ramb36_14 [3:2] PLACED = X4Y24;
+            bram_block_0/bram_block_0/ramb36_15 [1:0] PLACED = X4Y23;
+        END_BUS_BLOCK;
+    END_ADDRESS_SPACE;
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //
+    // Processor 'microblaze_mb4' address space 'hw_thread_bram_combined' 0xB0000000:0x33B0001FFF (8 KB).
+    //
+    ///////////////////////////////////////////////////////////////////////////////
+
+    ADDRESS_SPACE hw_thread_bram_combined RAMB32 [0xB0000000:0xB0001FFF]
+        BUS_BLOCK
+            hw_thread_bram/hw_thread_bram/ramb36_0 [31:16] PLACED = X3Y16;
+            hw_thread_bram/hw_thread_bram/ramb36_1 [15:0] PLACED = X4Y16;
+        END_BUS_BLOCK;
+    END_ADDRESS_SPACE;
+
+END_ADDRESS_MAP;
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// Processor 'microblaze_mb5', ID 106, memory map.
+//
+///////////////////////////////////////////////////////////////////////////////
+
+ADDRESS_MAP microblaze_mb5 MICROBLAZE 106
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //
+    // Processor 'microblaze_mb5' address space 'mb5_bram_combined' 0x00000000:0x3300003FFF (16 KB).
+    //
+    ///////////////////////////////////////////////////////////////////////////////
+
+    ADDRESS_SPACE mb5_bram_combined RAMB32 [0x00000000:0x00003FFF]
+        BUS_BLOCK
+            mb5_bram/mb5_bram/ramb36_0 [31:24] PLACED = X3Y3;
+            mb5_bram/mb5_bram/ramb36_1 [23:16] PLACED = X4Y3;
+            mb5_bram/mb5_bram/ramb36_2 [15:8] PLACED = X3Y5;
+            mb5_bram/mb5_bram/ramb36_3 [7:0] PLACED = X3Y4;
+        END_BUS_BLOCK;
+    END_ADDRESS_SPACE;
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //
+    // Processor 'microblaze_mb5' address space 'bram_block_0_combined' 0x10000000:0x331000FFFF (64 KB).
+    //
+    ///////////////////////////////////////////////////////////////////////////////
+
+    ADDRESS_SPACE bram_block_0_combined RAMB32 [0x10000000:0x1000FFFF]
+        BUS_BLOCK
+            bram_block_0/bram_block_0/ramb36_0 [31:30] PLACED = X4Y18;
+            bram_block_0/bram_block_0/ramb36_1 [29:28] PLACED = X3Y18;
+            bram_block_0/bram_block_0/ramb36_2 [27:26] PLACED = X3Y20;
+            bram_block_0/bram_block_0/ramb36_3 [25:24] PLACED = X3Y19;
+            bram_block_0/bram_block_0/ramb36_4 [23:22] PLACED = X4Y22;
+            bram_block_0/bram_block_0/ramb36_5 [21:20] PLACED = X3Y22;
+            bram_block_0/bram_block_0/ramb36_6 [19:18] PLACED = X3Y23;
+            bram_block_0/bram_block_0/ramb36_7 [17:16] PLACED = X3Y24;
+            bram_block_0/bram_block_0/ramb36_8 [15:14] PLACED = X3Y21;
+            bram_block_0/bram_block_0/ramb36_9 [13:12] PLACED = X4Y21;
+            bram_block_0/bram_block_0/ramb36_10 [11:10] PLACED = X2Y20;
+            bram_block_0/bram_block_0/ramb36_11 [9:8] PLACED = X2Y22;
+            bram_block_0/bram_block_0/ramb36_12 [7:6] PLACED = X4Y19;
+            bram_block_0/bram_block_0/ramb36_13 [5:4] PLACED = X4Y20;
+            bram_block_0/bram_block_0/ramb36_14 [3:2] PLACED = X4Y24;
+            bram_block_0/bram_block_0/ramb36_15 [1:0] PLACED = X4Y23;
+        END_BUS_BLOCK;
+    END_ADDRESS_SPACE;
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //
+    // Processor 'microblaze_mb5' address space 'hw_thread_bram_combined' 0xB0000000:0x33B0001FFF (8 KB).
+    //
+    ///////////////////////////////////////////////////////////////////////////////
+
+    ADDRESS_SPACE hw_thread_bram_combined RAMB32 [0xB0000000:0xB0001FFF]
+        BUS_BLOCK
+            hw_thread_bram/hw_thread_bram/ramb36_0 [31:16] PLACED = X3Y16;
+            hw_thread_bram/hw_thread_bram/ramb36_1 [15:0] PLACED = X4Y16;
+        END_BUS_BLOCK;
+    END_ADDRESS_SPACE;
+
+END_ADDRESS_MAP;
+

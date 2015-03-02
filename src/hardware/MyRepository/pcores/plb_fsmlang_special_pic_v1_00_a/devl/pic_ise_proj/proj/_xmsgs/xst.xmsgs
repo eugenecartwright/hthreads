@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IMPORTANT: This is an internal file that has been generated
+     by the Xilinx ISE software.  Any direct editing or
+     changes made to this file may result in unpredictable
+     behavior or data corruption.  It is strongly advised that
+     users do not edit the contents of this file. -->
+<messages>
+<msg type="warning" file="HDLParsers" num="3607" delta="unknown" >Unit <arg fmt="%s" index="1">work/infer_bram</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/INTC.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/PIC.vhd</arg>&quot;.
+</msg>
+
+<msg type="warning" file="HDLParsers" num="3607" delta="unknown" >Unit <arg fmt="%s" index="1">work/infer_bram/implementation</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/INTC.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/PIC.vhd</arg>&quot;.
+</msg>
+
+<msg type="warning" file="HDLParsers" num="3607" delta="unknown" >Unit <arg fmt="%s" index="1">work/infer_bram</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/PIC.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/INTC.vhd</arg>&quot;.
+</msg>
+
+<msg type="warning" file="HDLParsers" num="3607" delta="unknown" >Unit <arg fmt="%s" index="1">work/infer_bram/implementation</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/PIC.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/INTC.vhd</arg>&quot;.
+</msg>
+
+<msg type="warning" file="Xst" num="2591" delta="unknown" ><arg fmt="%s" index="1">&quot;/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/fsl_v20.vhd&quot; line 216:</arg> <arg fmt="%s" index="2">attribute on instance</arg> &lt;<arg fmt="%s" index="3">INIT</arg>&gt; overrides <arg fmt="%s" index="4">generic/parameter on component</arg>. It is possible that simulator will not take this attribute into account.
+</msg>
+
+<msg type="warning" file="Xst" num="753" delta="unknown" >&quot;<arg fmt="%s" index="1">/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/user_logic.vhd</arg>&quot; line <arg fmt="%d" index="2">475</arg>: Unconnected output port &apos;<arg fmt="%s" index="3">FSL_Rst</arg>&apos; of component &apos;<arg fmt="%s" index="4">fsl_v20</arg>&apos;.
+</msg>
+
+<msg type="warning" file="Xst" num="753" delta="unknown" >&quot;<arg fmt="%s" index="1">/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/user_logic.vhd</arg>&quot; line <arg fmt="%d" index="2">475</arg>: Unconnected output port &apos;<arg fmt="%s" index="3">FSL_S_Control</arg>&apos; of component &apos;<arg fmt="%s" index="4">fsl_v20</arg>&apos;.
+</msg>
+
+<msg type="warning" file="Xst" num="753" delta="unknown" >&quot;<arg fmt="%s" index="1">/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/user_logic.vhd</arg>&quot; line <arg fmt="%d" index="2">475</arg>: Unconnected output port &apos;<arg fmt="%s" index="3">FSL_Full</arg>&apos; of component &apos;<arg fmt="%s" index="4">fsl_v20</arg>&apos;.
+</msg>
+
+<msg type="warning" file="Xst" num="753" delta="unknown" >&quot;<arg fmt="%s" index="1">/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/user_logic.vhd</arg>&quot; line <arg fmt="%d" index="2">475</arg>: Unconnected output port &apos;<arg fmt="%s" index="3">FSL_Control_IRQ</arg>&apos; of component &apos;<arg fmt="%s" index="4">fsl_v20</arg>&apos;.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">mst_cmd_sm_wr_req</arg>&gt; in unit &lt;<arg fmt="%s" index="2">user_logic</arg>&gt; has a constant value of <arg fmt="%s" index="3">0</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">mst_cmd_sm_bus_lock</arg>&gt; in unit &lt;<arg fmt="%s" index="2">user_logic</arg>&gt; has a constant value of <arg fmt="%s" index="3">0</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">mst_cmd_sm_reset</arg>&gt; in unit &lt;<arg fmt="%s" index="2">user_logic</arg>&gt; has a constant value of <arg fmt="%s" index="3">0</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">RETURN_bit_set_2$mux0005</arg>&gt; in unit &lt;<arg fmt="%s" index="2">user_logic</arg>&gt; has a constant value of <arg fmt="%s" index="3">1</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">RETURN_bit_set_3$mux0005</arg>&gt; in unit &lt;<arg fmt="%s" index="2">user_logic</arg>&gt; has a constant value of <arg fmt="%s" index="3">1</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="warning" file="Xst" num="790" delta="unknown" >&quot;<arg fmt="%s" index="1">/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/PIC.vhd</arg>&quot; line <arg fmt="%d" index="2">390</arg>: Index value(s) does not match array range, simulation mismatch.
+</msg>
+
+<msg type="warning" file="Xst" num="790" delta="unknown" >&quot;<arg fmt="%s" index="1">/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/PIC.vhd</arg>&quot; line <arg fmt="%d" index="2">391</arg>: Index value(s) does not match array range, simulation mismatch.
+</msg>
+
+<msg type="warning" file="Xst" num="790" delta="unknown" >&quot;<arg fmt="%s" index="1">/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/PIC.vhd</arg>&quot; line <arg fmt="%d" index="2">402</arg>: Index value(s) does not match array range, simulation mismatch.
+</msg>
+
+<msg type="warning" file="Xst" num="790" delta="unknown" >&quot;<arg fmt="%s" index="1">/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/PIC.vhd</arg>&quot; line <arg fmt="%d" index="2">405</arg>: Index value(s) does not match array range, simulation mismatch.
+</msg>
+
+<msg type="warning" file="Xst" num="753" delta="unknown" >&quot;<arg fmt="%s" index="1">/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/sync_fifo.vhd</arg>&quot; line <arg fmt="%d" index="2">338</arg>: Unconnected output port &apos;<arg fmt="%s" index="3">spo</arg>&apos; of component &apos;<arg fmt="%s" index="4">Sync_BRAM</arg>&apos;.
+</msg>
+
+<msg type="warning" file="Xst" num="647" delta="unknown" >Input &lt;<arg fmt="%s" index="1">msg_chan_exists</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+</msg>
+
+<msg type="warning" file="Xst" num="647" delta="unknown" >Input &lt;<arg fmt="%s" index="1">msg_chan_channelDataOut</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+</msg>
+
+<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">array_dOUT1</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="647" delta="unknown" >Input &lt;<arg fmt="%s" index="1">FSL_M_Clk</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+</msg>
+
+<msg type="warning" file="Xst" num="647" delta="unknown" >Input &lt;<arg fmt="%s" index="1">FSL_S_Clk</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+</msg>
+
+<msg type="warning" file="Xst" num="647" delta="unknown" >Input &lt;<arg fmt="%s" index="1">FSL_M_Control</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+</msg>
+
+<msg type="warning" file="Xst" num="1780" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">Data_Out&lt;8&gt;</arg>&gt; is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1780" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">Data_In&lt;8&gt;</arg>&gt; is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="647" delta="unknown" >Input &lt;<arg fmt="%s" index="1">Bus2IP_MstRd_src_rdy_n</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+</msg>
+
+<msg type="warning" file="Xst" num="647" delta="unknown" >Input &lt;<arg fmt="%s" index="1">Bus2IP_MstRd_d</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+</msg>
+
+<msg type="warning" file="Xst" num="647" delta="unknown" >Input &lt;<arg fmt="%s" index="1">Bus2IP_Data</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+</msg>
+
+<msg type="warning" file="Xst" num="647" delta="unknown" >Input &lt;<arg fmt="%s" index="1">Bus2IP_MstWr_dst_rdy_n</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+</msg>
+
+<msg type="warning" file="Xst" num="647" delta="unknown" >Input &lt;<arg fmt="%s" index="1">Bus2IP_Addr&lt;0:11&gt;</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+</msg>
+
+<msg type="warning" file="Xst" num="647" delta="unknown" >Input &lt;<arg fmt="%s" index="1">Bus2IP_Addr&lt;27:31&gt;</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+</msg>
+
+<msg type="warning" file="Xst" num="647" delta="unknown" >Input &lt;<arg fmt="%s" index="1">Bus2IP_BE</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+</msg>
+
+<msg type="warning" file="Xst" num="647" delta="unknown" >Input &lt;<arg fmt="%s" index="1">Bus2IP_Mst_Rearbitrate</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+</msg>
+
+<msg type="warning" file="Xst" num="1780" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">mst_ip2bus_data</arg>&gt; is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1780" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">mst_fifo_valid_write_xfer</arg>&gt; is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1780" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">mst_fifo_valid_read_xfer</arg>&gt; is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">mst_cmd_sm_set_timeout</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">mst_cmd_sm_set_error</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">mst_cmd_sm_set_done</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">mst_cmd_sm_clr_go</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">mst_cmd_sm_busy</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="653" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">msg_chan_exists</arg>&gt; is used but never assigned. This sourceless signal will be automatically connected to value <arg fmt="%s" index="2">0</arg>.
+</msg>
+
+<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">msg_chan_channelRead</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="653" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">msg_chan_channelDataOut</arg>&gt; is used but never assigned. This sourceless signal will be automatically connected to value <arg fmt="%s" index="2">00000000</arg>.
+</msg>
+
+<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">IP2Bus_MstRdReq</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">IP2Bus_Addr</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">FSL_Has_Data</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="info" file="Xst" num="1767" delta="unknown" >HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
+</msg>
+
+<msg type="warning" file="Xst" num="2404" delta="unknown" > FFs/Latches &lt;<arg fmt="%s" index="1">mst_cmd_sm_ip2bus_addr</arg>&lt;<arg fmt="%d" index="2">0</arg>:<arg fmt="%d" index="3">28</arg>&gt;&gt; (without init value) have a constant value of 0 in block &lt;<arg fmt="%s" index="4">user_logic</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2404" delta="unknown" > FFs/Latches &lt;<arg fmt="%s" index="1">DOB</arg>&lt;<arg fmt="%d" index="2">0</arg>:<arg fmt="%d" index="3">-1</arg>&gt;&gt; (without init value) have a constant value of 0 in block &lt;<arg fmt="%s" index="4">infer_bram</arg>&gt;.
+</msg>
+
+<msg type="info" file="Xst" num="0" delta="unknown" >The RAM &lt;<arg fmt="%s" index="1">Mram_ram_mem</arg>&gt;, combined with &lt;<arg fmt="%s" index="2">Mram_ram_mem_ren</arg>&gt;, will be implemented as a BLOCK RAM, absorbing the following register(s):</msg>
+
+<msg type="info" file="Xst" num="0" delta="unknown" >The small RAM &lt;<arg fmt="%s" index="1">Mram_BRAM_DATA</arg>&gt; will be implemented on LUTs in order to maximize performance and save block RAM resources. If you want to force its implementation on block, use option/constraint ram_style.
+</msg>
+
+<msg type="warning" file="Xst" num="1710" delta="unknown" >FF/Latch &lt;<arg fmt="%s" index="1">retcode_6</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">PIC</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">retcode_5</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">PIC</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">retcode_4</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">PIC</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">retcode_3</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">PIC</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">retcode_2</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">PIC</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">retcode_1</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">PIC</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">retcode_0</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">PIC</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1710" delta="unknown" >FF/Latch &lt;<arg fmt="%s" index="1">mst_cmd_sm_ip2bus_addr_1</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">user_logic</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">mst_cmd_sm_ip2bus_addr_2</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">user_logic</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">mst_cmd_sm_ip2bus_addr_3</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">user_logic</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">mst_cmd_sm_ip2bus_addr_5</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">user_logic</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">mst_cmd_sm_ip2bus_addr_6</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">user_logic</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">mst_cmd_sm_ip2bus_addr_7</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">user_logic</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">mst_cmd_sm_ip2bus_addr_8</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">user_logic</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">mst_cmd_sm_ip2bus_addr_9</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">user_logic</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">mst_cmd_sm_ip2bus_addr_10</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">user_logic</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">mst_cmd_sm_ip2bus_addr_11</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">user_logic</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">mst_cmd_sm_ip2bus_addr_12</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">user_logic</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">mst_cmd_sm_ip2bus_addr_13</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">user_logic</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">mst_cmd_sm_ip2bus_addr_14</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">user_logic</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">mst_cmd_sm_ip2bus_addr_15</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">user_logic</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">mst_cmd_sm_ip2bus_addr_17</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">user_logic</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">mst_cmd_sm_ip2bus_addr_18</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">user_logic</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">mst_cmd_sm_ip2bus_addr_27</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">user_logic</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="unknown" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">mst_cmd_sm_ip2bus_addr_28</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">user_logic</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="info" file="Xst" num="2261" delta="unknown" >The FF/Latch &lt;<arg fmt="%s" index="1">IP2Bus_Data_21</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">user_logic</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">8 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;IP2Bus_Data_19&gt; &lt;IP2Bus_Data_17&gt; &lt;IP2Bus_Data_14&gt; &lt;IP2Bus_Data_11&gt; &lt;IP2Bus_Data_10&gt; &lt;IP2Bus_Data_5&gt; &lt;IP2Bus_Data_3&gt; &lt;IP2Bus_Data_1&gt; </arg>
+</msg>
+
+<msg type="info" file="Xst" num="2261" delta="unknown" >The FF/Latch &lt;<arg fmt="%s" index="1">mst_cmd_sm_ip2bus_be_3</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">user_logic</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">7 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;mst_cmd_sm_ip2bus_be_2&gt; &lt;mst_cmd_sm_ip2bus_be_1&gt; &lt;mst_cmd_sm_ip2bus_be_0&gt; &lt;mst_cmd_sm_rd_req&gt; &lt;mst_cmd_sm_ip2bus_addr_16&gt; &lt;mst_cmd_sm_ip2bus_addr_4&gt; &lt;mst_cmd_sm_ip2bus_addr_0&gt; </arg>
+</msg>
+
+<msg type="info" file="Xst" num="2261" delta="unknown" >The FF/Latch &lt;<arg fmt="%s" index="1">IP2Bus_Data_22</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">user_logic</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">13 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;IP2Bus_Data_20&gt; &lt;IP2Bus_Data_18&gt; &lt;IP2Bus_Data_16&gt; &lt;IP2Bus_Data_15&gt; &lt;IP2Bus_Data_13&gt; &lt;IP2Bus_Data_12&gt; &lt;IP2Bus_Data_9&gt; &lt;IP2Bus_Data_8&gt; &lt;IP2Bus_Data_7&gt; &lt;IP2Bus_Data_6&gt; &lt;IP2Bus_Data_4&gt; &lt;IP2Bus_Data_2&gt; &lt;IP2Bus_Data_0&gt; </arg>
+</msg>
+
+</messages>
+

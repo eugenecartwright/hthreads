@@ -1,0 +1,46 @@
+################################################################################
+# File:     src/test/system/Jamfile
+# Author:   Wesley Peck
+# Date:     29 August 2006
+#
+# Desc:     This is the Jam build file for the src/test/system subdirectory of
+#           the Hthreads project. This file instructs the Jam build system on
+#           how to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (29 August 2006) Jam file initially created
+################################################################################
+SubDir TOP src test embed ;
+LOCATE_TARGET = test$(SLASH)embed ;
+
+################################################################################
+# Compile the source files into object files
+################################################################################
+Hobjects [ Hglob *.c ] ;
+
+################################################################################
+# Compile executable files from the object files
+################################################################################
+#Hexes [ Hglob *.c : .o ] ;
+Hexe embed : embed_mb.o prog.o ;
+Hexe embed_test : embed_test.o eprog.o ;
+Hexe blink_test : blink_test.o bprog.o ;
+Hexe cell_test : cell_test.o bprog.o ;
+Hexe histogram : histogram.o hprog.o ;
+Hexe piapprox : piapprox.o piprog.o ;
+Hexe sort : sort.o sort_prog.o ;
+Hexe sortMerge : sort_with_merge.o sort_prog.o ;
+Hexe sort_float : sort_float.o sort_prog_float.o ;
+Hexe sort_float_swfpu : sort_float.o sort_prog_float_swfpu.o ;
+Hexe led : led_test.o led_prog.o ;
+Hexe time : time_test.o ;
+Hexe dct : dct.o dct_prog.o ;
+Hexe mbox : mailbox.o mailbox_prog.o ;
+Hexe pipe : pipeline.o pipeline_prog.o ;
+Hexe lu : lu.o lu_prog.o ;
+Hexe idea : idea.o idea_prog.o ;
+Hexe tcreate : time_create.o time_prog.o ;
+Hexe huff : huffman.o huff_prog.o ;
+Hexe hcreate : hetero_create.o hetero_prog.o ;
+Hexe dist : distance.o dist_prog.o ;
+Hexe min : minimum.o min_prog.o ;

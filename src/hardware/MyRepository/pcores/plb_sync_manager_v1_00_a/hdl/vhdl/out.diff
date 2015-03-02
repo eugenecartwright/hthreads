@@ -1,0 +1,17 @@
+93a94
+>     signal IP2Bus_RdAck_internal, IP2Bus_WrAck_internal      : std_logic;
+297c298,305
+<     IP2Bus_RdAck        <= lock_finish or
+---
+>     -- **********************
+>     -- Ack router
+>     -- **********************
+>     IP2Bus_RdAck    <= IP2Bus_RdAck_internal when rnw = '1' else '0';
+>     IP2Bus_WrAck    <= IP2Bus_WrAck_internal when rnw = '0' else '0';
+>     -- **********************
+> 
+>     IP2Bus_RdAck_internal        <= lock_finish or
+305c313
+<     IP2Bus_WrAck        <= lock_finish or
+---
+>     IP2Bus_WrAck_internal        <= lock_finish or

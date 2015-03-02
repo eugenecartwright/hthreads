@@ -1,0 +1,62 @@
+################################################################################
+# File:     test/testsuite/functional/Jamfile
+# Author:   Wesley Peck
+# Date:     07 February 2007
+#
+# Desc:     This is the Jam build file for the testsuite subdirectory of the
+#           Hthreads project. This file instructs the Jam build system on how
+#           to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (97 February 2007) Jam file initially created
+################################################################################
+SubDir TOP src test testsuite functional ;
+LOCATE_TARGET = test/testsuite ;
+
+################################################################################
+# Add additional include directories to this subdirectory
+################################################################################
+SUBDIRHDRS = $(TOP)/src/test/testsuite/functional ;
+
+################################################################################
+# Build the source files into object files
+################################################################################
+Hobjects [ Hglob *.c ] ;
+
+################################################################################
+# Build the object files into executables
+################################################################################
+Hexes [ Hglob *.c : .o ] ;
+
+################################################################################
+# Include the testsuite subdirectories
+################################################################################
+SubInclude TOP src test testsuite functional hthread_attr_destroy ;
+SubInclude TOP src test testsuite functional hthread_attr_init ;
+SubInclude TOP src test testsuite functional hthread_condattr_destroy ;
+SubInclude TOP src test testsuite functional hthread_condattr_init ;
+SubInclude TOP src test testsuite functional hthread_cond_destroy ;
+SubInclude TOP src test testsuite functional hthread_cond_init ;
+SubInclude TOP src test testsuite functional hthread_cond_wait ;
+SubInclude TOP src test testsuite functional hthread_create ;
+SubInclude TOP src test testsuite functional hthread_equal ;
+SubInclude TOP src test testsuite functional hthread_exit ;
+SubInclude TOP src test testsuite functional hthread_mutexattr_destroy ;
+SubInclude TOP src test testsuite functional hthread_mutexattr_init ;
+SubInclude TOP src test testsuite functional hthread_mutex_destroy ;
+SubInclude TOP src test testsuite functional hthread_self ;
+SubInclude TOP src test testsuite functional hthread_yield ;
+
+################################################################################
+# Testsuite subdirectories which do not yet build using pthreads
+################################################################################
+if $(PLATFORM_VENDOR) != "pthreads"
+{
+    SubInclude TOP src test testsuite functional hthread_cond_broadcast ;
+    SubInclude TOP src test testsuite functional hthread_cond_signal ;
+    SubInclude TOP src test testsuite functional hthread_join ;
+    SubInclude TOP src test testsuite functional hthread_mutex_init ;
+    SubInclude TOP src test testsuite functional hthread_mutex_lock ;
+    SubInclude TOP src test testsuite functional hthread_mutex_trylock ;
+    SubInclude TOP src test testsuite functional hthread_mutex_unlock ;
+}

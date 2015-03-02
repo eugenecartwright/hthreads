@@ -1,0 +1,15 @@
+bfm_system.mhs
+-p
+virtex5
+-lang
+vhdl
+-lp
+../../../../../
+-s
+mti
+-X
+/home/jstevens/simlib/EDK10.1.02_mti_se_linux/ISE_Lib/
+-E
+/home/jstevens/simlib/EDK10.1.02_mti_se_linux/EDK_Lib/
+-m
+behavioral

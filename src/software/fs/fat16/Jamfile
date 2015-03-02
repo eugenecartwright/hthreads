@@ -1,0 +1,24 @@
+########################################################################################
+# File:     src/software/fs/fat16/Jamfile
+# Author:   Wesley Peck
+# Date:     13 November 2006
+#
+# Desc:     This is the Jam build file for the fat16 file system subdirectory of the
+#           Hthreads project. This file instructs the Jam build system on how to build
+#           the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (13 November 2006) Jam file initially created
+########################################################################################
+SubDir TOP src software fs fat16 ;
+LOCATE_TARGET = software$(SLASH)fs$(SLASH)fat16 ;
+
+########################################################################################
+# Compile the source files into object files
+########################################################################################
+Hsysobjects [ Hglob *.c ] ;
+
+########################################################################################
+# Add the object files to the hthreads library
+########################################################################################
+Hlib hthread : [ Hglob *.c : .o ] ;

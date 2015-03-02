@@ -1,0 +1,48 @@
+// File: /home/swarn/port/work/src/platforms/xilinx/ml507_mb/design/implementation/system_stub.bmm
+
+ADDRESS_MAP microblaze_0 MICROBLAZE 100
+	ADDRESS_SPACE lmb_bram_combined COMBINED [0x00000000:0x0000ffff]
+		ADDRESS_RANGE RAMB32
+		BUS_BLOCK
+			system_i/lmb_bram/lmb_bram/ramb36_0 [31:30] ;
+			system_i/lmb_bram/lmb_bram/ramb36_1 [29:28] ;
+			system_i/lmb_bram/lmb_bram/ramb36_2 [27:26] ;
+			system_i/lmb_bram/lmb_bram/ramb36_3 [25:24] ;
+			system_i/lmb_bram/lmb_bram/ramb36_4 [23:22] ;
+			system_i/lmb_bram/lmb_bram/ramb36_5 [21:20] ;
+			system_i/lmb_bram/lmb_bram/ramb36_6 [19:18] ;
+			system_i/lmb_bram/lmb_bram/ramb36_7 [17:16] ;
+			system_i/lmb_bram/lmb_bram/ramb36_8 [15:14] ;
+			system_i/lmb_bram/lmb_bram/ramb36_9 [13:12] ;
+			system_i/lmb_bram/lmb_bram/ramb36_10 [11:10] ;
+			system_i/lmb_bram/lmb_bram/ramb36_11 [9:8] ;
+			system_i/lmb_bram/lmb_bram/ramb36_12 [7:6] ;
+			system_i/lmb_bram/lmb_bram/ramb36_13 [5:4] ;
+			system_i/lmb_bram/lmb_bram/ramb36_14 [3:2] ;
+			system_i/lmb_bram/lmb_bram/ramb36_15 [1:0] ;
+		END_BUS_BLOCK;
+		END_ADDRESS_RANGE;
+	END_ADDRESS_SPACE;
+	ADDRESS_SPACE bram_block_0_combined COMBINED [0xfff80000:0xfff8ffff]
+		ADDRESS_RANGE RAMB32
+		BUS_BLOCK
+			system_i/bram_block_0/bram_block_0/ramb36_0 [31:30] ;
+			system_i/bram_block_0/bram_block_0/ramb36_1 [29:28] ;
+			system_i/bram_block_0/bram_block_0/ramb36_2 [27:26] ;
+			system_i/bram_block_0/bram_block_0/ramb36_3 [25:24] ;
+			system_i/bram_block_0/bram_block_0/ramb36_4 [23:22] ;
+			system_i/bram_block_0/bram_block_0/ramb36_5 [21:20] ;
+			system_i/bram_block_0/bram_block_0/ramb36_6 [19:18] ;
+			system_i/bram_block_0/bram_block_0/ramb36_7 [17:16] ;
+			system_i/bram_block_0/bram_block_0/ramb36_8 [15:14] ;
+			system_i/bram_block_0/bram_block_0/ramb36_9 [13:12] ;
+			system_i/bram_block_0/bram_block_0/ramb36_10 [11:10] ;
+			system_i/bram_block_0/bram_block_0/ramb36_11 [9:8] ;
+			system_i/bram_block_0/bram_block_0/ramb36_12 [7:6] ;
+			system_i/bram_block_0/bram_block_0/ramb36_13 [5:4] ;
+			system_i/bram_block_0/bram_block_0/ramb36_14 [3:2] ;
+			system_i/bram_block_0/bram_block_0/ramb36_15 [1:0] ;
+		END_BUS_BLOCK;
+		END_ADDRESS_RANGE;
+	END_ADDRESS_SPACE;
+END_ADDRESS_MAP;

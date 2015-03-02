@@ -1,0 +1,8 @@
+# This is the regression test suite for the thread manager
+#
+
+# Program Path							Log File					Time Out
+../test/regress/bin/create_detached		log/create_detached.log		30
+../test/regress/bin/create_joinable		log/create_joinable.log		30
+../test/regress/bin/add_thread			log/add_thread.log			30
+

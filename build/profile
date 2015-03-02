@@ -1,0 +1,14 @@
+################################################################################
+# File:     build/profile
+# Author:   Wesley Peck
+# Date:     23 February 2007
+#
+# Desc:     This file translates profile settings into actual build
+#           flags used by the system.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (23 February 2007) Settings rules first created
+################################################################################
+
+if $(PROFILE_SYSCALL) = "yes"    { DEFINES += PROFILE_SYSCALL=1 ; }
+if $(PROFILE_CONTEXT) = "yes"    { DEFINES += PROFILE_CONTEXT=1 ; }

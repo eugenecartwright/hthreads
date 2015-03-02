@@ -1,0 +1,77 @@
+################################################################################
+# File:     src/tools/Jamfile
+# Author:   Wesley Peck
+# Date:     29 August 2006
+#
+# Desc:     This is the Jam build file for the tools subdirectory of the
+#           Hthreads project. This file instructs the Jam build system on how
+#           to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (29 August 2006) Jam file initially created
+################################################################################
+SubDir TOP src tools ;
+LOCATE_TARGET = tools ;
+
+################################################################################
+# Define the HOST_TOOLS define for all of the host tools
+################################################################################
+HOST_DEFINES    = HTHREADS_HOSTTOOLS ;
+
+#if !($(PLATFORM_ARCH) = pthreads)
+#{
+    ############################################################################
+    # Set up some extra cflags
+    ############################################################################
+    HDRS on <src!tools>encode += $(SYS_HDRS) ;
+
+    ############################################################################
+    # Compile the source files into object files
+    ############################################################################
+    HHobject sdump.o : sdump.c ;
+    HHobject edump.o : edump.c ;
+    HHobject encode.o : encode.c ;
+    HHobject post.o : post.c ;
+    HHobject bpost.o : bpost.c ;
+    HHobject dpost.o : dpost.c ;
+    HHobject test.o : test.c ;
+    #HHobject pcap.o : pcap.c ;
+    #HHobject png.o : png.c ;
+    #HHobject raw.o : raw.c ;
+    #HHobject image.o : image.c ;
+    #HHobject eth.o : eth.c ;
+    #HHobject receive_from_board.o : receive_from_board.c ;
+    #HHobject ethernet.o : ethernet.c ;
+    #HHobject lnet.o : lnet.c ;
+
+    ############################################################################
+    # Set the libraries to link against
+    ############################################################################
+    LINKLIBS on <src!tools>image = -lnet -lpng -lpcap -lz ;
+    LINKLIBS on <src!tools>pcap = -lnet -lpcap -lncurses ;
+    LINKLIBS on <src!tools>lnet = -lnet -lpcap ;
+    LINKLIBS on <src!tools>eth = -lnet -lpcap ;
+    LINKLIBS on <src!tools>receive_from_board = -lnet -lpcap ;
+    LINKLIBS on <src!tools>edump = -lpthread ;
+
+    ############################################################################
+    # Compile executable files from the object files
+    ############################################################################
+    HHexe sdump : sdump.o ;
+    HHexe edump : edump.o ;
+    HHexe post : post.o ;
+    HHexe bpost : bpost.o ;
+    HHexe dpost : dpost.o ;
+    #HHexe test : test.o ;
+    HHexe encode : encode.o ;
+    #HHexe image : image.o ethernet.o png.o ;
+    #HHexe pcap : pcap.o ethernet.o ;
+    #HHexe lnet : lnet.o ethernet.o ;
+    #HHexe eth : eth.o ethernet.o ;
+    #HHexe receive_from_board : receive_from_board.o ethernet.o ;
+#}
+
+################################################################################
+# Include the hterm tool
+################################################################################
+SubInclude TOP src tools hterm ;

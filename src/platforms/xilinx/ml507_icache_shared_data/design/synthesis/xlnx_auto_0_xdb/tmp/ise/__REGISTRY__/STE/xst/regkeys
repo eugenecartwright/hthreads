@@ -1,0 +1,6 @@
+CommandLine
+/opt/Xilinx/10.1/ISE/bin/lin64/unwrapped/xst -ifn system_xst.scr -intstyle silent -finalclean 1
+s
+FormatString
+xst [-ifn <InputFile>] [-ofn <OutputFile>] [-ise <iseProjectFile>] [--quiet] [-intstyle <Style>] [--deb <DebugLevel>] [--finalclean <Clean>] [--PcubeFlow] [--globOptFlow] [--XstNtrc]
+s

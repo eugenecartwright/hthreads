@@ -1,0 +1,10 @@
+<assertions>
+  <assertion id="2">
+  A destroyed 'attr' attributes object can be reinitialized using
+  hthread_attr_init(); undefined results referencing the object
+  after it has been destroyed.
+  </assertion>
+  <assertion id="3">
+  If success, hthread_attr_destroy() shall return a 0.
+  </assertion>
+</assertions>

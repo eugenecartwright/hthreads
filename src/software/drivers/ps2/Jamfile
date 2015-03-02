@@ -1,0 +1,26 @@
+########################################################################################
+# File:     src/software/drivers/ps2/Jamfile
+# Author:   Wesley Peck
+# Date:     24 October 2006
+#
+# Desc:     This is the Jam build file for the ps2 driver subdirectory of the
+#           Hthreads project. This file instructs the Jam build system on how to build
+#           the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (24 October 2006) Jam file initially created
+########################################################################################
+SubDir TOP src software drivers ps2 ;
+LOCATE_TARGET = software/drivers/ps2 ;
+
+########################################################################################
+# Compile the source files into object files
+########################################################################################
+Hsysobject ps2.o : ps2.c ;
+Hsysobject keyboard.o : keyboard.c ;
+
+########################################################################################
+# Add the object files to the hthreads library
+########################################################################################
+Hlib hthread : ps2.o ;
+Hlib hthread : keyboard.o ;

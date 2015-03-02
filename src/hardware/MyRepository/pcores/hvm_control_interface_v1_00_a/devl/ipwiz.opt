@@ -1,0 +1,11 @@
+-batch 
+-create hvm_control_interface 
+-ver 1.00.a 
+-dir "/users/jagron/interp_on_fpga" 
+-lang vhdl 
+-bus opb s 
+-regn 4 32 
+-wrmode ack 
+-xps 
+-ise 
+-driver 

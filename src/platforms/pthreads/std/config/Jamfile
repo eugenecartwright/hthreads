@@ -1,0 +1,19 @@
+################################################################################
+# File:     src/platforms/pthreads/std/config/Jamfile
+# Author:   Wesley Peck
+# Date:     19 February 2007
+#
+# Desc:     This is the Jam build file for the XUP design subdirectory of the
+#           Hthreads project. This file instructs the Jam build system on how
+#           to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (19 February 2007) Jam file initially created
+################################################################################
+SubDir TOP src platforms pthreads std config ;
+
+################################################################################
+# Include the subdirectories required by this platform
+################################################################################
+SubInclude TOP src archs ;
+SubInclude TOP src platforms $(PLATFORM_VENDOR) $(PLATFORM_BOARD) src ;

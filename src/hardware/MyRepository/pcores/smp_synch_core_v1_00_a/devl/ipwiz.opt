@@ -1,0 +1,11 @@
+-batch 
+-create smp_synch_core 
+-ver 1.00.a 
+-dir "/home/jagron/misc/garrin" 
+-lang vhdl 
+-bus plbv46 s 
+-rst 
+-reg 16 
+-xps 
+-ise 
+-bfmsim "/home/jagron/misc/garrin/" "/home/jagron/misc/garrin/" 

@@ -1,0 +1,104 @@
+# Reading /opt/ModelSim/6.4/modeltech/tcl/vsim/pref.tcl 
+# //  ModelSim SE-64 6.4a Aug 28 2008 Linux 2.6.18-92.1.10.el5
+# //
+# //  Copyright 1991-2008 Mentor Graphics Corporation
+# //              All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND 
+# //  PROPRIETARY INFORMATION WHICH IS THE PROPERTY
+# //  OF MENTOR GRAPHICS CORPORATION OR ITS LICENSORS
+# //  AND IS SUBJECT TO LICENSE TERMS.
+# //
+# do ../../scripts/run.do 
+# Copying /opt/ModelSim/6.4/modeltech/linux_x86_64/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# ** Warning: Copied /opt/ModelSim/6.4/modeltech/linux_x86_64/../modelsim.ini to modelsim.ini.
+#          Updated modelsim.ini.
+# Modifying modelsim.ini
+# Modifying modelsim.ini
+# Modifying modelsim.ini
+# Modifying modelsim.ini
+# Modifying modelsim.ini
+# Modifying modelsim.ini
+# Modifying modelsim.ini
+# Modifying modelsim.ini
+# Modifying modelsim.ini
+# Modifying modelsim.ini
+# Modifying modelsim.ini
+# Modifying modelsim.ini
+# Modifying modelsim.ini
+# Modifying modelsim.ini
+# Modifying modelsim.ini
+# Modifying modelsim.ini
+# Modifying modelsim.ini
+# Model Technology ModelSim SE-64 vcom 6.4a Compiler 2008.08 Aug 28 2008
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package std_logic_unsigned
+# -- Loading package attributes
+# -- Loading package std_logic_misc
+# -- Loading package numeric_std
+# -- Compiling entity infer_bram_dual_port
+# -- Compiling architecture implementation of infer_bram_dual_port
+# Model Technology ModelSim SE-64 vcom 6.4a Compiler 2008.08 Aug 28 2008
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package std_logic_unsigned
+# -- Loading package proc_common_pkg
+# -- Compiling entity user_logic
+# -- Compiling architecture imp of user_logic
+# Model Technology ModelSim SE-64 vcom 6.4a Compiler 2008.08 Aug 28 2008
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package std_logic_unsigned
+# -- Loading package proc_common_pkg
+# -- Loading package ipif_pkg
+# -- Loading package numeric_std
+# -- Loading package attributes
+# -- Loading package std_logic_misc
+# -- Loading package family_support
+# -- Loading entity or_gate128
+# -- Loading package vcomponents
+# -- Loading entity plbv46_slave_single
+# -- Loading entity user_logic
+# -- Compiling entity plb_thread_manager
+# -- Compiling architecture imp of plb_thread_manager
+# Model Technology ModelSim SE-64 vcom 6.4a Compiler 2008.08 Aug 28 2008
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package std_logic_unsigned
+# -- Compiling entity plb_thread_manager_tb
+# -- Compiling architecture testbench of plb_thread_manager_tb
+# -- Loading package proc_common_pkg
+# -- Loading package ipif_pkg
+# -- Loading package numeric_std
+# -- Loading package attributes
+# -- Loading package std_logic_misc
+# -- Loading package family_support
+# -- Loading entity or_gate128
+# -- Loading package vcomponents
+# -- Loading entity plbv46_slave_single
+# -- Loading entity user_logic
+# -- Loading entity plb_thread_manager
+# ** Error: /home/jstevens/tmp/plb_cores/test_system/edk_user_repository/MyProcessorIPLib/pcores/plb_thread_manager_v1_00_a/devl/bfmsim/pcores/plb_thread_manager_tb_v1_00_a/simhdl/vhdl/plb_thread_manager_tb.vhd(253): (vcom-1035) Formal port "scheduler_reset_done" has OPEN or no actual associated with it.
+# ** Error: /home/jstevens/tmp/plb_cores/test_system/edk_user_repository/MyProcessorIPLib/pcores/plb_thread_manager_v1_00_a/devl/bfmsim/pcores/plb_thread_manager_tb_v1_00_a/simhdl/vhdl/plb_thread_manager_tb.vhd(253): (vcom-1035) Formal port "semaphore_reset_done" has OPEN or no actual associated with it.
+# ** Error: /home/jstevens/tmp/plb_cores/test_system/edk_user_repository/MyProcessorIPLib/pcores/plb_thread_manager_v1_00_a/devl/bfmsim/pcores/plb_thread_manager_tb_v1_00_a/simhdl/vhdl/plb_thread_manager_tb.vhd(253): (vcom-1035) Formal port "spinlock_reset_done" has OPEN or no actual associated with it.
+# ** Error: /home/jstevens/tmp/plb_cores/test_system/edk_user_repository/MyProcessorIPLib/pcores/plb_thread_manager_v1_00_a/devl/bfmsim/pcores/plb_thread_manager_tb_v1_00_a/simhdl/vhdl/plb_thread_manager_tb.vhd(253): (vcom-1035) Formal port "user_ip_reset_done" has OPEN or no actual associated with it.
+# ** Error: /home/jstevens/tmp/plb_cores/test_system/edk_user_repository/MyProcessorIPLib/pcores/plb_thread_manager_v1_00_a/devl/bfmsim/pcores/plb_thread_manager_tb_v1_00_a/simhdl/vhdl/plb_thread_manager_tb.vhd(253): (vcom-1035) Formal port "sch2tm_addrb" has OPEN or no actual associated with it.
+# ** Error: /home/jstevens/tmp/plb_cores/test_system/edk_user_repository/MyProcessorIPLib/pcores/plb_thread_manager_v1_00_a/devl/bfmsim/pcores/plb_thread_manager_tb_v1_00_a/simhdl/vhdl/plb_thread_manager_tb.vhd(253): (vcom-1035) Formal port "sch2tm_dib" has OPEN or no actual associated with it.
+# ** Error: /home/jstevens/tmp/plb_cores/test_system/edk_user_repository/MyProcessorIPLib/pcores/plb_thread_manager_v1_00_a/devl/bfmsim/pcores/plb_thread_manager_tb_v1_00_a/simhdl/vhdl/plb_thread_manager_tb.vhd(253): (vcom-1035) Formal port "sch2tm_enb" has OPEN or no actual associated with it.
+# ** Error: /home/jstevens/tmp/plb_cores/test_system/edk_user_repository/MyProcessorIPLib/pcores/plb_thread_manager_v1_00_a/devl/bfmsim/pcores/plb_thread_manager_tb_v1_00_a/simhdl/vhdl/plb_thread_manager_tb.vhd(253): (vcom-1035) Formal port "sch2tm_web" has OPEN or no actual associated with it.
+# ** Error: /home/jstevens/tmp/plb_cores/test_system/edk_user_repository/MyProcessorIPLib/pcores/plb_thread_manager_v1_00_a/devl/bfmsim/pcores/plb_thread_manager_tb_v1_00_a/simhdl/vhdl/plb_thread_manager_tb.vhd(253): (vcom-1035) Formal port "sch2tm_busy" has OPEN or no actual associated with it.
+# ** Error: /home/jstevens/tmp/plb_cores/test_system/edk_user_repository/MyProcessorIPLib/pcores/plb_thread_manager_v1_00_a/devl/bfmsim/pcores/plb_thread_manager_tb_v1_00_a/simhdl/vhdl/plb_thread_manager_tb.vhd(253): (vcom-1035) Formal port "sch2tm_data" has OPEN or no actual associated with it.
+# ** Error: /home/jstevens/tmp/plb_cores/test_system/edk_user_repository/MyProcessorIPLib/pcores/plb_thread_manager_v1_00_a/devl/bfmsim/pcores/plb_thread_manager_tb_v1_00_a/simhdl/vhdl/plb_thread_manager_tb.vhd(253): (vcom-1035) Formal port "sch2tm_next_id" has OPEN or no actual associated with it.
+# ** Error: /home/jstevens/tmp/plb_cores/test_system/edk_user_repository/MyProcessorIPLib/pcores/plb_thread_manager_v1_00_a/devl/bfmsim/pcores/plb_thread_manager_tb_v1_00_a/simhdl/vhdl/plb_thread_manager_tb.vhd(253): (vcom-1035) Formal port "sch2tm_next_id_valid" has OPEN or no actual associated with it.
+# ** Error: /home/jstevens/tmp/plb_cores/test_system/edk_user_repository/MyProcessorIPLib/pcores/plb_thread_manager_v1_00_a/devl/bfmsim/pcores/plb_thread_manager_tb_v1_00_a/simhdl/vhdl/plb_thread_manager_tb.vhd(313): VHDL Compiler exiting
+# ** Error: /opt/ModelSim/6.4/modeltech/linux_x86_64/vcom failed.
+# Error in macro ./bfm_system.do line 31
+# /opt/ModelSim/6.4/modeltech/linux_x86_64/vcom failed.
+#     while executing
+# "vcom -novopt -93 -work plb_thread_manager_tb_v1_00_a "/home/jstevens/tmp/plb_cores/test_system/edk_user_repository/MyProcessorIPLib/pcores/plb_thread_..."

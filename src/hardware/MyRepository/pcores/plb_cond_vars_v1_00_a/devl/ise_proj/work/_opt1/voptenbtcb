@@ -1,0 +1,217 @@
+m255
+K3
+13
+cModel Technology
+Z0 d/home/jagron/uark_research/uark_ht_trunk/src/hardware/MyRepository/pcores/plb_cond_vars_v1_00_a/devl/ise_proj
+Easync_fifo
+Z1 w1177418427
+Z2 DPx4 ieee 11 numeric_std 0 22 =NSdli^?T5OD8;4F<blj<3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 GH1=`jDDBJ=`LM;:Ak`kf2
+Z4 8../../../../../../../../../../../opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/async_fifo.vhd
+Z5 F../../../../../../../../../../../opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/async_fifo.vhd
+l0
+L75
+Z6 V6nIkzeD[1hl```WEdflgA0
+Z7 OL;C;6.4a;39
+31
+Z8 o-explicit -93 -work fsl_v20_v2_11_a
+Z9 tExplicit 1
+Z10 !s100 e4l?f^ZbB_d_``h4]@nAc3
+Avhdl_rtl
+R2
+R3
+Z11 DEx4 work 10 async_fifo 0 22 6nIkzeD[1hl```WEdflgA0
+l508
+L96
+Z12 VfbzU^aGag`?Ok<njC0W:A1
+R7
+31
+Z13 Mx2 4 ieee 14 std_logic_1164
+Z14 Mx1 4 ieee 11 numeric_std
+R8
+R9
+Z15 !s100 f2HV1E7aVoM78z1PT2BJF1
+Easync_fifo_bram
+Z16 w1179920501
+Z17 DPx6 unisim 11 vcomponents 0 22 S[1UK2T>En3_?_4iibizc2
+R2
+R3
+Z18 8../../../../../../../../../../../opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/async_fifo_bram.vhd
+Z19 F../../../../../../../../../../../opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/async_fifo_bram.vhd
+l0
+L74
+Z20 V=c9@3D[M<EUVQF;<UW2R41
+R7
+31
+R8
+R9
+Z21 !s100 oHO=bSF:0YaX?e3MMS<F@2
+Aimp
+R17
+R2
+R3
+Z22 DEx4 work 15 async_fifo_bram 0 22 =c9@3D[M<EUVQF;<UW2R41
+l170
+L95
+Z23 V4KinfOUF8iIeD?I3S<oQb2
+R7
+31
+Z24 Mx3 4 ieee 14 std_logic_1164
+Z25 Mx2 4 ieee 11 numeric_std
+Z26 Mx1 6 unisim 11 vcomponents
+R8
+R9
+Z27 !s100 O[13?Uj<geN6HBcX;EZTH3
+Efsl_v20
+Z28 w1222963077
+R17
+R3
+Z29 8../../../../../../../../../../../opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/fsl_v20.vhd
+Z30 F../../../../../../../../../../../opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/fsl_v20.vhd
+l0
+L83
+Z31 VM0JS[]2kEcKK@gPKXhgHI1
+R7
+31
+R8
+R9
+Z32 !s100 ZC06cg8KOOoMF_L:0:heP3
+Aimp
+Z33 DEx125 /home/jagron/uark_research/uark_ht_trunk/src/hardware/MyRepository/pcores/plb_cond_vars_v1_00_a/devl/ise_proj/fsl_v20_v2_11_a 15 async_fifo_bram 0 22 =c9@3D[M<EUVQF;<UW2R41
+Z34 DEx125 /home/jagron/uark_research/uark_ht_trunk/src/hardware/MyRepository/pcores/plb_cond_vars_v1_00_a/devl/ise_proj/fsl_v20_v2_11_a 10 async_fifo 0 22 6nIkzeD[1hl```WEdflgA0
+Z35 DEx125 /home/jagron/uark_research/uark_ht_trunk/src/hardware/MyRepository/pcores/plb_cond_vars_v1_00_a/devl/ise_proj/fsl_v20_v2_11_a 9 sync_fifo 0 22 Sk4WK_?=X:8D^2zG2kT?I1
+Z36 DEx39 /opt/Xilinx/10.1/ISE/vhdl/mti_se/unisim 3 fds 0 22 Zf[nFjYD^[fNo^?2hn8C12
+Z37 DEx39 /opt/Xilinx/10.1/ISE/vhdl/mti_se/unisim 5 srl16 0 22 2`g<aYmnJCQ0@=IPhTClP2
+Z38 DPx39 /opt/Xilinx/10.1/ISE/vhdl/mti_se/unisim 11 vcomponents 0 22 S[1UK2T>En3_?_4iibizc2
+Z39 DPx17 __model_tech/ieee 14 std_logic_1164 0 22 GH1=`jDDBJ=`LM;:Ak`kf2
+Z40 DEx125 /home/jagron/uark_research/uark_ht_trunk/src/hardware/MyRepository/pcores/plb_cond_vars_v1_00_a/devl/ise_proj/fsl_v20_v2_11_a 7 fsl_v20 0 22 M0JS[]2kEcKK@gPKXhgHI1
+31
+Z41 Mx2 17 __model_tech/ieee 14 std_logic_1164
+Z42 Mx1 39 /opt/Xilinx/10.1/ISE/vhdl/mti_se/unisim 11 vcomponents
+l195
+L120
+Z43 VH^Zjaldmk`LLO4R^>@Qg>1
+R7
+R8
+R9
+Z44 !s100 1@WoQ>nTdj5bk0IVckibO3
+Esrl_fifo
+R1
+R3
+Z45 8../../../../../../../../../../../opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/gen_srlfifo.vhd
+Z46 F../../../../../../../../../../../opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/gen_srlfifo.vhd
+l0
+L74
+Z47 V?3K[o3;994o]7[A?lZkK_3
+R7
+31
+R8
+R9
+Z48 !s100 JSIc<c^j]ZG?5o9IH7Xjk1
+Aimp
+Z49 DEx4 work 8 srl_fifo 0 22 ?3K[o3;994o]7[A?lZkK_3
+R3
+R17
+l114
+L97
+Z50 V_7IXB<Vmh3doLFTKBnFCH0
+R7
+31
+Z51 Mx2 6 unisim 11 vcomponents
+Z52 Mx1 4 ieee 14 std_logic_1164
+R8
+R9
+Z53 !s100 liiO<?<;TR3:[ST:4Gh<j1
+Esync_bram
+R16
+Z54 DPx4 ieee 15 std_logic_arith 0 22 GJbAT?7@hRQU9IQ702DT]2
+Z55 DPx4 ieee 18 std_logic_unsigned 0 22 hEMVMlaNCR^<OOoVNV;m90
+R3
+Z56 8../../../../../../../../../../../opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/gen_sync_bram.vhd
+Z57 F../../../../../../../../../../../opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/gen_sync_bram.vhd
+l0
+L70
+Z58 V;lm1mj>gjCL6Yd]^oZL0b2
+R7
+31
+R8
+R9
+Z59 !s100 QQ82E8f3bZRiL]4PKU93J1
+Asyn
+Z60 DPx17 __model_tech/ieee 15 std_logic_arith 0 22 GJbAT?7@hRQU9IQ702DT]2
+Z61 DPx17 __model_tech/ieee 18 std_logic_unsigned 0 22 hEMVMlaNCR^<OOoVNV;m90
+R39
+Z62 DEx125 /home/jagron/uark_research/uark_ht_trunk/src/hardware/MyRepository/pcores/plb_cond_vars_v1_00_a/devl/ise_proj/fsl_v20_v2_11_a 9 sync_bram 0 22 ;lm1mj>gjCL6Yd]^oZL0b2
+31
+Z63 Mx3 17 __model_tech/ieee 14 std_logic_1164
+Z64 Mx2 17 __model_tech/ieee 18 std_logic_unsigned
+Z65 Mx1 17 __model_tech/ieee 15 std_logic_arith
+l95
+L89
+Z66 VjAI>AYznaQR0a`oDd3IFU0
+R7
+R8
+R9
+Z67 !s100 kPUZ:@@g:X<`E8JPnYPaM1
+Esync_dpram
+R1
+R54
+R55
+R3
+Z68 8../../../../../../../../../../../opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/gen_sync_dpram.vhd
+Z69 F../../../../../../../../../../../opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/gen_sync_dpram.vhd
+l0
+L70
+Z70 V2PdO42bK:N;PgBR_zkP_82
+R7
+31
+R8
+R9
+Z71 !s100 k11k9cn8@^_e?6gL^@c1]2
+Asyn
+R54
+R55
+R3
+Z72 DEx4 work 10 sync_dpram 0 22 2PdO42bK:N;PgBR_zkP_82
+l90
+L86
+Z73 VL?68:;Hz0TRS;Da8`97A<2
+R7
+31
+R24
+Z74 Mx2 4 ieee 18 std_logic_unsigned
+Z75 Mx1 4 ieee 15 std_logic_arith
+R8
+R9
+Z76 !s100 >_MmEo`4X16oD@;O2`miF0
+Esync_fifo
+Z77 w1222963030
+R2
+R3
+Z78 8../../../../../../../../../../../opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/sync_fifo.vhd
+Z79 F../../../../../../../../../../../opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/sync_fifo.vhd
+l0
+L69
+Z80 VSk4WK_?=X:8D^2zG2kT?I1
+R7
+31
+R8
+R9
+Z81 !s100 g[UDm0Ja1G027H<ee35@f3
+Avhdl_rtl
+R62
+Z82 DEx125 /home/jagron/uark_research/uark_ht_trunk/src/hardware/MyRepository/pcores/plb_cond_vars_v1_00_a/devl/ise_proj/fsl_v20_v2_11_a 10 sync_dpram 0 22 2PdO42bK:N;PgBR_zkP_82
+Z83 DEx125 /home/jagron/uark_research/uark_ht_trunk/src/hardware/MyRepository/pcores/plb_cond_vars_v1_00_a/devl/ise_proj/fsl_v20_v2_11_a 8 srl_fifo 0 22 ?3K[o3;994o]7[A?lZkK_3
+Z84 DPx17 __model_tech/ieee 11 numeric_std 0 22 =NSdli^?T5OD8;4F<blj<3
+R39
+R35
+31
+R41
+Z85 Mx1 17 __model_tech/ieee 11 numeric_std
+l171
+L88
+Z86 VzGBKWV:gm@Z^bKcb94Xg<1
+R7
+R8
+R9
+Z87 !s100 EeE@1Kk4Q1E53A`;WOTRV0

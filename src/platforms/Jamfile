@@ -1,0 +1,18 @@
+################################################################################
+# File:     src/platforms/Jamfile
+# Author:   Wesley Peck
+# Date:     19 February 2007
+#
+# Desc:     This is the Jam build file for the platforms subdirectory of the
+#           Hthreads project. This file instructs the Jam build system on how
+#           to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (19 February 2007) Jam file initially created
+################################################################################
+SubDir TOP src platforms ;
+
+################################################################################
+# Include the configured platform directory
+################################################################################
+SubInclude TOP src platforms $(PLATFORM_VENDOR) $(PLATFORM_BOARD) config ;

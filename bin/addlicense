@@ -1,0 +1,253 @@
+#!/bin/bash
+
+################################################################################
+# This function shows the help message to the user and then exits the script.
+################################################################################
+function show_help()
+{
+    echo "Add a license file to the top of every file."
+    echo ""
+    echo "Usage: $0 [option]... [file]...";
+    echo "where options is";
+    echo "    --help        show this help";
+    echo "    --license     set the license file to add";
+    echo "    --remove      remove the license instead of adding it"
+    echo "";
+    echo "If no files are specified then add the license file to every file in the system"
+    exit 1;
+}
+
+################################################################################
+# This function shows an error message to the console and then exits
+################################################################################
+function show_error()
+{
+    echo $1;
+    exit 1;
+}
+
+################################################################################
+# This function checks to see if an option has been passed an invalid
+# parameter.  An invalid parameter to an option is passing another option.
+################################################################################
+function invalid_option()
+{
+    beg=${2:0:1};
+    if [[ $beg == "-" ]]
+    then
+        echo "Invalid option$1: $2";
+        show_help;
+    fi
+}
+
+################################################################################
+# This function parses the command line options which are passed to the script.
+################################################################################
+function parse_options()
+{
+    for opt
+    do
+        case $opt in
+            '--help'    )   show_help;;
+
+            '--license' )   invalid_option " for $1" "$2";
+                            license_file="$2";
+                            shift;
+                            shift;;
+
+            '--remove' )    remove_license=1;
+                            shift;;
+
+            *           )   invalid_option "" "$1";
+                            if [[ -n $1 ]]
+                            then
+                                files="$files $1";
+                            fi
+                            shift;;
+        esac
+    done
+}
+
+################################################################################
+# Find the base directory to start searching for files at. The base directory
+# is determined by locating the parent directory of this script and starting
+# there.
+################################################################################
+function find_dir()
+{
+   base=${0%/*}
+   bdir="$base/.."
+
+   pushd $bdir &>/dev/null
+   dir="${PWD}";
+   popd &>/dev/null
+}
+
+################################################################################
+# Find all of the files that we should add the license to. If the user has
+# specified a set of files then we just use those files. Otherwise we find all
+# of the files from the base directory exception files which are in a design
+# directory inside of the platforms directory.
+################################################################################
+function find_files()
+{
+    if [[ -z "$files" ]]
+    then
+        echo "Finding all hthread's files...";
+        find_dir $@;
+        files=`find $dir -type f|grep -v 'platforms.*design'`;
+    fi
+}
+
+################################################################################
+# Find the license file to add to all of the found files. If the user specifies
+# a license file then we
+################################################################################
+function find_license()
+{
+    if [[ -z "$license_file" ]]
+    then
+        base=${0%/*}
+        ldir="$base/.."
+
+        pushd $ldir &>/dev/null
+        license_file="${PWD}/LICENSE";
+        popd &>/dev/null
+    fi
+}
+
+################################################################################
+# Read in the license file into a variable. If a parameter is passed to this
+# function then the contents of the parameter are placed before each line in
+# the license file (this is useful for creating a version of the license file
+# which is commented for some particular source file).
+################################################################################
+function form_license()
+{
+    license=`sed "s/^/$1/" $license_file`;
+}
+
+
+################################################################################
+# This function determines if a license file is present at the top of a file.
+################################################################################
+function has_license()
+{
+    header="$1"
+    footer="$2"
+
+    bse=${3##*/}
+    tmp1=`mktemp /tmp/$bse.XXXXXXXX` || show_error "Could not create tmp file";
+    tmp2=`mktemp /tmp/$bse.XXXXXXXX` || show_error "Could not create tmp file";
+
+    flic=`sed '/^$/,$d' $3`;
+    echo "$flic" > "$tmp1";
+
+    echo "$header" > "$tmp2";
+    echo "$license" >> "$tmp2";
+    echo "$footer" >> "$tmp2";
+
+    diff=`diff -q $tmp1 $tmp2`;
+
+    rm $tmp1
+    rm $tmp2
+    if [[ -z "$diff" ]]
+    then
+        return 1;
+    else
+        return 0;
+    fi
+}
+
+################################################################################
+# This function adds the license file to the top of a file. The file is
+# destructivly updated during this process (thought the update should be
+# removable via the "--remove" command line option).
+################################################################################
+function add_license()
+{
+    header="$1"
+    footer="$2"
+
+    if [[ $remove_license == "1" ]]
+    then
+        has_license "$header" "$footer" "$3"
+        diff=$?
+
+        if (($diff > 0))
+        then
+            echo "Removing License: $3"
+            bse=${3##*/};
+            tmp1=`mktemp /tmp/$bse.XXXXXXXX` || show_error "Could not create tmp file";
+            sed '1,/^$/d' $3 > $tmp1
+            cp $tmp1 $3
+            rm $tmp1
+        fi
+    else
+        has_license "$header" "$footer" "$3"
+        diff=$?
+
+        if (($diff == 0))
+        then
+            bse=${3##*/};
+            tmp1=`mktemp /tmp/$bse.XXXXXXXX` || show_error "Could not create tmp file";
+            tmp2=`mktemp /tmp/$bse.XXXXXXXX` || show_error "Could not create tmp file";
+            echo "Adding License: $3"
+            echo "$header" > "$tmp1"
+            echo "$license" >> "$tmp1"
+            echo "$footer" >> "$tmp1"
+            echo "" >> "$tmp1"
+            cp $3 $tmp2
+            cat $tmp1 $tmp2 > $3
+            rm $tmp1 $tmp2
+        fi
+    fi
+}
+
+################################################################################
+# This function loops through all of the input files and attempts to add the
+# license file to the top of each file. The function accomplishes this by
+# determining each file's type (using its extension) and then forming a license
+# file for that file type.
+################################################################################
+function process_files()
+{
+    find_files $@;
+    find_license $@;
+
+    chead="/*******************************************************************************";
+    cfoot="*******************************************************************************/";
+    shead="/*******************************************************************************";
+    sfoot="*******************************************************************************/";
+    vhead="--------------------------------------------------------------------------------";
+    vfoot="--------------------------------------------------------------------------------";
+
+    for file in $files
+    do
+        ext=${file##*.}
+        case $ext in
+            "c"|"h"|"cpp"|"cxx"|"c++"|"hpp" )   
+                        form_license "* "
+                        add_license "$chead" "$cfoot" "$file"
+                        ;;
+
+            "S" )
+                        form_license "* "
+                        add_license "$shead" "$sfoot" "$file"
+                        ;;
+
+            "vhd"|"vhdl" )
+                        form_license "-- "
+                        add_license $vhead $vfoot $file
+                        ;;
+
+            *       )   ;;
+        esac
+    done 
+}
+
+################################################################################
+# Execute the script
+################################################################################
+parse_options $@;
+process_files $@;

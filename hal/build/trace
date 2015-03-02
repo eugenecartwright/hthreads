@@ -1,0 +1,16 @@
+################################################################################
+# File:     build/trace
+# Author:   Wesley Peck
+# Date:     8 March 2007
+#
+# Desc:     This file translates trace settings into actual build
+#           flags used by the system.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (8 March 2007) Settings rules first created
+################################################################################
+
+if $(TRACE_HSCHED) = "yes"  { DEFINES += TRACE_HSCHED=1 ; }
+if $(TRACE_SYSCALL) = "yes" { DEFINES += TRACE_SYSCALL=1 ; }
+if $(TRACE_SCHED) = "yes"   { DEFINES += TRACE_SCHED=1 ; }
+if $(TRACE_INIT) = "yes"    { DEFINES += TRACE_INIT=1 ; }

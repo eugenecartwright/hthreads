@@ -1,0 +1,14 @@
+<assertions>
+  <assertion id="1">
+   hthread_mutex_init, when called with NULL attributes, initializes the mutex
+   to default values.  
+  </assertion>
+  <assertion id="2">
+  hthread_mutex_init, when called with non-null attributes, initializes the 
+  mutex to values specified in the attributes.
+  </assertion> 
+  <assertion id="3">
+  Upon successful initialization, the state of the mutex becomes initialized
+  and unlocked.
+  </assertion> 
+</assertions>

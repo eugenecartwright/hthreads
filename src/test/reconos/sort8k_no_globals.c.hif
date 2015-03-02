@@ -1,0 +1,46 @@
+#### GCC-generated HTHREADS Hardware Intermediate Form
+
+#### Created from sort8k_no_globals.c line 26
+@function @pointer @void sort8k_entry 
+
+	# Argument declaration section
+	@param @pointer @void hif_data 
+
+	# Variable declaration section
+	@declare @pointer @void hif_ptr 
+	@struct sortarg_t 
+		@struct mailbox_t 
+			@struct hthread_mutex_t 
+				@declare @unsigned @int 32 num 
+				@declare @unsigned @int 32 type 
+			@endstruct
+			@struct hthread_cond_t 
+				@declare @unsigned @int 32 num 
+			@endstruct
+			@declare @signed @int 32 size 
+			@declare @signed @int 32 head 
+			@declare @signed @int 32 tail 
+			@declare @signed @int 32 num 
+			@declare @pointer @pointer @void mailbox 
+			@declare @struct hthread_mutex_t mutex 
+			@declare @struct hthread_cond_t notempty 
+			@declare @struct hthread_cond_t notfull 
+		@endstruct
+		@declare @struct mailbox_t mb_start 
+		@declare @struct mailbox_t mb_done 
+	@endstruct
+	@declare @pointer @struct sortarg_t hif_my_arg 
+	@declare @pointer @struct mailbox_t hif_D.2710
+	@declare @pointer @unsigned @int 32 hif_ptr.10 
+	@declare @pointer @struct mailbox_t hif_D.2707
+
+	@castmov hif_my_arg hif_data 
+	@label HIFL0: 
+	@addressof hif_D.2707 @structref hif_my_arg mb_start 
+	@call mailbox_read hif_D.2707 
+	@returnVal hif_ptr 
+	@castmov hif_ptr.10 hif_ptr 
+	@call bubblesort hif_ptr.10 2048 
+	@addressof hif_D.2710 @structref hif_my_arg mb_done 
+	@call mailbox_write hif_D.2710 23B 
+	@goto HIFL0

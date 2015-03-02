@@ -1,0 +1,17 @@
+
+1. Figure out how to initialize thread table before jumping to int main()
+   a) extern thread table, 
+   b) jump to it from .S file, 
+   c)guard it using #ifdef for non-heterogeneous applications
+
+2. Move stack (and heap) into local BRAM for host
+
+3. Merge changes with Alborz's directory
+
+4. Determine how to remove the #ifdef HETERO_COMPILATION completely. 
+
+5. Fetch lscript for host automatically, (check hcompile for commented code).
+   You do this for the slaves. The lscript that we use for the host may be
+   customized and probably cannot use the default lscript that SDK generates.
+   This is probably why you have the code commented out.
+

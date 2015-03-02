@@ -1,0 +1,42 @@
+##############################################################################
+## Filename:          /home/jstevens/edk/syncmanager/pcores/plb_sync_manager_v1_00_a/data/plb_sync_manager_v2_1_0.pao
+## Description:       Peripheral Analysis Order
+## Date:              Thu May  7 14:29:05 2009 (by Create and Import Peripheral Wizard)
+##############################################################################
+
+lib proc_common_v3_00_a proc_common_pkg vhdl
+lib proc_common_v3_00_a ipif_pkg vhdl
+lib proc_common_v3_00_a or_muxcy vhdl
+lib proc_common_v3_00_a or_gate128 vhdl
+lib proc_common_v3_00_a family_support vhdl
+lib proc_common_v3_00_a pselect_f vhdl
+lib proc_common_v3_00_a counter_f vhdl
+lib plbv46_slave_single_v1_01_a plb_address_decoder vhdl
+lib plbv46_slave_single_v1_01_a plb_slave_attachment vhdl
+lib plbv46_slave_single_v1_01_a plbv46_slave_single vhdl
+lib plbv46_master_single_v1_01_a data_width_adapter vhdl
+lib plbv46_master_single_v1_01_a data_mirror_128 vhdl
+lib plbv46_master_single_v1_01_a plbv46_master_single vhdl
+lib proc_common_v3_00_a cntr_incr_decr_addn_f vhdl
+lib proc_common_v3_00_a muxf_struct_f vhdl
+lib proc_common_v3_00_a dynshreg_f vhdl
+lib proc_common_v3_00_a srl_fifo_rbu_f vhdl
+lib proc_common_v3_00_a srl_fifo_f vhdl
+
+lib plb_sync_manager_v1_00_a common vhdl
+lib plb_sync_manager_v1_00_a lock_fsm vhdl
+lib plb_sync_manager_v1_00_a unlock_fsm vhdl
+lib plb_sync_manager_v1_00_a trylock_fsm vhdl
+lib plb_sync_manager_v1_00_a owner_fsm vhdl
+lib plb_sync_manager_v1_00_a kind_fsm vhdl
+lib plb_sync_manager_v1_00_a count_fsm vhdl
+lib plb_sync_manager_v1_00_a result_fsm vhdl
+lib plb_sync_manager_v1_00_a mutex_store vhdl
+lib plb_sync_manager_v1_00_a thread_store vhdl
+lib plb_sync_manager_v1_00_a send_store vhdl
+lib plb_sync_manager_v1_00_a slave vhdl
+lib plb_sync_manager_v1_00_a master vhdl
+#lib plb_sync_manager_v1_00_a opb_SynchManager vhdl
+
+lib plb_sync_manager_v1_00_a user_logic vhdl
+lib plb_sync_manager_v1_00_a plb_sync_manager vhdl

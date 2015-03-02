@@ -1,0 +1,11 @@
+################################################################################
+# Compile in support for profiling Hthreads system calls. This causes
+# the system to count how many times each system call is used.
+################################################################################
+PROFILE_SYSCALL  = no ;
+
+################################################################################
+# Compile in support for profiling Hthreads context switch points. This
+# causes the system to log each occurrance of a context switch.
+################################################################################
+PROFILE_CONTEXT  = no ;

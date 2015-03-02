@@ -1,0 +1,116 @@
+######################################################################################
+# Copyright (c) 2006, University of Kansas - Hybridthreads Group
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#
+#    * Redistributions of source code must retain the above copyright notice,
+#      this list of conditions and the following disclaimer.
+#    * Redistributions in binary form must reproduce the above copyright notice,
+#      this list of conditions and the following disclaimer in the documentation
+#      and/or other materials provided with the distribution.
+#    * Neither the name of the University of Kansas nor the name of the
+#      Hybridthreads Group nor the names of its contributors may be used to
+#      endorse or promote products derived from this software without specific
+#      prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+# ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+# (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+# ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+######################################################################################
+
+Hybridthreads v0.5.0 - Prerequisites
+------------------------------------------------------------------------------
+The Hthreads system depends on the following tools during the build process.
+    * Xilinx ISE (http://www.xilinx.com)
+        This is required to build the Hthreads system for target systems
+        which include Xilinx based FPGAs
+
+    * Xilinx EDK (http://www.xilinx.com)
+        This is required to build the Hthreads system for target systems
+        which include Xilinx based FPGAs
+
+    * PowerPC Cross Compiler (http://gcc.gnu.org)
+        This is required to build the Hthreads system for target systems
+        which are based on the PowerPC processor. 
+
+    * Jam Build System (http://freetype.sourceforge.net/jam/index.html)
+        This is required to build the Hthreads system. A free distribution
+        of Jam named FT-Jam can be found in the "extra" directory of the
+        Hthreads distribution.
+    
+    * Libnet (http://www.packetfactory.net/libnet/)
+        This is required to build several of the host tools supplied
+        with the Hthreads system. A BSD licensed distribution of
+        Libnet can be found in the "extra" directory of the Hthreads
+        distribution.
+
+    * Libpng (http://www.libpng.org/pub/png/libpng.html)
+        This is required for several of the host tools supplied with
+        the Hthreads system. This is usually obtained with your
+        operating system.
+
+    * Libpcap (http://www.tcpdump.org/)
+        This is required for several of the host tools supplied with
+        the Hthreads system. This is usually obtained with your
+        operating system.
+
+    * Doxygen (http://www.stack.nl/~dimitri/doxygen/)
+        This is required to build the documentation for the Hthreads
+        system. This is a commonly used code documentation tool and
+        it not included with the distribution.
+
+The Hthreads system is only tested on the following target systems:
+    * Xilinx Virtex-5 Pro ML507
+    * Xilinx Virtex-6 Pro ML605
+    * Xilinx Virtex-II Pro ML310
+    * Xilinx Virtex-II Pro XUP
+
+In addition, the following host systems have been used:
+    * Redhat Enterprise Linux 3.0
+    * Redhat Enterprise Linux 5.0
+    * CentOS 5.8
+    * Ubuntu 10.04
+
+If you have success in using the Hthreads system on other systems please
+contact the Hthreads group at hthreads@ittc.ku.edu.
+
+
+Hybridthreads v0.5.0 - Installation Procedures
+------------------------------------------------------------------------------
+The Hthreads system does not install any files on the host operating system.
+When building Hthreads a set of executable files are created for the target
+system. These executables are meant to be downloaded to the target system and
+executed there.
+
+Hybridthreads v0.5.0 - Build Procedures
+------------------------------------------------------------------------------
+To build the Hthreads system simply invoke the jam build system from the top
+level directory. This command will recurse through the Hthreads source tree and
+build the entire system. An example is given below:
+    > jam
+
+The Hthreads build process uses a set of configuration files to control the
+build process. These user modifiable files are located in "config". The file
+"settings" contains most of the user modifiable build parameters. Another file
+"common" also resides in this directory. The contents of this file do not
+normally need to be modified.
+
+Once the build process has been complete there will be two additional
+directories in the top level of the Hthreads source tree: "lib" and "test". The
+lib directory contains the Hthreads library that can be linked against to
+create executables.  The test directory contains all of the pre-built
+executables for the target system. These executables can be downloaded to the
+target system and executed.
+
+In addition to this, many host tool will be built and installed into "bin".
+Please look at the README in the "bin" directory to learn more about the host
+tools.

@@ -1,0 +1,29 @@
+Release 10.1.03 ngcbuild K.39 (lin64)
+Copyright (c) 1995-2008 Xilinx, Inc.  All rights reserved.
+
+Command Line: /opt/Xilinx/10.1/ISE/bin/lin64/unwrapped/ngcbuild -p
+xc5vfx70tff1136-1 -intstyle silent -uc ddr2_sdram_wrapper.ucf -sd ..
+ddr2_sdram_wrapper.ngc ../ddr2_sdram_wrapper.ngc
+
+Reading NGO file
+"/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_icache_shar
+ed_data/design/implementation/ddr2_sdram_wrapper/ddr2_sdram_wrapper.ngc" ...
+
+Applying constraints in "ddr2_sdram_wrapper.ucf" to the design...
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+NGCBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings:   0
+
+Total memory usage is 303368 kilobytes
+
+Writing NGC file "../ddr2_sdram_wrapper.ngc" ...
+
+Writing NGCBUILD log file "../ddr2_sdram_wrapper.blc"...

@@ -1,0 +1,19 @@
+################################################################################
+# File:     src/test/video/Jamfile
+# Author:   Wesley Peck
+# Date:     18 June 2007
+#
+# Desc:     This is the Jam build file for the video processing test
+#           subdirectory of the Hthreads project. This file instructs the Jam
+#           build system on how to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (18 June 2007) Jam file initially created
+################################################################################
+SubDir TOP src test video ;
+LOCATE_TARGET = test/video ;
+
+################################################################################
+# Include the subdirectories
+################################################################################
+SubInclude TOP src test video src ;

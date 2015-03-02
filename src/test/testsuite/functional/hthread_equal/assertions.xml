@@ -1,0 +1,9 @@
+<assertions>
+  <assertion id="1">
+   The function hthread_equal(hthread_t t1, hthread_t t2) compares the thread
+   ids t1 and t2.  It returns a non-zero value if t1 and t2 are equal.
+  </assertion>
+  <assertion id="2">
+   The function hthread_equal() returns 0 if t1 and t2 are not equal.
+  </assertion>
+</assertions>

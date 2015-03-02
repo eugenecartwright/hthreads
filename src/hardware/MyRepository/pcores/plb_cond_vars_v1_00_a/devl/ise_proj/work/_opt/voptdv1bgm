@@ -1,0 +1,90 @@
+m255
+K3
+cModel Technology Builtin Library
+13
+Z0 dD:\qa\buildsites\6.4a\builds\win32\modeltech
+Parithmetic
+Z1 DPx8 synopsys 10 attributes 0 22 2Q8I4L@H0S1aHEXkjUYDC1
+Z2 DPx8 synopsys 5 types 0 22 W=CQEFePa6l^a_bHkz9Y92
+Z3 OL;C;6.4a;39
+30
+b1
+Z4 Mx2 8 synopsys 5 types
+Z5 Mx1 8 synopsys 10 attributes
+Z6 OP;C;6.4a;39
+Z7 w1219724959
+Z8 d$MODEL_TECH/..
+Z9 8vhdl_src/synopsys/syn_ari.vhd
+Z10 Fvhdl_src/synopsys/syn_ari.vhd
+l0
+L23
+VhMjD=N7CIFK2Hio]Y`1cl1
+Z11 OE;C;6.4a;39
+Z12 o-87 -work synopsys -dirpath {$MODEL_TECH/..}
+Z13 tExplicit 1
+!s100 ALB?e3hC8K3K4b@:F^ZQW1
+Bbody
+DBx4 work 10 arithmetic 0 22 hMjD=N7CIFK2Hio]Y`1cl1
+R1
+R2
+R3
+30
+R4
+R5
+R6
+l0
+L167
+VR7Vjja5?S3RmeHA<3Io[91
+R11
+R12
+R13
+nbody
+!s100 m7Oo>T?Vh;jS1m_T1HIRE0
+Pattributes
+R3
+30
+R6
+R7
+R8
+8vhdl_src/synopsys/syn_attributes.vhd
+Fvhdl_src/synopsys/syn_attributes.vhd
+l0
+L39
+V2Q8I4L@H0S1aHEXkjUYDC1
+R11
+R12
+R13
+!s100 jH:eZPVM8NK_=Okf0U9nN0
+Ptypes
+R1
+R3
+30
+b1
+R5
+R6
+R7
+R8
+Z14 8vhdl_src/synopsys/syn_type.vhd
+Z15 Fvhdl_src/synopsys/syn_type.vhd
+l0
+L36
+VW=CQEFePa6l^a_bHkz9Y92
+R11
+R12
+R13
+!s100 MVOanQ8I<Y@G=fXX4V=8]3
+Bbody
+DBx4 work 5 types 0 22 W=CQEFePa6l^a_bHkz9Y92
+R1
+R3
+30
+R5
+R6
+l0
+L576
+VkFzU8gkHjnWgNEIz0z@Mn1
+R11
+R12
+R13
+nbody
+!s100 =_GGOg2ZWkTj=al_KNGY]2

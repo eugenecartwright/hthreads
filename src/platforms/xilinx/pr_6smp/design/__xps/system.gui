@@ -1,0 +1,480 @@
+
+<SETTINGS>
+
+  <IDENTIFICATION VERSION="1.2" XTLVERSION="1.2"/>
+
+  <SET CLASS="PROJECT" DISPLAYMODE="TREE" VIEW_ID="BUSINTERFACE">
+    <HEADERS HSCROLL="0" VSCROLL="1568">
+      <VARIABLE COL_INDEX="0" COL_WIDTH="359" IS_VISIBLE="TRUE" VIEWDISP="Name" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="1" COL_WIDTH="405" IS_VISIBLE="TRUE" VIEWDISP="Bus Name" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="2" IS_VISIBLE="FALSE" VIEWDISP="Bus Standard" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="3" COL_WIDTH="100" IS_VISIBLE="TRUE" VIEWDISP="IP Type" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="4" COL_WIDTH="100" IS_VISIBLE="TRUE" VIEWDISP="IP Version" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="5" IS_VISIBLE="FALSE" VIEWDISP="IP Classification" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="6" IS_VISIBLE="FALSE" VIEWDISP="Type" VIEWTYPE="HEADER"/>
+    </HEADERS>
+    <SPLITTERS COLLAPSIBLE="1" HANDLEWIDTH="4" MARKER="255" ORIENTATION="1" RESIZE="1" SIZES="180,450,180" VERSION="0"/>
+    <STATUS>
+      <SELECTIONS>
+        <VARIABLE ID="acc_2_mb1"/>
+      </SELECTIONS>
+    </STATUS>
+    <SEQUENCES IS_DEF_SEQUENCES="FALSE">
+      <VARIABLE ID="xps_intc_0" ROW_INDEX="78"/>
+      <VARIABLE ID="thread_manager" ROW_INDEX="90"/>
+      <VARIABLE ID="main_bus" ROW_INDEX="20"/>
+      <VARIABLE ID="microblaze0" ROW_INDEX="22"/>
+      <VARIABLE ID="ilmb0" ROW_INDEX="7"/>
+      <VARIABLE ID="dlmb0" ROW_INDEX="0"/>
+      <VARIABLE ID="ilmb_cntlr0" ROW_INDEX="49"/>
+      <VARIABLE ID="dlmb_cntlr0" ROW_INDEX="42"/>
+      <VARIABLE ID="host_bram0" ROW_INDEX="29"/>
+      <VARIABLE ID="core_main_bridge" ROW_INDEX="156"/>
+      <VARIABLE ID="main_core_bridge" ROW_INDEX="75"/>
+      <VARIABLE ID="core_bus" ROW_INDEX="13"/>
+      <VARIABLE ID="cond_vars" ROW_INDEX="85"/>
+      <VARIABLE ID="scheduler" ROW_INDEX="88"/>
+      <VARIABLE ID="sync_manager" ROW_INDEX="89"/>
+      <VARIABLE ID="plb_hthread_reset_core_0" ROW_INDEX="86"/>
+      <VARIABLE ID="group1_bus" ROW_INDEX="14"/>
+      <VARIABLE ID="group1_main_bridge" ROW_INDEX="69"/>
+      <VARIABLE ID="microblaze1" ROW_INDEX="24"/>
+      <VARIABLE ID="hw_acc_1" ROW_INDEX="79"/>
+      <VARIABLE ID="dma1_bus" ROW_INDEX="151"/>
+      <VARIABLE ID="plb_hthreads_timer_1" ROW_INDEX="157"/>
+      <VARIABLE ID="xps_central_dma_1" ROW_INDEX="158"/>
+      <VARIABLE ID="dma1_dma_bridge" ROW_INDEX="165"/>
+      <VARIABLE ID="group1_dma1_bridge" ROW_INDEX="166"/>
+      <VARIABLE ID="bramA1_cntlr" ROW_INDEX="114"/>
+      <VARIABLE ID="bramA1" ROW_INDEX="115"/>
+      <VARIABLE ID="bramb1_cntlr" ROW_INDEX="116"/>
+      <VARIABLE ID="bramB1" ROW_INDEX="117"/>
+      <VARIABLE ID="bramC1_cntlr" ROW_INDEX="118"/>
+      <VARIABLE ID="bramC1" ROW_INDEX="119"/>
+      <VARIABLE ID="acc_2_mb1" ROW_INDEX="98"/>
+      <VARIABLE ID="mb_2_acc1" ROW_INDEX="99"/>
+      <VARIABLE ID="mb_2_acc1_rst" ROW_INDEX="159"/>
+      <VARIABLE ID="ilmb1" ROW_INDEX="8"/>
+      <VARIABLE ID="dlmb1" ROW_INDEX="1"/>
+      <VARIABLE ID="ilmb_cntlr1" ROW_INDEX="50"/>
+      <VARIABLE ID="dlmb_cntlr1" ROW_INDEX="43"/>
+      <VARIABLE ID="lmb_bram1" ROW_INDEX="30"/>
+      <VARIABLE ID="group2_bus" ROW_INDEX="15"/>
+      <VARIABLE ID="group2_main_bridge" ROW_INDEX="70"/>
+      <VARIABLE ID="microblaze2" ROW_INDEX="23"/>
+      <VARIABLE ID="hw_acc_2" ROW_INDEX="80"/>
+      <VARIABLE ID="dma2_bus" ROW_INDEX="113"/>
+      <VARIABLE ID="plb_hthreads_timer_2" ROW_INDEX="167"/>
+      <VARIABLE ID="xps_central_dma_2" ROW_INDEX="168"/>
+      <VARIABLE ID="dma2_dma_bridge" ROW_INDEX="169"/>
+      <VARIABLE ID="group2_dma2_bridge" ROW_INDEX="170"/>
+      <VARIABLE ID="bramA2_cntlr" ROW_INDEX="120"/>
+      <VARIABLE ID="bramA2" ROW_INDEX="121"/>
+      <VARIABLE ID="bramb2_cntlr" ROW_INDEX="122"/>
+      <VARIABLE ID="bramB2" ROW_INDEX="123"/>
+      <VARIABLE ID="bramC2_cntlr" ROW_INDEX="124"/>
+      <VARIABLE ID="bramC2" ROW_INDEX="125"/>
+      <VARIABLE ID="acc_2_mb2" ROW_INDEX="100"/>
+      <VARIABLE ID="mb_2_acc2" ROW_INDEX="101"/>
+      <VARIABLE ID="mb_2_acc2_rst" ROW_INDEX="160"/>
+      <VARIABLE ID="dlmb2" ROW_INDEX="2"/>
+      <VARIABLE ID="ilmb2" ROW_INDEX="150"/>
+      <VARIABLE ID="ilmb_cntlr2" ROW_INDEX="51"/>
+      <VARIABLE ID="dlmb_cntlr2" ROW_INDEX="44"/>
+      <VARIABLE ID="lmb_bram2" ROW_INDEX="31"/>
+      <VARIABLE ID="group3_bus" ROW_INDEX="16"/>
+      <VARIABLE ID="group3_main_bridge" ROW_INDEX="71"/>
+      <VARIABLE ID="microblaze3" ROW_INDEX="25"/>
+      <VARIABLE ID="hw_acc_3" ROW_INDEX="81"/>
+      <VARIABLE ID="dma3_bus" ROW_INDEX="152"/>
+      <VARIABLE ID="plb_hthreads_timer_3" ROW_INDEX="171"/>
+      <VARIABLE ID="xps_central_dma_3" ROW_INDEX="172"/>
+      <VARIABLE ID="dma3_dma_bridge" ROW_INDEX="173"/>
+      <VARIABLE ID="group3_dma3_bridge" ROW_INDEX="174"/>
+      <VARIABLE ID="bramA3_cntlr" ROW_INDEX="126"/>
+      <VARIABLE ID="bramA3" ROW_INDEX="127"/>
+      <VARIABLE ID="bramb3_cntlr" ROW_INDEX="128"/>
+      <VARIABLE ID="bramB3" ROW_INDEX="129"/>
+      <VARIABLE ID="bramC3_cntlr" ROW_INDEX="130"/>
+      <VARIABLE ID="bramC3" ROW_INDEX="131"/>
+      <VARIABLE ID="acc_2_mb3" ROW_INDEX="102"/>
+      <VARIABLE ID="mb_2_acc3" ROW_INDEX="103"/>
+      <VARIABLE ID="mb_2_acc3_rst" ROW_INDEX="161"/>
+      <VARIABLE ID="ilmb3" ROW_INDEX="9"/>
+      <VARIABLE ID="dlmb3" ROW_INDEX="3"/>
+      <VARIABLE ID="ilmb_cntlr3" ROW_INDEX="52"/>
+      <VARIABLE ID="dlmb_cntlr3" ROW_INDEX="45"/>
+      <VARIABLE ID="lmb_bram3" ROW_INDEX="32"/>
+      <VARIABLE ID="group4_bus" ROW_INDEX="17"/>
+      <VARIABLE ID="group4_main_bridge" ROW_INDEX="72"/>
+      <VARIABLE ID="microblaze4" ROW_INDEX="26"/>
+      <VARIABLE ID="hw_acc_4" ROW_INDEX="82"/>
+      <VARIABLE ID="dma4_bus" ROW_INDEX="153"/>
+      <VARIABLE ID="plb_hthreads_timer_4" ROW_INDEX="175"/>
+      <VARIABLE ID="xps_central_dma_4" ROW_INDEX="176"/>
+      <VARIABLE ID="dma4_dma_bridge" ROW_INDEX="177"/>
+      <VARIABLE ID="group4_dma4_bridge" ROW_INDEX="178"/>
+      <VARIABLE ID="bramA4_cntlr" ROW_INDEX="132"/>
+      <VARIABLE ID="bramA4" ROW_INDEX="133"/>
+      <VARIABLE ID="bramb4_cntlr" ROW_INDEX="134"/>
+      <VARIABLE ID="bramB4" ROW_INDEX="135"/>
+      <VARIABLE ID="bramC4_cntlr" ROW_INDEX="136"/>
+      <VARIABLE ID="bramC4" ROW_INDEX="137"/>
+      <VARIABLE ID="acc_2_mb4" ROW_INDEX="104"/>
+      <VARIABLE ID="mb_2_acc4" ROW_INDEX="105"/>
+      <VARIABLE ID="mb_2_acc4_rst" ROW_INDEX="162"/>
+      <VARIABLE ID="ilmb4" ROW_INDEX="10"/>
+      <VARIABLE ID="dlmb4" ROW_INDEX="4"/>
+      <VARIABLE ID="ilmb_cntlr4" ROW_INDEX="53"/>
+      <VARIABLE ID="dlmb_cntlr4" ROW_INDEX="46"/>
+      <VARIABLE ID="lmb_bram4" ROW_INDEX="33"/>
+      <VARIABLE ID="group5_bus" ROW_INDEX="18"/>
+      <VARIABLE ID="group5_main_bridge" ROW_INDEX="73"/>
+      <VARIABLE ID="microblaze5" ROW_INDEX="27"/>
+      <VARIABLE ID="hw_acc_5" ROW_INDEX="83"/>
+      <VARIABLE ID="dma5_bus" ROW_INDEX="154"/>
+      <VARIABLE ID="plb_hthreads_timer_5" ROW_INDEX="179"/>
+      <VARIABLE ID="xps_central_dma_5" ROW_INDEX="180"/>
+      <VARIABLE ID="dma5_dma_bridge" ROW_INDEX="181"/>
+      <VARIABLE ID="group5_dma5_bridge" ROW_INDEX="182"/>
+      <VARIABLE ID="bramA5_cntlr" ROW_INDEX="138"/>
+      <VARIABLE ID="bramA5" ROW_INDEX="139"/>
+      <VARIABLE ID="bramb5_cntlr" ROW_INDEX="140"/>
+      <VARIABLE ID="bramB5" ROW_INDEX="141"/>
+      <VARIABLE ID="bramC5_cntlr" ROW_INDEX="142"/>
+      <VARIABLE ID="bramC5" ROW_INDEX="143"/>
+      <VARIABLE ID="acc_2_mb5" ROW_INDEX="106"/>
+      <VARIABLE ID="mb_2_acc5" ROW_INDEX="107"/>
+      <VARIABLE ID="ilmb5" ROW_INDEX="11"/>
+      <VARIABLE ID="mb_2_acc5_rst" ROW_INDEX="163"/>
+      <VARIABLE ID="dlmb5" ROW_INDEX="5"/>
+      <VARIABLE ID="ilmb_cntlr5" ROW_INDEX="54"/>
+      <VARIABLE ID="dlmb_cntlr5" ROW_INDEX="47"/>
+      <VARIABLE ID="lmb_bram5" ROW_INDEX="34"/>
+      <VARIABLE ID="group6_bus" ROW_INDEX="19"/>
+      <VARIABLE ID="group6_main_bridge" ROW_INDEX="74"/>
+      <VARIABLE ID="microblaze6" ROW_INDEX="28"/>
+      <VARIABLE ID="hw_acc_6" ROW_INDEX="84"/>
+      <VARIABLE ID="dma6_bus" ROW_INDEX="155"/>
+      <VARIABLE ID="plb_hthreads_timer_6" ROW_INDEX="183"/>
+      <VARIABLE ID="xps_central_dma_6" ROW_INDEX="184"/>
+      <VARIABLE ID="dma6_dma_bridge" ROW_INDEX="185"/>
+      <VARIABLE ID="group6_dma6_bridge" ROW_INDEX="186"/>
+      <VARIABLE ID="bramA6_cntlr" ROW_INDEX="144"/>
+      <VARIABLE ID="bramA6" ROW_INDEX="145"/>
+      <VARIABLE ID="bramb6_cntlr" ROW_INDEX="146"/>
+      <VARIABLE ID="bramB6" ROW_INDEX="147"/>
+      <VARIABLE ID="bramC6_cntlr" ROW_INDEX="148"/>
+      <VARIABLE ID="bramC6" ROW_INDEX="149"/>
+      <VARIABLE ID="acc_2_mb6" ROW_INDEX="108"/>
+      <VARIABLE ID="mb_2_acc6" ROW_INDEX="109"/>
+      <VARIABLE ID="mb_2_acc6_rst" ROW_INDEX="164"/>
+      <VARIABLE ID="ilmb6" ROW_INDEX="12"/>
+      <VARIABLE ID="dlmb6" ROW_INDEX="6"/>
+      <VARIABLE ID="ilmb_cntlr6" ROW_INDEX="55"/>
+      <VARIABLE ID="dlmb_cntlr6" ROW_INDEX="48"/>
+      <VARIABLE ID="lmb_bram6" ROW_INDEX="35"/>
+      <VARIABLE ID="vhwti_bus1" ROW_INDEX="21"/>
+      <VARIABLE ID="main_vhwti_bridge1" ROW_INDEX="76"/>
+      <VARIABLE ID="vhwti_local_cntlr1" ROW_INDEX="62"/>
+      <VARIABLE ID="vhwti_global_cntlr1" ROW_INDEX="56"/>
+      <VARIABLE ID="vhwti_bram1" ROW_INDEX="36"/>
+      <VARIABLE ID="vhwti_local_cntlr2" ROW_INDEX="63"/>
+      <VARIABLE ID="vhwti_global_cntlr2" ROW_INDEX="57"/>
+      <VARIABLE ID="vhwti_bram2" ROW_INDEX="37"/>
+      <VARIABLE ID="vhwti_local_cntlr3" ROW_INDEX="64"/>
+      <VARIABLE ID="vhwti_global_cntlr3" ROW_INDEX="58"/>
+      <VARIABLE ID="vhwti_bram3" ROW_INDEX="38"/>
+      <VARIABLE ID="vhwti_local_cntlr4" ROW_INDEX="65"/>
+      <VARIABLE ID="vhwti_global_cntlr4" ROW_INDEX="59"/>
+      <VARIABLE ID="vhwti_bram4" ROW_INDEX="39"/>
+      <VARIABLE ID="vhwti_local_cntlr5" ROW_INDEX="66"/>
+      <VARIABLE ID="vhwti_global_cntlr5" ROW_INDEX="60"/>
+      <VARIABLE ID="vhwti_bram5" ROW_INDEX="40"/>
+      <VARIABLE ID="vhwti_local_cntlr6" ROW_INDEX="67"/>
+      <VARIABLE ID="vhwti_global_cntlr6" ROW_INDEX="61"/>
+      <VARIABLE ID="vhwti_bram6" ROW_INDEX="41"/>
+      <VARIABLE ID="plb_hthreads_timer_0" ROW_INDEX="87"/>
+      <VARIABLE ID="xps_timer_0" ROW_INDEX="94"/>
+      <VARIABLE ID="mdm_0" ROW_INDEX="77"/>
+      <VARIABLE ID="mpmc_0" ROW_INDEX="68"/>
+      <VARIABLE ID="RS232_Uart_1" ROW_INDEX="95"/>
+      <VARIABLE ID="SysACE_CompactFlash" ROW_INDEX="93"/>
+      <VARIABLE ID="clock_generator0" ROW_INDEX="96"/>
+      <VARIABLE ID="proc_sys_reset_0" ROW_INDEX="97"/>
+      <VARIABLE ID="dma_bus" ROW_INDEX="110"/>
+      <VARIABLE ID="main_dma_bridge" ROW_INDEX="111"/>
+      <VARIABLE ID="dma_main_bridge" ROW_INDEX="112"/>
+      <VARIABLE ID="xps_central_dma_0" ROW_INDEX="91"/>
+      <VARIABLE ID="xps_hwicap_0" ROW_INDEX="92"/>
+    </SEQUENCES>
+  </SET>
+
+  <SET CLASS="PROJECT" DISPLAYMODE="FLAT" VIEW_ID="BUSINTERFACE">
+    <HEADERS>
+      <VARIABLE COL_INDEX="0" IS_VISIBLE="TRUE" VIEWDISP="Instance" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="1" IS_VISIBLE="TRUE" VIEWDISP="Bus Interface" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="2" IS_VISIBLE="TRUE" VIEWDISP="Bus Name" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="3" IS_VISIBLE="FALSE" VIEWDISP="Bus Standard" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="4" IS_VISIBLE="TRUE" VIEWDISP="IP Type" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="5" IS_VISIBLE="TRUE" VIEWDISP="IP Version" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="6" IS_VISIBLE="FALSE" VIEWDISP="IP Classification" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="7" IS_VISIBLE="FALSE" VIEWDISP="Type" VIEWTYPE="HEADER"/>
+    </HEADERS>
+    <SPLITTERS COLLAPSIBLE="1" HANDLEWIDTH="4" MARKER="255" ORIENTATION="1" RESIZE="1" SIZES="180,450,180" VERSION="0"/>
+  </SET>
+
+  <SET CLASS="PROJECT" DISPLAYMODE="TREE" VIEW_ID="PORT">
+    <HEADERS HSCROLL="0" VSCROLL="2092">
+      <VARIABLE COL_INDEX="0" COL_WIDTH="214" IS_VISIBLE="TRUE" VIEWDISP="Name" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="1" COL_WIDTH="369" IS_VISIBLE="TRUE" VIEWDISP="Net" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="2" COL_WIDTH="100" IS_VISIBLE="TRUE" VIEWDISP="Direction" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="3" COL_WIDTH="100" IS_VISIBLE="TRUE" VIEWDISP="Range" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="4" COL_WIDTH="100" IS_VISIBLE="TRUE" VIEWDISP="Class" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="5" COL_WIDTH="100" IS_VISIBLE="TRUE" VIEWDISP="Frequency(Hz)" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="6" COL_WIDTH="100" IS_VISIBLE="TRUE" VIEWDISP="Reset Polarity" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="7" COL_WIDTH="100" IS_VISIBLE="TRUE" VIEWDISP="Sensitivity" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="8" COL_WIDTH="100" IS_VISIBLE="TRUE" VIEWDISP="IP Type" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="9" IS_VISIBLE="FALSE" VIEWDISP="IP Version" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="10" IS_VISIBLE="TRUE" VIEWDISP="IP Classification" VIEWTYPE="HEADER"/>
+    </HEADERS>
+    <SPLITTERS COLLAPSIBLE="1" HANDLEWIDTH="4" MARKER="255" ORIENTATION="1" RESIZE="1" SIZES="0,630,180" VERSION="0"/>
+    <SET ID="mpmc_0" IS_EXPANDED="TRUE"/>
+    <STATUS>
+      <SELECTIONS/>
+    </STATUS>
+    <SEQUENCES IS_DEF_SEQUENCES="TRUE">
+      <VARIABLE ID="ExternalPorts" ROW_INDEX="0"/>
+      <VARIABLE ID="main_bus" ROW_INDEX="35"/>
+      <VARIABLE ID="microblaze0" ROW_INDEX="37"/>
+      <VARIABLE ID="ilmb0" ROW_INDEX="20"/>
+      <VARIABLE ID="dlmb0" ROW_INDEX="13"/>
+      <VARIABLE ID="ilmb_cntlr0" ROW_INDEX="82"/>
+      <VARIABLE ID="dlmb_cntlr0" ROW_INDEX="75"/>
+      <VARIABLE ID="host_bram0" ROW_INDEX="62"/>
+      <VARIABLE ID="group1_bus" ROW_INDEX="29"/>
+      <VARIABLE ID="group1_main_bridge" ROW_INDEX="123"/>
+      <VARIABLE ID="microblaze1" ROW_INDEX="38"/>
+      <VARIABLE ID="hw_acc_1" ROW_INDEX="134"/>
+      <VARIABLE ID="acc_2_mb1" ROW_INDEX="1"/>
+      <VARIABLE ID="mb_2_acc1" ROW_INDEX="7"/>
+      <VARIABLE ID="ilmb1" ROW_INDEX="21"/>
+      <VARIABLE ID="dlmb1" ROW_INDEX="14"/>
+      <VARIABLE ID="ilmb_cntlr1" ROW_INDEX="83"/>
+      <VARIABLE ID="dlmb_cntlr1" ROW_INDEX="76"/>
+      <VARIABLE ID="lmb_bram1" ROW_INDEX="63"/>
+      <VARIABLE ID="group2_bus" ROW_INDEX="30"/>
+      <VARIABLE ID="group2_main_bridge" ROW_INDEX="124"/>
+      <VARIABLE ID="microblaze2" ROW_INDEX="39"/>
+      <VARIABLE ID="hw_acc_2" ROW_INDEX="135"/>
+      <VARIABLE ID="acc_2_mb2" ROW_INDEX="2"/>
+      <VARIABLE ID="mb_2_acc2" ROW_INDEX="8"/>
+      <VARIABLE ID="dlmb2" ROW_INDEX="15"/>
+      <VARIABLE ID="ilmb_cntlr2" ROW_INDEX="84"/>
+      <VARIABLE ID="dlmb_cntlr2" ROW_INDEX="77"/>
+      <VARIABLE ID="lmb_bram2" ROW_INDEX="64"/>
+      <VARIABLE ID="group3_bus" ROW_INDEX="31"/>
+      <VARIABLE ID="group3_main_bridge" ROW_INDEX="125"/>
+      <VARIABLE ID="microblaze3" ROW_INDEX="40"/>
+      <VARIABLE ID="hw_acc_3" ROW_INDEX="136"/>
+      <VARIABLE ID="acc_2_mb3" ROW_INDEX="3"/>
+      <VARIABLE ID="mb_2_acc3" ROW_INDEX="9"/>
+      <VARIABLE ID="ilmb3" ROW_INDEX="22"/>
+      <VARIABLE ID="dlmb3" ROW_INDEX="16"/>
+      <VARIABLE ID="ilmb_cntlr3" ROW_INDEX="85"/>
+      <VARIABLE ID="dlmb_cntlr3" ROW_INDEX="78"/>
+      <VARIABLE ID="lmb_bram3" ROW_INDEX="65"/>
+      <VARIABLE ID="group4_bus" ROW_INDEX="32"/>
+      <VARIABLE ID="group4_main_bridge" ROW_INDEX="126"/>
+      <VARIABLE ID="microblaze4" ROW_INDEX="41"/>
+      <VARIABLE ID="hw_acc_4" ROW_INDEX="137"/>
+      <VARIABLE ID="acc_2_mb4" ROW_INDEX="4"/>
+      <VARIABLE ID="mb_2_acc4" ROW_INDEX="10"/>
+      <VARIABLE ID="ilmb4" ROW_INDEX="23"/>
+      <VARIABLE ID="dlmb4" ROW_INDEX="17"/>
+      <VARIABLE ID="ilmb_cntlr4" ROW_INDEX="86"/>
+      <VARIABLE ID="dlmb_cntlr4" ROW_INDEX="79"/>
+      <VARIABLE ID="lmb_bram4" ROW_INDEX="66"/>
+      <VARIABLE ID="group5_bus" ROW_INDEX="33"/>
+      <VARIABLE ID="group5_main_bridge" ROW_INDEX="127"/>
+      <VARIABLE ID="microblaze5" ROW_INDEX="42"/>
+      <VARIABLE ID="hw_acc_5" ROW_INDEX="138"/>
+      <VARIABLE ID="acc_2_mb5" ROW_INDEX="5"/>
+      <VARIABLE ID="mb_2_acc5" ROW_INDEX="11"/>
+      <VARIABLE ID="ilmb5" ROW_INDEX="24"/>
+      <VARIABLE ID="dlmb5" ROW_INDEX="18"/>
+      <VARIABLE ID="ilmb_cntlr5" ROW_INDEX="87"/>
+      <VARIABLE ID="dlmb_cntlr5" ROW_INDEX="80"/>
+      <VARIABLE ID="lmb_bram5" ROW_INDEX="67"/>
+      <VARIABLE ID="group6_bus" ROW_INDEX="34"/>
+      <VARIABLE ID="group6_main_bridge" ROW_INDEX="128"/>
+      <VARIABLE ID="microblaze6" ROW_INDEX="43"/>
+      <VARIABLE ID="hw_acc_6" ROW_INDEX="139"/>
+      <VARIABLE ID="acc_2_mb6" ROW_INDEX="6"/>
+      <VARIABLE ID="mb_2_acc6" ROW_INDEX="12"/>
+      <VARIABLE ID="ilmb6" ROW_INDEX="25"/>
+      <VARIABLE ID="dlmb6" ROW_INDEX="19"/>
+      <VARIABLE ID="ilmb_cntlr6" ROW_INDEX="88"/>
+      <VARIABLE ID="dlmb_cntlr6" ROW_INDEX="81"/>
+      <VARIABLE ID="lmb_bram6" ROW_INDEX="68"/>
+      <VARIABLE ID="vhwti_bus1" ROW_INDEX="36"/>
+      <VARIABLE ID="main_vhwti_bridge1" ROW_INDEX="131"/>
+      <VARIABLE ID="vhwti_local_cntlr1" ROW_INDEX="113"/>
+      <VARIABLE ID="vhwti_global_cntlr1" ROW_INDEX="107"/>
+      <VARIABLE ID="vhwti_bram1" ROW_INDEX="69"/>
+      <VARIABLE ID="vhwti_local_cntlr2" ROW_INDEX="114"/>
+      <VARIABLE ID="vhwti_global_cntlr2" ROW_INDEX="108"/>
+      <VARIABLE ID="vhwti_bram2" ROW_INDEX="70"/>
+      <VARIABLE ID="vhwti_local_cntlr3" ROW_INDEX="115"/>
+      <VARIABLE ID="vhwti_global_cntlr3" ROW_INDEX="109"/>
+      <VARIABLE ID="vhwti_bram3" ROW_INDEX="71"/>
+      <VARIABLE ID="vhwti_local_cntlr4" ROW_INDEX="116"/>
+      <VARIABLE ID="vhwti_global_cntlr4" ROW_INDEX="110"/>
+      <VARIABLE ID="vhwti_bram4" ROW_INDEX="72"/>
+      <VARIABLE ID="vhwti_local_cntlr5" ROW_INDEX="117"/>
+      <VARIABLE ID="vhwti_global_cntlr5" ROW_INDEX="111"/>
+      <VARIABLE ID="vhwti_bram5" ROW_INDEX="73"/>
+      <VARIABLE ID="vhwti_local_cntlr6" ROW_INDEX="118"/>
+      <VARIABLE ID="vhwti_global_cntlr6" ROW_INDEX="112"/>
+      <VARIABLE ID="vhwti_bram6" ROW_INDEX="74"/>
+      <VARIABLE ID="core_main_bridge" ROW_INDEX="120"/>
+      <VARIABLE ID="main_core_bridge" ROW_INDEX="129"/>
+      <VARIABLE ID="core_bus" ROW_INDEX="26"/>
+      <VARIABLE ID="cond_vars" ROW_INDEX="140"/>
+      <VARIABLE ID="scheduler" ROW_INDEX="143"/>
+      <VARIABLE ID="thread_manager" ROW_INDEX="145"/>
+      <VARIABLE ID="sync_manager" ROW_INDEX="144"/>
+      <VARIABLE ID="xps_intc_0" ROW_INDEX="133"/>
+      <VARIABLE ID="plb_hthread_reset_core_0" ROW_INDEX="141"/>
+      <VARIABLE ID="plb_hthreads_timer_0" ROW_INDEX="142"/>
+      <VARIABLE ID="xps_timer_0" ROW_INDEX="149"/>
+      <VARIABLE ID="mdm_0" ROW_INDEX="132"/>
+      <VARIABLE ID="mpmc_0" IS_EXPANDED="TRUE" ROW_INDEX="119"/>
+      <VARIABLE ID="RS232_Uart_1" ROW_INDEX="150"/>
+      <VARIABLE ID="SysACE_CompactFlash" ROW_INDEX="148"/>
+      <VARIABLE ID="clock_generator0" ROW_INDEX="151"/>
+      <VARIABLE ID="proc_sys_reset_0" ROW_INDEX="152"/>
+      <VARIABLE ID="dma_bus" ROW_INDEX="28"/>
+      <VARIABLE ID="main_dma_bridge" ROW_INDEX="130"/>
+      <VARIABLE ID="dma_main_bridge" ROW_INDEX="122"/>
+      <VARIABLE ID="xps_central_dma_0" ROW_INDEX="146"/>
+      <VARIABLE ID="xps_hwicap_0" ROW_INDEX="147"/>
+      <VARIABLE ID="dma2_bus" ROW_INDEX="27"/>
+      <VARIABLE ID="dma_dma2_bridge" ROW_INDEX="121"/>
+      <VARIABLE ID="bramA1_cntlr" ROW_INDEX="89"/>
+      <VARIABLE ID="bramA1" ROW_INDEX="44"/>
+      <VARIABLE ID="bramb1_cntlr" ROW_INDEX="101"/>
+      <VARIABLE ID="bramB1" ROW_INDEX="50"/>
+      <VARIABLE ID="bramC1_cntlr" ROW_INDEX="95"/>
+      <VARIABLE ID="bramC1" ROW_INDEX="56"/>
+      <VARIABLE ID="bramA2_cntlr" ROW_INDEX="90"/>
+      <VARIABLE ID="bramA2" ROW_INDEX="45"/>
+      <VARIABLE ID="bramb2_cntlr" ROW_INDEX="102"/>
+      <VARIABLE ID="bramB2" ROW_INDEX="51"/>
+      <VARIABLE ID="bramC2_cntlr" ROW_INDEX="96"/>
+      <VARIABLE ID="bramC2" ROW_INDEX="57"/>
+      <VARIABLE ID="bramA3_cntlr" ROW_INDEX="91"/>
+      <VARIABLE ID="bramA3" ROW_INDEX="46"/>
+      <VARIABLE ID="bramb3_cntlr" ROW_INDEX="103"/>
+      <VARIABLE ID="bramB3" ROW_INDEX="52"/>
+      <VARIABLE ID="bramC3_cntlr" ROW_INDEX="97"/>
+      <VARIABLE ID="bramC3" ROW_INDEX="58"/>
+      <VARIABLE ID="bramA4_cntlr" ROW_INDEX="92"/>
+      <VARIABLE ID="bramA4" ROW_INDEX="47"/>
+      <VARIABLE ID="bramb4_cntlr" ROW_INDEX="104"/>
+      <VARIABLE ID="bramB4" ROW_INDEX="53"/>
+      <VARIABLE ID="bramC4_cntlr" ROW_INDEX="98"/>
+      <VARIABLE ID="bramC4" ROW_INDEX="59"/>
+      <VARIABLE ID="bramA5_cntlr" ROW_INDEX="93"/>
+      <VARIABLE ID="bramA5" ROW_INDEX="48"/>
+      <VARIABLE ID="bramb5_cntlr" ROW_INDEX="105"/>
+      <VARIABLE ID="bramB5" ROW_INDEX="54"/>
+      <VARIABLE ID="bramC5_cntlr" ROW_INDEX="99"/>
+      <VARIABLE ID="bramC5" ROW_INDEX="60"/>
+      <VARIABLE ID="bramA6_cntlr" ROW_INDEX="94"/>
+      <VARIABLE ID="bramA6" ROW_INDEX="49"/>
+      <VARIABLE ID="bramb6_cntlr" ROW_INDEX="106"/>
+      <VARIABLE ID="bramB6" ROW_INDEX="55"/>
+      <VARIABLE ID="bramC6_cntlr" ROW_INDEX="100"/>
+      <VARIABLE ID="bramC6" ROW_INDEX="61"/>
+    </SEQUENCES>
+  </SET>
+
+  <SET CLASS="PROJECT" DISPLAYMODE="FLAT" VIEW_ID="PORT">
+    <HEADERS>
+      <VARIABLE COL_INDEX="0" IS_VISIBLE="TRUE" VIEWDISP="Instance" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="1" IS_VISIBLE="TRUE" VIEWDISP="Port Name" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="2" IS_VISIBLE="TRUE" VIEWDISP="Net" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="3" IS_VISIBLE="TRUE" VIEWDISP="Direction" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="4" IS_VISIBLE="TRUE" VIEWDISP="Range" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="5" IS_VISIBLE="TRUE" VIEWDISP="Class" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="6" IS_VISIBLE="TRUE" VIEWDISP="Frequency(Hz)" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="7" IS_VISIBLE="TRUE" VIEWDISP="Reset Polarity" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="8" IS_VISIBLE="TRUE" VIEWDISP="Sensitivity" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="9" IS_VISIBLE="TRUE" VIEWDISP="IP Type" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="10" IS_VISIBLE="FALSE" VIEWDISP="IP Version" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="11" IS_VISIBLE="TRUE" VIEWDISP="IP Classification" VIEWTYPE="HEADER"/>
+    </HEADERS>
+    <SPLITTERS COLLAPSIBLE="1" HANDLEWIDTH="4" MARKER="255" ORIENTATION="1" RESIZE="1" SIZES="0,630,180" VERSION="0"/>
+  </SET>
+
+  <SET CLASS="PROJECT" DISPLAYMODE="TREE" VIEW_ID="ADDRESS">
+    <HEADERS HSCROLL="0" VSCROLL="108">
+      <VARIABLE COL_INDEX="0" COL_WIDTH="200" IS_VISIBLE="TRUE" VIEWDISP="Instance" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="1" COL_WIDTH="207" IS_VISIBLE="TRUE" VIEWDISP="Base Name" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="2" COL_WIDTH="100" IS_VISIBLE="TRUE" VIEWDISP="Base Address" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="3" COL_WIDTH="100" IS_VISIBLE="TRUE" VIEWDISP="High Address" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="4" COL_WIDTH="100" IS_VISIBLE="TRUE" VIEWDISP="Size" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="5" COL_WIDTH="105" IS_VISIBLE="TRUE" VIEWDISP="Bus Interface(s)" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="6" COL_WIDTH="100" IS_VISIBLE="TRUE" VIEWDISP="Bus Name" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="7" IS_VISIBLE="FALSE" VIEWDISP="ICache" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="8" IS_VISIBLE="FALSE" VIEWDISP="DCache" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="8" IS_VISIBLE="FALSE" VIEWDISP="IP Type" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="10" IS_VISIBLE="FALSE" VIEWDISP="IP Version" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="7" IS_VISIBLE="FALSE" VIEWDISP="Address Type" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="9" COL_WIDTH="320" IS_VISIBLE="TRUE" VIEWDISP="Lock" VIEWTYPE="HEADER"/>
+    </HEADERS>
+    <SPLITTERS COLLAPSIBLE="1" HANDLEWIDTH="4" MARKER="255" ORIENTATION="1" RESIZE="1" SIZES="180,450,180" VERSION="0"/>
+    <SET ID="microblaze1" IS_EXPANDED="TRUE"/>
+    <SET ID="microblaze2" IS_EXPANDED="TRUE"/>
+    <SET ID="microblaze3" IS_EXPANDED="TRUE"/>
+    <SET ID="microblaze4" IS_EXPANDED="TRUE"/>
+    <SET ID="microblaze5" IS_EXPANDED="TRUE"/>
+    <SET ID="microblaze6" IS_EXPANDED="TRUE"/>
+    <SET ID="Unmapped Addresses" IS_EXPANDED="TRUE"/>
+    <STATUS>
+      <SELECTIONS>
+        <VARIABLE ID="microblaze1.xps_central_dma_1:C_BASEADDR:C_HIGHADDR" PARENT="microblaze1"/>
+      </SELECTIONS>
+    </STATUS>
+    <SEQUENCES IS_DEF_SEQUENCES="TRUE">
+      <VARIABLE ID="microblaze0" ROW_INDEX="0"/>
+      <VARIABLE ID="microblaze1" IS_EXPANDED="TRUE" ROW_INDEX="1"/>
+      <VARIABLE ID="microblaze2" IS_EXPANDED="TRUE" ROW_INDEX="2"/>
+      <VARIABLE ID="microblaze3" IS_EXPANDED="TRUE" ROW_INDEX="3"/>
+      <VARIABLE ID="microblaze4" IS_EXPANDED="TRUE" ROW_INDEX="4"/>
+      <VARIABLE ID="microblaze5" IS_EXPANDED="TRUE" ROW_INDEX="5"/>
+      <VARIABLE ID="microblaze6" IS_EXPANDED="TRUE" ROW_INDEX="6"/>
+      <VARIABLE ID="Unmapped Addresses" IS_EXPANDED="TRUE" ROW_INDEX="7"/>
+    </SEQUENCES>
+  </SET>
+
+  <SET CLASS="PROJECT" DISPLAYMODE="FLAT" VIEW_ID="ADDRESS">
+    <HEADERS>
+      <VARIABLE COL_INDEX="0" IS_VISIBLE="TRUE" VIEWDISP="Instance" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="1" IS_VISIBLE="TRUE" VIEWDISP="Base Name" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="2" IS_VISIBLE="TRUE" VIEWDISP="Base Address" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="3" IS_VISIBLE="TRUE" VIEWDISP="High Address" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="4" IS_VISIBLE="TRUE" VIEWDISP="Size" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="5" IS_VISIBLE="TRUE" VIEWDISP="Bus Interface(s)" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="6" IS_VISIBLE="TRUE" VIEWDISP="Bus Name" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="7" IS_VISIBLE="FALSE" VIEWDISP="ICache" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="8" IS_VISIBLE="FALSE" VIEWDISP="DCache" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="9" IS_VISIBLE="FALSE" VIEWDISP="IP Type" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="10" IS_VISIBLE="FALSE" VIEWDISP="IP Version" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="11" IS_VISIBLE="FALSE" VIEWDISP="Address Type" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="12" IS_VISIBLE="TRUE" VIEWDISP="Lock" VIEWTYPE="HEADER"/>
+    </HEADERS>
+  </SET>
+
+</SETTINGS>

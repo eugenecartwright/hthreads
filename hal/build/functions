@@ -1,0 +1,65 @@
+################################################################################
+# File:     build/functions
+# Author:   Wesley Peck
+# Date:     28 August 2006
+#
+# Desc:     This is the Jam file which defines the rules used by the build
+#           system. These rules control what targets the build system supports
+#           and how those targets perform their actions.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (20 August 2006) Compiler rules initially created
+################################################################################
+
+################################################################################
+# A rule to get all of the file matching the given regex in the current
+# directory
+################################################################################
+rule Hglob
+{
+    local _s _i _r ;
+
+    # Get a list of all of the file in the current directory
+    _s = [ GLOB $(SUBDIR)$(SLASH)$(<:D) : $(<:B)$(<:S) ] ;
+
+    # Loop through all of the files and get just the base name
+    for _i in $(_s)
+    {
+        if $(>) { _r += $(_i:B)$(>) ; }
+        else    { _r += $(_i:B)$(_i:S) ; }
+    }
+
+    return $(_r) ;
+}
+
+################################################################################
+# A rule to determine the output location of an object file
+################################################################################
+rule Hobjdir
+{
+    return $(TOP)$(SLASH)$(LOCATE_OBJS)$(SLASH)$(PLATFORM_ARCH)$(SLASH)$(<) ;
+}
+
+################################################################################
+# A rule to determine the output location of an object file
+################################################################################
+rule Hlibdir
+{
+    return $(TOP)$(SLASH)$(LOCATE_LIBS) ;
+}
+
+################################################################################
+# A rule to determine the output location of an object file
+################################################################################
+rule Htestdir
+{
+    return $(TOP)$(SLASH)$(<) ;
+}
+
+################################################################################
+# A rule to determine the output location of an executable for the host system
+################################################################################
+rule Hbindir
+{
+    return $(TOP)$(SLASH)$(LOCATE_BIN) ;
+}

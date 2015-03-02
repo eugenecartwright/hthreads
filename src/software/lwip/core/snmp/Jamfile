@@ -1,0 +1,24 @@
+################################################################################
+# File:     src/software/lwip/core/snmp/Jamfile
+# Author:   Wesley Peck
+# Date:     05 March 2007
+#
+# Desc:     This is the Jam build file for the lwip ipv4 subdirectory of the
+#           Hthreads project. This file instructs the Jam build system on how
+#           to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (05 March 2007) Jam file initially created
+################################################################################
+SubDir TOP src software lwip core snmp ;
+LOCATE_TARGET = lwip/core/snmp ;
+
+################################################################################
+# Compile the source files into object files
+################################################################################
+Hsysobjects [ Hglob *.c ] ;
+
+################################################################################
+# Compile executable files from the object files
+################################################################################
+Hlib hthread : [ Hglob *.c : .o ] ;

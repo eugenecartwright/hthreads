@@ -1,0 +1,42 @@
+The repository contains only the most recently used Hthreads cores. The
+following cores have also existed at some point during the development
+of Hthreads and can be found in older revisions of the repository.
+-------------------------------------------------------------------------
+fake_adc_v1_00_a
+opb_Scheduler_v1_00_a
+opb_blk_mlock_v1_00_b
+opb_spin_mlock_v1_00_b
+opb_hwt_dac_v1_00_a
+fake_dac_v1_00_a
+opb_SynchManager_v1_00_a
+opb_SynchManager_v1_00_b
+plb_SystemTimer_v1_00_a
+opb_blk_cnt_msema_v1_00_b
+opb_hwt_adc_v1_00_a
+opb_hwt_copy_v1_00_a
+opb_hwt_example
+opb_blk_mcvar_v1_00_b
+opb_hwt_four_v3_00_a
+opb_hw_thread_v1_00_b
+opb_hwtilite_v1_00_a
+opb_hwti_v1_00_a 
+opb_hwt_one_v2_00_a
+opb_hwt_one_v3_00_a
+opb_hwt_three_v3_00_a
+opb_hwt_two_v3_00_a
+opb_hwt_zero_v2_00_a
+opb_hwt_zero_v3_00_a
+opb_MessageManager_v1_00_a
+opb_PerfTimer_v1_00_a
+opb_PerfTimer_v1_00_b
+opb_Scheduler_Master_v1_00_a
+opb_Scheduler_Master_v1_00_b
+opb_Scheduler_Master_v1_00_c
+opb_SpecialPic_v1_00_a
+opb_SynchManager_v1_00_c
+opb_threadCore_v1_00_a
+opb_threadCore_v1_00_b
+opb_threadCore_v1_00_c
+opb_TimerQueue_v1_00_a 
+opb_v20_v1_10_b
+

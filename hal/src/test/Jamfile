@@ -1,0 +1,44 @@
+################################################################################
+# File:     test/Jamfile
+# Author:   Wesley Peck
+# Date:     20 August 2006
+#
+# Desc:     This is the Jam build file for the test subdirectory of the Hthreads
+#           project. This file instructs the Jam build system on how to build
+#           the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (20 August 2006) Jam file initially created
+################################################################################
+SubDir TOP src test ;
+
+################################################################################
+# Build the platform first
+################################################################################
+SubInclude TOP src platforms ;
+
+################################################################################
+# Include all of the test directories
+################################################################################
+#SubInclude TOP src test string_match ;
+#SubInclude TOP src test c2vhdl ;
+#SubInclude TOP src test buffer ;
+#SubInclude TOP src test simple_buffer ;
+#SubInclude TOP src test sort ;
+#SubInclude TOP src test sort_thread ;
+#SubInclude TOP src test performance ;
+#SubInclude TOP src test reconos ;
+
+################################################################################
+# Compile these applications only if the VGA driver is compiled
+################################################################################
+#if $(DRIVER_VGA) = "yes"
+#{ SubInclude TOP src test filter ; }
+
+################################################################################
+# The test directories that do not compile under pthreads emulation
+################################################################################
+if $(PLATFORM_VENDOR) != "pthreads"
+{
+    SubInclude TOP src test system ;
+}

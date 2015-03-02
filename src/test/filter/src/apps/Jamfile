@@ -1,0 +1,35 @@
+################################################################################
+# File:     src/test/filter/src/apps/Jamfile
+# Author:   Wesley Peck
+# Date:     30 July 2007
+#
+# Desc:     This is the Jam build file for the filter test subdirectory of the
+#           Hthreads project. This file instructs the Jam build system on how
+#           to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (30 July 2007) Jam file initially created
+################################################################################
+SubDir TOP src test filter src apps ;
+LOCATE_TARGET = test/filter ;
+
+################################################################################
+# Add this test's include directory
+################################################################################
+SUBDIRHDRS += $(TOP)/src/test/filter/include ;
+
+################################################################################
+# Add extra libaries to link against
+################################################################################
+LIBS       += -lfiltertest ;
+
+################################################################################
+# Compile the source files
+################################################################################
+Hobjects [ Hglob *.c ] ;
+
+################################################################################
+# Build the object files into executables
+################################################################################
+Hexes [ Hglob *.c :  ] ;
+

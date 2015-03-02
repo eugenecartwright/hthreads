@@ -1,0 +1,201 @@
+#!/usr/bin/expect -f
+
+################################################################################
+# Logging functionality for the regression tester
+################################################################################
+proc open_log {file} {
+	set fd [open $file w]
+	return $fd
+}
+
+proc write_log {file data} {
+	puts -nonewline stdout $data
+	flush stdout
+
+	puts -nonewline $file $data
+	flush $file
+}
+
+proc close_log {file} {
+	close $file
+}
+
+################################################################################
+# Serial port access functionality for the regression tester
+################################################################################
+proc open_sdump {sdump log_id log} {
+	# These two commands start the serial console text dumping program and
+	# capture the process id for later use.
+	spawn "./sdump" "-o$log"
+	set dmp_id $spawn_id
+
+	if {$dmp_id == 0} {
+		write_log $log_id "Could not open serial line dumper";
+		exit 1
+	}
+
+	return $dmp_id
+}
+
+proc test_sdump {dmp_id log_id time} {
+	set succ "success\n"
+	set fail "failure\n"
+	set tout "timed out\n"
+
+	expect {
+		-i $dmp_id -timeout $time -ex "--QED--" 	{ write_log $log_id $succ }
+		-i $dmp_id -timeout $time -ex "--FAILURE--" { write_log $log_id $fail }
+		timeout 									{ write_log $log_id $tout }
+	}
+}
+
+proc close_sdump {dmp_id log_id} {
+	send -i $dmp_id "\3"
+	close -i $dmp_id
+}
+
+################################################################################
+# XMD functionality for the regression tester
+################################################################################
+proc xmd_command {xmd cmd exp err log} {
+    # Issue the command to the xilinx console debugger
+    send -i $xmd "$cmd\r"
+
+    # Wait for the prompt to reappear after the command
+    expect {
+        -i $xmd -ex $exp        { }
+        timeout                 { log_write $log $err; exit 1 }
+    }
+}
+
+proc xmd_connect {xmd log} {
+	# Start the xilinx debug console
+	spawn "xmd"
+
+	# Capture the process id of the xilinx debug console for later use.
+	set xmd $spawn_id
+
+	# Send output to the log file
+	write_log $log "opening xilinx console debugger..."
+
+	# Wait for the prompt to appear which means that the debugger is running.
+	expect {
+		-i $xmd_id -ex "XMD%" 	{ write_log $log_id "success\n" }
+		timeout 				{ write_log $log_id "failure\n"; exit 1 }
+	}
+
+	# Issue the command "ppcc" which connects to the board.
+	send   -i $xmd_id "ppcc\r"
+
+	# Send output to the log file
+	write_log $log_id "Connecting to the board..."
+
+	# This command waits for the console to reappear.
+	expect {
+		-i $xmd_id -ex "ERROR"	{ write_log $log_id "failure\n"; exit 1 }
+		-i $xmd_id -ex "XMD%" 	{ write_log $log_id "success\n" }
+		timeout 				{ write_log $log_id "failure\n"; exit 1 }
+	}
+
+	return $xmd_id
+}
+
+proc xmd_reset {xmd log} {
+    xmd_command $xmd "rst" "XMD%" "failed to reset" $log
+}
+
+proc load_xmd {xmd_id log_id test} {
+	# Issue the "dow" command which will load the program onto the board.
+	send   -i $xmd_id "dow $test\r"
+
+	# Create an error message to print later
+	set msg "failed to download program to board\n"
+
+	# Wait for the prompt to reappear so that we know the program is loaded.
+	expect {
+		-i $xmd_id -ex "XMD%"	{ }
+		timeout					{ write_log $log_id $msg; exit 1 }
+	}
+}
+
+proc run_xmd {xmd_id log_id} {
+	# Issue the "run" command which will start a previously loaded program.
+	send   -i $xmd_id "run\r"
+
+	# Create an error message to print later
+	set msg "failed to start program"
+
+	# Wait for the running prompt to appear.
+	expect {
+		-i $xmd_id -ex "RUNNING>"	{ }
+		timeout						{ write_log $log_id $msg; exit 1 }
+	}
+}
+
+proc close_xmd {xmd_id} {
+	# Issue the "exit" command which will close the debugger.
+	send   -i $xmd_id "exit\r"
+}
+
+proc run_test {xmd_id log_id test log time} {
+	# Set the maximum string size of any output which will be matched.
+	match_max 100
+
+	write_log $log_id "$test..."
+
+	# Reset the xilinx debug console to prepare for the next test.
+	reset_xmd $xmd_id $log_id
+	reset_xmd $xmd_id $log_id
+
+	# Open up the logging program and tell it to log to the given file.
+	set dmp_id [open_sdump 0 $log_id $log]
+
+	# Load the program to test using the xilinx console debugger.
+	load_xmd $xmd_id $log_id $test
+
+	# Start the loaded program.
+	run_xmd $xmd_id $log_id
+
+	# Determine if the test program succedded or failed.
+	test_sdump $dmp_id $log_id $time
+	close_sdump $dmp_id $log_id
+}
+
+proc read_file {xmd_id log_id reg} {
+	set fd [open $reg r]
+	set pat {^[ \t]*([^# \t][^ \t]+)[ \t]+([^ \t]+)[ \t]+([^ \t]+)[ \t]*}
+
+	while {[gets $fd line] >= 0} {
+		if [regexp $pat $line mat prog log time] {
+			run_test $xmd_id $log_id $prog $log $time
+		}
+	}
+}
+
+# This command captures the name of the program to test by retrieving it from
+# the command line arguments.
+if {$argc != 3} {
+	puts "Usage: test <regress file> <log file> <dump file>"
+} else {
+	set regfile [lindex $argv 0]
+	set logfile [lindex $argv 1]
+	set dmpfile [lindex $argv 2]
+
+	# This will turn off echoing output to the screen.
+	log_user 0
+	
+	# This will turn on echoing to a log file
+	log_file -a $dmpfile
+
+	# This sets the amount of time that expect will wait for any given input.
+	# Setting this to -1 causes expect to not timeout by default.
+	set timeout 60
+
+	set log_id [open_log $logfile]
+	set xmd_id [open_xmd 0 $log_id]
+
+	read_file $xmd_id $log_id $regfile
+
+	close_log $log_id
+	close_xmd $xmd_id
+}

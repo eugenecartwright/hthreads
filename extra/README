@@ -1,0 +1,80 @@
+######################################################################################
+# Copyright (c) 2006, University of Kansas - Hybridthreads Group
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#
+#    * Redistributions of source code must retain the above copyright notice,
+#      this list of conditions and the following disclaimer.
+#    * Redistributions in binary form must reproduce the above copyright notice,
+#      this list of conditions and the following disclaimer in the documentation
+#      and/or other materials provided with the distribution.
+#    * Neither the name of the University of Kansas nor the name of the
+#      Hybridthreads Group nor the names of its contributors may be used to
+#      endorse or promote products derived from this software without specific
+#      prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+# ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+# (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+# ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+######################################################################################
+
+Extra Tools
+--------------------------------------------------------------------------------------
+This directory contains extra tools which are used during the Hthreads build
+process. The tool in this directory are developed independent of the Hthreads
+process and each of them have their own licensing agreements. Please read each
+licensing agreement carefully before installing.
+
+FT-Jam (http://freetype.sourceforge.net/jam/index.html)
+--------------------------------------------------------------------------------------
+Jam is a small open-source build tool that can be used as a replacement for
+Make. Even though Jam is a lot simpler to use than Make, it is far more
+powerful and easy to master. It already works on a large variety of platforms
+(Unix, Windows, OS/2, VMS, MacOS, BeOS, etc.), it is trivial to port, and its
+design is sufficiently clear to allow any average programmer to extend it with
+advanced features at will.
+
+The main differences between Jam and Make are as follows.
+    * Jam uses ‘Jamfiles’ instead of ‘Makefiles’.
+    * Jamfiles do not normally contain toolset-specific rules or actions.
+      They are thus portable among distinct compilers.
+    * Jamfiles are a lot simpler than Makefiles to write and understand,
+      while providing the same functionality, and much, much more.
+
+There are currently two versions of Jam available.
+    * The classic Jam, which is available, with documentation, from the official
+      Jam homepage at Perforce, the original Jam author.
+    * An improved version, named ‘FT Jam’, containing several enhancements
+      (like the ability to run on Windows 9x systems, or additional
+      compiler/toolset support).
+
+LibNET (http://www.packetfactory.net/libnet/)
+--------------------------------------------------------------------------------------
+Libnet is a high-level API (toolkit) allowing the application programmer to
+construct and inject network packets. It provides a portable and simplified
+interface for low-level network packet shaping, handling and injection. Libnet
+hides much of the tedium of packet creation from the application programmer
+such as multiplexing, buffer management, arcane packet header information,
+byte-ordering, OS-dependent issues, and much more. Libnet features portable
+packet creation interfaces at both the IP-layer and link-layer, as well as a
+host of supplementary and complementary functionality. Using libnet, quick and
+simple packet assembly applications can be whipped up with little effort. With
+a bit more time, more complex programs can be written (Traceroute and Ping were
+easily rewritten using libnet and libpcap).
+
+Libnet was designed and is primarily maintained by Mike D. Schiffman (mike at
+infonexus dot com) and a host of other people (please see the libnet
+documentation for the complete list of contributers).
+
+CPU*.opt scripts
+----------------
+Scripts that make it easier to use an SMP system.

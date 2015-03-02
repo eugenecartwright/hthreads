@@ -1,0 +1,597 @@
+
+<SETTINGS>
+
+  <IDENTIFICATION VERSION="1.2" XTLVERSION="1.2"/>
+
+  <SET CLASS="PROJECT" DISPLAYMODE="TREE" VIEW_ID="BUSINTERFACE">
+    <HEADERS HSCROLL="0" VSCROLL="2174">
+      <VARIABLE COL_INDEX="0" COL_WIDTH="267" IS_VISIBLE="TRUE" VIEWDISP="Name" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="1" COL_WIDTH="303" IS_VISIBLE="TRUE" VIEWDISP="Bus Name" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="2" IS_VISIBLE="FALSE" VIEWDISP="Bus Standard" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="3" COL_WIDTH="100" IS_VISIBLE="TRUE" VIEWDISP="IP Type" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="4" COL_WIDTH="155" IS_VISIBLE="TRUE" VIEWDISP="IP Version" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="5" IS_VISIBLE="FALSE" VIEWDISP="IP Classification" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="6" IS_VISIBLE="FALSE" VIEWDISP="Type" VIEWTYPE="HEADER"/>
+    </HEADERS>
+    <SPLITTERS COLLAPSIBLE="1" HANDLEWIDTH="4" MARKER="255" ORIENTATION="1" RESIZE="1" SIZES="130,754,253" VERSION="0"/>
+    <STATUS>
+      <SELECTIONS>
+        <VARIABLE ID="microblaze_5"/>
+      </SELECTIONS>
+    </STATUS>
+    <SEQUENCES IS_DEF_SEQUENCES="TRUE">
+      <VARIABLE ID="microblaze_0" ROW_INDEX="93"/>
+      <VARIABLE ID="ilmb" ROW_INDEX="40"/>
+      <VARIABLE ID="dlmb" ROW_INDEX="0"/>
+      <VARIABLE ID="dlmb_cntlr" ROW_INDEX="217"/>
+      <VARIABLE ID="ilmb_cntlr" ROW_INDEX="257"/>
+      <VARIABLE ID="lmb_bram" ROW_INDEX="216"/>
+      <VARIABLE ID="main_bus" ROW_INDEX="92"/>
+      <VARIABLE ID="host_bus" ROW_INDEX="91"/>
+      <VARIABLE ID="data_instr_bus" ROW_INDEX="81"/>
+      <VARIABLE ID="data_instr_bus_1" ROW_INDEX="82"/>
+      <VARIABLE ID="data_instr_bus_2" ROW_INDEX="83"/>
+      <VARIABLE ID="data_instr_bus_3" ROW_INDEX="84"/>
+      <VARIABLE ID="data_instr_bus_4" ROW_INDEX="85"/>
+      <VARIABLE ID="group1_bus" ROW_INDEX="86"/>
+      <VARIABLE ID="group2_bus" ROW_INDEX="87"/>
+      <VARIABLE ID="group3_bus" ROW_INDEX="88"/>
+      <VARIABLE ID="group4_bus" ROW_INDEX="89"/>
+      <VARIABLE ID="group5_bus" ROW_INDEX="90"/>
+      <VARIABLE ID="microblaze_1" ROW_INDEX="94"/>
+      <VARIABLE ID="ilmb_1" ROW_INDEX="41"/>
+      <VARIABLE ID="dlmb_1" ROW_INDEX="1"/>
+      <VARIABLE ID="dlmb_cntlr_1" ROW_INDEX="218"/>
+      <VARIABLE ID="dplb_cntlr_1" ROW_INDEX="297"/>
+      <VARIABLE ID="ilmb_cntlr_1" ROW_INDEX="258"/>
+      <VARIABLE ID="iplb_cntlr_1" ROW_INDEX="346"/>
+      <VARIABLE ID="ilmb_bram_1" ROW_INDEX="177"/>
+      <VARIABLE ID="dlmb_bram_1" ROW_INDEX="133"/>
+      <VARIABLE ID="microblaze_2" ROW_INDEX="105"/>
+      <VARIABLE ID="ilmb_2" ROW_INDEX="52"/>
+      <VARIABLE ID="dlmb_2" ROW_INDEX="12"/>
+      <VARIABLE ID="dlmb_cntlr_2" ROW_INDEX="229"/>
+      <VARIABLE ID="dplb_cntlr_2" ROW_INDEX="308"/>
+      <VARIABLE ID="ilmb_cntlr_2" ROW_INDEX="269"/>
+      <VARIABLE ID="iplb_cntlr_2" ROW_INDEX="357"/>
+      <VARIABLE ID="ilmb_bram_2" ROW_INDEX="188"/>
+      <VARIABLE ID="dlmb_bram_2" ROW_INDEX="144"/>
+      <VARIABLE ID="microblaze_3" ROW_INDEX="116"/>
+      <VARIABLE ID="ilmb_3" ROW_INDEX="63"/>
+      <VARIABLE ID="dlmb_3" ROW_INDEX="23"/>
+      <VARIABLE ID="dlmb_cntlr_3" ROW_INDEX="240"/>
+      <VARIABLE ID="dplb_cntlr_3" ROW_INDEX="319"/>
+      <VARIABLE ID="ilmb_cntlr_3" ROW_INDEX="280"/>
+      <VARIABLE ID="iplb_cntlr_3" ROW_INDEX="368"/>
+      <VARIABLE ID="ilmb_bram_3" ROW_INDEX="199"/>
+      <VARIABLE ID="dlmb_bram_3" ROW_INDEX="155"/>
+      <VARIABLE ID="microblaze_4" ROW_INDEX="127"/>
+      <VARIABLE ID="ilmb_4" ROW_INDEX="74"/>
+      <VARIABLE ID="dlmb_4" ROW_INDEX="34"/>
+      <VARIABLE ID="dlmb_cntlr_4" ROW_INDEX="251"/>
+      <VARIABLE ID="dplb_cntlr_4" ROW_INDEX="330"/>
+      <VARIABLE ID="ilmb_cntlr_4" ROW_INDEX="291"/>
+      <VARIABLE ID="iplb_cntlr_4" ROW_INDEX="379"/>
+      <VARIABLE ID="ilmb_bram_4" ROW_INDEX="210"/>
+      <VARIABLE ID="dlmb_bram_4" ROW_INDEX="166"/>
+      <VARIABLE ID="microblaze_5" ROW_INDEX="128"/>
+      <VARIABLE ID="ilmb_5" ROW_INDEX="75"/>
+      <VARIABLE ID="dlmb_5" ROW_INDEX="35"/>
+      <VARIABLE ID="dlmb_cntlr_5" ROW_INDEX="252"/>
+      <VARIABLE ID="dplb_cntlr_5" ROW_INDEX="331"/>
+      <VARIABLE ID="ilmb_cntlr_5" ROW_INDEX="292"/>
+      <VARIABLE ID="iplb_cntlr_5" ROW_INDEX="380"/>
+      <VARIABLE ID="ilmb_bram_5" ROW_INDEX="211"/>
+      <VARIABLE ID="dlmb_bram_5" ROW_INDEX="167"/>
+      <VARIABLE ID="microblaze_6" ROW_INDEX="129"/>
+      <VARIABLE ID="ilmb_6" ROW_INDEX="76"/>
+      <VARIABLE ID="dlmb_6" ROW_INDEX="36"/>
+      <VARIABLE ID="dlmb_cntlr_6" ROW_INDEX="253"/>
+      <VARIABLE ID="dplb_cntlr_6" ROW_INDEX="332"/>
+      <VARIABLE ID="ilmb_cntlr_6" ROW_INDEX="293"/>
+      <VARIABLE ID="iplb_cntlr_6" ROW_INDEX="381"/>
+      <VARIABLE ID="ilmb_bram_6" ROW_INDEX="212"/>
+      <VARIABLE ID="dlmb_bram_6" ROW_INDEX="168"/>
+      <VARIABLE ID="microblaze_7" ROW_INDEX="130"/>
+      <VARIABLE ID="ilmb_7" ROW_INDEX="77"/>
+      <VARIABLE ID="dlmb_7" ROW_INDEX="37"/>
+      <VARIABLE ID="dlmb_cntlr_7" ROW_INDEX="254"/>
+      <VARIABLE ID="dplb_cntlr_7" ROW_INDEX="333"/>
+      <VARIABLE ID="ilmb_cntlr_7" ROW_INDEX="294"/>
+      <VARIABLE ID="iplb_cntlr_7" ROW_INDEX="382"/>
+      <VARIABLE ID="ilmb_bram_7" ROW_INDEX="213"/>
+      <VARIABLE ID="dlmb_bram_7" ROW_INDEX="169"/>
+      <VARIABLE ID="microblaze_8" ROW_INDEX="131"/>
+      <VARIABLE ID="ilmb_8" ROW_INDEX="78"/>
+      <VARIABLE ID="dlmb_8" ROW_INDEX="38"/>
+      <VARIABLE ID="dlmb_cntlr_8" ROW_INDEX="255"/>
+      <VARIABLE ID="dplb_cntlr_8" ROW_INDEX="334"/>
+      <VARIABLE ID="ilmb_cntlr_8" ROW_INDEX="295"/>
+      <VARIABLE ID="iplb_cntlr_8" ROW_INDEX="383"/>
+      <VARIABLE ID="ilmb_bram_8" ROW_INDEX="214"/>
+      <VARIABLE ID="dlmb_bram_8" ROW_INDEX="170"/>
+      <VARIABLE ID="extra_bram_cntlr_local1" ROW_INDEX="341"/>
+      <VARIABLE ID="extra_bram_cntlr_global1" ROW_INDEX="336"/>
+      <VARIABLE ID="extra_bram_block1" ROW_INDEX="172"/>
+      <VARIABLE ID="microblaze_9" ROW_INDEX="132"/>
+      <VARIABLE ID="ilmb_9" ROW_INDEX="79"/>
+      <VARIABLE ID="dlmb_9" ROW_INDEX="39"/>
+      <VARIABLE ID="dlmb_cntlr_9" ROW_INDEX="256"/>
+      <VARIABLE ID="dplb_cntlr_9" ROW_INDEX="335"/>
+      <VARIABLE ID="ilmb_cntlr_9" ROW_INDEX="296"/>
+      <VARIABLE ID="iplb_cntlr_9" ROW_INDEX="384"/>
+      <VARIABLE ID="ilmb_bram_9" ROW_INDEX="215"/>
+      <VARIABLE ID="dlmb_bram_9" ROW_INDEX="171"/>
+      <VARIABLE ID="microblaze_10" ROW_INDEX="95"/>
+      <VARIABLE ID="ilmb_10" ROW_INDEX="42"/>
+      <VARIABLE ID="dlmb_10" ROW_INDEX="2"/>
+      <VARIABLE ID="dlmb_cntlr_10" ROW_INDEX="219"/>
+      <VARIABLE ID="dplb_cntlr_10" ROW_INDEX="298"/>
+      <VARIABLE ID="ilmb_cntlr_10" ROW_INDEX="259"/>
+      <VARIABLE ID="iplb_cntlr_10" ROW_INDEX="347"/>
+      <VARIABLE ID="ilmb_bram_10" ROW_INDEX="178"/>
+      <VARIABLE ID="dlmb_bram_10" ROW_INDEX="134"/>
+      <VARIABLE ID="microblaze_11" ROW_INDEX="96"/>
+      <VARIABLE ID="ilmb_11" ROW_INDEX="43"/>
+      <VARIABLE ID="dlmb_11" ROW_INDEX="3"/>
+      <VARIABLE ID="dlmb_cntlr_11" ROW_INDEX="220"/>
+      <VARIABLE ID="dplb_cntlr_11" ROW_INDEX="299"/>
+      <VARIABLE ID="ilmb_cntlr_11" ROW_INDEX="260"/>
+      <VARIABLE ID="iplb_cntlr_11" ROW_INDEX="348"/>
+      <VARIABLE ID="ilmb_bram_11" ROW_INDEX="179"/>
+      <VARIABLE ID="dlmb_bram_11" ROW_INDEX="135"/>
+      <VARIABLE ID="microblaze_12" ROW_INDEX="97"/>
+      <VARIABLE ID="ilmb_12" ROW_INDEX="44"/>
+      <VARIABLE ID="dlmb_12" ROW_INDEX="4"/>
+      <VARIABLE ID="dlmb_cntlr_12" ROW_INDEX="221"/>
+      <VARIABLE ID="dplb_cntlr_12" ROW_INDEX="300"/>
+      <VARIABLE ID="ilmb_cntlr_12" ROW_INDEX="261"/>
+      <VARIABLE ID="iplb_cntlr_12" ROW_INDEX="349"/>
+      <VARIABLE ID="ilmb_bram_12" ROW_INDEX="180"/>
+      <VARIABLE ID="dlmb_bram_12" ROW_INDEX="136"/>
+      <VARIABLE ID="microblaze_13" ROW_INDEX="98"/>
+      <VARIABLE ID="ilmb_13" ROW_INDEX="45"/>
+      <VARIABLE ID="dlmb_13" ROW_INDEX="5"/>
+      <VARIABLE ID="dlmb_cntlr_13" ROW_INDEX="222"/>
+      <VARIABLE ID="dplb_cntlr_13" ROW_INDEX="301"/>
+      <VARIABLE ID="ilmb_cntlr_13" ROW_INDEX="262"/>
+      <VARIABLE ID="iplb_cntlr_13" ROW_INDEX="350"/>
+      <VARIABLE ID="ilmb_bram_13" ROW_INDEX="181"/>
+      <VARIABLE ID="dlmb_bram_13" ROW_INDEX="137"/>
+      <VARIABLE ID="microblaze_14" ROW_INDEX="99"/>
+      <VARIABLE ID="ilmb_14" ROW_INDEX="46"/>
+      <VARIABLE ID="dlmb_14" ROW_INDEX="6"/>
+      <VARIABLE ID="dlmb_cntlr_14" ROW_INDEX="223"/>
+      <VARIABLE ID="dplb_cntlr_14" ROW_INDEX="302"/>
+      <VARIABLE ID="ilmb_cntlr_14" ROW_INDEX="263"/>
+      <VARIABLE ID="iplb_cntlr_14" ROW_INDEX="351"/>
+      <VARIABLE ID="ilmb_bram_14" ROW_INDEX="182"/>
+      <VARIABLE ID="dlmb_bram_14" ROW_INDEX="138"/>
+      <VARIABLE ID="microblaze_15" ROW_INDEX="100"/>
+      <VARIABLE ID="ilmb_15" ROW_INDEX="47"/>
+      <VARIABLE ID="dlmb_15" ROW_INDEX="7"/>
+      <VARIABLE ID="dlmb_cntlr_15" ROW_INDEX="224"/>
+      <VARIABLE ID="dplb_cntlr_15" ROW_INDEX="303"/>
+      <VARIABLE ID="ilmb_cntlr_15" ROW_INDEX="264"/>
+      <VARIABLE ID="iplb_cntlr_15" ROW_INDEX="352"/>
+      <VARIABLE ID="ilmb_bram_15" ROW_INDEX="183"/>
+      <VARIABLE ID="dlmb_bram_15" ROW_INDEX="139"/>
+      <VARIABLE ID="microblaze_16" ROW_INDEX="101"/>
+      <VARIABLE ID="ilmb_16" ROW_INDEX="48"/>
+      <VARIABLE ID="dlmb_16" ROW_INDEX="8"/>
+      <VARIABLE ID="dlmb_cntlr_16" ROW_INDEX="225"/>
+      <VARIABLE ID="dplb_cntlr_16" ROW_INDEX="304"/>
+      <VARIABLE ID="ilmb_cntlr_16" ROW_INDEX="265"/>
+      <VARIABLE ID="iplb_cntlr_16" ROW_INDEX="353"/>
+      <VARIABLE ID="ilmb_bram_16" ROW_INDEX="184"/>
+      <VARIABLE ID="dlmb_bram_16" ROW_INDEX="140"/>
+      <VARIABLE ID="extra_bram_cntlr_local2" ROW_INDEX="342"/>
+      <VARIABLE ID="extra_bram_cntlr_global2" ROW_INDEX="337"/>
+      <VARIABLE ID="extra_bram_block2" ROW_INDEX="173"/>
+      <VARIABLE ID="microblaze_17" ROW_INDEX="102"/>
+      <VARIABLE ID="ilmb_17" ROW_INDEX="49"/>
+      <VARIABLE ID="dlmb_17" ROW_INDEX="9"/>
+      <VARIABLE ID="dlmb_cntlr_17" ROW_INDEX="226"/>
+      <VARIABLE ID="dplb_cntlr_17" ROW_INDEX="305"/>
+      <VARIABLE ID="ilmb_cntlr_17" ROW_INDEX="266"/>
+      <VARIABLE ID="iplb_cntlr_17" ROW_INDEX="354"/>
+      <VARIABLE ID="ilmb_bram_17" ROW_INDEX="185"/>
+      <VARIABLE ID="dlmb_bram_17" ROW_INDEX="141"/>
+      <VARIABLE ID="microblaze_18" ROW_INDEX="103"/>
+      <VARIABLE ID="ilmb_18" ROW_INDEX="50"/>
+      <VARIABLE ID="dlmb_18" ROW_INDEX="10"/>
+      <VARIABLE ID="dlmb_cntlr_18" ROW_INDEX="227"/>
+      <VARIABLE ID="dplb_cntlr_18" ROW_INDEX="306"/>
+      <VARIABLE ID="ilmb_cntlr_18" ROW_INDEX="267"/>
+      <VARIABLE ID="iplb_cntlr_18" ROW_INDEX="355"/>
+      <VARIABLE ID="ilmb_bram_18" ROW_INDEX="186"/>
+      <VARIABLE ID="dlmb_bram_18" ROW_INDEX="142"/>
+      <VARIABLE ID="microblaze_19" ROW_INDEX="104"/>
+      <VARIABLE ID="ilmb_19" ROW_INDEX="51"/>
+      <VARIABLE ID="dlmb_19" ROW_INDEX="11"/>
+      <VARIABLE ID="dlmb_cntlr_19" ROW_INDEX="228"/>
+      <VARIABLE ID="dplb_cntlr_19" ROW_INDEX="307"/>
+      <VARIABLE ID="ilmb_cntlr_19" ROW_INDEX="268"/>
+      <VARIABLE ID="iplb_cntlr_19" ROW_INDEX="356"/>
+      <VARIABLE ID="ilmb_bram_19" ROW_INDEX="187"/>
+      <VARIABLE ID="dlmb_bram_19" ROW_INDEX="143"/>
+      <VARIABLE ID="microblaze_20" ROW_INDEX="106"/>
+      <VARIABLE ID="ilmb_20" ROW_INDEX="53"/>
+      <VARIABLE ID="dlmb_20" ROW_INDEX="13"/>
+      <VARIABLE ID="dlmb_cntlr_20" ROW_INDEX="230"/>
+      <VARIABLE ID="dplb_cntlr_20" ROW_INDEX="309"/>
+      <VARIABLE ID="ilmb_cntlr_20" ROW_INDEX="270"/>
+      <VARIABLE ID="iplb_cntlr_20" ROW_INDEX="358"/>
+      <VARIABLE ID="ilmb_bram_20" ROW_INDEX="189"/>
+      <VARIABLE ID="dlmb_bram_20" ROW_INDEX="145"/>
+      <VARIABLE ID="microblaze_21" ROW_INDEX="107"/>
+      <VARIABLE ID="ilmb_21" ROW_INDEX="54"/>
+      <VARIABLE ID="dlmb_21" ROW_INDEX="14"/>
+      <VARIABLE ID="dlmb_cntlr_21" ROW_INDEX="231"/>
+      <VARIABLE ID="dplb_cntlr_21" ROW_INDEX="310"/>
+      <VARIABLE ID="ilmb_cntlr_21" ROW_INDEX="271"/>
+      <VARIABLE ID="iplb_cntlr_21" ROW_INDEX="359"/>
+      <VARIABLE ID="ilmb_bram_21" ROW_INDEX="190"/>
+      <VARIABLE ID="dlmb_bram_21" ROW_INDEX="146"/>
+      <VARIABLE ID="microblaze_22" ROW_INDEX="108"/>
+      <VARIABLE ID="ilmb_22" ROW_INDEX="55"/>
+      <VARIABLE ID="dlmb_22" ROW_INDEX="15"/>
+      <VARIABLE ID="dlmb_cntlr_22" ROW_INDEX="232"/>
+      <VARIABLE ID="dplb_cntlr_22" ROW_INDEX="311"/>
+      <VARIABLE ID="ilmb_cntlr_22" ROW_INDEX="272"/>
+      <VARIABLE ID="iplb_cntlr_22" ROW_INDEX="360"/>
+      <VARIABLE ID="ilmb_bram_22" ROW_INDEX="191"/>
+      <VARIABLE ID="dlmb_bram_22" ROW_INDEX="147"/>
+      <VARIABLE ID="microblaze_23" ROW_INDEX="109"/>
+      <VARIABLE ID="ilmb_23" ROW_INDEX="56"/>
+      <VARIABLE ID="dlmb_23" ROW_INDEX="16"/>
+      <VARIABLE ID="dlmb_cntlr_23" ROW_INDEX="233"/>
+      <VARIABLE ID="dplb_cntlr_23" ROW_INDEX="312"/>
+      <VARIABLE ID="ilmb_cntlr_23" ROW_INDEX="273"/>
+      <VARIABLE ID="iplb_cntlr_23" ROW_INDEX="361"/>
+      <VARIABLE ID="ilmb_bram_23" ROW_INDEX="192"/>
+      <VARIABLE ID="dlmb_bram_23" ROW_INDEX="148"/>
+      <VARIABLE ID="microblaze_24" ROW_INDEX="110"/>
+      <VARIABLE ID="ilmb_24" ROW_INDEX="57"/>
+      <VARIABLE ID="dlmb_24" ROW_INDEX="17"/>
+      <VARIABLE ID="dlmb_cntlr_24" ROW_INDEX="234"/>
+      <VARIABLE ID="dplb_cntlr_24" ROW_INDEX="313"/>
+      <VARIABLE ID="ilmb_cntlr_24" ROW_INDEX="274"/>
+      <VARIABLE ID="iplb_cntlr_24" ROW_INDEX="362"/>
+      <VARIABLE ID="ilmb_bram_24" ROW_INDEX="193"/>
+      <VARIABLE ID="dlmb_bram_24" ROW_INDEX="149"/>
+      <VARIABLE ID="extra_bram_cntlr_local3" ROW_INDEX="343"/>
+      <VARIABLE ID="extra_bram_cntlr_global3" ROW_INDEX="338"/>
+      <VARIABLE ID="extra_bram_block3" ROW_INDEX="174"/>
+      <VARIABLE ID="microblaze_25" ROW_INDEX="111"/>
+      <VARIABLE ID="ilmb_25" ROW_INDEX="58"/>
+      <VARIABLE ID="dlmb_25" ROW_INDEX="18"/>
+      <VARIABLE ID="dlmb_cntlr_25" ROW_INDEX="235"/>
+      <VARIABLE ID="dplb_cntlr_25" ROW_INDEX="314"/>
+      <VARIABLE ID="ilmb_cntlr_25" ROW_INDEX="275"/>
+      <VARIABLE ID="iplb_cntlr_25" ROW_INDEX="363"/>
+      <VARIABLE ID="ilmb_bram_25" ROW_INDEX="194"/>
+      <VARIABLE ID="dlmb_bram_25" ROW_INDEX="150"/>
+      <VARIABLE ID="microblaze_26" ROW_INDEX="112"/>
+      <VARIABLE ID="ilmb_26" ROW_INDEX="59"/>
+      <VARIABLE ID="dlmb_26" ROW_INDEX="19"/>
+      <VARIABLE ID="dlmb_cntlr_26" ROW_INDEX="236"/>
+      <VARIABLE ID="dplb_cntlr_26" ROW_INDEX="315"/>
+      <VARIABLE ID="ilmb_cntlr_26" ROW_INDEX="276"/>
+      <VARIABLE ID="iplb_cntlr_26" ROW_INDEX="364"/>
+      <VARIABLE ID="ilmb_bram_26" ROW_INDEX="195"/>
+      <VARIABLE ID="dlmb_bram_26" ROW_INDEX="151"/>
+      <VARIABLE ID="microblaze_27" ROW_INDEX="113"/>
+      <VARIABLE ID="ilmb_27" ROW_INDEX="60"/>
+      <VARIABLE ID="dlmb_27" ROW_INDEX="20"/>
+      <VARIABLE ID="dlmb_cntlr_27" ROW_INDEX="237"/>
+      <VARIABLE ID="dplb_cntlr_27" ROW_INDEX="316"/>
+      <VARIABLE ID="ilmb_cntlr_27" ROW_INDEX="277"/>
+      <VARIABLE ID="iplb_cntlr_27" ROW_INDEX="365"/>
+      <VARIABLE ID="ilmb_bram_27" ROW_INDEX="196"/>
+      <VARIABLE ID="dlmb_bram_27" ROW_INDEX="152"/>
+      <VARIABLE ID="microblaze_28" ROW_INDEX="114"/>
+      <VARIABLE ID="ilmb_28" ROW_INDEX="61"/>
+      <VARIABLE ID="dlmb_28" ROW_INDEX="21"/>
+      <VARIABLE ID="dlmb_cntlr_28" ROW_INDEX="238"/>
+      <VARIABLE ID="dplb_cntlr_28" ROW_INDEX="317"/>
+      <VARIABLE ID="ilmb_cntlr_28" ROW_INDEX="278"/>
+      <VARIABLE ID="iplb_cntlr_28" ROW_INDEX="366"/>
+      <VARIABLE ID="ilmb_bram_28" ROW_INDEX="197"/>
+      <VARIABLE ID="dlmb_bram_28" ROW_INDEX="153"/>
+      <VARIABLE ID="microblaze_29" ROW_INDEX="115"/>
+      <VARIABLE ID="ilmb_29" ROW_INDEX="62"/>
+      <VARIABLE ID="dlmb_29" ROW_INDEX="22"/>
+      <VARIABLE ID="dlmb_cntlr_29" ROW_INDEX="239"/>
+      <VARIABLE ID="dplb_cntlr_29" ROW_INDEX="318"/>
+      <VARIABLE ID="ilmb_cntlr_29" ROW_INDEX="279"/>
+      <VARIABLE ID="iplb_cntlr_29" ROW_INDEX="367"/>
+      <VARIABLE ID="ilmb_bram_29" ROW_INDEX="198"/>
+      <VARIABLE ID="dlmb_bram_29" ROW_INDEX="154"/>
+      <VARIABLE ID="microblaze_30" ROW_INDEX="117"/>
+      <VARIABLE ID="ilmb_30" ROW_INDEX="64"/>
+      <VARIABLE ID="dlmb_30" ROW_INDEX="24"/>
+      <VARIABLE ID="dlmb_cntlr_30" ROW_INDEX="241"/>
+      <VARIABLE ID="dplb_cntlr_30" ROW_INDEX="320"/>
+      <VARIABLE ID="ilmb_cntlr_30" ROW_INDEX="281"/>
+      <VARIABLE ID="iplb_cntlr_30" ROW_INDEX="369"/>
+      <VARIABLE ID="ilmb_bram_30" ROW_INDEX="200"/>
+      <VARIABLE ID="dlmb_bram_30" ROW_INDEX="156"/>
+      <VARIABLE ID="microblaze_31" ROW_INDEX="118"/>
+      <VARIABLE ID="ilmb_31" ROW_INDEX="65"/>
+      <VARIABLE ID="dlmb_31" ROW_INDEX="25"/>
+      <VARIABLE ID="dlmb_cntlr_31" ROW_INDEX="242"/>
+      <VARIABLE ID="dplb_cntlr_31" ROW_INDEX="321"/>
+      <VARIABLE ID="ilmb_cntlr_31" ROW_INDEX="282"/>
+      <VARIABLE ID="iplb_cntlr_31" ROW_INDEX="370"/>
+      <VARIABLE ID="ilmb_bram_31" ROW_INDEX="201"/>
+      <VARIABLE ID="dlmb_bram_31" ROW_INDEX="157"/>
+      <VARIABLE ID="microblaze_32" ROW_INDEX="119"/>
+      <VARIABLE ID="ilmb_32" ROW_INDEX="66"/>
+      <VARIABLE ID="dlmb_32" ROW_INDEX="26"/>
+      <VARIABLE ID="dlmb_cntlr_32" ROW_INDEX="243"/>
+      <VARIABLE ID="dplb_cntlr_32" ROW_INDEX="322"/>
+      <VARIABLE ID="ilmb_cntlr_32" ROW_INDEX="283"/>
+      <VARIABLE ID="iplb_cntlr_32" ROW_INDEX="371"/>
+      <VARIABLE ID="ilmb_bram_32" ROW_INDEX="202"/>
+      <VARIABLE ID="dlmb_bram_32" ROW_INDEX="158"/>
+      <VARIABLE ID="extra_bram_cntlr_local4" ROW_INDEX="344"/>
+      <VARIABLE ID="extra_bram_cntlr_global4" ROW_INDEX="339"/>
+      <VARIABLE ID="extra_bram_block4" ROW_INDEX="175"/>
+      <VARIABLE ID="microblaze_33" ROW_INDEX="120"/>
+      <VARIABLE ID="ilmb_33" ROW_INDEX="67"/>
+      <VARIABLE ID="dlmb_33" ROW_INDEX="27"/>
+      <VARIABLE ID="dlmb_cntlr_33" ROW_INDEX="244"/>
+      <VARIABLE ID="dplb_cntlr_33" ROW_INDEX="323"/>
+      <VARIABLE ID="ilmb_cntlr_33" ROW_INDEX="284"/>
+      <VARIABLE ID="iplb_cntlr_33" ROW_INDEX="372"/>
+      <VARIABLE ID="ilmb_bram_33" ROW_INDEX="203"/>
+      <VARIABLE ID="dlmb_bram_33" ROW_INDEX="159"/>
+      <VARIABLE ID="microblaze_34" ROW_INDEX="121"/>
+      <VARIABLE ID="ilmb_34" ROW_INDEX="68"/>
+      <VARIABLE ID="dlmb_34" ROW_INDEX="28"/>
+      <VARIABLE ID="dlmb_cntlr_34" ROW_INDEX="245"/>
+      <VARIABLE ID="dplb_cntlr_34" ROW_INDEX="324"/>
+      <VARIABLE ID="ilmb_cntlr_34" ROW_INDEX="285"/>
+      <VARIABLE ID="iplb_cntlr_34" ROW_INDEX="373"/>
+      <VARIABLE ID="ilmb_bram_34" ROW_INDEX="204"/>
+      <VARIABLE ID="dlmb_bram_34" ROW_INDEX="160"/>
+      <VARIABLE ID="microblaze_35" ROW_INDEX="122"/>
+      <VARIABLE ID="ilmb_35" ROW_INDEX="69"/>
+      <VARIABLE ID="dlmb_35" ROW_INDEX="29"/>
+      <VARIABLE ID="dlmb_cntlr_35" ROW_INDEX="246"/>
+      <VARIABLE ID="dplb_cntlr_35" ROW_INDEX="325"/>
+      <VARIABLE ID="ilmb_cntlr_35" ROW_INDEX="286"/>
+      <VARIABLE ID="iplb_cntlr_35" ROW_INDEX="374"/>
+      <VARIABLE ID="ilmb_bram_35" ROW_INDEX="205"/>
+      <VARIABLE ID="dlmb_bram_35" ROW_INDEX="161"/>
+      <VARIABLE ID="microblaze_36" ROW_INDEX="123"/>
+      <VARIABLE ID="ilmb_36" ROW_INDEX="70"/>
+      <VARIABLE ID="dlmb_36" ROW_INDEX="30"/>
+      <VARIABLE ID="dlmb_cntlr_36" ROW_INDEX="247"/>
+      <VARIABLE ID="dplb_cntlr_36" ROW_INDEX="326"/>
+      <VARIABLE ID="ilmb_cntlr_36" ROW_INDEX="287"/>
+      <VARIABLE ID="iplb_cntlr_36" ROW_INDEX="375"/>
+      <VARIABLE ID="ilmb_bram_36" ROW_INDEX="206"/>
+      <VARIABLE ID="dlmb_bram_36" ROW_INDEX="162"/>
+      <VARIABLE ID="microblaze_37" ROW_INDEX="124"/>
+      <VARIABLE ID="ilmb_37" ROW_INDEX="71"/>
+      <VARIABLE ID="dlmb_37" ROW_INDEX="31"/>
+      <VARIABLE ID="dlmb_cntlr_37" ROW_INDEX="248"/>
+      <VARIABLE ID="dplb_cntlr_37" ROW_INDEX="327"/>
+      <VARIABLE ID="ilmb_cntlr_37" ROW_INDEX="288"/>
+      <VARIABLE ID="iplb_cntlr_37" ROW_INDEX="376"/>
+      <VARIABLE ID="ilmb_bram_37" ROW_INDEX="207"/>
+      <VARIABLE ID="dlmb_bram_37" ROW_INDEX="163"/>
+      <VARIABLE ID="microblaze_38" ROW_INDEX="125"/>
+      <VARIABLE ID="ilmb_38" ROW_INDEX="72"/>
+      <VARIABLE ID="dlmb_38" ROW_INDEX="32"/>
+      <VARIABLE ID="dlmb_cntlr_38" ROW_INDEX="249"/>
+      <VARIABLE ID="dplb_cntlr_38" ROW_INDEX="328"/>
+      <VARIABLE ID="ilmb_cntlr_38" ROW_INDEX="289"/>
+      <VARIABLE ID="iplb_cntlr_38" ROW_INDEX="377"/>
+      <VARIABLE ID="ilmb_bram_38" ROW_INDEX="208"/>
+      <VARIABLE ID="dlmb_bram_38" ROW_INDEX="164"/>
+      <VARIABLE ID="microblaze_39" ROW_INDEX="126"/>
+      <VARIABLE ID="ilmb_39" ROW_INDEX="73"/>
+      <VARIABLE ID="dlmb_39" ROW_INDEX="33"/>
+      <VARIABLE ID="dlmb_cntlr_39" ROW_INDEX="250"/>
+      <VARIABLE ID="dplb_cntlr_39" ROW_INDEX="329"/>
+      <VARIABLE ID="ilmb_cntlr_39" ROW_INDEX="290"/>
+      <VARIABLE ID="iplb_cntlr_39" ROW_INDEX="378"/>
+      <VARIABLE ID="ilmb_bram_39" ROW_INDEX="209"/>
+      <VARIABLE ID="dlmb_bram_39" ROW_INDEX="165"/>
+      <VARIABLE ID="extra_bram_cntlr_local5" ROW_INDEX="345"/>
+      <VARIABLE ID="extra_bram_cntlr_global5" ROW_INDEX="340"/>
+      <VARIABLE ID="extra_bram_block5" ROW_INDEX="176"/>
+      <VARIABLE ID="RS232_Uart_1" ROW_INDEX="410"/>
+      <VARIABLE ID="DDR3_SDRAM" ROW_INDEX="385"/>
+      <VARIABLE ID="clock_generator_0" ROW_INDEX="411"/>
+      <VARIABLE ID="mdm_0" ROW_INDEX="400"/>
+      <VARIABLE ID="proc_sys_reset_0" ROW_INDEX="412"/>
+      <VARIABLE ID="host_main_bridge" ROW_INDEX="393"/>
+      <VARIABLE ID="host_core_bridge" ROW_INDEX="392"/>
+      <VARIABLE ID="group1_main_bridge" ROW_INDEX="387"/>
+      <VARIABLE ID="group2_main_bridge" ROW_INDEX="388"/>
+      <VARIABLE ID="group3_main_bridge" ROW_INDEX="389"/>
+      <VARIABLE ID="group4_main_bridge" ROW_INDEX="390"/>
+      <VARIABLE ID="group5_main_bridge" ROW_INDEX="391"/>
+      <VARIABLE ID="main_data_instr_bridge" ROW_INDEX="395"/>
+      <VARIABLE ID="main_data_instr_bridge_1" ROW_INDEX="396"/>
+      <VARIABLE ID="main_data_instr_bridge_2" ROW_INDEX="397"/>
+      <VARIABLE ID="main_data_instr_bridge_3" ROW_INDEX="398"/>
+      <VARIABLE ID="main_data_instr_bridge_4" ROW_INDEX="399"/>
+      <VARIABLE ID="xps_central_dma_0" ROW_INDEX="408"/>
+      <VARIABLE ID="cond_vars" ROW_INDEX="402"/>
+      <VARIABLE ID="core_bus" ROW_INDEX="80"/>
+      <VARIABLE ID="main_core_bridge" ROW_INDEX="394"/>
+      <VARIABLE ID="core_main_bridge" ROW_INDEX="386"/>
+      <VARIABLE ID="scheduler" ROW_INDEX="405"/>
+      <VARIABLE ID="sync_manager" ROW_INDEX="406"/>
+      <VARIABLE ID="thread_manager" ROW_INDEX="407"/>
+      <VARIABLE ID="plb_hthread_reset_core_0" ROW_INDEX="403"/>
+      <VARIABLE ID="plb_hthreads_timer_0" ROW_INDEX="404"/>
+      <VARIABLE ID="xps_timer_0" ROW_INDEX="409"/>
+      <VARIABLE ID="xps_intc_0" ROW_INDEX="401"/>
+    </SEQUENCES>
+  </SET>
+
+  <SET CLASS="PROJECT" DISPLAYMODE="FLAT" VIEW_ID="BUSINTERFACE">
+    <HEADERS>
+      <VARIABLE COL_INDEX="0" IS_VISIBLE="TRUE" VIEWDISP="Instance" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="1" IS_VISIBLE="TRUE" VIEWDISP="Bus Interface" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="2" IS_VISIBLE="TRUE" VIEWDISP="Bus Name" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="3" IS_VISIBLE="FALSE" VIEWDISP="Bus Standard" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="4" IS_VISIBLE="TRUE" VIEWDISP="IP Type" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="5" IS_VISIBLE="TRUE" VIEWDISP="IP Version" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="6" IS_VISIBLE="FALSE" VIEWDISP="IP Classification" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="7" IS_VISIBLE="FALSE" VIEWDISP="Type" VIEWTYPE="HEADER"/>
+    </HEADERS>
+    <SPLITTERS COLLAPSIBLE="1" HANDLEWIDTH="4" MARKER="255" ORIENTATION="1" RESIZE="1" SIZES="180,450,180" VERSION="0"/>
+  </SET>
+
+  <SET CLASS="PROJECT" DISPLAYMODE="TREE" VIEW_ID="PORT">
+    <HEADERS HSCROLL="0" VSCROLL="324">
+      <VARIABLE COL_INDEX="0" COL_WIDTH="145" IS_VISIBLE="TRUE" VIEWDISP="Name" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="1" COL_WIDTH="100" IS_VISIBLE="TRUE" VIEWDISP="Net" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="2" COL_WIDTH="100" IS_VISIBLE="TRUE" VIEWDISP="Direction" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="3" COL_WIDTH="100" IS_VISIBLE="TRUE" VIEWDISP="Range" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="4" COL_WIDTH="100" IS_VISIBLE="TRUE" VIEWDISP="Class" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="5" COL_WIDTH="100" IS_VISIBLE="TRUE" VIEWDISP="Frequency(Hz)" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="6" COL_WIDTH="100" IS_VISIBLE="TRUE" VIEWDISP="Reset Polarity" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="7" COL_WIDTH="100" IS_VISIBLE="TRUE" VIEWDISP="Sensitivity" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="8" COL_WIDTH="100" IS_VISIBLE="TRUE" VIEWDISP="IP Type" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="9" IS_VISIBLE="FALSE" VIEWDISP="IP Version" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="10" IS_VISIBLE="TRUE" VIEWDISP="IP Classification" VIEWTYPE="HEADER"/>
+    </HEADERS>
+    <SPLITTERS COLLAPSIBLE="1" HANDLEWIDTH="4" MARKER="255" ORIENTATION="1" RESIZE="1" SIZES="0,630,180" VERSION="0"/>
+    <SET ID="xps_intc_0" IS_EXPANDED="TRUE"/>
+    <STATUS>
+      <SELECTIONS/>
+    </STATUS>
+    <SEQUENCES IS_DEF_SEQUENCES="TRUE">
+      <VARIABLE ID="ExternalPorts" ROW_INDEX="0"/>
+      <VARIABLE ID="microblaze_0" ROW_INDEX="9"/>
+      <VARIABLE ID="ilmb" ROW_INDEX="3"/>
+      <VARIABLE ID="dlmb" ROW_INDEX="1"/>
+      <VARIABLE ID="dlmb_cntlr" ROW_INDEX="15"/>
+      <VARIABLE ID="ilmb_cntlr" ROW_INDEX="17"/>
+      <VARIABLE ID="lmb_bram" ROW_INDEX="12"/>
+      <VARIABLE ID="microblaze_1" ROW_INDEX="10"/>
+      <VARIABLE ID="mb1_bus" ROW_INDEX="7"/>
+      <VARIABLE ID="ilmb_1" ROW_INDEX="4"/>
+      <VARIABLE ID="dlmb_1" ROW_INDEX="2"/>
+      <VARIABLE ID="dlmb_cntlr_1" ROW_INDEX="16"/>
+      <VARIABLE ID="ilmb_cntlr_1" ROW_INDEX="18"/>
+      <VARIABLE ID="lmb_bram_1" ROW_INDEX="13"/>
+      <VARIABLE ID="RS232_Uart_1" ROW_INDEX="37"/>
+      <VARIABLE ID="DDR3_SDRAM" ROW_INDEX="22"/>
+      <VARIABLE ID="extra_bram_cntlr" ROW_INDEX="19"/>
+      <VARIABLE ID="extra_bram_block" ROW_INDEX="11"/>
+      <VARIABLE ID="clock_generator_0" ROW_INDEX="38"/>
+      <VARIABLE ID="mdm_0" ROW_INDEX="27"/>
+      <VARIABLE ID="proc_sys_reset_0" ROW_INDEX="39"/>
+      <VARIABLE ID="main_bus" ROW_INDEX="6"/>
+      <VARIABLE ID="vhwti_bus" ROW_INDEX="8"/>
+      <VARIABLE ID="mb1_main_bridge" ROW_INDEX="26"/>
+      <VARIABLE ID="xps_central_dma_0" ROW_INDEX="35"/>
+      <VARIABLE ID="cond_vars" ROW_INDEX="29"/>
+      <VARIABLE ID="core_bus" ROW_INDEX="5"/>
+      <VARIABLE ID="main_core_bridge" ROW_INDEX="24"/>
+      <VARIABLE ID="core_main_bridge" ROW_INDEX="23"/>
+      <VARIABLE ID="scheduler" ROW_INDEX="32"/>
+      <VARIABLE ID="sync_manager" ROW_INDEX="33"/>
+      <VARIABLE ID="thread_manager" ROW_INDEX="34"/>
+      <VARIABLE ID="plb_hthread_reset_core_0" ROW_INDEX="30"/>
+      <VARIABLE ID="main_vhwti_bridge" ROW_INDEX="25"/>
+      <VARIABLE ID="vhwti_global_cntlr1" ROW_INDEX="20"/>
+      <VARIABLE ID="vhwti_local_cntlr1" ROW_INDEX="21"/>
+      <VARIABLE ID="vhwti_bram_block1" ROW_INDEX="14"/>
+      <VARIABLE ID="plb_hthreads_timer_0" ROW_INDEX="31"/>
+      <VARIABLE ID="xps_timer_0" ROW_INDEX="36"/>
+      <VARIABLE ID="xps_intc_0" IS_EXPANDED="TRUE" ROW_INDEX="28"/>
+    </SEQUENCES>
+  </SET>
+
+  <SET CLASS="PROJECT" DISPLAYMODE="FLAT" VIEW_ID="PORT">
+    <HEADERS>
+      <VARIABLE COL_INDEX="0" IS_VISIBLE="TRUE" VIEWDISP="Instance" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="1" IS_VISIBLE="TRUE" VIEWDISP="Port Name" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="2" IS_VISIBLE="TRUE" VIEWDISP="Net" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="3" IS_VISIBLE="TRUE" VIEWDISP="Direction" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="4" IS_VISIBLE="TRUE" VIEWDISP="Range" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="5" IS_VISIBLE="TRUE" VIEWDISP="Class" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="6" IS_VISIBLE="TRUE" VIEWDISP="Frequency(Hz)" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="7" IS_VISIBLE="TRUE" VIEWDISP="Reset Polarity" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="8" IS_VISIBLE="TRUE" VIEWDISP="Sensitivity" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="9" IS_VISIBLE="TRUE" VIEWDISP="IP Type" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="10" IS_VISIBLE="FALSE" VIEWDISP="IP Version" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="11" IS_VISIBLE="TRUE" VIEWDISP="IP Classification" VIEWTYPE="HEADER"/>
+    </HEADERS>
+    <SPLITTERS COLLAPSIBLE="1" HANDLEWIDTH="4" MARKER="255" ORIENTATION="1" RESIZE="1" SIZES="0,630,180" VERSION="0"/>
+  </SET>
+
+  <SET CLASS="PROJECT" DISPLAYMODE="TREE" VIEW_ID="ADDRESS">
+    <HEADERS HSCROLL="0" VSCROLL="1116">
+      <VARIABLE COL_INDEX="0" COL_WIDTH="200" IS_VISIBLE="TRUE" VIEWDISP="Instance" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="1" COL_WIDTH="100" IS_VISIBLE="TRUE" VIEWDISP="Base Name" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="2" COL_WIDTH="100" IS_VISIBLE="TRUE" VIEWDISP="Base Address" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="3" COL_WIDTH="100" IS_VISIBLE="TRUE" VIEWDISP="High Address" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="4" COL_WIDTH="100" IS_VISIBLE="TRUE" VIEWDISP="Size" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="5" COL_WIDTH="105" IS_VISIBLE="TRUE" VIEWDISP="Bus Interface(s)" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="6" COL_WIDTH="100" IS_VISIBLE="TRUE" VIEWDISP="Bus Name" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="7" IS_VISIBLE="FALSE" VIEWDISP="ICache" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="8" IS_VISIBLE="FALSE" VIEWDISP="DCache" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="8" IS_VISIBLE="FALSE" VIEWDISP="IP Type" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="10" IS_VISIBLE="FALSE" VIEWDISP="IP Version" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="7" IS_VISIBLE="FALSE" VIEWDISP="Address Type" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="9" COL_WIDTH="417" IS_VISIBLE="TRUE" VIEWDISP="Lock" VIEWTYPE="HEADER"/>
+    </HEADERS>
+    <SPLITTERS COLLAPSIBLE="1" HANDLEWIDTH="4" MARKER="255" ORIENTATION="1" RESIZE="1" SIZES="130,754,253" VERSION="0"/>
+    <SET ID="microblaze_0" IS_EXPANDED="TRUE"/>
+    <SET ID="microblaze_1" IS_EXPANDED="TRUE"/>
+    <SET ID="Unmapped Addresses" IS_EXPANDED="TRUE"/>
+    <STATUS>
+      <SELECTIONS/>
+    </STATUS>
+    <SEQUENCES IS_DEF_SEQUENCES="TRUE">
+      <VARIABLE ID="microblaze_0" IS_EXPANDED="TRUE" ROW_INDEX="0"/>
+      <VARIABLE ID="microblaze_1" IS_EXPANDED="TRUE" ROW_INDEX="1"/>
+      <VARIABLE ID="microblaze_2" ROW_INDEX="2"/>
+      <VARIABLE ID="microblaze_3" ROW_INDEX="3"/>
+      <VARIABLE ID="microblaze_4" ROW_INDEX="4"/>
+      <VARIABLE ID="microblaze_5" ROW_INDEX="5"/>
+      <VARIABLE ID="microblaze_6" ROW_INDEX="6"/>
+      <VARIABLE ID="microblaze_7" ROW_INDEX="7"/>
+      <VARIABLE ID="microblaze_8" ROW_INDEX="8"/>
+      <VARIABLE ID="microblaze_9" ROW_INDEX="9"/>
+      <VARIABLE ID="microblaze_10" ROW_INDEX="10"/>
+      <VARIABLE ID="microblaze_11" ROW_INDEX="11"/>
+      <VARIABLE ID="microblaze_12" ROW_INDEX="12"/>
+      <VARIABLE ID="microblaze_13" ROW_INDEX="13"/>
+      <VARIABLE ID="microblaze_14" ROW_INDEX="14"/>
+      <VARIABLE ID="microblaze_15" ROW_INDEX="15"/>
+      <VARIABLE ID="microblaze_16" ROW_INDEX="16"/>
+      <VARIABLE ID="Unmapped Addresses" IS_EXPANDED="TRUE" ROW_INDEX="17"/>
+    </SEQUENCES>
+  </SET>
+
+  <SET CLASS="PROJECT" DISPLAYMODE="FLAT" VIEW_ID="ADDRESS">
+    <HEADERS>
+      <VARIABLE COL_INDEX="0" IS_VISIBLE="TRUE" VIEWDISP="Instance" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="1" IS_VISIBLE="TRUE" VIEWDISP="Base Name" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="2" IS_VISIBLE="TRUE" VIEWDISP="Base Address" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="3" IS_VISIBLE="TRUE" VIEWDISP="High Address" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="4" IS_VISIBLE="TRUE" VIEWDISP="Size" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="5" IS_VISIBLE="TRUE" VIEWDISP="Bus Interface(s)" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="6" IS_VISIBLE="TRUE" VIEWDISP="Bus Name" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="7" IS_VISIBLE="FALSE" VIEWDISP="ICache" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="8" IS_VISIBLE="FALSE" VIEWDISP="DCache" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="9" IS_VISIBLE="FALSE" VIEWDISP="IP Type" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="10" IS_VISIBLE="FALSE" VIEWDISP="IP Version" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="11" IS_VISIBLE="FALSE" VIEWDISP="Address Type" VIEWTYPE="HEADER"/>
+      <VARIABLE COL_INDEX="12" IS_VISIBLE="TRUE" VIEWDISP="Lock" VIEWTYPE="HEADER"/>
+    </HEADERS>
+  </SET>
+
+</SETTINGS>

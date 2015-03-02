@@ -1,0 +1,42 @@
+########################################################################################
+# File:     src/software/Jamfile
+# Author:   Wesley Peck
+# Date:     20 August 2006
+#
+# Desc:     This is the Jam build file for the src/software subdirectory of the
+#           Hthreads project. This file instructs the Jam build system on how to build
+#           the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (20 August 2006) Jam file initially created
+########################################################################################
+SubDir TOP src software accelerators ;
+LOCATE_TARGET = software$(SLASH)accelerators ;
+
+########################################################################################
+# Add the user code sources to the Hthreads library
+########################################################################################
+Hobject acc_common.o            : acc_common.c ;
+
+if $(PLATFORM_ARCH) = "mblaze"
+{
+Hobject icap.o                  : icap_mblaze.c ;
+Hobject sort.o                  : sort_mblaze.c ;
+Hobject crc.o                   : crc_mblaze.c ;
+Hobject vector.o                : vector_mblaze.c ;
+}
+else if $(PLATFORM_ARCH) = "ppc440" 
+{
+Hobject sort.o                  : sort_ppc440.c ;
+Hobject crc.o                   : crc_ppc440.c ;
+Hobject vector.o                : vector_ppc440.c ;
+}
+
+########################################################################################
+# Add the object files to the hthreads library
+########################################################################################
+if $(PLATFORM_ARCH) = "mblaze" { Hlib hthread : icap.o ; }
+Hlib hthread : sort.o ;
+Hlib hthread : crc.o ;
+Hlib hthread : vector.o ;
+Hlib hthread : acc_common.o ;

@@ -1,0 +1,18 @@
+<assertions>
+  <assertion id="1">
+  The function int hthread_cond_broadcast(hthread_cond_t *cond); shall unblock
+  all threads, hardware or software, currently blocked on the specified
+  condition variable cond.
+  </assertion>
+
+  <assertion id="2">
+  When each thread unblocked as a result of a pthread_cond_broadcast() returns
+  from its call to pthread_cond_wait(), the thread shall own the mutex with
+  which it called pthread_cond_wait().
+  </assertion> 
+
+  <assertion id="4">
+  If successful, the pthread_cond_broadcast() function shall return zero;
+  </assertion> 
+
+</assertions>

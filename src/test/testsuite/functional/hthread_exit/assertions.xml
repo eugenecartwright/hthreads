@@ -1,0 +1,7 @@
+<assertions>
+  <assertion id="1">
+   The function, hthread_exit(void *value_ptr), terminates the calling thread
+   and makes the value 'value_ptr' available to any successful join with the
+   terminating thread. 
+  </assertion>
+</assertions>

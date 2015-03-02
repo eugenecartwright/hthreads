@@ -1,0 +1,190 @@
+==========================
+ Hthreads MicroBlaze Port
+==========================
+This document provides information about the architecture-specific portion
+of the hthreads code.  Specifically, it describes the MicroBlaze code
+written during the summer of 2009, which is a port of the original PowerPC
+code.
+
+Key to understanding the architecture-specific code is the Xilinx "MicroBlaze
+Processor Reference Guide" (UG081) and the Xilinx "Embedded System Tools
+Reference Manual."
+
+
+Hthreads Source Files and Directory Structure
+=============================================
+Note that all paths are given relative to the repository root.
+
+Relevant Files
+--------------
+There are a few files relevant to the architecture-dependent code
+that are separate from it.  These include:
+
+- config/settings: select which platform (i.e., hardware configuration) to
+  build for, and whether to enable SMP features.
+
+- src/platforms/xilinx/[platform]/include/config.h: various hardware
+  parameters are defined in the xilinx-tool-generated xparameters.h file,
+  including the memory addresses of hthreads control registers.  The
+  config.h file defines macros to hide changes in the parameters across
+  different platforms.
+
+- src/platforms/xilinx/[platform]/config/linkscript.ld: Memory locations for
+  compiled hthreads executables.  These will change for different platforms.
+
+- src/platforms/xilinx/[platform]/config/Jamrules: This file lists platform-
+  specific include directories, compiling, and linking flags.  For the
+  MicroBlaze system, this is where caching can be turned on and off.
+
+Architecture-Dependent Code
+---------------------------
+The architecture-dependent code (ADC) is at src/archs/mblaze.  In brief, this
+code is responsible for:
+
+- Bootstrapping the system (working with src/software/system/init.c).
+
+- Defining execution contexts and providing routines to save/restore them.
+
+- Bootstrapping the execution contexts for threads.
+
+- Handling interrupts from the hthreads thread scheduler.
+
+- Implementing the system call mechanism.
+
+- Access to hardware features like timers and processor numbers.
+
+
+Hthreads Boot Process
+=====================
+The ADC (primarily crt0-smp.S, for the MicroBlaze) cooperates with the OS
+code (primarily src/software/system/init.c) to bootstrap the system.  See
+those files for more detailed information; what follows is a general
+description of the process.
+
+ 1. On a reset, the MicroBlaze sets the PC to 0 and starts from there.
+    crt0-smp.S sets this and other vectors.
+
+ 2. All cpus set their small data area anchors (the same for all cpus) and
+    their stack pointers (different for each).  These values are defined
+    in the linker script.
+ 
+ 3. CPU0 proceeds with system setup.  All other cpus wait for CPU0 to write
+    to a special system register which indicates that CPU0 has finished
+    system setup.
+
+ 4. CPU0 clears the BSS and SBSS segments.
+
+ 5. CPU0 peforms a soft reset on the hthreads hardware.
+
+ 6. CPU0 initializes the system UART.  At this point, it calls the
+    hthread_init function in the system/init.c file.
+
+ 7. CPU0 clears the stack pointers in all thread control blocks (indicating
+    that no threads have allocated stacks).
+
+ 8. CPU0 creates the context for the main thread.  At this point, CPU0
+    writes to the special register which indicates system setup is complete,
+    and all cpus continue with the bootstrapping process.
+
+ 9. All cpus create an idle thread for themselves.
+
+10. All cpus perform call architecture-specific initialization routines
+    which perform per-CPU tasks such as enable interrupts and entering
+    user mode.
+
+11. All cpus except CPU0 context switch into their idle threads.  These
+    cpus are done with the bootstrapping process.
+
+12. CPU0 waits until all other cpus are in their idle threads.  This
+    guarantees the system is fully initialized before beginning application
+    execution.  Of course, CPU0 will not wait in a single-processor system.
+
+13. CPU0 returns from hthread_init and calls the main function.
+
+
+Data and Instruction Caching
+============================
+Caching in an hthreads system is tricky:
+
+- Hardware theads communicate with software threads via shared memory.
+  In most systems with hardware threads, data caching should be turned
+  off.
+
+- Memory-mapped communication with the hthreads OS cores is outside of
+  the memory range of the DRAM, and is never cached.  This should be true
+  of any hardware threads or other hardware components, as well.  So,
+  memory-mapped communication should work correctly regardless of how
+  caching operates.
+
+- Instruction caching should be safe in most situations.  If hardware
+  threads modify the executable code of software threads for some reason,
+  instruction caching should be turned off.  The same is true if the code
+  in an SMP system is self-modifying.
+
+- Xilinx does not provide a method to achieve cache coherence in a SMP
+  MicroBlaze system; data caching should typically be off in SMP systems.
+
+- Both types of caching can be enabled or disabled during the build of
+  the hthread OS code in "src/platforms/xilinx/[platform]/config/Jamrules".
+
+
+Other Notes
+===========
+
+MicroBlaze Configuration Requirements
+-------------------------------------
+- Each MicroBlaze must have the full PVR option; the hthreads code expects
+  a processor ID in PVR1.
+
+- In a single-cpu system, the processor ID, i.e. the value in PVR 1, must
+  be 0.
+
+- In SMP systems, one processor must have ID 0, and the others must have
+  unique, consecutive ID numbers starting at 1.
+
+- If your MicroBlaze processors have optional features like hardware
+  multiply, barrel shift, etc., and you want the compiler to take advantage
+  of them, you must add the appropriate flags to the platform Jamrules file.
+  These flags are described in the Xilinx Embedded System Tools Reference
+  Manual.
+
+Using SMP Systems
+-----------------
+To connect to a MicroBlaze in an SMP system, use:
+
+    connect mb mdm -debugdevice cpunr N
+
+Where is N is 1 for CPU0, 2 for CPU1, etc.  XMD works poorly if you are
+connected to multiple running debug targets simulataneously, and this will
+interefere with the correct operation of the program.  To start an SMP
+system, you typically
+
+1. Connect to all cpus.
+
+2. Download the executable to all cpus.  Do not start execution on any CPU
+   untill all have downloaded; downloading may overwrite memory other cpus
+   are using!
+
+3. Execute the "run" command on each slave cpu, then disconnect from that
+   cpu with xmd.
+
+4. Execute the "run" command on the main cpu.
+
+The extras directory contains a few simple scripts for use with xmd. E.g.,
+
+    xmd -opt extras cpu0.opt
+
+will connect to cpu0, stop it, and reset it.  Note that it uses the
+"-processor" option to reset a cpu.  Without that flag, rst will reset
+the entire system!
+
+PPC Compatability
+-----------------
+During the porting process, we changed the hthreads boot-up procedure.  As
+of this writing (August 2009), the PPC-specific code has not been updated
+to work with the new hthreads boot code, and won't work correctly.
+
+Some older applications used a "sleep" function, which was provided by
+Xilinx only for the PPC.  It was a simple busy-wait that used a built-in
+timer in the PPC CPU. Use _arch_get_time in a loop for similar functionality
+on the MicroBlaze.

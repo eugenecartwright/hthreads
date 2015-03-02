@@ -1,0 +1,12 @@
+<assertions>
+  <assertion id="1">
+   The function int hthread_mutex_trylock(hthread_mutex_t *mutex); is equivalent
+   to hthread_mutex_lock() except that if the mutex object referenced by 'mutex'
+   is currently locked (by any thread, including the current thread), the call
+   returns immediately.
+  </assertion>
+  <assertion id="2">
+  hthread_mutex_lock returns 0 if a lock on the mutex object referenced by
+  'mutex' is acquired.
+  </assertion> 
+</assertions>

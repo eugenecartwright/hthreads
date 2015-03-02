@@ -1,0 +1,1644 @@
+Release 10.1.03 - xst K.39 (lin64)
+Copyright (c) 1995-2008 Xilinx, Inc.  All rights reserved.
+--> 
+PMSPEC -- Overriding Xilinx file </opt/Xilinx/10.1/EDK/virtex5/data/virtex5.acd> with local file </opt/Xilinx/10.1/ISE/virtex5/data/virtex5.acd>
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+     9.1) Device utilization summary
+     9.2) Partition Resource Summary
+     9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input Format                       : MIXED
+Input File Name                    : "opb_plbv46_bridge_0_wrapper_xst.prj"
+
+---- Target Parameters
+Target Device                      : xc5vfx70tff1136-1
+Output File Name                   : "../implementation/opb_plbv46_bridge_0_wrapper.ngc"
+
+---- Source Options
+Top Module Name                    : opb_plbv46_bridge_0_wrapper
+
+---- Target Options
+Add IO Buffers                     : NO
+
+---- General Options
+Optimization Goal                  : speed
+Netlist Hierarchy                  : as_optimized
+Optimization Effort                : 1
+Hierarchy Separator                : /
+
+---- Other Options
+Cores Search Directories           : {../implementation/opb_plbv46_bridge_0_wrapper}
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/family_support.vhd" in Library proc_common_v2_00_a.
+Package <family_support> compiled.
+Package body <family_support> compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/proc_common_pkg.vhd" in Library proc_common_v2_00_a.
+Package <proc_common_pkg> compiled.
+Package body <proc_common_pkg> compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/inferred_lut4.vhd" in Library proc_common_v2_00_a.
+Entity <inferred_lut4> compiled.
+Entity <inferred_lut4> (Architecture <implementation>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/muxf_struct_f.vhd" in Library proc_common_v2_00_a.
+Entity <muxf_struct> compiled.
+Entity <muxf_struct> (Architecture <imp>) compiled.
+Entity <muxf_struct_f> compiled.
+Entity <muxf_struct_f> (Architecture <imp>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/pf_counter_bit.vhd" in Library proc_common_v2_00_a.
+Entity <pf_counter_bit> compiled.
+Entity <pf_counter_bit> (Architecture <implementation>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/cntr_incr_decr_addn_f.vhd" in Library proc_common_v2_00_a.
+Entity <cntr_incr_decr_addn_f> compiled.
+Entity <cntr_incr_decr_addn_f> (Architecture <imp>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/dynshreg_f.vhd" in Library proc_common_v2_00_a.
+Entity <dynshreg_f> compiled.
+Entity <dynshreg_f> (Architecture <behavioral>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/pf_adder_bit.vhd" in Library proc_common_v2_00_a.
+Entity <pf_adder_bit> compiled.
+Entity <pf_adder_bit> (Architecture <implementation>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/pf_counter.vhd" in Library proc_common_v2_00_a.
+Entity <pf_counter> compiled.
+Entity <pf_counter> (Architecture <implementation>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/pf_occ_counter.vhd" in Library proc_common_v2_00_a.
+Entity <pf_occ_counter> compiled.
+Entity <pf_occ_counter> (Architecture <implementation>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/counter_bit.vhd" in Library proc_common_v2_00_a.
+Entity <counter_bit> compiled.
+Entity <counter_bit> (Architecture <imp>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/srl_fifo_rbu_f.vhd" in Library proc_common_v2_00_a.
+Entity <srl_fifo_rbu_f> compiled.
+Entity <srl_fifo_rbu_f> (Architecture <imp>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/family.vhd" in Library proc_common_v2_00_a.
+Package <family> compiled.
+Package body <family> compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/pf_occ_counter_top.vhd" in Library proc_common_v2_00_a.
+Entity <pf_occ_counter_top> compiled.
+Entity <pf_occ_counter_top> (Architecture <implementation>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/pf_counter_top.vhd" in Library proc_common_v2_00_a.
+Entity <pf_counter_top> compiled.
+Entity <pf_counter_top> (Architecture <implementation>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/pf_adder.vhd" in Library proc_common_v2_00_a.
+Entity <pf_adder> compiled.
+Entity <pf_adder> (Architecture <implementation>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/or_muxcy.vhd" in Library proc_common_v2_00_a.
+Entity <or_muxcy> compiled.
+Entity <or_muxcy> (Architecture <implementation>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/counter.vhd" in Library proc_common_v2_00_a.
+Entity <Counter> compiled.
+Entity <Counter> (Architecture <imp>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/coregen_comp_defs.vhd" in Library proc_common_v2_00_a.
+Package <coregen_comp_defs> compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/common_types_pkg.vhd" in Library proc_common_v2_00_a.
+Package <Common_Types> compiled.
+WARNING:HDLParsers:3534 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/common_types_pkg.vhd" Line 171. In the function Get_RLOC_Name, not all control paths contain a return statement.
+Package body <Common_Types> compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/conv_funs_pkg.vhd" in Library proc_common_v2_00_a.
+Package <conv_funs_pkg> compiled.
+Package body <conv_funs_pkg> compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/ipif_pkg.vhd" in Library proc_common_v2_00_a.
+Package <ipif_pkg> compiled.
+Package body <ipif_pkg> compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/addsub.vhd" in Library proc_common_v2_00_a.
+Entity <addsub> compiled.
+Entity <addsub> (Architecture <imp>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/direct_path_cntr.vhd" in Library proc_common_v2_00_a.
+Entity <direct_path_cntr> compiled.
+Entity <direct_path_cntr> (Architecture <imp>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/direct_path_cntr_ai.vhd" in Library proc_common_v2_00_a.
+Entity <direct_path_cntr_ai> compiled.
+Entity <direct_path_cntr_ai> (Architecture <imp>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/down_counter.vhd" in Library proc_common_v2_00_a.
+Entity <down_counter> compiled.
+Entity <down_counter> (Architecture <simulation>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/eval_timer.vhd" in Library proc_common_v2_00_a.
+Entity <eval_timer> compiled.
+Entity <eval_timer> (Architecture <imp>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/ipif_steer.vhd" in Library proc_common_v2_00_a.
+Entity <IPIF_Steer> compiled.
+Entity <IPIF_Steer> (Architecture <IMP>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/ipif_steer128.vhd" in Library proc_common_v2_00_a.
+Entity <ipif_steer128> compiled.
+Entity <ipif_steer128> (Architecture <IMP>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/ipif_mirror128.vhd" in Library proc_common_v2_00_a.
+Entity <ipif_mirror128> compiled.
+Entity <ipif_mirror128> (Architecture <IMP>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/ld_arith_reg.vhd" in Library proc_common_v2_00_a.
+Entity <ld_arith_reg> compiled.
+Entity <ld_arith_reg> (Architecture <imp>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/ld_arith_reg2.vhd" in Library proc_common_v2_00_a.
+Entity <ld_arith_reg2> compiled.
+Entity <ld_arith_reg2> (Architecture <imp>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot.vhd" in Library proc_common_v2_00_a.
+Entity <mux_onehot> compiled.
+Entity <mux_onehot> (Architecture <imp>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/or_bits.vhd" in Library proc_common_v2_00_a.
+Entity <or_bits> compiled.
+Entity <or_bits> (Architecture <implementation>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/or_gate.vhd" in Library proc_common_v2_00_a.
+Entity <or_gate> compiled.
+Entity <or_gate> (Architecture <imp>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/or_gate128.vhd" in Library proc_common_v2_00_a.
+Entity <or_gate128> compiled.
+Entity <or_gate128> (Architecture <imp>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/pf_dpram_select.vhd" in Library proc_common_v2_00_a.
+Entity <pf_dpram_select> compiled.
+Entity <pf_dpram_select> (Architecture <implementation>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/pselect.vhd" in Library proc_common_v2_00_a.
+Entity <pselect> compiled.
+Entity <pselect> (Architecture <imp>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/pselect_mask.vhd" in Library proc_common_v2_00_a.
+Entity <pselect_mask> compiled.
+Entity <pselect_mask> (Architecture <imp>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/srl16_fifo.vhd" in Library proc_common_v2_00_a.
+Entity <srl16_fifo> compiled.
+Entity <srl16_fifo> (Architecture <implementation>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/srl_fifo.vhd" in Library proc_common_v2_00_a.
+Entity <SRL_FIFO> compiled.
+Entity <SRL_FIFO> (Architecture <IMP>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/srl_fifo2.vhd" in Library proc_common_v2_00_a.
+Entity <srl_fifo2> compiled.
+Entity <srl_fifo2> (Architecture <imp>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/srl_fifo3.vhd" in Library proc_common_v2_00_a.
+Entity <srl_fifo3> compiled.
+Entity <srl_fifo3> (Architecture <imp>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/srl_fifo_rbu.vhd" in Library proc_common_v2_00_a.
+Entity <srl_fifo_rbu> compiled.
+Entity <srl_fifo_rbu> (Architecture <imp>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/valid_be.vhd" in Library proc_common_v2_00_a.
+Entity <valid_be> compiled.
+Entity <valid_be> (Architecture <implementation>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/or_with_enable_f.vhd" in Library proc_common_v2_00_a.
+Entity <or_with_enable_f> compiled.
+Entity <or_with_enable_f> (Architecture <implementation>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/dynshreg_i_f.vhd" in Library proc_common_v2_00_a.
+Entity <dynshreg_i_f> compiled.
+Entity <dynshreg_i_f> (Architecture <behavioral>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" in Library proc_common_v2_00_a.
+Entity <mux_onehot_f> compiled.
+Entity <mux_onehot_f> (Architecture <imp>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/srl_fifo_f.vhd" in Library proc_common_v2_00_a.
+Entity <srl_fifo_f> compiled.
+Entity <srl_fifo_f> (Architecture <imp>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/compare_vectors_f.vhd" in Library proc_common_v2_00_a.
+Entity <compare_vectors_f> compiled.
+Entity <compare_vectors_f> (Architecture <imp>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/pselect_f.vhd" in Library proc_common_v2_00_a.
+Entity <pselect_f> compiled.
+Entity <pselect_f> (Architecture <imp>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/counter_f.vhd" in Library proc_common_v2_00_a.
+Entity <counter_f> compiled.
+Entity <counter_f> (Architecture <imp>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/or_muxcy_f.vhd" in Library proc_common_v2_00_a.
+Entity <or_muxcy_f> compiled.
+Entity <or_muxcy_f> (Architecture <implementation>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/xor_f.vhd" in Library proc_common_v2_00_a.
+Entity <recursive_xor> compiled.
+Entity <recursive_xor> (Architecture <implementation>) compiled.
+Entity <xor_f> compiled.
+Entity <xor_f> (Architecture <implementation>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/soft_reset.vhd" in Library proc_common_v2_00_a.
+Entity <soft_reset> compiled.
+Entity <soft_reset> (Architecture <implementation>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_master_burst_v1_00_a/hdl/vhdl/plb_mstr_addr_gen.vhd" in Library plbv46_master_burst_v1_00_a.
+Entity <plb_mstr_addr_gen> compiled.
+Entity <plb_mstr_addr_gen> (Architecture <implementation>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_master_burst_v1_00_a/hdl/vhdl/rd_wr_calc_burst.vhd" in Library plbv46_master_burst_v1_00_a.
+Entity <rd_wr_calc_burst> compiled.
+Entity <rd_wr_calc_burst> (Architecture <implementation>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_master_burst_v1_00_a/hdl/vhdl/cc_brst_exp_adptr.vhd" in Library plbv46_master_burst_v1_00_a.
+Entity <cc_brst_exp_adptr> compiled.
+Entity <cc_brst_exp_adptr> (Architecture <implementation>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_master_burst_v1_00_a/hdl/vhdl/data_width_adapter.vhd" in Library plbv46_master_burst_v1_00_a.
+Entity <data_width_adapter> compiled.
+Entity <data_width_adapter> (Architecture <implementation>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_master_burst_v1_00_a/hdl/vhdl/data_mirror_128.vhd" in Library plbv46_master_burst_v1_00_a.
+Entity <data_mirror_128> compiled.
+Entity <data_mirror_128> (Architecture <implementation>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_master_burst_v1_00_a/hdl/vhdl/rd_wr_controller.vhd" in Library plbv46_master_burst_v1_00_a.
+Entity <rd_wr_controller> compiled.
+Entity <rd_wr_controller> (Architecture <implementation>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_master_burst_v1_00_a/hdl/vhdl/llink_rd_backend_no_fifo.vhd" in Library plbv46_master_burst_v1_00_a.
+Entity <llink_rd_backend_no_fifo> compiled.
+Entity <llink_rd_backend_no_fifo> (Architecture <implementation>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_master_burst_v1_00_a/hdl/vhdl/llink_wr_backend_no_fifo.vhd" in Library plbv46_master_burst_v1_00_a.
+Entity <llink_wr_backend_no_fifo> compiled.
+Entity <llink_wr_backend_no_fifo> (Architecture <implementation>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_master_burst_v1_00_a/hdl/vhdl/plbv46_master_burst.vhd" in Library plbv46_master_burst_v1_00_a.
+Entity <plbv46_master_burst> compiled.
+Entity <plbv46_master_burst> (Architecture <implementation>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/opb_plbv46_bridge_v1_00_a/hdl/vhdl/buffer_x16.vhd" in Library opb_plbv46_bridge_v1_00_a.
+Entity <buffer_x16> compiled.
+Entity <buffer_x16> (Architecture <syn>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/opb_plbv46_bridge_v1_00_a/hdl/vhdl/bridge.vhd" in Library opb_plbv46_bridge_v1_00_a.
+Entity <bridge> compiled.
+Entity <bridge> (Architecture <syn>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/opb_plbv46_bridge_v1_00_a/hdl/vhdl/opb_slave.vhd" in Library opb_plbv46_bridge_v1_00_a.
+Entity <opb_slave> compiled.
+Entity <opb_slave> (Architecture <syn>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/opb_plbv46_bridge_v1_00_a/hdl/vhdl/opb_plbv46_bridge.vhd" in Library opb_plbv46_bridge_v1_00_a.
+Entity <opb_plbv46_bridge> compiled.
+Entity <opb_plbv46_bridge> (Architecture <syn>) compiled.
+Compiling vhdl file "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/opb_plbv46_bridge_0_wrapper.vhd" in Library work.
+Entity <opb_plbv46_bridge_0_wrapper> compiled.
+Entity <opb_plbv46_bridge_0_wrapper> (Architecture <STRUCTURE>) compiled.
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for entity <opb_plbv46_bridge_0_wrapper> in library <work> (architecture <STRUCTURE>).
+
+Analyzing hierarchy for entity <opb_plbv46_bridge> in library <opb_plbv46_bridge_v1_00_a> (architecture <syn>) with generics.
+	C_BUS_CLOCK_PERIOD_RATIO = 1
+	C_FAMILY = "virtex5"
+	C_MPLB_AWIDTH = 32
+	C_MPLB_DWIDTH = 128
+	C_MPLB_NATIVE_DWIDTH = 32
+	C_NUM_ADDR_RNG = 1
+	C_PREFETCH_TIMEOUT = 10
+	C_RNG0_BASEADDR = "10100000000000000000000000000000"
+	C_RNG0_HIGHADDR = "10111111111111111111111111111111"
+	C_RNG1_BASEADDR = "11111111111111111111111111111111"
+	C_RNG1_HIGHADDR = "00000000000000000000000000000000"
+	C_RNG2_BASEADDR = "11111111111111111111111111111111"
+	C_RNG2_HIGHADDR = "00000000000000000000000000000000"
+	C_RNG3_BASEADDR = "11111111111111111111111111111111"
+	C_RNG3_HIGHADDR = "00000000000000000000000000000000"
+
+Analyzing hierarchy for entity <plbv46_master_burst> in library <plbv46_master_burst_v1_00_a> (architecture <implementation>) with generics.
+	C_FAMILY = "virtex5"
+	C_INHIBIT_CC_BLE_INCLUSION = 0
+	C_MPLB_AWIDTH = 32
+	C_MPLB_DWIDTH = 128
+	C_MPLB_NATIVE_DWIDTH = 32
+	C_MPLB_SMALLEST_SLAVE = 32
+
+Analyzing hierarchy for entity <buffer_x16> in library <opb_plbv46_bridge_v1_00_a> (architecture <syn>) with generics.
+	C_DWIDTH = 32
+	C_FAMILY = "virtex5"
+WARNING:Xst:1748 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/proc_common_pkg.vhd" line 281: VHDL Assertion Statement with non constant condition is ignored.
+
+Analyzing hierarchy for entity <bridge> in library <opb_plbv46_bridge_v1_00_a> (architecture <syn>) with generics.
+	C_FAMILY = "virtex5"
+	C_PREFETCH_TIMEOUT = 10
+
+Analyzing hierarchy for entity <opb_slave> in library <opb_plbv46_bridge_v1_00_a> (architecture <syn>) with generics.
+	C_BUS_CLOCK_PERIOD_RATIO = 1
+	C_FAMILY = "virtex5"
+	C_NUM_ADDR_RNG = 1
+	C_RNG0_BASEADDR = "10100000000000000000000000000000"
+	C_RNG0_HIGHADDR = "10111111111111111111111111111111"
+	C_RNG1_BASEADDR = "11111111111111111111111111111111"
+	C_RNG1_HIGHADDR = "00000000000000000000000000000000"
+	C_RNG2_BASEADDR = "11111111111111111111111111111111"
+	C_RNG2_HIGHADDR = "00000000000000000000000000000000"
+	C_RNG3_BASEADDR = "11111111111111111111111111111111"
+	C_RNG3_HIGHADDR = "00000000000000000000000000000000"
+
+Analyzing hierarchy for entity <data_width_adapter> in library <plbv46_master_burst_v1_00_a> (architecture <implementation>) with generics.
+	C_MIPIF_DWIDTH = 32
+	C_MPLB_DWIDTH = 128
+
+Analyzing hierarchy for entity <data_mirror_128> in library <plbv46_master_burst_v1_00_a> (architecture <implementation>) with generics.
+	C_MIPIF_DWIDTH = 32
+	C_MPLB_DWIDTH = 128
+
+Analyzing hierarchy for entity <rd_wr_controller> in library <plbv46_master_burst_v1_00_a> (architecture <implementation>) with generics.
+	C_AWIDTH = 32
+	C_LENGTH_WIDTH = 12
+	C_LLINK_DWIDTH = 32
+	C_LLINK_REM_WIDTH = 4
+	C_NATIVE_DWIDTH = 32
+
+Analyzing hierarchy for entity <llink_rd_backend_no_fifo> in library <plbv46_master_burst_v1_00_a> (architecture <implementation>) with generics.
+	C_DISREGARD_VACANCY = true
+	C_FAMILY = "virtex5"
+	C_PLB_DWIDTH = 32
+	C_RDFIFO_VACANCY_WIDTH = 1
+	C_RD_FTR_SIZE_BYTES = 0
+	C_RD_HDR_SIZE_BYTES = 0
+	C_REM_POLARITY = 0
+	C_REM_WIDTH = 4
+	C_SG_IS_PRESENT = 0
+
+Analyzing hierarchy for entity <llink_wr_backend_no_fifo> in library <plbv46_master_burst_v1_00_a> (architecture <implementation>) with generics.
+	C_DISREGARD_OCCUPANCY = true
+	C_FAMILY = "virtex5"
+	C_PLB_DWIDTH = 32
+	C_REM_POLARITY = 0
+	C_REM_WIDTH = 4
+	C_SG_IS_PRESENT = 0
+	C_WRFIFO_OCCUPANCY_WIDTH = 1
+	C_WR_FTR_SIZE_BYTES = 0
+	C_WR_HDR_SIZE_BYTES = 0
+
+Analyzing hierarchy for entity <srl_fifo_rbu_f> in library <proc_common_v2_00_a> (architecture <imp>) with generics.
+	C_DEPTH = 16
+	C_DWIDTH = 34
+	C_FAMILY = "virtex5"
+
+Analyzing hierarchy for entity <mux_onehot_f> in library <proc_common_v2_00_a> (architecture <imp>) with generics.
+	C_DW = 32
+	C_FAMILY = "virtex5"
+	C_NB = 4
+
+Analyzing hierarchy for entity <rd_wr_calc_burst> in library <plbv46_master_burst_v1_00_a> (architecture <implementation>) with generics.
+	C_LENGTH_WIDTH = 12
+	C_MAX_FBURST_DBCNT = 16
+	C_NATIVE_DWIDTH = 32
+	C_PLB_AWIDTH = 32
+WARNING:Xst:1748 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/proc_common_pkg.vhd" line 281: VHDL Assertion Statement with non constant condition is ignored.
+
+Analyzing hierarchy for entity <cntr_incr_decr_addn_f> in library <proc_common_v2_00_a> (architecture <imp>) with generics.
+	C_FAMILY = "virtex5"
+	C_SIZE = 5
+
+Analyzing hierarchy for entity <dynshreg_f> in library <proc_common_v2_00_a> (architecture <behavioral>) with generics.
+	C_DEPTH = 16
+	C_DWIDTH = 34
+	C_FAMILY = "virtex5"
+
+Analyzing hierarchy for entity <plb_mstr_addr_gen> in library <plbv46_master_burst_v1_00_a> (architecture <implementation>) with generics.
+	C_AWIDTH = 32
+	C_BUS_DWIDTH = 32
+	C_INCR_WIDTH = 12
+	C_REM_ADDR_LSB_WIDTH = 2
+WARNING:Xst:1748 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/proc_common_pkg.vhd" line 281: VHDL Assertion Statement with non constant condition is ignored.
+WARNING:Xst:1748 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/proc_common_pkg.vhd" line 281: VHDL Assertion Statement with non constant condition is ignored.
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing Entity <opb_plbv46_bridge_0_wrapper> in library <work> (Architecture <STRUCTURE>).
+WARNING:Xst:37 - Detected unknown constraint/property "IMP_NETLIST". This constraint/property is not supported by the current software release and will be ignored.
+WARNING:Xst:37 - Detected unknown constraint/property "IPTYPE". This constraint/property is not supported by the current software release and will be ignored.
+WARNING:Xst:37 - Detected unknown constraint/property "STYLE". This constraint/property is not supported by the current software release and will be ignored.
+WARNING:Xst:37 - Detected unknown constraint/property "HDL". This constraint/property is not supported by the current software release and will be ignored.
+WARNING:Xst:37 - Detected unknown constraint/property "SIGIS". This constraint/property is not supported by the current software release and will be ignored.
+WARNING:Xst:37 - Detected unknown constraint/property "SIGIS". This constraint/property is not supported by the current software release and will be ignored.
+WARNING:Xst:37 - Detected unknown constraint/property "SIGIS". This constraint/property is not supported by the current software release and will be ignored.
+WARNING:Xst:37 - Detected unknown constraint/property "SIGIS". This constraint/property is not supported by the current software release and will be ignored.
+WARNING:Xst:37 - Detected unknown constraint/property "HDL". This constraint/property is not supported by the current software release and will be ignored.
+WARNING:Xst:37 - Detected unknown constraint/property "IMP_NETLIST". This constraint/property is not supported by the current software release and will be ignored.
+WARNING:Xst:37 - Detected unknown constraint/property "IPTYPE". This constraint/property is not supported by the current software release and will be ignored.
+WARNING:Xst:37 - Detected unknown constraint/property "STYLE". This constraint/property is not supported by the current software release and will be ignored.
+Entity <opb_plbv46_bridge_0_wrapper> analyzed. Unit <opb_plbv46_bridge_0_wrapper> generated.
+
+Analyzing generic Entity <opb_plbv46_bridge> in library <opb_plbv46_bridge_v1_00_a> (Architecture <syn>).
+	C_BUS_CLOCK_PERIOD_RATIO = 1
+	C_FAMILY = "virtex5"
+	C_MPLB_AWIDTH = 32
+	C_MPLB_DWIDTH = 128
+	C_MPLB_NATIVE_DWIDTH = 32
+	C_NUM_ADDR_RNG = 1
+	C_PREFETCH_TIMEOUT = 10
+	C_RNG0_BASEADDR = "10100000000000000000000000000000"
+	C_RNG0_HIGHADDR = "10111111111111111111111111111111"
+	C_RNG1_BASEADDR = "11111111111111111111111111111111"
+	C_RNG1_HIGHADDR = "00000000000000000000000000000000"
+	C_RNG2_BASEADDR = "11111111111111111111111111111111"
+	C_RNG2_HIGHADDR = "00000000000000000000000000000000"
+	C_RNG3_BASEADDR = "11111111111111111111111111111111"
+	C_RNG3_HIGHADDR = "00000000000000000000000000000000"
+WARNING:Xst:37 - Detected unknown constraint/property "SIGIS". This constraint/property is not supported by the current software release and will be ignored.
+WARNING:Xst:37 - Detected unknown constraint/property "SIGIS". This constraint/property is not supported by the current software release and will be ignored.
+WARNING:Xst:37 - Detected unknown constraint/property "SIGIS". This constraint/property is not supported by the current software release and will be ignored.
+WARNING:Xst:37 - Detected unknown constraint/property "SIGIS". This constraint/property is not supported by the current software release and will be ignored.
+WARNING:Xst:753 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/opb_plbv46_bridge_v1_00_a/hdl/vhdl/opb_plbv46_bridge.vhd" line 312: Unconnected output port 'Bus2IP_MstRd_rem' of component 'plbv46_master_burst'.
+Entity <opb_plbv46_bridge> analyzed. Unit <opb_plbv46_bridge> generated.
+
+Analyzing generic Entity <plbv46_master_burst> in library <plbv46_master_burst_v1_00_a> (Architecture <implementation>).
+	C_FAMILY = "virtex5"
+	C_INHIBIT_CC_BLE_INCLUSION = 0
+	C_MPLB_AWIDTH = 32
+	C_MPLB_DWIDTH = 128
+	C_MPLB_NATIVE_DWIDTH = 32
+	C_MPLB_SMALLEST_SLAVE = 32
+WARNING:Xst:753 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_master_burst_v1_00_a/hdl/vhdl/plbv46_master_burst.vhd" line 952: Unconnected output port 'LL2PLB_FIFO_Wr_Vacancy' of component 'llink_rd_backend_no_fifo'.
+WARNING:Xst:753 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_master_burst_v1_00_a/hdl/vhdl/plbv46_master_burst.vhd" line 952: Unconnected output port 'Bus2IP_MstRd_eop_n' of component 'llink_rd_backend_no_fifo'.
+WARNING:Xst:753 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_master_burst_v1_00_a/hdl/vhdl/plbv46_master_burst.vhd" line 952: Unconnected output port 'Bus2IP_MstRd_sop_n' of component 'llink_rd_backend_no_fifo'.
+WARNING:Xst:753 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_master_burst_v1_00_a/hdl/vhdl/plbv46_master_burst.vhd" line 1043: Unconnected output port 'LL2PLB_FIFO_Almost_Empty' of component 'llink_wr_backend_no_fifo'.
+WARNING:Xst:753 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_master_burst_v1_00_a/hdl/vhdl/plbv46_master_burst.vhd" line 1043: Unconnected output port 'LL2PLB_FIFO_Empty' of component 'llink_wr_backend_no_fifo'.
+WARNING:Xst:753 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_master_burst_v1_00_a/hdl/vhdl/plbv46_master_burst.vhd" line 1043: Unconnected output port 'LL2PLB_WRFIFO_Occupancy' of component 'llink_wr_backend_no_fifo'.
+WARNING:Xst:753 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_master_burst_v1_00_a/hdl/vhdl/plbv46_master_burst.vhd" line 1043: Unconnected output port 'LL2PLB_SOF_Rcvd' of component 'llink_wr_backend_no_fifo'.
+WARNING:Xst:753 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_master_burst_v1_00_a/hdl/vhdl/plbv46_master_burst.vhd" line 1043: Unconnected output port 'LL2PLB_EOF_Rcvd' of component 'llink_wr_backend_no_fifo'.
+WARNING:Xst:753 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_master_burst_v1_00_a/hdl/vhdl/plbv46_master_burst.vhd" line 1043: Unconnected output port 'LL2PLB_SOP_Rcvd' of component 'llink_wr_backend_no_fifo'.
+WARNING:Xst:753 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_master_burst_v1_00_a/hdl/vhdl/plbv46_master_burst.vhd" line 1043: Unconnected output port 'LL2PLB_EOP_Rcvd' of component 'llink_wr_backend_no_fifo'.
+WARNING:Xst:753 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_master_burst_v1_00_a/hdl/vhdl/plbv46_master_burst.vhd" line 1043: Unconnected output port 'LL2PLB_MSWS' of component 'llink_wr_backend_no_fifo'.
+WARNING:Xst:753 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_master_burst_v1_00_a/hdl/vhdl/plbv46_master_burst.vhd" line 1043: Unconnected output port 'LL2PLB_MEWS' of component 'llink_wr_backend_no_fifo'.
+Entity <plbv46_master_burst> analyzed. Unit <plbv46_master_burst> generated.
+
+Analyzing generic Entity <data_width_adapter> in library <plbv46_master_burst_v1_00_a> (Architecture <implementation>).
+	C_MIPIF_DWIDTH = 32
+	C_MPLB_DWIDTH = 128
+Entity <data_width_adapter> analyzed. Unit <data_width_adapter> generated.
+
+Analyzing generic Entity <data_mirror_128> in library <plbv46_master_burst_v1_00_a> (Architecture <implementation>).
+	C_MIPIF_DWIDTH = 32
+	C_MPLB_DWIDTH = 128
+Entity <data_mirror_128> analyzed. Unit <data_mirror_128> generated.
+
+Analyzing generic Entity <rd_wr_controller> in library <plbv46_master_burst_v1_00_a> (Architecture <implementation>).
+	C_AWIDTH = 32
+	C_LENGTH_WIDTH = 12
+	C_LLINK_DWIDTH = 32
+	C_LLINK_REM_WIDTH = 4
+	C_NATIVE_DWIDTH = 32
+    Set user-defined property "INIT =  0" for instance <I_FIFO_REN_WRACK_REG> in unit <rd_wr_controller>.
+    Set user-defined property "INIT =  0" for instance <I_REQUEST_REG> in unit <rd_wr_controller>.
+    Set user-defined property "INIT =  0" for instance <I_RDBURST_REG> in unit <rd_wr_controller>.
+    Set user-defined property "INIT =  0" for instance <I_WRBURST_REG> in unit <rd_wr_controller>.
+    Set user-defined property "INIT =  0" for instance <I_BUSLOCK_REG> in unit <rd_wr_controller>.
+    Set user-defined property "INIT =  0" for instance <I_RDERR_REG> in unit <rd_wr_controller>.
+    Set user-defined property "INIT =  0" for instance <I_WRERR_REG> in unit <rd_wr_controller>.
+    Set user-defined property "INIT =  0" for instance <I_CMD_REPLY_INHIB_REG> in unit <rd_wr_controller>.
+    Set user-defined property "INIT =  0" for instance <I_CMD_TIMEOUT_REG> in unit <rd_wr_controller>.
+    Set user-defined property "INIT =  0" for instance <I_MD_ERROR_REG> in unit <rd_wr_controller>.
+    Set user-defined property "INIT =  0" for instance <I_RDSOP_REG> in unit <rd_wr_controller>.
+    Set user-defined property "INIT =  0" for instance <I_RDEOP_REG> in unit <rd_wr_controller>.
+INFO:Xst:2679 - Register <sm_rd_llink_init> in unit <rd_wr_controller> has a constant value of 0 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <sm_wr_llink_init> in unit <rd_wr_controller> has a constant value of 0 during circuit operation. The register is replaced by logic.
+Entity <rd_wr_controller> analyzed. Unit <rd_wr_controller> generated.
+
+Analyzing generic Entity <rd_wr_calc_burst> in library <plbv46_master_burst_v1_00_a> (Architecture <implementation>).
+	C_LENGTH_WIDTH = 12
+	C_MAX_FBURST_DBCNT = 16
+	C_NATIVE_DWIDTH = 32
+	C_PLB_AWIDTH = 32
+WARNING:Xst:1748 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/proc_common_pkg.vhd" line 281: VHDL Assertion Statement with non constant condition is ignored.
+WARNING:Xst:753 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_master_burst_v1_00_a/hdl/vhdl/rd_wr_calc_burst.vhd" line 713: Unconnected output port 'BE_Out' of component 'plb_mstr_addr_gen'.
+INFO:Xst:2679 - Register <sig_cmd_is_valid_s0> in unit <rd_wr_calc_burst> has a constant value of 0 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <sig_cmd_is_valid_s1> in unit <rd_wr_calc_burst> has a constant value of 0 during circuit operation. The register is replaced by logic.
+Entity <rd_wr_calc_burst> analyzed. Unit <rd_wr_calc_burst> generated.
+
+Analyzing generic Entity <plb_mstr_addr_gen> in library <plbv46_master_burst_v1_00_a> (Architecture <implementation>).
+	C_AWIDTH = 32
+	C_BUS_DWIDTH = 32
+	C_INCR_WIDTH = 12
+	C_REM_ADDR_LSB_WIDTH = 2
+WARNING:Xst:1748 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/proc_common_pkg.vhd" line 281: VHDL Assertion Statement with non constant condition is ignored.
+WARNING:Xst:1748 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/proc_common_pkg.vhd" line 281: VHDL Assertion Statement with non constant condition is ignored.
+Entity <plb_mstr_addr_gen> analyzed. Unit <plb_mstr_addr_gen> generated.
+
+Analyzing generic Entity <llink_rd_backend_no_fifo> in library <plbv46_master_burst_v1_00_a> (Architecture <implementation>).
+	C_DISREGARD_VACANCY = true
+	C_FAMILY = "virtex5"
+	C_PLB_DWIDTH = 32
+	C_RDFIFO_VACANCY_WIDTH = 1
+	C_RD_FTR_SIZE_BYTES = 0
+	C_RD_HDR_SIZE_BYTES = 0
+	C_REM_POLARITY = 0
+	C_REM_WIDTH = 4
+	C_SG_IS_PRESENT = 0
+Entity <llink_rd_backend_no_fifo> analyzed. Unit <llink_rd_backend_no_fifo> generated.
+
+Analyzing generic Entity <llink_wr_backend_no_fifo> in library <plbv46_master_burst_v1_00_a> (Architecture <implementation>).
+	C_DISREGARD_OCCUPANCY = true
+	C_FAMILY = "virtex5"
+	C_PLB_DWIDTH = 32
+	C_REM_POLARITY = 0
+	C_REM_WIDTH = 4
+	C_SG_IS_PRESENT = 0
+	C_WRFIFO_OCCUPANCY_WIDTH = 1
+	C_WR_FTR_SIZE_BYTES = 0
+	C_WR_HDR_SIZE_BYTES = 0
+Entity <llink_wr_backend_no_fifo> analyzed. Unit <llink_wr_backend_no_fifo> generated.
+
+Analyzing generic Entity <buffer_x16> in library <opb_plbv46_bridge_v1_00_a> (Architecture <syn>).
+	C_DWIDTH = 32
+	C_FAMILY = "virtex5"
+WARNING:Xst:753 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/opb_plbv46_bridge_v1_00_a/hdl/vhdl/buffer_x16.vhd" line 134: Unconnected output port 'Addr' of component 'srl_fifo_rbu_f'.
+WARNING:Xst:1748 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/proc_common_pkg.vhd" line 281: VHDL Assertion Statement with non constant condition is ignored.
+WARNING:Xst:1748 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/proc_common_pkg.vhd" line 281: VHDL Assertion Statement with non constant condition is ignored.
+WARNING:Xst:753 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/opb_plbv46_bridge_v1_00_a/hdl/vhdl/buffer_x16.vhd" line 134: Unconnected output port 'Underflow' of component 'srl_fifo_rbu_f'.
+WARNING:Xst:753 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/opb_plbv46_bridge_v1_00_a/hdl/vhdl/buffer_x16.vhd" line 134: Unconnected output port 'Overflow' of component 'srl_fifo_rbu_f'.
+Entity <buffer_x16> analyzed. Unit <buffer_x16> generated.
+
+Analyzing generic Entity <srl_fifo_rbu_f> in library <proc_common_v2_00_a> (Architecture <imp>).
+	C_DEPTH = 16
+	C_DWIDTH = 34
+	C_FAMILY = "virtex5"
+Entity <srl_fifo_rbu_f> analyzed. Unit <srl_fifo_rbu_f> generated.
+
+Analyzing generic Entity <cntr_incr_decr_addn_f> in library <proc_common_v2_00_a> (Architecture <imp>).
+	C_FAMILY = "virtex5"
+	C_SIZE = 5
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/cntr_incr_decr_addn_f.vhd" line 164: Instantiating black box module <MUXCY_L>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/cntr_incr_decr_addn_f.vhd" line 171: Instantiating black box module <XORCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/cntr_incr_decr_addn_f.vhd" line 177: Instantiating black box module <FDS>.
+    Set user-defined property "INIT =  1" for instance <STRUCTURAL_A_GEN.Addr_Counters[4].FDS_I> in unit <cntr_incr_decr_addn_f>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/cntr_incr_decr_addn_f.vhd" line 164: Instantiating black box module <MUXCY_L>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/cntr_incr_decr_addn_f.vhd" line 171: Instantiating black box module <XORCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/cntr_incr_decr_addn_f.vhd" line 177: Instantiating black box module <FDS>.
+    Set user-defined property "INIT =  1" for instance <STRUCTURAL_A_GEN.Addr_Counters[3].FDS_I> in unit <cntr_incr_decr_addn_f>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/cntr_incr_decr_addn_f.vhd" line 164: Instantiating black box module <MUXCY_L>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/cntr_incr_decr_addn_f.vhd" line 171: Instantiating black box module <XORCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/cntr_incr_decr_addn_f.vhd" line 177: Instantiating black box module <FDS>.
+    Set user-defined property "INIT =  1" for instance <STRUCTURAL_A_GEN.Addr_Counters[2].FDS_I> in unit <cntr_incr_decr_addn_f>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/cntr_incr_decr_addn_f.vhd" line 164: Instantiating black box module <MUXCY_L>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/cntr_incr_decr_addn_f.vhd" line 171: Instantiating black box module <XORCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/cntr_incr_decr_addn_f.vhd" line 177: Instantiating black box module <FDS>.
+    Set user-defined property "INIT =  1" for instance <STRUCTURAL_A_GEN.Addr_Counters[1].FDS_I> in unit <cntr_incr_decr_addn_f>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/cntr_incr_decr_addn_f.vhd" line 164: Instantiating black box module <MUXCY_L>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/cntr_incr_decr_addn_f.vhd" line 171: Instantiating black box module <XORCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/cntr_incr_decr_addn_f.vhd" line 177: Instantiating black box module <FDS>.
+    Set user-defined property "INIT =  1" for instance <STRUCTURAL_A_GEN.Addr_Counters[0].FDS_I> in unit <cntr_incr_decr_addn_f>.
+Entity <cntr_incr_decr_addn_f> analyzed. Unit <cntr_incr_decr_addn_f> generated.
+
+Analyzing generic Entity <dynshreg_f> in library <proc_common_v2_00_a> (Architecture <behavioral>).
+	C_DEPTH = 16
+	C_DWIDTH = 34
+	C_FAMILY = "virtex5"
+Entity <dynshreg_f> analyzed. Unit <dynshreg_f> generated.
+
+Analyzing generic Entity <bridge> in library <opb_plbv46_bridge_v1_00_a> (Architecture <syn>).
+	C_FAMILY = "virtex5"
+	C_PREFETCH_TIMEOUT = 10
+Entity <bridge> analyzed. Unit <bridge> generated.
+
+Analyzing generic Entity <opb_slave> in library <opb_plbv46_bridge_v1_00_a> (Architecture <syn>).
+	C_BUS_CLOCK_PERIOD_RATIO = 1
+	C_FAMILY = "virtex5"
+	C_NUM_ADDR_RNG = 1
+	C_RNG0_BASEADDR = "10100000000000000000000000000000"
+	C_RNG0_HIGHADDR = "10111111111111111111111111111111"
+	C_RNG1_BASEADDR = "11111111111111111111111111111111"
+	C_RNG1_HIGHADDR = "00000000000000000000000000000000"
+	C_RNG2_BASEADDR = "11111111111111111111111111111111"
+	C_RNG2_HIGHADDR = "00000000000000000000000000000000"
+	C_RNG3_BASEADDR = "11111111111111111111111111111111"
+	C_RNG3_HIGHADDR = "00000000000000000000000000000000"
+INFO:Xst:1749 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/opb_plbv46_bridge_v1_00_a/hdl/vhdl/opb_slave.vhd" line 311: note: C_NUM_ADDR_RNG = 1
+INFO:Xst:1749 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/opb_plbv46_bridge_v1_00_a/hdl/vhdl/opb_slave.vhd" line 312: note: rng0 bits to match j0 = 3
+INFO:Xst:1749 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/opb_plbv46_bridge_v1_00_a/hdl/vhdl/opb_slave.vhd" line 316: note: minimum j = 3
+INFO:Xst:1749 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/opb_plbv46_bridge_v1_00_a/hdl/vhdl/opb_slave.vhd" line 317: note: maximum k = 29
+Entity <opb_slave> analyzed. Unit <opb_slave> generated.
+
+Analyzing generic Entity <mux_onehot_f> in library <proc_common_v2_00_a> (Architecture <imp>).
+	C_DW = 32
+	C_FAMILY = "virtex5"
+	C_NB = 4
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+WARNING:Xst:2211 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd" line 211: Instantiating black box module <MUXCY>.
+Entity <mux_onehot_f> analyzed. Unit <mux_onehot_f> generated.
+
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+
+Synthesizing Unit <bridge>.
+    Related source file is "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/opb_plbv46_bridge_v1_00_a/hdl/vhdl/bridge.vhd".
+WARNING:Xst:647 - Input <Bus2IP_Mst_Cmd_Timeout> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <Bus2IP_Mst_Rearbitrate> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found finite state machine <FSM_0> for signal <bridge_cs>.
+    -----------------------------------------------------------------------
+    | States             | 5                                              |
+    | Transitions        | 15                                             |
+    | Inputs             | 7                                              |
+    | Outputs            | 6                                              |
+    | Clock              | MPLB_clk (rising_edge)                         |
+    | Reset              | MPLB_rst (positive)                            |
+    | Reset type         | asynchronous                                   |
+    | Reset State        | req                                            |
+    | Power Up State     | req                                            |
+    | Encoding           | automatic                                      |
+    | Implementation     | automatic                                      |
+    -----------------------------------------------------------------------
+    Found 1-bit register for signal <IP2Bus_Mst_Type>.
+    Found 12-bit register for signal <IP2Bus_Mst_Length>.
+    Found 1-bit register for signal <brdg_block_cs>.
+    Found 1-bit register for signal <brdg_prefetch_cmplt_cs>.
+    Found 1-bit register for signal <brdg_prefetch_status_cs>.
+    Found 1-bit register for signal <brdg_rd_bf_rst_cs>.
+    Found 1-bit register for signal <brdg_wr_bf_rst_cs>.
+    Found 1-bit register for signal <IP2Bus_MstRd_Req_cs>.
+    Found 1-bit register for signal <IP2Bus_MstWr_Req_cs>.
+    Found 11-bit register for signal <timer_cs>.
+    Found 11-bit subtractor for signal <timer_ns>.
+    Found 1-bit register for signal <trigger_cs>.
+    Summary:
+	inferred   1 Finite State Machine(s).
+	inferred  32 D-type flip-flop(s).
+	inferred   1 Adder/Subtractor(s).
+Unit <bridge> synthesized.
+
+
+Synthesizing Unit <data_width_adapter>.
+    Related source file is "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_master_burst_v1_00_a/hdl/vhdl/data_width_adapter.vhd".
+WARNING:Xst:647 - Input <Bus2Adptr_RdDBus<32:127>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+Unit <data_width_adapter> synthesized.
+
+
+Synthesizing Unit <data_mirror_128>.
+    Related source file is "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_master_burst_v1_00_a/hdl/vhdl/data_mirror_128.vhd".
+WARNING:Xst:647 - Input <Mstr2Mirror_ABus<2:3>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:646 - Signal <sig_addr_bits_A28_A29> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+Unit <data_mirror_128> synthesized.
+
+
+Synthesizing Unit <llink_rd_backend_no_fifo>.
+    Related source file is "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_master_burst_v1_00_a/hdl/vhdl/llink_rd_backend_no_fifo.vhd".
+WARNING:Xst:647 - Input <PLB2LL_HdrFtr_Sel> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <Bus_Freeze> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <SG2LL_FIFO_EOF> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <SG2LL_FIFO_WEN> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <SG2LL_FIFO_Data> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <IP2Bus_MstRd_Vacancy<0>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <SG2LL_FIFO_REM> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:646 - Signal <sig_sg2ll_sof> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <sig_mstrd_rem_invert> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <sig_eof_has_been_written> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found finite state machine <FSM_1> for signal <llsm_cntl_state>.
+    -----------------------------------------------------------------------
+    | States             | 4                                              |
+    | Transitions        | 19                                             |
+    | Inputs             | 6                                              |
+    | Outputs            | 3                                              |
+    | Clock              | Bus_Clk (rising_edge)                          |
+    | Reset              | llsm_cntl_state$or0000 (positive)              |
+    | Reset type         | synchronous                                    |
+    | Reset State        | ll_idle                                        |
+    | Power Up State     | ll_idle                                        |
+    | Encoding           | automatic                                      |
+    | Implementation     | automatic                                      |
+    -----------------------------------------------------------------------
+    Found 1-bit register for signal <sig_llsm_2plb_dest_dsc>.
+    Found 1-bit register for signal <sig_llsm_done>.
+    Found 1-bit register for signal <sig_llsm_force_eof>.
+    Found 1-bit register for signal <sig_llsm_force_sof>.
+    Found 1-bit register for signal <sig_llsm_force_src_dsc>.
+    Found 1-bit register for signal <sig_llsm_rdy>.
+    Summary:
+	inferred   1 Finite State Machine(s).
+	inferred   6 D-type flip-flop(s).
+Unit <llink_rd_backend_no_fifo> synthesized.
+
+
+Synthesizing Unit <llink_wr_backend_no_fifo>.
+    Related source file is "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_master_burst_v1_00_a/hdl/vhdl/llink_wr_backend_no_fifo.vhd".
+WARNING:Xst:647 - Input <PLB2LL_HdrFtr_Sel> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <Bus_Freeze> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <IP2Bus_MstWr_Occupancy<0>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <PLB2LL_Clr_Data_Valid> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <PLB2LL_Rdy_For_Ftr> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <SG2LL_FIFO_REN> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:646 - Signal <sig_sop_rcvd_pulse> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <sig_mstwr_sop> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <sig_mstwr_rem> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <sig_mstwr_eop> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <payload_start> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <payload_end> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found finite state machine <FSM_2> for signal <llsm_cntl_state>.
+    -----------------------------------------------------------------------
+    | States             | 4                                              |
+    | Transitions        | 19                                             |
+    | Inputs             | 6                                              |
+    | Outputs            | 3                                              |
+    | Clock              | Bus_Clk (rising_edge)                          |
+    | Reset              | llsm_cntl_state$or0000 (positive)              |
+    | Reset type         | synchronous                                    |
+    | Reset State        | ll_idle                                        |
+    | Power Up State     | ll_idle                                        |
+    | Encoding           | automatic                                      |
+    | Implementation     | automatic                                      |
+    -----------------------------------------------------------------------
+    Found 1-bit register for signal <sig_ll2plb_s_h_done>.
+    Found 1-bit register for signal <sig_ll2plb_s_h_src_dsc>.
+    Found 1-bit register for signal <sig_llsm_2plb_src_dsc>.
+    Found 1-bit register for signal <sig_llsm_done>.
+    Found 1-bit register for signal <sig_llsm_dst_dsc>.
+    Found 1-bit register for signal <sig_llsm_force_dst_rdy>.
+    Found 1-bit register for signal <sig_llsm_rdy>.
+    Summary:
+	inferred   1 Finite State Machine(s).
+	inferred   7 D-type flip-flop(s).
+Unit <llink_wr_backend_no_fifo> synthesized.
+
+
+Synthesizing Unit <plb_mstr_addr_gen>.
+    Related source file is "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_master_burst_v1_00_a/hdl/vhdl/plb_mstr_addr_gen.vhd".
+    Found 3-bit adder for signal <addr_plus_incr_lsb_unsigned>.
+    Found 32-bit register for signal <current_address_unsigned>.
+    Found 32-bit adder for signal <current_address_unsigned$addsub0000> created at line 275.
+    Found 2-bit comparator lessequal for signal <current_be_i_0$cmp_ge0000> created at line 310.
+    Found 3-bit comparator greater for signal <current_be_i_0$cmp_lt0000> created at line 310.
+    Found 2-bit comparator lessequal for signal <current_be_i_1$cmp_ge0000> created at line 310.
+    Found 3-bit comparator greater for signal <current_be_i_1$cmp_lt0000> created at line 310.
+    Found 2-bit comparator lessequal for signal <current_be_i_2$cmp_ge0000> created at line 310.
+    Found 3-bit comparator greater for signal <current_be_i_2$cmp_lt0000> created at line 310.
+    Found 3-bit comparator greater for signal <current_be_i_3$cmp_lt0000> created at line 310.
+    Found 12-bit register for signal <increment_reg_unsigned>.
+    Found 4-bit register for signal <strt_be_reg>.
+    Summary:
+	inferred  48 D-type flip-flop(s).
+	inferred   2 Adder/Subtractor(s).
+	inferred   7 Comparator(s).
+Unit <plb_mstr_addr_gen> synthesized.
+
+
+Synthesizing Unit <dynshreg_f>.
+    Related source file is "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/dynshreg_f.vhd".
+    Found 34-bit 16-to-1 multiplexer for signal <Dout>.
+    Found 544-bit register for signal <data>.
+INFO:Xst:738 - HDL ADVISOR - 544 flip-flops were inferred for signal <data>. You may be trying to describe a RAM in a way that is incompatible with block and distributed RAM resources available on Xilinx devices, or with a specific template that is not supported. Please review the Xilinx resources documentation and the XST user manual for coding guidelines. Taking advantage of RAM resources will lead to improved device usage and reduced synthesis time.
+    Summary:
+	inferred 544 D-type flip-flop(s).
+	inferred  34 Multiplexer(s).
+Unit <dynshreg_f> synthesized.
+
+
+Synthesizing Unit <rd_wr_calc_burst>.
+    Related source file is "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_master_burst_v1_00_a/hdl/vhdl/rd_wr_calc_burst.vhd".
+WARNING:Xst:647 - Input <IP2Mst_Length<10:11>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:646 - Signal <sig_ip2bus_wr_reg> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <sig_cmd_is_valid_s1> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <sig_cmd_is_valid_s0> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <parent_dbeats_remaining_slv<0:7>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Using one-hot encoding for signal <sig_calc_op>.
+    Found 16x4-bit ROM for signal <sig_flburst_cnt>.
+    Found 1-bit register for signal <dbeat_cnt_almost_done_reg>.
+    Found 5-bit comparator lessequal for signal <dbeat_cnt_done$cmp_le0000> created at line 797.
+    Found 1-bit register for signal <dbeat_cnt_done_reg>.
+    Found 5-bit down counter for signal <dbeat_count>.
+    Found 5-bit comparator greater for signal <dbeat_count$cmp_gt0000> created at line 770.
+    Found 1-bit register for signal <doing_a_fl_burst_reg>.
+    Found 1-bit register for signal <doing_a_single_reg>.
+    Found 1-bit register for signal <parent_cmd_done>.
+    Found 12-bit down counter for signal <parent_dbeats_remaining>.
+    Found 12-bit comparator less for signal <parent_dbeats_remaining_lt_MFBDBs_0$cmp_lt0000> created at line 424.
+    Found 1-bit register for signal <parent_xfer_flburst_reg>.
+    Found 1-bit register for signal <parent_xfer_single_reg>.
+    Found 4-bit register for signal <sig_be_reg>.
+    Found 1-bit register for signal <sig_cmd_has_been_queued>.
+    Found 1-bit register for signal <sig_cmd_init>.
+    Found 1-bit register for signal <sig_cmd_is_valid>.
+    Found 1-bit register for signal <sig_combined_ack_reg>.
+    Found 1-bit register for signal <sig_ip2bus_rd_reg>.
+    Found 1-bit register for signal <sig_rdack_reg>.
+    Found 1-bit register for signal <sig_wrack_reg>.
+    Summary:
+	inferred   1 ROM(s).
+	inferred   2 Counter(s).
+	inferred  18 D-type flip-flop(s).
+	inferred   3 Comparator(s).
+Unit <rd_wr_calc_burst> synthesized.
+
+
+Synthesizing Unit <cntr_incr_decr_addn_f>.
+    Related source file is "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/cntr_incr_decr_addn_f.vhd".
+WARNING:Xst:646 - Signal <cry<5>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found 5-bit xor2 for signal <hsum_A>.
+Unit <cntr_incr_decr_addn_f> synthesized.
+
+
+Synthesizing Unit <mux_onehot_f>.
+    Related source file is "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/mux_onehot_f.vhd".
+Unit <mux_onehot_f> synthesized.
+
+
+Synthesizing Unit <opb_slave>.
+    Related source file is "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/opb_plbv46_bridge_v1_00_a/hdl/vhdl/opb_slave.vhd".
+WARNING:Xst:647 - Input <bfs_eof_n> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <MPLB_clk> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <bfs_src_dsc_n> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <bfs_sof_n> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <MPLB_rst> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <bfd_dst_dsc_n> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:646 - Signal <highaddr_cs<0:2>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <highaddr_cs<30:31>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <bfs_dst_rdy_n_cs> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <bfd_src_rdy_n_ns> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+    Found finite state machine <FSM_3> for signal <slave_cs>.
+    -----------------------------------------------------------------------
+    | States             | 8                                              |
+    | Transitions        | 20                                             |
+    | Inputs             | 7                                              |
+    | Outputs            | 7                                              |
+    | Clock              | SOPB_clk (rising_edge)                         |
+    | Reset              | SOPB_rst (positive)                            |
+    | Reset type         | asynchronous                                   |
+    | Reset State        | idle                                           |
+    | Power Up State     | idle                                           |
+    | Encoding           | automatic                                      |
+    | Implementation     | automatic                                      |
+    -----------------------------------------------------------------------
+    Found 5-bit register for signal <ack_count_cs>.
+    Found 5-bit subtractor for signal <ack_count_ns$addsub0000>.
+    Found 32-bit register for signal <bfd_data_cs>.
+    Found 1-bit register for signal <bfd_eof_n_cs>.
+    Found 1-bit register for signal <bfd_sof_n_cs>.
+    Found 1-bit register for signal <bfd_src_rdy_n_cs>.
+    Found 32-bit register for signal <bfs_data_cs>.
+    Found 32-bit register for signal <highaddr_cs>.
+    Found 28-bit comparator less for signal <max_words_ns$cmp_gt0000> created at line 383.
+    Found 32-bit register for signal <OPB_ABus_dly1>.
+    Found 12-bit register for signal <opbs_length_cs>.
+    Found 12-bit adder for signal <opbs_length_ns$share0000> created at line 457.
+    Found 1-bit register for signal <opbs_postedwr_clr_cs>.
+    Found 1-bit register for signal <opbs_postedwrt_req_cs>.
+    Found 1-bit register for signal <opbs_prefetch_clr_cs>.
+    Found 1-bit register for signal <opbs_prefetch_req_cs>.
+    Found 1-bit register for signal <opbs_type_cs>.
+    Found 32-bit comparator equal for signal <prefetch_match_ns$cmp_eq0000> created at line 401.
+    Found 1-bit register for signal <retry_read_prefetch_cs>.
+    Found 1-bit register for signal <Sl_errAck_cs>.
+    Found 1-bit register for signal <Sl_retry_cs>.
+    Found 1-bit register for signal <Sl_xferAck_cs>.
+    Found 32-bit register for signal <transaction_addr_cs>.
+    Found 4-bit register for signal <transaction_be_cs>.
+    Found 28-bit register for signal <words_to_highaddr>.
+    Found 28-bit adder for signal <words_to_highaddr$add0000> created at line 369.
+    Found 28-bit subtractor for signal <words_to_highaddr$addsub0000> created at line 369.
+    Summary:
+	inferred   1 Finite State Machine(s).
+	inferred 221 D-type flip-flop(s).
+	inferred   4 Adder/Subtractor(s).
+	inferred   2 Comparator(s).
+Unit <opb_slave> synthesized.
+
+
+Synthesizing Unit <rd_wr_controller>.
+    Related source file is "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_master_burst_v1_00_a/hdl/vhdl/rd_wr_controller.vhd".
+WARNING:Xst:647 - Input <Wr_LL2PLB_Rdy> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <Wr_LL2PLB_Fifo_Rem> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <Wr_LL2PLB_Src_Dsc_Rcvd> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <Rd_LL2PLB_Rdy> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <Wr_LL2PLB_Fifo_Sof> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <PLB_MBusy> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <Wr_LL2PLB_Fifo_Sop> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <PLB_MSSize> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <Rd_LL2PLB_Dest_Dsc> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <Wr_LL2PLB_Fifo_Eop> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <Rd_LL2PLB_FIFO_Almost_Full> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:646 - Signal <sm_wr_get_new_cmd> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <sm_set_wr_err> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <sm_set_rd_err> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <sm_rd_get_new_cmd> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <sig_this_cmd_almost_done> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <sig_single_in_progress> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <sig_req_error> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <sig_parent_is_flburst> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <sig_length_is_zero> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <sig_cmd_burst_out> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found finite state machine <FSM_4> for signal <sm_wrcntl_state>.
+    -----------------------------------------------------------------------
+    | States             | 7                                              |
+    | Transitions        | 18                                             |
+    | Inputs             | 9                                              |
+    | Outputs            | 5                                              |
+    | Clock              | Bus_Clk (rising_edge)                          |
+    | Reset              | sm_wrcntl_state$or0000 (positive)              |
+    | Reset type         | synchronous                                    |
+    | Reset State        | wr_idle                                        |
+    | Power Up State     | wr_idle                                        |
+    | Encoding           | automatic                                      |
+    | Implementation     | automatic                                      |
+    -----------------------------------------------------------------------
+    Found finite state machine <FSM_5> for signal <sm_rdcntl_state>.
+    -----------------------------------------------------------------------
+    | States             | 7                                              |
+    | Transitions        | 17                                             |
+    | Inputs             | 8                                              |
+    | Outputs            | 5                                              |
+    | Clock              | Bus_Clk (rising_edge)                          |
+    | Reset              | sm_wrcntl_state$or0000 (positive)              |
+    | Reset type         | synchronous                                    |
+    | Reset State        | rd_idle                                        |
+    | Power Up State     | rd_idle                                        |
+    | Encoding           | automatic                                      |
+    | Implementation     | automatic                                      |
+    -----------------------------------------------------------------------
+    Found 1-bit register for signal <plb_mrddack_reg>.
+    Found 32-bit register for signal <plb_mrddbus_reg>.
+    Found 1-bit register for signal <plb_mrderr_reg>.
+    Found 1-bit register for signal <plb_mwrdack_reg>.
+    Found 1-bit register for signal <plb_mwrerr_reg>.
+    Found 1-bit register for signal <sig_calc_new_req>.
+    Found 4-bit register for signal <sig_cmd_be_out_reg>.
+    Found 1-bit register for signal <sig_cmd_rnw_out_reg>.
+    Found 4-bit register for signal <sig_cmd_size_out_reg>.
+    Found 1-bit register for signal <sig_new_ip_req>.
+    Found 1-bit register for signal <sig_new_ip_req_done>.
+    Found 1-bit register for signal <sig_rdll2plb_done_reg>.
+    Found 4-bit register for signal <sig_rdllink_rem_reg>.
+    Found 1-bit register for signal <sig_wr_last_dbeat_queued>.
+    Found 32-bit register for signal <sig_wrdata_reg>.
+    Found 1-bit register for signal <sig_wrll2plb_done_reg>.
+    Found 1-bit register for signal <sm_ip_rd_cmplt>.
+    Found 1-bit register for signal <sm_ip_wr_cmplt>.
+    Found 1-bit register for signal <sm_plb_ld_wrdata_reg>.
+    Found 1-bit register for signal <sm_post_rdreq>.
+    Found 1-bit register for signal <sm_post_wrreq>.
+    Found 1-bit register for signal <sm_rd_llink_activate>.
+    Found 1-bit register for signal <sm_rdllink_dsc>.
+    Found 1-bit register for signal <sm_wr_llink_activate>.
+    Found 1-bit register for signal <sm_wrllink_dsc>.
+    Summary:
+	inferred   2 Finite State Machine(s).
+	inferred  96 D-type flip-flop(s).
+Unit <rd_wr_controller> synthesized.
+
+
+Synthesizing Unit <srl_fifo_rbu_f>.
+    Related source file is "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/srl_fifo_rbu_f.vhd".
+    Found 1-bit register for signal <FIFO_Full>.
+    Found 1-bit register for signal <overflow_i>.
+    Found 31-bit comparator greatequal for signal <overflow_i$cmp_ge0000> created at line 263.
+    Found 1-bit register for signal <underflow_i>.
+    Summary:
+	inferred   3 D-type flip-flop(s).
+	inferred   1 Comparator(s).
+Unit <srl_fifo_rbu_f> synthesized.
+
+
+Synthesizing Unit <plbv46_master_burst>.
+    Related source file is "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_master_burst_v1_00_a/hdl/vhdl/plbv46_master_burst.vhd".
+WARNING:Xst:647 - Input <PLB_MIRQ> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <PLB_MRdWdAddr> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:1780 - Signal <sig_internal_wrdbus> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+Unit <plbv46_master_burst> synthesized.
+
+
+Synthesizing Unit <buffer_x16>.
+    Related source file is "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/opb_plbv46_bridge_v1_00_a/hdl/vhdl/buffer_x16.vhd".
+WARNING:Xst:647 - Input <bfd_src_dsc_n> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <bfs_dst_dsc_n> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+Unit <buffer_x16> synthesized.
+
+
+Synthesizing Unit <opb_plbv46_bridge>.
+    Related source file is "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/opb_plbv46_bridge_v1_00_a/hdl/vhdl/opb_plbv46_bridge.vhd".
+WARNING:Xst:1780 - Signal <brdg_prefetch_addr> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:653 - Signal <IP2Bus_MstWr_rem> is used but never assigned. This sourceless signal will be automatically connected to value 1111.
+WARNING:Xst:1780 - Signal <Bus2IP_MstRd_rem> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+Unit <opb_plbv46_bridge> synthesized.
+
+
+Synthesizing Unit <opb_plbv46_bridge_0_wrapper>.
+    Related source file is "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/opb_plbv46_bridge_0_wrapper.vhd".
+Unit <opb_plbv46_bridge_0_wrapper> synthesized.
+
+INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# ROMs                                                 : 1
+ 16x4-bit ROM                                          : 1
+# Adders/Subtractors                                   : 7
+ 11-bit subtractor                                     : 1
+ 12-bit adder                                          : 1
+ 28-bit adder                                          : 1
+ 28-bit subtractor                                     : 1
+ 3-bit adder                                           : 1
+ 32-bit adder                                          : 1
+ 5-bit subtractor                                      : 1
+# Counters                                             : 2
+ 12-bit down counter                                   : 1
+ 5-bit down counter                                    : 1
+# Registers                                            : 136
+ 1-bit register                                        : 85
+ 12-bit register                                       : 3
+ 28-bit register                                       : 1
+ 32-bit register                                       : 8
+ 34-bit register                                       : 32
+ 4-bit register                                        : 6
+ 5-bit register                                        : 1
+# Comparators                                          : 14
+ 12-bit comparator less                                : 1
+ 2-bit comparator lessequal                            : 3
+ 28-bit comparator less                                : 1
+ 3-bit comparator greater                              : 4
+ 31-bit comparator greatequal                          : 2
+ 32-bit comparator equal                               : 1
+ 5-bit comparator greater                              : 1
+ 5-bit comparator lessequal                            : 1
+# Multiplexers                                         : 2
+ 34-bit 16-to-1 multiplexer                            : 2
+# Xors                                                 : 10
+ 1-bit xor2                                            : 10
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Analyzing FSM <FSM_5> for best encoding.
+Optimizing FSM <opb_plbv46_bridge_0/x_plbv46_master_burst/I_RD_WR_CONTROL/sm_rdcntl_state/FSM> on signal <sm_rdcntl_state[1:3]> with sequential encoding.
+----------------------------------
+ State                | Encoding
+----------------------------------
+ rd_idle              | 000
+ rd_cmd_calc          | 001
+ rd_wait_addrack      | 010
+ rd_dphase            | 011
+ rd_chk_done          | 101
+ rd_llink_discontinue | 100
+ rd_wait_on_tmout_clr | 110
+----------------------------------
+Analyzing FSM <FSM_4> for best encoding.
+Optimizing FSM <opb_plbv46_bridge_0/x_plbv46_master_burst/I_RD_WR_CONTROL/sm_wrcntl_state/FSM> on signal <sm_wrcntl_state[1:3]> with sequential encoding.
+----------------------------------
+ State                | Encoding
+----------------------------------
+ wr_idle              | 000
+ wr_cmd_calc          | 001
+ wr_wait_addrack      | 010
+ wr_dphase            | 011
+ wr_chk_done          | 101
+ wr_llink_discontinue | 100
+ wr_wait_on_tmout_clr | 110
+----------------------------------
+Analyzing FSM <FSM_3> for best encoding.
+Optimizing FSM <opb_plbv46_bridge_0/x_opb_slave/slave_cs/FSM> on signal <slave_cs[1:3]> with sequential encoding.
+----------------------
+ State    | Encoding
+----------------------
+ idle     | 000
+ decode   | 001
+ pipedly1 | 010
+ pipedly2 | 100
+ burst1   | 101
+ burst    | 111
+ single   | 110
+ retry    | 011
+----------------------
+Analyzing FSM <FSM_2> for best encoding.
+Optimizing FSM <opb_plbv46_bridge_0/x_plbv46_master_burst/I_WR_LLINK/llsm_cntl_state/FSM> on signal <llsm_cntl_state[1:2]> with gray encoding.
+--------------------------------
+ State              | Encoding
+--------------------------------
+ ll_idle            | 00
+ ll_go              | 01
+ ll_src_discontinue | 11
+ ll_dst_discontinue | 10
+--------------------------------
+Analyzing FSM <FSM_1> for best encoding.
+Optimizing FSM <opb_plbv46_bridge_0/x_plbv46_master_burst/I_RD_LLINK/llsm_cntl_state/FSM> on signal <llsm_cntl_state[1:2]> with gray encoding.
+--------------------------------
+ State              | Encoding
+--------------------------------
+ ll_idle            | 00
+ ll_go              | 01
+ ll_src_discontinue | 10
+ ll_dst_discontinue | 11
+--------------------------------
+Analyzing FSM <FSM_0> for best encoding.
+Optimizing FSM <opb_plbv46_bridge_0/x_bridge/bridge_cs/FSM> on signal <bridge_cs[1:3]> with user encoding.
+--------------------
+ State  | Encoding
+--------------------
+ req    | 000
+ cmd    | 001
+ wr     | 010
+ rd     | 011
+ fufill | 100
+--------------------
+WARNING:Xst:2404 -  FFs/Latches <strt_be_reg<0:-1>> (without init value) have a constant value of 0 in block <plb_mstr_addr_gen>.
+WARNING:Xst:2404 -  FFs/Latches <increment_reg_unsigned<0:2>> (without init value) have a constant value of 0 in block <plb_mstr_addr_gen>.
+Loading device for application Rf_Device from file '5vfx70t.nph' in environment /opt/Xilinx/10.1/ISE:/opt/Xilinx/10.1/EDK.
+
+Synthesizing (advanced) Unit <XST_ADVANCED_MACRO_ACCU_LPM_ADD_SUB_3_LPM_DFF_7>.
+The following registers are absorbed into accumulator <current_address_unsigned>: 1 register on signal <plb_mstr_addr_gen>.
+Unit <XST_ADVANCED_MACRO_ACCU_LPM_ADD_SUB_3_LPM_DFF_7> synthesized (advanced).
+
+Synthesizing (advanced) Unit <dynshreg_f>.
+	Found 16-bit dynamic shift register for signal <Dout<33>>.
+	Found 16-bit dynamic shift register for signal <Dout<32>>.
+	Found 16-bit dynamic shift register for signal <Dout<31>>.
+	Found 16-bit dynamic shift register for signal <Dout<30>>.
+	Found 16-bit dynamic shift register for signal <Dout<29>>.
+	Found 16-bit dynamic shift register for signal <Dout<28>>.
+	Found 16-bit dynamic shift register for signal <Dout<27>>.
+	Found 16-bit dynamic shift register for signal <Dout<26>>.
+	Found 16-bit dynamic shift register for signal <Dout<25>>.
+	Found 16-bit dynamic shift register for signal <Dout<24>>.
+	Found 16-bit dynamic shift register for signal <Dout<23>>.
+	Found 16-bit dynamic shift register for signal <Dout<22>>.
+	Found 16-bit dynamic shift register for signal <Dout<21>>.
+	Found 16-bit dynamic shift register for signal <Dout<20>>.
+	Found 16-bit dynamic shift register for signal <Dout<19>>.
+	Found 16-bit dynamic shift register for signal <Dout<18>>.
+	Found 16-bit dynamic shift register for signal <Dout<17>>.
+	Found 16-bit dynamic shift register for signal <Dout<16>>.
+	Found 16-bit dynamic shift register for signal <Dout<15>>.
+	Found 16-bit dynamic shift register for signal <Dout<14>>.
+	Found 16-bit dynamic shift register for signal <Dout<13>>.
+	Found 16-bit dynamic shift register for signal <Dout<12>>.
+	Found 16-bit dynamic shift register for signal <Dout<11>>.
+	Found 16-bit dynamic shift register for signal <Dout<10>>.
+	Found 16-bit dynamic shift register for signal <Dout<9>>.
+	Found 16-bit dynamic shift register for signal <Dout<8>>.
+	Found 16-bit dynamic shift register for signal <Dout<7>>.
+	Found 16-bit dynamic shift register for signal <Dout<6>>.
+	Found 16-bit dynamic shift register for signal <Dout<5>>.
+	Found 16-bit dynamic shift register for signal <Dout<4>>.
+	Found 16-bit dynamic shift register for signal <Dout<3>>.
+	Found 16-bit dynamic shift register for signal <Dout<2>>.
+	Found 16-bit dynamic shift register for signal <Dout<1>>.
+	Found 16-bit dynamic shift register for signal <Dout<0>>.
+Unit <dynshreg_f> synthesized (advanced).
+WARNING:Xst:2677 - Node <highaddr_cs_31> of sequential type is unconnected in block <opb_slave>.
+WARNING:Xst:2677 - Node <highaddr_cs_30> of sequential type is unconnected in block <opb_slave>.
+WARNING:Xst:2677 - Node <highaddr_cs_2> of sequential type is unconnected in block <opb_slave>.
+WARNING:Xst:2677 - Node <highaddr_cs_1> of sequential type is unconnected in block <opb_slave>.
+WARNING:Xst:2677 - Node <highaddr_cs_0> of sequential type is unconnected in block <opb_slave>.
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# FSMs                                                 : 6
+# ROMs                                                 : 1
+ 16x4-bit ROM                                          : 1
+# Adders/Subtractors                                   : 6
+ 11-bit subtractor                                     : 1
+ 12-bit adder                                          : 1
+ 28-bit adder                                          : 1
+ 28-bit subtractor                                     : 1
+ 3-bit adder                                           : 1
+ 5-bit subtractor                                      : 1
+# Counters                                             : 2
+ 12-bit down counter                                   : 1
+ 5-bit down counter                                    : 1
+# Accumulators                                         : 1
+ 32-bit up loadable accumulator                        : 1
+# Registers                                            : 406
+ Flip-Flops                                            : 406
+# Shift Registers                                      : 68
+ 16-bit dynamic shift register                         : 68
+# Comparators                                          : 14
+ 12-bit comparator less                                : 1
+ 2-bit comparator lessequal                            : 3
+ 28-bit comparator less                                : 1
+ 3-bit comparator greater                              : 4
+ 31-bit comparator greatequal                          : 2
+ 32-bit comparator equal                               : 1
+ 5-bit comparator greater                              : 1
+ 5-bit comparator lessequal                            : 1
+# Xors                                                 : 10
+ 1-bit xor2                                            : 10
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+WARNING:Xst:1710 - FF/Latch <increment_reg_unsigned_2> (without init value) has a constant value of 0 in block <plb_mstr_addr_gen>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <increment_reg_unsigned_1> (without init value) has a constant value of 0 in block <plb_mstr_addr_gen>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <sig_llsm_force_sof> (without init value) has a constant value of 0 in block <llink_rd_backend_no_fifo>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <opb_plbv46_bridge_0/x_rd_buffer/I_SRL_FIFO_RBU_F/overflow_i> of sequential type is unconnected in block <opb_plbv46_bridge_0_wrapper>.
+WARNING:Xst:2677 - Node <opb_plbv46_bridge_0/x_rd_buffer/I_SRL_FIFO_RBU_F/underflow_i> of sequential type is unconnected in block <opb_plbv46_bridge_0_wrapper>.
+WARNING:Xst:2677 - Node <opb_plbv46_bridge_0/x_wr_buffer/I_SRL_FIFO_RBU_F/overflow_i> of sequential type is unconnected in block <opb_plbv46_bridge_0_wrapper>.
+WARNING:Xst:2677 - Node <opb_plbv46_bridge_0/x_wr_buffer/I_SRL_FIFO_RBU_F/underflow_i> of sequential type is unconnected in block <opb_plbv46_bridge_0_wrapper>.
+WARNING:Xst:1710 - FF/Latch <opbs_length_cs_11> (without init value) has a constant value of 0 in block <opb_slave>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <opbs_length_cs_10> (without init value) has a constant value of 0 in block <opb_slave>. This FF/Latch will be trimmed during the optimization process.
+
+Optimizing unit <opb_plbv46_bridge_0_wrapper> ...
+
+Optimizing unit <bridge> ...
+
+Optimizing unit <llink_rd_backend_no_fifo> ...
+
+Optimizing unit <llink_wr_backend_no_fifo> ...
+
+Optimizing unit <plb_mstr_addr_gen> ...
+
+Optimizing unit <dynshreg_f> ...
+
+Optimizing unit <cntr_incr_decr_addn_f> ...
+
+Optimizing unit <mux_onehot_f> ...
+
+Optimizing unit <rd_wr_calc_burst> ...
+
+Optimizing unit <opb_slave> ...
+
+Optimizing unit <rd_wr_controller> ...
+WARNING:Xst:1710 - FF/Latch <opb_plbv46_bridge_0/x_plbv46_master_burst/I_RD_WR_CONTROL/sig_cmd_size_out_reg_1> (without init value) has a constant value of 0 in block <opb_plbv46_bridge_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <opb_plbv46_bridge_0/x_plbv46_master_burst/I_RD_WR_CONTROL/sig_cmd_size_out_reg_3> (without init value) has a constant value of 0 in block <opb_plbv46_bridge_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <opb_plbv46_bridge_0/x_bridge/IP2Bus_Mst_Length_10> of sequential type is unconnected in block <opb_plbv46_bridge_0_wrapper>.
+WARNING:Xst:2677 - Node <opb_plbv46_bridge_0/x_bridge/IP2Bus_Mst_Length_11> of sequential type is unconnected in block <opb_plbv46_bridge_0_wrapper>.
+WARNING:Xst:2677 - Node <opb_plbv46_bridge_0/x_plbv46_master_burst/I_RD_LLINK/sig_llsm_2plb_dest_dsc> of sequential type is unconnected in block <opb_plbv46_bridge_0_wrapper>.
+WARNING:Xst:2677 - Node <opb_plbv46_bridge_0/x_plbv46_master_burst/I_RD_LLINK/sig_llsm_rdy> of sequential type is unconnected in block <opb_plbv46_bridge_0_wrapper>.
+WARNING:Xst:2677 - Node <opb_plbv46_bridge_0/x_plbv46_master_burst/I_RD_LLINK/sig_llsm_force_src_dsc> of sequential type is unconnected in block <opb_plbv46_bridge_0_wrapper>.
+WARNING:Xst:2677 - Node <opb_plbv46_bridge_0/x_plbv46_master_burst/I_WR_LLINK/sig_ll2plb_s_h_src_dsc> of sequential type is unconnected in block <opb_plbv46_bridge_0_wrapper>.
+WARNING:Xst:2677 - Node <opb_plbv46_bridge_0/x_plbv46_master_burst/I_WR_LLINK/sig_llsm_2plb_src_dsc> of sequential type is unconnected in block <opb_plbv46_bridge_0_wrapper>.
+WARNING:Xst:2677 - Node <opb_plbv46_bridge_0/x_plbv46_master_burst/I_WR_LLINK/sig_llsm_rdy> of sequential type is unconnected in block <opb_plbv46_bridge_0_wrapper>.
+WARNING:Xst:2677 - Node <opb_plbv46_bridge_0/x_plbv46_master_burst/I_WR_LLINK/sig_llsm_dst_dsc> of sequential type is unconnected in block <opb_plbv46_bridge_0_wrapper>.
+WARNING:Xst:2677 - Node <opb_plbv46_bridge_0/x_wr_buffer/I_SRL_FIFO_RBU_F/DYNSHREG_F_I/Mshreg_Dout_0_0> of sequential type is unconnected in block <opb_plbv46_bridge_0_wrapper>.
+WARNING:Xst:2677 - Node <opb_plbv46_bridge_0/x_rd_buffer/I_SRL_FIFO_RBU_F/DYNSHREG_F_I/Mshreg_Dout_0_0> of sequential type is unconnected in block <opb_plbv46_bridge_0_wrapper>.
+WARNING:Xst:2677 - Node <opb_plbv46_bridge_0/x_rd_buffer/I_SRL_FIFO_RBU_F/DYNSHREG_F_I/Mshreg_Dout_1_0> of sequential type is unconnected in block <opb_plbv46_bridge_0_wrapper>.
+WARNING:Xst:2677 - Node <opb_plbv46_bridge_0/x_opb_slave/bfd_sof_n_cs> of sequential type is unconnected in block <opb_plbv46_bridge_0_wrapper>.
+WARNING:Xst:2677 - Node <opb_plbv46_bridge_0/x_plbv46_master_burst/I_RD_WR_CONTROL/I_REQ_CALCULATOR/dbeat_cnt_almost_done_reg> of sequential type is unconnected in block <opb_plbv46_bridge_0_wrapper>.
+WARNING:Xst:2677 - Node <opb_plbv46_bridge_0/x_plbv46_master_burst/I_RD_WR_CONTROL/sig_rdllink_rem_reg_0> of sequential type is unconnected in block <opb_plbv46_bridge_0_wrapper>.
+WARNING:Xst:2677 - Node <opb_plbv46_bridge_0/x_plbv46_master_burst/I_RD_WR_CONTROL/sig_rdllink_rem_reg_1> of sequential type is unconnected in block <opb_plbv46_bridge_0_wrapper>.
+WARNING:Xst:2677 - Node <opb_plbv46_bridge_0/x_plbv46_master_burst/I_RD_WR_CONTROL/sig_rdllink_rem_reg_2> of sequential type is unconnected in block <opb_plbv46_bridge_0_wrapper>.
+WARNING:Xst:2677 - Node <opb_plbv46_bridge_0/x_plbv46_master_burst/I_RD_WR_CONTROL/sig_rdllink_rem_reg_3> of sequential type is unconnected in block <opb_plbv46_bridge_0_wrapper>.
+
+Mapping all equations...
+Building and optimizing final netlist ...
+INFO:Xst:2261 - The FF/Latch <opb_plbv46_bridge_0/x_plbv46_master_burst/I_RD_WR_CONTROL/I_REQ_CALCULATOR/sig_wrack_reg> in Unit <opb_plbv46_bridge_0_wrapper> is equivalent to the following FF/Latch, which will be removed : <opb_plbv46_bridge_0/x_plbv46_master_burst/I_RD_WR_CONTROL/plb_mwrdack_reg> 
+INFO:Xst:2261 - The FF/Latch <opb_plbv46_bridge_0/x_plbv46_master_burst/I_RD_WR_CONTROL/sig_cmd_size_out_reg_0> in Unit <opb_plbv46_bridge_0_wrapper> is equivalent to the following FF/Latch, which will be removed : <opb_plbv46_bridge_0/x_plbv46_master_burst/I_RD_WR_CONTROL/sig_cmd_size_out_reg_2> 
+INFO:Xst:2261 - The FF/Latch <opb_plbv46_bridge_0/x_plbv46_master_burst/I_RD_WR_CONTROL/I_REQ_CALCULATOR/sig_rdack_reg> in Unit <opb_plbv46_bridge_0_wrapper> is equivalent to the following FF/Latch, which will be removed : <opb_plbv46_bridge_0/x_plbv46_master_burst/I_RD_WR_CONTROL/plb_mrddack_reg> 
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 442
+ Flip-Flops                                            : 442
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                             *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+Top Level Output File Name         : ../implementation/opb_plbv46_bridge_0_wrapper.ngc
+Output Format                      : ngc
+Optimization Goal                  : speed
+Keep Hierarchy                     : no
+
+Design Statistics
+# IOs                              : 499
+
+Cell Usage :
+# BELS                             : 797
+#      GND                         : 1
+#      INV                         : 6
+#      LUT1                        : 55
+#      LUT2                        : 88
+#      LUT3                        : 106
+#      LUT4                        : 38
+#      LUT5                        : 62
+#      LUT6                        : 130
+#      MUXCY                       : 174
+#      MUXCY_L                     : 10
+#      MUXF7                       : 18
+#      VCC                         : 1
+#      XORCY                       : 108
+# FlipFlops/Latches                : 442
+#      FD                          : 33
+#      FDC                         : 132
+#      FDCE                        : 43
+#      FDE                         : 5
+#      FDP                         : 5
+#      FDR                         : 94
+#      FDRE                        : 116
+#      FDRS                        : 2
+#      FDRSE                       : 2
+#      FDS                         : 10
+# Shift Registers                  : 65
+#      SRLC16E                     : 65
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 5vfx70tff1136-1 
+
+
+Slice Logic Utilization: 
+ Number of Slice Registers:             442  out of  44800     0%  
+ Number of Slice LUTs:                  550  out of  44800     1%  
+    Number used as Logic:               485  out of  44800     1%  
+    Number used as Memory:               65  out of  13120     0%  
+       Number used as SRL:               65
+
+Slice Logic Distribution: 
+ Number of LUT Flip Flop pairs used:    749
+   Number with an unused Flip Flop:     307  out of    749    40%  
+   Number with an unused LUT:           199  out of    749    26%  
+   Number of fully used LUT-FF pairs:   243  out of    749    32%  
+   Number of unique control sets:        47
+
+IO Utilization: 
+ Number of IOs:                         499
+ Number of bonded IOBs:                   0  out of    640     0%  
+
+Specific Feature Utilization:
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+-----------------------------------------------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)                                           | Load  |
+-----------------------------------+-----------------------------------------------------------------+-------+
+MPLB_Clk                           | NONE(opb_plbv46_bridge_0/x_wr_buffer/I_SRL_FIFO_RBU_F/FIFO_Full)| 291   |
+SOPB_clk                           | NONE(opb_plbv46_bridge_0/x_opb_slave/slave_cs_FSM_FFd2)         | 216   |
+-----------------------------------+-----------------------------------------------------------------+-------+
+INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
+
+Asynchronous Control Signals Information:
+----------------------------------------
+-----------------------------------+------------------------+-------+
+Control Signal                     | Buffer(FF name)        | Load  |
+-----------------------------------+------------------------+-------+
+SOPB_rst                           | NONE                   | 147   |
+MPLB_Rst                           | NONE                   | 33    |
+-----------------------------------+------------------------+-------+
+
+Timing Summary:
+---------------
+Speed Grade: -1
+
+   Minimum period: 4.806ns (Maximum Frequency: 208.060MHz)
+   Minimum input arrival time before clock: 3.927ns
+   Maximum output required time after clock: 1.157ns
+   Maximum combinational path delay: 0.334ns
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'MPLB_Clk'
+  Clock period: 4.097ns (frequency: 244.081MHz)
+  Total number of paths / destination ports: 3091 / 740
+-------------------------------------------------------------------------
+Delay:               4.097ns (Levels of Logic = 4)
+  Source:            opb_plbv46_bridge_0/x_plbv46_master_burst/I_WR_LLINK/sig_llsm_force_dst_rdy (FF)
+  Destination:       opb_plbv46_bridge_0/x_wr_buffer/I_SRL_FIFO_RBU_F/FIFO_Full (FF)
+  Source Clock:      MPLB_Clk rising
+  Destination Clock: MPLB_Clk rising
+
+  Data Path: opb_plbv46_bridge_0/x_plbv46_master_burst/I_WR_LLINK/sig_llsm_force_dst_rdy to opb_plbv46_bridge_0/x_wr_buffer/I_SRL_FIFO_RBU_F/FIFO_Full
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDR:C->Q              7   0.471   1.006  opb_plbv46_bridge_0/x_plbv46_master_burst/I_WR_LLINK/sig_llsm_force_dst_rdy (opb_plbv46_bridge_0/x_plbv46_master_burst/I_WR_LLINK/sig_llsm_force_dst_rdy)
+     LUT6:I1->O            1   0.094   0.000  opb_plbv46_bridge_0/x_wr_buffer/I_SRL_FIFO_RBU_F/CNTR_INCR_DECR_ADDN_F_I/Mxor_hsum_A<0>_Result1 (opb_plbv46_bridge_0/x_wr_buffer/I_SRL_FIFO_RBU_F/CNTR_INCR_DECR_ADDN_F_I/hsum_A<0>)
+     MUXCY_L:S->LO         1   0.372   0.000  opb_plbv46_bridge_0/x_wr_buffer/I_SRL_FIFO_RBU_F/CNTR_INCR_DECR_ADDN_F_I/STRUCTURAL_A_GEN.Addr_Counters[0].MUXCY_L_I (opb_plbv46_bridge_0/x_wr_buffer/I_SRL_FIFO_RBU_F/CNTR_INCR_DECR_ADDN_F_I/cry<1>)
+     XORCY:CI->O           2   0.357   0.794  opb_plbv46_bridge_0/x_wr_buffer/I_SRL_FIFO_RBU_F/CNTR_INCR_DECR_ADDN_F_I/STRUCTURAL_A_GEN.Addr_Counters[1].XORCY_I (opb_plbv46_bridge_0/x_wr_buffer/I_SRL_FIFO_RBU_F/addr_i_p1<1>)
+     LUT6:I2->O            1   0.094   0.336  opb_plbv46_bridge_0/x_wr_buffer/I_SRL_FIFO_RBU_F/FIFO_Full_or00001 (opb_plbv46_bridge_0/x_wr_buffer/I_SRL_FIFO_RBU_F/FIFO_Full_or0000)
+     FDR:R                     0.573          opb_plbv46_bridge_0/x_wr_buffer/I_SRL_FIFO_RBU_F/FIFO_Full
+    ----------------------------------------
+    Total                      4.097ns (1.961ns logic, 2.136ns route)
+                                       (47.9% logic, 52.1% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'SOPB_clk'
+  Clock period: 4.806ns (frequency: 208.060MHz)
+  Total number of paths / destination ports: 18578 / 152
+-------------------------------------------------------------------------
+Delay:               4.806ns (Levels of Logic = 14)
+  Source:            opb_plbv46_bridge_0/x_opb_slave/OPB_ABus_dly1_31 (FF)
+  Destination:       opb_plbv46_bridge_0/x_opb_slave/bfs_data_cs_0 (FF)
+  Source Clock:      SOPB_clk rising
+  Destination Clock: SOPB_clk rising
+
+  Data Path: opb_plbv46_bridge_0/x_opb_slave/OPB_ABus_dly1_31 to opb_plbv46_bridge_0/x_opb_slave/bfs_data_cs_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDC:C->Q              1   0.471   1.069  opb_plbv46_bridge_0/x_opb_slave/OPB_ABus_dly1_31 (opb_plbv46_bridge_0/x_opb_slave/OPB_ABus_dly1_31)
+     LUT6:I0->O            1   0.094   0.000  opb_plbv46_bridge_0/x_opb_slave/Mcompar_prefetch_match_ns_cmp_eq0000_lut<0> (opb_plbv46_bridge_0/x_opb_slave/Mcompar_prefetch_match_ns_cmp_eq0000_lut<0>)
+     MUXCY:S->O            1   0.372   0.000  opb_plbv46_bridge_0/x_opb_slave/Mcompar_prefetch_match_ns_cmp_eq0000_cy<0> (opb_plbv46_bridge_0/x_opb_slave/Mcompar_prefetch_match_ns_cmp_eq0000_cy<0>)
+     MUXCY:CI->O           1   0.026   0.000  opb_plbv46_bridge_0/x_opb_slave/Mcompar_prefetch_match_ns_cmp_eq0000_cy<1> (opb_plbv46_bridge_0/x_opb_slave/Mcompar_prefetch_match_ns_cmp_eq0000_cy<1>)
+     MUXCY:CI->O           1   0.026   0.000  opb_plbv46_bridge_0/x_opb_slave/Mcompar_prefetch_match_ns_cmp_eq0000_cy<2> (opb_plbv46_bridge_0/x_opb_slave/Mcompar_prefetch_match_ns_cmp_eq0000_cy<2>)
+     MUXCY:CI->O           1   0.026   0.000  opb_plbv46_bridge_0/x_opb_slave/Mcompar_prefetch_match_ns_cmp_eq0000_cy<3> (opb_plbv46_bridge_0/x_opb_slave/Mcompar_prefetch_match_ns_cmp_eq0000_cy<3>)
+     MUXCY:CI->O           1   0.026   0.000  opb_plbv46_bridge_0/x_opb_slave/Mcompar_prefetch_match_ns_cmp_eq0000_cy<4> (opb_plbv46_bridge_0/x_opb_slave/Mcompar_prefetch_match_ns_cmp_eq0000_cy<4>)
+     MUXCY:CI->O           1   0.026   0.000  opb_plbv46_bridge_0/x_opb_slave/Mcompar_prefetch_match_ns_cmp_eq0000_cy<5> (opb_plbv46_bridge_0/x_opb_slave/Mcompar_prefetch_match_ns_cmp_eq0000_cy<5>)
+     MUXCY:CI->O           1   0.026   0.000  opb_plbv46_bridge_0/x_opb_slave/Mcompar_prefetch_match_ns_cmp_eq0000_cy<6> (opb_plbv46_bridge_0/x_opb_slave/Mcompar_prefetch_match_ns_cmp_eq0000_cy<6>)
+     MUXCY:CI->O           1   0.026   0.000  opb_plbv46_bridge_0/x_opb_slave/Mcompar_prefetch_match_ns_cmp_eq0000_cy<7> (opb_plbv46_bridge_0/x_opb_slave/Mcompar_prefetch_match_ns_cmp_eq0000_cy<7>)
+     MUXCY:CI->O           1   0.026   0.000  opb_plbv46_bridge_0/x_opb_slave/Mcompar_prefetch_match_ns_cmp_eq0000_cy<8> (opb_plbv46_bridge_0/x_opb_slave/Mcompar_prefetch_match_ns_cmp_eq0000_cy<8>)
+     MUXCY:CI->O           1   0.026   0.000  opb_plbv46_bridge_0/x_opb_slave/Mcompar_prefetch_match_ns_cmp_eq0000_cy<9> (opb_plbv46_bridge_0/x_opb_slave/Mcompar_prefetch_match_ns_cmp_eq0000_cy<9>)
+     MUXCY:CI->O           6   0.254   0.507  opb_plbv46_bridge_0/x_opb_slave/Mcompar_prefetch_match_ns_cmp_eq0000_cy<10> (opb_plbv46_bridge_0/x_opb_slave/prefetch_match_ns_cmp_eq0000)
+     LUT6:I5->O            2   0.094   0.581  opb_plbv46_bridge_0/x_opb_slave/Sl_xferAck_ns169 (opb_plbv46_bridge_0/x_opb_slave/Sl_xferAck_ns169)
+     LUT6:I4->O           32   0.094   0.463  opb_plbv46_bridge_0/x_opb_slave/bfs_data_cs_and0000_inv1 (opb_plbv46_bridge_0/x_opb_slave/bfs_data_cs_and0000_inv)
+     FDR:R                     0.573          opb_plbv46_bridge_0/x_opb_slave/bfs_data_cs_31
+    ----------------------------------------
+    Total                      4.806ns (2.186ns logic, 2.620ns route)
+                                       (45.5% logic, 54.5% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'MPLB_Clk'
+  Total number of paths / destination ports: 503 / 356
+-------------------------------------------------------------------------
+Offset:              3.353ns (Levels of Logic = 4)
+  Source:            PLB_MWrDAck (PAD)
+  Destination:       opb_plbv46_bridge_0/x_wr_buffer/I_SRL_FIFO_RBU_F/FIFO_Full (FF)
+  Destination Clock: MPLB_Clk rising
+
+  Data Path: PLB_MWrDAck to opb_plbv46_bridge_0/x_wr_buffer/I_SRL_FIFO_RBU_F/FIFO_Full
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LUT6:I0->O            1   0.094   0.000  opb_plbv46_bridge_0/x_wr_buffer/I_SRL_FIFO_RBU_F/CNTR_INCR_DECR_ADDN_F_I/Mxor_hsum_A<0>_Result1 (opb_plbv46_bridge_0/x_wr_buffer/I_SRL_FIFO_RBU_F/CNTR_INCR_DECR_ADDN_F_I/hsum_A<0>)
+     MUXCY_L:S->LO         1   0.372   0.000  opb_plbv46_bridge_0/x_wr_buffer/I_SRL_FIFO_RBU_F/CNTR_INCR_DECR_ADDN_F_I/STRUCTURAL_A_GEN.Addr_Counters[0].MUXCY_L_I (opb_plbv46_bridge_0/x_wr_buffer/I_SRL_FIFO_RBU_F/CNTR_INCR_DECR_ADDN_F_I/cry<1>)
+     XORCY:CI->O           2   0.357   0.794  opb_plbv46_bridge_0/x_wr_buffer/I_SRL_FIFO_RBU_F/CNTR_INCR_DECR_ADDN_F_I/STRUCTURAL_A_GEN.Addr_Counters[1].XORCY_I (opb_plbv46_bridge_0/x_wr_buffer/I_SRL_FIFO_RBU_F/addr_i_p1<1>)
+     LUT6:I2->O            1   0.094   0.336  opb_plbv46_bridge_0/x_wr_buffer/I_SRL_FIFO_RBU_F/FIFO_Full_or00001 (opb_plbv46_bridge_0/x_wr_buffer/I_SRL_FIFO_RBU_F/FIFO_Full_or0000)
+     FDR:R                     0.573          opb_plbv46_bridge_0/x_wr_buffer/I_SRL_FIFO_RBU_F/FIFO_Full
+    ----------------------------------------
+    Total                      3.353ns (2.223ns logic, 1.130ns route)
+                                       (66.3% logic, 33.7% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'SOPB_clk'
+  Total number of paths / destination ports: 678 / 193
+-------------------------------------------------------------------------
+Offset:              3.927ns (Levels of Logic = 4)
+  Source:            OPB_seqAddr (PAD)
+  Destination:       opb_plbv46_bridge_0/x_opb_slave/bfs_data_cs_0 (FF)
+  Destination Clock: SOPB_clk rising
+
+  Data Path: OPB_seqAddr to opb_plbv46_bridge_0/x_opb_slave/bfs_data_cs_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LUT2:I0->O            1   0.094   1.069  opb_plbv46_bridge_0/x_opb_slave/bfd_eof_n_ns_or0000_SW0 (N96)
+     LUT6:I0->O            3   0.094   0.491  opb_plbv46_bridge_0/x_opb_slave/bfd_eof_n_ns_or0000 (opb_plbv46_bridge_0/x_opb_slave/bfd_eof_n_ns_or0000)
+     LUT6:I5->O            2   0.094   0.715  opb_plbv46_bridge_0/x_opb_slave/Sl_xferAck_ns97 (opb_plbv46_bridge_0/x_opb_slave/Sl_xferAck_ns97)
+     LUT6:I3->O           32   0.094   0.463  opb_plbv46_bridge_0/x_opb_slave/bfs_data_cs_and0000_inv1 (opb_plbv46_bridge_0/x_opb_slave/bfs_data_cs_and0000_inv)
+     FDR:R                     0.573          opb_plbv46_bridge_0/x_opb_slave/bfs_data_cs_31
+    ----------------------------------------
+    Total                      3.927ns (1.189ns logic, 2.738ns route)
+                                       (30.3% logic, 69.7% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'MPLB_Clk'
+  Total number of paths / destination ports: 184 / 184
+-------------------------------------------------------------------------
+Offset:              0.471ns (Levels of Logic = 0)
+  Source:            opb_plbv46_bridge_0/x_plbv46_master_burst/I_RD_WR_CONTROL/I_MD_ERROR_REG (FF)
+  Destination:       MD_Error (PAD)
+  Source Clock:      MPLB_Clk rising
+
+  Data Path: opb_plbv46_bridge_0/x_plbv46_master_burst/I_RD_WR_CONTROL/I_MD_ERROR_REG to MD_Error
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDRE:C->Q             0   0.471   0.000  opb_plbv46_bridge_0/x_plbv46_master_burst/I_RD_WR_CONTROL/I_MD_ERROR_REG (MD_Error)
+    ----------------------------------------
+    Total                      0.471ns (0.471ns logic, 0.000ns route)
+                                       (100.0% logic, 0.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'SOPB_clk'
+  Total number of paths / destination ports: 35 / 35
+-------------------------------------------------------------------------
+Offset:              1.157ns (Levels of Logic = 1)
+  Source:            opb_plbv46_bridge_0/x_opb_slave/Sl_xferAck_cs (FF)
+  Destination:       Sl_xferAck (PAD)
+  Source Clock:      SOPB_clk rising
+
+  Data Path: opb_plbv46_bridge_0/x_opb_slave/Sl_xferAck_cs to Sl_xferAck
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDC:C->Q              4   0.471   0.592  opb_plbv46_bridge_0/x_opb_slave/Sl_xferAck_cs (opb_plbv46_bridge_0/x_opb_slave/Sl_xferAck_cs)
+     LUT2:I0->O            0   0.094   0.000  opb_plbv46_bridge_0/x_opb_slave/Sl_xferAck1 (Sl_xferAck)
+    ----------------------------------------
+    Total                      1.157ns (0.565ns logic, 0.592ns route)
+                                       (48.8% logic, 51.2% route)
+
+=========================================================================
+Timing constraint: Default path analysis
+  Total number of paths / destination ports: 35 / 35
+-------------------------------------------------------------------------
+Delay:               0.334ns (Levels of Logic = 1)
+  Source:            OPB_Select (PAD)
+  Destination:       Sl_DBus<0> (PAD)
+
+  Data Path: OPB_Select to Sl_DBus<0>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LUT2:I0->O            0   0.094   0.000  opb_plbv46_bridge_0/x_opb_slave/Sl_DBus<9>1 (Sl_DBus<9>)
+    ----------------------------------------
+    Total                      0.334ns (0.334ns logic, 0.000ns route)
+                                       (100.0% logic, 0.0% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 30.00 secs
+Total CPU time to Xst completion: 29.65 secs
+ 
+--> 
+
+
+Total memory usage is 792124 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :  230 (   0 filtered)
+Number of infos    :   14 (   0 filtered)
+

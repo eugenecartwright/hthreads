@@ -1,0 +1,24 @@
+################################################################################
+# File:     src/software/profile/storage/Jamfile
+# Author:   Wesley Peck
+# Date:     23 February 2007
+#
+# Desc:     This is the Jam build file for the storage subdirectory of 
+#           the Hthreads project. This file instructs the Jam build system on
+#           how to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (23 February 2007) Jam file initially created
+################################################################################
+SubDir TOP src software profile storage ;
+LOCATE_TARGET = software/profile/storage ;
+
+################################################################################
+# Add the user code sources to the Hthreads library
+################################################################################
+Hobjects [ Hglob *.c ] ;
+
+################################################################################
+# Add the object files to the hthreads library
+################################################################################
+Hlib hthread : [ Hglob *.c : .o ] ;

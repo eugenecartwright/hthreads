@@ -1,0 +1,26 @@
+################################################################################
+# File:     src/software/drivers/ethlite/Jamfile
+# Author:   Wesley Peck
+# Date:     25 October 2006
+#
+# Desc:     This is the Jam build file for the ethlite driver subdirectory of
+#           the Hthreads project. This file instructs the Jam build system on
+#           how to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (25 October 2006) Jam file initially created
+################################################################################
+SubDir TOP src software drivers ethlite ;
+LOCATE_TARGET = software$(SLASH)drivers$(SLASH)ethlite ;
+
+################################################################################
+# Compile the source files into object files
+################################################################################
+Hsysobject ethlite.o : ethlite.c ;
+Hsysobject netif.o   : netif.c ;
+
+################################################################################
+# Add the object files to the hthreads library
+################################################################################
+Hlib hthread : ethlite.o ;
+Hlib hthread : netif.o ;

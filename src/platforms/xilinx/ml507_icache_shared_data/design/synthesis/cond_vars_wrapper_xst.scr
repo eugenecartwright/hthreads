@@ -1,0 +1,12 @@
+run
+-opt_mode speed
+-netlist_hierarchy as_optimized
+-opt_level 1
+-p xc5vfx70tff1136-1
+-top cond_vars_wrapper
+-ifmt MIXED
+-ifn cond_vars_wrapper_xst.prj
+-ofn ../implementation/cond_vars_wrapper.ngc
+-hierarchy_separator /
+-iobuf NO
+-sd {../implementation/cond_vars_wrapper}

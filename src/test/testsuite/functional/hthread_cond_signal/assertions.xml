@@ -1,0 +1,31 @@
+<assertions>
+  <assertion id="1">
+  The function hthread_cond_signal(hthread_cond_t *cond); shall unblock at least
+  one of the threads currently blocked on the specified condition variable cond.
+  </assertion>
+
+  <assertion id="2">
+  When each thread unblocked as a result of a hthread_cond_signal() returns from
+  its call to hthread_cond_wait(), the thread shall own the mutex with which it
+  called hthread_cond_wait().
+  </assertion>
+
+  <assertion id="3">
+  The hthread_cond_signal() functions shall have no effect if there are
+  no threads currently blocked on cond.
+  
+  Not testable
+  </assertion> 
+
+  <assertion id="4">
+  If successful, the hthread_cond_signal() function shall return zero;
+  </assertion> 
+
+  <assertion id="5" tag="ref:XSH6:32264:32266">
+  The hthread_cond_signal() function may fail if:
+  [EINVAL] The value cond does not refer to an initialized condition variable.
+  These functions shall not return an error code of [EINTR].
+  Not testable, this is more of a stress test
+  </assertion> 
+
+</assertions>

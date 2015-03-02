@@ -1,0 +1,948 @@
+#Please do not modify this file by hand
+XmpVersion: 12.3
+VerMgmt: 12.3
+IntStyle: default
+ModuleSearchPath: ../../../../../src/hardware
+MHS File: system.mhs
+MSS File: system.mss
+Architecture: virtex6
+Device: xc6vlx240t
+Package: ff1156
+SpeedGrade: -1
+UserCmd1: 
+UserCmd1Type: 0
+UserCmd2: 
+UserCmd2Type: 0
+GenSimTB: 0
+SdkExportBmmBit: 1
+SdkExportDir: SDK/SDK_Export
+InsertNoPads: 0
+WarnForEAArch: 1
+HdlLang: VHDL
+SimModel: BEHAVIORAL
+UcfFile: data/system.ucf
+EnableParTimingError: 1
+ShowLicenseDialog: 1
+LockAddr: cond_vars,C_BASEADDR
+LockAddr: scheduler,C_BASEADDR
+LockAddr: sync_manager,C_BASEADDR
+LockAddr: thread_manager,C_BASEADDR
+ICacheAddr: DDR3_SDRAM,
+Processor: microblaze_0
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_1
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_2
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_3
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_4
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_5
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_6
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_7
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_8
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_9
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_10
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_11
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_12
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_13
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_14
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_15
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_16
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_17
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_18
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_19
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_20
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_21
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_22
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_23
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_24
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_25
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_26
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_27
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_28
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_29
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_30
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_31
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_32
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_33
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_34
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_35
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_36
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_37
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_38
+BootLoop: 0
+XmdStub: 0
+Processor: microblaze_39
+BootLoop: 0
+XmdStub: 0
+SwProj: CoreTest
+Processor: microblaze_0
+Executable: CoreTest/executable.elf
+Source: CoreTest.c
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: 
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT1
+Processor: microblaze_1
+Executable: MB_HWT1/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT2
+Processor: microblaze_2
+Executable: MB_HWT2/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT3
+Processor: microblaze_3
+Executable: MB_HWT3/executable.elf
+Source: my_sw/proc_hw_thread.c
+Source: my_sw/hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT4
+Processor: microblaze_4
+Executable: MB_HWT4/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT5
+Processor: microblaze_5
+Executable: MB_HWT5/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT6
+Processor: microblaze_6
+Executable: MB_HWT6/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT7
+Processor: microblaze_7
+Executable: MB_HWT7/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT8
+Processor: microblaze_8
+Executable: MB_HWT8/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT9
+Processor: microblaze_9
+Executable: MB_HWT9/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT10
+Processor: microblaze_10
+Executable: MB_HWT10/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT11
+Processor: microblaze_11
+Executable: MB_HWT11/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT12
+Processor: microblaze_12
+Executable: MB_HWT12/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT13
+Processor: microblaze_13
+Executable: MB_HWT13/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT14
+Processor: microblaze_14
+Executable: MB_HWT14/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT15
+Processor: microblaze_15
+Executable: MB_HWT15/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT16
+Processor: microblaze_16
+Executable: MB_HWT16/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT17
+Processor: microblaze_17
+Executable: MB_HWT17/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT18
+Processor: microblaze_18
+Executable: MB_HWT18/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT19
+Processor: microblaze_19
+Executable: MB_HWT19/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT20
+Processor: microblaze_20
+Executable: MB_HWT20/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT21
+Processor: microblaze_21
+Executable: MB_HWT21/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT22
+Processor: microblaze_22
+Executable: MB_HWT22/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT23
+Processor: microblaze_23
+Executable: MB_HWT23/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT24
+Processor: microblaze_24
+Executable: MB_HWT24/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT25
+Processor: microblaze_25
+Executable: MB_HWT25/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT26
+Processor: microblaze_26
+Executable: MB_HWT26/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT27
+Processor: microblaze_27
+Executable: MB_HWT27/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT28
+Processor: microblaze_28
+Executable: MB_HWT28/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT29
+Processor: microblaze_29
+Executable: MB_HWT29/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT30
+Processor: microblaze_30
+Executable: MB_HWT30/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT31
+Processor: microblaze_31
+Executable: MB_HWT31/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT32
+Processor: microblaze_32
+Executable: MB_HWT32/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT33
+Processor: microblaze_33
+Executable: MB_HWT33/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT34
+Processor: microblaze_34
+Executable: MB_HWT34/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT35
+Processor: microblaze_35
+Executable: MB_HWT35/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT36
+Processor: microblaze_36
+Executable: MB_HWT36/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT37
+Processor: microblaze_37
+Executable: MB_HWT37/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT38
+Processor: microblaze_38
+Executable: MB_HWT38/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: MB_HWT39
+Processor: microblaze_39
+Executable: MB_HWT39/executable.elf
+Source: my_sw/hw_thread.c
+Source: my_sw/proc_hw_thread.c
+Header: my_sw/proc_hw_thread.h
+DefaultInit: executable
+InitBram: 1
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: my_sw/fast_lmb_linkerscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0

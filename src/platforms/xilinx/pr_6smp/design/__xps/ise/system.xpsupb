@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+
+<Update_bits_deps>
+
+  <Version XPSPNVER="1.0" EDKVER="12.3" />
+  <FPGA family="virtex6" device="xc6vlx240t" package="ff1156" speedgrade="-1" />
+  <File Type="MHS" URL="../../system.mhs" />
+  <File Type="UCF" URL="../../data/system.ucf" />
+  <File Type="LibgenOpt" URL="../libgen.opt" />
+  <File Type="BitinitOpt" URL="../bitinit.opt" />
+  <File Type="ELF" URL="../../CoreTest/executable.elf" />
+  <File Type="ELF" URL="../../MB_HWT0/executable.elf" />
+  <File Type="ELF" URL="../../MB_HWT1/executable.elf" />
+  <File Type="ELF" URL="../../MB_HWT2/executable.elf" />
+  <File Type="ELF" URL="../../MB_HWT3/executable.elf" />
+  <File Type="ELF" URL="../../MB_HWT4/executable.elf" />
+  <File Type="ELF" URL="../../MB_HWT5/executable.elf" />
+
+
+</Update_bits_deps>

@@ -1,0 +1,41 @@
+################################################################################
+# File:     src/archs/mblaze/src/Jamfile
+# Author:   Seth Warn (based on work by Wesley Peck)
+# Date:     May 11, 2009
+#
+# Desc:     This is the Jam build file for the microblaze subdirectory of the
+#           Hthreads project. This file instructs the Jam build system on
+#           how to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+################################################################################
+SubDir TOP src archs mblaze src ;
+LOCATE_TARGET = archs$(SLASH)mblaze ;
+
+################################################################################
+# Compile the source files in this directory
+################################################################################
+
+#Hsysobject context.o    : context.S ;
+Hsysobject syscall.o    : syscall.S ;
+Hsysobject crt0.o       : crt0-smp.S ;
+#Hsysobject init.o       : init.c ;
+Hsysobject arch.o       : arch.c ;
+#Hsysobject interrupt.o  : interrupt.c ;
+
+################################################################################
+# Add the object files to the hthreads library
+################################################################################
+
+#Hlib hthread : context.o ;
+Hlib hthread : syscall.o ;
+#Hlib hthread : crt0.o ;
+#Hlib hthread : init.o ;
+Hlib hthread : arch.o ;
+#Hlib hthread : interrupt.o ;
+
+################################################################################
+# Place the crt0.o file directly into the lib directory
+################################################################################
+Depends <lib>crt0.o :  <src!archs!mblaze!src>crt0.o ;
+Hlocate <src!archs!mblaze!src>crt0.o : [ Hlibdir $(LOCATE_TARGET) ] ;

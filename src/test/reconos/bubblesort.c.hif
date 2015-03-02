@@ -1,0 +1,74 @@
+#### GCC-generated HTHREADS Hardware Intermediate Form
+
+#### Created from bubblesort.c line 17
+@function @void bubblesort 
+
+	# Argument declaration section
+	@param @pointer @unsigned @int 32 hif_array 
+	@param @unsigned @int 32 hif_len 
+
+	# Variable declaration section
+	@declare @unsigned @int 32 hif_n_new 
+	@declare @unsigned @int 32 hif_n 
+	@declare @unsigned @int 32 hif_i 
+	@declare @signed @int 32 hif_swapped 
+	@declare @unsigned @int 32 hif_D.1301
+	@declare @pointer @unsigned @int 32 hif_D.1300
+	@declare @pointer @unsigned @int 32 hif_D.1299
+	@declare @pointer @unsigned @int 32 hif_D.1298
+	@declare @unsigned @int 32 hif_D.1297
+	@declare @pointer @unsigned @int 32 hif_D.1296
+	@declare @pointer @unsigned @int 32 hif_D.1295
+	@declare @unsigned @int 32 hif_D.1294
+
+	@sub hif_n hif_len 1 
+	@mov hif_n_new hif_n 
+	@mov hif_swapped 0 
+	@mov hif_i 0 
+	@goto HIFL9
+	@label HIFL1: 
+	@mul hif_D.1294 hif_i 4 
+	@castmov hif_D.1295 hif_D.1294 
+	@add hif_D.1296 hif_D.1295 hif_array 
+	@read hif_D.1297 hif_D.1296 0 
+	@castmov hif_D.1298 hif_D.1294 
+	@add hif_D.1299 hif_array hif_D.1298 
+	@add hif_D.1300 hif_D.1299 4B 
+	@read hif_D.1301 hif_D.1300 0 
+	@if hif_D.1297 <= hif_D.1301 @goto hif_label0
+		@goto HIFL2
+
+	@label hif_label0 : #else
+		@goto HIFL3
+	@label hif_label1 : #end if
+
+	@label HIFL2: 
+	@write hif_D.1296 0 hif_D.1301 
+	@write hif_D.1300 0 hif_D.1297 
+	@mov hif_n_new hif_i 
+	@mov hif_swapped 1 
+	@label HIFL3: 
+	@add hif_i hif_i 1 
+	@label HIFL9: 
+	@if hif_i >= hif_n @goto hif_label2
+		@goto HIFL1
+
+	@label hif_label2 : #else
+		@goto HIFL6
+	@label hif_label3 : #end if
+
+	@label HIFL6: 
+	@if hif_swapped == 0 @goto hif_label4
+		@goto HIFL12
+
+	@label hif_label4 : #else
+		@goto HIFL7
+	@label hif_label5 : #end if
+
+	@label HIFL12: 
+	@mov hif_n hif_n_new 
+	@mov hif_swapped 0 
+	@mov hif_i 0 
+	@goto HIFL9
+	@label HIFL7: 
+	@return 

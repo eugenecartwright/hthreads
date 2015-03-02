@@ -1,0 +1,37 @@
+<assertions>
+  <assertion id="1">
+   The hthread_create(hthread_t * thread, hthread_attr_t * attr, void
+   *start_routine, void * arg); creates a new thread, with attributes specified
+   by 'attr', within a process.
+  </assertion>
+  
+  <assertion id="2">
+   If 'attr' is NULL, the default attributes shall be used. The attribute that
+   will be tested is the detached state, because that is the only state that has
+   a default listed in the specification.
+  </assertion>
+  
+  <assertion id="3">
+   If the attributes specified by 'attr' are modified later after the thread 
+   is create, the thread's attributes should not be affected.
+  </assertion>
+  
+  <assertion id="4">
+   If success, hthread_create() will store the ID of the the created thread in
+   the location referenced by 'thread'.
+  </assertion>
+  
+  <assertion id="5">
+   The thread is created executing with 'arg' as its only argument.
+  </assertion>
+  
+  <assertion id="6">
+  If the 'start_routine' returns, the effect shall be as if there was an
+  implicit call to hthread_exit() using the return value of 'start_routine' as
+  the exit status.  
+  </assertion>
+  
+  <assertion id="12">
+  If success, hthread_create() returns zero.  
+  </assertion>
+</assertions>

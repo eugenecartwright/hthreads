@@ -1,0 +1,22 @@
+microblaze_38
+MB_HWT38_SOURCES = my_sw/hw_thread.c my_sw/proc_hw_thread.c 
+MB_HWT38_HEADERS = my_sw/proc_hw_thread.h 
+MB_HWT38_CC = mb-gcc
+MB_HWT38_CC_SIZE = mb-size
+MB_HWT38_CC_OPT = -O2
+MB_HWT38_CFLAGS = 
+MB_HWT38_CC_SEARCH = # -B
+MB_HWT38_LIBPATH = -L./microblaze_38/lib/ # -L
+MB_HWT38_INCLUDES = -I./microblaze_38/include/  -Imy_sw/ # -I
+MB_HWT38_LFLAGS = # -l
+MB_HWT38_LINKER_SCRIPT = my_sw/fast_lmb_linkerscript.ld
+MB_HWT38_CC_DEBUG_FLAG =  -g 
+MB_HWT38_CC_PROFILE_FLAG = # -pg
+MB_HWT38_CC_GLOBPTR_FLAG= # -mxl-gp-opt
+MB_HWT38_MODE = executable
+MB_HWT38_LIBG_OPT = -$(MB_HWT38_MODE) microblaze_38
+MB_HWT38_CC_INFERRED_FLAGS= -mno-xl-soft-mul -mhard-float -mxl-barrel-shift -mno-xl-soft-div -mcpu=v8.00.a 
+MB_HWT38_CC_START_ADDR_FLAG=  #  # -Wl,-defsym -Wl,_TEXT_START_ADDR=
+MB_HWT38_CC_STACK_SIZE_FLAG=  #  # -Wl,-defsym -Wl,_STACK_SIZE=
+MB_HWT38_CC_HEAP_SIZE_FLAG=  #  # -Wl,-defsym -Wl,_HEAP_SIZE=
+                  $(MB_HWT38_CC_INFERRED_FLAGS)  \

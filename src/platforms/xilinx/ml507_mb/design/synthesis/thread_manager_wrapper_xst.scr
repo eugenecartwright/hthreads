@@ -1,0 +1,12 @@
+run
+-opt_mode speed
+-netlist_hierarchy as_optimized
+-opt_level 1
+-p xc5vfx70tff1136-1
+-top thread_manager_wrapper
+-ifmt MIXED
+-ifn thread_manager_wrapper_xst.prj
+-ofn ../implementation/thread_manager_wrapper.ngc
+-hierarchy_separator /
+-iobuf NO
+-sd {../implementation/thread_manager_wrapper}

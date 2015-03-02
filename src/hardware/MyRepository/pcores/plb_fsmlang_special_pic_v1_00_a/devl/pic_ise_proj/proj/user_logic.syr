@@ -1,0 +1,917 @@
+Release 10.1.03 - xst K.39 (lin64)
+Copyright (c) 1995-2008 Xilinx, Inc.  All rights reserved.
+--> 
+Parameter TMPDIR set to /home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/devl/pic_ise_proj/proj/xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.06 secs
+ 
+--> 
+Parameter xsthdpdir set to /home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/devl/pic_ise_proj/proj/xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.06 secs
+ 
+--> 
+Reading design: user_logic.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+     9.1) Device utilization summary
+     9.2) Partition Resource Summary
+     9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "user_logic.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "user_logic"
+Output Format                      : NGC
+Target Device                      : xc5vfx70t-1-ff1136
+
+---- Source Options
+Top Module Name                    : user_logic
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : lut
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : YES
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : YES
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Use DSP Block                      : auto
+Automatic Register Balancing       : No
+
+---- Target Options
+LUT Combining                      : off
+Reduce Control Sets                : off
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 32
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Auto
+Use Synchronous Set                : Auto
+Use Synchronous Reset              : Auto
+Pack IO Registers into IOBs        : auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Power Reduction                    : NO
+Library Search Order               : user_logic.lso
+Keep Hierarchy                     : NO
+Netlist Hierarchy                  : as_optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+DSP48 Utilization Ratio            : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+WARNING:HDLParsers:3607 - Unit work/infer_bram is now defined in a different file.  It was defined in "/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/INTC.vhd", and is now defined in "/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/PIC.vhd".
+WARNING:HDLParsers:3607 - Unit work/infer_bram/implementation is now defined in a different file.  It was defined in "/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/INTC.vhd", and is now defined in "/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/PIC.vhd".
+WARNING:HDLParsers:3607 - Unit work/infer_bram is now defined in a different file.  It was defined in "/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/PIC.vhd", and is now defined in "/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/INTC.vhd".
+WARNING:HDLParsers:3607 - Unit work/infer_bram/implementation is now defined in a different file.  It was defined in "/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/PIC.vhd", and is now defined in "/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/INTC.vhd".
+Compiling vhdl file "/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/INTC.vhd" in Library work.
+Entity <intc> compiled.
+Entity <intc> (Architecture <implementation>) compiled.
+Entity <infer_bram> compiled.
+Entity <infer_bram> (Architecture <implementation>) compiled.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/gen_srlfifo.vhd" in Library fsl_v20_v2_11_a.
+Architecture imp of Entity srl_fifo is up to date.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/gen_sync_dpram.vhd" in Library fsl_v20_v2_11_a.
+Architecture syn of Entity sync_dpram is up to date.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/gen_sync_bram.vhd" in Library fsl_v20_v2_11_a.
+Architecture syn of Entity sync_bram is up to date.
+Compiling vhdl file "/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/PIC.vhd" in Library work.
+Architecture implementation of Entity pic is up to date.
+Architecture implementation of Entity infer_bram is up to date.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/sync_fifo.vhd" in Library fsl_v20_v2_11_a.
+Architecture vhdl_rtl of Entity sync_fifo is up to date.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/async_fifo.vhd" in Library fsl_v20_v2_11_a.
+Architecture vhdl_rtl of Entity async_fifo is up to date.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/async_fifo_bram.vhd" in Library fsl_v20_v2_11_a.
+Architecture imp of Entity async_fifo_bram is up to date.
+Compiling vhdl file "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/fsl_v20.vhd" in Library fsl_v20_v2_11_a.
+Architecture imp of Entity fsl_v20 is up to date.
+Compiling vhdl file "/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/complete_pic.vhd" in Library work.
+Architecture implementation of Entity complete_pic is up to date.
+Compiling vhdl file "/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/user_logic.vhd" in Library work.
+Architecture imp of Entity user_logic is up to date.
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for entity <user_logic> in library <work> (architecture <imp>) with generics.
+	C_CMD_WIDTH = 4
+	C_IID_WIDTH = 3
+	C_MST_AWIDTH = 32
+	C_MST_DWIDTH = 32
+	C_NUM_INTERRUPTS = 8
+	C_NUM_REG = 5
+	C_REG_SIZE = 9
+	C_SLV_DWIDTH = 32
+	C_TM_BASE = "00010001000000000000000000000000"
+
+Analyzing hierarchy for entity <complete_pic> in library <work> (architecture <implementation>) with generics.
+	CMD_WIDTH = 4
+	C_NUM_INTERRUPTS = 8
+	IID_WIDTH = 3
+	REG_SIZE = 9
+
+Analyzing hierarchy for entity <fsl_v20> in library <fsl_v20_v2_11_a> (architecture <imp>) with generics.
+	C_ASYNC_CLKS = 0
+	C_EXT_RESET_HIGH = 1
+	C_FSL_DEPTH = 256
+	C_FSL_DWIDTH = 8
+	C_IMPL_STYLE = 1
+	C_READ_CLOCK_PERIOD = 0
+	C_USE_CONTROL = 0
+
+Analyzing hierarchy for entity <PIC> in library <work> (architecture <implementation>) with generics.
+	CMD_WIDTH = 4
+	C_NUM_INTERRUPTS = 8
+	IID_WIDTH = 3
+	REG_SIZE = 9
+
+Analyzing hierarchy for entity <INTC> in library <work> (architecture <implementation>) with generics.
+	C_NUM_INTERRUPTS = 8
+	NEW_IID_WIDTH = 3
+
+Analyzing hierarchy for entity <Sync_FIFO> in library <fsl_v20_v2_11_a> (architecture <vhdl_rtl>) with generics.
+	C_IMPL_STYLE = 1
+	MemSize = 256
+	WordSize = 8
+
+Analyzing hierarchy for entity <infer_bram> in library <work> (architecture <implementation>) with generics.
+	ADDRESS_BITS = 3
+	DATA_BITS = 9
+
+Analyzing hierarchy for entity <Sync_BRAM> in library <fsl_v20_v2_11_a> (architecture <syn>) with generics.
+	C_AWIDTH = 8
+	C_DWIDTH = 8
+
+WARNING:Xst:2591 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/fsl_v20.vhd" line 216: attribute on instance <INIT> overrides generic/parameter on component. It is possible that simulator will not take this attribute into account.
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing generic Entity <user_logic> in library <work> (Architecture <imp>).
+	C_CMD_WIDTH = 4
+	C_IID_WIDTH = 3
+	C_MST_AWIDTH = 32
+	C_MST_DWIDTH = 32
+	C_NUM_INTERRUPTS = 8
+	C_NUM_REG = 5
+	C_REG_SIZE = 9
+	C_SLV_DWIDTH = 32
+	C_TM_BASE = "00010001000000000000000000000000"
+WARNING:Xst:753 - "/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/user_logic.vhd" line 475: Unconnected output port 'FSL_Rst' of component 'fsl_v20'.
+WARNING:Xst:753 - "/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/user_logic.vhd" line 475: Unconnected output port 'FSL_S_Control' of component 'fsl_v20'.
+WARNING:Xst:753 - "/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/user_logic.vhd" line 475: Unconnected output port 'FSL_Full' of component 'fsl_v20'.
+WARNING:Xst:753 - "/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/user_logic.vhd" line 475: Unconnected output port 'FSL_Control_IRQ' of component 'fsl_v20'.
+INFO:Xst:2679 - Register <mst_cmd_sm_wr_req> in unit <user_logic> has a constant value of 0 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <mst_cmd_sm_bus_lock> in unit <user_logic> has a constant value of 0 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <mst_cmd_sm_reset> in unit <user_logic> has a constant value of 0 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <RETURN_bit_set_2$mux0005> in unit <user_logic> has a constant value of 1 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <RETURN_bit_set_3$mux0005> in unit <user_logic> has a constant value of 1 during circuit operation. The register is replaced by logic.
+Entity <user_logic> analyzed. Unit <user_logic> generated.
+
+Analyzing generic Entity <complete_pic> in library <work> (Architecture <implementation>).
+	CMD_WIDTH = 4
+	C_NUM_INTERRUPTS = 8
+	IID_WIDTH = 3
+	REG_SIZE = 9
+Entity <complete_pic> analyzed. Unit <complete_pic> generated.
+
+Analyzing generic Entity <PIC> in library <work> (Architecture <implementation>).
+	CMD_WIDTH = 4
+	C_NUM_INTERRUPTS = 8
+	IID_WIDTH = 3
+	REG_SIZE = 9
+WARNING:Xst:790 - "/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/PIC.vhd" line 390: Index value(s) does not match array range, simulation mismatch.
+WARNING:Xst:790 - "/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/PIC.vhd" line 391: Index value(s) does not match array range, simulation mismatch.
+WARNING:Xst:790 - "/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/PIC.vhd" line 402: Index value(s) does not match array range, simulation mismatch.
+WARNING:Xst:790 - "/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/PIC.vhd" line 405: Index value(s) does not match array range, simulation mismatch.
+Entity <PIC> analyzed. Unit <PIC> generated.
+
+Analyzing generic Entity <infer_bram> in library <work> (Architecture <implementation>).
+	ADDRESS_BITS = 3
+	DATA_BITS = 9
+Entity <infer_bram> analyzed. Unit <infer_bram> generated.
+
+Analyzing generic Entity <INTC> in library <work> (Architecture <implementation>).
+	C_NUM_INTERRUPTS = 8
+	NEW_IID_WIDTH = 3
+Entity <INTC> analyzed. Unit <INTC> generated.
+
+Analyzing generic Entity <fsl_v20> in library <fsl_v20_v2_11_a> (Architecture <imp>).
+	C_ASYNC_CLKS = 0
+	C_EXT_RESET_HIGH = 1
+	C_FSL_DEPTH = 256
+	C_FSL_DWIDTH = 8
+	C_IMPL_STYLE = 1
+	C_READ_CLOCK_PERIOD = 0
+	C_USE_CONTROL = 0
+    Set user-defined property "INIT =  FFFF" for instance <POR_SRL_I> in unit <fsl_v20>.
+    Set user-defined property "INIT =  1" for instance <POR_FF_I> in unit <fsl_v20>.
+Entity <fsl_v20> analyzed. Unit <fsl_v20> generated.
+
+Analyzing generic Entity <Sync_FIFO> in library <fsl_v20_v2_11_a> (Architecture <vhdl_rtl>).
+	C_IMPL_STYLE = 1
+	MemSize = 256
+	WordSize = 8
+WARNING:Xst:753 - "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/sync_fifo.vhd" line 338: Unconnected output port 'spo' of component 'Sync_BRAM'.
+Entity <Sync_FIFO> analyzed. Unit <Sync_FIFO> generated.
+
+Analyzing generic Entity <Sync_BRAM> in library <fsl_v20_v2_11_a> (Architecture <syn>).
+	C_AWIDTH = 8
+	C_DWIDTH = 8
+Entity <Sync_BRAM> analyzed. Unit <Sync_BRAM> generated.
+
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+
+Synthesizing Unit <INTC>.
+    Related source file is "/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/INTC.vhd".
+    Found 8-bit register for signal <accum_int>.
+    Found 1-bit register for signal <current_state<0>>.
+    Found 8-bit register for signal <interrupts_d>.
+    Found 8-bit register for signal <local_int>.
+    Found 8-bit register for signal <pending>.
+    Summary:
+	inferred  33 D-type flip-flop(s).
+Unit <INTC> synthesized.
+
+
+Synthesizing Unit <infer_bram>.
+    Related source file is "/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/PIC.vhd".
+    Found 8x9-bit single-port RAM <Mram_BRAM_DATA> for signal <BRAM_DATA>.
+    Found 9-bit register for signal <DOA>.
+    Found 9-bit register for signal <DOB>.
+    Summary:
+	inferred   1 RAM(s).
+	inferred  18 D-type flip-flop(s).
+Unit <infer_bram> synthesized.
+
+
+Synthesizing Unit <Sync_BRAM>.
+    Related source file is "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/gen_sync_bram.vhd".
+    Found 256x8-bit dual-port RAM <Mram_ram_mem> for signal <ram_mem>.
+    Found 256x8-bit dual-port RAM <Mram_ram_mem_ren> for signal <ram_mem>.
+    Found 8-bit register for signal <read_a>.
+    Found 8-bit register for signal <read_dpra>.
+    Summary:
+	inferred   2 RAM(s).
+	inferred  16 D-type flip-flop(s).
+Unit <Sync_BRAM> synthesized.
+
+
+Synthesizing Unit <PIC>.
+    Related source file is "/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/PIC.vhd".
+WARNING:Xst:647 - Input <msg_chan_exists> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <msg_chan_channelDataOut> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:646 - Signal <array_dOUT1> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found finite state machine <FSM_0> for signal <currenty_state>.
+    -----------------------------------------------------------------------
+    | States             | 19                                             |
+    | Transitions        | 29                                             |
+    | Inputs             | 9                                              |
+    | Outputs            | 15                                             |
+    | Clock              | clock_sig (rising_edge)                        |
+    | Reset              | reset_sig (positive)                           |
+    | Reset type         | synchronous                                    |
+    | Reset State        | reset                                          |
+    | Power Up State     | reset                                          |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 3-bit subtractor for signal <array_addr0$addsub0000> created at line 392.
+    Found 1-bit register for signal <busy>.
+    Found 9-bit register for signal <cur_mem_reg>.
+    Found 5-bit comparator lessequal for signal <currenty_state$cmp_le0000> created at line 402.
+    Found 4-bit comparator less for signal <currenty_state$cmp_lt0000> created at line 367.
+    Found 8-bit register for signal <iar_sig>.
+    Found 4-bit subtractor for signal <iar_sig_next$sub0000> created at line 390.
+    Found 8-bit register for signal <ier_sig>.
+    Found 3-bit register for signal <mem_addr_counter>.
+    Found 3-bit adder for signal <mem_addr_counter$addsub0000> created at line 368.
+    Found 8-bit register for signal <reg_out>.
+    Found 8-bit register for signal <retcode>.
+    Found 4-bit register for signal <rupt_addr_counter>.
+    Found 4-bit adder for signal <rupt_addr_counter$share0000> created at line 310.
+    Found 1-bit 8-to-1 multiplexer for signal <RUPT_IN$mux0000> created at line 402.
+    Summary:
+	inferred   1 Finite State Machine(s).
+	inferred  49 D-type flip-flop(s).
+	inferred   4 Adder/Subtractor(s).
+	inferred   2 Comparator(s).
+	inferred   1 Multiplexer(s).
+Unit <PIC> synthesized.
+
+
+Synthesizing Unit <Sync_FIFO>.
+    Related source file is "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/sync_fifo.vhd".
+    Found 1-bit register for signal <Exists>.
+    Found 9-bit updown counter for signal <fifo_length>.
+    Found 1-bit register for signal <first_write_on_empty_fifo>.
+    Found 8-bit up counter for signal <read_addr_ptr>.
+    Found 8-bit up counter for signal <write_addr_ptr>.
+    Summary:
+	inferred   3 Counter(s).
+	inferred   2 D-type flip-flop(s).
+Unit <Sync_FIFO> synthesized.
+
+
+Synthesizing Unit <complete_pic>.
+    Related source file is "/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/complete_pic.vhd".
+Unit <complete_pic> synthesized.
+
+
+Synthesizing Unit <fsl_v20>.
+    Related source file is "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/fsl_v20.vhd".
+WARNING:Xst:647 - Input <FSL_M_Clk> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <FSL_S_Clk> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <FSL_M_Control> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:1780 - Signal <Data_Out<8>> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <Data_In<8>> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+Unit <fsl_v20> synthesized.
+
+
+Synthesizing Unit <user_logic>.
+    Related source file is "/home/abaez/svn_hthreads/mb_port/src/hardware/MyRepository/pcores/plb_fsmlang_special_pic_v1_00_a/hdl/vhdl/user_logic.vhd".
+WARNING:Xst:647 - Input <Bus2IP_MstRd_src_rdy_n> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <Bus2IP_MstRd_d> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <Bus2IP_Data> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <Bus2IP_MstWr_dst_rdy_n> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <Bus2IP_Addr<0:11>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <Bus2IP_Addr<27:31>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <Bus2IP_BE> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <Bus2IP_Mst_Rearbitrate> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:1780 - Signal <mst_ip2bus_data> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <mst_fifo_valid_write_xfer> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <mst_fifo_valid_read_xfer> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <mst_cmd_sm_set_timeout> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <mst_cmd_sm_set_error> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <mst_cmd_sm_set_done> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <mst_cmd_sm_clr_go> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <mst_cmd_sm_busy> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:653 - Signal <msg_chan_exists> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+WARNING:Xst:646 - Signal <msg_chan_channelRead> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:653 - Signal <msg_chan_channelDataOut> is used but never assigned. This sourceless signal will be automatically connected to value 00000000.
+WARNING:Xst:646 - Signal <IP2Bus_MstRdReq> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <IP2Bus_Addr> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <FSL_Has_Data> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found finite state machine <FSM_1> for signal <current_state>.
+    -----------------------------------------------------------------------
+    | States             | 17                                             |
+    | Transitions        | 33                                             |
+    | Inputs             | 9                                              |
+    | Outputs            | 14                                             |
+    | Clock              | Bus2IP_Clk (rising_edge)                       |
+    | Reset              | current_state$and0000 (positive)               |
+    | Reset type         | synchronous                                    |
+    | Reset State        | reset                                          |
+    | Power Up State     | idle                                           |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found finite state machine <FSM_2> for signal <mst_cmd_sm_state>.
+    -----------------------------------------------------------------------
+    | States             | 4                                              |
+    | Transitions        | 8                                              |
+    | Inputs             | 3                                              |
+    | Outputs            | 1                                              |
+    | Clock              | Bus2IP_Clk (rising_edge)                       |
+    | Reset              | Bus2IP_Reset (positive)                        |
+    | Reset type         | synchronous                                    |
+    | Reset State        | cmd_idle                                       |
+    | Power Up State     | cmd_idle                                       |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 32-bit register for signal <IP2Bus_Data>.
+    Found 1-bit register for signal <Error_Request>.
+    Found 1-bit register for signal <FSL_S_Read>.
+    Found 1-bit register for signal <inside_reset>.
+    Found 1-bit register for signal <IP2Bus_Ack>.
+    Found 32-bit register for signal <mst_cmd_sm_ip2bus_addr>.
+    Found 4-bit register for signal <mst_cmd_sm_ip2bus_be>.
+    Found 1-bit register for signal <mst_cmd_sm_rd_req>.
+    Found 1-bit register for signal <OPClear_Request>.
+    Found 1-bit register for signal <OPManualReset_Request>.
+    Found 1-bit register for signal <OPRead_Request>.
+    Found 1-bit register for signal <OPWrite_Request>.
+    Summary:
+	inferred   2 Finite State Machine(s).
+	inferred  77 D-type flip-flop(s).
+Unit <user_logic> synthesized.
+
+INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# RAMs                                                 : 3
+ 256x8-bit dual-port RAM                               : 2
+ 8x9-bit single-port RAM                               : 1
+# Adders/Subtractors                                   : 4
+ 3-bit adder                                           : 1
+ 3-bit subtractor                                      : 1
+ 4-bit adder                                           : 1
+ 4-bit subtractor                                      : 1
+# Counters                                             : 3
+ 8-bit up counter                                      : 2
+ 9-bit updown counter                                  : 1
+# Registers                                            : 31
+ 1-bit register                                        : 13
+ 3-bit register                                        : 1
+ 32-bit register                                       : 2
+ 4-bit register                                        : 2
+ 8-bit register                                        : 10
+ 9-bit register                                        : 3
+# Comparators                                          : 2
+ 4-bit comparator less                                 : 1
+ 5-bit comparator lessequal                            : 1
+# Multiplexers                                         : 1
+ 1-bit 8-to-1 multiplexer                              : 1
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Analyzing FSM <FSM_2> for best encoding.
+Optimizing FSM <mst_cmd_sm_state/FSM> on signal <mst_cmd_sm_state[1:2]> with gray encoding.
+-------------------------------
+ State             | Encoding
+-------------------------------
+ cmd_idle          | 00
+ cmd_run           | 01
+ cmd_wait_for_data | 11
+ cmd_done          | 10
+-------------------------------
+Analyzing FSM <FSM_1> for best encoding.
+Optimizing FSM <current_state/FSM> on signal <current_state[1:5]> with sequential encoding.
+---------------------------------
+ State               | Encoding
+---------------------------------
+ idle                | 00000
+ wait_trans_done     | 00110
+ reset               | 00001
+ reset_core          | 00111
+ reset_wait_4_ack    | 01000
+ opwrite_begin       | 00010
+ opwrite_wait_4_busy | 01011
+ opwrite_finish      | 01100
+ opread_begin        | 00011
+ opread_wait_4_busy  | 01101
+ opread_finish       | 01110
+ manual_reset_begin  | 00101
+ manual_reset_wait   | 01001
+ manual_reset_finish | 01010
+ opclear_begin       | 00100
+ opclear_wait_4_busy | 01111
+ opclear_finish      | 10000
+---------------------------------
+Analyzing FSM <FSM_0> for best encoding.
+Optimizing FSM <internalCore/PIC_LOGIC/currenty_state/FSM> on signal <currenty_state[1:5]> with user encoding.
+----------------------------------
+ State                | Encoding
+----------------------------------
+ reset                | 00000
+ initmem              | 00001
+ idle                 | 00010
+ command              | 00011
+ interrupts           | 00100
+ transaction_complete | 00101
+ readinterrupt        | 00110
+ extra1               | 00111
+ extra2               | 01000
+ outputmem            | 01001
+ extra3               | 01010
+ extra4               | 01011
+ writemem             | 01100
+ extra5               | 01101
+ extra6               | 01110
+ readmem              | 01111
+ extra7               | 10000
+ extra8               | 10001
+ clearreg             | 10010
+----------------------------------
+Loading device for application Rf_Device from file '5vfx70t.nph' in environment /opt/Xilinx/10.1/ISE.
+WARNING:Xst:2404 -  FFs/Latches <mst_cmd_sm_ip2bus_addr<0:28>> (without init value) have a constant value of 0 in block <user_logic>.
+WARNING:Xst:2404 -  FFs/Latches <DOB<0:-1>> (without init value) have a constant value of 0 in block <infer_bram>.
+
+Synthesizing (advanced) Unit <Sync_BRAM>.
+INFO:Xst - The RAM <Mram_ram_mem>, combined with <Mram_ram_mem_ren>, will be implemented as a BLOCK RAM, absorbing the following register(s): <read_a> <read_dpra>
+    -----------------------------------------------------------------------
+    | ram_type           | Block                               |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 256-word x 8-bit                    |          |
+    |     mode           | write-first                         |          |
+    |     clkA           | connected to signal <clk>           | rise     |
+    |     weA            | connected to signal <we>            | high     |
+    |     addrA          | connected to signal <a>             |          |
+    |     diA            | connected to signal <di>            |          |
+    |     doA            | connected to signal <spo>           |          |
+    -----------------------------------------------------------------------
+    | optimization       | speed                               |          |
+    -----------------------------------------------------------------------
+    | Port B                                                              |
+    |     aspect ratio   | 256-word x 8-bit                    |          |
+    |     mode           | write-first                         |          |
+    |     clkB           | connected to signal <clk>           | rise     |
+    |     enB            | connected to signal <dpra_en>       | high     |
+    |     addrB          | connected to signal <dpra>          |          |
+    |     doB            | connected to signal <dpo>           |          |
+    -----------------------------------------------------------------------
+    | optimization       | speed                               |          |
+    -----------------------------------------------------------------------
+Unit <Sync_BRAM> synthesized (advanced).
+
+Synthesizing (advanced) Unit <infer_bram>.
+INFO:Xst - The small RAM <Mram_BRAM_DATA> will be implemented on LUTs in order to maximize performance and save block RAM resources. If you want to force its implementation on block, use option/constraint ram_style.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 8-word x 9-bit                      |          |
+    |     clkA           | connected to signal <CLKA>          | rise     |
+    |     weA            | connected to signal <WEA_0>         | high     |
+    |     addrA          | connected to signal <ADDRA>         |          |
+    |     diA            | connected to signal <DIA>           |          |
+    |     doA            | connected to internal node          |          |
+    -----------------------------------------------------------------------
+Unit <infer_bram> synthesized (advanced).
+WARNING:Xst:1710 - FF/Latch <retcode_6> (without init value) has a constant value of 0 in block <PIC>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <retcode_5> (without init value) has a constant value of 0 in block <PIC>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <retcode_4> (without init value) has a constant value of 0 in block <PIC>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <retcode_3> (without init value) has a constant value of 0 in block <PIC>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <retcode_2> (without init value) has a constant value of 0 in block <PIC>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <retcode_1> (without init value) has a constant value of 0 in block <PIC>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <retcode_0> (without init value) has a constant value of 0 in block <PIC>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <mst_cmd_sm_ip2bus_addr_1> (without init value) has a constant value of 0 in block <user_logic>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <mst_cmd_sm_ip2bus_addr_2> (without init value) has a constant value of 0 in block <user_logic>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <mst_cmd_sm_ip2bus_addr_3> (without init value) has a constant value of 0 in block <user_logic>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <mst_cmd_sm_ip2bus_addr_5> (without init value) has a constant value of 0 in block <user_logic>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <mst_cmd_sm_ip2bus_addr_6> (without init value) has a constant value of 0 in block <user_logic>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <mst_cmd_sm_ip2bus_addr_7> (without init value) has a constant value of 0 in block <user_logic>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <mst_cmd_sm_ip2bus_addr_8> (without init value) has a constant value of 0 in block <user_logic>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <mst_cmd_sm_ip2bus_addr_9> (without init value) has a constant value of 0 in block <user_logic>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <mst_cmd_sm_ip2bus_addr_10> (without init value) has a constant value of 0 in block <user_logic>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <mst_cmd_sm_ip2bus_addr_11> (without init value) has a constant value of 0 in block <user_logic>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <mst_cmd_sm_ip2bus_addr_12> (without init value) has a constant value of 0 in block <user_logic>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <mst_cmd_sm_ip2bus_addr_13> (without init value) has a constant value of 0 in block <user_logic>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <mst_cmd_sm_ip2bus_addr_14> (without init value) has a constant value of 0 in block <user_logic>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <mst_cmd_sm_ip2bus_addr_15> (without init value) has a constant value of 0 in block <user_logic>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <mst_cmd_sm_ip2bus_addr_17> (without init value) has a constant value of 0 in block <user_logic>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <mst_cmd_sm_ip2bus_addr_18> (without init value) has a constant value of 0 in block <user_logic>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <mst_cmd_sm_ip2bus_addr_27> (without init value) has a constant value of 0 in block <user_logic>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <mst_cmd_sm_ip2bus_addr_28> (without init value) has a constant value of 0 in block <user_logic>. This FF/Latch will be trimmed during the optimization process.
+INFO:Xst:2261 - The FF/Latch <IP2Bus_Data_21> in Unit <user_logic> is equivalent to the following 8 FFs/Latches, which will be removed : <IP2Bus_Data_19> <IP2Bus_Data_17> <IP2Bus_Data_14> <IP2Bus_Data_11> <IP2Bus_Data_10> <IP2Bus_Data_5> <IP2Bus_Data_3> <IP2Bus_Data_1> 
+INFO:Xst:2261 - The FF/Latch <mst_cmd_sm_ip2bus_be_3> in Unit <user_logic> is equivalent to the following 7 FFs/Latches, which will be removed : <mst_cmd_sm_ip2bus_be_2> <mst_cmd_sm_ip2bus_be_1> <mst_cmd_sm_ip2bus_be_0> <mst_cmd_sm_rd_req> <mst_cmd_sm_ip2bus_addr_16> <mst_cmd_sm_ip2bus_addr_4> <mst_cmd_sm_ip2bus_addr_0> 
+INFO:Xst:2261 - The FF/Latch <IP2Bus_Data_22> in Unit <user_logic> is equivalent to the following 13 FFs/Latches, which will be removed : <IP2Bus_Data_20> <IP2Bus_Data_18> <IP2Bus_Data_16> <IP2Bus_Data_15> <IP2Bus_Data_13> <IP2Bus_Data_12> <IP2Bus_Data_9> <IP2Bus_Data_8> <IP2Bus_Data_7> <IP2Bus_Data_6> <IP2Bus_Data_4> <IP2Bus_Data_2> <IP2Bus_Data_0> 
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# RAMs                                                 : 2
+ 256x8-bit dual-port block RAM                         : 1
+ 8x9-bit single-port distributed RAM                   : 1
+# Adders/Subtractors                                   : 4
+ 3-bit adder                                           : 1
+ 3-bit subtractor                                      : 1
+ 4-bit adder                                           : 1
+ 4-bit subtractor                                      : 1
+# Counters                                             : 3
+ 8-bit up counter                                      : 2
+ 9-bit updown counter                                  : 1
+# Registers                                            : 127
+ Flip-Flops                                            : 127
+# Comparators                                          : 2
+ 4-bit comparator less                                 : 1
+ 5-bit comparator lessequal                            : 1
+# Multiplexers                                         : 1
+ 1-bit 8-to-1 multiplexer                              : 1
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <user_logic> ...
+
+Optimizing unit <INTC> ...
+
+Optimizing unit <infer_bram> ...
+
+Optimizing unit <PIC> ...
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block user_logic, actual ratio is 0.
+FlipFlop internalCore/PIC_LOGIC/currenty_state_FSM_FFd1 has been replicated 1 time(s)
+FlipFlop internalCore/PIC_LOGIC/currenty_state_FSM_FFd2 has been replicated 1 time(s)
+FlipFlop internalCore/PIC_LOGIC/currenty_state_FSM_FFd3 has been replicated 2 time(s)
+FlipFlop internalCore/PIC_LOGIC/currenty_state_FSM_FFd4 has been replicated 1 time(s)
+FlipFlop internalCore/PIC_LOGIC/currenty_state_FSM_FFd5 has been replicated 1 time(s)
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 158
+ Flip-Flops                                            : 158
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                             *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : user_logic.ngr
+Top Level Output File Name         : user_logic
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : NO
+
+Design Statistics
+# IOs                              : 236
+
+Cell Usage :
+# BELS                             : 311
+#      GND                         : 1
+#      INV                         : 2
+#      LUT1                        : 14
+#      LUT2                        : 24
+#      LUT3                        : 37
+#      LUT4                        : 39
+#      LUT5                        : 76
+#      LUT6                        : 65
+#      MUXCY                       : 22
+#      MUXF7                       : 3
+#      MUXF8                       : 2
+#      VCC                         : 1
+#      XORCY                       : 25
+# FlipFlops/Latches                : 158
+#      FD                          : 3
+#      FDE                         : 9
+#      FDR                         : 92
+#      FDRE                        : 25
+#      FDRS                        : 15
+#      FDRSE                       : 1
+#      FDS                         : 12
+#      FDSE                        : 1
+# RAMS                             : 10
+#      RAM32X1S                    : 9
+#      RAMB18                      : 1
+# Shift Registers                  : 1
+#      SRL16                       : 1
+# Clock Buffers                    : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 145
+#      IBUF                        : 37
+#      OBUF                        : 108
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 5vfx70tff1136-1 
+
+
+Slice Logic Utilization: 
+ Number of Slice Registers:             158  out of  44800     0%  
+ Number of Slice LUTs:                  267  out of  44800     0%  
+    Number used as Logic:               257  out of  44800     0%  
+    Number used as Memory:               10  out of  13120     0%  
+       Number used as RAM:                9
+       Number used as SRL:                1
+
+Slice Logic Distribution: 
+ Number of LUT Flip Flop pairs used:    284
+   Number with an unused Flip Flop:     126  out of    284    44%  
+   Number with an unused LUT:            17  out of    284     5%  
+   Number of fully used LUT-FF pairs:   141  out of    284    49%  
+   Number of unique control sets:        32
+
+IO Utilization: 
+ Number of IOs:                         236
+ Number of bonded IOBs:                 146  out of    640    22%  
+
+Specific Feature Utilization:
+ Number of Block RAM/FIFO:                1  out of    148     0%  
+    Number using Block RAM only:          1
+ Number of BUFG/BUFGCTRLs:                1  out of     32     3%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+Bus2IP_Clk                         | BUFGP                  | 169   |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -1
+
+   Minimum period: 4.217ns (Maximum Frequency: 237.135MHz)
+   Minimum input arrival time before clock: 4.418ns
+   Maximum output required time after clock: 4.331ns
+   Maximum combinational path delay: 4.780ns
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'Bus2IP_Clk'
+  Clock period: 4.217ns (frequency: 237.135MHz)
+  Total number of paths / destination ports: 9566 / 409
+-------------------------------------------------------------------------
+Delay:               4.217ns (Levels of Logic = 4)
+  Source:            message_channel/Using_FIFO.Sync_FIFO_Gen.Use_Data.Sync_FIFO_I1/fifo_length_1 (FF)
+  Destination:       internalCore/PIC_LOGIC/array_BRAM/Mram_BRAM_DATA3 (RAM)
+  Source Clock:      Bus2IP_Clk rising
+  Destination Clock: Bus2IP_Clk rising
+
+  Data Path: message_channel/Using_FIFO.Sync_FIFO_Gen.Use_Data.Sync_FIFO_I1/fifo_length_1 to internalCore/PIC_LOGIC/array_BRAM/Mram_BRAM_DATA3
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDRE:C->Q             3   0.471   0.800  message_channel/Using_FIFO.Sync_FIFO_Gen.Use_Data.Sync_FIFO_I1/fifo_length_1 (message_channel/Using_FIFO.Sync_FIFO_Gen.Use_Data.Sync_FIFO_I1/fifo_length_1)
+     LUT4:I0->O            3   0.094   0.491  message_channel/Using_FIFO.Sync_FIFO_Gen.Use_Data.Sync_FIFO_I1/exists_i_and00001_SW1 (N44)
+     LUT6:I5->O           20   0.094   0.584  message_channel/FSL_M_Full1 (msg_chan_full)
+     LUT6:I5->O           10   0.094   0.625  internalCore/PIC_LOGIC/array_wENA01 (internalCore/PIC_LOGIC/array_wENA0)
+     LUT2:I0->O            9   0.094   0.380  internalCore/PIC_LOGIC/array_BRAM/WEA1 (internalCore/PIC_LOGIC/array_BRAM/WEA_0)
+     RAM32X1S:WE               0.490          internalCore/PIC_LOGIC/array_BRAM/Mram_BRAM_DATA3
+    ----------------------------------------
+    Total                      4.217ns (1.337ns logic, 2.880ns route)
+                                       (31.7% logic, 68.3% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'Bus2IP_Clk'
+  Total number of paths / destination ports: 278 / 100
+-------------------------------------------------------------------------
+Offset:              4.418ns (Levels of Logic = 6)
+  Source:            Bus2IP_Addr<25> (PAD)
+  Destination:       internalCore/PIC_LOGIC/array_BRAM/DOA_8 (FF)
+  Destination Clock: Bus2IP_Clk rising
+
+  Data Path: Bus2IP_Addr<25> to internalCore/PIC_LOGIC/array_BRAM/DOA_8
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             1   0.818   1.069  Bus2IP_Addr_25_IBUF (Bus2IP_Addr_25_IBUF)
+     LUT6:I0->O           10   0.094   0.625  iid<1>1 (iid<1>)
+     LUT4:I2->O            1   0.094   0.576  internalCore/PIC_LOGIC/array_addr0<1>_SW0_SW0 (N73)
+     LUT6:I4->O            9   0.094   0.380  internalCore/PIC_LOGIC/array_addr0<1> (internalCore/PIC_LOGIC/array_addr0<1>)
+     RAM32X1S:A1->O        1   0.094   0.480  internalCore/PIC_LOGIC/array_BRAM/Mram_BRAM_DATA3 (internalCore/PIC_LOGIC/array_BRAM/_varindex0000<6>)
+     LUT5:I4->O            1   0.094   0.000  internalCore/PIC_LOGIC/array_BRAM/DOA_mux0000<6>1 (internalCore/PIC_LOGIC/array_BRAM/DOA_mux0000<6>)
+     FDE:D                    -0.018          internalCore/PIC_LOGIC/array_BRAM/DOA_6
+    ----------------------------------------
+    Total                      4.418ns (1.288ns logic, 3.130ns route)
+                                       (29.2% logic, 70.8% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'Bus2IP_Clk'
+  Total number of paths / destination ports: 54 / 51
+-------------------------------------------------------------------------
+Offset:              4.331ns (Levels of Logic = 2)
+  Source:            IP2Bus_Ack (FF)
+  Destination:       IP2Bus_RdAck (PAD)
+  Source Clock:      Bus2IP_Clk rising
+
+  Data Path: IP2Bus_Ack to IP2Bus_RdAck
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q               2   0.471   0.978  IP2Bus_Ack (IP2Bus_Ack)
+     LUT6:I1->O            1   0.094   0.336  IP2Bus_RdAck1 (IP2Bus_RdAck_OBUF)
+     OBUF:I->O                 2.452          IP2Bus_RdAck_OBUF (IP2Bus_RdAck)
+    ----------------------------------------
+    Total                      4.331ns (3.017ns logic, 1.314ns route)
+                                       (69.7% logic, 30.3% route)
+
+=========================================================================
+Timing constraint: Default path analysis
+  Total number of paths / destination ports: 11 / 3
+-------------------------------------------------------------------------
+Delay:               4.780ns (Levels of Logic = 3)
+  Source:            Bus2IP_RdCE<2> (PAD)
+  Destination:       IP2Bus_WrAck (PAD)
+
+  Data Path: Bus2IP_RdCE<2> to IP2Bus_WrAck
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             3   0.818   1.080  Bus2IP_RdCE_2_IBUF (Bus2IP_RdCE_2_IBUF)
+     LUT6:I0->O            1   0.094   0.336  IP2Bus_WrAck1 (IP2Bus_WrAck_OBUF)
+     OBUF:I->O                 2.452          IP2Bus_WrAck_OBUF (IP2Bus_WrAck)
+    ----------------------------------------
+    Total                      4.780ns (3.364ns logic, 1.416ns route)
+                                       (70.4% logic, 29.6% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 27.00 secs
+Total CPU time to Xst completion: 23.86 secs
+ 
+--> 
+
+
+Total memory usage is 707744 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :   71 (   0 filtered)
+Number of infos    :   11 (   0 filtered)
+

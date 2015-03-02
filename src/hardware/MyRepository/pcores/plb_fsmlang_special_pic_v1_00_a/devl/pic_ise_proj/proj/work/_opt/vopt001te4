@@ -1,0 +1,228 @@
+m255
+K3
+13
+cModel Technology
+Z0 d/home/jagron/plb_fsmlang_special_pic_v1_00_a/devl/pic_ise_proj/proj
+T_opt
+Z1 VP9gR13O]_UcjY=VP1AG?<0
+Z2 04 13 8 work user_logic_tb behavior 1
+Z3 =1-001ec9546918-4aaabce4-8e148-94e
+Z4 o-quiet -auto_acc_if_foreign -work work
+Z5 OL;O;6.4a;39
+Ecomplete_pic
+Z6 w1252699810
+Z7 DPx4 ieee 11 numeric_std 0 22 =NSdli^?T5OD8;4F<blj<3
+Z8 DPx4 ieee 18 std_logic_unsigned 0 22 hEMVMlaNCR^<OOoVNV;m90
+Z9 DPx4 ieee 15 std_logic_arith 0 22 GJbAT?7@hRQU9IQ702DT]2
+Z10 DPx4 ieee 14 std_logic_1164 0 22 GH1=`jDDBJ=`LM;:Ak`kf2
+Z11 8../../../hdl/vhdl/complete_pic.vhd
+Z12 F../../../hdl/vhdl/complete_pic.vhd
+l0
+L7
+Z13 VNSMKK;FEN7dbNneHnT0Lj1
+Z14 OL;C;6.4a;39
+31
+Z15 o-explicit -93
+Z16 tExplicit 1
+Z17 !s100 zTS@jhn5[29@B>f8jc<7<3
+Aimplementation
+Z18 DEx72 /home/jagron/plb_fsmlang_special_pic_v1_00_a/devl/pic_ise_proj/proj/work 4 intc 0 22 Qb`GnOeZkO;>gAIGe6I@72
+Z19 DEx72 /home/jagron/plb_fsmlang_special_pic_v1_00_a/devl/pic_ise_proj/proj/work 3 pic 0 22 ]aBDm]0m]lELRebL`f=;B2
+Z20 DPx17 __model_tech/ieee 11 numeric_std 0 22 =NSdli^?T5OD8;4F<blj<3
+Z21 DPx17 __model_tech/ieee 18 std_logic_unsigned 0 22 hEMVMlaNCR^<OOoVNV;m90
+Z22 DPx17 __model_tech/ieee 15 std_logic_arith 0 22 GJbAT?7@hRQU9IQ702DT]2
+Z23 DPx17 __model_tech/ieee 14 std_logic_1164 0 22 GH1=`jDDBJ=`LM;:Ak`kf2
+Z24 DEx72 /home/jagron/plb_fsmlang_special_pic_v1_00_a/devl/pic_ise_proj/proj/work 12 complete_pic 0 22 NSMKK;FEN7dbNneHnT0Lj1
+31
+Z25 Mx4 17 __model_tech/ieee 14 std_logic_1164
+Z26 Mx3 17 __model_tech/ieee 15 std_logic_arith
+Z27 Mx2 17 __model_tech/ieee 18 std_logic_unsigned
+Z28 Mx1 17 __model_tech/ieee 11 numeric_std
+l91
+L41
+Z29 VeaCnUE6J_9kfBb0?md`LK3
+R14
+R15
+R16
+Z30 !s100 <;KDgRAQCm^j3>?_hGK5]2
+Einfer_bram
+R6
+R7
+Z31 DPx8 synopsys 10 attributes 0 22 2Q8I4L@H0S1aHEXkjUYDC1
+Z32 DPx4 ieee 14 std_logic_misc 0 22 D2f;@P3IKJA9T^H8HI[9K0
+R8
+R9
+R10
+Z33 8../../../hdl/vhdl/INTC.vhd
+Z34 F../../../hdl/vhdl/INTC.vhd
+l0
+L200
+Z35 V5a5KgQQVV=8ffnQ`DASNE0
+R14
+31
+R15
+R16
+Z36 !s100 [dZ3b0oYIKL`3:ZgDj<d`3
+Aimplementation
+R20
+Z37 DPx21 __model_tech/synopsys 10 attributes 0 22 2Q8I4L@H0S1aHEXkjUYDC1
+Z38 DPx17 __model_tech/ieee 14 std_logic_misc 0 22 D2f;@P3IKJA9T^H8HI[9K0
+R21
+R22
+R23
+Z39 DEx72 /home/jagron/plb_fsmlang_special_pic_v1_00_a/devl/pic_ise_proj/proj/work 10 infer_bram 0 22 5a5KgQQVV=8ffnQ`DASNE0
+31
+Z40 Mx6 17 __model_tech/ieee 14 std_logic_1164
+Z41 Mx5 17 __model_tech/ieee 15 std_logic_arith
+Z42 Mx4 17 __model_tech/ieee 18 std_logic_unsigned
+Z43 Mx3 17 __model_tech/ieee 14 std_logic_misc
+Z44 Mx2 21 __model_tech/synopsys 10 attributes
+R28
+l237
+L226
+Z45 VLMSB6`]RS2`gfUTceXzmh3
+R14
+R15
+R16
+Z46 !s100 m7a0ST:B_K^QfG28XcL`K3
+Eintc
+R6
+R7
+R8
+R9
+R10
+R33
+R34
+l0
+L18
+Z47 VQb`GnOeZkO;>gAIGe6I@72
+R14
+31
+R15
+R16
+Z48 !s100 nVIZFH=Yncg=m`zFSBHdf1
+Aimplementation
+R20
+R21
+R22
+R23
+R18
+31
+R25
+R26
+R27
+R28
+l87
+L39
+Z49 VKG<hG4<?:5dPbieABkQPG3
+R14
+R15
+R16
+Z50 !s100 c=]LD7cZXD3;;IRGXCa:62
+Epic
+R6
+R7
+R8
+R9
+R10
+Z51 8../../../hdl/vhdl/PIC.vhd
+Z52 F../../../hdl/vhdl/PIC.vhd
+l0
+L18
+Z53 V]aBDm]0m]lELRebL`f=;B2
+R14
+31
+R15
+R16
+Z54 !s100 H8@T`b8K<Li@FFVMnHe5=3
+Aimplementation
+R39
+R20
+R21
+R22
+R23
+R19
+31
+R25
+R26
+R27
+R28
+l140
+L53
+Z55 V[fU3VRP7V2af`jDIB17kA1
+R14
+R15
+R16
+Z56 !s100 51DXeJC:Z^Yd]g;zXQ[HT3
+Euser_logic
+Z57 w1252703274
+R7
+R8
+R9
+R10
+Z58 8../../../hdl/vhdl/user_logic.vhd
+Z59 F../../../hdl/vhdl/user_logic.vhd
+l0
+L108
+Z60 Vn2`_9_0Fm`];edNH1Bo061
+R14
+31
+R15
+R16
+Z61 !s100 =dkb2P<zl@HUJWIl1nm=O0
+Aimp
+Z62 DEx83 /home/jagron/plb_fsmlang_special_pic_v1_00_a/devl/pic_ise_proj/proj/fsl_v20_v2_11_a 7 fsl_v20 0 22 M0JS[]2kEcKK@gPKXhgHI1
+R24
+R20
+R21
+R22
+R23
+Z63 DEx72 /home/jagron/plb_fsmlang_special_pic_v1_00_a/devl/pic_ise_proj/proj/work 10 user_logic 0 22 n2`_9_0Fm`];edNH1Bo061
+31
+R25
+R26
+R27
+R28
+l390
+L179
+Z64 VkXMAP=0jMCA9`BcO5_6Po1
+R14
+R15
+R16
+Z65 !s100 oBNl]UzzJiM4^<f7Xl7[I1
+Z66 w1252703195
+Euser_logic_tb
+Z67 w1252703454
+R20
+R22
+R21
+R23
+31
+Z68 8../../../hdl/vhdl/user_logic_tb.vhd
+Z69 F../../../hdl/vhdl/user_logic_tb.vhd
+l0
+L33
+Z70 VWX[8>[6ekbFUlmhb1IE]E3
+R14
+R15
+R16
+Z71 !s100 ;K5M;^d;>B:;ea_m8o`ak3
+Abehavior
+R63
+R20
+R22
+R21
+R23
+Z72 DEx72 /home/jagron/plb_fsmlang_special_pic_v1_00_a/devl/pic_ise_proj/proj/work 13 user_logic_tb 0 22 WX[8>[6ekbFUlmhb1IE]E3
+31
+R25
+Z73 Mx3 17 __model_tech/ieee 18 std_logic_unsigned
+Z74 Mx2 17 __model_tech/ieee 15 std_logic_arith
+R28
+l110
+L36
+Z75 Vo?F3HJZL_9^U@NK_enUL:1
+R14
+R15
+R16
+Z76 !s100 o[C[g;NEXz>58HEIh6e_C3

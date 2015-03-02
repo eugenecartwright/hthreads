@@ -1,0 +1,34 @@
+########################################################################################
+# File:     src/test/fs/fat16/Jamfile
+# Author:   Wesley Peck
+# Date:     14 November 2006
+#
+# Desc:     This is the Jam build file for the fat16 test subdirectory of the
+#           Hthreads project. This file instructs the Jam build system on how to build
+#           the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (14 November 2006) Jam file initially created
+########################################################################################
+SubDir TOP src test fs fat16 ;
+LOCATE_TARGET = test/fs/fat16 ;
+
+########################################################################################
+# Add an include directory to the list of includes
+########################################################################################
+SUBDIRHDRS = $(TOP)/src/test/fs/fat16/include ;
+
+########################################################################################
+# Compile the source files into object files
+########################################################################################
+Hobject fat16.o : src/fat16.c ;
+Hobject ident.o : src/ident.c ;
+Hobject utils.o : src/utils.c ;
+Hobject part.o  : src/part.c ;
+Hobject fat.o   : src/fat.c ;
+Hobject mbr.o   : src/mbr.c ;
+
+########################################################################################
+# Compile executable file from the object files
+########################################################################################
+Hexe fat16 : fat16.o utils.o ident.o part.o mbr.o fat.o ;

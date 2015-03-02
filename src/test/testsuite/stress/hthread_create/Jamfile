@@ -1,0 +1,29 @@
+################################################################################
+# File:     test/testsuite/stress/hthread_create/Jamfile
+# Author:   Wesley Peck
+# Date:     07 February 2007
+#
+# Desc:     This is the Jam build file for the testsuite subdirectory of the
+#           Hthreads project. This file instructs the Jam build system on how
+#           to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (97 February 2007) Jam file initially created
+################################################################################
+SubDir TOP src test testsuite stress hthread_create ;
+LOCATE_TARGET = test/testsuite ;
+
+################################################################################
+# Setup some additional header files
+################################################################################
+SUBDIRHDRS = $(TOP)/src/test/testsuite/stress ;
+
+################################################################################
+# Build the source files into object files
+################################################################################
+Hobjects [ Hglob *.c ] ;
+
+################################################################################
+# Build the object files into executables
+################################################################################
+Hexes [ Hglob *.c : .o ] ;

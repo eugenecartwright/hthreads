@@ -1,0 +1,13 @@
+run
+-opt_mode speed
+-netlist_hierarchy as_optimized
+-opt_level 1
+-p xc5vfx70tff1136-1
+-top ddr2_sdram_wrapper
+-ifmt MIXED
+-ifn ddr2_sdram_wrapper_xst.prj
+-ofn ../implementation/ddr2_sdram_wrapper.ngc
+-hierarchy_separator /
+-iobuf NO
+-sd {../implementation/ddr2_sdram_wrapper}
+-vlgincdir {"/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_icache_shared_data/design/pcores/" "/home/jagron/uark_research/uark_ht_trunk/src/hardware/MyRepository/pcores/" "/home/jagron/uark_research/uark_ht_trunk/src/hardware/XilinxProcessorIP/pcores/" "/opt/Xilinx/10.1/EDK/hw/XilinxBFMinterface/pcores/" "/opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/" "/opt/Xilinx/10.1/EDK/hw/XilinxReferenceDesigns/pcores/" }

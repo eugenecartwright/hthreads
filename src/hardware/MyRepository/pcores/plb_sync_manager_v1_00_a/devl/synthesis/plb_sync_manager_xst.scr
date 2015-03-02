@@ -1,0 +1,12 @@
+run
+-opt_level 2
+-opt_mode speed
+-ifmt mixed
+-ifn "/home/jstevens/edk/syncmanager/pcores/plb_sync_manager_v1_00_a/devl/synthesis/plb_sync_manager_xst.prj"
+-top plb_sync_manager
+-p virtex5
+-ofn "/home/jstevens/edk/syncmanager/pcores/plb_sync_manager_v1_00_a/devl/synthesis/plb_sync_manager_xst.ngc"
+-iobuf NO
+-rtlview YES
+-hierarchy_separator /
+-work_lib plb_sync_manager_v1_00_a

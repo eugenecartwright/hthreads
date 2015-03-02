@@ -1,0 +1,8 @@
+AR user_logic imp /home/jagron/uark_research/plb_cores/edk_user_repository/MyProcessorIPLib/pcores/plb_scheduler_v1_00_a/hdl/vhdl/user_logic.vhd sub00/vhpl05 1239049081
+AR parallel imp /home/jagron/uark_research/plb_cores/edk_user_repository/MyProcessorIPLib/pcores/plb_scheduler_v1_00_a/hdl/vhdl/parallel.vhd sub00/vhpl01 1239049067
+EN user_logic NULL /home/jagron/uark_research/plb_cores/edk_user_repository/MyProcessorIPLib/pcores/plb_scheduler_v1_00_a/hdl/vhdl/user_logic.vhd sub00/vhpl04 1239049080
+EN infer_bram NULL /home/jagron/uark_research/plb_cores/edk_user_repository/MyProcessorIPLib/pcores/plb_scheduler_v1_00_a/hdl/vhdl/infer_bram.vhd sub00/vhpl02 1239049068
+AR infer_bram implementation /home/jagron/uark_research/plb_cores/edk_user_repository/MyProcessorIPLib/pcores/plb_scheduler_v1_00_a/hdl/vhdl/infer_bram.vhd sub00/vhpl03 1239049069
+EN plb_scheduler NULL /home/jagron/uark_research/plb_cores/edk_user_repository/MyProcessorIPLib/pcores/plb_scheduler_v1_00_a/hdl/vhdl/plb_scheduler.vhd sub00/vhpl06 1239049082
+EN parallel NULL /home/jagron/uark_research/plb_cores/edk_user_repository/MyProcessorIPLib/pcores/plb_scheduler_v1_00_a/hdl/vhdl/parallel.vhd sub00/vhpl00 1239049066
+AR plb_scheduler imp /home/jagron/uark_research/plb_cores/edk_user_repository/MyProcessorIPLib/pcores/plb_scheduler_v1_00_a/hdl/vhdl/plb_scheduler.vhd sub00/vhpl07 1239049083

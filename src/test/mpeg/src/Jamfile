@@ -1,0 +1,36 @@
+################################################################################
+# File:     src/test/mpeg/Jamfile
+# Author:   Andres Baez
+# Date:     30 November 2010
+#
+# Desc:     This is the Jam build file for the src/test/mpeg/ subdirectory of
+#           the Hthreads project. This file instructs the Jam build mpeg on
+#           how to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (30 November 2010) Jam file initially created
+################################################################################
+SubDir TOP src test mpeg src ;
+LOCATE_TARGET = test$(SLASH)mpeg ;
+
+################################################################################
+# Add the include directory to the list of header directories to search in
+################################################################################
+SUBDIRHDRS += $(TOP)$(SLASH)src$(SLASH)test$(SLASH)mpeg$(SLASH)include ;
+
+################################################################################
+# Add the opencv libraries to the user application linker flags
+################################################################################
+#SUBDIRCCFLAGS += -L$(SLASH)usr$(SLASH)include -I$(SLASH)usr$(SLASH)include$(SLASH)opencv -Ihdr ;
+#SUBDIRCCFLAGS += -L$(SLASH)usr$(SLASH)lib64 -lcxcore -lcv -lhighgui -lcvaux -lml ;
+
+################################################################################
+# Compile the source files into object files
+################################################################################
+Hobjects [ Hglob *.c ] ;
+
+################################################################################
+# Compile executable files from the object files
+################################################################################
+#Hexes [ Hglob *.c : .o ] ;
+Hexe JPEG : main.o DCT.o IDCT.o Trc.o DownSampling.o Quantification.o UpSampling.o Coding.o IQuantification.o Decoding.o LoadJPEG.o Block.o ZigZag.o Huffmann_encoder.o Huffmann_decoder.o SaveJPEG.o List.o ;

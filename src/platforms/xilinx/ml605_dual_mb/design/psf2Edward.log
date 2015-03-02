@@ -1,0 +1,135 @@
+PMSPEC -- Overriding Xilinx file
+</opt/Xilinx/latest/ISE_DS/ISE/acecf/data/acecf.acd> with local file
+</opt/Xilinx/12.3/ISE_DS/ISE/acecf/data/acecf.acd>
+WARNING:EDK:2028 - Option "CORE_STATE" in
+   /home/eugene/homogeneous_port/src/hardware/MyRepository/pcores/hvm_core_v1_00
+   _a/data/hvm_core_v2_1_0.mpd line 7  is deprecated. Please use Option
+   ARCH_SUPPORT_MAP instead. 
+WARNING:EDK:2028 - Option "ARCH_SUPPORT" in
+   /home/eugene/homogeneous_port/src/hardware/MyRepository/pcores/util_intr_spli
+   t_v1_00_a/data/util_intr_split_v2_1_0.mpd line 26  is deprecated. Please use
+   Option ARCH_SUPPORT_MAP instead. 
+WARNING:EDK:2028 - Option "CORE_STATE" in
+   /home/eugene/homogeneous_port/src/hardware/MyRepository/pcores/util_intr_spli
+   t_v1_00_a/data/util_intr_split_v2_1_0.mpd line 28  is deprecated. Please use
+   Option ARCH_SUPPORT_MAP instead. 
+WARNING:EDK:2028 - Option "CORE_STATE" in
+   /home/eugene/homogeneous_port/src/hardware/XilinxProcessorIP/pcores/opb_ac97_
+   v1_00_a/data/opb_ac97_v2_1_0.mpd line 18  is deprecated. Please use Option
+   ARCH_SUPPORT_MAP instead. 
+WARNING:EDK:2028 - Option "CORE_STATE" in
+   /home/eugene/homogeneous_port/src/hardware/XilinxProcessorIP/pcores/opb_ac97_
+   v2_00_a/data/opb_ac97_v2_1_0.mpd line 18  is deprecated. Please use Option
+   ARCH_SUPPORT_MAP instead. 
+
+Checking platform configuration ...
+IPNAME:lmb_v10 INSTANCE:ilmb -
+/home/eugene/homogeneous_port/src/platforms/xilinx/ml605_dual_mb/design/system.m
+hs line 70 - 1 master(s) : 1 slave(s)
+IPNAME:lmb_v10 INSTANCE:dlmb -
+/home/eugene/homogeneous_port/src/platforms/xilinx/ml605_dual_mb/design/system.m
+hs line 77 - 1 master(s) : 1 slave(s)
+IPNAME:plb_v46 INSTANCE:mb1_bus -
+/home/eugene/homogeneous_port/src/platforms/xilinx/ml605_dual_mb/design/system.m
+hs line 136 - 2 master(s) : 4 slave(s)
+IPNAME:lmb_v10 INSTANCE:ilmb_1 -
+/home/eugene/homogeneous_port/src/platforms/xilinx/ml605_dual_mb/design/system.m
+hs line 144 - 1 master(s) : 1 slave(s)
+IPNAME:lmb_v10 INSTANCE:dlmb_1 -
+/home/eugene/homogeneous_port/src/platforms/xilinx/ml605_dual_mb/design/system.m
+hs line 151 - 1 master(s) : 1 slave(s)
+IPNAME:plb_v46 INSTANCE:main_bus -
+/home/eugene/homogeneous_port/src/platforms/xilinx/ml605_dual_mb/design/system.m
+hs line 330 - 4 master(s) : 9 slave(s)
+IPNAME:plb_v46 INSTANCE:host_bus -
+/home/eugene/homogeneous_port/src/platforms/xilinx/ml605_dual_mb/design/system.m
+hs line 338 - 2 master(s) : 4 slave(s)
+IPNAME:plb_v46 INSTANCE:vhwti_bus -
+/home/eugene/homogeneous_port/src/platforms/xilinx/ml605_dual_mb/design/system.m
+hs line 346 - 1 master(s) : 1 slave(s)
+IPNAME:plb_v46 INSTANCE:core_bus -
+/home/eugene/homogeneous_port/src/platforms/xilinx/ml605_dual_mb/design/system.m
+hs line 430 - 6 master(s) : 6 slave(s)
+
+Checking port drivers...
+WARNING:EDK:2098 - PORT:IWAIT CONNECTOR:ilmb_LMB_Wait -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 352 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:ICE CONNECTOR:ilmb_LMB_CE -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 353 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:IUE CONNECTOR:ilmb_LMB_UE -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 354 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:DWAIT CONNECTOR:dlmb_LMB_Wait -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 390 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:DCE CONNECTOR:dlmb_LMB_CE -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 391 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:DUE CONNECTOR:dlmb_LMB_UE -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 392 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:IWAIT CONNECTOR:ilmb_1_LMB_Wait -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 352 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:ICE CONNECTOR:ilmb_1_LMB_CE -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 353 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:IUE CONNECTOR:ilmb_1_LMB_UE -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 354 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:DWAIT CONNECTOR:dlmb_1_LMB_Wait -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 390 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:DCE CONNECTOR:dlmb_1_LMB_CE -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 391 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:DUE CONNECTOR:dlmb_1_LMB_UE -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 392 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:Bus_Error_Det CONNECTOR:core_bus_Bus_Error_Det -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/chipscope_plbv46_i
+   ba_v1_03_a/data/chipscope_plbv46_iba_v2_1_0.mpd line 149 - No driver found.
+   Port will be driven to GND!
+WARNING:EDK:2099 - PORT:bscan_capture CONNECTOR:bscan_capture -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/mdm_v2_00_a/data/m
+   dm_v2_1_0.mpd line 228 - floating connection!
+WARNING:EDK:2099 - PORT:Semaphore_Reset CONNECTOR:net_gnd -
+   /home/eugene/homogeneous_port/src/platforms/xilinx/ml605_dual_mb/design/syste
+   m.mhs line 520 - floating connection!
+WARNING:EDK:2099 - PORT:SpinLock_Reset CONNECTOR:net_gnd -
+   /home/eugene/homogeneous_port/src/platforms/xilinx/ml605_dual_mb/design/syste
+   m.mhs line 522 - floating connection!
+WARNING:EDK:2099 - PORT:reset_port0 CONNECTOR:hthread_rst_tm -
+   /home/eugene/homogeneous_port/src/platforms/xilinx/ml605_dual_mb/design/syste
+   m.mhs line 538 - floating connection!
+
+Performing Clock DRCs...
+
+Performing Reset DRCs...
+
+Overriding system level properties...
+
+Running system level update procedures...
+
+Running UPDATE Tcl procedures for OPTION SYSLEVEL_UPDATE_PROC...
+
+Running system level DRCs...
+
+Performing System level DRCs on properties...
+
+Running DRC Tcl procedures for OPTION SYSLEVEL_DRC_PROC...
+Conversion to XML complete.

@@ -1,0 +1,12 @@
+run
+-opt_level 2
+-opt_mode speed
+-ifmt mixed
+-ifn "/home/jagron/uark_research/plb_cores/edk_user_repository/MyProcessorIPLib/pcores/plb_hthreads_timer_v1_00_a/devl/synthesis/plb_hthreads_timer_xst.prj"
+-top plb_hthreads_timer
+-p virtex5
+-ofn "/home/jagron/uark_research/plb_cores/edk_user_repository/MyProcessorIPLib/pcores/plb_hthreads_timer_v1_00_a/devl/synthesis/plb_hthreads_timer_xst.ngc"
+-iobuf NO
+-rtlview YES
+-hierarchy_separator /
+-work_lib plb_hthreads_timer_v1_00_a

@@ -1,0 +1,30 @@
+################################################################################
+# File:     src/archs/pthreads/src/Jamfile
+# Author:   Wesley Peck
+# Date:     19 February 2007
+#
+# Desc:     This is the Jam build file for the pthreads subdirectory of the
+#           Hthreads project. This file instructs the Jam build system on how
+#           to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (19 February 2007) Jam file initially created
+################################################################################
+SubDir TOP src archs pthreads src ;
+LOCATE_TARGET = archs/pthreads ;
+
+################################################################################
+# Compile the source files into object files
+################################################################################
+Hsysobjects [ Hglob *.c ] ;
+
+################################################################################
+# Add the object files to the hthreads library
+################################################################################
+Hlib hthread : [ Hglob *.c : .o ] ;
+
+################################################################################
+# Place the boot.o file directly into the lib directory
+################################################################################
+Depends <lib>boot.o :  <src!archs!pthreads!src>boot.o ;
+Hlocate <src!archs!pthreads!src>boot.o : [ Hlibdir $(LOCATE_TARGET) ] ;

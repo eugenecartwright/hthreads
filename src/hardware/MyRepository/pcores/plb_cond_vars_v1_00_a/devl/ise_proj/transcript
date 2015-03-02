@@ -1,0 +1,131 @@
+# //  ModelSim SE-64 6.4a Aug 28 2008 Linux 2.6.18-128.el5
+# //
+# //  Copyright 1991-2008 Mentor Graphics Corporation
+# //              All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND 
+# //  PROPRIETARY INFORMATION WHICH IS THE PROPERTY
+# //  OF MENTOR GRAPHICS CORPORATION OR ITS LICENSORS
+# //  AND IS SUBJECT TO LICENSE TERMS.
+# //
+# do user_logic_tb.fdo 
+# ** Warning: (vlib-34) Library already exists at "work".
+# ** Warning: (vlib-34) Library already exists at "fsl_v20_v2_11_a".
+# Model Technology ModelSim SE-64 vcom 6.4a Compiler 2008.08 Aug 28 2008
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package std_logic_unsigned
+# -- Compiling entity sync_dpram
+# -- Compiling architecture syn of sync_dpram
+# ** Warning: (vlib-34) Library already exists at "fsl_v20_v2_11_a".
+# Model Technology ModelSim SE-64 vcom 6.4a Compiler 2008.08 Aug 28 2008
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package std_logic_unsigned
+# -- Compiling entity sync_bram
+# -- Compiling architecture syn of sync_bram
+# ** Warning: (vlib-34) Library already exists at "fsl_v20_v2_11_a".
+# Model Technology ModelSim SE-64 vcom 6.4a Compiler 2008.08 Aug 28 2008
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity srl_fifo
+# -- Loading package vcomponents
+# -- Compiling architecture imp of srl_fifo
+# ** Warning: (vlib-34) Library already exists at "fsl_v20_v2_11_a".
+# Model Technology ModelSim SE-64 vcom 6.4a Compiler 2008.08 Aug 28 2008
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sync_fifo
+# -- Compiling architecture vhdl_rtl of sync_fifo
+# ** Warning: (vlib-34) Library already exists at "fsl_v20_v2_11_a".
+# Model Technology ModelSim SE-64 vcom 6.4a Compiler 2008.08 Aug 28 2008
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity async_fifo_bram
+# -- Compiling architecture imp of async_fifo_bram
+# ** Warning: (vlib-34) Library already exists at "fsl_v20_v2_11_a".
+# Model Technology ModelSim SE-64 vcom 6.4a Compiler 2008.08 Aug 28 2008
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity async_fifo
+# -- Compiling architecture vhdl_rtl of async_fifo
+# ** Warning: (vlib-34) Library already exists at "fsl_v20_v2_11_a".
+# Model Technology ModelSim SE-64 vcom 6.4a Compiler 2008.08 Aug 28 2008
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vcomponents
+# -- Compiling entity fsl_v20
+# -- Compiling architecture imp of fsl_v20
+# Model Technology ModelSim SE-64 vcom 6.4a Compiler 2008.08 Aug 28 2008
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package std_logic_unsigned
+# -- Loading package numeric_std
+# -- Compiling entity condvar
+# -- Compiling architecture implementation of condvar
+# -- Loading package attributes
+# -- Loading package std_logic_misc
+# -- Compiling entity infer_bram
+# -- Compiling architecture implementation of infer_bram
+# Model Technology ModelSim SE-64 vcom 6.4a Compiler 2008.08 Aug 28 2008
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package std_logic_unsigned
+# -- Compiling entity user_logic
+# -- Compiling architecture imp of user_logic
+# Model Technology ModelSim SE-64 vcom 6.4a Compiler 2008.08 Aug 28 2008
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package std_logic_unsigned
+# -- Loading package numeric_std
+# -- Compiling entity user_logic_tb
+# -- Compiling architecture behavior of user_logic_tb
+# vsim -lib work -t 1ps user_logic_tb 
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading ieee.numeric_std(body)
+# Loading work.user_logic_tb(behavior)#1
+# Loading work.user_logic(imp)#1
+# Loading work.condvar(implementation)#1
+# Loading synopsys.attributes
+# Loading ieee.std_logic_misc(body)
+# Loading work.infer_bram(implementation)#1
+# Loading unisim.vcomponents
+# Loading fsl_v20_v2_11_a.fsl_v20(imp)#1
+# Loading std.textio(body)
+# Loading ieee.vital_timing(body)
+# Loading ieee.vital_primitives(body)
+# Loading unisim.vpkg(body)
+# Loading unisim.srl16(srl16_v)#1
+# Loading unisim.fds(fds_v)#1
+# Loading fsl_v20_v2_11_a.sync_fifo(vhdl_rtl)#1
+# Loading fsl_v20_v2_11_a.sync_bram(syn)#1
+# .main_pane.mdi.interior.cs.vm.paneset.cli_0.wf.clip.cs.pw.wf
+# .main_pane.workspace.interior.cs.nb.canvas.notebook.cs.page2.cs
+# .main_pane.signals.interior.cs
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /user_logic_tb/uut/message_channel/using_fifo/sync_fifo_gen/use_data/sync_fifo_i1/sync_bram_fifo/sync_bram_i1
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 0 ps  Iteration: 0  Instance: /user_logic_tb/uut/message_channel/using_fifo/sync_fifo_gen/use_data/sync_fifo_i1/sync_bram_fifo/sync_bram_i1
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /user_logic_tb/uut/message_channel/using_fifo/sync_fifo_gen/use_data/sync_fifo_i1/sync_bram_fifo/sync_bram_i1
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 0 ps  Iteration: 0  Instance: /user_logic_tb/uut/message_channel/using_fifo/sync_fifo_gen/use_data/sync_fifo_i1/sync_bram_fifo/sync_bram_i1
+run 1 ms
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 21265 ns  Iteration: 2  Instance: /user_logic_tb/uut/message_channel/using_fifo/sync_fifo_gen/use_data/sync_fifo_i1/sync_bram_fifo/sync_bram_i1
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 21265 ns  Iteration: 2  Instance: /user_logic_tb/uut/message_channel/using_fifo/sync_fifo_gen/use_data/sync_fifo_i1/sync_bram_fifo/sync_bram_i1
+# ** Error: Bad file format for /home/jagron/uark_research/uark_ht_trunk/src/hardware/MyRepository/pcores/plb_cond_vars_v1_00_a/devl/ise_proj/work/_opt1.

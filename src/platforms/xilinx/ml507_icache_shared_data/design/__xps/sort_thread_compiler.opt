@@ -1,0 +1,22 @@
+microblaze_0
+SORT_THREAD_SOURCES = thread_bodies/bubblesort.c 
+SORT_THREAD_HEADERS = 
+SORT_THREAD_CC = mb-gcc
+SORT_THREAD_CC_SIZE = mb-size
+SORT_THREAD_CC_OPT = -O3
+SORT_THREAD_CFLAGS = 
+SORT_THREAD_CC_SEARCH = # -B
+SORT_THREAD_LIBPATH = -L./microblaze_0/lib/ # -L
+SORT_THREAD_INCLUDES = -I./microblaze_0/include/ # -I
+SORT_THREAD_LFLAGS = # -l
+SORT_THREAD_LINKER_SCRIPT = 
+SORT_THREAD_CC_DEBUG_FLAG =  -g 
+SORT_THREAD_CC_PROFILE_FLAG = # -pg
+SORT_THREAD_CC_GLOBPTR_FLAG= # -mxl-gp-opt
+SORT_THREAD_MODE = executable
+SORT_THREAD_LIBG_OPT = -$(SORT_THREAD_MODE) microblaze_0
+SORT_THREAD_CC_INFERRED_FLAGS= -mno-xl-soft-mul -mhard-float -mno-xl-soft-div -mcpu=v7.10.d 
+SORT_THREAD_CC_START_ADDR_FLAG=  # -Wl,-defsym -Wl,_TEXT_START_ADDR=
+SORT_THREAD_CC_STACK_SIZE_FLAG=  # -Wl,-defsym -Wl,_STACK_SIZE=
+SORT_THREAD_CC_HEAP_SIZE_FLAG=  # -Wl,-defsym -Wl,_HEAP_SIZE=
+                  $(SORT_THREAD_CC_INFERRED_FLAGS)  \

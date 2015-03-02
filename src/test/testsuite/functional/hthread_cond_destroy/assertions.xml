@@ -1,0 +1,18 @@
+<assertions>
+  <assertion id="1">
+  Test that a condition variable destroyed by hthread_cond_destroy()
+  can be reinitialized. 
+  </assertion>
+
+  <assertion id="2">
+  It shall be safe to destroy an initialized condition variable upon which no
+  threads are currently blocked. Attempting to destroy a condition variable upon
+  which other threads are currently blocked results in undefined behavior.  
+  </assertion> 
+
+  <assertion id="3">
+  If successful, the hthread_cond_destroy() function shall return zero;
+  Test duplicate of assertion 2
+  </assertion> 
+
+</assertions>

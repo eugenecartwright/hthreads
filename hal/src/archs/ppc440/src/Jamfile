@@ -1,0 +1,65 @@
+################################################################################
+# File:     src/archs/ppc440/src/Jamfile
+# Author:   Wesley Peck
+# Date:     20 August 2006
+#
+# Desc:     This is the Jam build file for the ppc440 subdirectory of the
+#           Hthreads project. This file instructs the Jam build system on
+#           how to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (20 August 2006) Jam file initially created
+################################################################################
+SubDir TOP src archs ppc440 src ;
+LOCATE_TARGET = archs$(SLASH)ppc440 ;
+
+################################################################################
+# Compile the source files in this directory
+################################################################################
+#Hsysobject crt.o        : crt.c ;
+#Hsysobject context.o    : context.c ;
+Hsysobject core.o       : core.c ;
+#Hsysobject exception.o  : exception.c ;
+#Hsysobject init.o       : init.c ;
+#Hsysobject startup.o    : startup.c ;
+#Hsysobject cache.o      : cache.c ;
+#if $(PLATFORM_SMP) = "yes"
+#{
+#    Hsysobject crt0.o : crt0-smp.S ;
+#}
+#else
+#{
+#    Hsysobject crt0.o : crt0.S ;
+#}
+#Hsysobject eabi.o       : eabi.S ;
+#Hsysobject vectors.o    : vectors.S ;
+#Hsysobject syscall.o    : syscall.c ;
+#Hsysobject time.o       : time.c ;
+#Hsysobject boot.o       : boot.S ;
+
+################################################################################
+# Add the object files to the hthreads library
+################################################################################
+#Hlib hthread : crt.o ;
+#Hlib hthread : context.o ;
+Hlib hthread : core.o ;
+#Hlib hthread : exception.o ;
+#Hlib hthread : init.o ;
+#Hlib hthread : vectors.o ;
+#Hlib hthread : cache.o ;
+#Hlib hthread : syscall.o ;
+#Hlib hthread : time.o ;
+#Hlib hthread : crt0.o ;
+#Hlib hthread : eabi.o ;
+#Hlib hthread : startup.o ;
+
+################################################################################
+# Always optimize the startup code
+################################################################################
+#CCFLAGS on <src!archs!ppc440!src>crt.o += -O3 ;
+
+################################################################################
+# Place the boot.o file directly into the lib directory
+################################################################################
+#Depends <lib>boot.o :  <src!archs!ppc440!src>boot.o ;
+#Hlocate <src!archs!ppc440!src>boot.o : [ Hlibdir $(LOCATE_TARGET) ] ;

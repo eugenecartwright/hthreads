@@ -1,0 +1,12 @@
+run
+-opt_level 2
+-opt_mode speed
+-ifmt mixed
+-ifn "/home/jagron/misc/garrin/pcores/smp_synch_core_v1_00_a/devl/synthesis/smp_synch_core_xst.prj"
+-top smp_synch_core
+-p virtex5
+-ofn "/home/jagron/misc/garrin/pcores/smp_synch_core_v1_00_a/devl/synthesis/smp_synch_core_xst.ngc"
+-iobuf NO
+-rtlview YES
+-hierarchy_separator /
+-work_lib smp_synch_core_v1_00_a

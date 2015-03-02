@@ -1,0 +1,12 @@
+run
+-opt_level 2
+-opt_mode speed
+-ifmt mixed
+-ifn "/users/jagron/interp_on_fpga/pcores/hvm_control_interface_v1_00_a/devl/synthesis/hvm_control_interface_xst.prj"
+-top hvm_control_interface
+-p virtex2p
+-ofn "/users/jagron/interp_on_fpga/pcores/hvm_control_interface_v1_00_a/devl/synthesis/hvm_control_interface_xst.ngc"
+-iobuf NO
+-rtlview YES
+-hierarchy_separator /
+-work_lib hvm_control_interface_v1_00_a

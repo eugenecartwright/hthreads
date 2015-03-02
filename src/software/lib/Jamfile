@@ -1,0 +1,26 @@
+################################################################################
+# File:     src/software/lib/Jamfile
+# Author:   Wesley Peck
+# Date:     21 November 2006
+#
+# Desc:     This is the Jam build file for the src/software subdirectory of the
+#           Hthreads project. This file instructs the Jam build system on how
+#           to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (21 November 2006) Jam file initially created
+################################################################################
+SubDir TOP src software lib ;
+LOCATE_TARGET = software$(SLASH)lib ;
+
+################################################################################
+# Compile the source files into object files
+################################################################################
+Hsysobjects [ Hglob *.c ] ;
+Hsysobjects [ Hglob *.S ] ;
+
+################################################################################
+# Add the object files to the hthreads library
+################################################################################
+Hlib hthread : [ Hglob *.c : .o ] ;
+Hlib hthread : [ Hglob *.S : .o ] ;

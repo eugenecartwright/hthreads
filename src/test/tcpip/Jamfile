@@ -1,0 +1,38 @@
+###############################################################################
+# File:     src/test/system/Jamfile
+# Author:   Wesley Peck
+# Date:     1 November 2006
+#
+# Desc:     This is the Jam build file for the tcpip test subdirectory of the
+#           Hthreads project. This file instructs the Jam build system on how
+#           to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (1 November 2006) Jam file initially created
+###############################################################################
+SubDir TOP src test tcpip ;
+LOCATE_TARGET = test/tcpip ;
+
+###############################################################################
+# Build the LWIP executables only if the driver is configured
+###############################################################################
+if $(DRIVER_LWIP) = "yes" && $(DRIVER_ETHLITE) = "yes"
+{
+    ###########################################################################
+    # Add an include directory to the list of includes
+    ###########################################################################
+    SUBDIRHDRS = $(TOP)/src/test/tcpip/include ;
+
+    ###########################################################################
+    # Compile the source files into object files
+    ###########################################################################
+    Hsysobject tcpip.o     : src/tcpip.c ;
+    Hsysobject callbacks.o : src/callbacks.c ;
+    #Hobject intr.o      : src/intr.c ;
+
+    ###########################################################################
+    # Compile executable files from the object files
+    ###########################################################################
+    Hexe tcpip : tcpip.o callbacks.o ;
+    #Hexe intr  : intr.o ;
+}

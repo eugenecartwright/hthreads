@@ -1,0 +1,18 @@
+########################################################################################
+# File:     test/regress/Jamfile
+# Author:   Wesley Peck
+# Date:     29 August 2006
+#
+# Desc:     This is the Jam build file for the src/test/regress subdirectory of
+#           the Hthreads project. This file instructs the Jam build system on how
+#           to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (29 August 2006) Jam file initially created
+########################################################################################
+SubDir TOP src test regress ;
+
+Hclean $(TOP)/regress ;
+
+SubInclude TOP src test regress manager ;
+SubInclude TOP src test regress mutex ;

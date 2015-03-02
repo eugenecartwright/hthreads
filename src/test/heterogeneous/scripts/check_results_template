@@ -1,0 +1,50 @@
+int number_of_errors = 0;
+for (e = 0; e < @; e++) {
+    // Check SORT for this package
+    if (*(package[e].sort_valid)) {
+        unsigned int b = 0;
+        Hint * sorted_list = package[e].sort_data;
+        for (b = 0; b < package[e].sort_size-1; b++) {
+            if (sorted_list[b] > sorted_list[b+1]) {
+                number_of_errors++;
+                printf("\tSORT: Package %u failed\n", e);
+                break;
+            }
+        }
+    }
+    
+    // Check CRC for this package
+    if (*(package[e].crc_valid)) {
+        unsigned int b = 0;
+        Hint * crc = (Hint *) package[e].crc_data;
+        Hint * crc_check = (Hint *) package[e].crc_data_check;
+
+        _crc((void *) crc_check, package[e].crc_size);
+
+        for (b = 0; b < package[e].crc_size; b++) {
+            if (crc[b] != crc_check[b]) {
+                printf("\tCRC: Package %u failed\n", e);
+                number_of_errors++;
+                break;
+            }
+        }
+    }
+
+    // Check Vector for this package
+    if (*(package[e].vector_valid)) {
+        unsigned int b = 0;
+        Hint * A = (Hint *) package[e].dataA;
+        Hint * B = (Hint *) package[e].dataB;
+        Hint * C = (Hint *) package[e].dataC;
+        for (b = 0; b < package[e].vector_size; b++) {
+            if (C[b] != A[b] +B[b]) { 
+                printf("\tVector: Package %u failed\n", e);
+                number_of_errors++;
+                break;
+            }
+        }
+    }
+}
+
+printf("---------------------------\n");
+printf("\nNumber of Errors = %d\n\n", number_of_errors);

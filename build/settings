@@ -1,0 +1,51 @@
+################################################################################
+# File:     build/settings
+# Author:   Wesley Peck
+# Date:     20 February 2007
+#
+# Desc:     This file translates configuration settings into actual build
+#           flags used by the system.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (20 February 2007) Settings rules first created
+################################################################################
+
+################################################################################
+# Add the debug flag if set
+################################################################################
+if $(TARGET_DEBUG) = "yes"
+{ CCFLAGS += -g ; DEFINES += HTHREADS_DEBUG DEBUG ; }
+
+if $(HOST_DEBUG) = "yes"
+{ HOST_CFLAGS += -g ; }
+
+################################################################################
+# Add reset flags if set
+################################################################################
+if $(OLD_RESET_ARCH) = "yes"
+{ DEFINES += OLD_RESET_ARCH ; }
+
+################################################################################
+# Add the trace flags if set
+################################################################################
+if $(TARGET_TRACE) = "yes"
+{ DEFINES += TRACE_LEVEL=TRACE_$(TARGET_TRACELEVEL) ; }
+
+################################################################################
+# Add the profile flag if set
+################################################################################
+if $(TARGET_PROFILE) = "yes"
+{ DEFINES += PROFILING PROFILE_OUTPUT=$(TARGET_PROFILEOUTPUT) ; }
+
+################################################################################
+# Add optimization flags if set
+################################################################################
+if $(TARGET_OPTIMIZE) = "yes"   { CCFLAGS += -O3 ; }
+if $(HOST_OPTIMIZE) = "yes"     { HOST_CFLAGS += -O3 ; }
+
+################################################################################
+# Flags for SMP code
+################################################################################
+if $(PLATFORM_SMP) = "yes"      { DEFINES += HTHREADS_SMP ; }
+else                            { DEFINES += HTHREADS_NOSMP ; }
+

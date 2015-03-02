@@ -1,0 +1,38 @@
+<assertions>
+  <assertion id="1">
+   The function
+
+    int hthread_attr_init(hthread_attr_t *attr)
+ 
+   initializes a thread attributes object 'attr' with the default value
+   for all the individual attributes accorinding to a given implementation.
+
+   NOTE: Since most default values are implementation specific, only the
+   attribute of the detachstate will be tested since the default value
+   is defined in the spec.
+  </assertion>
+  <assertion id="2">
+  The resulting attributes object (that can also be modified by setting 
+  individual attribute values) when used by hthread_create() defines the 
+  attributes of the thread created.
+  </assertion>
+  <assertion id="3">
+  A single attributes object can be used in multiple simultaneous calls to
+  hthread_create(). 
+  NOTE: Undefined results occur if hthread_attr_init() is called specifying an 
+  already initialized 'attr' attributes object.
+  </assertion>
+  <assertion id="4">
+  If success, hthread_attr_init() returns 0.
+  </assertion>
+  <assertion id="5">
+  If it fails, an error number will be returned to indicate the error:
+  [ENOMEM] - Not enough memory to initialize the thread attributes 
+   	     object.
+
+  It will not return [EINTR].
+
+  NOTE: WON'T test here since it is more of a stress test, not a conformance
+  test.
+  </assertion>
+</assertions>

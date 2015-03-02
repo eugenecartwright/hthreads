@@ -1,0 +1,6 @@
+/*************** Package # **********/
+// Initalize the size for this package
+package[#].sort_size = $1;
+package[#].crc_size = $2;
+package[#].vector_size = $3;
+

@@ -1,0 +1,33 @@
+################################################################################
+# File:     src/test/basic_video/Jamfile
+# Author:   Wesley Peck
+# Date:     29 August 2006
+#
+# Desc:     This is the Jam build file for the src/test/basic_video subdirectory of
+#           the Hthreads project. This file instructs the Jam build basic_video on
+#           how to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (29 August 2006) Jam file initially created
+################################################################################
+SubDir TOP src test basic_video ;
+LOCATE_TARGET = test$(SLASH)basic_video ;
+
+################################################################################
+# Compile the source files into object files
+################################################################################
+#Hobjects [ Hglob *.c ] ;
+Hobject threaded.o : threaded.c ;
+Hobject vga_test.o : vga_test.c ;
+Hobject mb_mandelbrot.o : mb_mandelbrot.c ;
+
+################################################################################
+# Compile executable files from the object files
+################################################################################
+#Hexes [ Hglob *.c : .o ] ;
+Hexe threaded : threaded.o ;
+#Hexe hvideo : hetero_threaded.o im_prog.o ;
+#Hexe hvideo : hetero_vga.o im_prog.o ;
+#Hexe vga : hetero_vga.o hetero_vga_prog.o ;
+Hexe vga_test : vga_test.o ;
+Hexe mb_mandelbrot : mb_mandelbrot.o ;

@@ -1,0 +1,26 @@
+################################################################################
+# File:     src/test/book_results/Jamfile
+# Author:   Wesley Peck
+# Date:     29 August 2006
+#
+# Desc:     This is the Jam build file for the src/test/book_results subdirectory of
+#           the Hthreads project. This file instructs the Jam build book_results on
+#           how to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (29 August 2006) Jam file initially created
+################################################################################
+SubDir TOP src test book_results ;
+LOCATE_TARGET = test$(SLASH)book_results ;
+
+################################################################################
+# Compile the source files into object files
+################################################################################
+Hobjects [ Hglob *.c ] ;
+
+################################################################################
+# Compile executable files from the object files
+################################################################################
+#Hexes [ Hglob *.c : .o ] ;
+
+Hexe mutexes : mutexes.o xil_timing.o ;

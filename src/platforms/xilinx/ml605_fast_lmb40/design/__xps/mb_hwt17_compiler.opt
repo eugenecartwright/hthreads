@@ -1,0 +1,22 @@
+microblaze_17
+MB_HWT17_SOURCES = my_sw/hw_thread.c my_sw/proc_hw_thread.c 
+MB_HWT17_HEADERS = my_sw/proc_hw_thread.h 
+MB_HWT17_CC = mb-gcc
+MB_HWT17_CC_SIZE = mb-size
+MB_HWT17_CC_OPT = -O2
+MB_HWT17_CFLAGS = 
+MB_HWT17_CC_SEARCH = # -B
+MB_HWT17_LIBPATH = -L./microblaze_17/lib/ # -L
+MB_HWT17_INCLUDES = -I./microblaze_17/include/  -Imy_sw/ # -I
+MB_HWT17_LFLAGS = # -l
+MB_HWT17_LINKER_SCRIPT = my_sw/fast_lmb_linkerscript.ld
+MB_HWT17_CC_DEBUG_FLAG =  -g 
+MB_HWT17_CC_PROFILE_FLAG = # -pg
+MB_HWT17_CC_GLOBPTR_FLAG= # -mxl-gp-opt
+MB_HWT17_MODE = executable
+MB_HWT17_LIBG_OPT = -$(MB_HWT17_MODE) microblaze_17
+MB_HWT17_CC_INFERRED_FLAGS= -mno-xl-soft-mul -mhard-float -mxl-barrel-shift -mno-xl-soft-div -mcpu=v8.00.a 
+MB_HWT17_CC_START_ADDR_FLAG=  #  # -Wl,-defsym -Wl,_TEXT_START_ADDR=
+MB_HWT17_CC_STACK_SIZE_FLAG=  #  # -Wl,-defsym -Wl,_STACK_SIZE=
+MB_HWT17_CC_HEAP_SIZE_FLAG=  #  # -Wl,-defsym -Wl,_HEAP_SIZE=
+                  $(MB_HWT17_CC_INFERRED_FLAGS)  \

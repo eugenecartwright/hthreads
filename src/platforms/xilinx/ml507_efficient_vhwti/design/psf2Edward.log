@@ -1,0 +1,287 @@
+PMSPEC -- Overriding Xilinx file
+</opt/Xilinx/latest/ISE_DS/ISE/acecf/data/acecf.acd> with local file
+</opt/Xilinx/12.3/ISE_DS/ISE/acecf/data/acecf.acd>
+WARNING:EDK:2028 - Option "CORE_STATE" in
+   /home/eugene/hthreads/src/hardware/MyRepository/pcores/hvm_core_v1_00_a/data/
+   hvm_core_v2_1_0.mpd line 7  is deprecated. Please use Option ARCH_SUPPORT_MAP
+   instead. 
+WARNING:EDK:2028 - Option "ARCH_SUPPORT" in
+   /home/eugene/hthreads/src/hardware/MyRepository/pcores/util_intr_split_v1_00_
+   a/data/util_intr_split_v2_1_0.mpd line 26  is deprecated. Please use Option
+   ARCH_SUPPORT_MAP instead. 
+WARNING:EDK:2028 - Option "CORE_STATE" in
+   /home/eugene/hthreads/src/hardware/MyRepository/pcores/util_intr_split_v1_00_
+   a/data/util_intr_split_v2_1_0.mpd line 28  is deprecated. Please use Option
+   ARCH_SUPPORT_MAP instead. 
+WARNING:EDK:2028 - Option "CORE_STATE" in
+   /home/eugene/hthreads/src/hardware/XilinxProcessorIP/pcores/opb_ac97_v1_00_a/
+   data/opb_ac97_v2_1_0.mpd line 18  is deprecated. Please use Option
+   ARCH_SUPPORT_MAP instead. 
+WARNING:EDK:2028 - Option "CORE_STATE" in
+   /home/eugene/hthreads/src/hardware/XilinxProcessorIP/pcores/opb_ac97_v2_00_a/
+   data/opb_ac97_v2_1_0.mpd line 18  is deprecated. Please use Option
+   ARCH_SUPPORT_MAP instead. 
+
+Checking platform configuration ...
+IPNAME:plb_v46 INSTANCE:main_plb -
+/home/eugene/hthreads/src/platforms/xilinx/ml507_efficient_vhwti/design/system.m
+hs line 64 - 8 master(s) : 10 slave(s)
+IPNAME:plb_v46 INSTANCE:plb_vhwti -
+/home/eugene/hthreads/src/platforms/xilinx/ml507_efficient_vhwti/design/system.m
+hs line 73 - 1 master(s) : 6 slave(s)
+IPNAME:plb_v46 INSTANCE:core_bus -
+/home/eugene/hthreads/src/platforms/xilinx/ml507_efficient_vhwti/design/system.m
+hs line 282 - 4 master(s) : 5 slave(s)
+IPNAME:lmb_v10 INSTANCE:mb_ilmb -
+/home/eugene/hthreads/src/platforms/xilinx/ml507_efficient_vhwti/design/system.m
+hs line 446 - 1 master(s) : 1 slave(s)
+IPNAME:lmb_v10 INSTANCE:mb_dlmb -
+/home/eugene/hthreads/src/platforms/xilinx/ml507_efficient_vhwti/design/system.m
+hs line 453 - 1 master(s) : 1 slave(s)
+IPNAME:plb_v46 INSTANCE:mb0_plb_bus -
+/home/eugene/hthreads/src/platforms/xilinx/ml507_efficient_vhwti/design/system.m
+hs line 511 - 2 master(s) : 3 slave(s)
+IPNAME:lmb_v10 INSTANCE:mb_ilmb1 -
+/home/eugene/hthreads/src/platforms/xilinx/ml507_efficient_vhwti/design/system.m
+hs line 561 - 1 master(s) : 1 slave(s)
+IPNAME:lmb_v10 INSTANCE:mb_dlmb1 -
+/home/eugene/hthreads/src/platforms/xilinx/ml507_efficient_vhwti/design/system.m
+hs line 568 - 1 master(s) : 1 slave(s)
+IPNAME:plb_v46 INSTANCE:mb1_plb_bus -
+/home/eugene/hthreads/src/platforms/xilinx/ml507_efficient_vhwti/design/system.m
+hs line 618 - 2 master(s) : 3 slave(s)
+IPNAME:lmb_v10 INSTANCE:mb_ilmb2 -
+/home/eugene/hthreads/src/platforms/xilinx/ml507_efficient_vhwti/design/system.m
+hs line 662 - 1 master(s) : 1 slave(s)
+IPNAME:lmb_v10 INSTANCE:mb_dlmb2 -
+/home/eugene/hthreads/src/platforms/xilinx/ml507_efficient_vhwti/design/system.m
+hs line 669 - 1 master(s) : 1 slave(s)
+IPNAME:plb_v46 INSTANCE:mb2_plb_bus -
+/home/eugene/hthreads/src/platforms/xilinx/ml507_efficient_vhwti/design/system.m
+hs line 719 - 2 master(s) : 3 slave(s)
+IPNAME:lmb_v10 INSTANCE:mb_ilmb3 -
+/home/eugene/hthreads/src/platforms/xilinx/ml507_efficient_vhwti/design/system.m
+hs line 763 - 1 master(s) : 1 slave(s)
+IPNAME:lmb_v10 INSTANCE:mb_dlmb3 -
+/home/eugene/hthreads/src/platforms/xilinx/ml507_efficient_vhwti/design/system.m
+hs line 770 - 1 master(s) : 1 slave(s)
+IPNAME:plb_v46 INSTANCE:mb3_plb_bus -
+/home/eugene/hthreads/src/platforms/xilinx/ml507_efficient_vhwti/design/system.m
+hs line 820 - 2 master(s) : 3 slave(s)
+IPNAME:lmb_v10 INSTANCE:mb_ilmb4 -
+/home/eugene/hthreads/src/platforms/xilinx/ml507_efficient_vhwti/design/system.m
+hs line 864 - 1 master(s) : 1 slave(s)
+IPNAME:lmb_v10 INSTANCE:mb_dlmb4 -
+/home/eugene/hthreads/src/platforms/xilinx/ml507_efficient_vhwti/design/system.m
+hs line 871 - 1 master(s) : 1 slave(s)
+IPNAME:plb_v46 INSTANCE:mb4_plb_bus -
+/home/eugene/hthreads/src/platforms/xilinx/ml507_efficient_vhwti/design/system.m
+hs line 921 - 2 master(s) : 3 slave(s)
+IPNAME:lmb_v10 INSTANCE:mb_ilmb5 -
+/home/eugene/hthreads/src/platforms/xilinx/ml507_efficient_vhwti/design/system.m
+hs line 965 - 1 master(s) : 1 slave(s)
+IPNAME:lmb_v10 INSTANCE:mb_dlmb5 -
+/home/eugene/hthreads/src/platforms/xilinx/ml507_efficient_vhwti/design/system.m
+hs line 972 - 1 master(s) : 1 slave(s)
+IPNAME:plb_v46 INSTANCE:mb5_plb_bus -
+/home/eugene/hthreads/src/platforms/xilinx/ml507_efficient_vhwti/design/system.m
+hs line 1004 - 2 master(s) : 3 slave(s)
+
+Checking port drivers...
+WARNING:EDK:2098 - PORT:IWAIT CONNECTOR:mb_ilmb_LMB_Wait -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 352 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:ICE CONNECTOR:mb_ilmb_LMB_CE -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 353 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:IUE CONNECTOR:mb_ilmb_LMB_UE -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 354 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:DWAIT CONNECTOR:mb_dlmb_LMB_Wait -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 390 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:DCE CONNECTOR:mb_dlmb_LMB_CE -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 391 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:DUE CONNECTOR:mb_dlmb_LMB_UE -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 392 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:bscan_tdo1 CONNECTOR:bscan_tdo1 -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/mdm_v2_00_a/data/m
+   dm_v2_1_0.mpd line 231 - No driver found. Port will be driven to GND!
+WARNING:EDK:2098 - PORT:IWAIT CONNECTOR:mb_ilmb1_LMB_Wait -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 352 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:ICE CONNECTOR:mb_ilmb1_LMB_CE -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 353 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:IUE CONNECTOR:mb_ilmb1_LMB_UE -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 354 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:DWAIT CONNECTOR:mb_dlmb1_LMB_Wait -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 390 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:DCE CONNECTOR:mb_dlmb1_LMB_CE -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 391 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:DUE CONNECTOR:mb_dlmb1_LMB_UE -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 392 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:IWAIT CONNECTOR:mb_ilmb2_LMB_Wait -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 352 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:ICE CONNECTOR:mb_ilmb2_LMB_CE -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 353 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:IUE CONNECTOR:mb_ilmb2_LMB_UE -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 354 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:DWAIT CONNECTOR:mb_dlmb2_LMB_Wait -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 390 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:DCE CONNECTOR:mb_dlmb2_LMB_CE -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 391 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:DUE CONNECTOR:mb_dlmb2_LMB_UE -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 392 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:IWAIT CONNECTOR:mb_ilmb3_LMB_Wait -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 352 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:ICE CONNECTOR:mb_ilmb3_LMB_CE -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 353 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:IUE CONNECTOR:mb_ilmb3_LMB_UE -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 354 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:DWAIT CONNECTOR:mb_dlmb3_LMB_Wait -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 390 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:DCE CONNECTOR:mb_dlmb3_LMB_CE -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 391 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:DUE CONNECTOR:mb_dlmb3_LMB_UE -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 392 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:IWAIT CONNECTOR:mb_ilmb4_LMB_Wait -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 352 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:ICE CONNECTOR:mb_ilmb4_LMB_CE -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 353 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:IUE CONNECTOR:mb_ilmb4_LMB_UE -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 354 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:DWAIT CONNECTOR:mb_dlmb4_LMB_Wait -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 390 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:DCE CONNECTOR:mb_dlmb4_LMB_CE -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 391 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:DUE CONNECTOR:mb_dlmb4_LMB_UE -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 392 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:IWAIT CONNECTOR:mb_ilmb5_LMB_Wait -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 352 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:ICE CONNECTOR:mb_ilmb5_LMB_CE -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 353 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:IUE CONNECTOR:mb_ilmb5_LMB_UE -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 354 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:DWAIT CONNECTOR:mb_dlmb5_LMB_Wait -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 390 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:DCE CONNECTOR:mb_dlmb5_LMB_CE -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 391 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2098 - PORT:DUE CONNECTOR:mb_dlmb5_LMB_UE -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_00_a
+   /data/microblaze_v2_1_0.mpd line 392 - No driver found. Port will be driven
+   to GND!
+WARNING:EDK:2099 - PORT:Interrupt CONNECTOR:uart_interrupt -
+   /home/eugene/hthreads/src/platforms/xilinx/ml507_efficient_vhwti/design/syste
+   m.mhs line 125 - floating connection!
+WARNING:EDK:2099 - PORT:Semaphore_Reset CONNECTOR:net_gnd -
+   /home/eugene/hthreads/src/platforms/xilinx/ml507_efficient_vhwti/design/syste
+   m.mhs line 331 - floating connection!
+WARNING:EDK:2099 - PORT:SpinLock_Reset CONNECTOR:net_gnd -
+   /home/eugene/hthreads/src/platforms/xilinx/ml507_efficient_vhwti/design/syste
+   m.mhs line 334 - floating connection!
+WARNING:EDK:2099 - PORT:reset_port0 CONNECTOR:hthread_rst_tm -
+   /home/eugene/hthreads/src/platforms/xilinx/ml507_efficient_vhwti/design/syste
+   m.mhs line 301 - floating connection!
+WARNING:EDK:2099 - PORT:bscan_tdi CONNECTOR:bscan_tdi -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/mdm_v2_00_a/data/m
+   dm_v2_1_0.mpd line 224 - floating connection!
+WARNING:EDK:2099 - PORT:bscan_reset CONNECTOR:bscan_reset -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/mdm_v2_00_a/data/m
+   dm_v2_1_0.mpd line 225 - floating connection!
+WARNING:EDK:2099 - PORT:bscan_shift CONNECTOR:bscan_shift -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/mdm_v2_00_a/data/m
+   dm_v2_1_0.mpd line 226 - floating connection!
+WARNING:EDK:2099 - PORT:bscan_update CONNECTOR:bscan_update -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/mdm_v2_00_a/data/m
+   dm_v2_1_0.mpd line 227 - floating connection!
+WARNING:EDK:2099 - PORT:bscan_capture CONNECTOR:bscan_capture -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/mdm_v2_00_a/data/m
+   dm_v2_1_0.mpd line 228 - floating connection!
+WARNING:EDK:2099 - PORT:bscan_sel1 CONNECTOR:bscan_sel1 -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/mdm_v2_00_a/data/m
+   dm_v2_1_0.mpd line 229 - floating connection!
+WARNING:EDK:2099 - PORT:bscan_drck1 CONNECTOR:bscan_drck1 -
+   /opt/Xilinx/12.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/mdm_v2_00_a/data/m
+   dm_v2_1_0.mpd line 230 - floating connection!
+
+Performing Clock DRCs...
+
+Performing Reset DRCs...
+
+Overriding system level properties...
+
+Running system level update procedures...
+
+Running UPDATE Tcl procedures for OPTION SYSLEVEL_UPDATE_PROC...
+
+Running system level DRCs...
+
+Performing System level DRCs on properties...
+
+Running DRC Tcl procedures for OPTION SYSLEVEL_DRC_PROC...
+Conversion to XML complete.

@@ -1,0 +1,426 @@
+#### GCC-generated HTHREADS Hardware Intermediate Form
+
+#### Created from mailbox_no_globals.c line 183
+@function @signed @int 32 mailbox_size 
+
+	# Argument declaration section
+	@struct mailbox_t 
+		@struct hthread_mutex_t 
+		@struct hthread_cond_t 
+			@declare @unsigned @int 32 num 
+		@endstruct
+			@declare @unsigned @int 32 num 
+			@declare @unsigned @int 32 type 
+		@endstruct
+		@declare @signed @int 32 size 
+		@declare @signed @int 32 head 
+		@declare @signed @int 32 tail 
+		@declare @signed @int 32 num 
+		@declare @pointer @pointer @void mailbox 
+		@declare @struct hthread_mutex_t mutex 
+		@declare @struct hthread_cond_t notempty 
+		@declare @struct hthread_cond_t notfull 
+	@endstruct
+	@param @pointer @struct mailbox_t hif_mailbox 
+
+	# Variable declaration section
+	@declare @signed @int 32 hif_size 
+	@declare @pointer @struct hthread_mutex_t hif_D.2808
+
+	@addressof hif_D.2808 @structref hif_mailbox mutex 
+	@call hthread_mutex_lock hif_D.2808 
+	@mov hif_size @structref hif_mailbox num 
+	@call hthread_mutex_unlock hif_D.2808 
+	@return hif_size 
+
+#### Created from mailbox_no_globals.c line 153
+@function @pointer @void mailbox_read 
+
+	# Argument declaration section
+	@struct mailbox_t 
+		@struct hthread_mutex_t 
+		@struct hthread_cond_t 
+			@declare @unsigned @int 32 num 
+		@endstruct
+			@declare @unsigned @int 32 num 
+			@declare @unsigned @int 32 type 
+		@endstruct
+		@declare @signed @int 32 size 
+		@declare @signed @int 32 head 
+		@declare @signed @int 32 tail 
+		@declare @signed @int 32 num 
+		@declare @pointer @pointer @void mailbox 
+		@declare @struct hthread_mutex_t mutex 
+		@declare @struct hthread_cond_t notempty 
+		@declare @struct hthread_cond_t notfull 
+	@endstruct
+	@param @pointer @struct mailbox_t hif_mailbox 
+
+	# Variable declaration section
+	@declare @signed @int 32 hif_temp.67 
+	@declare @signed @int 32 hif_temp.66 
+	@declare @pointer @void hif_value 
+	@declare @pointer @struct hthread_cond_t hif_D.2802
+	@declare @signed @int 32 hif_D.2801
+	@declare @signed @int 32 hif_D.2800
+	@declare @signed @int 32 hif_D.2799
+	@declare @signed @int 32 hif_D.2798
+	@declare @pointer @pointer @void hif_D.2797
+	@declare @pointer @pointer @void hif_D.2796
+	@declare @unsigned @int 32 hif_D.2795
+	@declare @unsigned @int 32 hif_D.2794
+	@declare @signed @int 32 hif_D.2793
+	@declare @pointer @pointer @void hif_D.2792
+	@declare @signed @int 32 hif_D.2791
+	@declare @pointer @struct hthread_cond_t hif_D.2790
+	@declare @pointer @struct hthread_mutex_t hif_D.2789
+
+	@addressof hif_D.2789 @structref hif_mailbox mutex 
+	@call hthread_mutex_lock hif_D.2789 
+	@mov hif_temp.67 @structref hif_mailbox num 
+	@if hif_temp.67 > 0 @goto hif_label0
+		@goto HIFL0
+
+	@label hif_label0 : #else
+		@goto HIFL2
+	@label hif_label1 : #end if
+
+	@label HIFL0: 
+	@addressof hif_D.2790 @structref hif_mailbox notempty 
+	@call hthread_cond_wait hif_D.2790 hif_D.2789 
+	@mov hif_D.2791 @structref hif_mailbox num 
+	@if hif_D.2791 > 0 @goto hif_label2
+		@goto HIFL0
+
+	@label hif_label2 : #else
+		@goto HIFL2
+	@label hif_label3 : #end if
+
+	@label HIFL2: 
+	@mov hif_D.2792 @structref hif_mailbox mailbox 
+	@mov hif_D.2793 @structref hif_mailbox head 
+	@castmov hif_D.2794 hif_D.2793 
+	@mul hif_D.2795 hif_D.2794 4 
+	@castmov hif_D.2796 hif_D.2795 
+	@add hif_D.2797 hif_D.2792 hif_D.2796 
+	@read hif_value hif_D.2797 0 
+	@add hif_D.2798 hif_D.2793 1 
+	@mov hif_D.2799 @structref hif_mailbox size 
+	@mod hif_D.2800 hif_D.2798 hif_D.2799 
+	@mov @structref hif_mailbox head hif_D.2800 
+	@mov hif_temp.66 @structref hif_mailbox num 
+	@sub hif_D.2801 hif_temp.66 1 
+	@mov @structref hif_mailbox num hif_D.2801 
+	@call hthread_mutex_unlock hif_D.2789 
+	@addressof hif_D.2802 @structref hif_mailbox notfull 
+	@call hthread_cond_signal hif_D.2802 
+	@return hif_value 
+
+#### Created from mailbox_no_globals.c line 124
+@function @pointer @void mailbox_tryread 
+
+	# Argument declaration section
+	@struct mailbox_t 
+		@struct hthread_mutex_t 
+		@struct hthread_cond_t 
+			@declare @unsigned @int 32 num 
+		@endstruct
+			@declare @unsigned @int 32 num 
+			@declare @unsigned @int 32 type 
+		@endstruct
+		@declare @signed @int 32 size 
+		@declare @signed @int 32 head 
+		@declare @signed @int 32 tail 
+		@declare @signed @int 32 num 
+		@declare @pointer @pointer @void mailbox 
+		@declare @struct hthread_mutex_t mutex 
+		@declare @struct hthread_cond_t notempty 
+		@declare @struct hthread_cond_t notfull 
+	@endstruct
+	@param @pointer @struct mailbox_t hif_mailbox 
+
+	# Variable declaration section
+	@declare @signed @int 32 hif_temp.94 
+	@declare @pointer @void hif_value 
+	@declare @pointer @struct hthread_cond_t hif_D.2781
+	@declare @signed @int 32 hif_D.2780
+	@declare @signed @int 32 hif_D.2779
+	@declare @signed @int 32 hif_D.2778
+	@declare @signed @int 32 hif_D.2777
+	@declare @pointer @pointer @void hif_D.2776
+	@declare @pointer @pointer @void hif_D.2775
+	@declare @unsigned @int 32 hif_D.2774
+	@declare @unsigned @int 32 hif_D.2773
+	@declare @signed @int 32 hif_D.2772
+	@declare @pointer @pointer @void hif_D.2771
+	@declare @signed @int 32 hif_D.2770
+	@declare @pointer @struct hthread_mutex_t hif_D.2768
+
+	@addressof hif_D.2768 @structref hif_mailbox mutex 
+	@call hthread_mutex_lock hif_D.2768 
+	@mov hif_D.2770 @structref hif_mailbox num 
+	@if hif_D.2770 > 0 @goto hif_label0
+		@goto HIFL0
+
+	@label hif_label0 : #else
+		@goto HIFL2
+	@label hif_label1 : #end if
+
+	@label HIFL0: 
+	@call hthread_mutex_unlock hif_D.2768 
+	@mov hif_value 0B 
+	@goto HIFL3
+	@label HIFL2: 
+	@mov hif_D.2771 @structref hif_mailbox mailbox 
+	@mov hif_D.2772 @structref hif_mailbox head 
+	@castmov hif_D.2773 hif_D.2772 
+	@mul hif_D.2774 hif_D.2773 4 
+	@castmov hif_D.2775 hif_D.2774 
+	@add hif_D.2776 hif_D.2771 hif_D.2775 
+	@read hif_value hif_D.2776 0 
+	@add hif_D.2777 hif_D.2772 1 
+	@mov hif_D.2778 @structref hif_mailbox size 
+	@mod hif_D.2779 hif_D.2777 hif_D.2778 
+	@mov @structref hif_mailbox head hif_D.2779 
+	@mov hif_temp.94 @structref hif_mailbox num 
+	@sub hif_D.2780 hif_temp.94 1 
+	@mov @structref hif_mailbox num hif_D.2780 
+	@call hthread_mutex_unlock hif_D.2768 
+	@addressof hif_D.2781 @structref hif_mailbox notfull 
+	@call hthread_cond_signal hif_D.2781 
+	@label HIFL3: 
+	@return hif_value 
+
+#### Created from mailbox_no_globals.c line 97
+@function @signed @int 32 mailbox_trywrite 
+
+	# Argument declaration section
+	@struct mailbox_t 
+		@struct hthread_mutex_t 
+		@struct hthread_cond_t 
+			@declare @unsigned @int 32 num 
+		@endstruct
+			@declare @unsigned @int 32 num 
+			@declare @unsigned @int 32 type 
+		@endstruct
+		@declare @signed @int 32 size 
+		@declare @signed @int 32 head 
+		@declare @signed @int 32 tail 
+		@declare @signed @int 32 num 
+		@declare @pointer @pointer @void mailbox 
+		@declare @struct hthread_mutex_t mutex 
+		@declare @struct hthread_cond_t notempty 
+		@declare @struct hthread_cond_t notfull 
+	@endstruct
+	@param @pointer @struct mailbox_t hif_mailbox 
+	@param @pointer @void hif_value 
+
+	# Variable declaration section
+	@declare @signed @int 32 hif_temp.123 
+	@declare @signed @int 32 hif_temp.122 
+	@declare @signed @int 32 hif_temp.121 
+	@declare @pointer @struct hthread_cond_t hif_D.2760
+	@declare @signed @int 32 hif_D.2759
+	@declare @signed @int 32 hif_D.2758
+	@declare @signed @int 32 hif_D.2757
+	@declare @pointer @pointer @void hif_D.2756
+	@declare @pointer @pointer @void hif_D.2755
+	@declare @unsigned @int 32 hif_D.2754
+	@declare @unsigned @int 32 hif_D.2753
+	@declare @signed @int 32 hif_D.2752
+	@declare @pointer @pointer @void hif_D.2751
+	@declare @signed @int 32 hif_D.2750
+	@declare @signed @int 32 hif_D.2749
+	@declare @signed @int 32 hif_D.2748
+	@declare @pointer @struct hthread_mutex_t hif_D.2747
+
+	@addressof hif_D.2747 @structref hif_mailbox mutex 
+	@call hthread_mutex_lock hif_D.2747 
+	@mov hif_D.2749 @structref hif_mailbox num 
+	@mov hif_D.2750 @structref hif_mailbox size 
+	@if hif_D.2749 < hif_D.2750 @goto hif_label0
+		@goto HIFL0
+
+	@label hif_label0 : #else
+		@goto HIFL2
+	@label hif_label1 : #end if
+
+	@label HIFL0: 
+	@call hthread_mutex_unlock hif_D.2747 
+	@mov hif_D.2748 1 
+	@goto HIFL3
+	@label HIFL2: 
+	@mov hif_D.2751 @structref hif_mailbox mailbox 
+	@mov hif_D.2752 @structref hif_mailbox tail 
+	@castmov hif_D.2753 hif_D.2752 
+	@mul hif_D.2754 hif_D.2753 4 
+	@castmov hif_D.2755 hif_D.2754 
+	@add hif_D.2756 hif_D.2751 hif_D.2755 
+	@write hif_D.2756 0 hif_value 
+	@mov hif_temp.123 @structref hif_mailbox tail 
+	@add hif_D.2757 hif_temp.123 1 
+	@mov hif_temp.122 @structref hif_mailbox size 
+	@mod hif_D.2758 hif_D.2757 hif_temp.122 
+	@mov @structref hif_mailbox tail hif_D.2758 
+	@mov hif_temp.121 @structref hif_mailbox num 
+	@add hif_D.2759 hif_temp.121 1 
+	@mov @structref hif_mailbox num hif_D.2759 
+	@call hthread_mutex_unlock hif_D.2747 
+	@addressof hif_D.2760 @structref hif_mailbox notempty 
+	@call hthread_cond_signal hif_D.2760 
+	@mov hif_D.2748 0 
+	@label HIFL3: 
+	@return hif_D.2748 
+
+#### Created from mailbox_no_globals.c line 62
+@function @signed @int 32 mailbox_write 
+
+	# Argument declaration section
+	@struct mailbox_t 
+		@struct hthread_mutex_t 
+		@struct hthread_cond_t 
+			@declare @unsigned @int 32 num 
+		@endstruct
+			@declare @unsigned @int 32 num 
+			@declare @unsigned @int 32 type 
+		@endstruct
+		@declare @signed @int 32 size 
+		@declare @signed @int 32 head 
+		@declare @signed @int 32 tail 
+		@declare @signed @int 32 num 
+		@declare @pointer @pointer @void mailbox 
+		@declare @struct hthread_mutex_t mutex 
+		@declare @struct hthread_cond_t notempty 
+		@declare @struct hthread_cond_t notfull 
+	@endstruct
+	@param @pointer @struct mailbox_t hif_mailbox 
+	@param @pointer @void hif_value 
+
+	# Variable declaration section
+	@declare @signed @int 32 hif_temp.154 
+	@declare @signed @int 32 hif_temp.153 
+	@declare @signed @int 32 hif_temp.152 
+	@declare @signed @int 32 hif_temp.151 
+	@declare @signed @int 32 hif_temp.150 
+	@declare @pointer @struct hthread_cond_t hif_D.2738
+	@declare @signed @int 32 hif_D.2737
+	@declare @signed @int 32 hif_D.2736
+	@declare @signed @int 32 hif_D.2735
+	@declare @pointer @pointer @void hif_D.2734
+	@declare @pointer @pointer @void hif_D.2733
+	@declare @unsigned @int 32 hif_D.2732
+	@declare @unsigned @int 32 hif_D.2731
+	@declare @signed @int 32 hif_D.2730
+	@declare @pointer @pointer @void hif_D.2729
+	@declare @signed @int 32 hif_D.2728
+	@declare @signed @int 32 hif_D.2727
+	@declare @pointer @struct hthread_cond_t hif_D.2726
+	@declare @pointer @struct hthread_mutex_t hif_D.2725
+
+	@addressof hif_D.2725 @structref hif_mailbox mutex 
+	@call hthread_mutex_lock hif_D.2725 
+	@mov hif_temp.151 @structref hif_mailbox num 
+	@mov hif_temp.153 @structref hif_mailbox size 
+	@if hif_temp.153 > hif_temp.151 @goto hif_label0
+		@goto HIFL0
+
+	@label hif_label0 : #else
+		@goto HIFL2
+	@label hif_label1 : #end if
+
+	@label HIFL0: 
+	@addressof hif_D.2726 @structref hif_mailbox notfull 
+	@call hthread_cond_wait hif_D.2726 hif_D.2725 
+	@mov hif_D.2727 @structref hif_mailbox num 
+	@mov hif_D.2728 @structref hif_mailbox size 
+	@if hif_D.2727 < hif_D.2728 @goto hif_label2
+		@goto HIFL0
+
+	@label hif_label2 : #else
+		@goto HIFL2
+	@label hif_label3 : #end if
+
+	@label HIFL2: 
+	@mov hif_D.2729 @structref hif_mailbox mailbox 
+	@mov hif_D.2730 @structref hif_mailbox tail 
+	@castmov hif_D.2731 hif_D.2730 
+	@mul hif_D.2732 hif_D.2731 4 
+	@castmov hif_D.2733 hif_D.2732 
+	@add hif_D.2734 hif_D.2729 hif_D.2733 
+	@write hif_D.2734 0 hif_value 
+	@mov hif_temp.154 @structref hif_mailbox tail 
+	@add hif_D.2735 hif_temp.154 1 
+	@mov hif_temp.152 @structref hif_mailbox size 
+	@mod hif_D.2736 hif_D.2735 hif_temp.152 
+	@mov @structref hif_mailbox tail hif_D.2736 
+	@mov hif_temp.150 @structref hif_mailbox num 
+	@add hif_D.2737 hif_temp.150 1 
+	@mov @structref hif_mailbox num hif_D.2737 
+	@call hthread_mutex_unlock hif_D.2725 
+	@addressof hif_D.2738 @structref hif_mailbox notempty 
+	@call hthread_cond_signal hif_D.2738 
+	@return 0 
+
+#### Created from mailbox_no_globals.c line 42
+@function @signed @int 32 mailbox_destroy 
+
+	# Argument declaration section
+	@struct mailbox_t 
+		@struct hthread_mutex_t 
+		@struct hthread_cond_t 
+			@declare @unsigned @int 32 num 
+		@endstruct
+			@declare @unsigned @int 32 num 
+			@declare @unsigned @int 32 type 
+		@endstruct
+		@declare @signed @int 32 size 
+		@declare @signed @int 32 head 
+		@declare @signed @int 32 tail 
+		@declare @signed @int 32 num 
+		@declare @pointer @pointer @void mailbox 
+		@declare @struct hthread_mutex_t mutex 
+		@declare @struct hthread_cond_t notempty 
+		@declare @struct hthread_cond_t notfull 
+	@endstruct
+	@param @pointer @struct mailbox_t hif_mailbox 
+
+	# Variable declaration section
+	@declare @pointer @struct hthread_mutex_t hif_D.2716
+	@declare @pointer @struct hthread_cond_t hif_D.2715
+	@declare @pointer @struct hthread_cond_t hif_D.2714
+	@declare @signed @int 32 hif_D.2713
+	@declare @pointer @pointer @void hif_D.2712
+
+	@mov hif_D.2712 @structref hif_mailbox mailbox 
+	@if hif_D.2712 == 0B @goto hif_label0
+		@goto HIFL0
+
+	@label hif_label0 : #else
+		@goto HIFL2
+	@label hif_label1 : #end if
+
+	@label HIFL0: 
+	@mov hif_D.2713 @structref hif_mailbox size 
+	@if hif_D.2713 <= 0 @goto hif_label2
+		@goto HIFL1
+
+	@label hif_label2 : #else
+		@goto HIFL2
+	@label hif_label3 : #end if
+
+	@label HIFL1: 
+	@call free hif_D.2712 
+	@label HIFL2: 
+	@mov @structref hif_mailbox mailbox 0B 
+	@mov @structref hif_mailbox size 0 
+	@mov @structref hif_mailbox head 0 
+	@mov @structref hif_mailbox tail 0 
+	@mov @structref hif_mailbox num 0 
+	@addressof hif_D.2714 @structref hif_mailbox notempty 
+	@call hthread_cond_destroy hif_D.2714 
+	@addressof hif_D.2715 @structref hif_mailbox notfull 
+	@call hthread_cond_destroy hif_D.2715 
+	@addressof hif_D.2716 @structref hif_mailbox mutex 
+	@call hthread_mutex_destroy hif_D.2716 
+	@return 0 
+

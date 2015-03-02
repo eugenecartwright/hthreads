@@ -1,0 +1,44 @@
+V3 22
+FL /home/jagron/uark_research/plb_cores/edk_user_repository/MyProcessorIPLib/pcores/plb_scheduler_v1_00_a/hdl/vhdl/infer_bram.vhd 2009/04/06.14:29:31 K.39
+EN plb_scheduler_v1_00_a/infer_bram 1239049068 \
+      FL /home/jagron/uark_research/plb_cores/edk_user_repository/MyProcessorIPLib/pcores/plb_scheduler_v1_00_a/hdl/vhdl/infer_bram.vhd \
+      PB ieee/std_logic_1164 1217055545 PB ieee/std_logic_arith 1217055546 \
+      PB ieee/STD_LOGIC_UNSIGNED 1217055547 PB ieee/std_logic_misc 1217055546 \
+      PH ieee/NUMERIC_STD 1217055545 LB Unisim
+AR plb_scheduler_v1_00_a/infer_bram/implementation 1239049069 \
+      FL /home/jagron/uark_research/plb_cores/edk_user_repository/MyProcessorIPLib/pcores/plb_scheduler_v1_00_a/hdl/vhdl/infer_bram.vhd \
+      EN plb_scheduler_v1_00_a/infer_bram 1239049068
+FL /home/jagron/uark_research/plb_cores/edk_user_repository/MyProcessorIPLib/pcores/plb_scheduler_v1_00_a/hdl/vhdl/parallel.vhd 2009/04/06.14:29:36 K.39
+EN plb_scheduler_v1_00_a/parallel 1239049066 \
+      FL /home/jagron/uark_research/plb_cores/edk_user_repository/MyProcessorIPLib/pcores/plb_scheduler_v1_00_a/hdl/vhdl/parallel.vhd \
+      PB ieee/std_logic_1164 1217055545 PH ieee/NUMERIC_STD 1217055545
+AR plb_scheduler_v1_00_a/parallel/imp 1239049067 \
+      FL /home/jagron/uark_research/plb_cores/edk_user_repository/MyProcessorIPLib/pcores/plb_scheduler_v1_00_a/hdl/vhdl/parallel.vhd \
+      EN plb_scheduler_v1_00_a/parallel 1239049066
+FL /home/jagron/uark_research/plb_cores/edk_user_repository/MyProcessorIPLib/pcores/plb_scheduler_v1_00_a/hdl/vhdl/plb_scheduler.vhd 2009/04/06.15:06:00 K.39
+EN plb_scheduler_v1_00_a/plb_scheduler 1239049082 \
+      FL /home/jagron/uark_research/plb_cores/edk_user_repository/MyProcessorIPLib/pcores/plb_scheduler_v1_00_a/hdl/vhdl/plb_scheduler.vhd \
+      PB ieee/std_logic_1164 1217055545 PB ieee/std_logic_arith 1217055546 \
+      PB ieee/STD_LOGIC_UNSIGNED 1217055547 LB proc_common_v2_00_a \
+      PB proc_common_v2_00_a/proc_common_pkg 1239049041 \
+      PB proc_common_v2_00_a/ipif_pkg 1239049063 LB plbv46_slave_single_v1_00_a \
+      EN plbv46_slave_single_v1_00_a/plbv46_slave_single 1239049076 \
+      LB plbv46_master_single_v1_00_a \
+      EN plbv46_master_single_v1_00_a/plbv46_master_single 1239049078 \
+      LB plb_scheduler_v1_00_a EN plb_scheduler_v1_00_a/user_logic 1239049080
+AR plb_scheduler_v1_00_a/plb_scheduler/IMP 1239049083 \
+      FL /home/jagron/uark_research/plb_cores/edk_user_repository/MyProcessorIPLib/pcores/plb_scheduler_v1_00_a/hdl/vhdl/plb_scheduler.vhd \
+      EN plb_scheduler_v1_00_a/plb_scheduler 1239049082 \
+      CP plbv46_slave_single_v1_00_a/plbv46_slave_single \
+      CP plbv46_master_single_v1_00_a/plbv46_master_single \
+      CP plb_scheduler_v1_00_a/user_logic
+FL /home/jagron/uark_research/plb_cores/edk_user_repository/MyProcessorIPLib/pcores/plb_scheduler_v1_00_a/hdl/vhdl/user_logic.vhd 2009/04/06.15:17:05 K.39
+EN plb_scheduler_v1_00_a/user_logic 1239049080 \
+      FL /home/jagron/uark_research/plb_cores/edk_user_repository/MyProcessorIPLib/pcores/plb_scheduler_v1_00_a/hdl/vhdl/user_logic.vhd \
+      PB ieee/std_logic_1164 1217055545 PB ieee/std_logic_arith 1217055546 \
+      PB ieee/STD_LOGIC_UNSIGNED 1217055547 LB proc_common_v2_00_a \
+      PB proc_common_v2_00_a/proc_common_pkg 1239049041 \
+      EN proc_common_v2_00_a/srl_fifo_f 1239049056
+AR plb_scheduler_v1_00_a/user_logic/IMP 1239049081 \
+      FL /home/jagron/uark_research/plb_cores/edk_user_repository/MyProcessorIPLib/pcores/plb_scheduler_v1_00_a/hdl/vhdl/user_logic.vhd \
+      EN plb_scheduler_v1_00_a/user_logic 1239049080 CP parallel CP infer_bram

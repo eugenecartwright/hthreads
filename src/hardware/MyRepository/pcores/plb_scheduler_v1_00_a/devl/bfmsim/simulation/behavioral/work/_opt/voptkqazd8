@@ -1,0 +1,30 @@
+m255
+K3
+13
+cModel Technology
+Z0 d/home/jagron/uark_research/plb_cores/edk_user_repository/MyProcessorIPLib/pcores/plb_scheduler_v1_00_a/devl/bfmsim/simulation/behavioral
+Ebfm_synch
+Z1 w1207171509
+Z2 DPx4 ieee 14 std_logic_1164 0 22 GH1=`jDDBJ=`LM;:Ak`kf2
+Z3 8/opt/Xilinx/10.1/EDK/hw/XilinxBFMinterface/pcores/bfm_synch_v1_00_a/hdl/vhdl/bfm_synch.vhd
+Z4 F/opt/Xilinx/10.1/EDK/hw/XilinxBFMinterface/pcores/bfm_synch_v1_00_a/hdl/vhdl/bfm_synch.vhd
+l0
+L53
+Z5 V<>lPP3fn0l0WcB^KnQ5T62
+Z6 OL;C;6.4a;39
+31
+Z7 o-93 -work bfm_synch_v1_00_a
+Z8 tExplicit 1
+Z9 !s100 Dlj`PgI`U@EhL<<W<o4]72
+Astructure
+Z10 DPx17 __model_tech/ieee 14 std_logic_1164 0 22 GH1=`jDDBJ=`LM;:Ak`kf2
+Z11 DEx154 /home/jagron/uark_research/plb_cores/edk_user_repository/MyProcessorIPLib/pcores/plb_scheduler_v1_00_a/devl/bfmsim/simulation/behavioral/bfm_synch_v1_00_a 9 bfm_synch 0 22 <>lPP3fn0l0WcB^KnQ5T62
+31
+Z12 Mx1 17 __model_tech/ieee 14 std_logic_1164
+l66
+L64
+Z13 VBVXaG@DcGWj9[3?:XC>Xi1
+R6
+R7
+R8
+Z14 !s100 mZnUB<XRXnXmjoKl[=jY73

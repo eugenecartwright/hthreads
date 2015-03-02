@@ -1,0 +1,51 @@
+################################################################################
+# File:     build/tools
+# Author:   Wesley Peck
+# Date:     28 August 2006
+#
+# Desc:     This is the Jam file which defines the rules used by the build
+#           system. These rules control what targets the build system supports
+#           and how those targets perform their actions.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (20 August 2006) Compiler rules initially created
+################################################################################
+
+################################################################################
+# The tool to use when outputing information to the console
+################################################################################
+ECHO    = echo ;
+
+################################################################################
+# The tool to use to make directories (include flags to make parent directories)
+################################################################################
+MKDIR   = mkdir -p ;
+
+################################################################################
+# The tool to use when removing files and directories
+################################################################################
+RM      = rm -rf ;
+
+################################################################################
+# The tool to use when using a makefile
+################################################################################
+MAKE    = make ;
+
+################################################################################
+# The tools to navigate around the directory sturcture while maintaining paths
+################################################################################
+PUSHD   = pushd ;
+POPD    = popd ;
+
+################################################################################
+# The source code documentation tool doxygen
+################################################################################
+DOXYGEN = doxygen ;
+
+################################################################################
+# Override some of the tools if we are on a windows machine
+################################################################################
+if $(NT)
+{
+    MKDIR = mkdir ;
+}

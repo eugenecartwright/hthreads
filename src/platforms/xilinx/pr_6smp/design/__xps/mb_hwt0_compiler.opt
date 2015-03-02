@@ -1,0 +1,22 @@
+microblaze1
+MB_HWT0_SOURCES = my_sw/hw_thread.c my_sw/proc_hw_thread.c 
+MB_HWT0_HEADERS = my_sw/proc_hw_thread.h 
+MB_HWT0_CC = mb-gcc
+MB_HWT0_CC_SIZE = mb-size
+MB_HWT0_CC_OPT = -O2
+MB_HWT0_CFLAGS = 
+MB_HWT0_CC_SEARCH = # -B
+MB_HWT0_LIBPATH = -L./microblaze1/lib/ # -L
+MB_HWT0_INCLUDES = -I./microblaze1/include/  -Imy_sw/ # -I
+MB_HWT0_LFLAGS = # -l
+MB_HWT0_LINKER_SCRIPT = 
+MB_HWT0_CC_DEBUG_FLAG =  -g 
+MB_HWT0_CC_PROFILE_FLAG = # -pg
+MB_HWT0_CC_GLOBPTR_FLAG= # -mxl-gp-opt
+MB_HWT0_MODE = executable
+MB_HWT0_LIBG_OPT = -$(MB_HWT0_MODE) microblaze1
+MB_HWT0_CC_INFERRED_FLAGS= -mxl-soft-mul -mxl-barrel-shift -mcpu=v8.00.a 
+MB_HWT0_CC_START_ADDR_FLAG=  # -Wl,-defsym -Wl,_TEXT_START_ADDR=
+MB_HWT0_CC_STACK_SIZE_FLAG=  # -Wl,-defsym -Wl,_STACK_SIZE=
+MB_HWT0_CC_HEAP_SIZE_FLAG=  # -Wl,-defsym -Wl,_HEAP_SIZE=
+                  $(MB_HWT0_CC_INFERRED_FLAGS)  \

@@ -1,0 +1,302 @@
+// File: /home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_icache_shared_data/design/implementation/system.bmm
+
+ADDRESS_MAP ppc440_0 PPC440 100
+	ADDRESS_SPACE hw_thread_bram_combined COMBINED [0xb0000000:0xb0001fff]
+		ADDRESS_RANGE RAMB32
+		BUS_BLOCK
+			hw_thread_bram/hw_thread_bram/ramb36_0 [31:16] ;
+			hw_thread_bram/hw_thread_bram/ramb36_1 [15:0] ;
+		END_BUS_BLOCK;
+		END_ADDRESS_RANGE;
+	END_ADDRESS_SPACE;
+	ADDRESS_SPACE bram_block_0_combined COMBINED [0xfff80000:0xfff8ffff]
+		ADDRESS_RANGE RAMB32
+		BUS_BLOCK
+			bram_block_0/bram_block_0/ramb36_0 [31:30] ;
+			bram_block_0/bram_block_0/ramb36_1 [29:28] ;
+			bram_block_0/bram_block_0/ramb36_2 [27:26] ;
+			bram_block_0/bram_block_0/ramb36_3 [25:24] ;
+			bram_block_0/bram_block_0/ramb36_4 [23:22] ;
+			bram_block_0/bram_block_0/ramb36_5 [21:20] ;
+			bram_block_0/bram_block_0/ramb36_6 [19:18] ;
+			bram_block_0/bram_block_0/ramb36_7 [17:16] ;
+			bram_block_0/bram_block_0/ramb36_8 [15:14] ;
+			bram_block_0/bram_block_0/ramb36_9 [13:12] ;
+			bram_block_0/bram_block_0/ramb36_10 [11:10] ;
+			bram_block_0/bram_block_0/ramb36_11 [9:8] ;
+			bram_block_0/bram_block_0/ramb36_12 [7:6] ;
+			bram_block_0/bram_block_0/ramb36_13 [5:4] ;
+			bram_block_0/bram_block_0/ramb36_14 [3:2] ;
+			bram_block_0/bram_block_0/ramb36_15 [1:0] ;
+		END_BUS_BLOCK;
+		END_ADDRESS_RANGE;
+	END_ADDRESS_SPACE;
+	ADDRESS_SPACE xps_bram_if_cntlr_1_bram_combined COMBINED [0xffffc000:0xffffffff]
+		ADDRESS_RANGE RAMB32
+		BUS_BLOCK
+			xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/ramb36_0 [63:48] ;
+			xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/ramb36_1 [47:32] ;
+			xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/ramb36_2 [31:16] ;
+			xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/ramb36_3 [15:0] ;
+		END_BUS_BLOCK;
+		END_ADDRESS_RANGE;
+	END_ADDRESS_SPACE;
+END_ADDRESS_MAP;
+
+ADDRESS_MAP microblaze_0 MICROBLAZE 101
+	ADDRESS_SPACE mb_bram_combined COMBINED [0x00000000:0x00003fff]
+		ADDRESS_RANGE RAMB32
+		BUS_BLOCK
+			mb_bram/mb_bram/ramb36_0 [31:24] ;
+			mb_bram/mb_bram/ramb36_1 [23:16] ;
+			mb_bram/mb_bram/ramb36_2 [15:8] ;
+			mb_bram/mb_bram/ramb36_3 [7:0] ;
+		END_BUS_BLOCK;
+		END_ADDRESS_RANGE;
+	END_ADDRESS_SPACE;
+	ADDRESS_SPACE bram_block_0_combined COMBINED [0x10000000:0x1000ffff]
+		ADDRESS_RANGE RAMB32
+		BUS_BLOCK
+			bram_block_0/bram_block_0/ramb36_0 [31:30] ;
+			bram_block_0/bram_block_0/ramb36_1 [29:28] ;
+			bram_block_0/bram_block_0/ramb36_2 [27:26] ;
+			bram_block_0/bram_block_0/ramb36_3 [25:24] ;
+			bram_block_0/bram_block_0/ramb36_4 [23:22] ;
+			bram_block_0/bram_block_0/ramb36_5 [21:20] ;
+			bram_block_0/bram_block_0/ramb36_6 [19:18] ;
+			bram_block_0/bram_block_0/ramb36_7 [17:16] ;
+			bram_block_0/bram_block_0/ramb36_8 [15:14] ;
+			bram_block_0/bram_block_0/ramb36_9 [13:12] ;
+			bram_block_0/bram_block_0/ramb36_10 [11:10] ;
+			bram_block_0/bram_block_0/ramb36_11 [9:8] ;
+			bram_block_0/bram_block_0/ramb36_12 [7:6] ;
+			bram_block_0/bram_block_0/ramb36_13 [5:4] ;
+			bram_block_0/bram_block_0/ramb36_14 [3:2] ;
+			bram_block_0/bram_block_0/ramb36_15 [1:0] ;
+		END_BUS_BLOCK;
+		END_ADDRESS_RANGE;
+	END_ADDRESS_SPACE;
+	ADDRESS_SPACE hw_thread_bram_combined COMBINED [0xb0000000:0xb0001fff]
+		ADDRESS_RANGE RAMB32
+		BUS_BLOCK
+			hw_thread_bram/hw_thread_bram/ramb36_0 [31:16] ;
+			hw_thread_bram/hw_thread_bram/ramb36_1 [15:0] ;
+		END_BUS_BLOCK;
+		END_ADDRESS_RANGE;
+	END_ADDRESS_SPACE;
+END_ADDRESS_MAP;
+
+ADDRESS_MAP microblaze_1 MICROBLAZE 102
+	ADDRESS_SPACE mb_bram1_combined COMBINED [0x00000000:0x00003fff]
+		ADDRESS_RANGE RAMB32
+		BUS_BLOCK
+			mb_bram1/mb_bram1/ramb36_0 [31:24] ;
+			mb_bram1/mb_bram1/ramb36_1 [23:16] ;
+			mb_bram1/mb_bram1/ramb36_2 [15:8] ;
+			mb_bram1/mb_bram1/ramb36_3 [7:0] ;
+		END_BUS_BLOCK;
+		END_ADDRESS_RANGE;
+	END_ADDRESS_SPACE;
+	ADDRESS_SPACE bram_block_0_combined COMBINED [0x10000000:0x1000ffff]
+		ADDRESS_RANGE RAMB32
+		BUS_BLOCK
+			bram_block_0/bram_block_0/ramb36_0 [31:30] ;
+			bram_block_0/bram_block_0/ramb36_1 [29:28] ;
+			bram_block_0/bram_block_0/ramb36_2 [27:26] ;
+			bram_block_0/bram_block_0/ramb36_3 [25:24] ;
+			bram_block_0/bram_block_0/ramb36_4 [23:22] ;
+			bram_block_0/bram_block_0/ramb36_5 [21:20] ;
+			bram_block_0/bram_block_0/ramb36_6 [19:18] ;
+			bram_block_0/bram_block_0/ramb36_7 [17:16] ;
+			bram_block_0/bram_block_0/ramb36_8 [15:14] ;
+			bram_block_0/bram_block_0/ramb36_9 [13:12] ;
+			bram_block_0/bram_block_0/ramb36_10 [11:10] ;
+			bram_block_0/bram_block_0/ramb36_11 [9:8] ;
+			bram_block_0/bram_block_0/ramb36_12 [7:6] ;
+			bram_block_0/bram_block_0/ramb36_13 [5:4] ;
+			bram_block_0/bram_block_0/ramb36_14 [3:2] ;
+			bram_block_0/bram_block_0/ramb36_15 [1:0] ;
+		END_BUS_BLOCK;
+		END_ADDRESS_RANGE;
+	END_ADDRESS_SPACE;
+	ADDRESS_SPACE hw_thread_bram_combined COMBINED [0xb0000000:0xb0001fff]
+		ADDRESS_RANGE RAMB32
+		BUS_BLOCK
+			hw_thread_bram/hw_thread_bram/ramb36_0 [31:16] ;
+			hw_thread_bram/hw_thread_bram/ramb36_1 [15:0] ;
+		END_BUS_BLOCK;
+		END_ADDRESS_RANGE;
+	END_ADDRESS_SPACE;
+END_ADDRESS_MAP;
+
+ADDRESS_MAP microblaze_2 MICROBLAZE 103
+	ADDRESS_SPACE mb_bram2_combined COMBINED [0x00000000:0x00003fff]
+		ADDRESS_RANGE RAMB32
+		BUS_BLOCK
+			mb_bram2/mb_bram2/ramb36_0 [31:24] ;
+			mb_bram2/mb_bram2/ramb36_1 [23:16] ;
+			mb_bram2/mb_bram2/ramb36_2 [15:8] ;
+			mb_bram2/mb_bram2/ramb36_3 [7:0] ;
+		END_BUS_BLOCK;
+		END_ADDRESS_RANGE;
+	END_ADDRESS_SPACE;
+	ADDRESS_SPACE bram_block_0_combined COMBINED [0x10000000:0x1000ffff]
+		ADDRESS_RANGE RAMB32
+		BUS_BLOCK
+			bram_block_0/bram_block_0/ramb36_0 [31:30] ;
+			bram_block_0/bram_block_0/ramb36_1 [29:28] ;
+			bram_block_0/bram_block_0/ramb36_2 [27:26] ;
+			bram_block_0/bram_block_0/ramb36_3 [25:24] ;
+			bram_block_0/bram_block_0/ramb36_4 [23:22] ;
+			bram_block_0/bram_block_0/ramb36_5 [21:20] ;
+			bram_block_0/bram_block_0/ramb36_6 [19:18] ;
+			bram_block_0/bram_block_0/ramb36_7 [17:16] ;
+			bram_block_0/bram_block_0/ramb36_8 [15:14] ;
+			bram_block_0/bram_block_0/ramb36_9 [13:12] ;
+			bram_block_0/bram_block_0/ramb36_10 [11:10] ;
+			bram_block_0/bram_block_0/ramb36_11 [9:8] ;
+			bram_block_0/bram_block_0/ramb36_12 [7:6] ;
+			bram_block_0/bram_block_0/ramb36_13 [5:4] ;
+			bram_block_0/bram_block_0/ramb36_14 [3:2] ;
+			bram_block_0/bram_block_0/ramb36_15 [1:0] ;
+		END_BUS_BLOCK;
+		END_ADDRESS_RANGE;
+	END_ADDRESS_SPACE;
+	ADDRESS_SPACE hw_thread_bram_combined COMBINED [0xb0000000:0xb0001fff]
+		ADDRESS_RANGE RAMB32
+		BUS_BLOCK
+			hw_thread_bram/hw_thread_bram/ramb36_0 [31:16] ;
+			hw_thread_bram/hw_thread_bram/ramb36_1 [15:0] ;
+		END_BUS_BLOCK;
+		END_ADDRESS_RANGE;
+	END_ADDRESS_SPACE;
+END_ADDRESS_MAP;
+
+ADDRESS_MAP microblaze_mb3 MICROBLAZE 104
+	ADDRESS_SPACE mb3_bram_combined COMBINED [0x00000000:0x00003fff]
+		ADDRESS_RANGE RAMB32
+		BUS_BLOCK
+			mb3_bram/mb3_bram/ramb36_0 [31:24] ;
+			mb3_bram/mb3_bram/ramb36_1 [23:16] ;
+			mb3_bram/mb3_bram/ramb36_2 [15:8] ;
+			mb3_bram/mb3_bram/ramb36_3 [7:0] ;
+		END_BUS_BLOCK;
+		END_ADDRESS_RANGE;
+	END_ADDRESS_SPACE;
+	ADDRESS_SPACE bram_block_0_combined COMBINED [0x10000000:0x1000ffff]
+		ADDRESS_RANGE RAMB32
+		BUS_BLOCK
+			bram_block_0/bram_block_0/ramb36_0 [31:30] ;
+			bram_block_0/bram_block_0/ramb36_1 [29:28] ;
+			bram_block_0/bram_block_0/ramb36_2 [27:26] ;
+			bram_block_0/bram_block_0/ramb36_3 [25:24] ;
+			bram_block_0/bram_block_0/ramb36_4 [23:22] ;
+			bram_block_0/bram_block_0/ramb36_5 [21:20] ;
+			bram_block_0/bram_block_0/ramb36_6 [19:18] ;
+			bram_block_0/bram_block_0/ramb36_7 [17:16] ;
+			bram_block_0/bram_block_0/ramb36_8 [15:14] ;
+			bram_block_0/bram_block_0/ramb36_9 [13:12] ;
+			bram_block_0/bram_block_0/ramb36_10 [11:10] ;
+			bram_block_0/bram_block_0/ramb36_11 [9:8] ;
+			bram_block_0/bram_block_0/ramb36_12 [7:6] ;
+			bram_block_0/bram_block_0/ramb36_13 [5:4] ;
+			bram_block_0/bram_block_0/ramb36_14 [3:2] ;
+			bram_block_0/bram_block_0/ramb36_15 [1:0] ;
+		END_BUS_BLOCK;
+		END_ADDRESS_RANGE;
+	END_ADDRESS_SPACE;
+	ADDRESS_SPACE hw_thread_bram_combined COMBINED [0xb0000000:0xb0001fff]
+		ADDRESS_RANGE RAMB32
+		BUS_BLOCK
+			hw_thread_bram/hw_thread_bram/ramb36_0 [31:16] ;
+			hw_thread_bram/hw_thread_bram/ramb36_1 [15:0] ;
+		END_BUS_BLOCK;
+		END_ADDRESS_RANGE;
+	END_ADDRESS_SPACE;
+END_ADDRESS_MAP;
+
+ADDRESS_MAP microblaze_mb4 MICROBLAZE 105
+	ADDRESS_SPACE mb4_bram_combined COMBINED [0x00000000:0x00003fff]
+		ADDRESS_RANGE RAMB32
+		BUS_BLOCK
+			mb4_bram/mb4_bram/ramb36_0 [31:24] ;
+			mb4_bram/mb4_bram/ramb36_1 [23:16] ;
+			mb4_bram/mb4_bram/ramb36_2 [15:8] ;
+			mb4_bram/mb4_bram/ramb36_3 [7:0] ;
+		END_BUS_BLOCK;
+		END_ADDRESS_RANGE;
+	END_ADDRESS_SPACE;
+	ADDRESS_SPACE bram_block_0_combined COMBINED [0x10000000:0x1000ffff]
+		ADDRESS_RANGE RAMB32
+		BUS_BLOCK
+			bram_block_0/bram_block_0/ramb36_0 [31:30] ;
+			bram_block_0/bram_block_0/ramb36_1 [29:28] ;
+			bram_block_0/bram_block_0/ramb36_2 [27:26] ;
+			bram_block_0/bram_block_0/ramb36_3 [25:24] ;
+			bram_block_0/bram_block_0/ramb36_4 [23:22] ;
+			bram_block_0/bram_block_0/ramb36_5 [21:20] ;
+			bram_block_0/bram_block_0/ramb36_6 [19:18] ;
+			bram_block_0/bram_block_0/ramb36_7 [17:16] ;
+			bram_block_0/bram_block_0/ramb36_8 [15:14] ;
+			bram_block_0/bram_block_0/ramb36_9 [13:12] ;
+			bram_block_0/bram_block_0/ramb36_10 [11:10] ;
+			bram_block_0/bram_block_0/ramb36_11 [9:8] ;
+			bram_block_0/bram_block_0/ramb36_12 [7:6] ;
+			bram_block_0/bram_block_0/ramb36_13 [5:4] ;
+			bram_block_0/bram_block_0/ramb36_14 [3:2] ;
+			bram_block_0/bram_block_0/ramb36_15 [1:0] ;
+		END_BUS_BLOCK;
+		END_ADDRESS_RANGE;
+	END_ADDRESS_SPACE;
+	ADDRESS_SPACE hw_thread_bram_combined COMBINED [0xb0000000:0xb0001fff]
+		ADDRESS_RANGE RAMB32
+		BUS_BLOCK
+			hw_thread_bram/hw_thread_bram/ramb36_0 [31:16] ;
+			hw_thread_bram/hw_thread_bram/ramb36_1 [15:0] ;
+		END_BUS_BLOCK;
+		END_ADDRESS_RANGE;
+	END_ADDRESS_SPACE;
+END_ADDRESS_MAP;
+
+ADDRESS_MAP microblaze_mb5 MICROBLAZE 106
+	ADDRESS_SPACE mb5_bram_combined COMBINED [0x00000000:0x00003fff]
+		ADDRESS_RANGE RAMB32
+		BUS_BLOCK
+			mb5_bram/mb5_bram/ramb36_0 [31:24] ;
+			mb5_bram/mb5_bram/ramb36_1 [23:16] ;
+			mb5_bram/mb5_bram/ramb36_2 [15:8] ;
+			mb5_bram/mb5_bram/ramb36_3 [7:0] ;
+		END_BUS_BLOCK;
+		END_ADDRESS_RANGE;
+	END_ADDRESS_SPACE;
+	ADDRESS_SPACE bram_block_0_combined COMBINED [0x10000000:0x1000ffff]
+		ADDRESS_RANGE RAMB32
+		BUS_BLOCK
+			bram_block_0/bram_block_0/ramb36_0 [31:30] ;
+			bram_block_0/bram_block_0/ramb36_1 [29:28] ;
+			bram_block_0/bram_block_0/ramb36_2 [27:26] ;
+			bram_block_0/bram_block_0/ramb36_3 [25:24] ;
+			bram_block_0/bram_block_0/ramb36_4 [23:22] ;
+			bram_block_0/bram_block_0/ramb36_5 [21:20] ;
+			bram_block_0/bram_block_0/ramb36_6 [19:18] ;
+			bram_block_0/bram_block_0/ramb36_7 [17:16] ;
+			bram_block_0/bram_block_0/ramb36_8 [15:14] ;
+			bram_block_0/bram_block_0/ramb36_9 [13:12] ;
+			bram_block_0/bram_block_0/ramb36_10 [11:10] ;
+			bram_block_0/bram_block_0/ramb36_11 [9:8] ;
+			bram_block_0/bram_block_0/ramb36_12 [7:6] ;
+			bram_block_0/bram_block_0/ramb36_13 [5:4] ;
+			bram_block_0/bram_block_0/ramb36_14 [3:2] ;
+			bram_block_0/bram_block_0/ramb36_15 [1:0] ;
+		END_BUS_BLOCK;
+		END_ADDRESS_RANGE;
+	END_ADDRESS_SPACE;
+	ADDRESS_SPACE hw_thread_bram_combined COMBINED [0xb0000000:0xb0001fff]
+		ADDRESS_RANGE RAMB32
+		BUS_BLOCK
+			hw_thread_bram/hw_thread_bram/ramb36_0 [31:16] ;
+			hw_thread_bram/hw_thread_bram/ramb36_1 [15:0] ;
+		END_BUS_BLOCK;
+		END_ADDRESS_RANGE;
+	END_ADDRESS_SPACE;
+END_ADDRESS_MAP;

@@ -1,0 +1,194 @@
+m255
+K3
+13
+cModel Technology
+Z0 d/home/jagron/uark_research/uark_ht_trunk/src/hardware/MyRepository/pcores/plb_cond_vars_v1_00_a/devl/ise_proj
+T_opt
+Z1 VYOVeGA10o`9AWJmE;h;ci3
+Z2 04 10 8 work condvar_tb behavior 1
+Z3 =1-001ec9546918-4a395a0a-621b8-44de
+Z4 o-quiet -auto_acc_if_foreign -work work
+Z5 OL;O;6.4a;39
+T_opt1
+Z6 VXzz>UCKG=LPV85mbA5IKN1
+Z7 04 13 8 work user_logic_tb behavior 1
+Z8 =1-001ec9546918-4a6f6b5e-a5dcc-1942
+R4
+R5
+Econdvar
+Z9 w1245265660
+Z10 DPx4 ieee 11 numeric_std 0 22 =NSdli^?T5OD8;4F<blj<3
+Z11 DPx4 ieee 18 std_logic_unsigned 0 22 hEMVMlaNCR^<OOoVNV;m90
+Z12 DPx4 ieee 15 std_logic_arith 0 22 GJbAT?7@hRQU9IQ702DT]2
+Z13 DPx4 ieee 14 std_logic_1164 0 22 GH1=`jDDBJ=`LM;:Ak`kf2
+Z14 8../../hdl/vhdl/condvar.vhd
+Z15 F../../hdl/vhdl/condvar.vhd
+l0
+L18
+Z16 VnBUKN?`WHGLO01QbnRLDP2
+Z17 OL;C;6.4a;39
+31
+Z18 o-explicit -93
+Z19 tExplicit 1
+Z20 !s100 WL;9be63S;SGY9ZjUI`fM3
+Aimplementation
+Z21 DEx114 /home/jagron/uark_research/uark_ht_trunk/src/hardware/MyRepository/pcores/plb_cond_vars_v1_00_a/devl/ise_proj/work 10 infer_bram 0 22 5a5KgQQVV=8ffnQ`DASNE0
+Z22 DPx17 __model_tech/ieee 11 numeric_std 0 22 =NSdli^?T5OD8;4F<blj<3
+Z23 DPx17 __model_tech/ieee 18 std_logic_unsigned 0 22 hEMVMlaNCR^<OOoVNV;m90
+Z24 DPx17 __model_tech/ieee 15 std_logic_arith 0 22 GJbAT?7@hRQU9IQ702DT]2
+Z25 DPx17 __model_tech/ieee 14 std_logic_1164 0 22 GH1=`jDDBJ=`LM;:Ak`kf2
+Z26 DEx114 /home/jagron/uark_research/uark_ht_trunk/src/hardware/MyRepository/pcores/plb_cond_vars_v1_00_a/devl/ise_proj/work 7 condvar 0 22 nBUKN?`WHGLO01QbnRLDP2
+31
+Z27 Mx4 17 __model_tech/ieee 14 std_logic_1164
+Z28 Mx3 17 __model_tech/ieee 15 std_logic_arith
+Z29 Mx2 17 __model_tech/ieee 18 std_logic_unsigned
+Z30 Mx1 17 __model_tech/ieee 11 numeric_std
+l187
+L48
+Z31 VWf;1[zcVcMN[:=n08_>TK0
+R17
+R18
+R19
+Z32 !s100 @jY=A:RheL4zH9W^WDW>73
+Econdvar_tb
+Z33 w1245258918
+R10
+R12
+R11
+R13
+Z34 8../../hdl/vhdl/condvar_tb.vhd
+Z35 F../../hdl/vhdl/condvar_tb.vhd
+l0
+L36
+Z36 VL7C3[VoSU66az24c<=UOU2
+R17
+31
+R18
+R19
+Z37 !s100 Wiof?C@Vi@ekT]To[m2d81
+Abehavior
+R10
+R12
+R11
+R13
+Z38 DEx4 work 10 condvar_tb 0 22 L7C3[VoSU66az24c<=UOU2
+l87
+L39
+Z39 Vkl_iJFjR`QgGSl4=TnI5m0
+R17
+31
+Z40 Mx4 4 ieee 14 std_logic_1164
+Z41 Mx3 4 ieee 18 std_logic_unsigned
+Z42 Mx2 4 ieee 15 std_logic_arith
+Z43 Mx1 4 ieee 11 numeric_std
+R18
+R19
+Z44 !s100 QP2Y7;V5>11^fgfoDJI[42
+Einfer_bram
+R9
+R10
+Z45 DPx8 synopsys 10 attributes 0 22 2Q8I4L@H0S1aHEXkjUYDC1
+Z46 DPx4 ieee 14 std_logic_misc 0 22 D2f;@P3IKJA9T^H8HI[9K0
+R11
+R12
+R13
+R14
+R15
+l0
+L560
+Z47 V5a5KgQQVV=8ffnQ`DASNE0
+R17
+31
+R18
+R19
+Z48 !s100 FYM:GQ<;i>8Ne4E`=V5PM3
+Aimplementation
+R22
+Z49 DPx21 __model_tech/synopsys 10 attributes 0 22 2Q8I4L@H0S1aHEXkjUYDC1
+Z50 DPx17 __model_tech/ieee 14 std_logic_misc 0 22 D2f;@P3IKJA9T^H8HI[9K0
+R23
+R24
+R25
+R21
+31
+Z51 Mx6 17 __model_tech/ieee 14 std_logic_1164
+Z52 Mx5 17 __model_tech/ieee 15 std_logic_arith
+Z53 Mx4 17 __model_tech/ieee 18 std_logic_unsigned
+Z54 Mx3 17 __model_tech/ieee 14 std_logic_misc
+Z55 Mx2 21 __model_tech/synopsys 10 attributes
+R30
+l597
+L586
+Z56 VLMSB6`]RS2`gfUTceXzmh3
+R17
+R18
+R19
+Z57 !s100 n=gU4bOhEz3lX>5Dn7nbJ1
+Euser_logic
+Z58 w1245275370
+R11
+R12
+R13
+Z59 8../../hdl/vhdl/user_logic.vhd
+Z60 F../../hdl/vhdl/user_logic.vhd
+l0
+L107
+Z61 VzaU9BGH6dXPgzG2D4i]8@2
+R17
+31
+R18
+R19
+Z62 !s100 eWg2RZ_8H=T<To=[Vd;Qd2
+Aimp
+Z63 DEx125 /home/jagron/uark_research/uark_ht_trunk/src/hardware/MyRepository/pcores/plb_cond_vars_v1_00_a/devl/ise_proj/fsl_v20_v2_11_a 7 fsl_v20 0 22 M0JS[]2kEcKK@gPKXhgHI1
+R26
+R23
+R24
+R25
+Z64 DEx114 /home/jagron/uark_research/uark_ht_trunk/src/hardware/MyRepository/pcores/plb_cond_vars_v1_00_a/devl/ise_proj/work 10 user_logic 0 22 zaU9BGH6dXPgzG2D4i]8@2
+31
+Z65 Mx3 17 __model_tech/ieee 14 std_logic_1164
+Z66 Mx2 17 __model_tech/ieee 15 std_logic_arith
+Z67 Mx1 17 __model_tech/ieee 18 std_logic_unsigned
+l378
+L174
+Z68 V@WV9Be_IWY7Y_<EKEcB@N1
+R17
+R18
+R19
+Z69 !s100 @QZBB=6cC8B?FB0<f<^lW1
+Euser_logic_tb
+Z70 w1245276076
+R10
+R12
+R11
+R13
+Z71 8../../hdl/vhdl/user_logic_tb.vhd
+Z72 F../../hdl/vhdl/user_logic_tb.vhd
+l0
+L33
+Z73 VWX[8>[6ekbFUlmhb1IE]E3
+R17
+31
+R18
+R19
+Z74 !s100 ;K5M;^d;>B:;ea_m8o`ak3
+Abehavior
+R64
+R22
+R24
+R23
+R25
+Z75 DEx114 /home/jagron/uark_research/uark_ht_trunk/src/hardware/MyRepository/pcores/plb_cond_vars_v1_00_a/devl/ise_proj/work 13 user_logic_tb 0 22 WX[8>[6ekbFUlmhb1IE]E3
+31
+R27
+Z76 Mx3 17 __model_tech/ieee 18 std_logic_unsigned
+R66
+R30
+l108
+L36
+Z77 V;5AIm5<=ke5oSOMhg@]9;0
+R17
+R18
+R19
+Z78 !s100 zNz:9KWHbF0?7d8VXWX:70

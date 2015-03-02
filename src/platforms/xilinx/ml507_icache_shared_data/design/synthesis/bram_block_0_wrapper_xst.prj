@@ -1,0 +1,2 @@
+VHDL bram_block_0_elaborate_v1_00_a /home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_icache_shared_data/design/hdl/elaborate/bram_block_0_elaborate_v1_00_a/hdl/vhdl/bram_block_0_elaborate.vhd
+vhdl work ../hdl/bram_block_0_wrapper.vhd

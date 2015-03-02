@@ -1,0 +1,38 @@
+################################################################################
+# File:     src/test/system/Jamfile
+# Author:   Wesley Peck
+# Date:     29 August 2006
+#
+# Desc:     This is the Jam build file for the src/test/system subdirectory of
+#           the Hthreads project. This file instructs the Jam build system on
+#           how to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (29 August 2006) Jam file initially created
+################################################################################
+SubDir TOP src test hvm_interp ;
+LOCATE_TARGET = test$(SLASH)hvm_interp ;
+
+################################################################################
+# Add this test's include directory
+################################################################################
+SUBDIRHDRS += $(TOP)/src/test/hvm_interp ;
+
+################################################################################
+# Compile the source files into object files
+################################################################################
+Hobjects [ Hglob *.c ] ;
+
+################################################################################
+# Compile executable files from the object files
+################################################################################
+Hlink hvm : -lhvm ;
+Depends hvm : <lib>hvm ;
+Hexe hvm : [ Hglob *.c : .o ] ;
+
+################################################################################
+# Compile the subfolder files
+################################################################################
+SubInclude TOP src test hvm_interp common ;
+SubInclude TOP src test hvm_interp interpreter ;
+SubInclude TOP src test hvm_interp daemon ;

@@ -1,0 +1,11 @@
+-batch 
+-create plb_sync_manager 
+-ver 1.00.a 
+-dir "/home/jstevens/edk/syncmanager" 
+-lang vhdl 
+-bus plbv46 ms 
+-reg 1 
+-xps 
+-ise 
+-bfmsim "/home/jstevens/simlib/EDK10.1.02_mti_se_linux/ISE_Lib/" "/home/jstevens/simlib/EDK10.1.02_mti_se_linux/EDK_Lib/" 
+-driver 

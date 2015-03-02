@@ -1,0 +1,33 @@
+################################################################################
+# File:     test/string/Jamfile
+# Author:   Wesley Peck
+# Date:     24 October 2007
+#
+# Desc:     This is the Jam build file for the string test subdirectory of the
+#           Hthreads project. This file instructs the Jam build system on how
+#           to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (14 November 2006) Jam file initially created
+################################################################################
+SubDir TOP src test string ;
+LOCATE_TARGET = test/string ;
+
+################################################################################
+# Build the object files
+################################################################################
+SUBDIRHDRS += $(TOP)/src/test/string ;
+#SUBDIRLIBS += -L $(TOP)/src/platforms/xilinx/xup/design/ppc405_0/lib -lxil ;
+
+################################################################################
+# Build the object files
+################################################################################
+Hobjects [ Hglob *.c ] ;
+
+################################################################################
+# Build the executables
+################################################################################
+Hexe string : [ Hglob *.c : .o ] ;
+#Hexe mutexes : xil_timing.o timing.o mutexes.o ;
+#Hexe mtsw : bubblesort.o data.o merge.o timing.o sort8k.o mailbox.o mtsw.o ;
+#Hexe mtsw_no_globals : bubblesort.o data.o merge_no_globals.o timing.o sort8k_no_globals.o mailbox_no_globals.o mtsw_no_globals.o ;

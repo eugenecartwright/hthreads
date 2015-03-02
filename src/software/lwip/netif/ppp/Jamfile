@@ -1,0 +1,46 @@
+########################################################################################
+# File:     src/lwip/netif/ppp/Jamfile
+# Author:   Wesley Peck
+# Date:     26 October 2006
+#
+# Desc:     This is the Jam build file for the lwip ppp subdirectory of the
+#           Hthreads project. This file instructs the Jam build system on how to build
+#           the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (26 October 2006) Jam file initially created
+########################################################################################
+SubDir TOP src lwip netif ppp ;
+LOCATE_TARGET = test/lwip/netif/ppp ;
+
+########################################################################################
+# Compile the source files into object files
+########################################################################################
+Hsysobject auth.o   : auth.c ;
+Hsysobject chpms.o  : chpms.c ;
+Hsysobject ipcp.o   : ipcp.c ;
+Hsysobject magic.o  : magic.c ;
+Hsysobject pap.o    : pap.c ;
+Hsysobject randm.o  : randm.c ;
+Hsysobject chap.o   : chap.c ;
+Hsysobject fsm.o    : fsm.c ;
+Hsysobject lcp.o    : lcp.c ;
+Hsysobject md5.o    : md5.c ;
+Hsysobject ppp.o    : ppp.c ;
+Hsysobject vj.o     : vj.c ;
+
+########################################################################################
+# Compile executable files from the object files
+########################################################################################
+Hlib lwip   : auth.o ;
+Hlib lwip   : chpms.o ;
+Hlib lwip   : ipcp.o ;
+Hlib lwip   : magic.o ;
+Hlib lwip   : pap.o ;
+Hlib lwip   : randm.o ;
+Hlib lwip   : chap.o ;
+Hlib lwip   : fsm.o ;
+Hlib lwip   : lcp.o ;
+Hlib lwip   : md5.o ;
+Hlib lwip   : ppp.o ;
+Hlib lwip   : vj.o ;

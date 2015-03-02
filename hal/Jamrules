@@ -1,0 +1,57 @@
+################################################################################
+# File:     src/Jamrules
+# Author:   Wesley Peck
+# Date:     20 August 2006
+#
+# Desc:     This is the rules file for the Jam build system. This file
+#           declares the projects globally used rules.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (20 August 2006) Jam rules initially created
+################################################################################
+
+################################################################################
+# Setup the default values for some variables
+################################################################################
+CFLAGS = ;
+LDFLAGS = ;
+LIBS = ;
+DEFINES = ;
+
+
+################################################################################
+# Include the configuration files
+################################################################################
+include $(TOP)$(SLASH)config$(SLASH)common ;
+include $(TOP)$(SLASH)build$(SLASH)tools ;
+include $(TOP)$(SLASH)build$(SLASH)rules ;
+include $(TOP)$(SLASH)build$(SLASH)host ;
+include $(TOP)$(SLASH)build$(SLASH)functions ;
+include $(TOP)$(SLASH)config$(SLASH)settings ;
+include $(TOP)$(SLASH)config$(SLASH)profile ;
+include $(TOP)$(SLASH)config$(SLASH)trace ;
+include $(TOP)$(SLASH)config$(SLASH)drivers ;
+include $(TOP)$(SLASH)build$(SLASH)flags ;
+include $(TOP)$(SLASH)build$(SLASH)compilers ;
+include $(TOP)$(SLASH)build$(SLASH)settings ;
+include $(TOP)$(SLASH)build$(SLASH)trace ;
+include $(TOP)$(SLASH)build$(SLASH)profile ;
+
+################################################################################
+# Clean the object output directory during clean operations
+################################################################################
+Hclean clean : $(LOCATE_OBJS) ;
+
+################################################################################
+# Setup the standard tools for the target system
+################################################################################
+CC      = $($(PLATFORM_ARCH)_CC) ;
+AS      = $($(PLATFORM_ARCH)_AS) ;
+AR      = $($(PLATFORM_ARCH)_AR) qc ;
+LINK    = $($(PLATFORM_ARCH)_CC) ;
+RANLIB  = $($(PLATFORM_ARCH)_RANLIB) ;
+
+################################################################################
+# Include the platform specific definitions if needed
+################################################################################
+include $(TOP)$(SLASH)src$(SLASH)platforms$(SLASH)$(PLATFORM_VENDOR)$(SLASH)$(PLATFORM_BOARD)$(SLASH)config$(SLASH)Jamrules ;

@@ -1,0 +1,17 @@
+bfm_system.mhs
+-p
+xc2vp4fg456-6
+-lang
+vhdl
+-lp
+H:/Projects/research/hthreads/src/hardware
+-mixed
+yes
+-s
+mti
+-X
+H:/Projects/research/hthreads/src/hardware/MyRepository/pcores/plb_hwti_v1_00_a/devl/bfmsim/
+-E
+H:/Projects/research/hthreads/src/hardware/MyRepository/pcores/plb_hwti_v1_00_a/devl/bfmsim
+-m
+behavioral

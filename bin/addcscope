@@ -1,0 +1,116 @@
+#!/bin/bash
+
+################################################################################
+# This function shows the help message to the user and then exits the script.
+################################################################################
+function show_help()
+{
+    echo "Build a cscope database for use with the Hthreads source code."
+    echo ""
+    echo "Usage: $0 [option]... [dir...]";
+    echo "where options is";
+    echo "    --no-rec      do not recursively search directories"
+    echo "    --help        show this help";
+    echo "";
+    echo "If no directories are specified then a database of all source files"
+    echo "in the Hthreads system will be built."
+    exit 1;
+}
+
+################################################################################
+# This function shows an error message to the console and then exits
+################################################################################
+function show_error()
+{
+    echo $1;
+    exit 1;
+}
+
+################################################################################
+# This function checks to see if an option has been passed an invalid
+# parameter.  An invalid parameter to an option is passing another option.
+################################################################################
+function invalid_option()
+{
+    beg=${2:0:1};
+    if [[ $beg == "-" ]]
+    then
+        echo "Invalid option$1: $2";
+        show_help;
+    fi
+}
+
+################################################################################
+# This function parses the command line options which are passed to the script.
+################################################################################
+function parse_options()
+{
+    for opt
+    do
+        case $opt in
+            '--help'    )   show_help;;
+
+            '--no-rec' )    no_rec=1;
+                            shift;;
+
+            *           )   invalid_option "" "$1";
+                            if [[ -n $1 ]]
+                            then
+                                dircs="$dircs $1";
+                            fi
+                            shift;;
+        esac
+    done
+}
+
+################################################################################
+# Find the base directory to start searching for files at. The base directory
+# is determined by locating the parent directory of this script and starting
+# there.
+################################################################################
+function find_dir()
+{
+   base=${0%/*}
+   bdir="$base/.."
+
+   pushd $bdir &>/dev/null
+   dir="${PWD}";
+   popd &>/dev/null
+}
+
+################################################################################
+# Construct a list of files to use when building the cscope database. This
+# function loops through all of the directories specified and find source
+# files inside of them. The results are store in a temporary file. The name
+# of this file is returned as the result of this function.
+################################################################################
+function find_files()
+{
+    output=`mktemp /tmp/hthreads.cscope.XXXXXXXXXX`
+
+    if [[ -z "$dircs" ]]
+    then
+        dircs='src include'
+    fi
+
+    if [[ -n "$dircs" ]]
+    then
+        echo "Finding all hthread's files...";
+        find $dircs -type f -name "*.[chS]"|grep -v 'platforms.*design' |grep -v '/\.[^/]*' > $output
+    fi
+}
+
+function build_database()
+{
+    find_files $@;
+    find_dir $@;
+
+    cscope -b -k -q -u -i$output -P$dir
+    rm $output
+}
+
+################################################################################
+# Execute the script
+################################################################################
+parse_options $@;
+build_database $@;

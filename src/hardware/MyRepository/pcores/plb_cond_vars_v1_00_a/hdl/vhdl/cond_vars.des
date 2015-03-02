@@ -1,0 +1,286 @@
+CS: current_state;
+NS: next_state;
+
+GENERICS:
+G_ADDR_WIDTH, integer, 11;
+G_OP_WIDTH, integer, 2;
+G_TID_WIDTH, integer, 8;
+
+PORTS:
+cmd, in, std_logic;
+opcode, in, std_logic_vector(0 to G_OP_WIDTH-1);
+cvar, in, std_logic_vector(0 to G_TID_WIDTH-1);
+tid, in, std_logic_vector(0 to G_TID_WIDTH-1);
+ack, out, std_logic;
+
+CONNECTIONS:
+ack <= done;
+
+MEMS:
+table, G_TID_WIDTH, G_ADDR_WIDTH;
+
+CHANNELS:
+msg_chan, G_TID_WIDTH;
+
+SIGS:
+addr_counter, std_logic_vector(0 to G_ADDR_WIDTH-1);
+arg_cvar, std_logic_vector(0 to G_TID_WIDTH-1);
+arg_tid, std_logic_vector(0 to G_TID_WIDTH-1);
+entry, std_logic_vector(0 to G_TID_WIDTH-1);
+done, std_logic;
+
+INITIAL: reset;
+
+TRANS:
+
+-- ****************************************************
+-- Reset and initialization begin_process
+-- ****************************************************
+reset -> init_bram where
+{
+    -- Initialize counter and first entry
+    addr_counter'    <= ALL_ONES;    
+    table[ALL_ZEROS] <= ALL_ZEROS;
+}
+
+init_bram | (addr_counter > 0) -> init_bram where
+{
+    -- Initialize entry and decrement counter
+    table[addr_counter]     <= ALL_ZEROS;
+    addr_counter'           <= addr_counter - 1;
+}
+init_bram -> idle where
+{
+    -- Assert done signal
+    done'   <= '1';
+}
+
+-- ****************************************************
+-- Comman Wait Loop
+-- ****************************************************
+idle | (cmd = '1' and opcode = OPCODE_ENQUEUE) -> enq_begin where
+{
+    arg_tid'     <= tid; 
+    arg_cvar'    <= cvar; 
+}
+idle | (cmd = '1' and opcode = OPCODE_DEQUEUE) -> deq_begin where
+{
+    arg_cvar'    <= cvar; 
+}
+idle | (cmd = '1' and opcode = OPCODE_DEQUEUE_ALL) -> deqall_begin where
+{
+    arg_cvar'    <= cvar; 
+}
+idle -> idle where
+{
+    done'   <= '0';
+}
+
+-- ****************************************************
+-- Enqueue (Wait) Process
+-- ****************************************************
+enq_begin -> enq_adjust_queue where
+{
+    entry'  <= table[lengthEntry(arg_cvar)] + 1;  -- Read and increment queue length
+}
+
+-- Check for 1 as it has already been incremented in the last state
+enq_adjust_queue | (getLength(entry) = 1) -> enq_add_to_empty_queue where
+{
+    -- Update entry
+    table[lengthEntry(arg_cvar)] <= entry;
+}
+enq_adjust_queue -> enq_add_to_nonempty_queue where
+{
+    -- Update entry
+    table[lengthEntry(arg_cvar)] <= entry;
+}
+
+enq_add_to_empty_queue -> transaction_complete where
+{
+    -- Init. last request and owner entries
+    table[lastReqEntry(arg_cvar)] <= arg_tid;
+    table[ownerEntry(arg_cvar)]   <= arg_tid;    
+
+    -- Assert done signal
+    done'   <= '1';
+}
+
+enq_add_to_nonempty_queue -> enq_add_link where
+{
+    -- Lookup (previous) last request thread
+    entry'  <= table[lastReqEntry(arg_cvar)];
+}
+
+enq_add_link -> transaction_complete where
+{
+    -- Add in a link from the previous thread to the requesting thread
+    table[linkEntry(entry)] <= arg_tid;
+
+    -- Update last requesting thread to the current thread
+    table[lastReqEntry(arg_cvar)] <= arg_tid;
+
+    -- Assert done signal
+    done'   <= '1';
+}
+
+-- ****************************************************
+-- Dequeue (Signal) Process
+-- ****************************************************
+deq_begin -> deq_examine_length where
+{
+    entry'  <= table[lengthEntry(arg_cvar)];    -- Read queue length
+}
+
+deq_examine_length | (getLength(entry) = 0) -> transaction_complete where
+{
+    -- Queue is empty, cannot signal anyone, just assert done
+    done' <= '1';
+}
+
+deq_examine_length | (getLength(entry) = 1) -> deq_remove_only where
+{ 
+    -- Queue is now empty, set to zero
+    table[lengthEntry(arg_cvar)] <= ALL_ZEROS;
+
+    -- Lookup next owner
+    entry'  <= table[ownerEntry(arg_cvar)];
+}
+deq_examine_length -> deq_remove_general where
+{
+    -- Decrement queue length
+    table[lengthEntry(arg_cvar)] <= entry - 1;
+
+    -- Lookup next owner
+    entry'  <= table[ownerEntry(arg_cvar)];
+}
+
+deq_remove_only -> transaction_complete where
+{
+    -- Send next owner over channel to master process
+    #msg_chan   <= entry;
+
+    -- Assert done signal
+    done'   <= '1';
+}
+
+deq_remove_general -> deq_send_owner  where
+{
+    -- Update the owner to the current owner's next link
+    table[ownerEntry(arg_cvar)] <= table[linkEntry(entry)];
+}
+
+deq_send_owner -> transaction_complete where
+{
+    -- Send "old" next owner over channel to master process
+    #msg_chan   <= entry;
+
+    -- Assert done signal
+    done'   <= '1';
+}
+
+-- ****************************************************
+-- Dequeue All (Broadcast) Process
+-- ****************************************************
+deqall_begin -> deqall_examine_length where
+{
+    entry'  <= table[lengthEntry(arg_cvar)];    -- Read queue length
+}
+
+deqall_examine_length | (getLength(entry) = 0) -> transaction_complete where
+{
+    -- Queue is empty, cannot signal anyone, just assert done
+    done' <= '1';
+}
+
+deqall_examine_length | (getLength(entry) = 1) -> deq_remove_only where -- Can reuse normal DEQ process
+{ 
+    -- Queue is now empty, set to zero
+    table[lengthEntry(arg_cvar)] <= ALL_ZEROS;
+
+    -- Lookup next owner
+    entry'  <= table[ownerEntry(arg_cvar)];
+}
+deqall_examine_length -> deqall_remove_loop where
+{
+    -- Queue will be empty, set it to zero and store it in a temporary variable (arg_tid)
+    table[lengthEntry(arg_cvar)] <= ALL_ZEROS;
+    arg_tid'    <= getLength(entry);    
+
+    -- Lookup next owner
+    entry'  <= table[ownerEntry(arg_cvar)];
+}
+
+deqall_remove_loop | (arg_tid > 0) -> deqall_remove_loop where
+{
+    -- Send TID over channel to master process
+    #msg_chan   <= entry;
+
+    -- Decrement length (arg_tid)
+    arg_tid'    <= arg_tid - 1;
+
+    -- Update entry for next loop
+    entry'  <=  table[linkEntry(entry)]; 
+}
+deqall_remove_loop -> deqall_done
+
+deqall_done -> transaction_complete where
+{
+    -- Assert done signal
+    done'   <= '1';
+}
+
+-- ****************************************************
+-- Transaction Completion Process
+-- ****************************************************
+transaction_complete -> return_to_idle where
+{
+    done'   <= '0';
+}
+
+return_to_idle | (cmd = '0') -> idle
+return_to_idle -> return_to_idle
+
+-- Generic VHDL Definitions to insert
+VHDL:
+
+-- OpCode Definitions
+constant OPCODE_ENQUEUE : std_logic_vector(0 to G_OP_WIDTH-1) := conv_std_logic_vector(2, G_OP_WIDTH);  -- Opcode for "wait" enqueue
+constant OPCODE_DEQUEUE : std_logic_vector(0 to G_OP_WIDTH-1) := conv_std_logic_vector(1, G_OP_WIDTH);  -- Opcode for "signal" dequeue
+constant OPCODE_DEQUEUE_ALL : std_logic_vector(0 to G_OP_WIDTH-1) := conv_std_logic_vector(3, G_OP_WIDTH);  -- Opcode for "broadcast" dequeue
+
+-- Helper Functions
+
+pure function lengthEntry(cvar : std_logic_vector(0 to G_TID_WIDTH-1)) return std_logic_vector is
+    variable header : std_logic_vector(0 to G_ADDR_WIDTH - G_TID_WIDTH - 1);
+begin
+  header := conv_std_logic_vector(0,G_ADDR_WIDTH - G_TID_WIDTH);
+  return header & cvar;
+end function lengthEntry;
+
+pure function linkEntry(tid : std_logic_vector(0 to G_TID_WIDTH-1)) return std_logic_vector is
+    variable header : std_logic_vector(0 to G_ADDR_WIDTH - G_TID_WIDTH - 1);
+begin
+  header := conv_std_logic_vector(1,G_ADDR_WIDTH - G_TID_WIDTH);
+  return header & tid;
+end function linkEntry;
+
+pure function lastReqEntry(cvar : std_logic_vector(0 to G_TID_WIDTH-1)) return std_logic_vector is
+    variable header : std_logic_vector(0 to G_ADDR_WIDTH - G_TID_WIDTH - 1);
+begin
+  header := conv_std_logic_vector(2,G_ADDR_WIDTH - G_TID_WIDTH);
+  return header & cvar;
+end function lastReqEntry;
+
+pure function ownerEntry(cvar : std_logic_vector(0 to G_TID_WIDTH-1)) return std_logic_vector is
+    variable header : std_logic_vector(0 to G_ADDR_WIDTH - G_TID_WIDTH - 1);
+begin
+  header := conv_std_logic_vector(3,G_ADDR_WIDTH - G_TID_WIDTH);
+  return header & cvar;
+end function ownerEntry;
+
+pure function getLength(entry : std_logic_vector(0 to G_TID_WIDTH-1)) return std_logic_vector is
+begin
+  return entry;
+end function getLength;
+

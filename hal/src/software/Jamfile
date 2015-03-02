@@ -1,0 +1,36 @@
+################################################################################
+# File:     src/software/Jamfile
+# Author:   Wesley Peck
+# Date:     20 August 2006
+#
+# Desc:     This is the Jam build file for the src/software subdirectory of the
+#           Hthreads project. This file instructs the Jam build system on how
+#           to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (20 August 2006) Jam file initially created
+################################################################################
+SubDir TOP src software ;
+
+################################################################################
+# Alway build the following directories
+################################################################################
+SubInclude TOP src software system ;
+SubInclude TOP src software user ;
+SubInclude TOP src software drivers ;
+SubInclude TOP src software accelerators ;
+#SubInclude TOP src software fs ;
+#SubInclude TOP src software lib ;
+#SubInclude TOP src software dev ;
+
+################################################################################
+# Build the lwIP TCP/IP Stack only if configured
+################################################################################
+if $(DRIVER_LWIP) = "yes"
+{ SubInclude TOP src software lwip ; }
+
+################################################################################
+# Build the lwIP TCP/IP Stack only if configured
+################################################################################
+#if $(TARGET_PROFILE) = "yes"
+#{ SubInclude TOP src software profile ; }

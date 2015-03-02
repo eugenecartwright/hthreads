@@ -1,0 +1,63 @@
+################################################################################
+# File:     build/Compilers
+# Author:   Wesley Peck
+# Date:     20 August 2006
+#
+# Desc:     This is the Jam file which defines the compilers used by the build
+#           system. The exact compiler that is used during the compilation
+#           process is dependent upon the Hthreads build system configuration
+#           file.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (20 August 2006) Compiler rules initially created
+################################################################################
+
+################################################################################
+# Define the compiler tools for Hthreads
+################################################################################
+HTHREADS_CC     = hthreads-gcc ;
+HTHREADS_AS     = hthreads-as ;
+HTHREADS_AR     = hthreads-ar ;
+HTHREADS_LD     = hthreads-ld ;
+HTHREADS_RANLIB = hthreads-ranlib ;
+HTHREADS_NAME   = "HTHREADS" ;
+
+################################################################################
+# Define the compiler tools for the PowerPC 405 architecture
+################################################################################
+ppc405_CC       = powerpc-eabi-gcc ;
+ppc405_AS       = powerpc-eabi-as ;
+ppc405_AR       = powerpc-eabi-ar ;
+ppc405_LD       = powerpc-eabi-ld ;
+ppc405_RANLIB   = powerpc-eabi-ranlib ;
+ppc405_NAME     = "PPC405" ;
+
+################################################################################
+# Define the compiler tools for the PowerPC 440 architecture
+################################################################################
+ppc440_CC       = powerpc-eabi-gcc ;
+ppc440_AS       = powerpc-eabi-as ;
+ppc440_AR       = powerpc-eabi-ar ;
+ppc440_LD       = powerpc-eabi-ld ;
+ppc440_RANLIB   = powerpc-eabi-ranlib ;
+ppc440_NAME     = "PPC440" ;
+
+################################################################################
+# Define the compiler tools for the Microblaze architecture
+################################################################################
+mblaze_CC       = mb-gcc ;
+mblaze_AS       = mb-as ;
+mblaze_AR       = mb-ar ;
+mblaze_LD       = mb-ld ;
+mblaze_RANLIB   = mb-ranlib ;
+mblaze_NAME     = "MBLAZE" ;
+
+################################################################################
+# Define the compiler tools for the PThreads architecture
+################################################################################
+pthreads_CC     = $(HOST_CC) ;
+pthreads_AS     = $(HOST_AS) ;
+pthreads_AR     = $(HOST_AR) ;
+pthreads_LD     = $(HOST_LINK) ;
+pthreads_RANLIB = $(HOST_RANLIB) ;
+pthreads_NAME   = "PTHREADS" ;

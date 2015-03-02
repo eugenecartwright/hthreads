@@ -1,0 +1,21 @@
+<assertions>
+  <assertion id="1">
+   The function
+    int pthread_condattr_init(pthread_condattr_t *attr);
+  shall initialize a condition variable attributes object attr with
+  the default value for all of the attributes defined by the implementation.  
+  </assertion>
+
+  <assertion id="2">
+  After a condition variable attributes object has been used to initialize one or more condition
+  variables, any function affecting the attributes object (including destruction) shall not affect any
+  previously initialized condition variables.  
+  
+  Not testable
+  </assertion> 
+
+  <assertion id="3">
+  If successful, it shall return zero;
+  </assertion>  
+  
+</assertions>

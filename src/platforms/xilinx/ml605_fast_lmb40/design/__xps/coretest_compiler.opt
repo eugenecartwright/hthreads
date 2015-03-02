@@ -1,0 +1,22 @@
+microblaze_0
+CORETEST_SOURCES = CoreTest.c 
+CORETEST_HEADERS = 
+CORETEST_CC = mb-gcc
+CORETEST_CC_SIZE = mb-size
+CORETEST_CC_OPT = -O2
+CORETEST_CFLAGS = 
+CORETEST_CC_SEARCH = # -B
+CORETEST_LIBPATH = -L./microblaze_0/lib/ # -L
+CORETEST_INCLUDES = -I./microblaze_0/include/ # -I
+CORETEST_LFLAGS = # -l
+CORETEST_LINKER_SCRIPT = 
+CORETEST_CC_DEBUG_FLAG =  -g 
+CORETEST_CC_PROFILE_FLAG = # -pg
+CORETEST_CC_GLOBPTR_FLAG= # -mxl-gp-opt
+CORETEST_MODE = executable
+CORETEST_LIBG_OPT = -$(CORETEST_MODE) microblaze_0
+CORETEST_CC_INFERRED_FLAGS= -mno-xl-soft-mul -mhard-float -mxl-barrel-shift -mno-xl-soft-div -mcpu=v8.00.a 
+CORETEST_CC_START_ADDR_FLAG=  # -Wl,-defsym -Wl,_TEXT_START_ADDR=
+CORETEST_CC_STACK_SIZE_FLAG=  # -Wl,-defsym -Wl,_STACK_SIZE=
+CORETEST_CC_HEAP_SIZE_FLAG=  # -Wl,-defsym -Wl,_HEAP_SIZE=
+                  $(CORETEST_CC_INFERRED_FLAGS)  \

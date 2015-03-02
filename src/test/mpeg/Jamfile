@@ -1,0 +1,20 @@
+################################################################################
+# File:     src/test/mpeg/Jamfile
+# Author:   Andres Baez
+# Date:     16 November 2010
+#
+# Desc:     This is the Jam build file for the motion jpeg encoder and decoder
+#           subdirectory of the hthreads project.  This file instructs the Jam 
+#           build system on how to build the hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+#
+# Changes:  (16 November 2010) Jam file initially created
+################################################################################
+SubDir TOP src test mpeg ;
+LOCATE_TARGET = test/mpeg ;
+
+################################################################################
+# Include the subdirectories
+################################################################################
+SubInclude TOP src test mpeg src ;

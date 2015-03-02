@@ -1,0 +1,30 @@
+################################################################################
+# File:     src/software/lwip/core/ipv4/Jamfile
+# Author:   Wesley Peck
+# Date:     26 October 2006
+#
+# Desc:     This is the Jam build file for the lwip ipv4 subdirectory of the
+#           Hthreads project. This file instructs the Jam build system on how
+#           to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (26 October 2006) Jam file initially created
+################################################################################
+SubDir TOP src software lwip core ipv4 ;
+LOCATE_TARGET = lwip/core/ipv4 ;
+
+################################################################################
+# Compile the source files into object files
+################################################################################
+Hsysobject icmp.o       : icmp.c ;
+Hsysobject ip_addr.o    : ip_addr.c ;
+Hsysobject ip.o         : ip.c ;
+Hsysobject ip_frag.o    : ip_frag.c ;
+
+################################################################################
+# Compile executable files from the object files
+################################################################################
+Hlib hthread : icmp.o ;
+Hlib hthread : ip_addr.o ;
+Hlib hthread : ip.o ;
+Hlib hthread : ip_frag.o ;

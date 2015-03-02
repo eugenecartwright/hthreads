@@ -1,0 +1,120 @@
+################################################################################
+# File:     src/platforms/xilinx/ml605_fast_lmb32/config/Jamrules
+# Author:   Wesley Peck
+# Date:     20 August 2006
+#
+# Desc:     This is the rules file for the Xilinx XUP design-video.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (20 August 2006) Jam rules initially created
+################################################################################
+
+################################################################################
+# Add the Xilinx include directory to the standard includes
+################################################################################
+if $(SLAVE_COMPILATION) != "yes"
+{
+HDRS += $(TOP)$(SLASH)src$(SLASH)platforms$(SLASH)$(PLATFORM_VENDOR)$(SLASH)$(PLATFORM_BOARD)$(SLASH)include ;
+HDRS += $(TOP)$(SLASH)src$(SLASH)platforms$(SLASH)$(PLATFORM_VENDOR)$(SLASH)$(PLATFORM_BOARD)$(SLASH)design$(SLASH)microblaze_0$(SLASH)include ;
+}
+else
+{
+HDRS += $(TOP)$(SLASH)$(DOTDOT)$(SLASH)src$(SLASH)platforms$(SLASH)$(PLATFORM_VENDOR)$(SLASH)$(PLATFORM_BOARD)$(SLASH)include ;
+HDRS += $(TOP)$(SLASH)$(DOTDOT)$(SLASH)src$(SLASH)platforms$(SLASH)$(PLATFORM_VENDOR)$(SLASH)$(PLATFORM_BOARD)$(SLASH)design$(SLASH)microblaze_1$(SLASH)include ;
+}
+
+################################################################################
+# Add Microblaze flags to the compiler and linker
+################################################################################
+if $(SLAVE_COMPILATION) != "yes"
+{
+CCFLAGS     += -mcpu=v8.00.a ;
+# Uncomment the following line to enable instruction caching on the MicroBlaze
+CCFLAGS     += -DHT_ENABLE_MB_ICACHE ;
+}
+else
+{
+CCFLAGS     += -mcpu=v8.00.a -fno-jump-tables ;
+}
+
+# Uncomment lines below according the features enabled on the Microblaze
+################# Floating Point ########################
+# Use software emulation for floating point instructions (default)
+#CCFLAGS     += -msoft-float ;
+
+# Use hardware floating point instructions
+CCFLAGS     += -mhard-float ;
+
+################# Barrel shifting ########################
+# Use the hardware barrel shifter
+CCFLAGS     += -mxl-barrel-shift ;
+
+################### Multiply ##########################
+# PARAMETER C_USE_HW_MUL = 1 (MUL32 (Turned on by default)
+
+# Use software multiply emulation (default)
+#CCFLAGS     += -mxl-soft-mul ;
+
+# Use multiply high instructions for high part of 32x32 multiply
+#CCFLAGS     += -mxl-multiply-high ;
+
+# Do NOT use software emulation multiply
+CCFLAGS     += -mno-xl-soft-mul ;
+
+################### Divide ##########################
+# Do NOT use software emulation divide 
+CCFLAGS     += -mno-xl-soft-div ;
+
+# Use software divide emulation
+#CCFLAGS     += -mxl-soft-div ;
+
+################### Pattern Compare ##########################
+# Use pattern compare instructions
+#CCFLAGS     += -mx1-pattern-compare ;
+
+#################### addr2line support #######################
+## Add more debugging information ##
+if $(SLAVE_COMPILATION) = "yes"
+{
+CCFLAGS     += -ggdb ;
+}
+
+USER_LINK   += -Wl,-m -Wl,elf32microblaze ;
+
+################################################################################
+# Add the required libraries for the platform
+################################################################################
+USER_LIBS   += -Wl,--start-group -lhthread -lm -lc -lgcc -Wl,--end-group -lhthread -lxil -lhthread ;
+
+################################################################################
+# Add the required compilation flags for the platform
+################################################################################
+if $(SLAVE_COMPILATION) != "yes"
+{
+# Make sure gcc does not include its own default libraries and crt.0 -like files
+CCFLAGS += -nodefaultlibs -nostartfiles ; #-fno-omit-frame-pointer ;
+}
+
+################################################################################
+# Add the Xilinx lib directory to the user application link flags
+################################################################################
+if $(SLAVE_COMPILATION) != "yes"
+{
+USER_LINK += -L$(TOP)$(SLASH)src$(SLASH)platforms$(SLASH)$(PLATFORM_VENDOR)$(SLASH)$(PLATFORM_BOARD)$(SLASH)design$(SLASH)microblaze_0$(SLASH)lib ;
+}
+else
+{
+USER_LINK += -L$(TOP)$(SLASH)$(DOTDOT)$(SLASH)src$(SLASH)platforms$(SLASH)$(PLATFORM_VENDOR)$(SLASH)$(PLATFORM_BOARD)$(SLASH)design$(SLASH)microblaze_1$(SLASH)lib ;
+}
+################################################################################
+# Add the linkerscript to the user application linker flags
+################################################################################
+if $(SLAVE_COMPILATION) != "yes"
+{
+USER_LINK += -Wl,-T -Wl,$(TOP)$(SLASH)src$(SLASH)platforms$(SLASH)$(PLATFORM_VENDOR)$(SLASH)$(PLATFORM_BOARD)$(SLASH)config$(SLASH)linkscript.ld ;
+}
+else
+{
+USER_LINK += -Wl,-T -Wl,$(TOP)$(SLASH)$(DOTDOT)$(SLASH)src$(SLASH)platforms$(SLASH)$(PLATFORM_VENDOR)$(SLASH)$(PLATFORM_BOARD)$(SLASH)config$(SLASH)fast_lmb_linkerscript.ld ;
+}
+

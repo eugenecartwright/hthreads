@@ -1,0 +1,121 @@
+m255
+K3
+13
+cModel Technology
+Z0 d/home/jagron/uark_research/uark_ht_trunk/src/hardware/MyRepository/pcores/plb_cond_vars_v1_00_a/devl/ise_proj
+T_opt
+Z1 VYOVeGA10o`9AWJmE;h;ci3
+Z2 04 10 8 work condvar_tb behavior 1
+Z3 =1-001ec9546918-4a395a0a-621b8-44de
+Z4 o-quiet -auto_acc_if_foreign -work work
+Z5 OL;O;6.4a;39
+Econdvar
+Z6 w1245265660
+Z7 DPx17 __model_tech/ieee 11 numeric_std 0 22 =NSdli^?T5OD8;4F<blj<3
+Z8 DPx17 __model_tech/ieee 18 std_logic_unsigned 0 22 hEMVMlaNCR^<OOoVNV;m90
+Z9 DPx17 __model_tech/ieee 15 std_logic_arith 0 22 GJbAT?7@hRQU9IQ702DT]2
+Z10 DPx17 __model_tech/ieee 14 std_logic_1164 0 22 GH1=`jDDBJ=`LM;:Ak`kf2
+31
+Z11 8../../hdl/vhdl/condvar.vhd
+Z12 F../../hdl/vhdl/condvar.vhd
+l0
+L18
+Z13 VnBUKN?`WHGLO01QbnRLDP2
+Z14 OL;C;6.4a;39
+Z15 o-explicit -93
+Z16 tExplicit 1
+Z17 !s100 WL;9be63S;SGY9ZjUI`fM3
+Aimplementation
+Z18 DEx114 /home/jagron/uark_research/uark_ht_trunk/src/hardware/MyRepository/pcores/plb_cond_vars_v1_00_a/devl/ise_proj/work 10 infer_bram 0 22 5a5KgQQVV=8ffnQ`DASNE0
+R7
+R8
+R9
+R10
+Z19 DEx114 /home/jagron/uark_research/uark_ht_trunk/src/hardware/MyRepository/pcores/plb_cond_vars_v1_00_a/devl/ise_proj/work 7 condvar 0 22 nBUKN?`WHGLO01QbnRLDP2
+31
+Z20 Mx4 17 __model_tech/ieee 14 std_logic_1164
+Mx3 17 __model_tech/ieee 15 std_logic_arith
+Mx2 17 __model_tech/ieee 18 std_logic_unsigned
+Z21 Mx1 17 __model_tech/ieee 11 numeric_std
+l187
+L48
+Z22 VWf;1[zcVcMN[:=n08_>TK0
+R14
+R15
+R16
+Z23 !s100 @jY=A:RheL4zH9W^WDW>73
+Econdvar_tb
+Z24 w1245258918
+R7
+R9
+R8
+R10
+31
+Z25 8../../hdl/vhdl/condvar_tb.vhd
+Z26 F../../hdl/vhdl/condvar_tb.vhd
+l0
+L36
+Z27 VL7C3[VoSU66az24c<=UOU2
+R14
+R15
+R16
+Z28 !s100 Wiof?C@Vi@ekT]To[m2d81
+Abehavior
+R19
+R7
+R9
+R8
+R10
+DEx114 /home/jagron/uark_research/uark_ht_trunk/src/hardware/MyRepository/pcores/plb_cond_vars_v1_00_a/devl/ise_proj/work 10 condvar_tb 0 22 L7C3[VoSU66az24c<=UOU2
+31
+R20
+Mx3 17 __model_tech/ieee 18 std_logic_unsigned
+Mx2 17 __model_tech/ieee 15 std_logic_arith
+R21
+l87
+L39
+Z29 Vkl_iJFjR`QgGSl4=TnI5m0
+R14
+R15
+R16
+Z30 !s100 QP2Y7;V5>11^fgfoDJI[42
+Einfer_bram
+R6
+R7
+Z31 DPx21 __model_tech/synopsys 10 attributes 0 22 2Q8I4L@H0S1aHEXkjUYDC1
+Z32 DPx17 __model_tech/ieee 14 std_logic_misc 0 22 D2f;@P3IKJA9T^H8HI[9K0
+R8
+R9
+R10
+31
+R11
+R12
+l0
+L560
+Z33 V5a5KgQQVV=8ffnQ`DASNE0
+R14
+R15
+R16
+Z34 !s100 FYM:GQ<;i>8Ne4E`=V5PM3
+Aimplementation
+R7
+R31
+R32
+R8
+R9
+R10
+R18
+31
+Mx6 17 __model_tech/ieee 14 std_logic_1164
+Mx5 17 __model_tech/ieee 15 std_logic_arith
+Mx4 17 __model_tech/ieee 18 std_logic_unsigned
+Mx3 17 __model_tech/ieee 14 std_logic_misc
+Mx2 21 __model_tech/synopsys 10 attributes
+R21
+l597
+L586
+Z35 VLMSB6`]RS2`gfUTceXzmh3
+R14
+R15
+R16
+Z36 !s100 n=gU4bOhEz3lX>5Dn7nbJ1

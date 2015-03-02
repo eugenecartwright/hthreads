@@ -1,0 +1,14 @@
+EN async_fifo NULL /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/async_fifo.vhd sub00/vhpl08 1288206209
+EN sync_bram NULL /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/gen_sync_bram.vhd sub00/vhpl04 1288206201
+AR async_fifo vhdl_rtl /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/async_fifo.vhd sub00/vhpl09 1288206210
+AR fsl_v20 imp /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/fsl_v20.vhd sub00/vhpl13 1288206214
+EN sync_dpram NULL /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/gen_sync_dpram.vhd sub00/vhpl02 1288206199
+AR async_fifo_bram imp /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/async_fifo_bram.vhd sub00/vhpl11 1288206212
+AR sync_fifo vhdl_rtl /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/sync_fifo.vhd sub00/vhpl07 1288206208
+AR sync_bram syn /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/gen_sync_bram.vhd sub00/vhpl05 1288206202
+EN srl_fifo NULL /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/gen_srlfifo.vhd sub00/vhpl00 1288206197
+EN sync_fifo NULL /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/sync_fifo.vhd sub00/vhpl06 1288206207
+AR sync_dpram syn /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/gen_sync_dpram.vhd sub00/vhpl03 1288206200
+AR srl_fifo imp /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/gen_srlfifo.vhd sub00/vhpl01 1288206198
+EN async_fifo_bram NULL /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/async_fifo_bram.vhd sub00/vhpl10 1288206211
+EN fsl_v20 NULL /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/fsl_v20_v2_11_a/hdl/vhdl/fsl_v20.vhd sub00/vhpl12 1288206213

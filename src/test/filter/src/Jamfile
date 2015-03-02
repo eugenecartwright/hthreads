@@ -1,0 +1,28 @@
+################################################################################
+# File:     src/test/filter/src/Jamfile
+# Author:   Wesley Peck
+# Date:     30 July 2007
+#
+# Desc:     This is the Jam build file for the filter test subdirectory of the
+#           Hthreads project. This file instructs the Jam build system on how
+#           to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (30 July 2007) Jam file initially created
+################################################################################
+SubDir TOP src test filter src ;
+LOCATE_TARGET = test/filter ;
+
+################################################################################
+# Add this test's include directory
+################################################################################
+SUBDIRHDRS += $(TOP)/src/test/filter/include ;
+
+################################################################################
+# Include the required subdirectories
+################################################################################
+SubInclude TOP src test filter src input ;
+SubInclude TOP src test filter src output ;
+SubInclude TOP src test filter src filter ;
+SubInclude TOP src test filter src draw ;
+SubInclude TOP src test filter src stream ;

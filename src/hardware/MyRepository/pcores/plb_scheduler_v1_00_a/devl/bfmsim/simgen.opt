@@ -1,0 +1,11 @@
+bfm_system.mhs
+-p
+virtex5
+-lang
+vhdl
+-lp
+../../../../../
+-s
+mti
+-m
+behavioral

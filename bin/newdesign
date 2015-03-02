@@ -1,0 +1,112 @@
+#!/bin/sh
+
+################################################################################
+# This function shows the help message to the user and then exits the script.
+################################################################################
+function show_help()
+{
+    echo "Copy the subversion files from one design to another design"
+    echo ""
+    echo "Usage: $0 [option]... src dst";
+    echo "where option is";
+    echo "    --help        show this help";
+    echo "";
+    exit 1;
+}
+
+################################################################################
+# This function shows an error message to the console and then exits
+################################################################################
+function show_error()
+{
+    echo $1;
+    exit 1;
+}
+
+################################################################################
+# This function checks to see if an option has been passed an invalid
+# parameter.  An invalid parameter to an option is passing another option.
+################################################################################
+function invalid_option()
+{
+    beg=${2:0:1};
+    if [[ $beg == "-" ]]
+    then
+        echo "Invalid option$1: $2";
+        show_help;
+    fi
+}
+
+################################################################################
+# This function parses the command line options which are passed to the script.
+################################################################################
+function parse_options()
+{
+    for opt
+    do
+        case $opt in
+            '--help'    )   show_help;;
+
+            '--show'    )   show_only=1;
+                            shift;;
+
+            *           )   invalid_option "" "$1";
+                            if [[ -n $1 ]]
+                            then
+                                if [[ -z $src ]]
+                                then 
+                                    src="$1";
+                                else
+                                    if [[ -z $dst ]]
+                                    then
+                                        dst="$1";
+                                    else
+                                        show_help;
+                                    fi
+                                fi
+                            fi
+                            shift;;
+        esac
+    done
+}
+
+################################################################################
+# This function finds all of the subversion directories in the source directory
+################################################################################
+function find_svn()
+{
+    pushd $src &> /dev/null
+    svns=`find . -type d -name '.svn'`;
+    popd &> /dev/null
+}
+
+################################################################################
+# This function copies all of the subversion directories into the destination
+# directory
+################################################################################
+function copy_svn()
+{
+    find_svn $@;
+
+    echo "DST: $dst";
+    for svn in $svns
+    do
+        if [[ $show_only != 0 ]]
+        then
+            echo "$src/$svn --> $dst/$svn";
+        else
+            cp -R $src/$svn $dst/$svn;
+        fi
+    done
+}
+
+################################################################################
+# Setup the default options
+################################################################################
+show_only=0;
+
+################################################################################
+# Execute the script
+################################################################################
+parse_options $@;
+copy_svn $@;

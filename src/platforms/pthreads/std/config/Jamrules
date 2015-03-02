@@ -1,0 +1,21 @@
+################################################################################
+# File:     src/platforms/pthreads/std/config/Jamrules
+# Author:   Wesley Peck
+# Date:     19 February 2007
+#
+# Desc:     This is the rules file for the PThreads platform.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (19 February 2007) Jam rules initially created
+################################################################################
+
+################################################################################
+# Add the Xilinx include directory to the standard includes
+################################################################################
+HDRS += $(TOP)/src/platforms/$(PLATFORM_VENDOR)/$(PLATFORM_BOARD)/include ;
+
+################################################################################
+# Add PThreads flags to the compiler and linker
+################################################################################
+CCFLAGS     += ;
+USER_LIBS   += -lpthread -lhthread ;

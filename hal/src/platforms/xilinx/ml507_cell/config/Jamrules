@@ -1,0 +1,67 @@
+################################################################################
+# File:     src/platforms/xilinx/ml507/config/Jamrules
+# Author:   Wesley Peck
+# Date:     20 August 2006
+#
+# Desc:     This is the rules file for the Xilinx XUP design-video.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (20 August 2006) Jam rules initially created
+################################################################################
+
+################################################################################
+# Add the Xilinx include directory to the standard includes
+################################################################################
+HDRS += $(TOP)$(SLASH)src$(SLASH)platforms$(SLASH)$(PLATFORM_VENDOR)$(SLASH)$(PLATFORM_BOARD)$(SLASH)include ;
+HDRS += $(TOP)$(SLASH)src$(SLASH)platforms$(SLASH)$(PLATFORM_VENDOR)$(SLASH)$(PLATFORM_BOARD)$(SLASH)design$(SLASH)microblaze_0$(SLASH)include$(SLASH) ;
+
+# Turn on hetero compilation flag
+CCFLAGS     += -DHETERO_COMPILATION ;
+
+################################################################################
+# Add PowerPC 440 flags to the compiler and linker
+################################################################################
+CCFLAGS     += -mcpu=v7.10.d -fno-jump-tables ;
+#CCFLAGS     += -mcpu=v7.10.d -fno-jump-tables -fpic ;
+
+# Use this is there is support for multiply and divide
+#CCFLAGS     += -mno-xl-soft-mul -mxl-pattern-compare -mno-xl-soft-div ;
+# Use this if there is an FPU
+#CCFLAGS     += -mno-xl-soft-mul -mhard-float -mxl-pattern-compare -mno-xl-soft-div ;
+
+
+USER_LINK   += -Wl,-m -Wl,elf32microblaze ;
+
+#CCFLAGS     += -mcpu=v7.10.d -fPIC -fno-jump-tables ;
+#USER_LINK   += -mno-fpu ;
+#USER_LINK   += -Wl,-m -Wl,elf32ppclinux ;
+
+
+################################################################################
+# Add the required libraries for the platform
+################################################################################
+USER_LIBS   += -Wl,--start-group -lhthread -lm -lc -lgcc -Wl,--end-group -lhthread -lxil -lhthread ;
+
+################################################################################
+# Add the required compilation flags for the platform
+################################################################################
+#CCFLAGS += -nodefaultlibs -nostartfiles ; #-fno-omit-frame-pointer ;
+#CCFLAGS += -nodefaultlibs ; #-nostartfiles ; #-fno-omit-frame-pointer ;
+
+################################################################################
+# Add the Xilinx lib directory to the user application link flags
+################################################################################
+USER_LINK += -L$(TOP)$(SLASH)src$(SLASH)platforms$(SLASH)$(PLATFORM_VENDOR)$(SLASH)$(PLATFORM_BOARD)$(SLASH)design$(SLASH)microblaze_0$(SLASH)lib$(SLASH) ;
+
+################################################################################
+# Add the linkerscript to the user application linker flags
+################################################################################
+if $(PLATFORM_SMP) = "yes"
+{
+    USER_LINK += -Wl,-T -Wl,$(TOP)$(SLASH)src$(SLASH)platforms$(SLASH)$(PLATFORM_VENDOR)$(SLASH)$(PLATFORM_BOARD)$(SLASH)config$(SLASH)linkscript-smp ;
+}
+else
+{
+    #USER_LINK += -Wl,-T -Wl,$(TOP)$(SLASH)src$(SLASH)platforms$(SLASH)$(PLATFORM_VENDOR)$(SLASH)$(PLATFORM_BOARD)$(SLASH)config$(SLASH)linkscript ;
+    USER_LINK += -Wl,-T -Wl,$(TOP)$(SLASH)src$(SLASH)platforms$(SLASH)$(PLATFORM_VENDOR)$(SLASH)$(PLATFORM_BOARD)$(SLASH)config$(SLASH)mb_linkscript ;
+}

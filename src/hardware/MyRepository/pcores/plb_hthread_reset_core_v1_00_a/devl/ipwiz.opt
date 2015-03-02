@@ -1,0 +1,11 @@
+-batch 
+-create plb_hthread_reset_core 
+-ver 1.00.a 
+-dir "/home/jagron/test_cores/edk_user_repository/MyProcessorIPLib" 
+-lang vhdl 
+-bus plbv46 s 
+-rst 
+-reg 4 
+-xps 
+-ise 
+-driver 

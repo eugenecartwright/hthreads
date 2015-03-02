@@ -1,0 +1,34 @@
+################################################################################
+# File:     src/software/Jamfile
+# Author:   Wesley Peck
+# Date:     20 August 2006
+#
+# Desc:     This is the Jam build file for the software subdirectory of the
+#           Hthreads project. This file instructs the Jam build system on
+#           how to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (20 August 2006) Jam file initially created
+################################################################################
+SubDir TOP src software system ;
+#LOCATE_TARGET = software$(SLASH)system ;
+
+################################################################################
+# Add the architecture specific folders. Will be built if configured to
+################################################################################
+if $(PLATFORM_ARCH) = "mblaze"
+{ SubInclude TOP src software system mblaze ; }
+
+if $(PLATFORM_ARCH) = "ppc440"
+{ SubInclude TOP src software system ppc440 ; }
+################################################################################
+# Compile the source files into object files
+################################################################################
+#Hsysobject bootstrap.o  : bootstrap.c ;
+#Hsysobject sched.o      : sched.c ;
+
+################################################################################
+# Add the object files to the hthreads library
+################################################################################
+#Hlib hthread : bootstrap.o ;
+#Hlib hthread : sched.o ;

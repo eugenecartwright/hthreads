@@ -1,0 +1,22 @@
+microblaze_6
+MB_HWT6_SOURCES = my_sw/hw_thread.c my_sw/proc_hw_thread.c 
+MB_HWT6_HEADERS = my_sw/proc_hw_thread.h 
+MB_HWT6_CC = mb-gcc
+MB_HWT6_CC_SIZE = mb-size
+MB_HWT6_CC_OPT = -O2
+MB_HWT6_CFLAGS = 
+MB_HWT6_CC_SEARCH = # -B
+MB_HWT6_LIBPATH = -L./microblaze_6/lib/ # -L
+MB_HWT6_INCLUDES = -I./microblaze_6/include/  -Imy_sw/ # -I
+MB_HWT6_LFLAGS = # -l
+MB_HWT6_LINKER_SCRIPT = my_sw/fast_lmb_linkerscript.ld
+MB_HWT6_CC_DEBUG_FLAG =  -g 
+MB_HWT6_CC_PROFILE_FLAG = # -pg
+MB_HWT6_CC_GLOBPTR_FLAG= # -mxl-gp-opt
+MB_HWT6_MODE = executable
+MB_HWT6_LIBG_OPT = -$(MB_HWT6_MODE) microblaze_6
+MB_HWT6_CC_INFERRED_FLAGS= -mno-xl-soft-mul -mhard-float -mxl-barrel-shift -mno-xl-soft-div -mcpu=v8.00.a 
+MB_HWT6_CC_START_ADDR_FLAG=  #  # -Wl,-defsym -Wl,_TEXT_START_ADDR=
+MB_HWT6_CC_STACK_SIZE_FLAG=  #  # -Wl,-defsym -Wl,_STACK_SIZE=
+MB_HWT6_CC_HEAP_SIZE_FLAG=  #  # -Wl,-defsym -Wl,_HEAP_SIZE=
+                  $(MB_HWT6_CC_INFERRED_FLAGS)  \

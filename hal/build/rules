@@ -1,0 +1,597 @@
+################################################################################
+# File:     build/rules
+# Author:   Wesley Peck
+# Date:     20 August 2006
+#
+# Desc:     This is the Jam file which defines the rules used by the build
+#           system. These rules control what targets the build system supports
+#           and how those targets perform their actions.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (20 August 2006) Compiler rules initially created
+################################################################################
+
+################################################################################
+# A rule to clean up generated files
+################################################################################
+actions piecemeal together existing Hclean
+{
+    $(RM) $(>)
+}
+
+################################################################################
+# A rule to set the output location of a file
+################################################################################
+rule Hlocate
+{
+    if $(>)
+    {
+        # Set the output location of the file
+        LOCATE on $(<) = $(>) ;
+
+        # Make the output file depend on the location existing
+        Depends $(<) : $(>[1]:G=dir) ;
+
+        # Tell the build system to make the directory if neccessary
+        Hmkdir $(>[1]:G=dir) ;
+    }
+}
+
+rule Hlocate2
+{
+    if $(>)
+    {
+        # Set the output location of the file
+        LOCATE on $(<) = $(>) ;
+
+        # Make the output file depend on the location existing
+        Depends $(<) : $(>[1]:G=dir) ;
+
+        # Tell the build system to make the directory if neccessary
+        Hmkdir2 $(>[1]:G=dir) ;
+    }
+}
+
+rule Hlocate3
+{
+    if $(>)
+    {
+        # Set the output location of the file
+        LOCATE on $(<) = $(>) ;
+
+        # Make the output file depend on the location existing
+        Depends $(<) : $(>[1]:G=dir) ;
+
+        # Tell the build system to make the directory if neccessary
+        Hmkdir3 $(>[1]:G=dir) ;
+    }
+}
+
+################################################################################
+# A rule to make a directory including parent paths as neccessary
+################################################################################
+rule Hmkdir
+{
+    # Don't check timestamps for directories
+    NoUpdate $(<) ;
+
+    if ! $($(<)-mkdir)
+    {
+        # Mark the directory as already made
+        $(<)-mkdir = true ;
+
+        # Use the Hmkdir1 rule to create the directory
+        Hmkdir1 $(<) ;
+
+        # Tell the build system that it can delete the output directory
+        Hclean clean : $(<) ;
+    }
+}
+
+rule Hmkdir2
+{
+    # Don't check timestamps for directories
+    NoUpdate $(<) ;
+
+    if ! $($(<)-mkdir)
+    {
+        # Mark the directory as already made
+        $(<)-mkdir = true ;
+
+        # Use the Hmkdir1 rule to create the directory
+        Hmkdir1 $(<) ;
+
+        # Tell the build system that it can delete the output directory
+        Hclean clobber : $(<) ;
+    }
+}
+
+rule Hmkdir3
+{
+    # Don't check timestamps for directories
+    NoUpdate $(<) ;
+
+    if ! $($(<)-mkdir)
+    {
+        # Mark the directory as already made
+        $(<)-mkdir = true ;
+
+        # Use the Hmkdir1 rule to create the directory
+        Hmkdir1 $(<) ;
+    }
+}
+
+actions quietly Hmkdir1
+{
+    $(MKDIR) $(<)
+}
+
+################################################################################
+# A rule to compile source files into object files given the source files
+################################################################################
+rule Hobjects
+{
+    local _s ;
+
+    for _s in $(<)
+    { 
+        Hobject $(_s:S=.o) : $(_s) ;
+    }
+}
+
+rule Hsysobjects
+{
+    local _s ;
+
+    for _s in $(<)
+    { 
+        Hsysobject $(_s:S=.o) : $(_s) ;
+    }
+}
+
+################################################################################
+# A rule to build object files given source files
+################################################################################
+rule Hsysobject
+{
+    # Declare a couple of local variables
+    local _s _t ;
+
+    # Add a unique identifier to the source and target names
+    _s = [ FGristFiles $(>) ] ;
+    _t = [ FGristFiles $(<) ] ;
+
+    # Set the location to output the object file at
+    Hlocate $(_t) : [ Hobjdir $(LOCATE_TARGET) ] ;
+
+    # Set the location to find source files at
+    SEARCH on $(_s) = $(SEARCH_SOURCE) ;
+
+    # Tell the build system to build the object file during the obj rule
+    Depends obj : $(_t) ;
+
+    # Tell the build system that the object file can be cleaned
+    Hclean clean : $(_t) ;
+
+    # Set the source file scanning rules to use on the source files
+    HDRRULE on $(_s) = HdrRule ;
+    HDRSCAN on $(_s) = $(HDRPATTERN) ;
+    HDRSEARCH on $(_s) = $(SEARCH_SOURCE:E) $(SUBDIRHDRS) $(HDRS) $(SYS_HDRS) $(STDHDRS) ;
+    HDRGRIST on $(_s) = $(HDRGRIST) ;
+
+    # Set the include directories to use when building the target
+    HDRS on $(_t) = $(SEARCH_SOURCE) $(SUBDIRHDRS) $(SYS_HDRS) $(HDRS) ;
+
+    # Set the defines to use when building the target
+    DEFINES on $(_t) += $(DEFINES) ;
+
+    # Determine which rule to invoke based on the input file's extension
+    switch $(>:S)
+    {
+        case .c     : Hsyscc $(_t) : $(_s) ;
+        case .cc    : Hsyscc $(_t) : $(_s) ;
+        case .s     : Hsysasm $(_t) : $(_s) ;
+        case .S     : Hsysasm $(_t) : $(_s) ;
+        case *      : Echo "Don't know how to compile: " $(>) ;
+    }
+}
+
+################################################################################
+# A rule to build object files given source files
+################################################################################
+rule Hobject
+{
+    # Declare a couple of local variables
+    local _s _t ;
+
+    # Add a unique identifier to the source and target names
+    _s = [ FGristFiles $(>) ] ;
+    _t = [ FGristFiles $(<) ] ;
+
+    # Set the location to output the object file at
+    Hlocate $(_t) : [ Hobjdir $(LOCATE_TARGET) ] ;
+
+    # Set the location to find source files at
+    SEARCH on $(_s) = $(SEARCH_SOURCE) ;
+
+    # Tell the build system to build the object file during the obj rule
+    Depends obj : $(_t) ;
+
+    # Tell the build system that the object file can be cleaned
+    Hclean clean : $(_t) ;
+
+    # Set the source file scanning rules to use on the source files
+    HDRRULE on $(_s) = HdrRule ;
+    HDRSCAN on $(_s) = $(HDRPATTERN) ;
+    HDRSEARCH on $(_s) = $(SEARCH_SOURCE:E) $(SUBDIRHDRS) $(HDRS) $(USER_HDRS) $(STDHDRS) ;
+    HDRGRIST on $(_s) = $(HDRGRIST) ;
+
+    # Set the include directories to use when building the target
+    HDRS on $(_t) = $(SEARCH_SOURCE) $(SUBDIRHDRS) $(USER_HDRS) $(HDRS) ;
+
+    # Set the defines to use when building the target
+    DEFINES on $(_t) += $(DEFINES) ;
+
+    # Determine which rule to invoke based on the input file's extension
+    switch $(>:S)
+    {
+        case .c     : Hcc $(_t) : $(_s) ;
+        case .cc    : Hcc $(_t) : $(_s) ;
+        case .s     : Hasm $(_t) : $(_s) ;
+        case .S     : Hasm $(_t) : $(_s) ;
+        case *      : Echo "Don't know how to compile: " $(>) ;
+    }
+}
+
+################################################################################
+# A rule to combine object files into a library
+################################################################################
+rule Hlib
+{
+    # Declare a couple of local variables
+    local _s _t _d ;
+
+    # Add a unique identifier to the source and target names
+    _s = [ FGristFiles $(>) ] ;
+    _t = <lib>lib$(<).a ;
+
+    # Set the location to output the library file at
+    Hlocate2 $(_t) : [ Hlibdir $(LOCATE_TARGET) ] ;
+
+    # Set the location to find source files at
+    SEARCH on $(_s) = [ Hobjdir $(LOCATE_TARGET) ] ;
+
+    # Tell the build system to build the library file during the lib rule
+    Depends lib : $(_t) ;
+
+    # Make sure that the original library name works
+    Depends $(<) : $(_t) ;
+
+    # Build the library using the Hlibrary rule
+    Hlibrary $(_t) : $(_s) ;
+}
+
+rule Hlibrary
+{
+    # Tell the build system that the library depends on the object files
+    Depends $(<) : $(>) ;
+
+    # Show the creation of the library
+    Hlibshow $(<) ;
+
+    # Create a library index using ranlib
+    Hranlib $(<) ;
+}
+
+actions quietly Hlibrary
+{
+    $(AR) $(<) $(>)
+}
+
+actions quietly Hranlib
+{
+    $(RANLIB) $(<)
+}
+
+rule Hlibshow
+{
+    Depends $(<) : $(>) ;
+}
+
+actions quietly together Hlibshow
+{
+    $(ECHO) $($(PLATFORM_ARCH)_NAME)-AR $(<)
+}
+
+################################################################################
+# A rule to compile a system C source file into an object file
+################################################################################
+rule Hsyscc
+{
+    # Tell the build system that the object file depends on its source files
+    Depends $(<) : $(>) ;
+
+    # Setup the compiler directives to use for this object
+    CCFLAGS on $(<) += $(CCFLAGS) $(SUBDIRCCFLAGS) $(SYS_CFLAGS) ;
+    CCHDRS on $(<) = [ on $(<) FIncludes $(HDRS) ] ;
+    CCHDRS on $(<) += [ on $(<) FIncludes $(SYS_HDRS) ] ;
+    CCDEFS on $(<) = [ on $(<) FDefines $(DEFINES) ] ;
+    CCDEFS on $(<) += [ on $(<) FDefines $(SYS_DEFINES) ] ;
+
+    # Tell the build system to use the Hcc1 rule to build the object file
+    Hcc1 $(<) : $(>) ;
+}
+
+################################################################################
+# A rule to compile a user C source file into an object file
+################################################################################
+rule Hcc
+{
+    # Tell the build system that the object file depends on its source files
+    Depends $(<) : $(>) ;
+
+    # Setup the compiler directives to use for this object
+    CCFLAGS on $(<) += $(CCFLAGS) $(SUBDIRCCFLAGS) $(USER_CFLAGS) ;
+    CCHDRS on $(<) = [ on $(<) FIncludes $(HDRS) ] ;
+    CCHDRS on $(<) += [ on $(<) FIncludes $(USER_HDRS) ] ;
+    CCDEFS on $(<) = [ on $(<) FDefines $(DEFINES) ] ;
+    CCDEFS on $(<) += [ on $(<) FDefines $(USER_DEFINES) ] ;
+
+    # Tell the build system to use the Hcc1 rule to build the object file
+    Hcc1 $(<) : $(>) ;
+}
+
+actions quietly Hcc1
+{
+    $(ECHO) $($(PLATFORM_ARCH)_NAME)-CC $(<)
+    $(CC) -c -o $(<) $(CCFLAGS) $(CCDEFS) $(CCHDRS) $(>)
+}
+
+################################################################################
+# A rule to compile an ASM source file into an object file
+################################################################################
+rule Hsysasm
+{
+    # Tell the build system that the object file depends on its source files
+    Depends $(<) : $(>) ;
+
+    # Setup the compiler directives to use for this object
+    CCFLAGS on $(<) += $(CCFLAGS) $(SUBDIRCCFLAGS) $(SYS_CFLAGS) ;
+    CCHDRS on $(<) = [ on $(<) FIncludes $(HDRS) ] ;
+    CCHDRS on $(<) += [ on $(<) FIncludes $(SYS_HDRS) ] ;
+    CCDEFS on $(<) = [ on $(<) FDefines $(DEFINES) ] ;
+    CCDEFS on $(<) += [ on $(<) FDefines $(SYS_DEFINES) ] ;
+
+    # Tell the build system to use the Hasm1 rule to build the object
+    Hasm1 $(<) : $(>) ;
+}
+
+rule Hasm
+{
+    # Tell the build system that the object file depends on its source files
+    Depends $(<) : $(>) ;
+
+    # Setup the compiler directives to use for this object
+    CCFLAGS on $(<) += $(CCFLAGS) $(SUBDIRCCFLAGS) $(USER_CFLAGS) ;
+    CCHDRS on $(<) = [ on $(<) FIncludes $(HDRS) ] ;
+    CCHDRS on $(<) += [ on $(<) FIncludes $(USER_HDRS) ] ;
+    CCDEFS on $(<) = [ on $(<) FDefines $(DEFINES) ] ;
+    CCDEFS on $(<) += [ on $(<) FDefines $(USER_DEFINES) ] ;
+
+    # Tell the build system to use the Hasm1 rule to build the object
+    Hasm1 $(<) : $(>) ;
+}
+
+actions quietly Hasm1
+{
+    $(ECHO) $($(PLATFORM_ARCH)_NAME)-AS $(<)
+    $(CC) -c -o $(<) $(CCFLAGS) $(CCDEFS) $(CCHDRS) $(>)
+}
+
+################################################################################
+# A rule to add extra libraries to an executable
+################################################################################
+rule Hlink
+{
+    # Declare a couple of local variables
+    local _s _t ;
+
+    # Add a unique identifier to the source and target names
+    _s = $(>) ;
+    _t = [ FGristFiles $(<) ] ;
+
+    # Add the source libraries to the target
+    LINKLIBS on $(_t) += $(_s) ;
+}
+
+################################################################################
+# A rule to build executables given their source files
+################################################################################
+rule Hexes
+{
+    local _s ;
+
+    for _s in $(<)
+    {
+        Hexe $(_s:S=) : $(_s) ;
+    }
+}
+
+################################################################################
+# A rule to build executable files from the given object files
+################################################################################
+rule Hexe
+{
+    # Declare a couple of local variables
+    local _s _t ;
+
+    # Add a unique identifier to the source and target names
+    _s = [ FGristFiles $(>) ] ;
+    _t = [ FGristFiles $(<) ] ;
+
+    # Set the location to output the executable file at
+    Hlocate $(_t) : [ Htestdir $(LOCATE_TARGET) ] ;
+
+    # Set the location to find object files at
+    SEARCH on $(_s) = [ Hobjdir $(LOCATE_TARGET) ] ;
+
+    # Tell the build system to build the executable file during the exe rule
+    Depends exe : $(_t) ;
+
+    # Make sure that the original name works with the grist
+    Depends $(<) : $(_t)
+
+    # Tell the build system that the object file can be cleaned
+    Hclean clean : $(_t) ;
+
+    # Tell the build system to compile the executable using Hexe1
+    Hexe1 $(_t) : $(_s) ;
+}
+
+rule Hexe1
+{
+    local _l ;
+    local _lib ;
+
+    # The build executable depends on its object files
+    Depends $(<) : $(>) ;
+
+    # All executables depend on the hthreads library
+    _lib = [ Hlibdir $(LOCATE_LIBS) ] ;
+    Depends $(<) : <lib>libhthread.a ;
+    #Depends $(<) : <lib>boot.o ;
+    SEARCH on <lib>libhthread.a = $(_lib) ;
+    #SEARCH on <lib>boot.o = $(_lib) ;
+
+    # Setup the compiler directives to use for this object
+    CCFLAGS on $(<) = $(CCFLAGS) $(SUBDIRCCFLAGS) $(USER_LINK) ;
+    CCHDRS on $(<)  = [ on $(<) FIncludes $(HDRS) ] ;
+    CCHDRS on $(<)  += [ on $(<) FIncludes $(USER_HDRS) ] ;
+    CCDEFS on $(<)  = [ on $(<) FDefines $(DEFINES) ] ;
+    CCDEFS on $(<)  += [ on $(<) FDefines $(USER_DEFINES) ] ;
+    CCLIBS on $(<)  = $(LIBS) $(USER_LIBS) ;
+}
+
+actions quietly Hexe1
+{
+    $(ECHO) $($(PLATFORM_ARCH)_NAME)-LD $(<)
+    $(CC) -o $(<) $(CCFLAGS) $(CCDEFS) $(CCHDRS) $(>) $(LINKLIBS) $(CCLIBS)
+}
+
+################################################################################
+# A rule to build executable files from the given object files
+################################################################################
+rule Hsysexe
+{
+    # Declare a couple of local variables
+    local _s _t ;
+
+    # Add a unique identifier to the source and target names
+    _s = [ FGristFiles $(>) ] ;
+    _t = [ FGristFiles $(<) ] ;
+
+    # Set the location to output the executable file at
+    Hlocate $(_t) : [ Hkerneldir $(LOCATE_TARGET) ] ;
+
+    # Set the location to find object files at
+    SEARCH on $(_s) = [ Hobjdir $(LOCATE_TARGET) ] ;
+
+    # Tell the build system to build the executable file during the exe rule
+    Depends exe : $(_t) ;
+
+    # Make sure that the original name works with the grist
+    Depends $(<) : $(_t)
+
+    # Tell the build system that the object file can be cleaned
+    Hclean clean : $(_t) ;
+
+    # Tell the build system to compile the executable using Hsysexe1
+    Hsysexe1 $(_t) : $(_s) ;
+}
+
+rule Hsysexe1
+{
+    local _l ;
+    local _lib ;
+
+    # The build executable depends on its object files
+    Depends $(<) : $(>) ;
+
+    # All executables depend on the hthreads library
+    #Depends $(<) : $(TOP)/$(LOCATE_LIBS)/libhthread.a ;
+    _lib = [ Hlibdir $(LOCATE_LIBS) ] ;
+    Depends $(<) : <lib>libhthread.a ;
+    Depends $(<) : <lib>libhkernel.a ;
+    #Depends $(<) : <lib>boot.o ;
+    Depends $(<) : lib ;
+    SEARCH on <lib>libhthread.a = $(_lib) ;
+    SEARCH on <lib>libhkernel.a = $(_lib) ;
+    #SEARCH on <lib>boot.o = $(_lib) ;
+
+    # Setup the compiler directives to use for this object
+    CCFLAGS on $(<) = $(CCFLAGS) $(SUBDIRCCFLAGS) $(SYS_LINK) ;
+    CCHDRS on $(<)  = [ on $(<) FIncludes $(HDRS) ] ;
+    CCHDRS on $(<)  += [ on $(<) FIncludes $(SYS_HDRS) ] ;
+    CCDEFS on $(<)  = [ on $(<) FDefines $(DEFINES) ] ;
+    CCDEFS on $(<)  += [ on $(<) FDefines $(SYS_DEFINES) ] ;
+    CCLIBS on $(<)  = $(LIBS) $(SYS_LIBS) ;
+}
+
+actions quietly Hsysexe1
+{
+    $(ECHO) $($(PLATFORM_ARCH)_NAME)"-LD" $(<)
+    $(CC) -o $(<) $(CCFLAGS) $(CCDEFS) $(CCHDRS) $(>) $(LINKLIBS) $(CCLIBS)
+}
+
+################################################################################
+# A rule to forward commands to a make file
+################################################################################
+rule Hmake
+{
+    NotFile $(>) ;
+    Depends $(<) : $(MAKEDIR)$(SLASH)$(MAKEFILE) ;
+}
+
+actions quietly Hmake
+{
+    $(PUSHD) $(MAKEDIR)
+    $(MAKE) -f $(MAKEFILE) $(>)
+    $(POPD)
+}
+
+################################################################################
+# A rule to build documentation from source files using doxygen
+################################################################################
+rule Hdox
+{
+    NotFile $(<) ;
+    Always $(<) ;
+
+    Depends docs : $(<) ; 
+    Depends $(<) : $(>) ;
+}
+
+actions quietly Hdox
+{
+    $(ECHO) "DOXY $(>)"
+    $(DOXYGEN) $(>)
+}
+
+################################################################################
+# A rule to compile a C source file into a VHDL file
+################################################################################
+rule Hvhdl
+{
+}
+
+actions Hvhdl
+{
+}
+
+################################################################################
+# Setup the dependencies for the default rule
+################################################################################
+Depends ranlib : lib ;
+Depends clobber : clean ;
+Depends exe : ranlib ;
+Depends all : ranlib ;

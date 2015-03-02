@@ -1,0 +1,6 @@
+AR plb_address_decoder imp /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_00_a/hdl/vhdl/plb_address_decoder.vhd sub00/vhpl01 1239049065
+EN plbv46_slave_single NULL /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_00_a/hdl/vhdl/plbv46_slave_single.vhd sub00/vhpl04 1239049076
+AR plbv46_slave_single implementation /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_00_a/hdl/vhdl/plbv46_slave_single.vhd sub00/vhpl05 1239049077
+AR plb_slave_attachment implementation /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_00_a/hdl/vhdl/plb_slave_attachment.vhd sub00/vhpl03 1239049075
+EN plb_address_decoder NULL /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_00_a/hdl/vhdl/plb_address_decoder.vhd sub00/vhpl00 1239049064
+EN plb_slave_attachment NULL /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_00_a/hdl/vhdl/plb_slave_attachment.vhd sub00/vhpl02 1239049074

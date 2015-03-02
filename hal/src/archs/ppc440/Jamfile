@@ -1,0 +1,15 @@
+################################################################################
+# File:     src/archs/ppc440/Jamfile
+# Author:   Wesley Peck
+# Date:     20 August 2006
+#
+# Desc:     This is the Jam build file for the ppc440 subdirectory of the 
+#           Hthreads project. This file instructs the Jam build system on
+#           how to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (20 August 2006) Jam file initially created
+################################################################################
+SubDir TOP src archs ppc440 ;
+
+SubInclude TOP src archs ppc440 src ;

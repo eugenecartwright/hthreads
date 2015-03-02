@@ -1,0 +1,415 @@
+Release 10.1.03 - xst K.39 (lin64)
+Copyright (c) 1995-2008 Xilinx, Inc.  All rights reserved.
+--> 
+PMSPEC -- Overriding Xilinx file </opt/Xilinx/10.1/EDK/virtex5/data/virtex5.acd> with local file </opt/Xilinx/10.1/ISE/virtex5/data/virtex5.acd>
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+     9.1) Device utilization summary
+     9.2) Partition Resource Summary
+     9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input Format                       : MIXED
+Input File Name                    : "mb9_bram_wrapper_xst.prj"
+
+---- Target Parameters
+Target Device                      : xc5vfx70tff1136-1
+Output File Name                   : "../implementation/mb9_bram_wrapper.ngc"
+
+---- Source Options
+Top Module Name                    : mb9_bram_wrapper
+
+---- Target Options
+Add IO Buffers                     : NO
+
+---- General Options
+Optimization Goal                  : speed
+Netlist Hierarchy                  : as_optimized
+Optimization Effort                : 1
+Hierarchy Separator                : /
+
+---- Other Options
+Cores Search Directories           : {../implementation/mb9_bram_wrapper}
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling vhdl file "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/elaborate/mb9_bram_elaborate_v1_00_a/hdl/vhdl/mb9_bram_elaborate.vhd" in Library mb9_bram_elaborate_v1_00_a.
+Entity <mb9_bram_elaborate> compiled.
+Entity <mb9_bram_elaborate> (Architecture <STRUCTURE>) compiled.
+Compiling vhdl file "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/mb9_bram_wrapper.vhd" in Library work.
+Entity <mb9_bram_wrapper> compiled.
+Entity <mb9_bram_wrapper> (Architecture <STRUCTURE>) compiled.
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for entity <mb9_bram_wrapper> in library <work> (architecture <STRUCTURE>).
+
+Analyzing hierarchy for entity <mb9_bram_elaborate> in library <mb9_bram_elaborate_v1_00_a> (architecture <STRUCTURE>) with generics.
+	C_FAMILY = "virtex5"
+	C_MEMSIZE = 16384
+	C_NUM_WE = 4
+	C_PORT_AWIDTH = 32
+	C_PORT_DWIDTH = 32
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing Entity <mb9_bram_wrapper> in library <work> (Architecture <STRUCTURE>).
+    Set user-defined property "KEEP_HIERARCHY =  yes" for unit <mb9_bram_wrapper>.
+    Set user-defined property "KEEP_HIERARCHY =  yes" for unit <mb9_bram_elaborate>.
+Entity <mb9_bram_wrapper> analyzed. Unit <mb9_bram_wrapper> generated.
+
+Analyzing generic Entity <mb9_bram_elaborate> in library <mb9_bram_elaborate_v1_00_a> (Architecture <STRUCTURE>).
+	C_FAMILY = "virtex5"
+	C_MEMSIZE = 16384
+	C_NUM_WE = 4
+	C_PORT_AWIDTH = 32
+	C_PORT_DWIDTH = 32
+WARNING:Xst:753 - "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/elaborate/mb9_bram_elaborate_v1_00_a/hdl/vhdl/mb9_bram_elaborate.vhd" line 215: Unconnected output port 'CASCADEOUTLATA' of component 'RAMB36'.
+WARNING:Xst:753 - "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/elaborate/mb9_bram_elaborate_v1_00_a/hdl/vhdl/mb9_bram_elaborate.vhd" line 215: Unconnected output port 'CASCADEOUTREGA' of component 'RAMB36'.
+WARNING:Xst:753 - "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/elaborate/mb9_bram_elaborate_v1_00_a/hdl/vhdl/mb9_bram_elaborate.vhd" line 215: Unconnected output port 'DOPA' of component 'RAMB36'.
+WARNING:Xst:753 - "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/elaborate/mb9_bram_elaborate_v1_00_a/hdl/vhdl/mb9_bram_elaborate.vhd" line 215: Unconnected output port 'CASCADEOUTLATB' of component 'RAMB36'.
+WARNING:Xst:753 - "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/elaborate/mb9_bram_elaborate_v1_00_a/hdl/vhdl/mb9_bram_elaborate.vhd" line 215: Unconnected output port 'CASCADEOUTREGB' of component 'RAMB36'.
+WARNING:Xst:753 - "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/elaborate/mb9_bram_elaborate_v1_00_a/hdl/vhdl/mb9_bram_elaborate.vhd" line 215: Unconnected output port 'DOPB' of component 'RAMB36'.
+WARNING:Xst:2211 - "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/elaborate/mb9_bram_elaborate_v1_00_a/hdl/vhdl/mb9_bram_elaborate.vhd" line 215: Instantiating black box module <RAMB36>.
+    Set user-defined property "RAM_EXTENSION_A =  NONE" for instance <ramb36_0> in unit <mb9_bram_elaborate>.
+    Set user-defined property "RAM_EXTENSION_B =  NONE" for instance <ramb36_0> in unit <mb9_bram_elaborate>.
+    Set user-defined property "READ_WIDTH_A =  9" for instance <ramb36_0> in unit <mb9_bram_elaborate>.
+    Set user-defined property "READ_WIDTH_B =  9" for instance <ramb36_0> in unit <mb9_bram_elaborate>.
+    Set user-defined property "WRITE_MODE_A =  WRITE_FIRST" for instance <ramb36_0> in unit <mb9_bram_elaborate>.
+    Set user-defined property "WRITE_MODE_B =  WRITE_FIRST" for instance <ramb36_0> in unit <mb9_bram_elaborate>.
+    Set user-defined property "WRITE_WIDTH_A =  9" for instance <ramb36_0> in unit <mb9_bram_elaborate>.
+    Set user-defined property "WRITE_WIDTH_B =  9" for instance <ramb36_0> in unit <mb9_bram_elaborate>.
+WARNING:Xst:753 - "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/elaborate/mb9_bram_elaborate_v1_00_a/hdl/vhdl/mb9_bram_elaborate.vhd" line 257: Unconnected output port 'CASCADEOUTLATA' of component 'RAMB36'.
+WARNING:Xst:753 - "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/elaborate/mb9_bram_elaborate_v1_00_a/hdl/vhdl/mb9_bram_elaborate.vhd" line 257: Unconnected output port 'CASCADEOUTREGA' of component 'RAMB36'.
+WARNING:Xst:753 - "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/elaborate/mb9_bram_elaborate_v1_00_a/hdl/vhdl/mb9_bram_elaborate.vhd" line 257: Unconnected output port 'DOPA' of component 'RAMB36'.
+WARNING:Xst:753 - "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/elaborate/mb9_bram_elaborate_v1_00_a/hdl/vhdl/mb9_bram_elaborate.vhd" line 257: Unconnected output port 'CASCADEOUTLATB' of component 'RAMB36'.
+WARNING:Xst:753 - "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/elaborate/mb9_bram_elaborate_v1_00_a/hdl/vhdl/mb9_bram_elaborate.vhd" line 257: Unconnected output port 'CASCADEOUTREGB' of component 'RAMB36'.
+WARNING:Xst:753 - "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/elaborate/mb9_bram_elaborate_v1_00_a/hdl/vhdl/mb9_bram_elaborate.vhd" line 257: Unconnected output port 'DOPB' of component 'RAMB36'.
+WARNING:Xst:2211 - "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/elaborate/mb9_bram_elaborate_v1_00_a/hdl/vhdl/mb9_bram_elaborate.vhd" line 257: Instantiating black box module <RAMB36>.
+    Set user-defined property "RAM_EXTENSION_A =  NONE" for instance <ramb36_1> in unit <mb9_bram_elaborate>.
+    Set user-defined property "RAM_EXTENSION_B =  NONE" for instance <ramb36_1> in unit <mb9_bram_elaborate>.
+    Set user-defined property "READ_WIDTH_A =  9" for instance <ramb36_1> in unit <mb9_bram_elaborate>.
+    Set user-defined property "READ_WIDTH_B =  9" for instance <ramb36_1> in unit <mb9_bram_elaborate>.
+    Set user-defined property "WRITE_MODE_A =  WRITE_FIRST" for instance <ramb36_1> in unit <mb9_bram_elaborate>.
+    Set user-defined property "WRITE_MODE_B =  WRITE_FIRST" for instance <ramb36_1> in unit <mb9_bram_elaborate>.
+    Set user-defined property "WRITE_WIDTH_A =  9" for instance <ramb36_1> in unit <mb9_bram_elaborate>.
+    Set user-defined property "WRITE_WIDTH_B =  9" for instance <ramb36_1> in unit <mb9_bram_elaborate>.
+WARNING:Xst:753 - "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/elaborate/mb9_bram_elaborate_v1_00_a/hdl/vhdl/mb9_bram_elaborate.vhd" line 299: Unconnected output port 'CASCADEOUTLATA' of component 'RAMB36'.
+WARNING:Xst:753 - "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/elaborate/mb9_bram_elaborate_v1_00_a/hdl/vhdl/mb9_bram_elaborate.vhd" line 299: Unconnected output port 'CASCADEOUTREGA' of component 'RAMB36'.
+WARNING:Xst:753 - "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/elaborate/mb9_bram_elaborate_v1_00_a/hdl/vhdl/mb9_bram_elaborate.vhd" line 299: Unconnected output port 'DOPA' of component 'RAMB36'.
+WARNING:Xst:753 - "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/elaborate/mb9_bram_elaborate_v1_00_a/hdl/vhdl/mb9_bram_elaborate.vhd" line 299: Unconnected output port 'CASCADEOUTLATB' of component 'RAMB36'.
+WARNING:Xst:753 - "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/elaborate/mb9_bram_elaborate_v1_00_a/hdl/vhdl/mb9_bram_elaborate.vhd" line 299: Unconnected output port 'CASCADEOUTREGB' of component 'RAMB36'.
+WARNING:Xst:753 - "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/elaborate/mb9_bram_elaborate_v1_00_a/hdl/vhdl/mb9_bram_elaborate.vhd" line 299: Unconnected output port 'DOPB' of component 'RAMB36'.
+WARNING:Xst:2211 - "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/elaborate/mb9_bram_elaborate_v1_00_a/hdl/vhdl/mb9_bram_elaborate.vhd" line 299: Instantiating black box module <RAMB36>.
+    Set user-defined property "RAM_EXTENSION_A =  NONE" for instance <ramb36_2> in unit <mb9_bram_elaborate>.
+    Set user-defined property "RAM_EXTENSION_B =  NONE" for instance <ramb36_2> in unit <mb9_bram_elaborate>.
+    Set user-defined property "READ_WIDTH_A =  9" for instance <ramb36_2> in unit <mb9_bram_elaborate>.
+    Set user-defined property "READ_WIDTH_B =  9" for instance <ramb36_2> in unit <mb9_bram_elaborate>.
+    Set user-defined property "WRITE_MODE_A =  WRITE_FIRST" for instance <ramb36_2> in unit <mb9_bram_elaborate>.
+    Set user-defined property "WRITE_MODE_B =  WRITE_FIRST" for instance <ramb36_2> in unit <mb9_bram_elaborate>.
+    Set user-defined property "WRITE_WIDTH_A =  9" for instance <ramb36_2> in unit <mb9_bram_elaborate>.
+    Set user-defined property "WRITE_WIDTH_B =  9" for instance <ramb36_2> in unit <mb9_bram_elaborate>.
+WARNING:Xst:753 - "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/elaborate/mb9_bram_elaborate_v1_00_a/hdl/vhdl/mb9_bram_elaborate.vhd" line 341: Unconnected output port 'CASCADEOUTLATA' of component 'RAMB36'.
+WARNING:Xst:753 - "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/elaborate/mb9_bram_elaborate_v1_00_a/hdl/vhdl/mb9_bram_elaborate.vhd" line 341: Unconnected output port 'CASCADEOUTREGA' of component 'RAMB36'.
+WARNING:Xst:753 - "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/elaborate/mb9_bram_elaborate_v1_00_a/hdl/vhdl/mb9_bram_elaborate.vhd" line 341: Unconnected output port 'DOPA' of component 'RAMB36'.
+WARNING:Xst:753 - "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/elaborate/mb9_bram_elaborate_v1_00_a/hdl/vhdl/mb9_bram_elaborate.vhd" line 341: Unconnected output port 'CASCADEOUTLATB' of component 'RAMB36'.
+WARNING:Xst:753 - "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/elaborate/mb9_bram_elaborate_v1_00_a/hdl/vhdl/mb9_bram_elaborate.vhd" line 341: Unconnected output port 'CASCADEOUTREGB' of component 'RAMB36'.
+WARNING:Xst:753 - "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/elaborate/mb9_bram_elaborate_v1_00_a/hdl/vhdl/mb9_bram_elaborate.vhd" line 341: Unconnected output port 'DOPB' of component 'RAMB36'.
+WARNING:Xst:2211 - "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/elaborate/mb9_bram_elaborate_v1_00_a/hdl/vhdl/mb9_bram_elaborate.vhd" line 341: Instantiating black box module <RAMB36>.
+    Set user-defined property "RAM_EXTENSION_A =  NONE" for instance <ramb36_3> in unit <mb9_bram_elaborate>.
+    Set user-defined property "RAM_EXTENSION_B =  NONE" for instance <ramb36_3> in unit <mb9_bram_elaborate>.
+    Set user-defined property "READ_WIDTH_A =  9" for instance <ramb36_3> in unit <mb9_bram_elaborate>.
+    Set user-defined property "READ_WIDTH_B =  9" for instance <ramb36_3> in unit <mb9_bram_elaborate>.
+    Set user-defined property "WRITE_MODE_A =  WRITE_FIRST" for instance <ramb36_3> in unit <mb9_bram_elaborate>.
+    Set user-defined property "WRITE_MODE_B =  WRITE_FIRST" for instance <ramb36_3> in unit <mb9_bram_elaborate>.
+    Set user-defined property "WRITE_WIDTH_A =  9" for instance <ramb36_3> in unit <mb9_bram_elaborate>.
+    Set user-defined property "WRITE_WIDTH_B =  9" for instance <ramb36_3> in unit <mb9_bram_elaborate>.
+Entity <mb9_bram_elaborate> analyzed. Unit <mb9_bram_elaborate> generated.
+
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+
+Synthesizing Unit <mb9_bram_elaborate>.
+    Related source file is "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/elaborate/mb9_bram_elaborate_v1_00_a/hdl/vhdl/mb9_bram_elaborate.vhd".
+WARNING:Xst:647 - Input <BRAM_Addr_A<0:17>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <BRAM_Addr_A<30:31>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <BRAM_Addr_B<0:17>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <BRAM_Addr_B<30:31>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:646 - Signal <pgassign6<31:8>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <pgassign34<31:8>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <pgassign30<31:8>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <pgassign3> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <pgassign26<31:8>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <pgassign22<31:8>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <pgassign2> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <pgassign18<31:8>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <pgassign14<31:8>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <pgassign10<31:8>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <pgassign1<0>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+Unit <mb9_bram_elaborate> synthesized.
+
+
+Synthesizing Unit <mb9_bram_wrapper>.
+    Related source file is "/home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/mb9_bram_wrapper.vhd".
+Unit <mb9_bram_wrapper> synthesized.
+
+
+=========================================================================
+HDL Synthesis Report
+
+Found no macro
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Loading device for application Rf_Device from file '5vfx70t.nph' in environment /opt/Xilinx/10.1/ISE:/opt/Xilinx/10.1/EDK.
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Found no macro
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+INFO:Xst:1901 - Instance ramb36_0 in unit mb9_bram_elaborate of type RAMB36 has been replaced by RAMB36_EXP
+INFO:Xst:1901 - Instance ramb36_1 in unit mb9_bram_elaborate of type RAMB36 has been replaced by RAMB36_EXP
+INFO:Xst:1901 - Instance ramb36_2 in unit mb9_bram_elaborate of type RAMB36 has been replaced by RAMB36_EXP
+INFO:Xst:1901 - Instance ramb36_3 in unit mb9_bram_elaborate of type RAMB36 has been replaced by RAMB36_EXP
+
+Optimizing unit <mb9_bram_wrapper> ...
+
+Optimizing unit <mb9_bram_elaborate> ...
+
+Mapping all equations...
+Building and optimizing final netlist ...
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Found no macro
+=========================================================================
+
+=========================================================================
+*                           Partition Report                             *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+Top Level Output File Name         : ../implementation/mb9_bram_wrapper.ngc
+Output Format                      : ngc
+Optimization Goal                  : speed
+Keep Hierarchy                     : no
+
+Design Statistics
+# IOs                              : 206
+
+Cell Usage :
+# BELS                             : 2
+#      GND                         : 1
+#      VCC                         : 1
+# RAMS                             : 4
+#      RAMB36_EXP                  : 4
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 5vfx70tff1136-1 
+
+
+Slice Logic Utilization: 
+
+Slice Logic Distribution: 
+ Number of LUT Flip Flop pairs used:      0
+   Number with an unused Flip Flop:       0  out of      0         
+   Number with an unused LUT:             0  out of      0         
+   Number of fully used LUT-FF pairs:     0  out of      0         
+   Number of unique control sets:         0
+
+IO Utilization: 
+ Number of IOs:                         206
+ Number of bonded IOBs:                   0  out of    640     0%  
+
+Specific Feature Utilization:
+ Number of Block RAM/FIFO:                4  out of    148     2%  
+    Number using Block RAM only:          4
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+BRAM_Clk_A                         | NONE(mb9_bram/ramb36_0)| 4     |
+BRAM_Clk_B                         | NONE(mb9_bram/ramb36_0)| 4     |
+-----------------------------------+------------------------+-------+
+INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
+
+Asynchronous Control Signals Information:
+----------------------------------------
+-------------------------------------+------------------------+-------+
+Control Signal                       | Buffer(FF name)        | Load  |
+-------------------------------------+------------------------+-------+
+mb9_bram/net_gnd0(mb9_bram/XST_GND:G)| NONE(mb9_bram/ramb36_3)| 32    |
+-------------------------------------+------------------------+-------+
+
+Timing Summary:
+---------------
+Speed Grade: -1
+
+   Minimum period: No path found
+   Minimum input arrival time before clock: 0.624ns
+   Maximum output required time after clock: 2.180ns
+   Maximum combinational path delay: No path found
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'BRAM_Clk_A'
+  Total number of paths / destination ports: 168 / 168
+-------------------------------------------------------------------------
+Offset:              0.624ns (Levels of Logic = 1)
+  Source:            BRAM_WEN_A<0> (PAD)
+  Destination:       mb9_bram/ramb36_0 (RAM)
+  Destination Clock: BRAM_Clk_A rising
+
+  Data Path: BRAM_WEN_A<0> to mb9_bram/ramb36_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     begin scope: 'mb9_bram'
+     RAMB36_EXP:WEAU0          0.624          ramb36_0
+    ----------------------------------------
+    Total                      0.624ns (0.624ns logic, 0.000ns route)
+                                       (100.0% logic, 0.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'BRAM_Clk_B'
+  Total number of paths / destination ports: 168 / 168
+-------------------------------------------------------------------------
+Offset:              0.624ns (Levels of Logic = 1)
+  Source:            BRAM_WEN_B<0> (PAD)
+  Destination:       mb9_bram/ramb36_0 (RAM)
+  Destination Clock: BRAM_Clk_B rising
+
+  Data Path: BRAM_WEN_B<0> to mb9_bram/ramb36_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     begin scope: 'mb9_bram'
+     RAMB36_EXP:WEBU0          0.624          ramb36_0
+    ----------------------------------------
+    Total                      0.624ns (0.624ns logic, 0.000ns route)
+                                       (100.0% logic, 0.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'BRAM_Clk_B'
+  Total number of paths / destination ports: 32 / 32
+-------------------------------------------------------------------------
+Offset:              2.180ns (Levels of Logic = 1)
+  Source:            mb9_bram/ramb36_0 (RAM)
+  Destination:       BRAM_Din_B<0> (PAD)
+  Source Clock:      BRAM_Clk_B rising
+
+  Data Path: mb9_bram/ramb36_0 to BRAM_Din_B<0>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     RAMB36_EXP:REGCLKBU->DOB7    0   2.180   0.000  ramb36_0 (BRAM_Din_B<0>)
+     end scope: 'mb9_bram'
+    ----------------------------------------
+    Total                      2.180ns (2.180ns logic, 0.000ns route)
+                                       (100.0% logic, 0.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'BRAM_Clk_A'
+  Total number of paths / destination ports: 32 / 32
+-------------------------------------------------------------------------
+Offset:              2.180ns (Levels of Logic = 1)
+  Source:            mb9_bram/ramb36_0 (RAM)
+  Destination:       BRAM_Din_A<0> (PAD)
+  Source Clock:      BRAM_Clk_A rising
+
+  Data Path: mb9_bram/ramb36_0 to BRAM_Din_A<0>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     RAMB36_EXP:REGCLKAU->DOA7    0   2.180   0.000  ramb36_0 (BRAM_Din_A<0>)
+     end scope: 'mb9_bram'
+    ----------------------------------------
+    Total                      2.180ns (2.180ns logic, 0.000ns route)
+                                       (100.0% logic, 0.0% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 23.00 secs
+Total CPU time to Xst completion: 12.49 secs
+ 
+--> 
+
+
+Total memory usage is 688980 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :   43 (   0 filtered)
+Number of infos    :    5 (   0 filtered)
+

@@ -1,0 +1,39 @@
+m255
+K3
+13
+cModel Technology
+Z0 d/home/jagron/uark_research/plb_cores/edk_user_repository/MyProcessorIPLib/pcores/plb_scheduler_v1_00_a/devl/bfmsim/simulation/behavioral
+Eplbv46_monitor_bfm
+Z1 w1207171510
+Z2 DPx4 ieee 18 std_logic_unsigned 0 22 hEMVMlaNCR^<OOoVNV;m90
+Z3 DPx4 ieee 15 std_logic_arith 0 22 GJbAT?7@hRQU9IQ702DT]2
+Z4 DPx10 plbv46_bfm 7 plb_dcl 0 22 IXo2lK=_aHg_R>9UY2XiS3
+Z5 DPx4 ieee 14 std_logic_1164 0 22 GH1=`jDDBJ=`LM;:Ak`kf2
+Z6 8/opt/Xilinx/10.1/EDK/hw/XilinxBFMinterface/pcores/plbv46_monitor_bfm_v1_00_a/hdl/vhdl/plbv46_monitor_bfm.vhd
+Z7 F/opt/Xilinx/10.1/EDK/hw/XilinxBFMinterface/pcores/plbv46_monitor_bfm_v1_00_a/hdl/vhdl/plbv46_monitor_bfm.vhd
+l0
+L67
+Vh51H>jRO`]2H^W5iAc:=Q3
+!s100 R=zId_8Zh=]@ebBQMCmnD0
+Z8 OL;C;6.4a;39
+31
+Z9 o-93 -work plbv46_monitor_bfm_v1_00_a
+Z10 tExplicit 1
+Astructural
+R2
+R3
+R4
+R5
+Z11 DEx4 work 18 plbv46_monitor_bfm 0 22 h51H>jRO`]2H^W5iAc:=Q3
+l326
+L225
+Z12 V49cUQWG[lmH5U`eMlA_Fa3
+Z13 !s100 Y]X3kYfCQzOjneDBgGLj43
+R8
+31
+Z14 Mx4 4 ieee 14 std_logic_1164
+Z15 Mx3 10 plbv46_bfm 7 plb_dcl
+Z16 Mx2 4 ieee 15 std_logic_arith
+Z17 Mx1 4 ieee 18 std_logic_unsigned
+R9
+R10

@@ -1,0 +1,54 @@
+################################################################################
+# File:     src/software/lwip/core
+# Author:   Wesley Peck
+# Date:     26 October 2006
+#
+# Desc:     This is the Jam build file for the lwip core subdirectory of the
+#           Hthreads project. This file instructs the Jam build system on how
+#           to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (26 October 2006) Jam file initially created
+################################################################################
+SubDir TOP src software lwip core ;
+LOCATE_TARGET = lwip$(SLASH)core ;
+
+################################################################################
+# Compile the source files into object files
+################################################################################
+Hsysobject dhcp.o       : dhcp.c ;
+Hsysobject inet.o       : inet.c ;
+Hsysobject memp.o       : memp.c ;
+Hsysobject pbuf.o       : pbuf.c ;
+Hsysobject stats.o      : stats.c ;
+Hsysobject tcp.o        : tcp.c ;
+Hsysobject tcp_out.o    : tcp_out.c ;
+Hsysobject mem.o        : mem.c ;
+Hsysobject netif.o      : netif.c ;
+Hsysobject raw.o        : raw.c ;
+Hsysobject sys.o        : sys.c ;
+Hsysobject tcp_in.o     : tcp_in.c ;
+Hsysobject udp.o        : udp.c ;
+
+################################################################################
+# Compile executable files from the object files
+################################################################################
+Hlib hthread : dhcp.o ;
+Hlib hthread : inet.o ;
+Hlib hthread : memp.o ;
+Hlib hthread : pbuf.o ;
+Hlib hthread : stats.o ;
+Hlib hthread : tcp.o ;
+Hlib hthread : tcp_out.o ;
+Hlib hthread : mem.o ;
+Hlib hthread : netif.o ;
+Hlib hthread : raw.o ;
+Hlib hthread : sys.o ;
+Hlib hthread : tcp_in.o ;
+Hlib hthread : udp.o ;
+
+################################################################################
+# Compile the IPv4 code also
+################################################################################
+SubInclude TOP src software lwip core ipv4 ;
+SubInclude TOP src software lwip core snmp ;

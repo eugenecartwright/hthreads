@@ -1,0 +1,9 @@
+-p
+xc6vlx240tff1156-1
+-lang
+vhdl
+-lp
+/home/eugene/hthreads/src/hardware/
+-msg
+__xps/ise/xmsgprops.lst
+system.mhs

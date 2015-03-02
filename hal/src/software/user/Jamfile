@@ -1,0 +1,40 @@
+########################################################################################
+# File:     src/software/Jamfile
+# Author:   Wesley Peck
+# Date:     20 August 2006
+#
+# Desc:     This is the Jam build file for the src/software subdirectory of the
+#           Hthreads project. This file instructs the Jam build system on how to build
+#           the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (20 August 2006) Jam file initially created
+########################################################################################
+SubDir TOP src software user ;
+LOCATE_TARGET = software$(SLASH)user ;
+
+########################################################################################
+# Add the user code sources to the Hthreads library
+########################################################################################
+Hobject condition.o         : condition.c ;
+Hobject intr.o              : intr.c ;
+Hobject mutex_attr.o        : mutex_attr.c ;
+Hobject thread_manag.o      : thread_manag.c ;
+Hobject thread_specific.o   : thread_specific.c ;
+Hobject condition_attr.o    : condition_attr.c ;
+Hobject mutex.o             : mutex.c ;
+Hobject thread_attr.o       : thread_attr.c ;
+Hobject thread_sched.o      : thread_sched.c ;
+
+########################################################################################
+# Add the object files to the hthreads library
+########################################################################################
+Hlib hthread : condition.o ;
+Hlib hthread : intr.o ;
+Hlib hthread : mutex_attr.o ;
+Hlib hthread : thread_manag.o ;
+Hlib hthread : thread_specific.o ;
+Hlib hthread : condition_attr.o ;
+Hlib hthread : mutex.o ;
+Hlib hthread : thread_attr.o ;
+Hlib hthread : thread_sched.o ;

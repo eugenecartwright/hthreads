@@ -1,0 +1,16 @@
+AR soft_reset implementation /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/soft_reset.vhd sub00/vhpl09 1246296295
+PH family_support NULL /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/family_support.vhd sub00/vhpl04 1246296290
+EN soft_reset NULL /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/soft_reset.vhd sub00/vhpl08 1246296294
+PH proc_common_pkg NULL /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/proc_common_pkg.vhd sub00/vhpl00 1246296286
+AR pselect_f imp /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/pselect_f.vhd sub00/vhpl11 1246296297
+AR counter_f imp /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/counter_f.vhd sub00/vhpl07 1246296293
+EN or_gate128 NULL /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/or_gate128.vhd sub00/vhpl12 1246296298
+PH ipif_pkg NULL /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/ipif_pkg.vhd sub00/vhpl14 1246296300
+EN counter_f NULL /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/counter_f.vhd sub00/vhpl06 1246296292
+PB family_support family_support /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/family_support.vhd sub00/vhpl05 1246296291
+PB proc_common_pkg proc_common_pkg /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/proc_common_pkg.vhd sub00/vhpl01 1246296287
+AR or_muxcy implementation /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/or_muxcy.vhd sub00/vhpl03 1246296289
+EN pselect_f NULL /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/pselect_f.vhd sub00/vhpl10 1246296296
+AR or_gate128 imp /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/or_gate128.vhd sub00/vhpl13 1246296299
+PB ipif_pkg ipif_pkg /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/ipif_pkg.vhd sub00/vhpl15 1246296301
+EN or_muxcy NULL /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v2_00_a/hdl/vhdl/or_muxcy.vhd sub00/vhpl02 1246296288

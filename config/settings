@@ -1,0 +1,81 @@
+################################################################################
+# Settings for the hardware platform to run on
+# Possible settings for the platform vendor and board are the following:
+#   pthreads    - Emulate hthreads using pthreads on a standard desktop
+#       std     - Use the standard pthreads emulation code
+#
+#   xilinx           - Compile hthreads for a xilinx based device
+#       xup          - Compile hthreads for a Xilinx XUP development board
+#       ml507        - Compile hthreads for a Xilinx ML507 development board
+#       ml605        - Compile hthreads for a Xilinx ML605 development board
+################################################################################
+PLATFORM_VENDOR         = xilinx ;
+PLATFORM_BOARD          = vivado_archgen ;
+
+################################################################################
+# Setting for "reset" architecture
+#   yes  - old reset architecture
+#   no   - new reset architecture
+################################################################################
+OLD_RESET_ARCH   = no ;
+
+################################################################################
+# Settings for the processor architecture to build for
+# The platform architecture can be set to the following:
+#   ppc405      - Compile hthreads for the PowerPC 405 architecture 
+#   ppc440      - Compile hthreads for the PowerPC 440 architecture 
+#   mblaze      - Compile hthreads for the Microblaze architecture
+#   pthreads    - Emulate hthreads using pthreads on a standard desktop
+################################################################################
+PLATFORM_ARCH	=	mblaze ;
+#PLATFORM_ARCH           = ppc440 ;
+PLATFORM_SMP            = no ;
+
+################################################################################
+# Settings for optimization and debugging
+################################################################################
+#TARGET_DEBUG            = no ;
+TARGET_DEBUG            = yes ;
+TARGET_OPTIMIZE         = yes ;
+
+################################################################################
+# Settings for trace statements in target executable
+# The trace level can be set to the following:
+#   NONE    - No trace statements are used
+#   FATAL   - Trace statements for irrecoverable errors
+#   ERR     - Trace statements for recoverable errors
+#   WARN    - Trace statements for possibly incorrect errors
+#   INFO    - Trace statements for informational errors
+#   DBG     - Trace statements for debugging level information
+#   FINE    - Trace statements for every function call
+################################################################################
+TARGET_TRACE            = no ;
+TARGET_TRACELEVEL       = NONE ;
+
+#TARGET_TRACE            = yes ;
+#TARGET_TRACELEVEL       = DBG ;
+
+################################################################################
+# Settings for profiling statements in target executables
+# The possible profile output methods can be set to the following:
+#   serial - Output profiling information over the serial port
+#   tcpip  - Output profiling information using the ethernet port
+################################################################################
+TARGET_PROFILE          = no ;
+TARGET_PROFILEOUTPUT    = serial ;
+
+################################################################################
+# Settings for optimization and debugging of the host tools
+################################################################################
+HOST_DEBUG              = no ;
+HOST_OPTIMIZE           = yes ;
+
+################################################################################
+# Settings for the host compiler
+################################################################################
+HOST_CC                 = gcc ;
+HOST_AS                 = as ;
+HOST_AR                 = ar ;
+HOST_LD                 = ld ;
+HOST_RANLIB             = ranlib ;
+

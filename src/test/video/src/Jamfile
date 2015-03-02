@@ -1,0 +1,30 @@
+################################################################################
+# File:     src/test/video/src/Jamfile
+# Author:   Wesley Peck
+# Date:     18 June 2007
+#
+# Desc:     This is the Jam build file for the video processing source
+#           subdirectory of the Hthreads project. This file instructs the
+#           Jam build system on how to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (18 June 2007) Jam file initially created
+################################################################################
+SubDir TOP src test video src ;
+LOCATE_TARGET = test/video ;
+
+################################################################################
+# Add the include directory to the list of header directories to search in
+################################################################################
+SUBDIRHDRS += $(TOP)/src/test/video/include ;
+LIBS       += -lxil ;
+
+################################################################################
+# Compile the source files into object files
+################################################################################
+Hobjects [ Hglob *.c ] ;
+
+################################################################################
+# Compile execuables from the object files
+################################################################################
+Hexe video : [ Hglob *.c : .o ] ;

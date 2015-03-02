@@ -1,0 +1,114 @@
+Release 10.1.03 - par K.39 (lin64)
+Copyright (c) 1995-2008 Xilinx, Inc.  All rights reserved.
+
+Tue Apr 28 17:09:20 2009
+
+All signals are completely routed.
+
+WARNING:ParHelpers:361 - There are 102 loadless signals in this design. This design will cause Bitgen to issue DRC
+   warnings.
+
+   hw_thread_bram/hw_thread_bram/BRAM_Din_A<0>
+   hw_thread_bram/hw_thread_bram/BRAM_Din_A<10>
+   hw_thread_bram/hw_thread_bram/BRAM_Din_A<11>
+   hw_thread_bram/hw_thread_bram/BRAM_Din_A<12>
+   hw_thread_bram/hw_thread_bram/BRAM_Din_A<13>
+   hw_thread_bram/hw_thread_bram/BRAM_Din_A<14>
+   hw_thread_bram/hw_thread_bram/BRAM_Din_A<15>
+   hw_thread_bram/hw_thread_bram/BRAM_Din_A<16>
+   hw_thread_bram/hw_thread_bram/BRAM_Din_A<17>
+   hw_thread_bram/hw_thread_bram/BRAM_Din_A<18>
+   hw_thread_bram/hw_thread_bram/BRAM_Din_A<19>
+   hw_thread_bram/hw_thread_bram/BRAM_Din_A<1>
+   hw_thread_bram/hw_thread_bram/BRAM_Din_A<20>
+   hw_thread_bram/hw_thread_bram/BRAM_Din_A<21>
+   hw_thread_bram/hw_thread_bram/BRAM_Din_A<22>
+   hw_thread_bram/hw_thread_bram/BRAM_Din_A<23>
+   hw_thread_bram/hw_thread_bram/BRAM_Din_A<24>
+   hw_thread_bram/hw_thread_bram/BRAM_Din_A<25>
+   hw_thread_bram/hw_thread_bram/BRAM_Din_A<26>
+   hw_thread_bram/hw_thread_bram/BRAM_Din_A<27>
+   hw_thread_bram/hw_thread_bram/BRAM_Din_A<28>
+   hw_thread_bram/hw_thread_bram/BRAM_Din_A<29>
+   hw_thread_bram/hw_thread_bram/BRAM_Din_A<2>
+   hw_thread_bram/hw_thread_bram/BRAM_Din_A<30>
+   hw_thread_bram/hw_thread_bram/BRAM_Din_A<31>
+   hw_thread_bram/hw_thread_bram/BRAM_Din_A<3>
+   hw_thread_bram/hw_thread_bram/BRAM_Din_A<4>
+   hw_thread_bram/hw_thread_bram/BRAM_Din_A<5>
+   hw_thread_bram/hw_thread_bram/BRAM_Din_A<6>
+   hw_thread_bram/hw_thread_bram/BRAM_Din_A<7>
+   hw_thread_bram/hw_thread_bram/BRAM_Din_A<8>
+   hw_thread_bram/hw_thread_bram/BRAM_Din_A<9>
+   xps_bram_if_cntlr_0_PORTA_BRAM_Addr<30>
+   xps_bram_if_cntlr_0_PORTA_BRAM_Addr<31>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<0>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<10>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<11>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<12>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<13>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<14>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<15>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<16>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<17>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<18>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<19>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<1>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<20>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<21>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<22>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<23>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<24>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<25>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<26>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<27>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<28>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<29>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<2>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<30>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<31>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<32>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<33>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<34>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<35>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<36>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<37>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<38>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<39>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<3>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<40>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<41>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<42>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<43>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<44>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<45>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<46>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<47>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<48>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<49>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<4>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<50>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<51>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<52>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<53>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<54>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<55>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<56>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<57>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<58>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<59>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<5>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<60>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<61>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<62>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<63>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<6>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<7>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<8>
+   xps_bram_if_cntlr_1_bram/xps_bram_if_cntlr_1_bram/BRAM_Din_B<9>
+   xps_bram_if_cntlr_1_port_BRAM_Addr<30>
+   xps_bram_if_cntlr_1_port_BRAM_Addr<31>
+   xps_hw_thread_bram_cntlr_PORTA_BRAM_Addr<30>
+   xps_hw_thread_bram_cntlr_PORTA_BRAM_Addr<31>
+
+

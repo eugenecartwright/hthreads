@@ -1,0 +1,20 @@
+<assertions>
+  <assertion id="1">
+  The function hthread_mutex_lock(hthread_mutex_t *mutex) locks the mutex object
+  referenced by 'mutex'.  This operation returns with the mutex object
+  referenced by 'mutex' in the locked state with the calling thread as its owner.
+  </assertion>
+
+  <assertion id="2">
+  If the mutex referenced by hthread_mutex_lock is already locked, the calling
+  thread will block until the mutex becomes available.  Once returned, the
+  calling thread is the owner of the mutex.
+  
+  Not testable
+  </assertion> 
+
+  <assertion id="3">
+  Upon success, hthread_mutex_lock returns 0.
+  </assertion> 
+
+</assertions>

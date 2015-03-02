@@ -1,0 +1,223 @@
+# ##############################################################################
+# 
+# BFM simulation system
+# 
+# Automatically created by Create and Import Peripheral Wizard
+# 
+# Thu Mar 27 10:44:34 2008
+# 
+# ##############################################################################
+
+
+ PARAMETER VERSION = 2.1.0
+
+
+ PORT sys_reset = sys_reset, DIR = IN, SIGIS = RST
+ PORT sys_clk = sys_clk, DIR = IN, SIGIS = CLK
+
+
+BEGIN plb_master_bfm
+ PARAMETER INSTANCE = bfm_processor
+ PARAMETER HW_VER = 1.00.a
+ BUS_INTERFACE MPLB = plb_bus
+ PORT SYNCH_IN = synch
+ PORT SYNCH_OUT = synch0
+END
+
+BEGIN plb_slave_bfm
+ PARAMETER INSTANCE = bfm_memory
+ PARAMETER HW_VER = 1.00.a
+ PARAMETER PLB_SLAVE_ADDR_LO_0 = 0x10000000
+ PARAMETER PLB_SLAVE_ADDR_HI_0 = 0x1000ffff
+ PARAMETER PLB_SLAVE_ADDR_LO_1 = 0x20000000
+ PARAMETER PLB_SLAVE_ADDR_HI_1 = 0x2000ffff
+ BUS_INTERFACE SPLB = plb_bus
+ PORT SYNCH_IN = synch
+ PORT SYNCH_OUT = synch1
+END
+
+BEGIN plb_monitor_bfm
+ PARAMETER INSTANCE = bfm_monitor
+ PARAMETER HW_VER = 1.00.a
+ BUS_INTERFACE MON_PLB = plb_bus
+ PORT PLB_Clk = sys_clk
+ PORT SYNCH_IN = synch
+ PORT SYNCH_OUT = synch2
+END
+
+BEGIN bfm_synch
+ PARAMETER INSTANCE = synch_bus
+ PARAMETER HW_VER = 1.00.a
+ PARAMETER C_NUM_SYNCH = 4
+ PORT FROM_SYNCH_OUT = synch0 & synch1 & synch2 & synch3
+ PORT TO_SYNCH_IN = synch
+END
+
+################################################################################
+# PLB Bus
+################################################################################
+BEGIN plb_v34
+ PARAMETER INSTANCE = plb_bus
+ PARAMETER HW_VER = 1.02.a
+ PARAMETER C_DCR_INTFCE = 0
+ PARAMETER C_EXT_RESET_HIGH = 0
+ PORT SYS_Rst = sys_reset
+ PORT PLB_Clk = sys_clk
+END
+
+################################################################################
+# OPB Bus
+################################################################################
+BEGIN opb_v20
+ PARAMETER INSTANCE = opb
+ PARAMETER HW_VER = 1.10.c
+ PARAMETER C_EXT_RESET_HIGH = 0
+ PARAMETER C_DYNAM_PRIORITY = 0
+ PORT SYS_Rst = sys_reset
+ PORT OPB_Clk = sys_clk
+END
+
+################################################################################
+# PLB -> OPB Bridge
+################################################################################
+BEGIN plb2opb_bridge
+ PARAMETER INSTANCE = plb2opb
+ PARAMETER HW_VER = 1.01.a
+ PARAMETER C_DCR_INTFCE = 0
+ PARAMETER C_NUM_ADDR_RNG = 1
+ PARAMETER C_RNG0_BASEADDR = 0x40000000
+ PARAMETER C_RNG0_HIGHADDR = 0x7fffffff
+ BUS_INTERFACE SPLB = plb_bus
+ BUS_INTERFACE MOPB = opb
+ PORT BGI_Trans_Abort = bgi_abort
+END
+
+################################################################################
+# OPB -> PLB Bridge
+################################################################################
+BEGIN opb2plb_bridge
+ PARAMETER INSTANCE = opb2plb
+ PARAMETER HW_VER = 1.00.c
+ PARAMETER C_RNG0_BASEADDR = 0x00000000
+ PARAMETER C_RNG0_HIGHADDR = 0x3FFFFFFF
+ PARAMETER C_SAME_CLKS = 1
+ PARAMETER C_RNG0_LINE = 1
+ BUS_INTERFACE SOPB = opb
+ BUS_INTERFACE MPLB = plb_bus
+ PORT BGI_Trans_Abort = bgi_abort
+END
+
+################################################################################
+# Thread Manager
+################################################################################
+BEGIN opb_threadCore
+ PARAMETER INSTANCE = thread_manager
+ PARAMETER HW_VER = 1.00.a
+ PARAMETER C_BASEADDR = 0x60000000
+ PARAMETER C_HIGHADDR = 0x6003FFFF
+ BUS_INTERFACE SOPB = opb
+ PORT sch2tm_next_id = core_sch2tm_next_id
+ PORT tm2sch_DOB = core_tm2sch_dob
+ PORT tm2sch_cpu_thread_id = core_tm2sch_cpu_thread_id
+ PORT tm2sch_data = core_tm2sch_data
+ PORT tm2sch_opcode = core_tm2sch_opcode
+ PORT tm2sch_request = core_tm2sch_request
+ PORT Access_Intr = access_intr
+ PORT OPB_Clk = sys_clk
+ PORT Scheduler_Reset = sched_rst
+ PORT Scheduler_Reset_Done = sched_rst_done
+ PORT Semaphore_Reset = net_gnd
+ PORT Semaphore_Reset_Done = net_gnd
+ PORT Soft_Stop = soft_stop
+ PORT SpinLock_Reset = net_gnd
+ PORT SpinLock_Reset_Done = net_gnd
+ PORT User_IP_Reset_Done = user_rst_done
+ PORT User_IP_Reset = user_rst
+ PORT sch2tm_ADDRB = core_sch2tm_addrb
+ PORT sch2tm_DIB = core_sch2tm_dib
+ PORT sch2tm_ENB = core_sch2tm_enb
+ PORT sch2tm_WEB = core_sch2tm_web
+ PORT sch2tm_busy = core_sch2tm_busy
+ PORT sch2tm_data = core_sch2tm_data
+ PORT sch2tm_next_id_valid = core_sch2tm_next_id_valid
+END
+
+################################################################################
+# Scheduler
+################################################################################
+BEGIN opb_Scheduler_Master
+ PARAMETER INSTANCE = scheduler
+ PARAMETER HW_VER = 1.00.a
+ PARAMETER C_BASEADDR = 0x61000000
+ PARAMETER C_HIGHADDR = 0x61FFFFFF
+ BUS_INTERFACE MSOPB = opb
+ PORT SWTM_ADDRB = core_sch2tm_addrb
+ PORT SWTM_DIB = core_sch2tm_dib
+ PORT OPB_Clk = sys_clk
+ PORT TM2SCH_current_cpu_tid = core_tm2sch_cpu_thread_id
+ PORT TM2SCH_data = core_tm2sch_data
+ PORT Soft_Stop = soft_stop
+ PORT Preemption_Interrupt = sched_intr
+ PORT Reset_Done = sched_rst_done
+ PORT SCH2TM_busy = core_sch2tm_busy
+ PORT SCH2TM_data = core_sch2tm_data
+ PORT SCH2TM_next_cpu_tid = core_sch2tm_next_id
+ PORT SCH2TM_next_tid_valid = core_sch2tm_next_id_valid
+ PORT Soft_Reset = sched_rst
+ PORT SWTM_WEB = core_sch2tm_web
+ PORT SWTM_ENB = core_sch2tm_enb
+ PORT SWTM_DOB = core_tm2sch_dob
+ PORT TM2SCH_opcode = core_tm2sch_opcode
+ PORT TM2SCH_request = core_tm2sch_request
+END
+
+
+################################################################################
+# SynchManager
+################################################################################
+BEGIN opb_SynchManager
+ PARAMETER INSTANCE = synch_manager
+ PARAMETER HW_VER = 1.00.c
+ PARAMETER C_BASEADDR = 0x75000000
+ PARAMETER C_HIGHADDR = 0x75FFFFFF
+ PARAMETER C_SCHED_BADDR = 0x60000000
+ PARAMETER C_SCHED_HADDR = 0x6000ffff
+ PARAMETER C_NUM_THREADS = 256
+ PARAMETER C_NUM_MUTEXES = 64
+ BUS_INTERFACE MSOPB = opb
+ PORT system_reset = user_rst
+ PORT system_resetdone = user_rst_done
+END
+
+################################################################################
+# Condition Variables
+################################################################################
+BEGIN opb_blk_mcvar
+ PARAMETER INSTANCE = cond_vars
+ PARAMETER HW_VER = 1.00.b
+ PARAMETER C_BASEADDR = 0x74000000
+ PARAMETER C_HIGHADDR = 0x7407FFFF
+ PARAMETER C_SWTHR_BASE_ADDR = 0x60001000
+ PARAMETER C_HWTHR_BASE_ADDR = 0x60001000
+ BUS_INTERFACE MSOPB = opb
+ PORT Sema_Rst_Ack = net_gnd
+ PORT Sema_Reset = user_rst
+END
+
+################################################################################
+# Hardware Thread Test
+################################################################################
+BEGIN plb_hwt_tb
+ PARAMETER INSTANCE = my_core
+ PARAMETER HW_VER = 1.00.a
+ PARAMETER C_BASEADDR = 0x30000000
+ PARAMETER C_HIGHADDR = 0x30007FFF
+ PARAMETER C_MANAG_BASEADDR = 0x60000000
+ PARAMETER C_SCHED_BASEADDR = 0x61000000
+ PARAMETER C_CONDV_BASEADDR = 0x74000000
+ PARAMETER C_MUTEX_BASEADDR = 0x75000000
+ BUS_INTERFACE MSPLB = plb_bus
+ PORT SYNCH_IN = synch
+ PORT SYNCH_OUT = synch3
+END
+

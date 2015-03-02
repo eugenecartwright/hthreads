@@ -1,0 +1,17 @@
+<assertions>
+  <assertion id="1">
+  The function int hthread_mutex_unlock(hthread_mutex_t *mutex); releases the
+  mutex object 'mutex'.
+  </assertion>
+  
+  <assertion id="2">
+  If there are threads blocked on the mutex object referenced by 'mutex' when
+  pthread_mutex_unlock() is called, resulting in the mutex becoming available,
+  the first thread who called lock and had to black, shall receive the mutex.
+  </assertion>
+  
+  <assertion id="3">
+  Upon success, it returns 0.
+  </assertion> 
+  
+</assertions>

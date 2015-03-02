@@ -1,0 +1,67 @@
+################################################################################
+# File:     src/software/Jamfile
+# Author:   Wesley Peck
+# Date:     24 October 2006
+#
+# Desc:     This is the Jam build file for the drivers subdirectory of the
+#           Hthreads project. This file instructs the Jam build system on how
+#           to build the Hthreads project.
+#           See http://www.perforce.com/jam/jam.html for more information.
+#
+# Changes:  (24 October 2006) Jam file initially created
+################################################################################
+SubDir TOP src software drivers ;
+
+################################################################################
+# Build the GPIO driver only if configured
+################################################################################
+if $(DRIVER_GPIO) = "yes"
+{ SubInclude TOP src software drivers gpio ; }
+
+################################################################################
+# Build the PS2 driver only if configured
+################################################################################
+if $(DRIVER_PS2) = "yes"
+{ SubInclude TOP src software drivers ps2 ; }
+
+################################################################################
+# Build the DMA driver only if configured
+################################################################################
+if $(DRIVER_DMA) = "yes"
+{ SubInclude TOP src software drivers dma ; }
+
+################################################################################
+# Build the Ethernet driver only if configured
+################################################################################
+if $(DRIVER_ETH) = "yes"
+{ SubInclude TOP src software drivers eth ; }
+
+################################################################################
+# Build the Ethernet Lite driver only if configured
+################################################################################
+if $(DRIVER_ETHLITE) = "yes"
+{ SubInclude TOP src software drivers ethlite ; }
+
+################################################################################
+# Build the System Ace driver only if configured
+################################################################################
+if $(DRIVER_SYSACE) = "yes"
+{ SubInclude TOP src software drivers sysace ; }
+
+################################################################################
+# Build the UART Lite driver only if configured
+################################################################################
+if $(DRIVER_UARTLITE) = "yes"
+{ SubInclude TOP src software drivers uartlite ; }
+
+################################################################################
+# Build the VGA driver only if configured
+################################################################################
+if $(DRIVER_VGA) = "yes"
+{ SubInclude TOP src software drivers vga ; }
+
+################################################################################
+# Build the VDEC driver only if configured
+################################################################################
+if $(DRIVER_VDEC) = "yes"
+{ SubInclude TOP src software drivers vdec ; }

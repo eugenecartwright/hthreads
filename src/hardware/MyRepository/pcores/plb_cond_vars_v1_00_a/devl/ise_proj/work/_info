@@ -1,0 +1,190 @@
+m255
+K3
+13
+cModel Technology
+Z0 d/home/jagron/uark_research/uark_ht_trunk/src/hardware/MyRepository/pcores/plb_cond_vars_v1_00_a/devl/ise_proj
+T_opt
+Z1 VYOVeGA10o`9AWJmE;h;ci3
+Z2 04 10 8 work condvar_tb behavior 1
+Z3 =1-001ec9546918-4a395a0a-621b8-44de
+Z4 o-quiet -auto_acc_if_foreign -work work
+Z5 OL;O;6.4a;39
+T_opt1
+VXzz>UCKG=LPV85mbA5IKN1
+Z6 04 13 8 work user_logic_tb behavior 1
+Z7 =1-001ec9546918-4a6f6b5e-a5dcc-1942
+R4
+R5
+Econdvar
+Z8 w1245265660
+Z9 DPx4 ieee 11 numeric_std 0 22 =NSdli^?T5OD8;4F<blj<3
+Z10 DPx4 ieee 18 std_logic_unsigned 0 22 hEMVMlaNCR^<OOoVNV;m90
+Z11 DPx4 ieee 15 std_logic_arith 0 22 GJbAT?7@hRQU9IQ702DT]2
+Z12 DPx4 ieee 14 std_logic_1164 0 22 GH1=`jDDBJ=`LM;:Ak`kf2
+Z13 8../../hdl/vhdl/condvar.vhd
+Z14 F../../hdl/vhdl/condvar.vhd
+l0
+L18
+Z15 VnBUKN?`WHGLO01QbnRLDP2
+Z16 OL;C;6.4a;39
+31
+Z17 o-explicit -93
+Z18 tExplicit 1
+Z19 !s100 WL;9be63S;SGY9ZjUI`fM3
+Aimplementation
+R9
+R10
+R11
+R12
+Z20 DEx4 work 7 condvar 0 22 nBUKN?`WHGLO01QbnRLDP2
+l187
+L48
+Z21 VWf;1[zcVcMN[:=n08_>TK0
+R16
+31
+Z22 Mx4 4 ieee 14 std_logic_1164
+Z23 Mx3 4 ieee 15 std_logic_arith
+Z24 Mx2 4 ieee 18 std_logic_unsigned
+Z25 Mx1 4 ieee 11 numeric_std
+R17
+R18
+Z26 !s100 @jY=A:RheL4zH9W^WDW>73
+Econdvar_tb
+Z27 w1245258918
+R9
+R11
+R10
+R12
+Z28 8../../hdl/vhdl/condvar_tb.vhd
+Z29 F../../hdl/vhdl/condvar_tb.vhd
+l0
+L36
+Z30 VL7C3[VoSU66az24c<=UOU2
+R16
+31
+R17
+R18
+Z31 !s100 Wiof?C@Vi@ekT]To[m2d81
+Abehavior
+R9
+R11
+R10
+R12
+Z32 DEx4 work 10 condvar_tb 0 22 L7C3[VoSU66az24c<=UOU2
+l87
+L39
+Z33 Vkl_iJFjR`QgGSl4=TnI5m0
+R16
+31
+R22
+Z34 Mx3 4 ieee 18 std_logic_unsigned
+Z35 Mx2 4 ieee 15 std_logic_arith
+R25
+R17
+R18
+Z36 !s100 QP2Y7;V5>11^fgfoDJI[42
+Einfer_bram
+R8
+R9
+Z37 DPx8 synopsys 10 attributes 0 22 2Q8I4L@H0S1aHEXkjUYDC1
+Z38 DPx4 ieee 14 std_logic_misc 0 22 D2f;@P3IKJA9T^H8HI[9K0
+R10
+R11
+R12
+R13
+R14
+l0
+L560
+Z39 V5a5KgQQVV=8ffnQ`DASNE0
+R16
+31
+R17
+R18
+Z40 !s100 FYM:GQ<;i>8Ne4E`=V5PM3
+Aimplementation
+R9
+R37
+R38
+R10
+R11
+R12
+Z41 DEx4 work 10 infer_bram 0 22 5a5KgQQVV=8ffnQ`DASNE0
+l597
+L586
+Z42 VLMSB6`]RS2`gfUTceXzmh3
+R16
+31
+Z43 Mx6 4 ieee 14 std_logic_1164
+Z44 Mx5 4 ieee 15 std_logic_arith
+Z45 Mx4 4 ieee 18 std_logic_unsigned
+Z46 Mx3 4 ieee 14 std_logic_misc
+Z47 Mx2 8 synopsys 10 attributes
+R25
+R17
+R18
+Z48 !s100 n=gU4bOhEz3lX>5Dn7nbJ1
+Euser_logic
+Z49 w1245275370
+R10
+R11
+R12
+Z50 8../../hdl/vhdl/user_logic.vhd
+Z51 F../../hdl/vhdl/user_logic.vhd
+l0
+L107
+Z52 VzaU9BGH6dXPgzG2D4i]8@2
+R16
+31
+R17
+R18
+Z53 !s100 eWg2RZ_8H=T<To=[Vd;Qd2
+Aimp
+R10
+R11
+R12
+Z54 DEx4 work 10 user_logic 0 22 zaU9BGH6dXPgzG2D4i]8@2
+l378
+L174
+Z55 V@WV9Be_IWY7Y_<EKEcB@N1
+R16
+31
+Z56 Mx3 4 ieee 14 std_logic_1164
+R35
+Z57 Mx1 4 ieee 18 std_logic_unsigned
+R17
+R18
+Z58 !s100 @QZBB=6cC8B?FB0<f<^lW1
+Euser_logic_tb
+Z59 w1245276076
+R9
+R11
+R10
+R12
+Z60 8../../hdl/vhdl/user_logic_tb.vhd
+Z61 F../../hdl/vhdl/user_logic_tb.vhd
+l0
+L33
+Z62 VWX[8>[6ekbFUlmhb1IE]E3
+R16
+31
+R17
+R18
+Z63 !s100 ;K5M;^d;>B:;ea_m8o`ak3
+Abehavior
+R9
+R11
+R10
+R12
+Z64 DEx4 work 13 user_logic_tb 0 22 WX[8>[6ekbFUlmhb1IE]E3
+l108
+L36
+Z65 V;5AIm5<=ke5oSOMhg@]9;0
+R16
+31
+R22
+R34
+R35
+R25
+R17
+R18
+Z66 !s100 zNz:9KWHbF0?7d8VXWX:70

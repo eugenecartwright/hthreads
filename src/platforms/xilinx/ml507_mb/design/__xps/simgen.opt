@@ -1,0 +1,1 @@
+ -p virtex5 -lang vhdl -lp /home/abaez/git_hthreads/mb_port/src/hardware/   TestApp_Memory/executable.elf -s mti

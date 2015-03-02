@@ -1,0 +1,5 @@
+<assertions> 
+  <assertion id="1">
+  hthread_yield() returns 0 on success
+  </assertion>
+</assertions>

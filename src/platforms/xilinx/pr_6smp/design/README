@@ -1,0 +1,7 @@
+Since this platform has PR capabilities, make sure
+you copy the bit file you want to be loaded (p12 folder)
+to implementation/system.bit. Then run the command:
+
+make -f system.make init_bram
+
+This assumes you already generated your system.

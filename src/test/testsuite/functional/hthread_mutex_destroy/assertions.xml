@@ -1,0 +1,37 @@
+<assertions>
+  <assertion id="1">
+  The function
+
+  int hthread_mutex_destroy(hthread_mutex_t *mutex);
+
+  destroys the mutex referenced by 'mutex'; the mutex object now becomes
+  becomes uninitialized.  An implementation may cause hthread_mutex_destroy()
+  to set the object referenced by 'mutex' to an invalid value.
+  
+  Not a valid test case for hthreads
+  </assertion>
+  <assertion id="2">
+  A destroyed mutex object can be reinitialized using hthread_mutex_init();
+  the results of referencing the object after it has been
+  destroyed are undefined.
+  </assertion> 
+  <assertion id="3">
+  Upon success, it returns a 0;
+  </assertion> 
+  <assertion id="4">
+  hthread_mutex_destroy() may fail if:
+
+  -[EBUSY] The implementation has detected an attempt to destory the
+  object referenced by 'mutex' while it is locked or referenced.
+  -[EINVAL] The value specified by 'mutex' is invalid.
+ 
+  It shall not return [EINTR]
+  
+  Not a valid ttest case for hthreads
+  </assertion> 
+  
+  <assertion id="5">
+  It shall be safe to destroy an initialized mutex that is unlocked.
+  </assertion> 
+  
+</assertions>

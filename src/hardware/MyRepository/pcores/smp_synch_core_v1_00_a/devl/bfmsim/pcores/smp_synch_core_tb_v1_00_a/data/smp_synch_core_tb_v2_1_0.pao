@@ -1,0 +1,20 @@
+##############################################################################
+## Filename:          /home/jagron/misc/garrin/pcores/smp_synch_core_v1_00_a/devl/bfmsim/pcores/smp_synch_core_tb_v1_00_a/data/smp_synch_core_tb_v2_1_0.pao
+## Description:       Peripheral Analysis Order
+## Date:              Tue Aug  4 00:06:15 2009 (by Create and Import Peripheral Wizard)
+##############################################################################
+
+lib proc_common_v2_00_a proc_common_pkg vhdl
+lib proc_common_v2_00_a ipif_pkg vhdl
+lib proc_common_v2_00_a or_muxcy vhdl
+lib proc_common_v2_00_a or_gate128 vhdl
+lib proc_common_v2_00_a family_support vhdl
+lib proc_common_v2_00_a pselect_f vhdl
+lib proc_common_v2_00_a counter_f vhdl
+lib plbv46_slave_single_v1_00_a plb_address_decoder vhdl
+lib plbv46_slave_single_v1_00_a plb_slave_attachment vhdl
+lib plbv46_slave_single_v1_00_a plbv46_slave_single vhdl
+lib proc_common_v2_00_a soft_reset vhdl
+lib smp_synch_core_v1_00_a user_logic vhdl
+lib smp_synch_core_v1_00_a smp_synch_core vhdl
+simlib smp_synch_core_tb_v1_00_a smp_synch_core_tb vhdl
