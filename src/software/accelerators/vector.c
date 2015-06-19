@@ -14,18 +14,18 @@ Hint vector(void * a_ptr, void * b_ptr, void * c_ptr, Huint size, Huint op_code)
     return SUCCESS;
 }
 
-Hint _vector_add(void * a_ptr, void * b_ptr, void * c_ptr, Huint size) {
+Hint vector_add(void * a_ptr, void * b_ptr, void * c_ptr, Huint size) {
     
     return (vector(a_ptr, b_ptr, c_ptr, size, 0));
 
 }
-Hint _vector_multiply(void * a_ptr, void * b_ptr, void * c_ptr, Huint size) {
+Hint vector_multiply(void * a_ptr, void * b_ptr, void * c_ptr, Huint size) {
 
     return (vector(a_ptr, b_ptr, c_ptr, size, 1));
 
 }
 
-Hint _vector_innerProduct(void * a_ptr, void * b_ptr, void * c_ptr, Huint size) {
+Hint vector_innerProduct(void * a_ptr, void * b_ptr, void * c_ptr, Huint size) {
 
     return (vector(a_ptr, b_ptr, c_ptr, size, 2));
 

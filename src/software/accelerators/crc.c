@@ -1,7 +1,7 @@
 #include <crc.h>
 #include <htconst.h>
 
-Hint _crc(void * list_ptr, Huint size) {
+Hint crc(void * list_ptr, Huint size) {
 
     Hint *array = (Hint *) list_ptr;
 

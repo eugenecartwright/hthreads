@@ -194,5 +194,4 @@ Hint XHwIcap_DeviceWriteDMA(XHwIcap *InstancePtr, u32 *FrameBuffer, u32 NumWords
 
 
 }
-
 #endif

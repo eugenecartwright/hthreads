@@ -67,14 +67,10 @@ void* _bootstrap_thread( hthread_start_t func, void *arg )
 
 void* _idle_thread( void *arg )
 {
-    //int i;
     while( 1 )
     {
         // Print out a trace message about the idle thread
         TRACE5_PRINTF( "IDLE THREAD RUNNING\n" );
-
-        // Delay loop
-        //for (i = 0; i < 1000000; i++);
 
         // Invoke the scheduler
         hthread_sched();

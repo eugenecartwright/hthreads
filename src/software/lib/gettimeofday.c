@@ -35,7 +35,6 @@
 #include <hthread.h>
 #include <sys/time.h>
 #include <arch/htime.h>
-
 /*
 int gettimeofday( struct timeval *tv, struct timezone *tz )
 {

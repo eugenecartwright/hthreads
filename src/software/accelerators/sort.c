@@ -2,7 +2,7 @@
 #include <htconst.h>
 
 
-Hint _sort(void * list_ptr, Huint size) {
+Hint sort(void * list_ptr, Huint size) {
 
     Huint * startPtr = (Huint *) list_ptr;
     Huint * endPtr = (Huint *) (startPtr + size-1);
