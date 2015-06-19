@@ -18,6 +18,5 @@ extern Hint XHwIcap_DRAM2Icap(XHwIcap * HwIcap, Huint * src_bit, Huint size);
 extern Hint XHwIcap_DeviceWriteDMA(XHwIcap *InstancePtr, u32 *FrameBuffer, u32 NumWords);
 
 extern Hint perform_PR(hthread_mutex_t * icap_mutex, XHwIcap * HwIcap, Huint * bit_file_addr, Hint bit_file_len);
-
 #endif
 #endif

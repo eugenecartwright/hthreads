@@ -7,6 +7,7 @@
 #include <crc.h>
 #include <vector.h>
 
+
 #define ACC_BIT_FILE_LENGTH         (45071)
 
 #define NUM_OF_ACCELERATORS         (3)

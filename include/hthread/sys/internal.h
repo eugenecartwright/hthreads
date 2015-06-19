@@ -66,7 +66,7 @@ typedef struct
     /** \brief  The architecture dependent context structure */
 	void*	            context;
 
-	/** \brief	A pointer to the stack used by this tread. */
+	/** \brief	A pointer to the stack used by this thread. */
     void                *stack;
 
     /** \brief  The size of the stack that this thread contains */
