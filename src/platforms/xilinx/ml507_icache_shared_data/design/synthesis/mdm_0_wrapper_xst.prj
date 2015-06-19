@@ -1,8 +1,0 @@
-VHDL proc_common_v1_00_c /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v1_00_c/hdl/vhdl/pselect.vhd
-VHDL proc_common_v1_00_c /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v1_00_c/hdl/vhdl/family.vhd
-VHDL mdm_v1_00_d /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/mdm_v1_00_d/hdl/vhdl/bscan_virtex.vhd
-VHDL mdm_v1_00_d /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/mdm_v1_00_d/hdl/vhdl/srl_fifo.vhd
-VHDL mdm_v1_00_d /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/mdm_v1_00_d/hdl/vhdl/jtag_control.vhd
-VHDL mdm_v1_00_d /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/mdm_v1_00_d/hdl/vhdl/mdm_core.vhd
-VHDL mdm_v1_00_d /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/mdm_v1_00_d/hdl/vhdl/mdm.vhd
-vhdl work ../hdl/mdm_0_wrapper.vhd

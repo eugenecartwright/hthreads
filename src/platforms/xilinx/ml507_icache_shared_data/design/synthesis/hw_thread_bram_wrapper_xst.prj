@@ -1,2 +1,0 @@
-VHDL hw_thread_bram_elaborate_v1_00_a /home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_icache_shared_data/design/hdl/elaborate/hw_thread_bram_elaborate_v1_00_a/hdl/vhdl/hw_thread_bram_elaborate.vhd
-vhdl work ../hdl/hw_thread_bram_wrapper.vhd

@@ -1,2 +1,0 @@
-VHDL ppc440_virtex5_v1_01_a /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/ppc440_virtex5_v1_01_a/hdl/vhdl/ppc440_virtex5.vhd
-vhdl work ../hdl/ppc440_0_wrapper.vhd

@@ -1,2 +1,0 @@
-VHDL mb8_bram_elaborate_v1_00_a /home/jagron/uark_research/uark_ht_trunk/src/platforms/xilinx/ml507_manycore/design/hdl/elaborate/mb8_bram_elaborate_v1_00_a/hdl/vhdl/mb8_bram_elaborate.vhd
-vhdl work ../hdl/mb8_bram_wrapper.vhd
