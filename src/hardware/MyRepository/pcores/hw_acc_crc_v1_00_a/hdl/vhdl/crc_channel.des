@@ -1,0 +1,76 @@
+CS: current_state;
+NS: next_state;
+
+GENERICS:
+G_INPUT_WIDTH, integer, 32;
+G_ADDR_WIDTH, integer, 32;
+G_DIVISOR_WIDTH, integer,4;
+divisor , std_logic_vector(0 to G_DIVISOR_WIDTH-1), 0xB;
+
+PORTS:
+
+CONNECTIONS:    
+
+MEMS:
+array, G_INPUT_WIDTH, G_ADDR_WIDTH, EXTERNAL;
+
+CHANNELS:
+fsl1, G_INPUT_WIDTH;
+
+SIGS:
+
+-- Index i (used as a counter and as an index)
+i, std_logic_vector(0 to 7);
+j, std_logic_vector(0 to 31);--used as how many data we  have processed so far
+result,std_logic_vector(0 to G_INPUT_WIDTH-1);
+size,std_logic_vector(0 to G_INPUT_WIDTH-1);
+
+
+INITIAL: reset;
+
+TRANS:
+
+reset -> idle
+
+-- Grab a value from the input channel
+idle -> read_data where
+{
+	size'  <=  #fsl1  ; 
+	j'     <= conv_std_logic_vector(0, 32);     
+}
+
+read_data |( j<size)  -> do_crc where
+{
+	result'   <= array[j] ;
+        i'       <= conv_std_logic_vector(0, 8);	
+       
+}
+
+read_data -> idle where
+{
+    #fsl1 <= ALL_ZEROS;  --it means I am done.
+    }
+ 
+
+-- Perform CRC
+do_crc | (i < G_INPUT_WIDTH - G_DIVISOR_WIDTH + 1) and (result(conv_integer(i)) = '0') -> do_crc where
+{
+    -- If the 1st input bit is zero than ignore and shift
+    i'  <= i + 1; 
+}
+do_crc | (i < G_INPUT_WIDTH - G_DIVISOR_WIDTH + 1) -> do_crc where
+{
+    -- If the 1st input is 1, xor and shift
+    i'  <= i + 1;
+    result'(conv_integer(i) to conv_integer(i)+(G_DIVISOR_WIDTH-1)) <= result(conv_integer(i) to conv_integer(i)+(G_DIVISOR_WIDTH-1)) xor divisor_in;
+}
+do_crc -> read_data where
+{
+    array[j]	<= result ;
+    j'       <= j+1;
+
+}
+
+-- Generic VHDL Definitions to insert
+VHDL:
+

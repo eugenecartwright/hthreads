@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Product Version: Vivado v2014.2 (64-bit)              -->
+<!--                                                         -->
+<!-- Copyright (c) 2001-2013 Xilinx Inc, All rights reserved -->
+
+<Project Version="7" Minor="1" Path="/home/abazar63/hthread/src/platforms/xilinx/vc707_smp1_axi_cores/design/pcores/axi_cond_vars_v1_00_a/axi_cond_vars_v1_0_project/axi_cond_vars_v1_0_project.xpr">
+  <DefaultLaunch Dir="$PRUNDIR"/>
+  <Configuration>
+    <Option Name="Id" Val="17ba95ff894c4ab68019bef1cecd6a88"/>
+    <Option Name="Part" Val="xc7vx485tffg1761-2"/>
+    <Option Name="CompiledLibDir" Val="$PCACHEDIR/compile_simlib"/>
+    <Option Name="BoardPart" Val=""/>
+    <Option Name="ActiveSimSet" Val="sim_1"/>
+    <Option Name="DefaultLib" Val="xil_defaultlib"/>
+  </Configuration>
+  <FileSets Version="1" Minor="31">
+    <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
+      <Filter Type="Srcs"/>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/proc_common_pkg.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/family_support.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/ipif_pkg.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../fsl_v20_v2_11_f/hdl/vhdl/gen_sync_dpram.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="fsl_v20_v2_11_f"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../fsl_v20_v2_11_f/hdl/vhdl/gen_sync_bram.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="fsl_v20_v2_11_f"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../fsl_v20_v2_11_f/hdl/vhdl/gen_srlfifo.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="fsl_v20_v2_11_f"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/counter_f.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../fsl_v20_v2_11_f/hdl/vhdl/sync_fifo.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="fsl_v20_v2_11_f"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../fsl_v20_v2_11_f/hdl/vhdl/async_fifo_bram.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="fsl_v20_v2_11_f"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../fsl_v20_v2_11_f/hdl/vhdl/async_fifo.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="fsl_v20_v2_11_f"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../axi_lite_ipif_v1_01_a/hdl/vhdl/address_decoder.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="axi_lite_ipif_v1_01_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../fsl_v20_v2_11_f/hdl/vhdl/fsl_v20.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="fsl_v20_v2_11_f"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../axi_master_lite_v1_00_a/hdl/vhdl/axi_master_lite_reset.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="axi_master_lite_v1_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../axi_master_lite_v1_00_a/hdl/vhdl/axi_master_lite_cntlr.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="axi_master_lite_v1_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../axi_lite_ipif_v1_01_a/hdl/vhdl/slave_attachment.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="axi_lite_ipif_v1_01_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hdl/vhdl/condvar.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="axi_cond_vars_v1_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../axi_master_lite_v1_00_a/hdl/vhdl/axi_master_lite.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="axi_master_lite_v1_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../axi_lite_ipif_v1_01_a/hdl/vhdl/axi_lite_ipif.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="axi_lite_ipif_v1_01_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hdl/vhdl/user_logic.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="axi_cond_vars_v1_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hdl/vhdl/axi_cond_vars.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="axi_cond_vars_v1_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/addsub.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/xor_f.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/srl_fifo.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/inferred_lut4.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/mux_onehot_f.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/pf_counter_bit.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/cntr_incr_decr_addn_f.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/compare_vectors_f.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/conv_funs_pkg.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/or_gate_f.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/pf_occ_counter_top.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/eval_timer.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/dynshreg_i_f.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/ld_arith_reg2.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/ipif_mirror128.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/family.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/or_muxcy_f.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/srl_fifo2.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/direct_path_cntr_ai.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/or_muxcy.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/async_fifo_fg.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/down_counter.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/ipif_steer128.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/sync_fifo_fg.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/dynshreg2_f.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/srl_fifo_rbu2_f.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/direct_path_cntr.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/muxf_struct_f.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/pf_dpram_select.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/pselect_mask.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/pf_adder.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/counter_bit.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/or_gate.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/blk_mem_gen_wrapper.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/or_with_enable_f.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/pf_counter.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/pf_counter_top.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/common_types_pkg.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/soft_reset.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/ipif_steer.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/mux_onehot.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/coregen_comp_defs.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/pf_occ_counter.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/or_gate128.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/srl_fifo_rbu.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/ld_arith_reg.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/srl16_fifo.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/srl_fifo_rbu_f.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/srl_fifo_f.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/valid_be.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/dynshreg_f.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/pf_adder_bit.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/srl_fifo3.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/or_bits.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/pselect.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/counter.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../proc_common_v3_00_a/hdl/vhdl/basic_sfifo_fg.vhd">
+        <FileInfo>
+          <Attr Name="Library" Val="proc_common_v3_00_a"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../component.xml">
+        <FileInfo SFType="IPXACT"/>
+      </File>
+      <Config>
+        <Option Name="DesignMode" Val="RTL"/>
+        <Option Name="TopModule" Val="axi_cond_vars"/>
+        <Option Name="TopRTLFile" Val="$PPRDIR/../hdl/vhdl/axi_cond_vars.vhd"/>
+        <Option Name="IPRepoPath" Val="$PPRDIR/../../../../../../../../../Desktop/new"/>
+        <Option Name="IPRepoPath" Val="$PPRDIR/../../../pcores"/>
+        <Option Name="IPRepoPath" Val="$PPRDIR/../../axi_scheduler_v1_00_a"/>
+        <Option Name="IPRepoPath" Val="$PPRDIR/../../axi_thread_manager_v1_00_a"/>
+        <Option Name="IPRepoPath" Val="$PPRDIR/../../axi_sync_manager_v1_00_a"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="constrs_1" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+      <Filter Type="Constrs"/>
+      <Config>
+        <Option Name="ConstrsType" Val="XDC"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="sim_1" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/sim_1">
+      <Config>
+        <Option Name="DesignMode" Val="RTL"/>
+        <Option Name="TopModule" Val="async_fifo_fg"/>
+        <Option Name="TopLib" Val="proc_common_v3_00_a"/>
+        <Option Name="TopAutoSet" Val="TRUE"/>
+        <Option Name="SrcSet" Val="sources_1"/>
+      </Config>
+    </FileSet>
+  </FileSets>
+  <Runs Version="1" Minor="9">
+    <Run Id="synth_1" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7vx485tffg1761-2" ConstrsSet="constrs_1" Description="Vivado Synthesis Defaults" State="current">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2014">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+    </Run>
+    <Run Id="impl_1" Type="Ft2:EntireDesign" Part="xc7vx485tffg1761-2" ConstrsSet="constrs_1" Description="Vivado Implementation Defaults" State="current" SynthRun="synth_1">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2014">
+          <Desc>Vivado Implementation Defaults</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+    </Run>
+  </Runs>
+</Project>

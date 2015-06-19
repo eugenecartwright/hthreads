@@ -1,0 +1,49 @@
+xst -intstyle ise -ifn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/hardware/MyRepository/pcores/opb_hwt_zero_v3_00_a/ise/opb_hwt_zero.xst" -ofn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/hardware/MyRepository/pcores/opb_hwt_zero_v3_00_a/ise/opb_hwt_zero.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ../netlist -nt timestamp -i -p xc6vlx240t-ff1156-1 opb_hwt_zero.ngc opb_hwt_zero.ngd  
+xst -intstyle ise -ifn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/hardware/MyRepository/pcores/opb_hwt_zero_v3_00_a/ise/opb_hwt_zero.xst" -ofn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/hardware/MyRepository/pcores/opb_hwt_zero_v3_00_a/ise/opb_hwt_zero.syr" 
+xst -intstyle ise -ifn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/hardware/MyRepository/pcores/opb_hwt_zero_v3_00_a/ise/opb_hwt_zero.xst" -ofn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/hardware/MyRepository/pcores/opb_hwt_zero_v3_00_a/ise/opb_hwt_zero.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ../netlist -nt timestamp -i -p xc6vlx240t-ff1156-1 opb_hwt_zero.ngc opb_hwt_zero.ngd  
+xst -intstyle ise -ifn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/hardware/MyRepository/pcores/opb_hwt_zero_v3_00_a/ise/opb_hwt_zero.xst" -ofn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/hardware/MyRepository/pcores/opb_hwt_zero_v3_00_a/ise/opb_hwt_zero.syr" 
+xst -intstyle ise -ifn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/hardware/MyRepository/pcores/opb_hwt_zero_v3_00_a/ise/opb_hwt_zero.xst" -ofn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/hardware/MyRepository/pcores/opb_hwt_zero_v3_00_a/ise/opb_hwt_zero.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ../netlist -nt timestamp -i -p xc6vlx240t-ff1156-1 opb_hwt_zero.ngc opb_hwt_zero.ngd  
+map -intstyle ise -p xc6vlx240t-ff1156-1 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -global_opt off -mt off -ir off -pr off -lc off -power off -o opb_hwt_zero_map.ncd opb_hwt_zero.ngd opb_hwt_zero.pcf 
+par -w -intstyle ise -ol high -mt off opb_hwt_zero_map.ncd opb_hwt_zero.ncd opb_hwt_zero.pcf 
+xst -intstyle ise -ifn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/hardware/MyRepository/pcores/opb_hwt_zero_v3_00_a/ise/opb_hwt_zero.xst" -ofn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/hardware/MyRepository/pcores/opb_hwt_zero_v3_00_a/ise/opb_hwt_zero.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ../netlist -nt timestamp -i -p xc6vlx240t-ff1156-1 opb_hwt_zero.ngc opb_hwt_zero.ngd  
+map -intstyle ise -p xc6vlx240t-ff1156-1 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -global_opt off -mt off -ir off -pr off -lc off -power off -o opb_hwt_zero_map.ncd opb_hwt_zero.ngd opb_hwt_zero.pcf 
+par -w -intstyle ise -ol high -mt off opb_hwt_zero_map.ncd opb_hwt_zero.ncd opb_hwt_zero.pcf 
+trce -intstyle ise -v 3 -s 1 -n 3 -fastpaths -xml opb_hwt_zero.twx opb_hwt_zero.ncd -o opb_hwt_zero.twr opb_hwt_zero.pcf 
+xst -intstyle ise -ifn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/hardware/MyRepository/pcores/opb_hwt_zero_v3_00_a/ise/opb_hwt_zero.xst" -ofn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/hardware/MyRepository/pcores/opb_hwt_zero_v3_00_a/ise/opb_hwt_zero.syr" 
+xst -intstyle ise -ifn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/hardware/MyRepository/pcores/opb_hwt_zero_v3_00_a/ise/opb_hwt_zero.xst" -ofn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/hardware/MyRepository/pcores/opb_hwt_zero_v3_00_a/ise/opb_hwt_zero.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ../netlist -nt timestamp -i -p xc6vlx240t-ff1156-1 opb_hwt_zero.ngc opb_hwt_zero.ngd  
+map -intstyle ise -p xc6vlx240t-ff1156-1 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -global_opt off -mt off -ir off -pr off -lc off -power off -o opb_hwt_zero_map.ncd opb_hwt_zero.ngd opb_hwt_zero.pcf 
+par -w -intstyle ise -ol high -mt off opb_hwt_zero_map.ncd opb_hwt_zero.ncd opb_hwt_zero.pcf 
+trce -intstyle ise -v 3 -s 1 -n 3 -fastpaths -xml opb_hwt_zero.twx opb_hwt_zero.ncd -o opb_hwt_zero.twr opb_hwt_zero.pcf 
+xst -intstyle ise -ifn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/hardware/MyRepository/pcores/opb_hwt_zero_v3_00_a/ise/opb_hwt_zero.xst" -ofn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/hardware/MyRepository/pcores/opb_hwt_zero_v3_00_a/ise/opb_hwt_zero.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ../netlist -nt timestamp -i -p xc6vlx240t-ff1156-1 opb_hwt_zero.ngc opb_hwt_zero.ngd  
+ngdbuild -intstyle ise -dd _ngo -sd ../netlist -nt timestamp -uc opb_hwt_zero.ucf -p xc6vlx240t-ff1156-1 opb_hwt_zero.ngc opb_hwt_zero.ngd  
+map -intstyle ise -p xc6vlx240t-ff1156-1 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -global_opt off -mt off -ir off -pr off -lc off -power off -o opb_hwt_zero_map.ncd opb_hwt_zero.ngd opb_hwt_zero.pcf 
+par -w -intstyle ise -ol high -mt off opb_hwt_zero_map.ncd opb_hwt_zero.ncd opb_hwt_zero.pcf 
+trce -intstyle ise -v 3 -s 1 -n 3 -fastpaths -xml opb_hwt_zero.twx opb_hwt_zero.ncd -o opb_hwt_zero.twr opb_hwt_zero.pcf -ucf opb_hwt_zero.ucf 
+xst -intstyle ise -ifn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/hardware/MyRepository/pcores/opb_hwt_zero_v3_00_a/ise/opb_hwt_zero.xst" -ofn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/hardware/MyRepository/pcores/opb_hwt_zero_v3_00_a/ise/opb_hwt_zero.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ../netlist -nt timestamp -uc opb_hwt_zero.ucf -p xc6vlx240t-ff1156-1 opb_hwt_zero.ngc opb_hwt_zero.ngd  
+map -intstyle ise -p xc6vlx240t-ff1156-1 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -global_opt off -mt off -ir off -pr off -lc off -power off -o opb_hwt_zero_map.ncd opb_hwt_zero.ngd opb_hwt_zero.pcf 
+par -w -intstyle ise -ol high -mt off opb_hwt_zero_map.ncd opb_hwt_zero.ncd opb_hwt_zero.pcf 
+trce -intstyle ise -v 3 -s 1 -n 3 -fastpaths -xml opb_hwt_zero.twx opb_hwt_zero.ncd -o opb_hwt_zero.twr opb_hwt_zero.pcf -ucf opb_hwt_zero.ucf 
+xst -intstyle ise -ifn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/platforms/xilinx/HWTI_Test_01/design/pcores/opb_hwt_zero_v3_00_a/ise/opb_hwt_zero.xst" -ofn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/platforms/xilinx/HWTI_Test_01/design/pcores/opb_hwt_zero_v3_00_a/ise/opb_hwt_zero.syr" 
+xst -intstyle ise -ifn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/platforms/xilinx/HWTI_Test_01/design/pcores/opb_hwt_zero_v3_00_a/ise/opb_hwt_zero.xst" -ofn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/platforms/xilinx/HWTI_Test_01/design/pcores/opb_hwt_zero_v3_00_a/ise/opb_hwt_zero.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ../netlist -nt timestamp -uc opb_hwt_zero.ucf -p xc6vlx240t-ff1156-1 opb_hwt_zero.ngc opb_hwt_zero.ngd  
+map -intstyle ise -p xc6vlx240t-ff1156-1 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -global_opt off -mt off -ir off -pr off -lc off -power off -o opb_hwt_zero_map.ncd opb_hwt_zero.ngd opb_hwt_zero.pcf 
+par -w -intstyle ise -ol high -mt off opb_hwt_zero_map.ncd opb_hwt_zero.ncd opb_hwt_zero.pcf 
+trce -intstyle ise -v 3 -s 1 -n 3 -fastpaths -xml opb_hwt_zero.twx opb_hwt_zero.ncd -o opb_hwt_zero.twr opb_hwt_zero.pcf -ucf opb_hwt_zero.ucf 
+xst -intstyle ise -ifn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/platforms/xilinx/HWTI_Test_01/design/pcores/opb_hwt_zero_v3_00_a/ise/opb_hwt_zero.xst" -ofn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/platforms/xilinx/HWTI_Test_01/design/pcores/opb_hwt_zero_v3_00_a/ise/opb_hwt_zero.syr" 
+xst -intstyle ise -ifn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/platforms/xilinx/HWTI_Test_01/design/pcores/opb_hwt_zero_v3_00_a/ise/opb_hwt_zero.xst" -ofn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/platforms/xilinx/HWTI_Test_01/design/pcores/opb_hwt_zero_v3_00_a/ise/opb_hwt_zero.syr" 
+xst -intstyle ise -ifn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/platforms/xilinx/HWTI_Test_01/design/pcores/opb_hwt_zero_v3_00_a/ise/opb_hwt_zero.xst" -ofn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/platforms/xilinx/HWTI_Test_01/design/pcores/opb_hwt_zero_v3_00_a/ise/opb_hwt_zero.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ../netlist -nt timestamp -uc opb_hwt_zero.ucf -p xc6vlx240t-ff1156-1 opb_hwt_zero.ngc opb_hwt_zero.ngd  
+map -intstyle ise -p xc6vlx240t-ff1156-1 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -global_opt off -mt off -ir off -pr off -lc off -power off -o opb_hwt_zero_map.ncd opb_hwt_zero.ngd opb_hwt_zero.pcf 
+par -w -intstyle ise -ol high -mt off opb_hwt_zero_map.ncd opb_hwt_zero.ncd opb_hwt_zero.pcf 
+xst -intstyle ise -ifn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/platforms/xilinx/HWTI_Test_01/design/pcores/opb_hwt_zero_v3_00_a/ise/opb_hwt_zero.xst" -ofn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/platforms/xilinx/HWTI_Test_01/design/pcores/opb_hwt_zero_v3_00_a/ise/opb_hwt_zero.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ../netlist -nt timestamp -uc opb_hwt_zero.ucf -p xc6vlx240t-ff1156-1 opb_hwt_zero.ngc opb_hwt_zero.ngd  
+map -intstyle ise -p xc6vlx240t-ff1156-1 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -global_opt off -mt off -ir off -pr off -lc off -power off -o opb_hwt_zero_map.ncd opb_hwt_zero.ngd opb_hwt_zero.pcf 
+par -w -intstyle ise -ol high -mt off opb_hwt_zero_map.ncd opb_hwt_zero.ncd opb_hwt_zero.pcf 
+trce -intstyle ise -v 3 -s 1 -n 3 -fastpaths -xml opb_hwt_zero.twx opb_hwt_zero.ncd -o opb_hwt_zero.twr opb_hwt_zero.pcf -ucf opb_hwt_zero.ucf 

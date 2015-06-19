@@ -1,0 +1,12 @@
+run
+-opt_level 2
+-opt_mode speed
+-ifmt mixed
+-ifn "/home/abazar63/hthread/src/platforms/xilinx/vc707_smp1_axi_cores/design/pcores/axi_scheduler_v1_00_a/devl/synthesis/axi_scheduler_xst.prj"
+-top axi_scheduler
+-p virtex6
+-ofn "/home/abazar63/hthread/src/platforms/xilinx/vc707_smp1_axi_cores/design/pcores/axi_scheduler_v1_00_a/devl/synthesis/axi_scheduler_xst.ngc"
+-iobuf NO
+-rtlview YES
+-hierarchy_separator /
+-work_lib axi_scheduler_v1_00_a

@@ -1,0 +1,10 @@
+##############################################################################
+## Filename:          /home/jagron/uark_research/plb_cores/edk_user_repository/MyProcessorIPLib/pcores/plb_hthreads_timer_v1_00_a/data/plb_hthreads_timer_v2_1_0.pao
+## Description:       Peripheral Analysis Order
+## Date:              Mon Jun 29 12:13:20 2009 (by Create and Import Peripheral Wizard)
+##############################################################################
+
+lib proc_common_v3_00_a  all 
+lib axi_lite_ipif_v1_01_a  all 
+lib axi_hthreads_timer_v1_00_a user_logic vhdl
+lib axi_hthreads_timer_v1_00_a axi_hthreads_timer vhdl

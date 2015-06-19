@@ -1,0 +1,1286 @@
+Release 12.3 Map M.70d (lin64)
+Xilinx Mapping Report File for Design 'opb_hwt_zero'
+
+Design Information
+------------------
+Command Line   : map -intstyle ise -p xc6vlx240t-ff1156-1 -w -logic_opt off -ol
+high -t 1 -xt 0 -register_duplication off -global_opt off -mt off -ir off -pr
+off -lc off -power off -o opb_hwt_zero_map.ncd opb_hwt_zero.ngd opb_hwt_zero.pcf
+ 
+Target Device  : xc6vlx240t
+Target Package : ff1156
+Target Speed   : -1
+Mapper Version : virtex6 -- $Revision: 1.52 $
+Mapped Date    : Wed Oct 10 15:16:34 2012
+
+Design Summary
+--------------
+Number of errors:      0
+Number of warnings:    2
+Slice Logic Utilization:
+  Number of Slice Registers:                 1,288 out of 301,440    1%
+    Number used as Flip Flops:               1,277
+    Number used as Latches:                      0
+    Number used as Latch-thrus:                 11
+    Number used as AND/OR logics:                0
+  Number of Slice LUTs:                      4,808 out of 150,720    3%
+    Number used as logic:                    4,604 out of 150,720    3%
+      Number using O6 output only:           3,632
+      Number using O5 output only:             425
+      Number using O5 and O6:                  547
+      Number used as ROM:                        0
+    Number used as Memory:                     173 out of  58,400    1%
+      Number used as Dual Port RAM:              0
+      Number used as Single Port RAM:            0
+      Number used as Shift Register:           173
+        Number using O6 output only:           173
+        Number using O5 output only:             0
+        Number using O5 and O6:                  0
+    Number used exclusively as route-thrus:     31
+      Number with same-slice register load:      4
+      Number with same-slice carry load:        26
+      Number with other load:                    1
+
+Slice Logic Distribution:
+  Number of occupied Slices:                 1,547 out of  37,680    4%
+  Number of LUT Flip Flop pairs used:        5,026
+    Number with an unused Flip Flop:         3,823 out of   5,026   76%
+    Number with an unused LUT:                 218 out of   5,026    4%
+    Number of fully used LUT-FF pairs:         985 out of   5,026   19%
+    Number of unique control sets:              70
+    Number of slice register sites lost
+      to control set restrictions:             190 out of 301,440    1%
+
+  A LUT Flip Flop pair for this architecture represents one LUT paired with
+  one Flip Flop within a slice.  A control set is a unique combination of
+  clock, reset, set, and enable signals for a registered element.
+  The Slice Logic Distribution report is not meaningful if the design is
+  over-mapped for a non-slice resource or if Placement fails.
+  OVERMAPPING of BRAM resources should be ignored if the design is
+  over-mapped for a non-BRAM resource or if placement fails.
+
+IO Utilization:
+  Number of bonded IOBs:                       419 out of     600   69%
+
+Specific Feature Utilization:
+  Number of RAMB36E1/FIFO36E1s:                  8 out of     416    1%
+    Number using RAMB36E1 only:                  8
+    Number using FIFO36E1 only:                  0
+  Number of RAMB18E1/FIFO18E1s:                  0 out of     832    0%
+  Number of BUFG/BUFGCTRLs:                      1 out of      32    3%
+    Number used as BUFGs:                        1
+    Number used as BUFGCTRLs:                    0
+  Number of ILOGICE1/ISERDESE1s:                 0 out of     720    0%
+  Number of OLOGICE1/OSERDESE1s:                 0 out of     720    0%
+  Number of BSCANs:                              0 out of       4    0%
+  Number of BUFHCEs:                             0 out of     144    0%
+  Number of BUFOs:                               0 out of      36    0%
+  Number of BUFIODQSs:                           0 out of      72    0%
+  Number of BUFRs:                               0 out of      36    0%
+  Number of CAPTUREs:                            0 out of       1    0%
+  Number of DSP48E1s:                            3 out of     768    1%
+  Number of EFUSE_USRs:                          0 out of       1    0%
+  Number of FRAME_ECCs:                          0 out of       1    0%
+  Number of GTXE1s:                              0 out of      20    0%
+  Number of IBUFDS_GTXE1s:                       0 out of      12    0%
+  Number of ICAPs:                               0 out of       2    0%
+  Number of IDELAYCTRLs:                         0 out of      18    0%
+  Number of IODELAYE1s:                          0 out of     720    0%
+  Number of MMCM_ADVs:                           0 out of      12    0%
+  Number of PCIE_2_0s:                           0 out of       2    0%
+  Number of STARTUPs:                            1 out of       1  100%
+  Number of SYSMONs:                             0 out of       1    0%
+  Number of TEMAC_SINGLEs:                       0 out of       4    0%
+
+Average Fanout of Non-Clock Nets:                4.39
+
+Peak Memory Usage:  1034 MB
+Total REAL time to MAP completion:  2 mins 11 secs 
+Total CPU time to MAP completion:   2 mins 7 secs 
+
+Table of Contents
+-----------------
+Section 1 - Errors
+Section 2 - Warnings
+Section 3 - Informational
+Section 4 - Removed Logic Summary
+Section 5 - Removed Logic
+Section 6 - IOB Properties
+Section 7 - RPMs
+Section 8 - Guide Report
+Section 9 - Area Group and Partition Summary
+Section 10 - Timing Report
+Section 11 - Configuration String Information
+Section 12 - Control Set Information
+Section 13 - Utilization by Hierarchy
+
+Section 1 - Errors
+------------------
+
+Section 2 - Warnings
+--------------------
+WARNING:MapLib:701 - Signal OPB_ABus<30> connected to top level port
+   OPB_ABus<30> has been removed.
+WARNING:MapLib:701 - Signal OPB_ABus<31> connected to top level port
+   OPB_ABus<31> has been removed.
+
+Section 3 - Informational
+-------------------------
+INFO:LIT:243 - Logical network
+   OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.SLN_DBUS_FIFO/Addr_Count
+   ers[4].MUXCY_L_I/LO has no load.
+INFO:LIT:395 - The above info message is repeated 6 more times for the following
+   (max. 5 shown):
+   OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/SLN_DBUS_FIFO/Addr_Counters[4].
+   MUXCY_L_I/LO,
+   OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/I_Addr_ld_inc/Load_and_incremen
+   t_vector_Generate[0].I_MUXCY_L_add_incr/LO,
+   OPB_BE<0>,
+   OPB_BE<1>,
+   OPB_BE<2>
+   To see the details of these info messages, please use the -detail switch.
+INFO:MapLib:562 - No environment variables are currently set.
+INFO:LIT:244 - All of the single ended outputs in this design are using slew
+   rate limited output drivers. The delay on speed critical single ended outputs
+   can be dramatically reduced by designating them as fast outputs.
+INFO:Pack:1716 - Initializing temperature to 85.000 Celsius. (default - Range:
+   0.000 to 85.000 Celsius)
+INFO:Pack:1720 - Initializing voltage to 0.950 Volts. (default - Range: 0.950 to
+   1.050 Volts)
+INFO:Map:215 - The Interim Design Summary has been generated in the MAP Report
+   (.mrp).
+INFO:Pack:1650 - Map created a placed design.
+
+Section 4 - Removed Logic Summary
+---------------------------------
+ 174 block(s) removed
+   6 block(s) optimized away
+ 136 signal(s) removed
+
+Section 5 - Removed Logic
+-------------------------
+
+The trimmed logic report below shows the logic removed from your design due to
+sourceless or loadless signals, and VCC or ground connections.  If the removal
+of a signal or symbol results in the subsequent removal of an additional signal
+or symbol, the message explaining that second removal will be indented.  This
+indentation will be repeated as a chain of related logic is removed.
+
+To quickly locate the original cause for the removal of a chain of logic, look
+above the place where that logic is listed in the trimming report, then locate
+the lines that are least indented (begin at the leftmost edge).
+
+The signal
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.SLN_DBUS_FIFO/Addr_Counter
+s[4].MUXCY_L_I/LO" is loadless and has been removed.
+ Loadless block
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.SLN_DBUS_FIFO/Addr_Counter
+s[4].MUXCY_L_I/MUXCY_L_BUF" (BUF) removed.
+  The signal
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.SLN_DBUS_FIFO/Addr_Counter
+s[4].MUXCY_L_I/O" is loadless and has been removed.
+   Loadless block
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.SLN_DBUS_FIFO/Addr_Counter
+s[4].MUXCY_L_I" (MUX) removed.
+The signal
+"OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/SLN_DBUS_FIFO/Addr_Counters[4].MU
+XCY_L_I/LO" is loadless and has been removed.
+ Loadless block
+"OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/SLN_DBUS_FIFO/Addr_Counters[4].MU
+XCY_L_I/MUXCY_L_BUF" (BUF) removed.
+  The signal
+"OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/SLN_DBUS_FIFO/Addr_Counters[4].MU
+XCY_L_I/O" is loadless and has been removed.
+   Loadless block
+"OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/SLN_DBUS_FIFO/Addr_Counters[4].MU
+XCY_L_I" (MUX) removed.
+    The signal
+"OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/SLN_DBUS_FIFO/addr_i<4>" is
+loadless and has been removed.
+     Loadless block
+"OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/SLN_DBUS_FIFO/Addr_Counters[4].FD
+S_I" (SFF) removed.
+      The signal
+"OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/SLN_DBUS_FIFO/addr_i_p1<4>" is
+loadless and has been removed.
+       Loadless block
+"OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/SLN_DBUS_FIFO/Addr_Counters[4].XO
+RCY_I" (XOR) removed.
+        The signal
+"OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/SLN_DBUS_FIFO/addr_cy<4>" is
+loadless and has been removed.
+         Loadless block
+"OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/SLN_DBUS_FIFO/Addr_Counters[3].MU
+XCY_L_I/MUXCY_L_BUF" (BUF) removed.
+          The signal
+"OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/SLN_DBUS_FIFO/Addr_Counters[3].MU
+XCY_L_I/O" is loadless and has been removed.
+           Loadless block
+"OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/SLN_DBUS_FIFO/Addr_Counters[3].MU
+XCY_L_I" (MUX) removed.
+        The signal
+"OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/SLN_DBUS_FIFO/hsum_A<4>" is
+loadless and has been removed.
+         Loadless block
+"OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/SLN_DBUS_FIFO/Mxor_hsum_A<4>_xo<0
+>1" (ROM) removed.
+The signal
+"OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/I_Addr_ld_inc/Load_and_increment_
+vector_Generate[0].I_MUXCY_L_add_incr/LO" is loadless and has been removed.
+ Loadless block
+"OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/I_Addr_ld_inc/Load_and_increment_
+vector_Generate[0].I_MUXCY_L_add_incr/MUXCY_L_BUF" (BUF) removed.
+  The signal
+"OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/I_Addr_ld_inc/Load_and_increment_
+vector_Generate[0].I_MUXCY_L_add_incr/O" is loadless and has been removed.
+   Loadless block
+"OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/I_Addr_ld_inc/Load_and_increment_
+vector_Generate[0].I_MUXCY_L_add_incr" (MUX) removed.
+Loadless block
+"OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/FSM_AND_RELATED_LOGIC.ACKS_LEFT_I
+/PERBIT_GEN[0].MUXCY_i1" (MUX) removed.
+ The signal
+"OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/FSM_AND_RELATED_LOGIC.ACKS_LEFT_I
+/gen_cry_kill_n<0>" is loadless and has been removed.
+  Loadless block
+"OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/FSM_AND_RELATED_LOGIC.ACKS_LEFT_I
+/PERBIT_GEN[0].MULT_AND_i1" (AND) removed.
+Loadless block
+"OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/INCLUDE_MN_ABUS_SHADOW.MN_ABUS_SH
+ADOW_GEN[30].FDE_I" (FF) removed.
+Loadless block
+"OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/INCLUDE_MN_ABUS_SHADOW.MN_ABUS_SH
+ADOW_GEN[31].FDE_I" (FF) removed.
+Loadless block
+"OPB_IPIF_I/I_ADDRESS_DECODER/REGISTER_OUTPUTS.REGCE_GEN[0].REGCE_FF_I" (SFF)
+removed.
+Loadless block
+"OPB_IPIF_I/I_ADDRESS_DECODER/REGISTER_OUTPUTS.REGCE_GEN[1].REGCE_FF_I" (SFF)
+removed.
+Loadless block
+"OPB_IPIF_I/I_ADDRESS_DECODER/REGISTER_OUTPUTS.REGCE_GEN[2].REGCE_FF_I" (SFF)
+removed.
+Loadless block
+"OPB_IPIF_I/I_ADDRESS_DECODER/REGISTER_OUTPUTS.REGCE_GEN[3].REGCE_FF_I" (SFF)
+removed.
+Loadless block
+"OPB_IPIF_I/I_ADDRESS_DECODER/REGISTER_OUTPUTS.REGCS_SIZE_GEN[0].REGCS_SIZE_FF_I
+" (SFF) removed.
+Loadless block
+"OPB_IPIF_I/I_ADDRESS_DECODER/REGISTER_OUTPUTS.REGCS_SIZE_GEN[1].REGCS_SIZE_FF_I
+" (SFF) removed.
+Loadless block
+"OPB_IPIF_I/I_ADDRESS_DECODER/REGISTER_OUTPUTS.REGCS_SIZE_GEN[2].REGCS_SIZE_FF_I
+" (SFF) removed.
+Loadless block
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.I_IPIC_TIMEOUT_CNTR/PERBIT
+_GEN[0].MUXCY_i1" (MUX) removed.
+ The signal
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.I_IPIC_TIMEOUT_CNTR/gen_cr
+y_kill_n<0>" is loadless and has been removed.
+  Loadless block
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.I_IPIC_TIMEOUT_CNTR/PERBIT
+_GEN[0].MULT_AND_i1" (AND) removed.
+Loadless block
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/PERBIT_G
+EN[0].MUXCY_i1" (MUX) removed.
+ The signal
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/cry<1>"
+is loadless and has been removed.
+  Loadless block
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/PERBIT_G
+EN[1].MUXCY_i1" (MUX) removed.
+   The signal
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/cry<2>"
+is loadless and has been removed.
+    Loadless block
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/PERBIT_G
+EN[2].MUXCY_i1" (MUX) removed.
+     The signal
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/cry<3>"
+is loadless and has been removed.
+      Loadless block
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/PERBIT_G
+EN[3].MUXCY_i1" (MUX) removed.
+       The signal
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/cry<4>"
+is loadless and has been removed.
+        Loadless block
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/PERBIT_G
+EN[4].MUXCY_i1" (MUX) removed.
+         The signal "OPB_IPIF_I/I_SLAVE_ATTACHMENT/mstr_burstcntr_ld_n" is loadless and
+has been removed.
+          Loadless block "OPB_IPIF_I/I_SLAVE_ATTACHMENT/mstr_burstcntr_ld_n1" (ROM)
+removed.
+           The signal "OPB_IPIF_I/I_SLAVE_ATTACHMENT/ma2sa_select_d1" is loadless and has
+been removed.
+            Loadless block "OPB_IPIF_I/I_SLAVE_ATTACHMENT/ma2sa_select_d1" (SFF) removed.
+         The signal
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/gen_cry_
+kill_n<4>" is loadless and has been removed.
+          Loadless block
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/PERBIT_G
+EN[4].MULT_AND_LO_GEN.MULT_AND_i1" (AND) removed.
+           The signal "OPB_IPIF_I/I_SLAVE_ATTACHMENT/mstr_burst_cnt<4>" is loadless and has
+been removed.
+            Loadless block
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/PERBIT_G
+EN[4].FF_RST0_GEN.FDRE_i1" (SFF) removed.
+             The signal
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/PERBIT_G
+EN[4].CE" is loadless and has been removed.
+              Loadless block
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/PERBIT_G
+EN[4].CE1" (ROM) removed.
+             The signal
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/xorcy_ou
+t<4>" is loadless and has been removed.
+              Loadless block
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/PERBIT_G
+EN[4].XORCY_i1" (XOR) removed.
+               The signal
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/q_i_ns<4
+>" is loadless and has been removed.
+                Loadless block
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/Mmux_q_i
+_ns<4>11" (ROM) removed.
+       The signal
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/gen_cry_
+kill_n<3>" is loadless and has been removed.
+        Loadless block
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/PERBIT_G
+EN[3].MULT_AND_LO_GEN.MULT_AND_i1" (AND) removed.
+         The signal "OPB_IPIF_I/I_SLAVE_ATTACHMENT/mstr_burst_cnt<3>" is loadless and has
+been removed.
+          Loadless block
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/PERBIT_G
+EN[3].FF_RST0_GEN.FDRE_i1" (SFF) removed.
+           The signal
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/xorcy_ou
+t<3>" is loadless and has been removed.
+            Loadless block
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/PERBIT_G
+EN[3].XORCY_i1" (XOR) removed.
+             The signal
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/q_i_ns<3
+>" is loadless and has been removed.
+              Loadless block
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/Mmux_q_i
+_ns<3>11" (ROM) removed.
+     The signal
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/gen_cry_
+kill_n<2>" is loadless and has been removed.
+      Loadless block
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/PERBIT_G
+EN[2].MULT_AND_LO_GEN.MULT_AND_i1" (AND) removed.
+       The signal "OPB_IPIF_I/I_SLAVE_ATTACHMENT/mstr_burst_cnt<2>" is loadless and has
+been removed.
+        Loadless block
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/PERBIT_G
+EN[2].FF_RST0_GEN.FDRE_i1" (SFF) removed.
+         The signal
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/xorcy_ou
+t<2>" is loadless and has been removed.
+          Loadless block
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/PERBIT_G
+EN[2].XORCY_i1" (XOR) removed.
+           The signal
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/q_i_ns<2
+>" is loadless and has been removed.
+            Loadless block
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/Mmux_q_i
+_ns<2>11" (ROM) removed.
+   The signal
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/gen_cry_
+kill_n<1>" is loadless and has been removed.
+    Loadless block
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/PERBIT_G
+EN[1].MULT_AND_LO_GEN.MULT_AND_i1" (AND) removed.
+     The signal "OPB_IPIF_I/I_SLAVE_ATTACHMENT/mstr_burst_cnt<1>" is loadless and has
+been removed.
+      Loadless block
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/PERBIT_G
+EN[1].FF_RST0_GEN.FDRE_i1" (SFF) removed.
+       The signal
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/xorcy_ou
+t<1>" is loadless and has been removed.
+        Loadless block
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/PERBIT_G
+EN[1].XORCY_i1" (XOR) removed.
+         The signal
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/q_i_ns<1
+>" is loadless and has been removed.
+          Loadless block
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/Mmux_q_i
+_ns<1>11" (ROM) removed.
+ The signal
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/gen_cry_
+kill_n<0>" is loadless and has been removed.
+  Loadless block
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/PERBIT_G
+EN[0].MULT_AND_LO_GEN.MULT_AND_i1" (AND) removed.
+   The signal "OPB_IPIF_I/I_SLAVE_ATTACHMENT/mstr_burst_cnt<0>" is loadless and has
+been removed.
+    Loadless block
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/PERBIT_G
+EN[0].FF_RST0_GEN.FDRE_i1" (SFF) removed.
+     The signal
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/xorcy_ou
+t<0>" is loadless and has been removed.
+      Loadless block
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/PERBIT_G
+EN[0].XORCY_i1" (XOR) removed.
+       The signal
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/q_i_ns<0
+>" is loadless and has been removed.
+        Loadless block
+"OPB_IPIF_I/I_SLAVE_ATTACHMENT/GEN_INCLUDE_MSTR_STUFF.MSTR_BURST_CNTR_I/Mmux_q_i
+_ns<0>11" (ROM) removed.
+Loadless block "USER_LOGIC_HWTI_I/Msub_GND_164_o_GND_164_o_sub_960_OUT<12:0>12"
+(ROM) removed.
+Loadless block
+"intrfc2thrd/Using_FIFO.Sync_FIFO_Gen.Use_Data.Sync_FIFO_I1/Sync_FIFO_I.srl_fifo
+_i.FSL_FIFO/FIFO_RAM[49].SRL16E_I" (SRL16E) removed.
+Loadless block
+"intrfc2thrd/Using_FIFO.Sync_FIFO_Gen.Use_Data.Sync_FIFO_I1/Sync_FIFO_I.srl_fifo
+_i.FSL_FIFO/FIFO_RAM[50].SRL16E_I" (SRL16E) removed.
+Loadless block
+"intrfc2thrd/Using_FIFO.Sync_FIFO_Gen.Use_Data.Sync_FIFO_I1/Sync_FIFO_I.srl_fifo
+_i.FSL_FIFO/FIFO_RAM[51].SRL16E_I" (SRL16E) removed.
+Loadless block
+"intrfc2thrd/Using_FIFO.Sync_FIFO_Gen.Use_Data.Sync_FIFO_I1/Sync_FIFO_I.srl_fifo
+_i.FSL_FIFO/FIFO_RAM[52].SRL16E_I" (SRL16E) removed.
+Loadless block
+"intrfc2thrd/Using_FIFO.Sync_FIFO_Gen.Use_Data.Sync_FIFO_I1/Sync_FIFO_I.srl_fifo
+_i.FSL_FIFO/FIFO_RAM[53].SRL16E_I" (SRL16E) removed.
+Loadless block
+"intrfc2thrd/Using_FIFO.Sync_FIFO_Gen.Use_Data.Sync_FIFO_I1/Sync_FIFO_I.srl_fifo
+_i.FSL_FIFO/FIFO_RAM[54].SRL16E_I" (SRL16E) removed.
+Loadless block
+"intrfc2thrd/Using_FIFO.Sync_FIFO_Gen.Use_Data.Sync_FIFO_I1/Sync_FIFO_I.srl_fifo
+_i.FSL_FIFO/FIFO_RAM[55].SRL16E_I" (SRL16E) removed.
+Loadless block
+"intrfc2thrd/Using_FIFO.Sync_FIFO_Gen.Use_Data.Sync_FIFO_I1/Sync_FIFO_I.srl_fifo
+_i.FSL_FIFO/FIFO_RAM[56].SRL16E_I" (SRL16E) removed.
+Loadless block
+"intrfc2thrd/Using_FIFO.Sync_FIFO_Gen.Use_Data.Sync_FIFO_I1/Sync_FIFO_I.srl_fifo
+_i.FSL_FIFO/FIFO_RAM[57].SRL16E_I" (SRL16E) removed.
+Loadless block
+"intrfc2thrd/Using_FIFO.Sync_FIFO_Gen.Use_Data.Sync_FIFO_I1/Sync_FIFO_I.srl_fifo
+_i.FSL_FIFO/FIFO_RAM[58].SRL16E_I" (SRL16E) removed.
+Loadless block
+"intrfc2thrd/Using_FIFO.Sync_FIFO_Gen.Use_Data.Sync_FIFO_I1/Sync_FIFO_I.srl_fifo
+_i.FSL_FIFO/FIFO_RAM[59].SRL16E_I" (SRL16E) removed.
+Loadless block
+"intrfc2thrd/Using_FIFO.Sync_FIFO_Gen.Use_Data.Sync_FIFO_I1/Sync_FIFO_I.srl_fifo
+_i.FSL_FIFO/FIFO_RAM[60].SRL16E_I" (SRL16E) removed.
+Loadless block
+"intrfc2thrd/Using_FIFO.Sync_FIFO_Gen.Use_Data.Sync_FIFO_I1/Sync_FIFO_I.srl_fifo
+_i.FSL_FIFO/FIFO_RAM[61].SRL16E_I" (SRL16E) removed.
+Loadless block
+"intrfc2thrd/Using_FIFO.Sync_FIFO_Gen.Use_Data.Sync_FIFO_I1/Sync_FIFO_I.srl_fifo
+_i.FSL_FIFO/FIFO_RAM[62].SRL16E_I" (SRL16E) removed.
+Loadless block
+"intrfc2thrd/Using_FIFO.Sync_FIFO_Gen.Use_Data.Sync_FIFO_I1/Sync_FIFO_I.srl_fifo
+_i.FSL_FIFO/FIFO_RAM[63].SRL16E_I" (SRL16E) removed.
+Loadless block
+"thrd2intrfc/Using_FIFO.Sync_FIFO_Gen.Use_Data.Sync_FIFO_I1/Sync_FIFO_I.srl_fifo
+_i.FSL_FIFO/FIFO_RAM[86].SRL16E_I" (SRL16E) removed.
+Loadless block
+"thrd2intrfc/Using_FIFO.Sync_FIFO_Gen.Use_Data.Sync_FIFO_I1/Sync_FIFO_I.srl_fifo
+_i.FSL_FIFO/FIFO_RAM[87].SRL16E_I" (SRL16E) removed.
+Loadless block
+"thrd2intrfc/Using_FIFO.Sync_FIFO_Gen.Use_Data.Sync_FIFO_I1/Sync_FIFO_I.srl_fifo
+_i.FSL_FIFO/FIFO_RAM[88].SRL16E_I" (SRL16E) removed.
+Loadless block
+"thrd2intrfc/Using_FIFO.Sync_FIFO_Gen.Use_Data.Sync_FIFO_I1/Sync_FIFO_I.srl_fifo
+_i.FSL_FIFO/FIFO_RAM[89].SRL16E_I" (SRL16E) removed.
+Loadless block
+"thrd2intrfc/Using_FIFO.Sync_FIFO_Gen.Use_Data.Sync_FIFO_I1/Sync_FIFO_I.srl_fifo
+_i.FSL_FIFO/FIFO_RAM[90].SRL16E_I" (SRL16E) removed.
+Loadless block
+"thrd2intrfc/Using_FIFO.Sync_FIFO_Gen.Use_Data.Sync_FIFO_I1/Sync_FIFO_I.srl_fifo
+_i.FSL_FIFO/FIFO_RAM[91].SRL16E_I" (SRL16E) removed.
+Loadless block
+"thrd2intrfc/Using_FIFO.Sync_FIFO_Gen.Use_Data.Sync_FIFO_I1/Sync_FIFO_I.srl_fifo
+_i.FSL_FIFO/FIFO_RAM[92].SRL16E_I" (SRL16E) removed.
+Loadless block
+"thrd2intrfc/Using_FIFO.Sync_FIFO_Gen.Use_Data.Sync_FIFO_I1/Sync_FIFO_I.srl_fifo
+_i.FSL_FIFO/FIFO_RAM[93].SRL16E_I" (SRL16E) removed.
+Loadless block
+"thrd2intrfc/Using_FIFO.Sync_FIFO_Gen.Use_Data.Sync_FIFO_I1/Sync_FIFO_I.srl_fifo
+_i.FSL_FIFO/FIFO_RAM[94].SRL16E_I" (SRL16E) removed.
+Loadless block
+"thrd2intrfc/Using_FIFO.Sync_FIFO_Gen.Use_Data.Sync_FIFO_I1/Sync_FIFO_I.srl_fifo
+_i.FSL_FIFO/FIFO_RAM[95].SRL16E_I" (SRL16E) removed.
+
+The trimmed logic reported below is either:
+   1. part of a cycle
+   2. part of disabled logic
+   3. a side-effect of other trimmed logic
+
+The signal "OPB_ABus_30_IBUF" is unused and has been removed.
+ Unused block "OPB_ABus_30_IBUF" (BUF) removed.
+  The signal "OPB_ABus<30>" is unused and has been removed.
+   Unused block "OPB_ABus<30>" (PAD) removed.
+The signal "OPB_ABus_31_IBUF" is unused and has been removed.
+ Unused block "OPB_ABus_31_IBUF" (BUF) removed.
+  The signal "OPB_ABus<31>" is unused and has been removed.
+   Unused block "OPB_ABus<31>" (PAD) removed.
+The signal "iBus2IP_Addr<0>" is unused and has been removed.
+ Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Mmux_selected_addr110" (ROM) removed.
+  The signal "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa<0>" is unused and has
+been removed.
+   Unused block "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa_0" (FF) removed.
+  The signal "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1<0>" is unused and has been
+removed.
+   Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1_0" (FF) removed.
+    The signal "OPB_IPIF_I/I_BUS2IP_AMUX/addr_plus1<0>" is unused and has been
+removed.
+     Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_xor<31>" (XOR) removed.
+      The signal "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_cy<30>" is unused and has
+been removed.
+       Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_cy<30>" (MUX) removed.
+        The signal "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_cy<29>" is unused and has
+been removed.
+         Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_cy<29>" (MUX) removed.
+          The signal "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_cy<28>" is unused and has
+been removed.
+           Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_cy<28>" (MUX) removed.
+            The signal "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_cy<27>" is unused and has
+been removed.
+             Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_cy<27>" (MUX) removed.
+              The signal "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_cy<26>" is unused and has
+been removed.
+               Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_cy<26>" (MUX) removed.
+                The signal "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_cy<25>" is unused and has
+been removed.
+                 Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_cy<25>" (MUX) removed.
+                  The signal "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_cy<24>" is unused and has
+been removed.
+                   Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_cy<24>" (MUX) removed.
+                    The signal "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_cy<23>" is unused and has
+been removed.
+                     Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_cy<23>" (MUX) removed.
+                      The signal "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_cy<22>" is unused and has
+been removed.
+                       Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_cy<22>" (MUX) removed.
+                        The signal "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_cy<21>" is unused and has
+been removed.
+                         Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_cy<21>" (MUX) removed.
+                          The signal "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_cy<20>" is unused and has
+been removed.
+                           Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_cy<20>" (MUX) removed.
+                            The signal "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_cy<19>" is unused and has
+been removed.
+                             Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_cy<19>" (MUX) removed.
+                              The signal "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_cy<18>" is unused and has
+been removed.
+                               Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_cy<18>" (MUX) removed.
+                                The signal "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_cy<17>" is unused and has
+been removed.
+                                 Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_cy<17>" (MUX) removed.
+                                  The signal "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_cy<16>" is unused and has
+been removed.
+                                   Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_cy<16>" (MUX) removed.
+                                    The signal "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_cy<15>" is unused and has
+been removed.
+                                     Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_cy<15>" (MUX) removed.
+                                    The signal "iBus2IP_Addr<15>" is unused and has been removed.
+                                     Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Mmux_selected_addr71" (ROM) removed.
+                                      The signal "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa<15>" is unused and has
+been removed.
+                                       Unused block "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa_15" (FF) removed.
+                                      The signal "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1<15>" is unused and has been
+removed.
+                                       Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1_15" (FF) removed.
+                                        The signal "OPB_IPIF_I/I_BUS2IP_AMUX/addr_plus1<15>" is unused and has been
+removed.
+                                         Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_xor<16>" (XOR) removed.
+                                  The signal "iBus2IP_Addr<14>" is unused and has been removed.
+                                   Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Mmux_selected_addr61" (ROM) removed.
+                                    The signal "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa<14>" is unused and has
+been removed.
+                                     Unused block "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa_14" (FF) removed.
+                                    The signal "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1<14>" is unused and has been
+removed.
+                                     Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1_14" (FF) removed.
+                                      The signal "OPB_IPIF_I/I_BUS2IP_AMUX/addr_plus1<14>" is unused and has been
+removed.
+                                       Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_xor<17>" (XOR) removed.
+                                The signal "iBus2IP_Addr<13>" is unused and has been removed.
+                                 Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Mmux_selected_addr51" (ROM) removed.
+                                  The signal "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa<13>" is unused and has
+been removed.
+                                   Unused block "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa_13" (FF) removed.
+                                  The signal "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1<13>" is unused and has been
+removed.
+                                   Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1_13" (FF) removed.
+                                    The signal "OPB_IPIF_I/I_BUS2IP_AMUX/addr_plus1<13>" is unused and has been
+removed.
+                                     Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_xor<18>" (XOR) removed.
+                              The signal "iBus2IP_Addr<12>" is unused and has been removed.
+                               Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Mmux_selected_addr41" (ROM) removed.
+                                The signal "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa<12>" is unused and has
+been removed.
+                                 Unused block "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa_12" (FF) removed.
+                                The signal "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1<12>" is unused and has been
+removed.
+                                 Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1_12" (FF) removed.
+                                  The signal "OPB_IPIF_I/I_BUS2IP_AMUX/addr_plus1<12>" is unused and has been
+removed.
+                                   Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_xor<19>" (XOR) removed.
+                            The signal "iBus2IP_Addr<11>" is unused and has been removed.
+                             Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Mmux_selected_addr33" (ROM) removed.
+                              The signal "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa<11>" is unused and has
+been removed.
+                               Unused block "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa_11" (FF) removed.
+                              The signal "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1<11>" is unused and has been
+removed.
+                               Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1_11" (FF) removed.
+                                The signal "OPB_IPIF_I/I_BUS2IP_AMUX/addr_plus1<11>" is unused and has been
+removed.
+                                 Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_xor<20>" (XOR) removed.
+                          The signal "iBus2IP_Addr<10>" is unused and has been removed.
+                           Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Mmux_selected_addr210" (ROM) removed.
+                            The signal "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa<10>" is unused and has
+been removed.
+                             Unused block "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa_10" (FF) removed.
+                            The signal "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1<10>" is unused and has been
+removed.
+                             Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1_10" (FF) removed.
+                              The signal "OPB_IPIF_I/I_BUS2IP_AMUX/addr_plus1<10>" is unused and has been
+removed.
+                               Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_xor<21>" (XOR) removed.
+                        The signal "iBus2IP_Addr<9>" is unused and has been removed.
+                         Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Mmux_selected_addr321" (ROM) removed.
+                          The signal "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa<9>" is unused and has
+been removed.
+                           Unused block "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa_9" (FF) removed.
+                          The signal "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1<9>" is unused and has been
+removed.
+                           Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1_9" (FF) removed.
+                            The signal "OPB_IPIF_I/I_BUS2IP_AMUX/addr_plus1<9>" is unused and has been
+removed.
+                             Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_xor<22>" (XOR) removed.
+                      The signal "iBus2IP_Addr<8>" is unused and has been removed.
+                       Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Mmux_selected_addr311" (ROM) removed.
+                        The signal "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa<8>" is unused and has
+been removed.
+                         Unused block "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa_8" (FF) removed.
+                        The signal "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1<8>" is unused and has been
+removed.
+                         Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1_8" (FF) removed.
+                          The signal "OPB_IPIF_I/I_BUS2IP_AMUX/addr_plus1<8>" is unused and has been
+removed.
+                           Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_xor<23>" (XOR) removed.
+                    The signal "iBus2IP_Addr<7>" is unused and has been removed.
+                     Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Mmux_selected_addr301" (ROM) removed.
+                      The signal "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa<7>" is unused and has
+been removed.
+                       Unused block "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa_7" (FF) removed.
+                      The signal "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1<7>" is unused and has been
+removed.
+                       Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1_7" (FF) removed.
+                        The signal "OPB_IPIF_I/I_BUS2IP_AMUX/addr_plus1<7>" is unused and has been
+removed.
+                         Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_xor<24>" (XOR) removed.
+                  The signal "iBus2IP_Addr<6>" is unused and has been removed.
+                   Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Mmux_selected_addr291" (ROM) removed.
+                    The signal "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa<6>" is unused and has
+been removed.
+                     Unused block "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa_6" (FF) removed.
+                    The signal "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1<6>" is unused and has been
+removed.
+                     Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1_6" (FF) removed.
+                      The signal "OPB_IPIF_I/I_BUS2IP_AMUX/addr_plus1<6>" is unused and has been
+removed.
+                       Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_xor<25>" (XOR) removed.
+                The signal "iBus2IP_Addr<5>" is unused and has been removed.
+                 Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Mmux_selected_addr281" (ROM) removed.
+                  The signal "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa<5>" is unused and has
+been removed.
+                   Unused block "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa_5" (FF) removed.
+                  The signal "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1<5>" is unused and has been
+removed.
+                   Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1_5" (FF) removed.
+                    The signal "OPB_IPIF_I/I_BUS2IP_AMUX/addr_plus1<5>" is unused and has been
+removed.
+                     Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_xor<26>" (XOR) removed.
+              The signal "iBus2IP_Addr<4>" is unused and has been removed.
+               Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Mmux_selected_addr271" (ROM) removed.
+                The signal "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa<4>" is unused and has
+been removed.
+                 Unused block "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa_4" (FF) removed.
+                The signal "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1<4>" is unused and has been
+removed.
+                 Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1_4" (FF) removed.
+                  The signal "OPB_IPIF_I/I_BUS2IP_AMUX/addr_plus1<4>" is unused and has been
+removed.
+                   Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_xor<27>" (XOR) removed.
+            The signal "iBus2IP_Addr<3>" is unused and has been removed.
+             Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Mmux_selected_addr261" (ROM) removed.
+              The signal "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa<3>" is unused and has
+been removed.
+               Unused block "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa_3" (FF) removed.
+              The signal "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1<3>" is unused and has been
+removed.
+               Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1_3" (FF) removed.
+                The signal "OPB_IPIF_I/I_BUS2IP_AMUX/addr_plus1<3>" is unused and has been
+removed.
+                 Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_xor<28>" (XOR) removed.
+          The signal "iBus2IP_Addr<2>" is unused and has been removed.
+           Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Mmux_selected_addr231" (ROM) removed.
+            The signal "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa<2>" is unused and has
+been removed.
+             Unused block "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa_2" (FF) removed.
+            The signal "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1<2>" is unused and has been
+removed.
+             Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1_2" (FF) removed.
+              The signal "OPB_IPIF_I/I_BUS2IP_AMUX/addr_plus1<2>" is unused and has been
+removed.
+               Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_xor<29>" (XOR) removed.
+        The signal "iBus2IP_Addr<1>" is unused and has been removed.
+         Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Mmux_selected_addr121" (ROM) removed.
+          The signal "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa<1>" is unused and has
+been removed.
+           Unused block "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa_1" (FF) removed.
+          The signal "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1<1>" is unused and has been
+removed.
+           Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1_1" (FF) removed.
+            The signal "OPB_IPIF_I/I_BUS2IP_AMUX/addr_plus1<1>" is unused and has been
+removed.
+             Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Madd_addr_plus1_xor<30>" (XOR) removed.
+The signal "iBus2IP_Addr<30>" is unused and has been removed.
+ Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Mmux_selected_addr241" (ROM) removed.
+  The signal "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa<30>" is unused and has
+been removed.
+   Unused block "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa_30" (FF) removed.
+    The signal "OPB_IPIF_I/I_SLAVE_ATTACHMENT/opb_abus_d1<30>" is unused and has
+been removed.
+     Unused block "OPB_IPIF_I/I_SLAVE_ATTACHMENT/opb_abus_d1_30" (SFF) removed.
+  The signal "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1<30>" is unused and has been
+removed.
+   Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1_30" (FF) removed.
+The signal "iBus2IP_Addr<31>" is unused and has been removed.
+ Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/Mmux_selected_addr251" (ROM) removed.
+  The signal "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa<31>" is unused and has
+been removed.
+   Unused block "OPB_IPIF_I/I_SLAVE_ATTACHMENT/Bus2IP_Addr_sa_31" (FF) removed.
+    The signal "OPB_IPIF_I/I_SLAVE_ATTACHMENT/opb_abus_d1<31>" is unused and has
+been removed.
+     Unused block "OPB_IPIF_I/I_SLAVE_ATTACHMENT/opb_abus_d1_31" (SFF) removed.
+  The signal "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1<31>" is unused and has been
+removed.
+   Unused block "OPB_IPIF_I/I_BUS2IP_AMUX/reg_addr_plus1_31" (FF) removed.
+The signal
+"OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/FDRE_SeqAddr_BusLock_Reset" is
+unused and has been removed.
+ Unused block
+"OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/I_SeqAddr_BusLock_LUT2" (ROM)
+removed.
+  The signal "OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/Clear_SeqAddr_BusLock"
+is unused and has been removed.
+   Unused block
+"OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/Mmux_Clear_SeqAddr_BusLock13"
+(ROM) removed.
+    The signal
+"OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/Mmux_Clear_SeqAddr_BusLock11" is
+unused and has been removed.
+     Unused block
+"OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/Mmux_Clear_SeqAddr_BusLock12"
+(ROM) removed.
+      The signal
+"OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/Mmux_Clear_SeqAddr_BusLock1" is
+unused and has been removed.
+       Unused block
+"OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/Mmux_Clear_SeqAddr_BusLock11"
+(ROM) removed.
+
+Optimized Block(s):
+TYPE 		BLOCK
+FDRE 		OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/I_FDRE_Mn_BusLock
+   optimized to 0
+FDRE 		OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/I_FDRE_Mn_SeqAddr
+   optimized to 0
+GND 		XST_GND
+VCC 		XST_VCC
+
+To enable printing of redundant blocks removed and signals merged, set the
+detailed map report option and rerun map.
+
+Section 6 - IOB Properties
+--------------------------
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IOB Name                           | Type             | Direction | IO Standard          | Diff  | Drive    | Slew | Reg (s)      | Resistor | IOB      |
+|                                    |                  |           |                      | Term  | Strength | Rate |              |          | Delay    |
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| M_ABus<0>                          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_ABus<1>                          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_ABus<2>                          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_ABus<3>                          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_ABus<4>                          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_ABus<5>                          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_ABus<6>                          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_ABus<7>                          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_ABus<8>                          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_ABus<9>                          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_ABus<10>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_ABus<11>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_ABus<12>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_ABus<13>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_ABus<14>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_ABus<15>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_ABus<16>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_ABus<17>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_ABus<18>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_ABus<19>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_ABus<20>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_ABus<21>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_ABus<22>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_ABus<23>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_ABus<24>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_ABus<25>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_ABus<26>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_ABus<27>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_ABus<28>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_ABus<29>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_ABus<30>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_ABus<31>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_BE<0>                            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_BE<1>                            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_BE<2>                            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_BE<3>                            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_RNW                              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_busLock                          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_request                          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_select                           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| M_seqAddr                          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| OPB_ABus<0>                        | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_ABus<1>                        | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_ABus<2>                        | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_ABus<3>                        | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_ABus<4>                        | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_ABus<5>                        | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_ABus<6>                        | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_ABus<7>                        | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_ABus<8>                        | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_ABus<9>                        | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_ABus<10>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_ABus<11>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_ABus<12>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_ABus<13>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_ABus<14>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_ABus<15>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_ABus<16>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_ABus<17>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_ABus<18>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_ABus<19>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_ABus<20>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_ABus<21>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_ABus<22>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_ABus<23>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_ABus<24>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_ABus<25>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_ABus<26>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_ABus<27>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_ABus<28>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_ABus<29>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_Clk                            | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_DBus<0>                        | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_DBus<1>                        | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_DBus<2>                        | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_DBus<3>                        | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_DBus<4>                        | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_DBus<5>                        | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_DBus<6>                        | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_DBus<7>                        | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_DBus<8>                        | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_DBus<9>                        | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_DBus<10>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_DBus<11>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_DBus<12>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_DBus<13>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_DBus<14>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_DBus<15>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_DBus<16>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_DBus<17>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_DBus<18>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_DBus<19>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_DBus<20>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_DBus<21>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_DBus<22>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_DBus<23>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_DBus<24>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_DBus<25>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_DBus<26>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_DBus<27>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_DBus<28>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_DBus<29>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_DBus<30>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_DBus<31>                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_MGrant                         | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_RNW                            | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_Rst                            | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_errAck                         | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_retry                          | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_select                         | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_seqAddr                        | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_timeout                        | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| OPB_xferAck                        | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| Sl_DBus<0>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_DBus<1>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_DBus<2>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_DBus<3>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_DBus<4>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_DBus<5>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_DBus<6>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_DBus<7>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_DBus<8>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_DBus<9>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_DBus<10>                        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_DBus<11>                        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_DBus<12>                        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_DBus<13>                        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_DBus<14>                        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_DBus<15>                        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_DBus<16>                        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_DBus<17>                        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_DBus<18>                        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_DBus<19>                        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_DBus<20>                        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_DBus<21>                        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_DBus<22>                        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_DBus<23>                        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_DBus<24>                        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_DBus<25>                        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_DBus<26>                        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_DBus<27>                        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_DBus<28>                        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_DBus<29>                        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_DBus<30>                        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_DBus<31>                        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_errAck                          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_retry                           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_toutSup                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Sl_xferAck                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<0>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<1>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<2>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<3>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<4>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<5>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<6>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<7>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<8>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<9>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<10>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<11>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<12>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<13>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<14>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<15>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<16>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<17>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<18>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<19>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<20>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<21>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<22>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<23>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<24>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<25>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<26>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<27>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<28>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<29>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<30>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<31>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<32>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<33>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<34>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<35>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<36>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<37>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<38>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<39>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<40>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<41>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<42>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<43>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<44>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<45>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<46>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<47>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_S_Data<48>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_function<0>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_function<1>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_function<2>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_function<3>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_function<4>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_function<5>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_function<6>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_function<7>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_function<8>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_function<9>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_function<10>          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_function<11>          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_function<12>          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_function<13>          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_function<14>          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_function<15>          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_goWait                | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_value<0>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_value<1>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_value<2>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_value<3>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_value<4>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_value<5>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_value<6>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_value<7>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_value<8>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_value<9>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_value<10>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_value<11>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_value<12>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_value<13>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_value<14>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_value<15>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_value<16>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_value<17>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_value<18>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_value<19>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_value<20>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_value<21>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_value<22>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_value<23>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_value<24>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_value<25>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_value<26>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_value<27>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_value<28>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_value<29>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_value<30>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tintrfc2thrd_value<31>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<0>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<1>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<2>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<3>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<4>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<5>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<6>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<7>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<8>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<9>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<10>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<11>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<12>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<13>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<14>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<15>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<16>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<17>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<18>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<19>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<20>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<21>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<22>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<23>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<24>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<25>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<26>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<27>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<28>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<29>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<30>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<31>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<32>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<33>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<34>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<35>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<36>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<37>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<38>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<39>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<40>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<41>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<42>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<43>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<44>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<45>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<46>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<47>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<48>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<49>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<50>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<51>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<52>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_S_Data<53>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_address<0>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_address<1>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_address<2>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_address<3>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_address<4>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_address<5>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_address<6>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_address<7>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_address<8>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_address<9>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_address<10>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_address<11>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_address<12>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_address<13>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_address<14>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_address<15>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_address<16>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_address<17>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_address<18>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_address<19>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_address<20>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_address<21>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_address<22>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_address<23>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_address<24>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_address<25>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_address<26>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_address<27>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_address<28>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_address<29>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_address<30>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_address<31>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_function<0>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_function<1>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_function<2>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_function<3>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_function<4>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_function<5>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_function<6>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_function<7>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_function<8>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_function<9>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_function<10>          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_function<11>          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_function<12>          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_function<13>          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_function<14>          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_function<15>          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_opcode<0>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_opcode<1>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_opcode<2>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_opcode<3>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_opcode<4>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_opcode<5>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_value<0>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_value<1>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_value<2>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_value<3>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_value<4>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_value<5>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_value<6>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_value<7>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_value<8>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_value<9>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_value<10>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_value<11>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_value<12>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_value<13>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_value<14>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_value<15>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_value<16>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_value<17>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_value<18>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_value<19>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_value<20>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_value<21>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_value<22>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_value<23>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_value<24>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_value<25>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_value<26>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_value<27>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_value<28>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_value<29>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_value<30>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Tthrd2intrfc_value<31>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Ttimer<0>                          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Ttimer<1>                          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Ttimer<2>                          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Ttimer<3>                          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Ttimer<4>                          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Ttimer<5>                          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Ttimer<6>                          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Ttimer<7>                          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Ttimer<8>                          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Ttimer<9>                          | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Ttimer<10>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Ttimer<11>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Ttimer<12>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Ttimer<13>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Ttimer<14>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Ttimer<15>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Ttimer<16>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Ttimer<17>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Ttimer<18>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Ttimer<19>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Ttimer<20>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Ttimer<21>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Ttimer<22>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Ttimer<23>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Ttimer<24>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Ttimer<25>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Ttimer<26>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Ttimer<27>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Ttimer<28>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Ttimer<29>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Ttimer<30>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| Ttimer<31>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Section 7 - RPMs
+----------------
+
+Section 8 - Guide Report
+------------------------
+Guide not run on this design.
+
+Section 9 - Area Group and Partition Summary
+--------------------------------------------
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+Area Group Information
+----------------------
+
+  No area groups were found in this design.
+
+----------------------
+
+Section 10 - Timing Report
+--------------------------
+A logic-level (pre-route) timing report can be generated by using Xilinx static
+timing analysis tools, Timing Analyzer (GUI) or TRCE (command line), with the
+mapped NCD and PCF files. Please note that this timing report will be generated
+using estimated delay information. For accurate numbers, please generate a
+timing report with the post Place and Route NCD file.
+
+For more information about the Timing Analyzer, consult the Xilinx Timing
+Analyzer Reference Manual; for more information about TRCE, consult the Xilinx
+Command Line Tools User Guide "TRACE" chapter.
+
+Section 11 - Configuration String Details
+-----------------------------------------
+Use the "-detail" map option to print out Configuration Strings
+
+Section 12 - Control Set Information
+------------------------------------
+Use the "-detail" map option to print out Control Set Information.
+
+Section 13 - Utilization by Hierarchy
+-------------------------------------
+Use the "-detail" map option to print out the Utilization by Hierarchy section.

@@ -1,0 +1,59 @@
+##############################################################################
+## Filename:          /home/jrios/heterogeneous_hthreads_latest/src/platforms/xilinx/ml605_smp_14_bak/design/pcores/add_sub_core_v1_00_a/data/add_sub_core_v2_1_0.mpd
+## Description:       Microprocessor Peripheral Description
+## Date:              Thu Aug  9 10:06:10 2012 (by Create and Import Peripheral Wizard)
+##############################################################################
+
+BEGIN hw_thvadd
+
+## Peripheral Options
+OPTION IPTYPE = PERIPHERAL
+OPTION IMP_NETLIST = TRUE
+OPTION HDL = VHDL
+## Bus Interfaces
+BUS_INTERFACE BUS=SFSL0, BUS_STD=FSL, BUS_TYPE=SLAVE
+BUS_INTERFACE BUS=SFSL1, BUS_STD=FSL, BUS_TYPE=SLAVE
+
+BUS_INTERFACE BUS=MFSL0, BUS_STD=FSL, BUS_TYPE=MASTER
+BUS_INTERFACE BUS=MFSL1, BUS_STD=FSL, BUS_TYPE=MASTER
+BUS_INTERFACE BUS=MFSL2, BUS_STD=FSL, BUS_TYPE=MASTER
+
+
+## Peripheral ports
+PORT FSL_Clk       = "",            DIR=I, SIGIS=Clk,    BUS=MFSL0:SFSL0:MFSL1:SFSL1:MFSL2
+
+#####################################################################
+
+PORT FSL0_S_Read    = FSL_S_Read,    DIR=O,               BUS=SFSL0
+PORT FSL0_S_Data    = FSL_S_Data,    DIR=I, VEC=[0:31],   BUS=SFSL0
+PORT FSL0_S_Exists  = FSL_S_Exists,  DIR=I,               BUS=SFSL0
+
+PORT FSL1_S_Read    = FSL_S_Read,    DIR=O,               BUS=SFSL1
+PORT FSL1_S_Data    = FSL_S_Data,    DIR=I, VEC=[0:31],   BUS=SFSL1
+PORT FSL1_S_Exists  = FSL_S_Exists,  DIR=I,               BUS=SFSL1
+
+
+#####################################################################
+PORT FSL0_M_Write   = FSL_M_Write,   DIR=O,               BUS=MFSL0
+PORT FSL0_M_Data    = FSL_M_Data,    DIR=O, VEC=[0:31],   BUS=MFSL0
+PORT FSL0_M_Full    = FSL_M_Full,    DIR=I,               BUS=MFSL0
+
+PORT FSL1_M_Write   = FSL_M_Write,   DIR=O,               BUS=MFSL1
+PORT FSL1_M_Data    = FSL_M_Data,    DIR=O, VEC=[0:31],   BUS=MFSL1
+PORT FSL1_M_Full    = FSL_M_Full,    DIR=I,               BUS=MFSL1
+
+PORT FSL2_M_Write   = FSL_M_Write,   DIR=O,               BUS=MFSL2
+PORT FSL2_M_Data    = FSL_M_Data,    DIR=O, VEC=[0:31],   BUS=MFSL2
+PORT FSL2_M_Full    = FSL_M_Full,    DIR=I,               BUS=MFSL2
+
+PORT    Tintrfc2thrd_value   =Tintrfc2thrd_value    , DIR = O , VEC = [0:31]
+PORT    Tintrfc2thrd_function=Tintrfc2thrd_function , DIR = O , VEC = [0:15] 
+PORT    Tintrfc2thrd_goWait  =Tintrfc2thrd_goWait   , DIR = O 
+PORT    Tthrd2intrfc_address =Tthrd2intrfc_address  , DIR = O , VEC = [0:31] 
+PORT    Tthrd2intrfc_value   =Tthrd2intrfc_value    , DIR = O , VEC = [0:31] 
+PORT    Tthrd2intrfc_function=Tthrd2intrfc_function , DIR = O , VEC = [0:15] 
+PORT    Tthrd2intrfc_opcode  =Tthrd2intrfc_opcode   , DIR = O , VEC = [0:5] 
+PORT    Ttimer   =Ttimer    , DIR = O , VEC = [0:31]
+
+
+END

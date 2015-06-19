@@ -32,6 +32,7 @@ use ieee.std_logic_unsigned.all;
 entity hw_acc_vector is
 	port 
 	(
+		--chipscope_icon_control : in	std_logic_vector(35 downto 0);
 		-- DO NOT EDIT BELOW THIS LINE ---------------------
 		-- Bus protocol ports, do not add or delete. 
 		Clk	        : in	std_logic;
@@ -69,6 +70,8 @@ entity hw_acc_vector is
 		FSL1_S_Read	: out	std_logic;
 		FSL1_S_Data	: in	std_logic_vector(0 to 31);		
 		FSL1_S_Exists	: in	std_logic
+
+	
 		
 		-- DO NOT EDIT ABOVE THIS LINE ---------------------
 	);
@@ -118,7 +121,7 @@ end component;
 
 component chipscope_ila
   PORT (
-    CONTROL : INOUT STD_LOGIC_VECTOR(35 DOWNTO 0);
+    CONTROL : in STD_LOGIC_VECTOR(35 DOWNTO 0);
     CLK : IN STD_LOGIC;
     TRIG0 : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
     TRIG1 : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
@@ -214,28 +217,28 @@ begin
 
 --icon_uut : chipscope_icon
 --  port map (
---    CONTROL0 => CONTROL0);
+ --   CONTROL0 => CONTROL0);
     
---    ila_uut : chipscope_ila
---  port map (
---    CONTROL => CONTROL0,
+ --   ila_uut : chipscope_ila
+ -- port map (
+ --   CONTROL => chipscope_icon_control,
 --    CLK => clk,
---    TRIG0 => sBRAM_addr,
---    TRIG1 => sBRAM_dout,
---    TRIG2 => sBRAM_din,
---    TRIG3 => sFSL0_M_Data,
---    TRIG4 => sFSL0_S_Data,
---    TRIG5 => X"0000" ,
---    TRIG6 => X"00" ,
---    TRIG7 => X"0",
---    TRIG8 => sBRAM_wen,
---    TRIG9 => sBRAM_en(0 to 0),
---    TRIG10 => sFSL0_S_Exists(0 to 0),
---    TRIG11 => sFSL0_S_Read(0 to 0),
---    TRIG12 => sFSL0_M_Write(0 to 0),
---    TRIG13 => sFSL0_M_Write(0 to 0),
---    TRIG14 => sFSL0_M_Write(0 to 0),
---    TRIG15 => sFSL0_M_Write(0 to 0));
+--    TRIG0 => sBRAM_C_addr,
+--    TRIG1 => sBRAM_C_din,
+   -- TRIG2 => sBRAM_C_dout,
+   --  TRIG3 => sFSL0_M_Data,
+   --  TRIG4 => sFSL0_S_Data,
+   --  TRIG5 => X"0000" ,
+   --  TRIG6 => X"00" ,
+   --  TRIG7 => X"0",
+   --  TRIG8 => sBRAM_c_wen,
+   --  TRIG9 => sBRAM_C_en(0 to 0),
+   --  TRIG10 => sFSL0_S_Exists(0 to 0),
+   --  TRIG11 => sFSL0_S_Read(0 to 0),
+   --  TRIG12 => sFSL0_M_Write(0 to 0),
+   --  TRIG13 => sFSL0_M_Write(0 to 0),
+   --  TRIG14 => sFSL0_M_Write(0 to 0),
+   --  TRIG15 => sFSL0_M_Write(0 to 0));
 
 uut : vector_chan
 port map (

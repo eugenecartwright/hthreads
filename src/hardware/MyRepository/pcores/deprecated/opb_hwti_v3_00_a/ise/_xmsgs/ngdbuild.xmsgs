@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IMPORTANT: This is an internal file that has been generated
+     by the Xilinx ISE software.  Any direct editing or
+     changes made to this file may result in unpredictable
+     behavior or data corruption.  It is strongly advised that
+     users do not edit the contents of this file. -->
+<messages>
+<msg type="warning" file="NgdBuild" num="440" delta="old" >FF primitive &apos;<arg fmt="%s" index="1">OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/INCLUDE_MN_ABUS_SHADOW.MN_ABUS_SHADOW_GEN[31].FDE_I</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="old" >FF primitive &apos;<arg fmt="%s" index="1">OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/INCLUDE_MN_ABUS_SHADOW.MN_ABUS_SHADOW_GEN[30].FDE_I</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="443" delta="old" >SFF primitive &apos;<arg fmt="%s" index="1">OPB_IPIF_I/I_ADDRESS_DECODER/REGISTER_OUTPUTS.REGCE_GEN[3].REGCE_FF_I</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="443" delta="old" >SFF primitive &apos;<arg fmt="%s" index="1">OPB_IPIF_I/I_ADDRESS_DECODER/REGISTER_OUTPUTS.REGCE_GEN[2].REGCE_FF_I</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="443" delta="old" >SFF primitive &apos;<arg fmt="%s" index="1">OPB_IPIF_I/I_ADDRESS_DECODER/REGISTER_OUTPUTS.REGCE_GEN[1].REGCE_FF_I</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="443" delta="old" >SFF primitive &apos;<arg fmt="%s" index="1">OPB_IPIF_I/I_ADDRESS_DECODER/REGISTER_OUTPUTS.REGCE_GEN[0].REGCE_FF_I</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="443" delta="old" >SFF primitive &apos;<arg fmt="%s" index="1">OPB_IPIF_I/I_ADDRESS_DECODER/REGISTER_OUTPUTS.REGCS_SIZE_GEN[2].REGCS_SIZE_FF_I</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="443" delta="old" >SFF primitive &apos;<arg fmt="%s" index="1">OPB_IPIF_I/I_ADDRESS_DECODER/REGISTER_OUTPUTS.REGCS_SIZE_GEN[1].REGCS_SIZE_FF_I</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="443" delta="old" >SFF primitive &apos;<arg fmt="%s" index="1">OPB_IPIF_I/I_ADDRESS_DECODER/REGISTER_OUTPUTS.REGCS_SIZE_GEN[0].REGCS_SIZE_FF_I</arg>&apos; has unconnected output pin
+</msg>
+
+</messages>
+

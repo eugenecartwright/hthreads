@@ -1,0 +1,168 @@
+#-----------------------------------------------------------
+# Vivado v2015.1 (64-bit)
+# SW Build 1215546 on Mon Apr 27 19:07:21 MDT 2015
+# IP Build 1209967 on Tue Apr 21 11:39:20 MDT 2015
+# Start of session at: Mon Jun 15 15:46:17 2015
+# Process ID: 7403
+# Log file: /home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/axi_hthreads_timer_v1_00_a/managed_ip_project/axi_hthreads_timer_v1_0_project/axi_hthreads_timer_v1_0_project.runs/synth_1/axi_hthreads_timer.vds
+# Journal file: /home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/axi_hthreads_timer_v1_00_a/managed_ip_project/axi_hthreads_timer_v1_0_project/axi_hthreads_timer_v1_0_project.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
+source axi_hthreads_timer.tcl -notrace
+Command: synth_design -top axi_hthreads_timer -part xc7vx485tffg1761-2
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7vx485t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7vx485t'
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 952.691 ; gain = 144.457 ; free physical = 27547 ; free virtual = 61737
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'axi_hthreads_timer' [/home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/axi_hthreads_timer_v1_00_a/hdl/vhdl/axi_hthreads_timer.vhd:180]
+	Parameter C_S_AXI_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_S_AXI_ADDR_WIDTH bound to: 32 - type: integer 
+	Parameter C_S_AXI_MIN_SIZE bound to: 32'b00000000000000001111111111111111 
+	Parameter C_USE_WSTRB bound to: 0 - type: integer 
+	Parameter C_DPHASE_TIMEOUT bound to: 8 - type: integer 
+	Parameter C_BASEADDR bound to: 32'b11111111111111111111111111111111 
+	Parameter C_HIGHADDR bound to: 32'b00000000000000000000000000000000 
+	Parameter C_FAMILY bound to: virtex6 - type: string 
+	Parameter C_NUM_REG bound to: 1 - type: integer 
+	Parameter C_NUM_MEM bound to: 1 - type: integer 
+	Parameter C_SLV_AWIDTH bound to: 32 - type: integer 
+	Parameter C_SLV_DWIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-5534] Detected attribute (* max_fanout = "10000" *) [/home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/axi_hthreads_timer_v1_00_a/hdl/vhdl/axi_hthreads_timer.vhd:146]
+INFO: [Synth 8-5534] Detected attribute (* max_fanout = "10000" *) [/home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/axi_hthreads_timer_v1_00_a/hdl/vhdl/axi_hthreads_timer.vhd:147]
+INFO: [Synth 8-638] synthesizing module 'axi_lite_ipif' [/home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/axi_lite_ipif_v1_01_a/hdl/vhdl/axi_lite_ipif.vhd:246]
+	Parameter C_S_AXI_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_S_AXI_ADDR_WIDTH bound to: 32 - type: integer 
+	Parameter C_S_AXI_MIN_SIZE bound to: 65535 - type: integer 
+	Parameter C_USE_WSTRB bound to: 0 - type: integer 
+	Parameter C_DPHASE_TIMEOUT bound to: 8 - type: integer 
+	Parameter C_ARD_ADDR_RANGE_ARRAY bound to: 256'b0000000000000000000000000000000011111111111111111111111111111111000000000000000000000000000000001111111111111111111111111111111100000000000000000000000000000000111111111111111111111111111111110000000000000000000000000000000011111111111111111111111111111111 
+	Parameter C_ARD_NUM_CE_ARRAY bound to: 64'b0000000000000000000000000000000100000000000000000000000000000100 
+	Parameter C_FAMILY bound to: virtex6 - type: string 
+INFO: [Synth 8-638] synthesizing module 'slave_attachment' [/home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/axi_lite_ipif_v1_01_a/hdl/vhdl/slave_attachment.vhd:236]
+	Parameter C_ARD_ADDR_RANGE_ARRAY bound to: 256'b0000000000000000000000000000000011111111111111111111111111111111000000000000000000000000000000001111111111111111111111111111111100000000000000000000000000000000111111111111111111111111111111110000000000000000000000000000000011111111111111111111111111111111 
+	Parameter C_ARD_NUM_CE_ARRAY bound to: 64'b0000000000000000000000000000000100000000000000000000000000000100 
+	Parameter C_IPIF_ABUS_WIDTH bound to: 32 - type: integer 
+	Parameter C_IPIF_DBUS_WIDTH bound to: 32 - type: integer 
+	Parameter C_S_AXI_MIN_SIZE bound to: 65535 - type: integer 
+	Parameter C_USE_WSTRB bound to: 0 - type: integer 
+	Parameter C_DPHASE_TIMEOUT bound to: 8 - type: integer 
+	Parameter C_FAMILY bound to: virtex6 - type: string 
+INFO: [Synth 8-638] synthesizing module 'address_decoder' [/home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/axi_lite_ipif_v1_01_a/hdl/vhdl/address_decoder.vhd:181]
+	Parameter C_BUS_AWIDTH bound to: 16 - type: integer 
+	Parameter C_S_AXI_MIN_SIZE bound to: 65535 - type: integer 
+	Parameter C_ARD_ADDR_RANGE_ARRAY bound to: 256'b0000000000000000000000000000000011111111111111111111111111111111000000000000000000000000000000001111111111111111111111111111111100000000000000000000000000000000111111111111111111111111111111110000000000000000000000000000000011111111111111111111111111111111 
+	Parameter C_ARD_NUM_CE_ARRAY bound to: 64'b0000000000000000000000000000000100000000000000000000000000000100 
+	Parameter C_FAMILY bound to: nofamily - type: string 
+INFO: [Synth 8-638] synthesizing module 'pselect_f' [/home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd:169]
+	Parameter C_AB bound to: 16 - type: integer 
+	Parameter C_AW bound to: 16 - type: integer 
+	Parameter C_BAR bound to: 16'b1111111111111111 
+	Parameter C_FAMILY bound to: nofamily - type: string 
+INFO: [Synth 8-256] done synthesizing module 'pselect_f' (1#1) [/home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd:169]
+INFO: [Synth 8-638] synthesizing module 'pselect_f__parameterized0' [/home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd:169]
+	Parameter C_AB bound to: 2 - type: integer 
+	Parameter C_AW bound to: 2 - type: integer 
+	Parameter C_BAR bound to: 2'b00 
+	Parameter C_FAMILY bound to: nofamily - type: string 
+INFO: [Synth 8-256] done synthesizing module 'pselect_f__parameterized0' (1#1) [/home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd:169]
+INFO: [Synth 8-638] synthesizing module 'pselect_f__parameterized1' [/home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd:169]
+	Parameter C_AB bound to: 2 - type: integer 
+	Parameter C_AW bound to: 2 - type: integer 
+	Parameter C_BAR bound to: 2'b01 
+	Parameter C_FAMILY bound to: nofamily - type: string 
+INFO: [Synth 8-256] done synthesizing module 'pselect_f__parameterized1' (1#1) [/home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd:169]
+INFO: [Synth 8-638] synthesizing module 'pselect_f__parameterized2' [/home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd:169]
+	Parameter C_AB bound to: 2 - type: integer 
+	Parameter C_AW bound to: 2 - type: integer 
+	Parameter C_BAR bound to: 2'b10 
+	Parameter C_FAMILY bound to: nofamily - type: string 
+INFO: [Synth 8-256] done synthesizing module 'pselect_f__parameterized2' (1#1) [/home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd:169]
+INFO: [Synth 8-638] synthesizing module 'pselect_f__parameterized3' [/home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd:169]
+	Parameter C_AB bound to: 2 - type: integer 
+	Parameter C_AW bound to: 2 - type: integer 
+	Parameter C_BAR bound to: 2'b11 
+	Parameter C_FAMILY bound to: nofamily - type: string 
+INFO: [Synth 8-256] done synthesizing module 'pselect_f__parameterized3' (1#1) [/home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd:169]
+INFO: [Synth 8-256] done synthesizing module 'address_decoder' (2#1) [/home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/axi_lite_ipif_v1_01_a/hdl/vhdl/address_decoder.vhd:181]
+INFO: [Synth 8-226] default block is never used [/home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/axi_lite_ipif_v1_01_a/hdl/vhdl/slave_attachment.vhd:389]
+INFO: [Synth 8-256] done synthesizing module 'slave_attachment' (3#1) [/home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/axi_lite_ipif_v1_01_a/hdl/vhdl/slave_attachment.vhd:236]
+INFO: [Synth 8-256] done synthesizing module 'axi_lite_ipif' (4#1) [/home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/axi_lite_ipif_v1_01_a/hdl/vhdl/axi_lite_ipif.vhd:246]
+INFO: [Synth 8-638] synthesizing module 'soft_reset' [/home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/proc_common_v3_00_a/hdl/vhdl/soft_reset.vhd:144]
+	Parameter C_SIPIF_DWIDTH bound to: 32 - type: integer 
+	Parameter C_RESET_WIDTH bound to: 8 - type: integer 
+	Parameter INIT bound to: 1'b0 
+	Parameter IS_CE_INVERTED bound to: 1'b0 
+	Parameter IS_C_INVERTED bound to: 1'b0 
+	Parameter IS_D_INVERTED bound to: 1'b0 
+	Parameter IS_R_INVERTED bound to: 1'b0 
+	Parameter IS_S_INVERTED bound to: 1'b0 
+INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/proc_common_v3_00_a/hdl/vhdl/soft_reset.vhd:275]
+	Parameter INIT bound to: 1'b0 
+	Parameter IS_CE_INVERTED bound to: 1'b0 
+	Parameter IS_C_INVERTED bound to: 1'b0 
+	Parameter IS_D_INVERTED bound to: 1'b0 
+	Parameter IS_R_INVERTED bound to: 1'b0 
+	Parameter IS_S_INVERTED bound to: 1'b0 
+INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/proc_common_v3_00_a/hdl/vhdl/soft_reset.vhd:275]
+	Parameter INIT bound to: 1'b0 
+	Parameter IS_CE_INVERTED bound to: 1'b0 
+	Parameter IS_C_INVERTED bound to: 1'b0 
+	Parameter IS_D_INVERTED bound to: 1'b0 
+	Parameter IS_R_INVERTED bound to: 1'b0 
+	Parameter IS_S_INVERTED bound to: 1'b0 
+INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/proc_common_v3_00_a/hdl/vhdl/soft_reset.vhd:275]
+	Parameter INIT bound to: 1'b0 
+	Parameter IS_CE_INVERTED bound to: 1'b0 
+	Parameter IS_C_INVERTED bound to: 1'b0 
+	Parameter IS_D_INVERTED bound to: 1'b0 
+	Parameter IS_R_INVERTED bound to: 1'b0 
+	Parameter IS_S_INVERTED bound to: 1'b0 
+INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/proc_common_v3_00_a/hdl/vhdl/soft_reset.vhd:275]
+	Parameter INIT bound to: 1'b0 
+	Parameter IS_CE_INVERTED bound to: 1'b0 
+	Parameter IS_C_INVERTED bound to: 1'b0 
+	Parameter IS_D_INVERTED bound to: 1'b0 
+	Parameter IS_R_INVERTED bound to: 1'b0 
+	Parameter IS_S_INVERTED bound to: 1'b0 
+INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/proc_common_v3_00_a/hdl/vhdl/soft_reset.vhd:275]
+	Parameter INIT bound to: 1'b0 
+	Parameter IS_CE_INVERTED bound to: 1'b0 
+	Parameter IS_C_INVERTED bound to: 1'b0 
+	Parameter IS_D_INVERTED bound to: 1'b0 
+	Parameter IS_R_INVERTED bound to: 1'b0 
+	Parameter IS_S_INVERTED bound to: 1'b0 
+INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/proc_common_v3_00_a/hdl/vhdl/soft_reset.vhd:275]
+	Parameter INIT bound to: 1'b0 
+	Parameter IS_CE_INVERTED bound to: 1'b0 
+	Parameter IS_C_INVERTED bound to: 1'b0 
+	Parameter IS_D_INVERTED bound to: 1'b0 
+	Parameter IS_R_INVERTED bound to: 1'b0 
+	Parameter IS_S_INVERTED bound to: 1'b0 
+INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/proc_common_v3_00_a/hdl/vhdl/soft_reset.vhd:275]
+	Parameter INIT bound to: 1'b0 
+	Parameter IS_CE_INVERTED bound to: 1'b0 
+	Parameter IS_C_INVERTED bound to: 1'b0 
+	Parameter IS_D_INVERTED bound to: 1'b0 
+	Parameter IS_R_INVERTED bound to: 1'b0 
+	Parameter IS_S_INVERTED bound to: 1'b0 
+INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/proc_common_v3_00_a/hdl/vhdl/soft_reset.vhd:275]
+	Parameter INIT bound to: 1'b0 
+	Parameter IS_CE_INVERTED bound to: 1'b0 
+	Parameter IS_C_INVERTED bound to: 1'b0 
+	Parameter IS_D_INVERTED bound to: 1'b0 
+	Parameter IS_R_INVERTED bound to: 1'b0 
+	Parameter IS_S_INVERTED bound to: 1'b0 
+INFO: [Synth 8-113] binding component instance 'FF_WRACK' to cell 'FDRSE' [/home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/proc_common_v3_00_a/hdl/vhdl/soft_reset.vhd:298]
+INFO: [Synth 8-256] done synthesizing module 'soft_reset' (5#1) [/home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/proc_common_v3_00_a/hdl/vhdl/soft_reset.vhd:144]
+ERROR: [Synth 8-493] no such design unit 'user_logic' [/home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/axi_hthreads_timer_v1_00_a/hdl/vhdl/axi_hthreads_timer.vhd:331]
+ERROR: [Synth 8-285] failed synthesizing module 'axi_hthreads_timer' [/home/abazar63/hthread/src/hardware/MyRepository/pcores/axi_hthread_cores/axi_hthreads_timer_v1_00_a/hdl/vhdl/axi_hthreads_timer.vhd:180]
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1016.973 ; gain = 208.738 ; free physical = 27481 ; free virtual = 61671
+---------------------------------------------------------------------------------
+synthesize failed
+INFO: [Common 17-83] Releasing license: Synthesis
+33 Infos, 0 Warnings, 0 Critical Warnings and 3 Errors encountered.
+synth_design failed
+ERROR: [Common 17-69] Command failed: Vivado Synthesis failed
+INFO: [Common 17-206] Exiting Vivado at Mon Jun 15 15:46:26 2015...

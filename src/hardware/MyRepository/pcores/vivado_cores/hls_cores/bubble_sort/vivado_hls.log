@@ -1,0 +1,607 @@
+@I [LIC-101] Checked out feature [HLS]
+@I [HLS-10] Running '/opt/Xilinx/Vivado_HLS/2014.2/bin/unwrapped/lnx64.o/vivado_hls'
+            for user 'abazar63' on host 'spartacus' (Linux_x86_64 version 3.5.0-25-generic) on Fri Mar 27 17:29:02 CDT 2015
+            in directory '/home/abazar63/hthread/src/hardware/MyRepository/pcores/vivado_cores/hls_cores/bubble_sort'
+@I [HLS-10] Opening project '/home/abazar63/hthread/src/hardware/MyRepository/pcores/vivado_cores/hls_cores/bubble_sort/bubblesort_prj'.
+@I [HLS-10] Opening solution '/home/abazar63/hthread/src/hardware/MyRepository/pcores/vivado_cores/hls_cores/bubble_sort/bubblesort_prj/solution1'.
+@I [SYN-201] Setting up clock 'default' with a period of 10ns.
+@I [HLS-10] Setting target device to 'xc7vx485tffg1761-2'
+@I [IMPL-8] Starting RTL evaluation using Vivado ...
+
+****** Vivado v2014.2 (64-bit)
+  **** SW Build 928826 on Thu Jun  5 17:55:10 MDT 2014
+  **** IP Build 924643 on Fri May 30 09:20:16 MDT 2014
+    ** Copyright 1986-2014 Xilinx, Inc. All Rights Reserved.
+
+source run_vivado.tcl -notrace
+WARNING: [filemgmt 20-1763] Vivado Synthesis ignores library specification for Verilog or SystemVerilog files. [/home/abazar63/hthread/src/hardware/MyRepository/pcores/vivado_cores/hls_cores/bubble_sort/bubblesort_prj/solution1/impl/verilog/bubblesort_sw_bubblesort.v]
+WARNING: [filemgmt 20-1763] Vivado Synthesis ignores library specification for Verilog or SystemVerilog files. [/home/abazar63/hthread/src/hardware/MyRepository/pcores/vivado_cores/hls_cores/bubble_sort/bubblesort_prj/solution1/impl/verilog/bubblesort.v]
+[Fri Mar 27 17:29:06 2015] Launched synth_1...
+Run output will be captured here: /home/abazar63/hthread/src/hardware/MyRepository/pcores/vivado_cores/hls_cores/bubble_sort/bubblesort_prj/solution1/impl/verilog/project.runs/synth_1/runme.log
+[Fri Mar 27 17:29:06 2015] Waiting for synth_1 to finish...
+
+*** Running vivado
+    with args -log bubblesort.vds -m64 -mode batch -messageDb vivado.pb -source bubblesort.tcl
+
+
+****** Vivado v2014.2 (64-bit)
+  **** SW Build 928826 on Thu Jun  5 17:55:10 MDT 2014
+  **** IP Build 924643 on Fri May 30 09:20:16 MDT 2014
+    ** Copyright 1986-2014 Xilinx, Inc. All Rights Reserved.
+
+source bubblesort.tcl
+# set_msg_config -id {HDL 9-1061} -limit 100000
+# set_msg_config -id {HDL 9-1654} -limit 100000
+# create_project -in_memory -part xc7vx485tffg1761-2
+# set_property target_language Verilog [current_project]
+# set_param project.compositeFile.enableAutoGeneration 0
+# set_property default_lib xil_defaultlib [current_project]
+# read_verilog -library xil_defaultlib {
+#   /home/abazar63/hthread/src/hardware/MyRepository/pcores/vivado_cores/hls_cores/bubble_sort/bubblesort_prj/solution1/impl/verilog/bubblesort_sw_bubblesort.v
+#   /home/abazar63/hthread/src/hardware/MyRepository/pcores/vivado_cores/hls_cores/bubble_sort/bubblesort_prj/solution1/impl/verilog/bubblesort.v
+# }
+WARNING: [filemgmt 20-1763] Vivado Synthesis ignores library specification for Verilog or SystemVerilog files. [/home/abazar63/hthread/src/hardware/MyRepository/pcores/vivado_cores/hls_cores/bubble_sort/bubblesort_prj/solution1/impl/verilog/bubblesort_sw_bubblesort.v]
+WARNING: [filemgmt 20-1763] Vivado Synthesis ignores library specification for Verilog or SystemVerilog files. [/home/abazar63/hthread/src/hardware/MyRepository/pcores/vivado_cores/hls_cores/bubble_sort/bubblesort_prj/solution1/impl/verilog/bubblesort.v]
+# read_xdc /home/abazar63/hthread/src/hardware/MyRepository/pcores/vivado_cores/hls_cores/bubble_sort/bubblesort_prj/solution1/impl/verilog/bubblesort.xdc
+# set_property used_in_implementation false [get_files /home/abazar63/hthread/src/hardware/MyRepository/pcores/vivado_cores/hls_cores/bubble_sort/bubblesort_prj/solution1/impl/verilog/bubblesort.xdc]
+# set_param synth.vivado.isSynthRun true
+# set_property webtalk.parent_dir /home/abazar63/hthread/src/hardware/MyRepository/pcores/vivado_cores/hls_cores/bubble_sort/bubblesort_prj/solution1/impl/verilog/project.cache/wt [current_project]
+# set_property parent.project_dir /home/abazar63/hthread/src/hardware/MyRepository/pcores/vivado_cores/hls_cores/bubble_sort/bubblesort_prj/solution1/impl/verilog [current_project]
+# catch { write_hwdef -file bubblesort.hwdef }
+INFO: [Vivado_Tcl 4-279] hardware handoff file cannot be generated as there is no block diagram instance in the design
+# synth_design -top bubblesort -part xc7vx485tffg1761-2 -no_lc -no_iobuf -mode out_of_context
+Command: synth_design -top bubblesort -part xc7vx485tffg1761-2 -no_lc -no_iobuf -mode out_of_context
+
+Starting synthesis...
+
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7vx485t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7vx485t'
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 788.629 ; gain = 156.125
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'bubblesort' [/home/abazar63/hthread/src/hardware/MyRepository/pcores/vivado_cores/hls_cores/bubble_sort/bubblesort_prj/solution1/impl/verilog/bubblesort.v:12]
+	Parameter ap_const_logic_1 bound to: 1'b1 
+	Parameter ap_const_logic_0 bound to: 1'b0 
+	Parameter ap_ST_st1_fsm_0 bound to: 2'b00 
+	Parameter ap_ST_st2_fsm_1 bound to: 2'b01 
+	Parameter ap_ST_st3_fsm_2 bound to: 2'b10 
+	Parameter ap_ST_st4_fsm_3 bound to: 2'b11 
+	Parameter ap_const_lv32_1 bound to: 1 - type: integer 
+	Parameter ap_const_lv32_0 bound to: 0 - type: integer 
+	Parameter ap_const_lv4_0 bound to: 4'b0000 
+	Parameter ap_true bound to: 1'b1 
+INFO: [Synth 8-638] synthesizing module 'bubblesort_sw_bubblesort' [/home/abazar63/hthread/src/hardware/MyRepository/pcores/vivado_cores/hls_cores/bubble_sort/bubblesort_prj/solution1/impl/verilog/bubblesort_sw_bubblesort.v:10]
+	Parameter ap_const_logic_1 bound to: 1'b1 
+	Parameter ap_const_logic_0 bound to: 1'b0 
+	Parameter ap_ST_st1_fsm_0 bound to: 3'b000 
+	Parameter ap_ST_st2_fsm_1 bound to: 3'b001 
+	Parameter ap_ST_st3_fsm_2 bound to: 3'b010 
+	Parameter ap_ST_st4_fsm_3 bound to: 3'b011 
+	Parameter ap_ST_st5_fsm_4 bound to: 3'b100 
+	Parameter ap_ST_st6_fsm_5 bound to: 3'b101 
+	Parameter ap_const_lv1_0 bound to: 1'b0 
+	Parameter ap_const_lv32_2 bound to: 2 - type: integer 
+	Parameter ap_const_lv4_0 bound to: 4'b0000 
+	Parameter ap_const_lv4_F bound to: 4'b1111 
+	Parameter ap_const_lv32_1 bound to: 1 - type: integer 
+	Parameter ap_const_lv32_FFFFFFFF bound to: -1 - type: integer 
+	Parameter ap_true bound to: 1'b1 
+INFO: [Synth 8-256] done synthesizing module 'bubblesort_sw_bubblesort' (1#1) [/home/abazar63/hthread/src/hardware/MyRepository/pcores/vivado_cores/hls_cores/bubble_sort/bubblesort_prj/solution1/impl/verilog/bubblesort_sw_bubblesort.v:10]
+INFO: [Synth 8-226] default block is never used [/home/abazar63/hthread/src/hardware/MyRepository/pcores/vivado_cores/hls_cores/bubble_sort/bubblesort_prj/solution1/impl/verilog/bubblesort.v:241]
+INFO: [Synth 8-256] done synthesizing module 'bubblesort' (2#1) [/home/abazar63/hthread/src/hardware/MyRepository/pcores/vivado_cores/hls_cores/bubble_sort/bubblesort_prj/solution1/impl/verilog/bubblesort.v:12]
+WARNING: [Synth 8-3917] design bubblesort has port resp_TDATA[31] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port resp_TDATA[30] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port resp_TDATA[29] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port resp_TDATA[28] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port resp_TDATA[27] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port resp_TDATA[26] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port resp_TDATA[25] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port resp_TDATA[24] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port resp_TDATA[23] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port resp_TDATA[22] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port resp_TDATA[21] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port resp_TDATA[20] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port resp_TDATA[19] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port resp_TDATA[18] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port resp_TDATA[17] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port resp_TDATA[16] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port resp_TDATA[15] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port resp_TDATA[14] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port resp_TDATA[13] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port resp_TDATA[12] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port resp_TDATA[11] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port resp_TDATA[10] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port resp_TDATA[9] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port resp_TDATA[8] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port resp_TDATA[7] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port resp_TDATA[6] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port resp_TDATA[5] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port resp_TDATA[4] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port resp_TDATA[3] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port resp_TDATA[2] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port resp_TDATA[1] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port resp_TDATA[0] driven by constant 1
+WARNING: [Synth 8-3917] design bubblesort has port a_Addr_A[31] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Addr_A[30] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Addr_A[29] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Addr_A[28] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Addr_A[27] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Addr_A[26] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Addr_A[25] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Addr_A[24] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Addr_A[23] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Addr_A[22] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Addr_A[21] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Addr_A[20] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Addr_A[19] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Addr_A[18] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Addr_A[17] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Addr_A[16] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Addr_A[15] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Addr_A[14] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Addr_A[13] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Addr_A[12] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Addr_A[11] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Addr_A[10] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Addr_A[9] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Addr_A[8] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Addr_A[7] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Addr_A[6] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Addr_A[5] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Addr_A[4] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Addr_A[3] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Addr_A[2] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Addr_A[1] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Addr_A[0] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_EN_A driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_WEN_A[3] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_WEN_A[2] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_WEN_A[1] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_WEN_A[0] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Din_A[31] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Din_A[30] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Din_A[29] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Din_A[28] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Din_A[27] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Din_A[26] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Din_A[25] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Din_A[24] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Din_A[23] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Din_A[22] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Din_A[21] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Din_A[20] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Din_A[19] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Din_A[18] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Din_A[17] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Din_A[16] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Din_A[15] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Din_A[14] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Din_A[13] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Din_A[12] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Din_A[11] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Din_A[10] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Din_A[9] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Din_A[8] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Din_A[7] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Din_A[6] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Din_A[5] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Din_A[4] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Din_A[3] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Din_A[2] driven by constant 0
+WARNING: [Synth 8-3917] design bubblesort has port a_Din_A[1] driven by constant 0
+INFO: [Common 17-14] Message 'Synth 8-3917' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[31]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[30]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[29]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[28]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[27]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[26]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[25]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[24]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[23]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[22]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[21]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[20]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[19]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[18]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[17]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[16]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[15]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[14]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[13]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[12]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[11]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[10]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[9]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[8]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[7]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[6]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[5]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[4]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[3]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[2]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[1]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[0]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[31]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[30]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[29]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[28]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[27]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[26]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[25]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[24]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[23]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[22]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[21]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[20]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[19]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[18]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[17]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[16]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[15]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[14]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[13]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[12]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[11]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[10]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[9]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[8]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[7]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[6]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[5]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[4]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[3]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[2]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[1]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[0]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 823.512 ; gain = 191.008
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Optimization
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+Loading clock regions from /opt/Xilinx/Vivado/2014.2/data/parts/xilinx/virtex7/virtex7/xc7vx485t/ClockRegion.xml
+Loading clock buffers from /opt/Xilinx/Vivado/2014.2/data/parts/xilinx/virtex7/virtex7/xc7vx485t/ClockBuffers.xml
+Loading clock placement rules from /opt/Xilinx/Vivado/2014.2/data/parts/xilinx/virtex7/ClockPlacerRules.xml
+Loading package pin functions from /opt/Xilinx/Vivado/2014.2/data/parts/xilinx/virtex7/PinFunctions.xml...
+Loading package from /opt/Xilinx/Vivado/2014.2/data/parts/xilinx/virtex7/virtex7/xc7vx485t/ffg1761/Package.xml
+Loading io standards from /opt/Xilinx/Vivado/2014.2/data/./parts/xilinx/virtex7/IOStandards.xml
+Loading device configuration modes from /opt/Xilinx/Vivado/2014.2/data/parts/xilinx/virtex7/ConfigModes.xml
+
+Processing XDC Constraints
+Parsing XDC File [/home/abazar63/hthread/src/hardware/MyRepository/pcores/vivado_cores/hls_cores/bubble_sort/bubblesort_prj/solution1/impl/verilog/bubblesort.xdc]
+Finished Parsing XDC File [/home/abazar63/hthread/src/hardware/MyRepository/pcores/vivado_cores/hls_cores/bubble_sort/bubblesort_prj/solution1/impl/verilog/bubblesort.xdc]
+Completed Processing XDC Constraints
+
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+---------------------------------------------------------------------------------
+Start RTL Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7vx485tffg1761-2
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1201.941 ; gain = 569.438
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1201.941 ; gain = 569.438
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1201.941 ; gain = 569.438
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'ap_CS_fsm_reg' in module 'bubblesort_sw_bubblesort'
+INFO: [Synth 8-3354] encoded FSM with state register 'ap_CS_fsm_reg' using encoding 'one-hot' in module 'bubblesort_sw_bubblesort'
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 2     
++---Registers : 
+	               32 Bit    Registers := 7     
+	               12 Bit    Registers := 2     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 3     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 6     
+	   9 Input      7 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 1     
+	   7 Input      3 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 2     
+	   4 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 11    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module bubblesort 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 2     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      4 Bit        Muxes := 1     
+	   4 Input      2 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 7     
+Module bubblesort_sw_bubblesort 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 2     
++---Registers : 
+	               32 Bit    Registers := 5     
+	               12 Bit    Registers := 2     
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 6     
+	   9 Input      7 Bit        Muxes := 1     
+	   7 Input      3 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 4     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 2800 (col length:140)
+BRAMs: 2060 (col length: RAMB18 140 RAMB36 70)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+Workers Ready, Starting Parallel Section  : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1201.941 ; gain = 569.438
+---------------------------------------------------------------------------------
+Start Cross Boundary Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[31]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[30]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[29]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[28]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[27]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[26]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[25]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[24]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[23]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[22]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[21]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[20]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[19]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[18]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[17]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[16]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[15]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[14]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[13]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[12]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[11]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[10]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[9]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[8]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[7]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[6]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[5]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[4]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[3]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[2]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[1]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port a_Dout_A[0]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[31]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[30]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[29]
+WARNING: [Synth 8-3331] design bubblesort has unconnected port b_Dout_A[28]
+INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished Cross Boundary Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1201.941 ; gain = 569.438
+---------------------------------------------------------------------------------
+Finished Parallel Reinfer  : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1201.941 ; gain = 569.438
+---------------------------------------------------------------------------------
+Start RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Area Optimization
+---------------------------------------------------------------------------------
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_2_0/\grp_bubblesort_sw_bubblesort_fu_61/FSM_onehot_ap_CS_fsm_reg[0] )
+WARNING: [Synth 8-3332] Sequential element (\grp_bubblesort_sw_bubblesort_fu_61/FSM_onehot_ap_CS_fsm_reg[0] ) is unused and will be removed from module bubblesort.
+WARNING: [Synth 8-3332] Sequential element (\grp_bubblesort_sw_bubblesort_fu_61/tmp_4_reg_175_reg[0] ) is unused and will be removed from module bubblesort.
+WARNING: [Synth 8-3332] Sequential element (\grp_bubblesort_sw_bubblesort_fu_61/tmp_4_reg_175_reg[1] ) is unused and will be removed from module bubblesort.
+WARNING: [Synth 8-3332] Sequential element (\grp_bubblesort_sw_bubblesort_fu_61/tmp_4_reg_175_reg[2] ) is unused and will be removed from module bubblesort.
+WARNING: [Synth 8-3332] Sequential element (\grp_bubblesort_sw_bubblesort_fu_61/tmp_4_reg_175_reg[3] ) is unused and will be removed from module bubblesort.
+WARNING: [Synth 8-3332] Sequential element (\grp_bubblesort_sw_bubblesort_fu_61/tmp_4_reg_175_reg[4] ) is unused and will be removed from module bubblesort.
+WARNING: [Synth 8-3332] Sequential element (\grp_bubblesort_sw_bubblesort_fu_61/tmp_4_reg_175_reg[5] ) is unused and will be removed from module bubblesort.
+WARNING: [Synth 8-3332] Sequential element (\grp_bubblesort_sw_bubblesort_fu_61/tmp_4_reg_175_reg[6] ) is unused and will be removed from module bubblesort.
+WARNING: [Synth 8-3332] Sequential element (\grp_bubblesort_sw_bubblesort_fu_61/tmp_4_reg_175_reg[7] ) is unused and will be removed from module bubblesort.
+WARNING: [Synth 8-3332] Sequential element (\grp_bubblesort_sw_bubblesort_fu_61/tmp_4_reg_175_reg[8] ) is unused and will be removed from module bubblesort.
+WARNING: [Synth 8-3332] Sequential element (\grp_bubblesort_sw_bubblesort_fu_61/tmp_4_reg_175_reg[9] ) is unused and will be removed from module bubblesort.
+WARNING: [Synth 8-3332] Sequential element (\grp_bubblesort_sw_bubblesort_fu_61/tmp_4_reg_175_reg[10] ) is unused and will be removed from module bubblesort.
+WARNING: [Synth 8-3332] Sequential element (\grp_bubblesort_sw_bubblesort_fu_61/tmp_4_reg_175_reg[11] ) is unused and will be removed from module bubblesort.
+---------------------------------------------------------------------------------
+Finished Area Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1201.965 ; gain = 569.461
+---------------------------------------------------------------------------------
+Finished Parallel Area Opt  : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1201.965 ; gain = 569.461
+Finished Parallel Section  : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1201.965 ; gain = 569.461
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:22 ; elapsed = 00:00:22 . Memory (MB): peak = 1243.957 ; gain = 611.453
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:22 ; elapsed = 00:00:22 . Memory (MB): peak = 1243.957 ; gain = 611.453
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1256.973 ; gain = 624.469
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:23 ; elapsed = 00:00:23 . Memory (MB): peak = 1256.973 ; gain = 624.469
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:23 ; elapsed = 00:00:23 . Memory (MB): peak = 1256.973 ; gain = 624.469
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:23 ; elapsed = 00:00:23 . Memory (MB): peak = 1256.973 ; gain = 624.469
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |CARRY4 |    40|
+|2     |LUT1   |    64|
+|3     |LUT2   |     5|
+|4     |LUT3   |   174|
+|5     |LUT4   |   141|
+|6     |LUT5   |    18|
+|7     |LUT6   |    17|
+|8     |FDRE   |   278|
+|9     |FDSE   |     1|
++------+-------+------+
+
+Report Instance Areas: 
++------+-------------------------------------+-------------------------+------+
+|      |Instance                             |Module                   |Cells |
++------+-------------------------------------+-------------------------+------+
+|1     |top                                  |                         |   738|
+|2     |  grp_bubblesort_sw_bubblesort_fu_61 |bubblesort_sw_bubblesort |   663|
++------+-------------------------------------+-------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:23 ; elapsed = 00:00:23 . Memory (MB): peak = 1256.973 ; gain = 624.469
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 253 warnings.
+Synthesis Optimization Complete : Time (s): cpu = 00:00:23 ; elapsed = 00:00:23 . Memory (MB): peak = 1256.973 ; gain = 624.469
+INFO: [Netlist 29-17] Analyzing 40 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+15 Infos, 213 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:23 ; elapsed = 00:00:23 . Memory (MB): peak = 1265.977 ; gain = 528.344
+# write_checkpoint bubblesort.dcp
+# report_utilization -file bubblesort_utilization_synth.rpt -pb bubblesort_utilization_synth.pb
+report_utilization: Time (s): cpu = 00:00:00.08 ; elapsed = 00:00:00.11 . Memory (MB): peak = 1265.977 ; gain = 0.000
+INFO: [Common 17-206] Exiting Vivado at Fri Mar 27 17:29:33 2015...
+[Fri Mar 27 17:29:38 2015] synth_1 finished
+wait_on_run: Time (s): cpu = 00:00:00.23 ; elapsed = 00:00:32 . Memory (MB): peak = 750.625 ; gain = 8.000
+Design is defaulting to impl run constrset: constrs_1
+Design is defaulting to synth run part: xc7vx485tffg1761-2
+INFO: [Netlist 29-17] Analyzing 40 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2014.2
+Loading clock regions from /opt/Xilinx/Vivado/2014.2/data/parts/xilinx/virtex7/virtex7/xc7vx485t/ClockRegion.xml
+Loading clock buffers from /opt/Xilinx/Vivado/2014.2/data/parts/xilinx/virtex7/virtex7/xc7vx485t/ClockBuffers.xml
+Loading clock placement rules from /opt/Xilinx/Vivado/2014.2/data/parts/xilinx/virtex7/ClockPlacerRules.xml
+Loading package pin functions from /opt/Xilinx/Vivado/2014.2/data/parts/xilinx/virtex7/PinFunctions.xml...
+Loading package from /opt/Xilinx/Vivado/2014.2/data/parts/xilinx/virtex7/virtex7/xc7vx485t/ffg1761/Package.xml
+Loading io standards from /opt/Xilinx/Vivado/2014.2/data/./parts/xilinx/virtex7/IOStandards.xml
+Loading device configuration modes from /opt/Xilinx/Vivado/2014.2/data/parts/xilinx/virtex7/ConfigModes.xml
+Parsing XDC File [/home/abazar63/hthread/src/hardware/MyRepository/pcores/vivado_cores/hls_cores/bubble_sort/bubblesort_prj/solution1/impl/verilog/bubblesort.xdc]
+Finished Parsing XDC File [/home/abazar63/hthread/src/hardware/MyRepository/pcores/vivado_cores/hls_cores/bubble_sort/bubblesort_prj/solution1/impl/verilog/bubblesort.xdc]
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+open_run: Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1111.562 ; gain = 360.938
+report_utilization: Time (s): cpu = 00:00:00.08 ; elapsed = 00:00:00.10 . Memory (MB): peak = 1111.562 ; gain = 0.000
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2, Delay Type: max, Constraints type: SDC.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 8 CPUs
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+WARNING: [Timing 38-242] The property HD.CLK_SRC of clock port "ap_clk" is not set. In out-of-context mode, this prevents timing estimation for clock delay/skew
+Resolution: Set the HD.CLK_SRC property of the out-of-context port to the location of the clock buffer instance in the top-level design
+INFO: [Timing 38-78] ReportTimingParams: -max_paths 1 -nworst 1 -delay_type max -sort_by slack.
+report_timing: Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1627.363 ; gain = 515.801
+
+
+Implementation tool: Xilinx Vivado v.2014.2
+Device target:       xc7vx485tffg1761-2
+Report date:         Fri Mar 27 17:29:58 CDT 2015
+
+#=== Resource usage ===
+SLICE:          279
+LUT:            354
+FF:             279
+DSP:              0
+BRAM:             0
+SRL:              0
+#=== Final timing ===
+CP required:    10.000
+CP achieved:    3.309
+Timing met
+INFO: [Common 17-206] Exiting Vivado at Fri Mar 27 17:29:58 2015...
+@I [LIC-101] Checked in feature [HLS]

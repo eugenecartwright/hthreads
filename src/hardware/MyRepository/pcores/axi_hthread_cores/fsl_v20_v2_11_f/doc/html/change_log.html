@@ -1,0 +1,877 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<head>
+  <title>Change log for fsl_v20, 2.11.f</title>
+  <link href="../../../../../../doc/usenglish/css/xilhtml.css" rel="stylesheet" type="text/css">
+  <style>
+		P.Level1Heading {
+			color: #000000;
+			font-weight: bold;
+			font-size: 1.05em;
+			margin-bottom: 0em;
+			margin-top: 0em;
+		}
+		P.Level2Heading  {
+			font-weight: bold;
+			margin-top: 2em;
+			margin-bottom: 0em;
+		}
+		P.Level3Heading {
+			font-weight: bold;
+			margin-top: 2em;
+		}
+		.GreyBackground {
+			background-color:#CCCCCC;
+		}
+		.PreformatFont  {
+			font-family: Fixed, Mono, Courier New, Courier;
+			font-size: .95em;
+		}
+	</style>
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:Location msdt:dt="string">Sweden</mso:Location>
+<mso:Description0 msdt:dt="string"></mso:Description0>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+<body>
+<h3 class="PageHeader">Xilinx Processor IP Library</h3>
+<h1>Change log for fsl_v20<br>
+</h1>
+<hr class="whs1">
+<table style="vertical-align: top; text-align: left;" border="0"
+ cellpadding="1" cellspacing="0">
+  <tbody>
+<!-- BEGIN CHANGELOG FOR New core version --><!--spacer--><tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v2.11.f introduced in 14.4</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">14.4 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Fixed issue with sync FIFO BRAMs which could duplicate read data [CR<677739>].<br>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">14.4 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">14.4 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">14.4 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v2.11.e introduced in 13.3</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">13.3 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">13.3 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">13.3 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Added DRC warning when asynchronous FIFO using LUTRAM is used [CR<613982>]<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">13.3 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Added explanation of why "ENABLE=sr_reg_o" needs to be added for asynchronous FIFO using LUTRAM [CR<613982>]<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v2.11.e introduced in 13.2</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">13.2 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul><li>  Fixed pointer issue for large synchronous FIFO</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">13.2 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">13.2 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">13.2 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v2.11.d introduced in 13.1</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">13.1 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul><li>  Allowed non 2**n depths for synchronous FIFO</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">13.1 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">13.1 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            Added DRC for detecting non 2**n depths for asynchronous FIFO
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">13.1 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            Updated the datasheet about the change in FIFO depth values
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v2.11.c introduced in 12.1</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">12.1 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul><li>  Removed use of attribute for INIT values  </li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">12.1 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">12.1 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">12.1 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v2.11.b introduced in 12.1</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">12.1 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">12.1 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Changed default signal assignment for PORT FSL_Rst from OPB_Rst to LMB_Rst [CR<518914>].<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">12.1 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">12.1 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v2.11.b introduced in 11.2</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">11.2 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Changed all asynchronous resets to synchronous resets  [CR<481241>].<br>
+        </li>
+        <li>
+          Fixed rare issue with lost data for synchronous BRAM implementation [CR<511976>].<br>
+          <ul>
+            <li>
+              This issue can only occur for simultaneous read and write with one word in FIFO for a synchronous BRAM implementation.<br>
+            </li>
+            <li>
+              Versions that have this issue: v2.11.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Fixed issue with FIFO sizes different from 2<sup>n</sup> for synchronous FIFO [CR<514151>].<br>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">11.2 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">11.2 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Updated constraint generation for FSL without a control bit [CR<481535>].<br>
+        </li>
+        <li>
+          Updated constraint syntax by adding DATAPATHONLY [CR<506510>].<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">11.2 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v2.11.a introduced in 10.1.1</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">10.1.1 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">10.1.1 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">10.1.1 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Updated constraint syntax for XST naming convention change [CR<467367>].<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">10.1.1 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v2.11.a introduced in 10.1</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">10.1 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">10.1 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Added preferred support for virtex2p<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">10.1 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">10.1 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v2.11.a introduced in 9.2.1</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">9.2.1 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">9.2.1 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">9.2.1 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">9.2.1 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Changed FSL_S_EXISTS signal direction in Figure 1; updated legal footer<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v2.11.a introduced in 9.2</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">9.2 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Added new generic C_READ_CLOCK_PERIOD to handle timing constraints on asynchronous BRAM based implementation [CR<433775>].<br>
+          <ul>
+            <li>
+              Versions that have this issue: v2.10.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Fixed back-to-back read on BRAM based FIFO  [CR<438690>].<br>
+          <ul>
+            <li>
+              Versions that have this issue: v2.10.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Fixed exists flag from being set too early  [CR<439091>].<br>
+          <ul>
+            <li>
+              Versions that have this issue: v2.10.a<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">9.2 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Added new parameter C_READ_CLOCK_PERIOD [CR<433775>].<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">9.2 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">9.2 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Ambiguity in what happens for FSL_S_Read when FSL_S_EXISTS is low and for FSL_M_WRITE when FSL_S_FULL is high [CR<432809>].<br>
+        </li>
+        <li>
+          Allowable values for C_FSL_WIDTH [CR<432811>]<br>
+        </li>
+        <li>
+          FSL_Full is specified as an input instead of ouput [CR<432812>]<br>
+        </li>
+        <li>
+          Async FSL pcore is causing timing violations between FSL pcore and Microblaze [CR<433775>]<br>
+        </li>
+        <li>
+          FSL v2.10.a can't handle back to back read fixed [CR<438690>]<br>
+        </li>
+        <li>
+          FSL v2.10.a assigns exists flag too early fixed [CR<439091>]<br>
+        </li>
+        <li>
+          MicroBlaze Soft Processor FSL Interface section updated<br>
+        </li>
+        <li>
+          Supported Target Technology updated<br>
+<!-- END CHANGELOG FOR New core version. BEGIN change logs for new version here -->
+  </tbody>
+</table>
+<p class="Copyright"> Copyright &copy; 1995-2012 Xilinx, Inc. All rights reserved. </p>
+</body>
+</html>

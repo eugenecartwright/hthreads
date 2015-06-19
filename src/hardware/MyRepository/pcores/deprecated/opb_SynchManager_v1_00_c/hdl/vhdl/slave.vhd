@@ -1,0 +1,756 @@
+-------------------------------------------------------------------------------------
+-- Copyright (c) 2006, University of Kansas - Hybridthreads Group
+-- All rights reserved.
+-- 
+-- Redistribution and use in source and binary forms, with or without
+-- modification, are permitted provided that the following conditions are met:
+-- 
+--     * Redistributions of source code must retain the above copyright notice,
+--       this list of conditions and the following disclaimer.
+--     * Redistributions in binary form must reproduce the above copyright notice,
+--       this list of conditions and the following disclaimer in the documentation
+--       and/or other materials provided with the distribution.
+--     * Neither the name of the University of Kansas nor the name of the
+--       Hybridthreads Group nor the names of its contributors may be used to
+--       endorse or promote products derived from this software without specific
+--       prior written permission.
+-- 
+-- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+-- ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+-- WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+-- DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+-- ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+-- (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+-- LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+-- ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+-- (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+-- SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-------------------------------------------------------------------------------------
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
+use ieee.std_logic_misc.all;
+use work.common.all;
+
+entity slave is
+    generic
+    (
+        C_NUM_THREADS   : integer   := 256;
+        C_NUM_MUTEXES   : integer   := 64;
+
+        C_AWIDTH        : integer   := 32;
+        C_DWIDTH        : integer   := 32;
+
+        C_MAX_AR_DWIDTH : integer   := 32;
+        C_NUM_ADDR_RNG  : integer   := 7;
+        C_NUM_CE        : integer   := 1
+    );
+    port
+    (
+        Bus2IP_Clk      :  in std_logic;
+        Bus2IP_Reset    :  in std_logic;
+        Bus2IP_Addr     :  in std_logic_vector(0 to C_AWIDTH-1);
+        Bus2IP_Data     :  in std_logic_vector(0 to C_DWIDTH-1);
+        Bus2IP_BE       :  in std_logic_vector(0 to C_DWIDTH/8-1);
+        Bus2IP_RNW      :  in std_logic;
+        Bus2IP_RdCE     :  in std_logic_vector(0 to C_NUM_CE-1);
+        Bus2IP_WrCE     :  in std_logic_vector(0 to C_NUM_CE-1);
+        Bus2IP_RdReq    :  in std_logic;
+        Bus2IP_WrReq    :  in std_logic;
+        IP2Bus_Data     : out std_logic_vector(0 to C_DWIDTH-1);
+        IP2Bus_Retry    : out std_logic;
+        IP2Bus_Error    : out std_logic;
+        IP2Bus_ToutSup  : out std_logic;
+        IP2Bus_RdAck    : out std_logic;
+        IP2Bus_WrAck    : out std_logic;
+        Bus2IP_ArData   :  in std_logic_vector(0 to C_MAX_AR_DWIDTH-1);
+        Bus2IP_ArBE     :  in std_logic_vector(0 to C_MAX_AR_DWIDTH/8-1);
+        Bus2IP_ArCS     :  in std_logic_vector(0 to C_NUM_ADDR_RNG-1);
+        IP2Bus_ArData   : out std_logic_vector(0 to C_MAX_AR_DWIDTH-1);
+
+        system_reset     :  in std_logic;
+        system_resetdone : out std_logic;
+
+        send_ena        : out std_logic;
+        send_id         : out std_logic_vector(0 to log2(C_NUM_THREADS)-1);
+        send_ack        : in  std_logic;
+
+        siaddr          :  in std_logic_vector(0 to log2(C_NUM_THREADS)-1);
+        siena           :  in std_logic;
+        siwea           :  in std_logic;
+        sinext          :  in std_logic_vector(0 to log2(C_NUM_THREADS)-1);
+        sonext          : out std_logic_vector(0 to log2(C_NUM_THREADS)-1)
+    );
+end slave;
+
+architecture behavioral of slave is
+    -- Declare constants for bits needed for threads, mutexes, commands, and kinds
+    constant MTX_BIT        : integer   := log2( C_NUM_MUTEXES );
+    constant THR_BIT        : integer   := log2( C_NUM_THREADS );
+    constant CMD_BIT        : integer   := 3;
+    constant CNT_BIT        : integer   := 8;
+    constant KND_BIT        : integer   := 2;
+
+    -- Declare signals for clock, reset, rnw, and data input
+    signal clk              : std_logic;
+    signal rst              : std_logic;
+    signal rnw              : std_logic;
+    signal datain           : std_logic_vector(0 to C_DWIDTH-1);
+
+    -- Declare finish signals for the state machines
+    signal lock_finish      : std_logic;
+    signal unlock_finish    : std_logic;
+    signal trylock_finish   : std_logic;
+    signal count_finish     : std_logic;
+    signal kind_finish      : std_logic;
+    signal owner_finish     : std_logic;
+    signal result_finish    : std_logic;
+
+    -- Declare data signals for the state machines
+    signal lock_data        : std_logic_vector(0 to C_DWIDTH-1);
+    signal unlock_data      : std_logic_vector(0 to C_DWIDTH-1);
+    signal trylock_data     : std_logic_vector(0 to C_DWIDTH-1);
+    signal count_data       : std_logic_vector(0 to C_DWIDTH-1);
+    signal kind_data        : std_logic_vector(0 to C_DWIDTH-1);
+    signal owner_data       : std_logic_vector(0 to C_DWIDTH-1);
+    signal result_data      : std_logic_vector(0 to C_DWIDTH-1);
+
+    -- Declare mutex address signals for the state machines
+    signal lock_maddr       : std_logic_vector(0 to MTX_BIT-1);
+    signal unlock_maddr     : std_logic_vector(0 to MTX_BIT-1);
+    signal trylock_maddr    : std_logic_vector(0 to MTX_BIT-1);
+    signal count_maddr      : std_logic_vector(0 to MTX_BIT-1);
+    signal kind_maddr       : std_logic_vector(0 to MTX_BIT-1);
+    signal owner_maddr      : std_logic_vector(0 to MTX_BIT-1);
+
+    -- Declare mutex enable signals for the state machines
+    signal lock_mena        : std_logic;
+    signal unlock_mena      : std_logic;
+    signal trylock_mena     : std_logic;
+    signal count_mena       : std_logic;
+    signal kind_mena        : std_logic;
+    signal owner_mena       : std_logic;
+
+    -- Declare mutex write enable signals for the state machines
+    signal lock_mwea        : std_logic;
+    signal unlock_mwea      : std_logic;
+    signal trylock_mwea     : std_logic;
+    signal count_mwea       : std_logic;
+    signal kind_mwea        : std_logic;
+    signal owner_mwea       : std_logic;
+    
+    -- Declare mutex owner signals for the state machies
+    signal lock_mowner      : std_logic_vector(0 to THR_BIT-1);
+    signal unlock_mowner    : std_logic_vector(0 to THR_BIT-1);
+    signal trylock_mowner   : std_logic_vector(0 to THR_BIT-1);
+    signal count_mowner     : std_logic_vector(0 to THR_BIT-1);
+    signal kind_mowner      : std_logic_vector(0 to THR_BIT-1);
+    signal owner_mowner     : std_logic_vector(0 to THR_BIT-1);
+
+    -- Declare mutex next signals for the state machines
+    signal lock_mnext       : std_logic_vector(0 to THR_BIT-1);
+    signal unlock_mnext     : std_logic_vector(0 to THR_BIT-1);
+    signal trylock_mnext    : std_logic_vector(0 to THR_BIT-1);
+    signal count_mnext      : std_logic_vector(0 to THR_BIT-1);
+    signal kind_mnext       : std_logic_vector(0 to THR_BIT-1);
+    signal owner_mnext      : std_logic_vector(0 to THR_BIT-1);
+
+    -- Declare mutex last signals for the state machines
+    signal lock_mlast       : std_logic_vector(0 to THR_BIT-1);
+    signal unlock_mlast     : std_logic_vector(0 to THR_BIT-1);
+    signal trylock_mlast    : std_logic_vector(0 to THR_BIT-1);
+    signal count_mlast      : std_logic_vector(0 to THR_BIT-1);
+    signal kind_mlast       : std_logic_vector(0 to THR_BIT-1);
+    signal owner_mlast      : std_logic_vector(0 to THR_BIT-1);
+
+    -- Declare mutex count signals for the state machines
+    signal lock_mcount      : std_logic_vector(0 to CNT_BIT-1);
+    signal unlock_mcount    : std_logic_vector(0 to CNT_BIT-1);
+    signal trylock_mcount   : std_logic_vector(0 to CNT_BIT-1);
+    signal count_mcount     : std_logic_vector(0 to CNT_BIT-1);
+    signal kind_mcount      : std_logic_vector(0 to CNT_BIT-1);
+    signal owner_mcount     : std_logic_vector(0 to CNT_BIT-1);
+
+    -- Declare mutex kind signals for the state machines
+    signal lock_mkind       : std_logic_vector(0 to KND_BIT-1);
+    signal unlock_mkind     : std_logic_vector(0 to KND_BIT-1);
+    signal trylock_mkind    : std_logic_vector(0 to KND_BIT-1);
+    signal count_mkind      : std_logic_vector(0 to KND_BIT-1);
+    signal kind_mkind       : std_logic_vector(0 to KND_BIT-1);
+    signal owner_mkind      : std_logic_vector(0 to KND_BIT-1);
+
+    -- Declare thread address signals for the state machines
+    signal lock_taddr       : std_logic_vector(0 to THR_BIT-1);
+    signal unlock_taddr     : std_logic_vector(0 to THR_BIT-1);
+    signal trylock_taddr    : std_logic_vector(0 to THR_BIT-1);
+    signal count_taddr      : std_logic_vector(0 to THR_BIT-1);
+    signal kind_taddr       : std_logic_vector(0 to THR_BIT-1);
+    signal owner_taddr      : std_logic_vector(0 to THR_BIT-1);
+
+    -- Declare thread enable signals for the state machines
+    signal lock_tena        : std_logic;
+    signal unlock_tena      : std_logic;
+    signal trylock_tena     : std_logic;
+    signal count_tena       : std_logic;
+    signal kind_tena        : std_logic;
+    signal owner_tena       : std_logic;
+
+    -- Declare thread write enable signals for the state machines
+    signal lock_twea        : std_logic;
+    signal unlock_twea      : std_logic;
+    signal trylock_twea     : std_logic;
+    signal count_twea       : std_logic;
+    signal kind_twea        : std_logic;
+    signal owner_twea       : std_logic;
+
+    -- Declare thread next signals for the state machines
+    signal lock_tnext       : std_logic_vector(0 to THR_BIT-1);
+    signal unlock_tnext     : std_logic_vector(0 to THR_BIT-1);
+    signal trylock_tnext    : std_logic_vector(0 to THR_BIT-1);
+    signal count_tnext      : std_logic_vector(0 to THR_BIT-1);
+    signal kind_tnext       : std_logic_vector(0 to THR_BIT-1);
+    signal owner_tnext      : std_logic_vector(0 to THR_BIT-1);
+
+    -- Declare send enable signals for the state machines
+    signal unlock_sena      : std_logic;
+
+    -- Declare send identifier signals for the state machines
+    signal unlock_sid       : std_logic_vector(0 to THR_BIT-1);
+
+    -- Declare signals for the mutex store
+    signal miaddr           : std_logic_vector(0 to MTX_BIT-1);
+    signal miena            : std_logic;
+    signal miwea            : std_logic;
+    signal miowner          : std_logic_vector(0 to THR_BIT-1);
+    signal minext           : std_logic_vector(0 to THR_BIT-1);
+    signal milast           : std_logic_vector(0 to THR_BIT-1);
+    signal micount          : std_logic_vector(0 to CNT_BIT-1);
+    signal mikind           : std_logic_vector(0 to KND_BIT-1);
+    signal moowner          : std_logic_vector(0 to THR_BIT-1);
+    signal monext           : std_logic_vector(0 to THR_BIT-1);
+    signal molast           : std_logic_vector(0 to THR_BIT-1);
+    signal mocount          : std_logic_vector(0 to CNT_BIT-1);
+    signal mokind           : std_logic_vector(0 to KND_BIT-1);
+
+    -- Declare signals for the thread store
+    signal tiaddr           : std_logic_vector(0 to THR_BIT-1);
+    signal tiena            : std_logic;
+    signal tiwea            : std_logic;
+    signal tinext           : std_logic_vector(0 to THR_BIT-1);
+    signal tonext           : std_logic_vector(0 to THR_BIT-1);
+
+    -- Declare signals for the system reset
+    signal lock_resetdone       : std_logic;
+    signal unlock_resetdone     : std_logic;
+    signal trylock_resetdone    : std_logic;
+    signal owner_resetdone      : std_logic;
+    signal kind_resetdone       : std_logic;
+    signal count_resetdone      : std_logic;
+    signal result_resetdone     : std_logic;
+    signal thread_resetdone     : std_logic;
+    signal send_resetdone       : std_logic;
+    signal mutex_resetdone      : std_logic;
+    
+    -- Declare aliases for the start signals
+    alias lock_start        : std_logic is Bus2IP_ArCS(0);
+    alias unlock_start      : std_logic is Bus2IP_ArCS(1);
+    alias trylock_start     : std_logic is Bus2IP_ArCS(2);
+    alias owner_start       : std_logic is Bus2IP_ArCS(3);
+    alias kind_start        : std_logic is Bus2IP_ArCS(4);
+    alias count_start       : std_logic is Bus2IP_ArCS(5);
+    alias result_start      : std_logic is Bus2IP_ArCS(6);
+
+    -- Declare constants for the bit index positions
+    constant KND_SRT    : integer   := C_AWIDTH - 2;
+    constant KND_END    : integer   := C_AWIDTH - 1;
+    constant MTX_SRT    : integer   := KND_SRT - MTX_BIT;
+    constant MTX_END    : integer   := KND_SRT - 1;
+    constant THR_SRT    : integer   := MTX_SRT - THR_BIT;
+    constant THR_END    : integer   := MTX_SRT - 1;
+    constant CMD_SRT    : integer   := THR_SRT - CMD_BIT;
+    constant CMD_END    : integer   := THR_SRT - 1;
+
+    -- Declare aliases for the encoded parameters
+    alias knd_number    : std_logic_vector(0 to KND_BIT-1) is
+                          Bus2IP_Data(KND_SRT to KND_END);
+    alias mtx_number    : std_logic_vector(0 to MTX_BIT-1) is
+                          Bus2IP_Addr(MTX_SRT to MTX_END);
+    alias thr_number    : std_logic_vector(0 to THR_BIT-1) is
+                          Bus2IP_Addr(THR_SRT to THR_END);
+    alias cmd_number    : std_logic_vector(0 to CMD_BIT-1) is 
+                          Bus2IP_Addr(CMD_SRT to CMD_END);
+begin
+    clk                 <= Bus2IP_Clk;      -- Use the bus clock for the core clock
+    rst                 <= Bus2IP_Reset;    -- Use the bus reset for the core reset
+    rnw                 <= Bus2IP_RNW;      -- Use the bus rnw for the core rnw
+    datain              <= Bus2IP_Data;     -- Use the bus data for the core data
+    send_ena            <= unlock_sena;     -- Output the send enable signal
+    send_id             <= unlock_sid;      -- Output the send identifier
+
+    IP2Bus_Data         <= (others => '0'); -- Never use bus data lines (see ArData)
+    IP2Bus_ToutSup      <= '1';             -- Never suppress the time out
+    IP2Bus_Retry        <= '0';             -- Never cause a retry operation
+    IP2Bus_Error        <= '0';             -- Never cause a bus error
+
+    system_resetdone    <= lock_resetdone and
+                           unlock_resetdone and
+                           trylock_resetdone and
+                           owner_resetdone and
+                           count_resetdone and
+                           kind_resetdone and
+                           result_resetdone and
+                           thread_resetdone and
+                           send_resetdone and
+                           mutex_resetdone;
+
+    IP2Bus_RdAck        <= lock_finish or
+                           unlock_finish or
+                           trylock_finish or
+                           owner_finish or
+                           count_finish or
+                           kind_finish or
+                           result_finish;
+
+    IP2Bus_WrAck        <= lock_finish or
+                           unlock_finish or
+                           trylock_finish or
+                           owner_finish or
+                           count_finish or
+                           kind_finish or
+                           result_finish;
+
+    IP2Bus_ArData       <= lock_data or
+                           unlock_data or
+                           trylock_data or
+                           owner_data or
+                           count_data or
+                           kind_data or
+                           result_data;
+
+    miaddr              <= lock_maddr or
+                           unlock_maddr or
+                           trylock_maddr or
+                           owner_maddr or
+                           count_maddr or
+                           kind_maddr;
+
+    miena               <= lock_mena or
+                           unlock_mena or
+                           trylock_mena or
+                           owner_mena or
+                           count_mena or
+                           kind_mena;
+
+    miwea               <= lock_mwea or
+                           unlock_mwea or
+                           trylock_mwea or
+                           owner_mwea or
+                           count_mwea or
+                           kind_mwea;
+
+    miowner             <= lock_mowner or
+                           unlock_mowner or
+                           trylock_mowner or
+                           owner_mowner or
+                           count_mowner or
+                           kind_mowner;
+
+    minext              <= lock_mnext or
+                           unlock_mnext or
+                           trylock_mnext or
+                           owner_mnext or
+                           count_mnext or
+                           kind_mnext;
+
+    milast              <= lock_mlast or
+                           unlock_mlast or
+                           trylock_mlast or
+                           owner_mlast or
+                           count_mlast or
+                           kind_mlast;
+
+    micount             <= lock_mcount or
+                           unlock_mcount or
+                           trylock_mcount or
+                           owner_mcount or
+                           count_mcount or
+                           kind_mcount;
+
+    mikind              <= lock_mkind or
+                           unlock_mkind or
+                           trylock_mkind or
+                           owner_mkind or
+                           count_mkind or
+                           kind_mkind;
+
+    tiaddr              <= lock_taddr or
+                           unlock_taddr or
+                           trylock_taddr or
+                           owner_taddr or
+                           count_taddr or
+                           kind_taddr;
+
+    tiena               <= lock_tena or
+                           unlock_tena or
+                           trylock_tena or
+                           owner_tena or
+                           count_tena or
+                           kind_tena;
+
+    tiwea               <= lock_twea or
+                           unlock_twea or
+                           trylock_twea or
+                           owner_twea or
+                           count_twea or
+                           kind_twea;
+
+    tinext              <= lock_tnext or
+                           unlock_tnext or
+                           trylock_tnext or
+                           owner_tnext or
+                           count_tnext or
+                           kind_tnext;
+
+    mutex_i : entity work.mutex_store
+    generic map
+    (
+        C_AWIDTH => C_AWIDTH,
+        C_DWIDTH => C_DWIDTH,
+        C_TWIDTH => THR_BIT,
+        C_MWIDTH => MTX_BIT,
+        C_CWIDTH => CNT_BIT
+    )
+    port map
+    (
+        clk     => clk,
+        rst     => rst,
+        miaddr  => miaddr,
+        miena   => miena,
+        miwea   => miwea,
+        miowner => miowner,
+        minext  => minext,
+        milast  => milast,
+        mikind  => mikind,
+        micount => micount,
+        moowner => moowner,
+        monext  => monext,
+        molast  => molast,
+        mokind  => mokind,
+        mocount => mocount,
+        sysrst  => system_reset,
+        rstdone => mutex_resetdone
+    );
+
+    thread_i : entity work.thread_store
+    generic map
+    (
+        C_AWIDTH => C_AWIDTH,
+        C_DWIDTH => C_DWIDTH,
+        C_TWIDTH => THR_BIT,
+        C_MWIDTH => MTX_BIT,
+        C_CWIDTH => CNT_BIT
+    )
+    port map
+    (
+        clk     => clk,
+        rst     => rst,
+        tiaddr  => tiaddr,
+        tiena   => tiena,
+        tiwea   => tiwea,
+        tinext  => tinext,
+        tonext  => tonext,
+        sysrst  => system_reset,
+        rstdone => thread_resetdone
+    );
+
+    send_i : entity work.send_store
+    generic map
+    (
+        C_AWIDTH => C_AWIDTH,
+        C_DWIDTH => C_DWIDTH,
+        C_TWIDTH => THR_BIT,
+        C_MWIDTH => MTX_BIT,
+        C_CWIDTH => CNT_BIT
+    )
+    port map
+    (
+        clk     => clk,
+        rst     => rst,
+        siaddr  => siaddr,
+        siena   => siena,
+        siwea   => siwea,
+        sinext  => sinext,
+        sonext  => sonext,
+        sysrst  => system_reset,
+        rstdone => send_resetdone
+    );
+
+    lock_i : entity work.lock_fsm
+    generic map
+    (
+        C_AWIDTH => C_AWIDTH,
+        C_DWIDTH => C_DWIDTH,
+        C_TWIDTH => THR_BIT,
+        C_MWIDTH => MTX_BIT,
+        C_CWIDTH => CNT_BIT
+    )
+    port map
+    (
+        clk     => clk,
+        rst     => rst,
+        start   => lock_start,
+        finish  => lock_finish,
+        data    => lock_data,
+        mutex   => mtx_number,
+        thread  => thr_number,
+        miowner => moowner,
+        minext  => monext,
+        milast  => molast,
+        micount => mocount,
+        mikind  => mokind,
+        tinext  => tonext,
+        moaddr  => lock_maddr,
+        moena   => lock_mena,
+        mowea   => lock_mwea,
+        moowner => lock_mowner,
+        monext  => lock_mnext,
+        molast  => lock_mlast,
+        mocount => lock_mcount,
+        mokind  => lock_mkind,
+        toaddr  => lock_taddr,
+        toena   => lock_tena,
+        towea   => lock_twea,
+        tonext  => lock_tnext,
+        sysrst  => system_reset,
+        rstdone => lock_resetdone
+    );
+
+    unlock_i : entity work.unlock_fsm
+    generic map
+    (
+        C_AWIDTH => C_AWIDTH,
+        C_DWIDTH => C_DWIDTH,
+        C_TWIDTH => THR_BIT,
+        C_MWIDTH => MTX_BIT,
+        C_CWIDTH => CNT_BIT
+    )
+    port map
+    (
+        clk     => clk,
+        rst     => rst,
+        start   => unlock_start,
+        finish  => unlock_finish,
+        data    => unlock_data,
+        mutex   => mtx_number,
+        thread  => thr_number,
+        miowner => moowner,
+        minext  => monext,
+        milast  => molast,
+        micount => mocount,
+        mikind  => mokind,
+        tinext  => tonext,
+        moaddr  => unlock_maddr,
+        moena   => unlock_mena,
+        mowea   => unlock_mwea,
+        moowner => unlock_mowner,
+        monext  => unlock_mnext,
+        molast  => unlock_mlast,
+        mocount => unlock_mcount,
+        mokind  => unlock_mkind,
+        toaddr  => unlock_taddr,
+        toena   => unlock_tena,
+        towea   => unlock_twea,
+        tonext  => unlock_tnext,
+        sena    => unlock_sena,
+        sid     => unlock_sid,
+        sack    => send_ack,
+        sysrst  => system_reset,
+        rstdone => unlock_resetdone
+    );
+
+    trylock_i : entity work.trylock_fsm
+    generic map
+    (
+        C_AWIDTH => C_AWIDTH,
+        C_DWIDTH => C_DWIDTH,
+        C_TWIDTH => THR_BIT,
+        C_MWIDTH => MTX_BIT,
+        C_CWIDTH => CNT_BIT
+    )
+    port map
+    (
+        clk     => clk,
+        rst     => rst,
+        start   => trylock_start,
+        finish  => trylock_finish,
+        data    => trylock_data,
+        mutex   => mtx_number,
+        thread  => thr_number,
+        miowner => moowner,
+        minext  => monext,
+        milast  => molast,
+        micount => mocount,
+        mikind  => mokind,
+        tinext  => tonext,
+        moaddr  => trylock_maddr,
+        moena   => trylock_mena,
+        mowea   => trylock_mwea,
+        moowner => trylock_mowner,
+        monext  => trylock_mnext,
+        molast  => trylock_mlast,
+        mocount => trylock_mcount,
+        mokind  => trylock_mkind,
+        toaddr  => trylock_taddr,
+        toena   => trylock_tena,
+        towea   => trylock_twea,
+        tonext  => trylock_tnext,
+        sysrst  => system_reset,
+        rstdone => trylock_resetdone
+    );
+
+    count_i : entity work.count_fsm
+    generic map
+    (
+        C_AWIDTH => C_AWIDTH,
+        C_DWIDTH => C_DWIDTH,
+        C_TWIDTH => THR_BIT,
+        C_MWIDTH => MTX_BIT,
+        C_CWIDTH => CNT_BIT
+    )
+    port map
+    (
+        clk     => clk,
+        rst     => rst,
+        start   => count_start,
+        finish  => count_finish,
+        data    => count_data,
+        mutex   => mtx_number,
+        thread  => thr_number,
+        miowner => moowner,
+        minext  => monext,
+        milast  => molast,
+        micount => mocount,
+        mikind  => mokind,
+        tinext  => tonext,
+        moaddr  => count_maddr,
+        moena   => count_mena,
+        mowea   => count_mwea,
+        moowner => count_mowner,
+        monext  => count_mnext,
+        molast  => count_mlast,
+        mocount => count_mcount,
+        mokind  => count_mkind,
+        toaddr  => count_taddr,
+        toena   => count_tena,
+        towea   => count_twea,
+        tonext  => count_tnext,
+        sysrst  => system_reset,
+        rstdone => count_resetdone
+    );
+
+    kind_i : entity work.kind_fsm
+    generic map
+    (
+        C_AWIDTH => C_AWIDTH,
+        C_DWIDTH => C_DWIDTH,
+        C_TWIDTH => THR_BIT,
+        C_MWIDTH => MTX_BIT,
+        C_CWIDTH => CNT_BIT
+    )
+    port map
+    (
+        clk     => clk,
+        rst     => rst,
+        start   => kind_start,
+        finish  => kind_finish,
+        data    => kind_data,
+        datain  => datain,
+        mutex   => mtx_number,
+        thread  => thr_number,
+        miowner => moowner,
+        minext  => monext,
+        milast  => molast,
+        micount => mocount,
+        mikind  => mokind,
+        tinext  => tonext,
+        moaddr  => kind_maddr,
+        moena   => kind_mena,
+        mowea   => kind_mwea,
+        moowner => kind_mowner,
+        monext  => kind_mnext,
+        molast  => kind_mlast,
+        mocount => kind_mcount,
+        mokind  => kind_mkind,
+        toaddr  => kind_taddr,
+        toena   => kind_tena,
+        towea   => kind_twea,
+        tonext  => kind_tnext,
+        rnw     => rnw,
+        sysrst  => system_reset,
+        rstdone => kind_resetdone
+    );
+
+    owner_i : entity work.owner_fsm
+    generic map
+    (
+        C_AWIDTH => C_AWIDTH,
+        C_DWIDTH => C_DWIDTH,
+        C_TWIDTH => THR_BIT,
+        C_MWIDTH => MTX_BIT,
+        C_CWIDTH => CNT_BIT
+    )
+    port map
+    (
+        clk     => clk,
+        rst     => rst,
+        start   => owner_start,
+        finish  => owner_finish,
+        data    => owner_data,
+        mutex   => mtx_number,
+        thread  => thr_number,
+        miowner => moowner,
+        minext  => monext,
+        milast  => molast,
+        micount => mocount,
+        mikind  => mokind,
+        tinext  => tonext,
+        moaddr  => owner_maddr,
+        moena   => owner_mena,
+        mowea   => owner_mwea,
+        moowner => owner_mowner,
+        monext  => owner_mnext,
+        molast  => owner_mlast,
+        mocount => owner_mcount,
+        mokind  => owner_mkind,
+        toaddr  => owner_taddr,
+        toena   => owner_tena,
+        towea   => owner_twea,
+        tonext  => owner_tnext,
+        sysrst  => system_reset,
+        rstdone => owner_resetdone
+    );
+
+    result_i : entity work.result_fsm
+    generic map
+    (
+        C_AWIDTH => C_AWIDTH,
+        C_DWIDTH => C_DWIDTH,
+        C_TWIDTH => THR_BIT,
+        C_MWIDTH => MTX_BIT,
+        C_CWIDTH => CNT_BIT
+    )
+    port map
+    (
+        clk     => clk,
+        rst     => rst,
+        start   => result_start,
+        finish  => result_finish,
+        data    => result_data,
+        datain  => datain,
+        rnw     => rnw,
+        sysrst  => system_reset,
+        rstdone => result_resetdone
+    );
+end behavioral;

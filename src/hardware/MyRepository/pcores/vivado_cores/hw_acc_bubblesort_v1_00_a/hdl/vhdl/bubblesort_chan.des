@@ -1,0 +1,111 @@
+CS: current_state;
+NS: next_state;
+
+GENERICS:
+G_ADDR_WIDTH, integer, 32;
+G_DATA_WIDTH, integer, 32;
+
+PORTS:
+
+
+CONNECTIONS:
+
+
+MEMS:
+array0, G_DATA_WIDTH, G_ADDR_WIDTH, EXTERNAL;
+array1, G_DATA_WIDTH, G_ADDR_WIDTH, EXTERNAL;
+
+CHANNELS:
+chan1, 32;
+SIGS:
+
+swapped, std_logic;
+n, std_logic_vector(0 to G_ADDR_WIDTH-1);
+n_new, std_logic_vector(0 to G_ADDR_WIDTH-1);
+
+i, std_logic_vector(0 to G_ADDR_WIDTH-1);
+data1, std_logic_vector(0 to G_DATA_WIDTH-1);
+data2, std_logic_vector(0 to G_DATA_WIDTH-1);
+arg1, std_logic_vector(0 to G_DATA_WIDTH-1);
+arg2, std_logic_vector(0 to G_DATA_WIDTH-1);
+
+INITIAL: reset;
+
+TRANS:
+
+reset -> idle
+
+
+idle -> decode where
+{
+      n'		<= #chan1;
+}
+
+decode -> dispatch where
+{
+
+        arg1' <= "00000000000000000" & n(17 to 31); --start adderss
+        arg2' <= "00000000000000000" & n(2 to 16);   --end address
+
+}
+
+dispatch -> begin_sort where
+{
+
+    n_new' <= arg2;
+     n'	    <=arg2; 
+    swapped'	<= '1';
+
+}
+
+
+begin_sort | (swapped = '0') -> halt
+begin_sort | (swapped = '1') -> for_loop where
+{
+	-- Initialize variables before FOR loop begins
+	swapped' <= '0';
+	i'		 <= arg1;
+
+	-- Prefetch the "1st" data1 before the for loop begins
+	data1'	<= array0[arg1];
+}
+
+	for_loop | (i >= n) -> begin_sort where
+	{
+		n'	<= n_new;	
+	}
+	for_loop | (i < n) -> cond_check where
+	{
+		-- Fetch data2, while data1 has already been calculated during the last iteration
+		data2'	<= array0[i+1];	
+	}
+		
+		cond_check | (data1 <= data2) -> for_loop where
+		{
+			-- Move value in data2 to data1 for next pass (now only need to fetch the new data2)
+			data1'	<= data2;
+			i'		<= i + 1;
+		}
+		cond_check | (data1 > data2) -> cond_body where
+		{
+			-- 1/2 update (only one write per state)
+			array0[i]	<= data2;
+		}	
+
+			cond_body -> for_loop where
+			{
+				-- the other 1/2 of the update (only one write per state)
+				array0[i+1]		<= data1;	-- Note, this is the "next" data1 value so keep it around
+				n_new'		<= i;
+				swapped'	<= '1';
+				i'			<= i + 1;
+			} 
+			
+halt -> idle where
+{
+	#chan1 <= ALL_ZEROS;  --it means I am done.
+}
+
+
+-- Generic VHDL Definitions to insert
+VHDL:

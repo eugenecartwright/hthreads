@@ -1,0 +1,71 @@
+##############################################################################
+## Filename:          /home/jrios/heterogeneous_hthreads_latest/src/platforms/xilinx/ml605_smp_14_bak/design/pcores/add_sub_core_v1_00_a/data/add_sub_core_v2_1_0.mpd
+## Description:       Microprocessor Peripheral Description
+## Date:              Thu Aug  9 10:06:10 2012 (by Create and Import Peripheral Wizard)
+##############################################################################
+
+BEGIN hw_acc_bubblesort
+
+## Peripheral Options
+OPTION IPTYPE = PERIPHERAL
+OPTION IMP_NETLIST = TRUE
+OPTION HDL = VHDL
+OPTION STYLE = MIX
+## Bus Interfaces
+BUS_INTERFACE BUS=M_AXIS, BUS_STD=AXIS, BUS_TYPE=INITIATOR
+BUS_INTERFACE BUS=S_AXIS, BUS_STD=AXIS, BUS_TYPE=TARGET
+
+
+BUS_INTERFACE BUS = PORTA, BUS_STD = XIL_BRAM, BUS_TYPE = INITIATOR
+BUS_INTERFACE BUS = PORTB, BUS_STD = XIL_BRAM, BUS_TYPE = INITIATOR
+BUS_INTERFACE BUS = PORTC, BUS_STD = XIL_BRAM, BUS_TYPE = INITIATOR
+
+## Parameters
+PARAMETER C_S_AXIS_PROTOCOL = GENERIC, DT = string, TYPE = NON_HDL, ASSIGNMENT = CONSTANT, BUS = S_AXIS
+PARAMETER C_S_AXIS_TDATA_WIDTH = 32, DT = integer, TYPE = NON_HDL, ASSIGNMENT = CONSTANT, BUS = S_AXIS
+PARAMETER C_M_AXIS_PROTOCOL = GENERIC, DT = string, TYPE = NON_HDL, ASSIGNMENT = CONSTANT, BUS = M_AXIS
+PARAMETER C_M_AXIS_TDATA_WIDTH = 32, DT = integer, TYPE = NON_HDL, ASSIGNMENT = CONSTANT, BUS = M_AXIS
+
+## Peripheral ports
+PORT ap_clk         = "",            DIR=I, SIGIS=Clk,    BUS=M_AXIS:S_AXIS
+PORT ap_rst_n       = "",            DIR=I                BUS=M_AXIS:S_AXIS
+
+#PORT BRAM_A_Rst	= BRAM_Rst, DIR = O, BUS = PORTA
+#PORT BRAM_A_Clk	= BRAM_Clk, DIR = O, BUS = PORTA
+PORT BRAM_A_EN		= BRAM_EN, DIR = O, BUS = PORTA
+PORT BRAM_A_WEN	= BRAM_WEN, DIR = O, VEC = [0:3], BUS = PORTA
+PORT BRAM_A_Addr	= BRAM_Addr, DIR = O, VEC = [0:31], BUS = PORTA
+PORT BRAM_A_Din	= BRAM_Din, DIR = O, VEC = [0:31], BUS = PORTA
+PORT BRAM_A_Dout	= BRAM_Dout, DIR = I, VEC = [0:31], BUS = PORTA
+
+#PORT BRAM_B_Rst	= BRAM_Rst, DIR = O, BUS = PORTB
+#PORT BRAM_B_Clk	= BRAM_Clk, DIR = O, BUS = PORTB
+PORT BRAM_B_EN		= BRAM_EN, DIR = O, BUS = PORTB
+PORT BRAM_B_WEN	= BRAM_WEN, DIR = O, VEC = [0:3], BUS = PORTB
+PORT BRAM_B_Addr	= BRAM_Addr, DIR = O, VEC = [0:31], BUS = PORTB
+PORT BRAM_B_Din	= BRAM_Din, DIR = O, VEC = [0:31], BUS = PORTB
+PORT BRAM_B_Dout	= BRAM_Dout, DIR = I, VEC = [0:31], BUS = PORTB
+
+#PORT BRAM_C_Rst	= BRAM_Rst, DIR = O, BUS = PORTC
+#PORT BRAM_C_Clk	= BRAM_Clk, DIR = O, BUS = PORTC
+PORT BRAM_C_EN		= BRAM_EN, DIR = O, BUS = PORTC
+PORT BRAM_C_WEN	= BRAM_WEN, DIR = O, VEC = [0:3], BUS = PORTC
+PORT BRAM_C_Addr	= BRAM_Addr, DIR = O, VEC = [0:31], BUS = PORTC
+PORT BRAM_C_Din	= BRAM_Din, DIR = O, VEC = [0:31], BUS = PORTC
+PORT BRAM_C_Dout	= BRAM_Dout, DIR = I, VEC = [0:31], BUS = PORTC
+#####################################################################
+
+PORT S_AXIS_TREADY = TREADY,  DIR=O, BUS=S_AXIS
+PORT S_AXIS_TDATA = TDATA,    DIR=I, VEC=[31:0], BUS=S_AXIS
+#PORT S_AXIS_TLAST = TLAST,    DIR=I, BUS=S_AXIS
+PORT S_AXIS_TVALID = TVALID,  DIR=I, BUS=S_AXIS
+
+PORT M_AXIS_TVALID = TVALID,  DIR=O, BUS=M_AXIS
+PORT M_AXIS_TDATA = TDATA,    DIR=O, VEC=[31:0], BUS=M_AXIS
+#PORT M_AXIS_TLAST = TLAST,    DIR=O, BUS=M_AXIS
+PORT M_AXIS_TREADY = TREADY,  DIR=I, BUS=M_AXIS
+
+  
+
+END
+

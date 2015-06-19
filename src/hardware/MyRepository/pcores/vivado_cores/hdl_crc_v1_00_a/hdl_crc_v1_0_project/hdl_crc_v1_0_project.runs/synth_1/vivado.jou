@@ -1,0 +1,10 @@
+#-----------------------------------------------------------
+# Vivado v2014.2 (64-bit)
+# SW Build 928826 on Thu Jun  5 17:55:10 MDT 2014
+# IP Build 924643 on Fri May 30 09:20:16 MDT 2014
+# Start of session at: Tue Dec  9 17:30:07 2014
+# Process ID: 9821
+# Log file: /home/abazar63/hthread/src/hardware/MyRepository/pcores/vivado_cores/hdl_crc_v1_00_a/hdl_crc_v1_0_project/hdl_crc_v1_0_project.runs/synth_1/hdl_crc.vds
+# Journal file: /home/abazar63/hthread/src/hardware/MyRepository/pcores/vivado_cores/hdl_crc_v1_00_a/hdl_crc_v1_0_project/hdl_crc_v1_0_project.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
+source hdl_crc.tcl

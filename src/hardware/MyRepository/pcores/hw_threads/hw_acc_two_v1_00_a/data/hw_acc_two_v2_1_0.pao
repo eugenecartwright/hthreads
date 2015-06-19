@@ -1,0 +1,8 @@
+##############################################################################
+## Filename:          /home/jrios/heterogeneous_hthreads_latest/src/platforms/xilinx/ml605_smp_14_bak/design/pcores/add_sub_core_v1_00_a/data/add_sub_core_v2_1_0.pao
+## Description:       Peripheral Analysis Order
+## Date:              Thu Aug  9 10:06:10 2012 (by Create and Import Peripheral Wizard)
+##############################################################################
+
+lib hw_acc_two_v1_00_a hw_acc_two vhdl
+lib hw_acc_two_v1_00_a user_logic_hwtul vhdl

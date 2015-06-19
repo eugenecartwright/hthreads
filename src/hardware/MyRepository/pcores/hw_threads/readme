@@ -1,0 +1,26 @@
+copy them to one folder above to use them:
+
+  Platforms: hwti_mblaze_6smp  numa3_hwti   smp3_opbhwti  => use these hw_thread_acclerators:
+
+
+  hw_acc_three_v1_00_a : condition variable 
+  hw_acc_two_v1_00_a   : quicksort
+  hw_acc_v1_00_a       : vectoradd
+
+
+
+
+
+
+
+
+
+
+
+
+  platforms:  smp3_opbhwti_lbrams  => use these hw_thread_acclerators:
+
+
+     hw_acc_two_v1_00_a  : quicksort
+     hw_thcrc_v1_00_a    : crc
+     hw_thvadd_v1_00_a   : vectoradd(mutex lock overhead removed)

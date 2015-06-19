@@ -1,0 +1,683 @@
+--------------------------------------------------------------------------------
+Release 12.3 Trace  (lin64)
+Copyright (c) 1995-2010 Xilinx, Inc.  All rights reserved.
+
+/opt/Xilinx/12.3/ISE_DS/ISE/bin/lin64/unwrapped/trce -intstyle ise -v 3 -s 1 -n
+3 -fastpaths -xml opb_hwt_zero.twx opb_hwt_zero.ncd -o opb_hwt_zero.twr
+opb_hwt_zero.pcf -ucf opb_hwt_zero.ucf
+
+Design file:              opb_hwt_zero.ncd
+Physical constraint file: opb_hwt_zero.pcf
+Device,package,speed:     xc6vlx240t,ff1156,C,-1 (PRODUCTION 1.09 2010-09-15, STEPPING level 0)
+Report level:             verbose report
+
+Environment Variable      Effect 
+--------------------      ------ 
+NONE                      No environment variables were set
+--------------------------------------------------------------------------------
+
+INFO:Timing:2752 - To get complete path coverage, use the unconstrained paths 
+   option. All paths that are not constrained will be reported in the 
+   unconstrained paths section(s) of the report.
+INFO:Timing:3339 - The clock-to-out numbers in this timing report are based on 
+   a 50 Ohm transmission line loading model.  For the details of this model, 
+   and for more information on accounting for different loading conditions, 
+   please see the device datasheet.
+
+================================================================================
+Timing constraint: TS_OPB_Clk = PERIOD TIMEGRP "OPB_Clk" 10 ns HIGH 50%;
+
+ 744740 paths analyzed, 6844 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
+ Minimum period is   9.829ns.
+--------------------------------------------------------------------------------
+
+Paths for end point USER_LOGIC_HWTI_I/bram/Mram_RAM6 (RAMB36_X2Y22.ADDRBWRADDRL11), 1950 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     0.171ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               USER_LOGIC_HWTI_I/user_state_7 (FF)
+  Destination:          USER_LOGIC_HWTI_I/bram/Mram_RAM6 (RAM)
+  Requirement:          10.000ns
+  Data Path Delay:      9.794ns (Levels of Logic = 8)
+  Clock Path Skew:      0.000ns
+  Source Clock:         OPB_Clk_BUFGP rising at 0.000ns
+  Destination Clock:    OPB_Clk_BUFGP rising at 10.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: USER_LOGIC_HWTI_I/user_state_7 to USER_LOGIC_HWTI_I/bram/Mram_RAM6
+    Location                    Delay type         Delay(ns)  Physical Resource
+                                                              Logical Resource(s)
+    --------------------------------------------------------  -------------------
+    SLICE_X52Y89.DQ             Tcko                  0.381   USER_LOGIC_HWTI_I/user_state<7>
+                                                              USER_LOGIC_HWTI_I/user_state_7
+    SLICE_X58Y81.B2             net (fanout=359)      1.377   USER_LOGIC_HWTI_I/user_state<7>
+    SLICE_X58Y81.B              Tilo                  0.068   USER_LOGIC_HWTI_I/_n7356
+                                                              USER_LOGIC_HWTI_I/_n5743_inv171
+    SLICE_X58Y81.C2             net (fanout=8)        0.614   USER_LOGIC_HWTI_I/N3454
+    SLICE_X58Y81.C              Tilo                  0.068   USER_LOGIC_HWTI_I/_n7356
+                                                              USER_LOGIC_HWTI_I/_n8940<7>1
+    SLICE_X40Y82.B3             net (fanout=2)        1.137   USER_LOGIC_HWTI_I/_n8940
+    SLICE_X40Y82.B              Tilo                  0.068   USER_LOGIC_HWTI_I/Mmux_addrb184
+                                                              USER_LOGIC_HWTI_I/_n14274<7>2
+    SLICE_X40Y82.C6             net (fanout=4)        0.262   USER_LOGIC_HWTI_I/_n14274<7>1
+    SLICE_X40Y82.C              Tilo                  0.068   USER_LOGIC_HWTI_I/Mmux_addrb184
+                                                              USER_LOGIC_HWTI_I/_n14274<7>4
+    SLICE_X42Y83.C4             net (fanout=17)       0.542   USER_LOGIC_HWTI_I/_n14274
+    SLICE_X42Y83.C              Tilo                  0.068   N761
+                                                              USER_LOGIC_HWTI_I/Mmux_addrb461_SW0
+    SLICE_X37Y83.B2             net (fanout=1)        0.775   N68
+    SLICE_X37Y83.B              Tilo                  0.068   USER_LOGIC_HWTI_I/N1377
+                                                              USER_LOGIC_HWTI_I/Mmux_addrb461
+    SLICE_X33Y83.D1             net (fanout=16)       0.615   USER_LOGIC_HWTI_I/N1377
+    SLICE_X33Y83.CMUX           Topdc                 0.348   USER_LOGIC_HWTI_I/Mmux_addrb943
+                                                              USER_LOGIC_HWTI_I/Mmux_addrb6262
+                                                              USER_LOGIC_HWTI_I/Mmux_addrb626_f7
+    SLICE_X35Y83.A1             net (fanout=1)        0.586   USER_LOGIC_HWTI_I/Mmux_addrb625
+    SLICE_X35Y83.A              Tilo                  0.068   N747
+                                                              USER_LOGIC_HWTI_I/Mmux_addrb628
+    RAMB36_X2Y22.ADDRBWRADDRL11 net (fanout=16)       2.201   USER_LOGIC_HWTI_I/addrb<3>
+    RAMB36_X2Y22.CLKBWRCLKL     Trcck_ADDRB           0.480   USER_LOGIC_HWTI_I/bram/Mram_RAM6
+                                                              USER_LOGIC_HWTI_I/bram/Mram_RAM6
+    --------------------------------------------------------  ---------------------------
+    Total                                             9.794ns (1.685ns logic, 8.109ns route)
+                                                              (17.2% logic, 82.8% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     0.223ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               USER_LOGIC_HWTI_I/user_state_5 (FF)
+  Destination:          USER_LOGIC_HWTI_I/bram/Mram_RAM6 (RAM)
+  Requirement:          10.000ns
+  Data Path Delay:      9.753ns (Levels of Logic = 8)
+  Clock Path Skew:      0.011ns (1.074 - 1.063)
+  Source Clock:         OPB_Clk_BUFGP rising at 0.000ns
+  Destination Clock:    OPB_Clk_BUFGP rising at 10.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: USER_LOGIC_HWTI_I/user_state_5 to USER_LOGIC_HWTI_I/bram/Mram_RAM6
+    Location                    Delay type         Delay(ns)  Physical Resource
+                                                              Logical Resource(s)
+    --------------------------------------------------------  -------------------
+    SLICE_X50Y91.BQ             Tcko                  0.381   USER_LOGIC_HWTI_I/user_state<5>
+                                                              USER_LOGIC_HWTI_I/user_state_5
+    SLICE_X58Y81.B4             net (fanout=568)      1.336   USER_LOGIC_HWTI_I/user_state<5>
+    SLICE_X58Y81.B              Tilo                  0.068   USER_LOGIC_HWTI_I/_n7356
+                                                              USER_LOGIC_HWTI_I/_n5743_inv171
+    SLICE_X58Y81.C2             net (fanout=8)        0.614   USER_LOGIC_HWTI_I/N3454
+    SLICE_X58Y81.C              Tilo                  0.068   USER_LOGIC_HWTI_I/_n7356
+                                                              USER_LOGIC_HWTI_I/_n8940<7>1
+    SLICE_X40Y82.B3             net (fanout=2)        1.137   USER_LOGIC_HWTI_I/_n8940
+    SLICE_X40Y82.B              Tilo                  0.068   USER_LOGIC_HWTI_I/Mmux_addrb184
+                                                              USER_LOGIC_HWTI_I/_n14274<7>2
+    SLICE_X40Y82.C6             net (fanout=4)        0.262   USER_LOGIC_HWTI_I/_n14274<7>1
+    SLICE_X40Y82.C              Tilo                  0.068   USER_LOGIC_HWTI_I/Mmux_addrb184
+                                                              USER_LOGIC_HWTI_I/_n14274<7>4
+    SLICE_X42Y83.C4             net (fanout=17)       0.542   USER_LOGIC_HWTI_I/_n14274
+    SLICE_X42Y83.C              Tilo                  0.068   N761
+                                                              USER_LOGIC_HWTI_I/Mmux_addrb461_SW0
+    SLICE_X37Y83.B2             net (fanout=1)        0.775   N68
+    SLICE_X37Y83.B              Tilo                  0.068   USER_LOGIC_HWTI_I/N1377
+                                                              USER_LOGIC_HWTI_I/Mmux_addrb461
+    SLICE_X33Y83.D1             net (fanout=16)       0.615   USER_LOGIC_HWTI_I/N1377
+    SLICE_X33Y83.CMUX           Topdc                 0.348   USER_LOGIC_HWTI_I/Mmux_addrb943
+                                                              USER_LOGIC_HWTI_I/Mmux_addrb6262
+                                                              USER_LOGIC_HWTI_I/Mmux_addrb626_f7
+    SLICE_X35Y83.A1             net (fanout=1)        0.586   USER_LOGIC_HWTI_I/Mmux_addrb625
+    SLICE_X35Y83.A              Tilo                  0.068   N747
+                                                              USER_LOGIC_HWTI_I/Mmux_addrb628
+    RAMB36_X2Y22.ADDRBWRADDRL11 net (fanout=16)       2.201   USER_LOGIC_HWTI_I/addrb<3>
+    RAMB36_X2Y22.CLKBWRCLKL     Trcck_ADDRB           0.480   USER_LOGIC_HWTI_I/bram/Mram_RAM6
+                                                              USER_LOGIC_HWTI_I/bram/Mram_RAM6
+    --------------------------------------------------------  ---------------------------
+    Total                                             9.753ns (1.685ns logic, 8.068ns route)
+                                                              (17.3% logic, 82.7% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     0.277ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               USER_LOGIC_HWTI_I/user_state_0 (FF)
+  Destination:          USER_LOGIC_HWTI_I/bram/Mram_RAM6 (RAM)
+  Requirement:          10.000ns
+  Data Path Delay:      9.689ns (Levels of Logic = 8)
+  Clock Path Skew:      0.001ns (1.074 - 1.073)
+  Source Clock:         OPB_Clk_BUFGP rising at 0.000ns
+  Destination Clock:    OPB_Clk_BUFGP rising at 10.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: USER_LOGIC_HWTI_I/user_state_0 to USER_LOGIC_HWTI_I/bram/Mram_RAM6
+    Location                    Delay type         Delay(ns)  Physical Resource
+                                                              Logical Resource(s)
+    --------------------------------------------------------  -------------------
+    SLICE_X52Y90.AMUX           Tshcko                0.465   USER_LOGIC_HWTI_I/user_state_0_1
+                                                              USER_LOGIC_HWTI_I/user_state_0
+    SLICE_X49Y94.B2             net (fanout=579)      1.203   USER_LOGIC_HWTI_I/user_state<0>
+    SLICE_X49Y94.B              Tilo                  0.068   USER_LOGIC_HWTI_I/N456
+                                                              USER_LOGIC_HWTI_I/Mmux_data_address_next21131
+    SLICE_X42Y94.B2             net (fanout=5)        0.921   USER_LOGIC_HWTI_I/N456
+    SLICE_X42Y94.B              Tilo                  0.068   USER_LOGIC_HWTI_I/N348
+                                                              USER_LOGIC_HWTI_I/Mmux_enb5134
+    SLICE_X40Y82.B6             net (fanout=2)        0.815   USER_LOGIC_HWTI_I/Mmux_enb5133
+    SLICE_X40Y82.B              Tilo                  0.068   USER_LOGIC_HWTI_I/Mmux_addrb184
+                                                              USER_LOGIC_HWTI_I/_n14274<7>2
+    SLICE_X40Y82.C6             net (fanout=4)        0.262   USER_LOGIC_HWTI_I/_n14274<7>1
+    SLICE_X40Y82.C              Tilo                  0.068   USER_LOGIC_HWTI_I/Mmux_addrb184
+                                                              USER_LOGIC_HWTI_I/_n14274<7>4
+    SLICE_X42Y83.C4             net (fanout=17)       0.542   USER_LOGIC_HWTI_I/_n14274
+    SLICE_X42Y83.C              Tilo                  0.068   N761
+                                                              USER_LOGIC_HWTI_I/Mmux_addrb461_SW0
+    SLICE_X37Y83.B2             net (fanout=1)        0.775   N68
+    SLICE_X37Y83.B              Tilo                  0.068   USER_LOGIC_HWTI_I/N1377
+                                                              USER_LOGIC_HWTI_I/Mmux_addrb461
+    SLICE_X33Y83.D1             net (fanout=16)       0.615   USER_LOGIC_HWTI_I/N1377
+    SLICE_X33Y83.CMUX           Topdc                 0.348   USER_LOGIC_HWTI_I/Mmux_addrb943
+                                                              USER_LOGIC_HWTI_I/Mmux_addrb6262
+                                                              USER_LOGIC_HWTI_I/Mmux_addrb626_f7
+    SLICE_X35Y83.A1             net (fanout=1)        0.586   USER_LOGIC_HWTI_I/Mmux_addrb625
+    SLICE_X35Y83.A              Tilo                  0.068   N747
+                                                              USER_LOGIC_HWTI_I/Mmux_addrb628
+    RAMB36_X2Y22.ADDRBWRADDRL11 net (fanout=16)       2.201   USER_LOGIC_HWTI_I/addrb<3>
+    RAMB36_X2Y22.CLKBWRCLKL     Trcck_ADDRB           0.480   USER_LOGIC_HWTI_I/bram/Mram_RAM6
+                                                              USER_LOGIC_HWTI_I/bram/Mram_RAM6
+    --------------------------------------------------------  ---------------------------
+    Total                                             9.689ns (1.769ns logic, 7.920ns route)
+                                                              (18.3% logic, 81.7% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point USER_LOGIC_HWTI_I/bram/Mram_RAM6 (RAMB36_X2Y22.DIBDI3), 370 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     0.284ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               USER_LOGIC_HWTI_I/bram/Mram_RAM4 (RAM)
+  Destination:          USER_LOGIC_HWTI_I/bram/Mram_RAM6 (RAM)
+  Requirement:          10.000ns
+  Data Path Delay:      9.571ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.110ns (1.074 - 1.184)
+  Source Clock:         OPB_Clk_BUFGP rising at 0.000ns
+  Destination Clock:    OPB_Clk_BUFGP rising at 10.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: USER_LOGIC_HWTI_I/bram/Mram_RAM4 to USER_LOGIC_HWTI_I/bram/Mram_RAM6
+    Location                Delay type         Delay(ns)  Physical Resource
+                                                          Logical Resource(s)
+    ----------------------------------------------------  -------------------
+    RAMB36_X3Y19.DOBDO1     Trcko_DOB             2.073   USER_LOGIC_HWTI_I/bram/Mram_RAM4
+                                                          USER_LOGIC_HWTI_I/bram/Mram_RAM4
+    SLICE_X49Y90.C6         net (fanout=20)       1.696   USER_LOGIC_HWTI_I/dob<18>
+    SLICE_X49Y90.C          Tilo                  0.068   USER_LOGIC_HWTI_I/dob[0]_GND_164_o_equal_591_o<0>13
+                                                          USER_LOGIC_HWTI_I/dob[0]_GND_164_o_equal_591_o<0>11
+    SLICE_X49Y90.A5         net (fanout=2)        0.301   USER_LOGIC_HWTI_I/dob[0]_GND_164_o_equal_591_o<0>11
+    SLICE_X49Y90.A          Tilo                  0.068   USER_LOGIC_HWTI_I/dob[0]_GND_164_o_equal_591_o<0>13
+                                                          USER_LOGIC_HWTI_I/dob[0]_GND_164_o_equal_591_o<0>13
+    SLICE_X32Y99.A1         net (fanout=30)       1.670   USER_LOGIC_HWTI_I/N332
+    SLICE_X32Y99.A          Tilo                  0.068   USER_LOGIC_HWTI_I/Mmux_dib992
+                                                          USER_LOGIC_HWTI_I/Mmux_dib1021211
+    SLICE_X36Y107.D4        net (fanout=16)       1.101   USER_LOGIC_HWTI_I/N3420
+    SLICE_X36Y107.D         Tilo                  0.068   USER_LOGIC_HWTI_I/Mmux_dib102
+                                                          USER_LOGIC_HWTI_I/Mmux_dib1021
+    SLICE_X36Y107.C2        net (fanout=1)        0.476   USER_LOGIC_HWTI_I/Mmux_dib102
+    SLICE_X36Y107.C         Tilo                  0.068   USER_LOGIC_HWTI_I/Mmux_dib102
+                                                          USER_LOGIC_HWTI_I/Mmux_dib1022
+    SLICE_X36Y107.B3        net (fanout=1)        0.462   USER_LOGIC_HWTI_I/Mmux_dib1021
+    SLICE_X36Y107.B         Tilo                  0.068   USER_LOGIC_HWTI_I/Mmux_dib102
+                                                          USER_LOGIC_HWTI_I/Mmux_dib1023
+    RAMB36_X2Y22.DIBDI3     net (fanout=1)        0.677   USER_LOGIC_HWTI_I/dib<8>
+    RAMB36_X2Y22.CLKBWRCLKL Trdck_DIB             0.707   USER_LOGIC_HWTI_I/bram/Mram_RAM6
+                                                          USER_LOGIC_HWTI_I/bram/Mram_RAM6
+    ----------------------------------------------------  ---------------------------
+    Total                                         9.571ns (3.188ns logic, 6.383ns route)
+                                                          (33.3% logic, 66.7% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     0.649ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               USER_LOGIC_HWTI_I/bram/Mram_RAM1 (RAM)
+  Destination:          USER_LOGIC_HWTI_I/bram/Mram_RAM6 (RAM)
+  Requirement:          10.000ns
+  Data Path Delay:      9.195ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.121ns (1.074 - 1.195)
+  Source Clock:         OPB_Clk_BUFGP rising at 0.000ns
+  Destination Clock:    OPB_Clk_BUFGP rising at 10.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: USER_LOGIC_HWTI_I/bram/Mram_RAM1 to USER_LOGIC_HWTI_I/bram/Mram_RAM6
+    Location                Delay type         Delay(ns)  Physical Resource
+                                                          Logical Resource(s)
+    ----------------------------------------------------  -------------------
+    RAMB36_X3Y17.DOBDO3     Trcko_DOB             2.073   USER_LOGIC_HWTI_I/bram/Mram_RAM1
+                                                          USER_LOGIC_HWTI_I/bram/Mram_RAM1
+    SLICE_X49Y90.B2         net (fanout=20)       1.150   USER_LOGIC_HWTI_I/dob<28>
+    SLICE_X49Y90.B          Tilo                  0.068   USER_LOGIC_HWTI_I/dob[0]_GND_164_o_equal_591_o<0>13
+                                                          USER_LOGIC_HWTI_I/dob[0]_GND_164_o_equal_591_o<0>12
+    SLICE_X49Y90.A2         net (fanout=2)        0.471   USER_LOGIC_HWTI_I/dob[0]_GND_164_o_equal_591_o<0>12
+    SLICE_X49Y90.A          Tilo                  0.068   USER_LOGIC_HWTI_I/dob[0]_GND_164_o_equal_591_o<0>13
+                                                          USER_LOGIC_HWTI_I/dob[0]_GND_164_o_equal_591_o<0>13
+    SLICE_X32Y99.A1         net (fanout=30)       1.670   USER_LOGIC_HWTI_I/N332
+    SLICE_X32Y99.A          Tilo                  0.068   USER_LOGIC_HWTI_I/Mmux_dib992
+                                                          USER_LOGIC_HWTI_I/Mmux_dib1021211
+    SLICE_X36Y107.D4        net (fanout=16)       1.101   USER_LOGIC_HWTI_I/N3420
+    SLICE_X36Y107.D         Tilo                  0.068   USER_LOGIC_HWTI_I/Mmux_dib102
+                                                          USER_LOGIC_HWTI_I/Mmux_dib1021
+    SLICE_X36Y107.C2        net (fanout=1)        0.476   USER_LOGIC_HWTI_I/Mmux_dib102
+    SLICE_X36Y107.C         Tilo                  0.068   USER_LOGIC_HWTI_I/Mmux_dib102
+                                                          USER_LOGIC_HWTI_I/Mmux_dib1022
+    SLICE_X36Y107.B3        net (fanout=1)        0.462   USER_LOGIC_HWTI_I/Mmux_dib1021
+    SLICE_X36Y107.B         Tilo                  0.068   USER_LOGIC_HWTI_I/Mmux_dib102
+                                                          USER_LOGIC_HWTI_I/Mmux_dib1023
+    RAMB36_X2Y22.DIBDI3     net (fanout=1)        0.677   USER_LOGIC_HWTI_I/dib<8>
+    RAMB36_X2Y22.CLKBWRCLKL Trdck_DIB             0.707   USER_LOGIC_HWTI_I/bram/Mram_RAM6
+                                                          USER_LOGIC_HWTI_I/bram/Mram_RAM6
+    ----------------------------------------------------  ---------------------------
+    Total                                         9.195ns (3.188ns logic, 6.007ns route)
+                                                          (34.7% logic, 65.3% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     0.787ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               USER_LOGIC_HWTI_I/bram/Mram_RAM3 (RAM)
+  Destination:          USER_LOGIC_HWTI_I/bram/Mram_RAM6 (RAM)
+  Requirement:          10.000ns
+  Data Path Delay:      9.119ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.059ns (1.074 - 1.133)
+  Source Clock:         OPB_Clk_BUFGP rising at 0.000ns
+  Destination Clock:    OPB_Clk_BUFGP rising at 10.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: USER_LOGIC_HWTI_I/bram/Mram_RAM3 to USER_LOGIC_HWTI_I/bram/Mram_RAM6
+    Location                Delay type         Delay(ns)  Physical Resource
+                                                          Logical Resource(s)
+    ----------------------------------------------------  -------------------
+    RAMB36_X2Y18.DOBDO0     Trcko_DOB             2.073   USER_LOGIC_HWTI_I/bram/Mram_RAM3
+                                                          USER_LOGIC_HWTI_I/bram/Mram_RAM3
+    SLICE_X49Y90.B1         net (fanout=20)       1.074   USER_LOGIC_HWTI_I/dob<23>
+    SLICE_X49Y90.B          Tilo                  0.068   USER_LOGIC_HWTI_I/dob[0]_GND_164_o_equal_591_o<0>13
+                                                          USER_LOGIC_HWTI_I/dob[0]_GND_164_o_equal_591_o<0>12
+    SLICE_X49Y90.A2         net (fanout=2)        0.471   USER_LOGIC_HWTI_I/dob[0]_GND_164_o_equal_591_o<0>12
+    SLICE_X49Y90.A          Tilo                  0.068   USER_LOGIC_HWTI_I/dob[0]_GND_164_o_equal_591_o<0>13
+                                                          USER_LOGIC_HWTI_I/dob[0]_GND_164_o_equal_591_o<0>13
+    SLICE_X32Y99.A1         net (fanout=30)       1.670   USER_LOGIC_HWTI_I/N332
+    SLICE_X32Y99.A          Tilo                  0.068   USER_LOGIC_HWTI_I/Mmux_dib992
+                                                          USER_LOGIC_HWTI_I/Mmux_dib1021211
+    SLICE_X36Y107.D4        net (fanout=16)       1.101   USER_LOGIC_HWTI_I/N3420
+    SLICE_X36Y107.D         Tilo                  0.068   USER_LOGIC_HWTI_I/Mmux_dib102
+                                                          USER_LOGIC_HWTI_I/Mmux_dib1021
+    SLICE_X36Y107.C2        net (fanout=1)        0.476   USER_LOGIC_HWTI_I/Mmux_dib102
+    SLICE_X36Y107.C         Tilo                  0.068   USER_LOGIC_HWTI_I/Mmux_dib102
+                                                          USER_LOGIC_HWTI_I/Mmux_dib1022
+    SLICE_X36Y107.B3        net (fanout=1)        0.462   USER_LOGIC_HWTI_I/Mmux_dib1021
+    SLICE_X36Y107.B         Tilo                  0.068   USER_LOGIC_HWTI_I/Mmux_dib102
+                                                          USER_LOGIC_HWTI_I/Mmux_dib1023
+    RAMB36_X2Y22.DIBDI3     net (fanout=1)        0.677   USER_LOGIC_HWTI_I/dib<8>
+    RAMB36_X2Y22.CLKBWRCLKL Trdck_DIB             0.707   USER_LOGIC_HWTI_I/bram/Mram_RAM6
+                                                          USER_LOGIC_HWTI_I/bram/Mram_RAM6
+    ----------------------------------------------------  ---------------------------
+    Total                                         9.119ns (3.188ns logic, 5.931ns route)
+                                                          (35.0% logic, 65.0% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point USER_LOGIC_HWTI_I/user_state_1_2 (SLICE_X62Y91.BX), 4017 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     0.440ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               USER_LOGIC_HWTI_I/user_state_4 (FF)
+  Destination:          USER_LOGIC_HWTI_I/user_state_1_2 (FF)
+  Requirement:          10.000ns
+  Data Path Delay:      9.492ns (Levels of Logic = 10)
+  Clock Path Skew:      -0.033ns (1.032 - 1.065)
+  Source Clock:         OPB_Clk_BUFGP rising at 0.000ns
+  Destination Clock:    OPB_Clk_BUFGP rising at 10.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: USER_LOGIC_HWTI_I/user_state_4 to USER_LOGIC_HWTI_I/user_state_1_2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X50Y90.DQ      Tcko                  0.381   USER_LOGIC_HWTI_I/user_state<4>
+                                                       USER_LOGIC_HWTI_I/user_state_4
+    SLICE_X55Y91.B1      net (fanout=664)      0.778   USER_LOGIC_HWTI_I/user_state<4>
+    SLICE_X55Y91.B       Tilo                  0.068   USER_LOGIC_HWTI_I/_n7237
+                                                       USER_LOGIC_HWTI_I/Mmux_data_address_next4151
+    SLICE_X55Y91.D6      net (fanout=6)        0.138   USER_LOGIC_HWTI_I/N449
+    SLICE_X55Y91.D       Tilo                  0.068   USER_LOGIC_HWTI_I/_n7237
+                                                       USER_LOGIC_HWTI_I/_n7237<7>1
+    SLICE_X36Y113.D4     net (fanout=21)       1.790   USER_LOGIC_HWTI_I/_n7237
+    SLICE_X36Y113.DMUX   Topdd                 0.515   USER_LOGIC_HWTI_I/N1228
+                                                       USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT1621_lut
+                                                       USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT1621_cy
+    SLICE_X59Y93.A1      net (fanout=1)        2.262   USER_LOGIC_HWTI_I/N1228
+    SLICE_X59Y93.A       Tilo                  0.068   USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2819
+                                                       USER_LOGIC_HWTI_I/dob[0]_GND_164_o_equal_591_o<0>5_SW0
+    SLICE_X59Y93.C4      net (fanout=1)        0.398   N397
+    SLICE_X59Y93.C       Tilo                  0.068   USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2819
+                                                       USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2818
+    SLICE_X59Y93.D3      net (fanout=1)        0.333   USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2817
+    SLICE_X59Y93.D       Tilo                  0.068   USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2819
+                                                       USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2820
+    SLICE_X58Y93.B1      net (fanout=1)        0.579   USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2819
+    SLICE_X58Y93.B       Tilo                  0.068   USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2823
+                                                       USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2824
+    SLICE_X58Y93.A6      net (fanout=1)        0.125   USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2823
+    SLICE_X58Y93.A       Tilo                  0.068   USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2823
+                                                       USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2825
+    SLICE_X61Y91.A1      net (fanout=1)        0.834   USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2824
+    SLICE_X61Y91.A       Tilo                  0.068   N1074
+                                                       USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2830
+    SLICE_X61Y91.B3      net (fanout=1)        0.335   USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2829
+    SLICE_X61Y91.B       Tilo                  0.068   N1074
+                                                       USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2834
+    SLICE_X62Y91.BX      net (fanout=2)        0.378   USER_LOGIC_HWTI_I/user_state_next[7]_GND_164_o_mux_14_OUT<1>
+    SLICE_X62Y91.CLK     Tdick                 0.034   USER_LOGIC_HWTI_I/user_state_1_2
+                                                       USER_LOGIC_HWTI_I/user_state_1_2
+    -------------------------------------------------  ---------------------------
+    Total                                      9.492ns (1.542ns logic, 7.950ns route)
+                                                       (16.2% logic, 83.8% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     0.524ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               USER_LOGIC_HWTI_I/user_state_1 (FF)
+  Destination:          USER_LOGIC_HWTI_I/user_state_1_2 (FF)
+  Requirement:          10.000ns
+  Data Path Delay:      9.383ns (Levels of Logic = 9)
+  Clock Path Skew:      -0.058ns (1.032 - 1.090)
+  Source Clock:         OPB_Clk_BUFGP rising at 0.000ns
+  Destination Clock:    OPB_Clk_BUFGP rising at 10.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: USER_LOGIC_HWTI_I/user_state_1 to USER_LOGIC_HWTI_I/user_state_1_2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X58Y91.AMUX    Tshcko                0.422   USER_LOGIC_HWTI_I/user_state_2_1
+                                                       USER_LOGIC_HWTI_I/user_state_1
+    SLICE_X55Y91.D2      net (fanout=634)      0.834   USER_LOGIC_HWTI_I/user_state<1>
+    SLICE_X55Y91.D       Tilo                  0.068   USER_LOGIC_HWTI_I/_n7237
+                                                       USER_LOGIC_HWTI_I/_n7237<7>1
+    SLICE_X36Y113.D4     net (fanout=21)       1.790   USER_LOGIC_HWTI_I/_n7237
+    SLICE_X36Y113.DMUX   Topdd                 0.515   USER_LOGIC_HWTI_I/N1228
+                                                       USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT1621_lut
+                                                       USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT1621_cy
+    SLICE_X59Y93.A1      net (fanout=1)        2.262   USER_LOGIC_HWTI_I/N1228
+    SLICE_X59Y93.A       Tilo                  0.068   USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2819
+                                                       USER_LOGIC_HWTI_I/dob[0]_GND_164_o_equal_591_o<0>5_SW0
+    SLICE_X59Y93.C4      net (fanout=1)        0.398   N397
+    SLICE_X59Y93.C       Tilo                  0.068   USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2819
+                                                       USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2818
+    SLICE_X59Y93.D3      net (fanout=1)        0.333   USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2817
+    SLICE_X59Y93.D       Tilo                  0.068   USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2819
+                                                       USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2820
+    SLICE_X58Y93.B1      net (fanout=1)        0.579   USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2819
+    SLICE_X58Y93.B       Tilo                  0.068   USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2823
+                                                       USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2824
+    SLICE_X58Y93.A6      net (fanout=1)        0.125   USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2823
+    SLICE_X58Y93.A       Tilo                  0.068   USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2823
+                                                       USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2825
+    SLICE_X61Y91.A1      net (fanout=1)        0.834   USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2824
+    SLICE_X61Y91.A       Tilo                  0.068   N1074
+                                                       USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2830
+    SLICE_X61Y91.B3      net (fanout=1)        0.335   USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2829
+    SLICE_X61Y91.B       Tilo                  0.068   N1074
+                                                       USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2834
+    SLICE_X62Y91.BX      net (fanout=2)        0.378   USER_LOGIC_HWTI_I/user_state_next[7]_GND_164_o_mux_14_OUT<1>
+    SLICE_X62Y91.CLK     Tdick                 0.034   USER_LOGIC_HWTI_I/user_state_1_2
+                                                       USER_LOGIC_HWTI_I/user_state_1_2
+    -------------------------------------------------  ---------------------------
+    Total                                      9.383ns (1.515ns logic, 7.868ns route)
+                                                       (16.1% logic, 83.9% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     0.567ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               USER_LOGIC_HWTI_I/user_state_6 (FF)
+  Destination:          USER_LOGIC_HWTI_I/user_state_1_2 (FF)
+  Requirement:          10.000ns
+  Data Path Delay:      9.356ns (Levels of Logic = 9)
+  Clock Path Skew:      -0.042ns (1.032 - 1.074)
+  Source Clock:         OPB_Clk_BUFGP rising at 0.000ns
+  Destination Clock:    OPB_Clk_BUFGP rising at 10.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: USER_LOGIC_HWTI_I/user_state_6 to USER_LOGIC_HWTI_I/user_state_1_2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X52Y89.CQ      Tcko                  0.381   USER_LOGIC_HWTI_I/user_state<7>
+                                                       USER_LOGIC_HWTI_I/user_state_6
+    SLICE_X55Y91.D1      net (fanout=432)      0.848   USER_LOGIC_HWTI_I/user_state<6>
+    SLICE_X55Y91.D       Tilo                  0.068   USER_LOGIC_HWTI_I/_n7237
+                                                       USER_LOGIC_HWTI_I/_n7237<7>1
+    SLICE_X36Y113.D4     net (fanout=21)       1.790   USER_LOGIC_HWTI_I/_n7237
+    SLICE_X36Y113.DMUX   Topdd                 0.515   USER_LOGIC_HWTI_I/N1228
+                                                       USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT1621_lut
+                                                       USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT1621_cy
+    SLICE_X59Y93.A1      net (fanout=1)        2.262   USER_LOGIC_HWTI_I/N1228
+    SLICE_X59Y93.A       Tilo                  0.068   USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2819
+                                                       USER_LOGIC_HWTI_I/dob[0]_GND_164_o_equal_591_o<0>5_SW0
+    SLICE_X59Y93.C4      net (fanout=1)        0.398   N397
+    SLICE_X59Y93.C       Tilo                  0.068   USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2819
+                                                       USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2818
+    SLICE_X59Y93.D3      net (fanout=1)        0.333   USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2817
+    SLICE_X59Y93.D       Tilo                  0.068   USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2819
+                                                       USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2820
+    SLICE_X58Y93.B1      net (fanout=1)        0.579   USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2819
+    SLICE_X58Y93.B       Tilo                  0.068   USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2823
+                                                       USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2824
+    SLICE_X58Y93.A6      net (fanout=1)        0.125   USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2823
+    SLICE_X58Y93.A       Tilo                  0.068   USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2823
+                                                       USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2825
+    SLICE_X61Y91.A1      net (fanout=1)        0.834   USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2824
+    SLICE_X61Y91.A       Tilo                  0.068   N1074
+                                                       USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2830
+    SLICE_X61Y91.B3      net (fanout=1)        0.335   USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2829
+    SLICE_X61Y91.B       Tilo                  0.068   N1074
+                                                       USER_LOGIC_HWTI_I/Mmux_user_state_next[7]_GND_164_o_mux_14_OUT2834
+    SLICE_X62Y91.BX      net (fanout=2)        0.378   USER_LOGIC_HWTI_I/user_state_next[7]_GND_164_o_mux_14_OUT<1>
+    SLICE_X62Y91.CLK     Tdick                 0.034   USER_LOGIC_HWTI_I/user_state_1_2
+                                                       USER_LOGIC_HWTI_I/user_state_1_2
+    -------------------------------------------------  ---------------------------
+    Total                                      9.356ns (1.474ns logic, 7.882ns route)
+                                                       (15.8% logic, 84.2% route)
+
+--------------------------------------------------------------------------------
+
+Hold Paths: TS_OPB_Clk = PERIOD TIMEGRP "OPB_Clk" 10 ns HIGH 50%;
+--------------------------------------------------------------------------------
+
+Paths for end point OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/INCLUDE_MN_ABUS_SHADOW.MN_ABUS_SHADOW_GEN[4].FDE_I (SLICE_X70Y160.AX), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.019ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/I_Addr_ld_inc/Load_and_increment_vector_Generate[4].I_FDRE_add_incr (FF)
+  Destination:          OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/INCLUDE_MN_ABUS_SHADOW.MN_ABUS_SHADOW_GEN[4].FDE_I (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      0.132ns (Levels of Logic = 0)
+  Clock Path Skew:      0.113ns (0.801 - 0.688)
+  Source Clock:         OPB_Clk_BUFGP rising at 10.000ns
+  Destination Clock:    OPB_Clk_BUFGP rising at 10.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path at Fast Process Corner: OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/I_Addr_ld_inc/Load_and_increment_vector_Generate[4].I_FDRE_add_incr to OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/INCLUDE_MN_ABUS_SHADOW.MN_ABUS_SHADOW_GEN[4].FDE_I
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X70Y158.BQ     Tcko                  0.098   M_ABus_2_OBUF
+                                                       OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/I_Addr_ld_inc/Load_and_increment_vector_Generate[4].I_FDRE_add_incr
+    SLICE_X70Y160.AX     net (fanout=3)        0.110   M_ABus_4_OBUF
+    SLICE_X70Y160.CLK    Tckdi       (-Th)     0.076   OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/mn_abus_shadow<7>
+                                                       OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/INCLUDE_MN_ABUS_SHADOW.MN_ABUS_SHADOW_GEN[4].FDE_I
+    -------------------------------------------------  ---------------------------
+    Total                                      0.132ns (0.022ns logic, 0.110ns route)
+                                                       (16.7% logic, 83.3% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/INCLUDE_MN_ABUS_SHADOW.MN_ABUS_SHADOW_GEN[8].FDE_I (SLICE_X71Y160.AX), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.058ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/I_Addr_ld_inc/Load_and_increment_vector_Generate[8].I_FDRE_add_incr (FF)
+  Destination:          OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/INCLUDE_MN_ABUS_SHADOW.MN_ABUS_SHADOW_GEN[8].FDE_I (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      0.171ns (Levels of Logic = 0)
+  Clock Path Skew:      0.113ns (0.801 - 0.688)
+  Source Clock:         OPB_Clk_BUFGP rising at 10.000ns
+  Destination Clock:    OPB_Clk_BUFGP rising at 10.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path at Fast Process Corner: OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/I_Addr_ld_inc/Load_and_increment_vector_Generate[8].I_FDRE_add_incr to OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/INCLUDE_MN_ABUS_SHADOW.MN_ABUS_SHADOW_GEN[8].FDE_I
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X70Y157.BQ     Tcko                  0.098   M_ABus_6_OBUF
+                                                       OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/I_Addr_ld_inc/Load_and_increment_vector_Generate[8].I_FDRE_add_incr
+    SLICE_X71Y160.AX     net (fanout=3)        0.149   M_ABus_8_OBUF
+    SLICE_X71Y160.CLK    Tckdi       (-Th)     0.076   OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/mn_abus_shadow<11>
+                                                       OPB_IPIF_I/INCLUDE_MASTER.I_MASTER_ATTACHMENT/INCLUDE_MN_ABUS_SHADOW.MN_ABUS_SHADOW_GEN[8].FDE_I
+    -------------------------------------------------  ---------------------------
+    Total                                      0.171ns (0.022ns logic, 0.149ns route)
+                                                       (12.9% logic, 87.1% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point USER_LOGIC_HWTI_I/reg2_27 (SLICE_X37Y114.A6), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.101ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               USER_LOGIC_HWTI_I/reg2_26 (FF)
+  Destination:          USER_LOGIC_HWTI_I/reg2_27 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      0.113ns (Levels of Logic = 1)
+  Clock Path Skew:      0.012ns (0.065 - 0.053)
+  Source Clock:         OPB_Clk_BUFGP rising at 10.000ns
+  Destination Clock:    OPB_Clk_BUFGP rising at 10.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path at Fast Process Corner: USER_LOGIC_HWTI_I/reg2_26 to USER_LOGIC_HWTI_I/reg2_27
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X36Y114.BQ     Tcko                  0.115   USER_LOGIC_HWTI_I/reg2<25>
+                                                       USER_LOGIC_HWTI_I/reg2_26
+    SLICE_X37Y114.A6     net (fanout=9)        0.053   USER_LOGIC_HWTI_I/reg2<26>
+    SLICE_X37Y114.CLK    Tah         (-Th)     0.055   USER_LOGIC_HWTI_I/reg2<28>
+                                                       USER_LOGIC_HWTI_I/Mmux__n5151404
+                                                       USER_LOGIC_HWTI_I/reg2_27
+    -------------------------------------------------  ---------------------------
+    Total                                      0.113ns (0.060ns logic, 0.053ns route)
+                                                       (53.1% logic, 46.9% route)
+
+--------------------------------------------------------------------------------
+
+Component Switching Limit Checks: TS_OPB_Clk = PERIOD TIMEGRP "OPB_Clk" 10 ns HIGH 50%;
+--------------------------------------------------------------------------------
+Slack: 7.778ns (period - min period limit)
+  Period: 10.000ns
+  Min period limit: 2.222ns (450.045MHz) (Trper_CLKA)
+  Physical resource: USER_LOGIC_HWTI_I/bram/Mram_RAM1/CLKARDCLKL
+  Logical resource: USER_LOGIC_HWTI_I/bram/Mram_RAM1/CLKARDCLKL
+  Location pin: RAMB36_X3Y17.CLKARDCLKL
+  Clock network: OPB_Clk_BUFGP
+--------------------------------------------------------------------------------
+Slack: 7.778ns (period - min period limit)
+  Period: 10.000ns
+  Min period limit: 2.222ns (450.045MHz) (Trper_CLKB)
+  Physical resource: USER_LOGIC_HWTI_I/bram/Mram_RAM1/CLKBWRCLKL
+  Logical resource: USER_LOGIC_HWTI_I/bram/Mram_RAM1/CLKBWRCLKL
+  Location pin: RAMB36_X3Y17.CLKBWRCLKL
+  Clock network: OPB_Clk_BUFGP
+--------------------------------------------------------------------------------
+Slack: 7.778ns (period - min period limit)
+  Period: 10.000ns
+  Min period limit: 2.222ns (450.045MHz) (Trper_CLKA)
+  Physical resource: USER_LOGIC_HWTI_I/bram/Mram_RAM2/CLKARDCLKL
+  Logical resource: USER_LOGIC_HWTI_I/bram/Mram_RAM2/CLKARDCLKL
+  Location pin: RAMB36_X3Y18.CLKARDCLKL
+  Clock network: OPB_Clk_BUFGP
+--------------------------------------------------------------------------------
+
+
+All constraints were met.
+
+
+Data Sheet report:
+-----------------
+All values displayed in nanoseconds (ns)
+
+Clock to Setup on destination clock OPB_Clk
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+OPB_Clk        |    9.829|         |         |         |
+---------------+---------+---------+---------+---------+
+
+
+Timing summary:
+---------------
+
+Timing errors: 0  Score: 0  (Setup/Max: 0, Hold: 0)
+
+Constraints cover 744740 paths, 0 nets, and 24812 connections
+
+Design statistics:
+   Minimum period:   9.829ns{1}   (Maximum frequency: 101.740MHz)
+
+
+------------------------------------Footnotes-----------------------------------
+1)  The minimum period statistic assumes all single cycle delays.
+
+Analysis completed Wed Oct 10 15:21:01 2012 
+--------------------------------------------------------------------------------
+
+Trace Settings:
+-------------------------
+Trace Settings 
+
+Peak Memory Usage: 768 MB
+
+
+

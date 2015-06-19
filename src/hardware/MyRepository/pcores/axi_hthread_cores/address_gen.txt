@@ -1,0 +1,97 @@
+# scheduler
+set_property range 16M [get_bd_addr_segs {microblaze_0/Data/SEG_axi_scheduler_0_reg0}]
+set_property offset 0x12000000 [get_bd_addr_segs {microblaze_0/Data/SEG_axi_scheduler_0_reg0}]
+
+set_property range 16M [get_bd_addr_segs {hthreads_core/axi_scheduler_0/m_axi_lite/SEG_axi_scheduler_0_reg0}]
+set_property offset 0x12000000 [get_bd_addr_segs {hthreads_core/axi_scheduler_0/m_axi_lite/SEG_axi_scheduler_0_reg0}]
+
+set_property range 16M [get_bd_addr_segs {hthreads_core/axi_cond_vars_0/m_axi_lite/SEG_axi_scheduler_0_reg0}]
+set_property offset 0x12000000 [get_bd_addr_segs {hthreads_core/axi_cond_vars_0/m_axi_lite/SEG_axi_scheduler_0_reg0}]
+
+set_property range 16M [get_bd_addr_segs {hthreads_core/axi_sync_manager_0/m_axi_lite/SEG_axi_scheduler_0_reg0}]
+set_property offset 0x12000000 [get_bd_addr_segs {hthreads_core/axi_sync_manager_0/m_axi_lite/SEG_axi_scheduler_0_reg0}]
+
+
+
+# sync_manager
+set_property range 16M [get_bd_addr_segs {microblaze_0/Data/SEG_axi_sync_manager_0_reg0}]
+set_property offset 0x13000000 [get_bd_addr_segs {microblaze_0/Data/SEG_axi_sync_manager_0_reg0}]
+
+set_property range 16M [get_bd_addr_segs {hthreads_core/axi_scheduler_0/m_axi_lite/SEG_axi_sync_manager_0_reg0}]
+set_property offset 0x13000000 [get_bd_addr_segs {hthreads_core/axi_scheduler_0/m_axi_lite/SEG_axi_sync_manager_0_reg0}]
+
+set_property range 16M [get_bd_addr_segs {hthreads_core/axi_cond_vars_0/m_axi_lite/SEG_axi_sync_manager_0_reg0}]
+set_property offset 0x13000000 [get_bd_addr_segs {hthreads_core/axi_cond_vars_0/m_axi_lite/SEG_axi_sync_manager_0_reg0}]
+
+set_property range 16M [get_bd_addr_segs {hthreads_core/axi_sync_manager_0/m_axi_lite/SEG_axi_sync_manager_0_reg0}]
+set_property offset 0x13000000 [get_bd_addr_segs {hthreads_core/axi_sync_manager_0/m_axi_lite/SEG_axi_sync_manager_0_reg0}]
+
+
+# cond_vars
+set_property range 512K [get_bd_addr_segs {microblaze_0/Data/SEG_axi_cond_vars_0_reg0}]
+set_property offset 0x11100000 [get_bd_addr_segs {microblaze_0/Data/SEG_axi_cond_vars_0_reg0}]
+
+set_property range 512K [get_bd_addr_segs {hthreads_core/axi_scheduler_0/m_axi_lite/SEG_axi_cond_vars_0_reg0}]
+set_property offset 0x11100000 [get_bd_addr_segs {hthreads_core/axi_scheduler_0/m_axi_lite/SEG_axi_cond_vars_0_reg0}]
+
+set_property range 512K [get_bd_addr_segs {hthreads_core/axi_cond_vars_0/m_axi_lite/SEG_axi_cond_vars_0_reg0}]
+set_property offset 0x11100000 [get_bd_addr_segs {hthreads_core/axi_cond_vars_0/m_axi_lite/SEG_axi_cond_vars_0_reg0}]
+
+set_property range 512K [get_bd_addr_segs {hthreads_core/axi_sync_manager_0/m_axi_lite/SEG_axi_cond_vars_0_reg0}]
+set_property offset 0x11100000 [get_bd_addr_segs {hthreads_core/axi_sync_manager_0/m_axi_lite/SEG_axi_cond_vars_0_reg0}]
+
+
+# TM
+set_property range 256K [get_bd_addr_segs {microblaze_0/Data/SEG_axi_thread_manager_0_reg0}]
+set_property offset 0x11000000 [get_bd_addr_segs {microblaze_0/Data/SEG_axi_thread_manager_0_reg0}]
+
+set_property range 256K [get_bd_addr_segs {hthreads_core/axi_scheduler_0/m_axi_lite/SEG_axi_thread_manager_0_reg0}]
+set_property offset 0x11000000 [get_bd_addr_segs {hthreads_core/axi_scheduler_0/m_axi_lite/SEG_axi_thread_manager_0_reg0}]
+
+set_property range 256K [get_bd_addr_segs {hthreads_core/axi_cond_vars_0/m_axi_lite/SEG_axi_thread_manager_0_reg0}]
+set_property offset 0x11000000 [get_bd_addr_segs {hthreads_core/axi_cond_vars_0/m_axi_lite/SEG_axi_thread_manager_0_reg0}]
+
+set_property range 256K [get_bd_addr_segs {hthreads_core/axi_sync_manager_0/m_axi_lite/SEG_axi_thread_manager_0_reg0}]
+set_property offset 0x11000000 [get_bd_addr_segs {hthreads_core/axi_sync_manager_0/m_axi_lite/SEG_axi_thread_manager_0_reg0}]
+
+# reset
+set_property range 64K [get_bd_addr_segs {microblaze_0/Data/SEG_axi_hthread_reset_core_0_reg0}]
+set_property offset 0x14000000 [get_bd_addr_segs {microblaze_0/Data/SEG_axi_hthread_reset_core_0_reg0}]
+
+set_property range 64K [get_bd_addr_segs {hthreads_core/axi_scheduler_0/m_axi_lite/SEG_axi_hthread_reset_core_0_reg0}]
+set_property offset 0x14000000 [get_bd_addr_segs {hthreads_core/axi_scheduler_0/m_axi_lite/SEG_axi_hthread_reset_core_0_reg0}]
+
+set_property range 64K [get_bd_addr_segs {hthreads_core/axi_cond_vars_0/m_axi_lite/SEG_axi_hthread_reset_core_0_reg0}]
+set_property offset 0x14000000 [get_bd_addr_segs {hthreads_core/axi_cond_vars_0/m_axi_lite/SEG_axi_hthread_reset_core_0_reg0}]
+
+set_property range 64K [get_bd_addr_segs {hthreads_core/axi_sync_manager_0/m_axi_lite/SEG_axi_hthread_reset_core_0_reg0}]
+set_property offset 0x14000000 [get_bd_addr_segs {hthreads_core/axi_sync_manager_0/m_axi_lite/SEG_axi_hthread_reset_core_0_reg0}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

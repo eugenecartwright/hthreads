@@ -1,0 +1,63 @@
+##############################################################################
+## Filename:          /home/jrios/heterogeneous_hthreads_latest/src/platforms/xilinx/ml605_smp_14_bak/design/pcores/add_sub_core_v1_00_a/data/add_sub_core_v2_1_0.mpd
+## Description:       Microprocessor Peripheral Description
+## Date:              Thu Aug  9 10:06:10 2012 (by Create and Import Peripheral Wizard)
+##############################################################################
+
+BEGIN hw_acc_mergesort
+
+## Peripheral Options
+OPTION IPTYPE = PERIPHERAL
+OPTION IMP_NETLIST = TRUE
+OPTION HDL = VHDL
+## Bus Interfaces
+BUS_INTERFACE BUS=SFSL0, BUS_STD=FSL, BUS_TYPE=SLAVE
+BUS_INTERFACE BUS=SFSL1, BUS_STD=FSL, BUS_TYPE=SLAVE
+BUS_INTERFACE BUS=MFSL0, BUS_STD=FSL, BUS_TYPE=MASTER
+
+BUS_INTERFACE BUS = PORTA, BUS_STD = XIL_BRAM, BUS_TYPE = INITIATOR
+BUS_INTERFACE BUS = PORTB, BUS_STD = XIL_BRAM, BUS_TYPE = INITIATOR
+BUS_INTERFACE BUS = PORTC, BUS_STD = XIL_BRAM, BUS_TYPE = INITIATOR
+
+## Peripheral ports
+PORT clk       = "",            DIR=I, SIGIS=Clk,    BUS=MFSL0:SFSL0
+PORT rst       = "",            DIR=I
+
+#PORT BRAM_A_Rst	= BRAM_Rst, DIR = O, BUS = PORTA
+#PORT BRAM_A_Clk	= BRAM_Clk, DIR = O, BUS = PORTA
+PORT BRAM_A_EN		= BRAM_EN, DIR = O, BUS = PORTA
+PORT BRAM_A_WEN	= BRAM_WEN, DIR = O, VEC = [0:3], BUS = PORTA
+PORT BRAM_A_Addr	= BRAM_Addr, DIR = O, VEC = [0:31, BUS = PORTA
+PORT BRAM_A_Din	= BRAM_Din, DIR = I, VEC = [0:31], BUS = PORTA
+PORT BRAM_A_Dout	= BRAM_Dout, DIR = O, VEC = [0:31], BUS = PORTA
+
+#PORT BRAM_B_Rst	= BRAM_Rst, DIR = O, BUS = PORTB
+#PORT BRAM_B_Clk	= BRAM_Clk, DIR = O, BUS = PORTB
+PORT BRAM_B_EN		= BRAM_EN, DIR = O, BUS = PORTB
+PORT BRAM_B_WEN	= BRAM_WEN, DIR = O, VEC = [0:3], BUS = PORTB
+PORT BRAM_B_Addr	= BRAM_Addr, DIR = O, VEC = [0:31, BUS = PORTB
+PORT BRAM_B_Din	= BRAM_Din, DIR = I, VEC = [0:31], BUS = PORTB
+PORT BRAM_B_Dout	= BRAM_Dout, DIR = O, VEC = [0:31], BUS = PORTB
+
+#PORT BRAM_C_Rst	= BRAM_Rst, DIR = O, BUS = PORTC
+#PORT BRAM_C_Clk	= BRAM_Clk, DIR = O, BUS = PORTC
+PORT BRAM_C_EN		= BRAM_EN, DIR = O, BUS = PORTC
+PORT BRAM_C_WEN	= BRAM_WEN, DIR = O, VEC = [0:3], BUS = PORTC
+PORT BRAM_C_Addr	= BRAM_Addr, DIR = O, VEC = [0:31, BUS = PORTC
+PORT BRAM_C_Din	= BRAM_Din, DIR = I, VEC = [0:31], BUS = PORTC
+PORT BRAM_C_Dout	= BRAM_Dout, DIR = O, VEC = [0:31], BUS = PORTC#####################################################################
+
+PORT FSL0_S_Read    = FSL_S_Read,    DIR=O,               BUS=SFSL0
+PORT FSL0_S_Data    = FSL_S_Data,    DIR=I, VEC=[0:31],   BUS=SFSL0
+PORT FSL0_S_Exists  = FSL_S_Exists,  DIR=I,               BUS=SFSL0
+
+PORT FSL1_S_Read    = FSL_S_Read,    DIR=O,               BUS=SFSL1
+PORT FSL1_S_Data    = FSL_S_Data,    DIR=I, VEC=[0:31],   BUS=SFSL1
+PORT FSL1_S_Exists  = FSL_S_Exists,  DIR=I,               BUS=SFSL1
+
+PORT FSL0_M_Write   = FSL_M_Write,   DIR=O,               BUS=MFSL0
+PORT FSL0_M_Data    = FSL_M_Data,    DIR=O, VEC=[0:31],   BUS=MFSL0
+PORT FSL0_M_Full    = FSL_M_Full,    DIR=I,               BUS=MFSL0
+
+
+END

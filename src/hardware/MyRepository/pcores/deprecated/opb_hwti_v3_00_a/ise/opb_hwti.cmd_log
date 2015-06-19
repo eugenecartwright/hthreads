@@ -1,0 +1,1 @@
+xst -intstyle ise -ifn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/platforms/xilinx/HWTI_Test_01/design/pcores/opb_hwti_v3_00_a /ise/opb_hwti.xst" -ofn "/home/abazar63/Desktop/hthread/heterogeneous_hthreads_latest/src/platforms/xilinx/HWTI_Test_01/design/pcores/opb_hwti_v3_00_a /ise/opb_hwti.syr" 

@@ -1,0 +1,11 @@
+-batch 
+-create axi_scheduler 
+-ver 1.00.a 
+-dir "/home/abazar63/hthread/src/platforms/xilinx/vc707_smp1_axi_cores/design" 
+-lang vhdl 
+-bus axi4lite ms 
+-reg 1 
+-xps 
+-ise 
+-bfmsim all
+-driver 

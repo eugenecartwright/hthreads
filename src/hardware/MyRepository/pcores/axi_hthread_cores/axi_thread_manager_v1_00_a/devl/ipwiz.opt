@@ -1,0 +1,9 @@
+-batch 
+-create axi_thread_manager 
+-ver 1.00.a 
+-dir "D:\PhD\Projects\Vivdo_H\Step4\XPS_Hcore_DH" 
+-lang vhdl 
+-bus axi4lite s 
+-reg 1 
+-xps 
+-bfmsim all

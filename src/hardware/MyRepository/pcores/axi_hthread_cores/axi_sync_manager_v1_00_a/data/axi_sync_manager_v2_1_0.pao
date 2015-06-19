@@ -1,0 +1,32 @@
+##############################################################################
+## Filename:          /home/abazar63/hthread/src/platforms/xilinx/vc707_smp1_axi_cores/design/pcores/axi_scheduler_v1_00_a/data/axi_scheduler_v2_1_0.pao
+## Description:       Peripheral Analysis Order
+## Date:              Thu Jun 26 14:24:54 2014 (by Create and Import Peripheral Wizard)
+##############################################################################
+
+lib proc_common_v3_00_a  all 
+lib axi_lite_ipif_v1_01_a  all 
+lib axi_master_lite_v1_00_a  all 
+
+
+
+
+lib axi_sync_manager_v1_00_a common vhdl
+lib axi_sync_manager_v1_00_a lock_fsm vhdl
+lib axi_sync_manager_v1_00_a unlock_fsm vhdl
+lib axi_sync_manager_v1_00_a trylock_fsm vhdl
+lib axi_sync_manager_v1_00_a owner_fsm vhdl
+lib axi_sync_manager_v1_00_a kind_fsm vhdl
+lib axi_sync_manager_v1_00_a count_fsm vhdl
+lib axi_sync_manager_v1_00_a result_fsm vhdl
+lib axi_sync_manager_v1_00_a mutex_store vhdl
+lib axi_sync_manager_v1_00_a thread_store vhdl
+lib axi_sync_manager_v1_00_a send_store vhdl
+lib axi_sync_manager_v1_00_a slave vhdl
+lib axi_sync_manager_v1_00_a master vhdl
+#lib axi_sync_manager_v1_00_a opb_SynchManager vhdl
+
+lib axi_sync_manager_v1_00_a user_logic vhdl
+lib axi_sync_manager_v1_00_a axi_sync_manager vhdl
+
+

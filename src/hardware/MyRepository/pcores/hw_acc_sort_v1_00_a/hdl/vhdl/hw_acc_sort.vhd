@@ -79,14 +79,19 @@ end hw_acc_sort;
 -- *************************
 architecture IMPLEMENTATION of hw_acc_sort is
 
-component sort_chan is
+component mergesort is
 port
 (
-  array_addr0 : out std_logic_vector(0 to (32 - 1));
-  array_dIN0 : out std_logic_vector(0 to (32- 1));
-  array_dOUT0 : in std_logic_vector(0 to (32 - 1));
-  array_rENA0 : out std_logic;
-  array_wENA0 : out std_logic_vector(0 to (32/8) -1);
+   array0_addr0 : out std_logic_vector(0 to (32 - 1));
+  array0_dIN0 : out std_logic_vector(0 to (32 - 1));
+  array0_dOUT0 : in std_logic_vector(0 to (32 - 1));
+  array0_rENA0 : out std_logic;
+  array0_wENA0 :  out std_logic;
+  array1_addr0 : out std_logic_vector(0 to (32 - 1));
+  array1_dIN0 : out std_logic_vector(0 to (32 - 1));
+  array1_dOUT0 : in std_logic_vector(0 to (32 - 1));
+  array1_rENA0 : out std_logic;
+  array1_wENA0 :  out std_logic;
 
   chan1_channelDataIn : out std_logic_vector(0 to (32 - 1));
   chan1_channelDataOut : in std_logic_vector(0 to (32 - 1));
@@ -101,23 +106,51 @@ port
   );
 end component;
 
-	
-  signal reset_sig : std_logic;
-  
+
+	signal reset_sig : std_logic;
+	signal in_BRAM_A_addr :  std_logic_vector(0 to (32 - 1));
+	signal  in_BRAM_A_wEN :  std_logic;
+	signal  in_BRAM_B_addr :  std_logic_vector(0 to (32 - 1));
+	signal  in_BRAM_B_wEN :  std_logic;
+	signal  in_BRAM_C_addr :  std_logic_vector(0 to (32 - 1));
+	signal  in_BRAM_C_wEN :  std_logic;
 -- Architecture Section
 begin    
 
 	reset_sig  <= rst or FSL1_S_Exists;
 	FSL1_S_read <= FSL1_S_Exists ;
+
+	BRAM_A_addr  <= in_BRAM_A_addr(2 to 31) & "00"; --The external memory is organized in this way.
+	BRAM_A_wEN   <= in_BRAM_A_WEN&in_BRAM_A_WEN&in_BRAM_A_WEN&in_BRAM_A_WEN;
+
+
+	BRAM_B_addr  <= in_BRAM_B_addr(2 to 31) & "00"; --The external memory is organized in this way.
+	BRAM_B_wEN   <= in_BRAM_B_WEN&in_BRAM_B_WEN&in_BRAM_B_WEN&in_BRAM_B_WEN;
+
+
+	BRAM_C_addr  <= in_BRAM_C_addr(2 to 31) & "00"; --The external memory is organized in this way.
+	BRAM_C_wEN   <= in_BRAM_C_WEN&in_BRAM_C_WEN&in_BRAM_C_WEN&in_BRAM_C_WEN;
+
+
+
+
+
+
 	
-uut : sort_chan
+uut : mergesort
 port map (
 
-  array_addr0 => BRAM_A_addr,
-  array_dIN0  => BRAM_A_dout, 
-  array_dOUT0 => BRAM_A_din,
-  array_rENA0 => BRAM_A_en,
-  array_wENA0 => BRAM_A_wen,
+  array0_addr0 => in_BRAM_A_addr,
+  array0_dIN0  => BRAM_A_dout, 
+  array0_dOUT0 => BRAM_A_din,
+  array0_rENA0 => BRAM_A_en,
+  array0_wENA0 => in_BRAM_A_wen,
+
+  array1_addr0 => in_BRAM_B_addr,
+  array1_dIN0  => BRAM_B_dout, 
+  array1_dOUT0 => BRAM_B_din,
+  array1_rENA0 => BRAM_B_en,
+  array1_wENA0 => in_BRAM_B_wen,
 
   chan1_channelDataIn => FSL0_M_Data,
   chan1_channelDataOut => FSL0_S_Data,

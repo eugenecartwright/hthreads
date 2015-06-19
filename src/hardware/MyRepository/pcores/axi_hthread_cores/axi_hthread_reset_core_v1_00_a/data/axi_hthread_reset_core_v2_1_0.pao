@@ -1,0 +1,10 @@
+##############################################################################
+## Filename:          D:/PhD/Projects/Vivdo_H/Step4/XPS_Hcore_Sim03/pcores/axi_hthread_reset_core_v1_00_a/data/axi_hthread_reset_core_v2_1_0.pao
+## Description:       Peripheral Analysis Order
+## Date:              Mon Jun 23 18:50:52 2014 (by Create and Import Peripheral Wizard)
+##############################################################################
+
+lib proc_common_v3_00_a  all 
+lib axi_lite_ipif_v1_01_a  all 
+lib axi_hthread_reset_core_v1_00_a user_logic vhdl
+lib axi_hthread_reset_core_v1_00_a axi_hthread_reset_core vhdl

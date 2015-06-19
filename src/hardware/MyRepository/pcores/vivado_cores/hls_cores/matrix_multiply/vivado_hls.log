@@ -1,0 +1,24 @@
+================================================================
+  Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC
+  Version 2014.4
+  Build 1071461 on Tue Nov 18 16:42:57 PM 2014
+  Copyright (C) 2014 Xilinx Inc. All rights reserved.
+================================================================
+@I [LIC-101] Checked out feature [HLS]
+@I [HLS-10] Running '/opt/Xilinx/Vivado_HLS/2014.4/bin/unwrapped/lnx64.o/vivado_hls'
+            for user 'eugene' on host 'blackstorm' (Linux_x86_64 version 3.13.0-24-generic) on Wed Jun 10 11:24:38 CDT 2015
+            in directory '/home/eugene/hthreads/src/hardware/MyRepository/pcores/vivado_cores/hls_cores/matrix_multiply'
+@I [HLS-10] Creating and opening project '/home/eugene/hthreads/src/hardware/MyRepository/pcores/vivado_cores/hls_cores/matrix_multiply/matrix_m_prj'.
+@E [HLS-101] 'add_files': Too many positional arguments specified.
+
+FORMAT
+  add_files [OPTIONS] <src_files>
+     src_files <string>  (required)
+    -cflags <string>
+    -tb
+
+command 'add_files' returned error code
+    while executing
+"add_files			Matrix_Multiply_Vivado_Multiplication.cpp matrixmul_vivado.h"
+    (file "run_hls.tcl" line 8)
+@I [LIC-101] Checked in feature [HLS]

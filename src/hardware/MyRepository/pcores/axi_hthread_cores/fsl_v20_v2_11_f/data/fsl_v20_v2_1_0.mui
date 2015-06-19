@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+(c) Copyright [2003] - [2010] Xilinx, Inc. All rights reserved.
+
+This file contains confidential and proprietary information
+of Xilinx, Inc. and is protected under U.S. and 
+international copyright and other intellectual property
+laws.
+
+DISCLAIMER
+This disclaimer is not a license and does not grant any
+rights to the materials distributed herewith. Except as
+otherwise provided in a valid license issued to you by
+Xilinx, and to the maximum extent permitted by applicable
+law: (1) THESE MATERIALS ARE MADE AVAILABLE "AS IS" AND
+WITH ALL FAULTS, AND XILINX HEREBY DISCLAIMS ALL WARRANTIES
+AND CONDITIONS, EXPRESS, IMPLIED, OR STATUTORY, INCLUDING
+BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, NON-
+INFRINGEMENT, OR FITNESS FOR ANY PARTICULAR PURPOSE; and
+(2) Xilinx shall not be liable (whether in contract or tort,
+including negligence, or under any other theory of
+liability) for any loss or damage of any kind or nature
+related to, arising under or in connection with these
+materials, including for any direct, or any indirect,
+special, incidental, or consequential loss or damage
+(including loss of data, profits, goodwill, or any type of
+loss or damage suffered as a result of any action brought
+by a third party) even if such damage or loss was
+reasonably foreseeable or Xilinx had been advised of the
+possibility of the same.
+
+CRITICAL APPLICATIONS
+Xilinx products are not designed or intended to be fail-
+safe, or for use in any application requiring fail-safe
+performance, such as life-support or safety devices or
+systems, Class III medical devices, nuclear facilities,
+applications related to the deployment of airbags, or any
+other applications that could lead to death, personal
+injury, or severe property or environmental damage
+(individually and collectively, "Critical
+Applications"). Customer assumes the sole risk and
+liability of any use of Xilinx products in Critical
+Applications, subject only to applicable laws and
+regulations governing limitations on product liability.
+
+THIS COPYRIGHT NOTICE AND DISCLAIMER MUST BE RETAINED AS
+PART OF THIS FILE AT ALL TIMES
+-->
+
+<!DOCTYPE doc SYSTEM "../../ipdialog.dtd" [
+	<!-- -->
+	<!ENTITY C_EXT_RESET_HIGH '
+	<widget id="C_EXT_RESET_HIGH">
+		<key>C_EXT_RESET_HIGH</key>
+		<label>External Reset Active High</label>
+		<tip></tip>
+	</widget>
+	'>
+	<!ENTITY C_ASYNC_CLKS '
+	<widget id="C_ASYNC_CLKS">
+		<key>C_ASYNC_CLKS</key>
+		<label>FIFO in FSL operates Asynchronously</label>
+		<tip><![CDATA[ Specifies whether the FIFO in the FSL bus is implemented as a synchronous FIFO or asynchronous FIFO. When set to 1, the FSL implements an asynchronous FIFO. In this case, the clock ports FSL_M_Clk and FSL_S_Clk are used as the master and slave clocks. If set to ’0’, the FSL is implemented as a synchronous FIFO. In this case, the clock port FSL_Clk is used for both the master and slave interfaces. ]]></tip>
+	</widget>
+	'>
+	<!ENTITY C_IMPL_STYLE '
+	<widget id="C_IMPL_STYLE">
+		<key>C_IMPL_STYLE</key>
+		<label>Use BRAMs to Implement FIFO</label>
+		<tip><![CDATA[Specifies the implementation style of the FIFO of the FSL. If set to 1, the FIFO is implemented using BRAMs. This parameter affects timing. There is an additional cycle of latency when a write is performed on an empty FIFO. The FSL_S_Exists signal goes high one cycle after the write in this case.]]></tip>
+	</widget>
+	'>
+	<!ENTITY C_USE_CONTROL '
+	<widget id="C_USE_CONTROL">
+		<key>C_USE_CONTROL</key>
+		<label>Propagate Control Bit</label>
+		<tip><![CDATA[Specifies whether or not the control bit is propagated along with the data bit. When set to 1, the control bit is transmitted from master to slave interface. When set to 0, the control bit transmitted to the slave is 0. Setting this bit to 0 when propagation of control bit is not required enables reduction in the area of the FSL bus.]]></tip>
+	</widget>
+	'>
+	<!ENTITY C_FSL_DWIDTH '
+	<widget id="C_FSL_DWIDTH">
+		<key>C_FSL_DWIDTH</key>
+		<label>FSL Data Bus Width</label>
+		<tip><![CDATA[Specifies the data width of the FSL bus.]]></tip>
+	</widget>
+	'>
+	<!ENTITY C_FSL_DEPTH '
+	<widget id="C_FSL_DEPTH">
+		<key>C_FSL_DEPTH</key>
+		<label>FSL FIFO Depth</label>
+		<tip><![CDATA[Specifies the depth of the FIFO implemented by the FSL bus. The depth of the FIFO can be as low as 1 or as high as 8192. The depth that can be specified is dependent on the implementation scheme of the FIFO. When the parameter C_ASYNC_CLKS is set to 1 and C_IMPL_STYLE is set to 1 (BRAM) the allowable depth is between 512 and 8192. When the parameter C_ASYNC_CLKS is set to 1 and C_IMPL_STYLE is set to 0 (LUT RAM) the allowable depth is between 16 and 128. When the parameter C_ASYNC_CLKS is set to 0, the allowable depth is between 1 and 8192.]]></tip>
+	</widget>
+	'>
+	<!ENTITY C_READ_CLOCK_PERIOD '
+	<widget id="C_READ_CLOCK_PERIOD">
+		<key>C_READ_CLOCK_PERIOD</key>
+		<label>Read Clock Period</label>
+		<tip><![CDATA[Specifies the period of the read clock FSL_S_Clk (in ps). This value must be set when C_ASYNC_CLKS=1 and C_IMPL_STYLE=0, and can otherwise be ignored]]></tip>
+	</widget>
+	'>
+]>
+
+<doc>
+	<view id="User">
+		<display>User</display>
+		<group id="All">
+			<display>All</display>
+			<item>&C_EXT_RESET_HIGH;</item>
+			<item>&C_ASYNC_CLKS;</item>
+			<item>&C_IMPL_STYLE;</item>
+			<item>&C_USE_CONTROL;</item>
+			<item>&C_FSL_DWIDTH;</item>
+			<item>&C_FSL_DEPTH;</item>
+			<item>&C_READ_CLOCK_PERIOD;</item>
+		</group>
+	</view>
+</doc>
