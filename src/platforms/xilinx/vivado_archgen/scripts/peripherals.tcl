@@ -16,7 +16,8 @@ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 peripheral_inte
 group_bd_cells peripherals [get_bd_cells mig_7series_0]  [get_bd_cells rst_mig_7series_0_100M]  [get_bd_cells axi_intc_0]  [get_bd_cells mdm_1]  [get_bd_cells axi_uartlite_0]  [get_bd_cells axi_hwicap_0]  [get_bd_cells axi_timer_0]  [get_bd_cells peripheral_interconnect_0]  [get_bd_cells xlconcat_0]  [get_bd_cells central_dma] 
 
 #Custmoize IPs
-set_property -dict [list CONFIG.C_MB_DBG_PORTS {2} CONFIG.C_USE_UART {1}]  [get_bd_cells peripherals/mdm_1] 
+#set_property -dict [list CONFIG.C_MB_DBG_PORTS {2} CONFIG.C_USE_UART {1}]  [get_bd_cells peripherals/mdm_1] 
+set_property -dict [list CONFIG.C_MB_DBG_PORTS [expr $N * $C +1 ] CONFIG.C_USE_UART {1}]  [get_bd_cells peripherals/mdm_1] 
 
 
 

@@ -58,35 +58,48 @@ mystring='/#define NUM_AVAILABLE_HETERO_CPUS/c\'$mystring
 #===============================================================
 #Creating Script xml file
 #===============================================================
-rm ./sdk.tcl
-touch ./sdk.tcl
-echo "#!/usr/bin/tclsh" >> ./sdk.tcl
-echo "sdk set_workspace ./design/design.sdk" >> ./sdk.tcl
-echo "sdk create_hw_project -name system_wrapper_hw_platform_0 -hwspec ./design/design.sdk/system_wrapper.hdf" >> ./sdk.tcl
-echo "sdk create_bsp_project -name host_bsp -proc host -hwproject system_wrapper_hw_platform_0 -os standalone" >> ./sdk.tcl
-echo "sdk create_app_project -name host -proc host -hwproject system_wrapper_hw_platform_0 -bsp host_bsp -app {Hello World}" >> ./sdk.tcl
+rm ./script.xml
+touch ./script.xml
+echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>" >> ./script.xml
+echo "<project name=\"SDK Script\" default=\"main\">" >> ./script.xml
 
-  
+   echo "   <target name=\"main\">" >> ./script.xml
+
+      echo "      <createHwProject projname=\"system_wrapper_hw_platform_0\" hwspecpath=\"./design/design.sdk/system_wrapper.hdf\"/>" >> ./script.xml
+      echo "      <createAppProject projname=\"host\" hwprojname=\"system_wrapper_hw_platform_0\" processor=\"host\" os=\"standalone\" bspprojname=\"host_bsp\"   template=\"Hello World\" language=\"C\"/> " >> ./script.xml        
+           
 
 for (( j=0; j<$N; j++ ))
 do
    for (( i=0; i<$C; i++ ))
    do
-   
-     echo "sdk create_bsp_project -name group_"$j"_slave_"$i"_microblaze_1_bsp -proc group_"$j"_slave_"$i"_microblaze_1 -hwproject system_wrapper_hw_platform_0 -os standalone" >> ./sdk.tcl
-     echo "sdk create_app_project -name group_"$j"_slave_"$i"_microblaze_1 -proc group_"$j"_slave_"$i"_microblaze_1 -hwproject system_wrapper_hw_platform_0 -bsp group_"$j"_slave_"$i"_microblaze_1_bsp -app {Empty Application}" >> ./sdk.tcl     
-      
-       echo " sdk import_sources -name group_"$j"_slave_"$i"_microblaze_1 -path ./slave_src" >> ./sdk.tcl  
+      echo "      <createAppProject projname=\"group_"$j"_slave_"$i"_microblaze_1\" hwprojname=\"system_wrapper_hw_platform_0\" processor=\"group_"$j"_slave_"$i"_microblaze_1\" os=\"standalone\" bspprojname=\"group_"$j"_slave_"$i"_microblaze_1_bsp\" template=\"Empty Application\" language=\"C\"/>  " >> ./script.xml      
+   done
+done         
+       
+echo "</target>" >> ./script.xml 
+echo "</project> " >> ./script.xml      
+
+
+
+#===============================================================
+#Creating the SDK projects for host and slaves
+#===============================================================
+   xsdk -wait -script ./script.xml -workspace ./design/design.sdk
+
+for (( j=0; j<$N; j++ ))
+do
+   for (( i=0; i<$C; i++ ))
+   do
+         cp   ./slave_src/* ./design/design.sdk/group_"$j"_slave_"$i"_microblaze_1/src/
    done
 done   
+  
+   
+    xsdk -wait -eclipseargs -nosplash -application org.eclipse.cdt.managedbuilder.core.headlessbuild -build all -data ./design/design.sdk -vmargs -Dorg.eclipse.cdt.core.console=org.eclipse.cdt.core.systemConsole  
     
-       
-echo "sdk build_project -type all " >> ./sdk.tcl  
-echo "exit " >> ./sdk.tcl      
-
-xsct -s sdk.tcl    
- 
-
+    xsdk -wait -eclipseargs -nosplash -application org.eclipse.cdt.managedbuilder.core.headlessbuild -build all -data ./design/design.sdk -vmargs -Dorg.eclipse.cdt.core.console=org.eclipse.cdt.core.systemConsole  
+    
 #===============================================================
 #create the download.bit
 #===============================================================
@@ -102,7 +115,6 @@ done
 
 cmd+="  -o b ./design/design.sdk/system_wrapper_hw_platform_0/download.bit "
 
-cp  ./design/system_wrapper.bmm ./design/design.sdk/system_wrapper_hw_platform_0/system_wrapper.bmm
 data2mem $cmd
 
 

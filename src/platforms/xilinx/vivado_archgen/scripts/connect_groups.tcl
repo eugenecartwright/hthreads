@@ -41,7 +41,7 @@ else \
          
        
          
-         connect_bd_intf_net -quiet [get_bd_intf_pins $group/slave_0/dma_bus/M00_AXI] -boundary_type upper    [get_bd_intf_pins dma_bus/$dma]
+         connect_bd_intf_net -quiet [get_bd_intf_pins $group/slave_0/tmp_dma_bus/M00_AXI] -boundary_type upper    [get_bd_intf_pins dma_bus/$dma]
       }
    }   
    

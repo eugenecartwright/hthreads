@@ -8,9 +8,14 @@ set N   [lindex $argv 0]
 set C   [lindex $argv 1]
 
 set board [lindex $argv 2]
+
+set name  [lindex $argv 3]
+
+set PR  [lindex $argv 4]
 set node hemps_smp
 
-set project_dir ../platforms/N[expr $N]C[ expr $C]$node
+
+set project_dir ../platforms/$name
 
 if {$board == "kc705"} {
        set part xc7k325tffg900-2
@@ -37,8 +42,12 @@ set_property board_part xilinx.com:$board:part0:1.0 [current_project]
 
 #Add system bd
 create_bd_design "system"
-create_bd_cell -type ip -vlnv xilinx.com:ip:mig_7series:2.1 mig_7series_0
-create_bd_cell -type ip -vlnv xilinx.com:ip:microblaze:9.3 host
+
+#create_bd_cell -type ip -vlnv xilinx.com:ip:mig_7series:2.1 mig_7series_0
+#create_bd_cell -type ip -vlnv xilinx.com:ip:microblaze:9.3 host
+
+create_bd_cell -type ip -vlnv xilinx.com:ip:mig_7series:2.3 mig_7series_0
+create_bd_cell -type ip -vlnv xilinx.com:ip:microblaze:9.5 host
 
 
 #Run block automation for DDR controller + microblaze
@@ -88,7 +97,19 @@ source ./group_arch.tcl
 connect_bd_net [get_bd_pins /peripherals/xlconcat_0/In2] [get_bd_pins /hthread_core/axi_thread_manager_0/Access_Intr]
 connect_bd_net [get_bd_pins /peripherals/xlconcat_0/In1]  [get_bd_pins /hthread_core/axi_scheduler_0/Preemption_Interrupt]
 connect_bd_intf_net [get_bd_intf_pins peripherals/axi_intc_0/interrupt]  [get_bd_intf_pins host/INTERRUPT] 
-connect_bd_intf_net [get_bd_intf_pins group_0/slave_0/microblaze_1/DEBUG]                            [get_bd_intf_pins peripherals/mdm_1/MBDEBUG_1]
+
+for {set j 0} {$j < $N} {incr j} \
+   {   
+   for {set i 0} {$i < $C} {incr i} \
+   {
+      set group group_$j 
+      set slave slave_$i      
+      connect_bd_intf_net [get_bd_intf_pins $group/$slave/microblaze_1/DEBUG]   [get_bd_intf_pins peripherals/mdm_1/MBDEBUG_[expr $j * $C + $i +1]]     
+   }
+   }
+
+
+
 
 
 # Host to DDr and host_bus
@@ -152,13 +173,21 @@ reset_run synth_1
 #Writing the DCP file for PR flow
 launch_runs synth_1 -jobs 8
 wait_on_run  synth_1
-#open_run synth_1 -name netlist_1
-#write_checkpoint ../pr/system/N[expr $N]C[ expr $C].dcp
 
-
+if { $PR == "y"} \
+{
+open_run synth_1 -name netlist_1
+write_checkpoint $project_dir/$name.dcp
+close_project
+open_checkpoint  $project_dir/$name.dcp
+source ./pr.tcl
+}\
+else \
+{
 launch_runs impl_1 -to_step write_bitstream -jobs 8 -email_to [list sadeghia@uark.edu dandrews@uark.edu]
-wait_on_run  impl_1
-
-exit
-
-
+#wait_on_run  impl_1
+open_run impl_1
+write_bmm  -force  ./$project_dir/system_wrapper.bmm
+#write_bitstream   -file ./$project_dir/system_wrapper.bit
+#write_sysdef  -force -hwdef ./$project_dir/design.runs/synth_1/system_wrapper.hwdef -bitfile ./$project_dir/system_wrapper.bit -meminfo ./$project_dir/system_wrapper.bmm -file  ./$project_dir/design.runs/impl_1/system_wrapper.sysdef
+}

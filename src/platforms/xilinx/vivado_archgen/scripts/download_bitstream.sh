@@ -1,15 +1,16 @@
 #!/bin/bash
 
 # Check arguments
-if [ $# -ne 2 ]
+if [ $# -ne 4 ]
 then
     echo "Correct Usage:"
-    echo " ./download_bitstream.sh   <Num of groups> <Num of Slaves>   "
+    echo " ./download_bitstream.sh   <Num of groups> <Num of Slaves> <The name of system> <Pr:Y,N>  "
     exit
 fi
 
 N=$1
 C=$2
+name=$3
 let num_slaves=($N*$C)
 
 
@@ -23,24 +24,31 @@ let num_slaves=($N*$C)
 #fi
 
 mystring="./platforms/"
-mystring+="N"
-mystring+="$N"
-mystring+="C"
-mystring+="$C"
-mystring+="hemps_smp"
+mystring+=$name
 
 cd ..
-rm design
+#rm design
 
 ln -s "$mystring" design
+
 
 #===============================================================
 #change Num_available_hetero_cpus in include/config.h
 #===============================================================
+mystring=''
+mystring='/#define ICAP/c\'$mystring
+sed -i "$mystring" ./include/config.h
+
+
 mystring='#define NUM_AVAILABLE_HETERO_CPUS '
 mystring+=$num_slaves
+if [ "$4" == "y" ]
+then
+mystring+='\n#define ICAP'
+fi
 mystring='/#define NUM_AVAILABLE_HETERO_CPUS/c\'$mystring
- sed -i "$mystring" ./include/config.h
+ sed -i "$mystring" ./include/config.h 
+
 
 
 #===============================================================

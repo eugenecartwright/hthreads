@@ -71,7 +71,7 @@ for {set j 0} {$j < $N} {incr j} \
               connect_bd_intf_net [get_bd_intf_pins $group/$slave/dma_bus/S01_AXI] -boundary_type upper [get_bd_intf_pins $group/vhwti_bus/$vhwti] }
          
          
-         connect_bd_intf_net -quiet [get_bd_intf_pins $group/$slave/dma_bus/M00_AXI] -boundary_type upper [get_bd_intf_pins $group/dma_bus/$dma]
+         connect_bd_intf_net -quiet [get_bd_intf_pins $group/$slave/tmp_dma_bus/M00_AXI] -boundary_type upper [get_bd_intf_pins $group/dma_bus/$dma]
       }
       
       
