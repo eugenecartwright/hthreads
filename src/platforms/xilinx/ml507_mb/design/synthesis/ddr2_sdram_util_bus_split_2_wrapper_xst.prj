@@ -1,2 +1,0 @@
-VHDL util_bus_split_v1_00_a /opt/Xilinx/10.1/EDK/hw/XilinxProcessorIPLib/pcores/util_bus_split_v1_00_a/hdl/vhdl/util_bus_split.vhd
-vhdl work ../hdl/ddr2_sdram_util_bus_split_2_wrapper.vhd
