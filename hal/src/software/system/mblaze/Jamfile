@@ -10,25 +10,23 @@
 #
 # Changes:  (20 August 2006) Jam file initially created
 ################################################################################
-SubDir TOP src software system ;
-#LOCATE_TARGET = software$(SLASH)system ;
+SubDir TOP src software system mblaze ;
+LOCATE_TARGET = software$(SLASH)system$(SLASH)mblaze ;
 
-################################################################################
-# Add the architecture specific folders. Will be built if configured to
-################################################################################
-if $(PLATFORM_ARCH) = "mblaze"
-{ SubInclude TOP src software system mblaze ; }
-
-if $(PLATFORM_ARCH) = "ppc440"
-{ SubInclude TOP src software system ppc440 ; }
 ################################################################################
 # Compile the source files into object files
 ################################################################################
-#Hsysobject bootstrap.o  : bootstrap.c ;
-#Hsysobject sched.o      : sched.c ;
+Hsysobject bootstrap.o  : bootstrap.c ; 
+Hsysobject sched.o      : sched.c ; 
+#Hsysobject init.o       : init.c ; 
+Hsysobject setup.o      : setup.c ;
+Hsysobject syscall.o    : syscall.c ;
 
 ################################################################################
 # Add the object files to the hthreads library
 ################################################################################
-#Hlib hthread : bootstrap.o ;
-#Hlib hthread : sched.o ;
+Hlib hthread : bootstrap.o ;
+Hlib hthread : sched.o ;
+Hlib hthread : setup.o ;
+Hlib hthread : syscall.o ;
+#Hlib hthread : init.o ;
