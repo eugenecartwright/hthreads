@@ -1,5 +1,5 @@
 /*********************************************************************************
-* Copyright (c) 2006 Xilinx, Inc.  All rights reserved. 
+* Copyright (c) 2015 Xilinx, Inc.  All rights reserved. 
 * 
 * Xilinx, Inc. 
 * XILINX IS PROVIDING THIS DESIGN, CODE, OR INFORMATION "AS IS" AS A 

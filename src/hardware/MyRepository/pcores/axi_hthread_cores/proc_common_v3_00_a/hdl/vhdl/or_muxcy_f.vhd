@@ -49,7 +49,7 @@
 -- ** to the standard Netlist version of the core (and thus               **
 -- ** indirectly, the original core source).                              **
 -- **                                                                     **
--- ** Copyright (c) 2006-2010 Xilinx, Inc. All rights reserved.           **
+-- ** Copyright (c) 2015-2010 Xilinx, Inc. All rights reserved.           **
 -- **                                                                     **
 -- ** This copyright and support notice must be retained as part          **
 -- ** of this text at all times.                                          **
