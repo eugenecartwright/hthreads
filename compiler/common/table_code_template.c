@@ -78,7 +78,7 @@ Huint best_slaves_num;
 // ---------------------------------------------------------------- //
 // If we have an ICAP in the system...
 #ifdef ICAP
-    #define ICAP_BASEADDR               (XPAR_XPS_HWICAP_0_BASEADDR)
+    #define ICAP_BASEADDR               (XPAR_HWICAP_0_BASEADDR)
 #else
     #define ICAP_BASEADDR               (0x0)
 #endif
@@ -91,11 +91,12 @@ hthread_mutex_t icap_mutex;
 XHwIcap HwIcap;
 #endif
 
+#ifdef ICAP
 // Accelerator Bit Pointers
 unsigned char * crc_bit[NUM_AVAILABLE_HETERO_CPUS];
 unsigned char * sort_bit[NUM_AVAILABLE_HETERO_CPUS];
 unsigned char * vector_bit[NUM_AVAILABLE_HETERO_CPUS];
-
+#endif
 
 
 #ifdef ICAP

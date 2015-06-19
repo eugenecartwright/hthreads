@@ -1,11 +1,11 @@
 <PROCESSORS>
   
    <!-- Processor ISA is in Hthreads naming convention ('mblaze' as opposed to 'microblaze') -->
-   <PROCESSOR HTHREADS_ISA="mblaze" HWVERSION="9.3">
+   <PROCESSOR HTHREADS_ISA="mblaze" HWVERSION="9.5">
       <DOCUMENT SOURCE="http://www.origin.xilinx.com/support/documentation/sw_manuals/xilinx2014_1/ug1043-embedded-system-tools.pdf"/>
       
       <PARAMETER NAME="HWVERSION">
-         <OPTION VALUE="9.3" FLAG="-mcpu=v9.3"/>
+         <OPTION VALUE="9.5" FLAG="-mcpu=v9.5"/>
       </PARAMETER> 
       <PARAMETER NAME="C_USE_FPU">
          <OPTION VALUE="0" FLAG="-msoft-float"/>
