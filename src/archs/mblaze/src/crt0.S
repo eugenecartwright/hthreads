@@ -99,6 +99,13 @@ _setup_master_cpu:
         brlid r15, hthread_init
         nop
 
+        // Initialize Thread Handle Table as early as possible to avoid
+        // incurring this overhead when scheduling the first thread.
+        #ifdef HETERO_COMPILATION
+        brlid r15, load_my_table
+        nop
+        #endif
+
         // CPU0 will return from hthread_init and call the main function.
         // CPU1 will perform a context switch to the idle directly from
         // hthread_init, and not execute this code.
