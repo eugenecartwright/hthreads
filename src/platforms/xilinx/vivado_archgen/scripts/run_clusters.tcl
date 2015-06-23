@@ -192,7 +192,7 @@ write_hwdef -file ./$project_dir/system_wrapper.hwdef
 write_bmm  -force  ./$project_dir/system_wrapper.bmm
 write_bitstream   -file ./$project_dir/system_wrapper.bit
 
-write_sysdef  -force -hwdef /$project_dir/system_wrapper.hwdef -bitfile /$project_dir/system_wrapper.bit -meminfo /$project_dir/system_wrapper.bmm -file  /$project_dir/design.runs/impl_1/system_wrapper.sysdef
+write_sysdef  -force -hwdef ./$project_dir/system_wrapper.hwdef -bitfile ./$project_dir/system_wrapper.bit -meminfo ./$project_dir/system_wrapper.bmm -file  ./$project_dir/design.runs/impl_1/system_wrapper.sysdef
 
 exit
 }
