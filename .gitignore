@@ -17,3 +17,4 @@ hal/lib/
 hal/src/platforms/xilinx/
 .tmp/
 src/platforms/xilinx/vivado_archgen/config/Jamrules
+hal/config/settings

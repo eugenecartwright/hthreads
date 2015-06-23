@@ -29,7 +29,7 @@ mystring+=$name
 cd ..
 #rm design
 
-ln -s "$mystring" design
+ln -f -s "$mystring" design
 
 
 #===============================================================
