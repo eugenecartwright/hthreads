@@ -384,25 +384,6 @@ Huint get_first_accelerator(Huint slave_num) {
     return _hwti_get_first_accelerator((Huint)hwti_array[slave_num]);
 }
 
-// Function to access processor type. The nano kernel running
-// on the slave processors should write this value at Boot within
-// their VHWTI_Base_Addr + Processor_type_offset (HT_CMD_HWTI_PROC_TYPE)
-// TODO: This is no longer needed as I write processor type during compilation
-// within the slave table
-Huint get_processor_type(Huint slave_num) {
-    
-    if (!check_valid_slave_num(slave_num)){
-        #ifdef DEBUG_DISPATCH
-            printf("ERROR (get_processor_type)!\n");
-        #endif
-        while(1);
-    }
-
-    // Form address to processor type
-    return _hwti_get_processor_type((Huint)hwti_array[slave_num]);
-}
-
-
 // --------------------------------------------------------- //
 //         Function-to-Accelerator Type table                //
 //                                                           //

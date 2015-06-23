@@ -19,13 +19,6 @@ typedef long long hthread_time_t;
 unsigned int prev_last_used_accelerator;
 
 //---------------------------//
-//      Processor Types      //
-//---------------------------//
-#define TYPE_HOST       (0)
-#define TYPE_MB         (1)
-#define TYPE_MB_DSM     (2)
-
-//---------------------------//
 //      Accelerator Flags    //
 //---------------------------//
 #define ACCELERATOR_FLAG    (0x80000000)
@@ -358,8 +351,6 @@ typedef struct{
     // Pointer to "virtual" Accelerator PR counter field
     volatile int * acc_pr_counter;
 
-    // Pointer to "virtual" processor type field
-    volatile int * processor_type;
 } proc_interface_t;
 
 

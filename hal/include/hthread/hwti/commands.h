@@ -93,7 +93,6 @@
 #define HT_CMD_VHWTI_ACC_HW_COUNTER         0x005C
 #define HT_CMD_VHWTI_ACC_SW_COUNTER         0x0060
 #define HT_CMD_VHWTI_ACC_PR_COUNTER         0x0064
-#define HT_CMD_VHWTI_PROC_TYPE              0x0068
 
 // Utilization Flag(s)
 #define FLAG_HWTI_UTILIZED                  0x0001

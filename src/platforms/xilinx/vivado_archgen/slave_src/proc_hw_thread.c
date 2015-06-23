@@ -47,11 +47,7 @@ void initialize_interface( proc_interface_t * iface, int * baseAddr)
     iface->acc_hw_counter           = (int*)(baseAddr + 23);
     iface->acc_sw_counter           = (int*)(baseAddr + 24);
     iface->acc_pr_counter           = (int*)(baseAddr + 25);
-    iface->processor_type           = (int*)(baseAddr + 26);
 
-    // Register Processor Type
-    *(iface->processor_type) = (int) TYPE_MB;
-    
     // Register this slave as not having any accelerators
     // and no PR capabilities.
     *(iface->accelerator_flags) = 0x0;
