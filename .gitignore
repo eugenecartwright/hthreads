@@ -9,3 +9,6 @@ objs/
 test/
 *.swp
 .Xil/
+src/platforms/xilinx/vivado_archgen/design
+src/platforms/xilinx/vivado_archgen/sdk.tcl
+src/platforms/xilinx/vivado_archgen/platforms
