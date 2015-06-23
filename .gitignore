@@ -1,1 +1,11 @@
 *.log
+.cache/
+.autopilot/
+hal/src/platforms/xilinx/** 
+src/platforms/xilinx/vivado_archgen/include/config.h
+src/platforms/xilinx/vivado_archgen/config/Jamfile
+.pyc 
+objs/
+test/
+*.swp
+.Xil/
