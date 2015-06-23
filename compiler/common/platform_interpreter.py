@@ -146,6 +146,51 @@ def get_processors(hw_description_path):
 
 
 #------------------------------------------#
+# A function that parses the hardware      #
+# definitions file and creates a list of   #
+# dictionary objects which describe each   #
+# accelerator in the system.               #
+# Author: Eugene Cartwright                #
+#------------------------------------------#
+#TODO: NOT IN USE YET
+def get_accelerators(hw_description_path, processors):
+
+   # Parse XML document
+   tree = ET.parse(hw_description_path)
+   root = tree.getroot()
+   
+   for core in root.iter('MODULE'):
+      # Get this module type
+      module_type = core.get('MODCLASS')
+     
+      # if module is not a Peripheral, skip! 
+      if (module_type != 'PERIPHERAL'):
+         # Pass the rest of this loop iter
+         continue
+     
+      # Get accelerator
+      accelerator = core.get('MODTYPE')
+      
+      # Assuming the user didn't connect an accelerator
+      # to more than one processor instance, see what
+      # it is connected to by reading its connections.
+      for connection in core.iter('CONNECTION'):
+         instance = connection.get('INSTANCE')
+         for index, processor in enumerate(processors):
+            if (instance == processor['NAME']):
+               # Debug info, remove later
+               print processor['NAME'] + " is connected to " + accelerator
+            
+               # add to this processor's list
+               processors[index]['ACCELERATOR'] = accelerator
+               break
+             
+
+   # Done, return processor list
+   return processors
+
+
+#------------------------------------------#
 # Given a list of dictionaries (metadata)  #
 # for each processor, I will compute the   #
 # compiler flags appropriate for that      #
