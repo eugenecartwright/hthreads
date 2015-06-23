@@ -4,7 +4,7 @@
 hal/src/platforms/xilinx/** 
 src/platforms/xilinx/vivado_archgen/include/config.h
 src/platforms/xilinx/vivado_archgen/config/Jamfile
-.pyc 
+*.pyc
 objs/
 test/
 *.swp
@@ -12,3 +12,8 @@ test/
 src/platforms/xilinx/vivado_archgen/design
 src/platforms/xilinx/vivado_archgen/sdk.tcl
 src/platforms/xilinx/vivado_archgen/platforms
+lib/
+hal/lib/
+hal/src/platforms/xilinx/
+.tmp/
+src/platforms/xilinx/vivado_archgen/config/Jamrules
