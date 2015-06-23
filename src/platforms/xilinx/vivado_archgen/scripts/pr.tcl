@@ -63,10 +63,11 @@ for {set j 0} {$j < $N} {incr j} \
 
 lock_design -level routing
 write_checkpoint -force  ./static.dcp
-write_bmm  -force  ./system_wrapper.bmm
 write_bitstream   -file ./system_wrapper.bit
+write_hwdef -file system_wrapper.hwdef
+write_bmm  -force  ./system_wrapper.bmm
 eval exec mkdir ./design.runs/impl_1
-write_sysdef  -force -hwdef ./design.runs/synth_1/system_wrapper.hwdef -bitfile ./system_wrapper.bit -meminfo ./system_wrapper.bmm -file  ./design.runs/impl_1/system_wrapper.sysdef
+write_sysdef  -force -hwdef ./system_wrapper.hwdef -bitfile ./system_wrapper.bit -meminfo ./system_wrapper.bmm -file  ./design.runs/impl_1/system_wrapper.sysdef
 close_project 
 
 

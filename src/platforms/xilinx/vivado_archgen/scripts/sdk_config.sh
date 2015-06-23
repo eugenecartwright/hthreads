@@ -87,6 +87,7 @@ echo "exit " >> ./sdk.tcl
 xsct -s sdk.tcl    
  
 
+
 #===============================================================
 #create the download.bit
 #===============================================================
@@ -102,7 +103,6 @@ done
 
 cmd+="  -o b ./design/design.sdk/system_wrapper_hw_platform_0/download.bit "
 
-cp  ./design/system_wrapper.bmm ./design/design.sdk/system_wrapper_hw_platform_0/system_wrapper.bmm
 data2mem $cmd
 
 
