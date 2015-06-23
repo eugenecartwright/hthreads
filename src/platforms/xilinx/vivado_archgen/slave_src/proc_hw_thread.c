@@ -39,7 +39,7 @@ void initialize_interface( proc_interface_t * iface, int * baseAddr)
     iface->first_used_ptr           = (int*)(baseAddr + 15);
     iface->last_used_accelerator    = (int*)(baseAddr + 16);
     iface->last_used_ptr            = (int*)(baseAddr + 17);
-    iface->accelerator_list_ptr     = (int*)(baseAddr + 18);
+    iface->pr_files_ptr             = (int*)(baseAddr + 18);
     iface->icap_mutex_ptr           = (int*)(baseAddr + 19);
     iface->icap_struct_ptr          = (int*)(baseAddr + 20);
     iface->tuning_table_ptr         = (int*)(baseAddr + 21);

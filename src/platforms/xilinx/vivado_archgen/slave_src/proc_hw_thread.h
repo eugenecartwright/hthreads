@@ -328,7 +328,7 @@ typedef struct{
     volatile int * last_used_ptr;
     
     // Pointer to "virtual" accelerator list field
-    volatile int * accelerator_list_ptr;
+    volatile int * pr_files_ptr;
     
     // Pointer to "virtual" ICAP mutex field
     volatile int * icap_mutex_ptr;

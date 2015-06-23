@@ -106,7 +106,7 @@ unsigned char * vector_bit[NUM_AVAILABLE_HETERO_CPUS];
 // (structure) will be used to point to the accelerators specific
 // for each slave. That is, for slave #5, the crc pointer will
 // point to the crc partial bit file for slave #5's PR region.
-accelerator_list_t accelerator_list[NUM_AVAILABLE_HETERO_CPUS];
+accelerator_list_t pr_file_list[NUM_AVAILABLE_HETERO_CPUS];
 
 // This is the tuning table used to keep track of profiling data
 // for slave execution.
@@ -124,16 +124,16 @@ accelerator_list_t accelerator_list[NUM_AVAILABLE_HETERO_CPUS];
     };
 #endif
 
-void set_accelerator_structure(accelerator_list_t * accelerator_list, unsigned int slave_num) {
+void set_accelerator_structure(accelerator_list_t * pr_file_list, unsigned int slave_num) {
 
     // Check if valid slave
     assert(check_valid_slave_num(slave_num));
 
     // Set the specific accelerator bit files 
     // specific for that slave processor.
-    accelerator_list->crc    = (unsigned char *) crc_bit[slave_num];
-    accelerator_list->sort   = (unsigned char *) sort_bit[slave_num];
-    accelerator_list->vector = (unsigned char *) vector_bit[slave_num];
+    pr_file_list->crc    = (unsigned char *) crc_bit[slave_num];
+    pr_file_list->sort   = (unsigned char *) sort_bit[slave_num];
+    pr_file_list->vector = (unsigned char *) vector_bit[slave_num];
 }
 #endif
 
@@ -194,12 +194,12 @@ void init_PR_data() {
     // pointers to each accelerator specific for each slave.
     unsigned int i;
     for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) { 
-        set_accelerator_structure((accelerator_list_t *) &accelerator_list[i], i);
+        set_accelerator_structure((accelerator_list_t *) &pr_file_list[i], i);
 
         // -------------------------------------------------------------- //
         //         Write extra parameters for PR functionality            //
         // -------------------------------------------------------------- //
-        _hwti_set_accelerator_ptr((Huint) hwti_array[i], (Huint)&accelerator_list[i]);
+        _hwti_set_accelerator_ptr((Huint) hwti_array[i], (Huint)&pr_file_list[i]);
 
         // Write the ICAP Mutex
         _hwti_set_icap_mutex( (Huint) hwti_array[i], (Huint) &icap_mutex);
