@@ -67,12 +67,6 @@ _start:
     // Call the hthreads initialization routine
     bl      hthread_init
         
-    // Initialize Thread Handle Table as early as possible to avoid
-    // incurring this overhead when scheduling the first thread.
-    #ifdef HETERO_COMPILATION
-    bl load_my_table
-    #endif
-
     // Run the main function
     bl      main
 

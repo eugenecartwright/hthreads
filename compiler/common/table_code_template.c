@@ -62,9 +62,8 @@
 
 #define NOT_FOUND                   (-1)
 
-
 // Function Prototypes
-void load_my_table();
+void load_my_table(void);
 Hbool check_valid_slave_num (Huint slave_num);
 
 // Global variables used to provide statistics of
@@ -252,7 +251,7 @@ unsigned int table_initialized_flag = 0;
 void init_thread_table (thread_table_t * tb)
 {
     Huint e,t;
-
+    
     for (e = 0; e < MAX_ENTRIES_PER_TABLE; e++)
     {
         tb->table[e].id = (Huint) TABLE_INIT;
