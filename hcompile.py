@@ -231,8 +231,6 @@ def main():
    #-----------------------------------------------------------------------------#
    # Determine the targetted ISA for the host.                                   #
    # * If no processor's name matches 'host', default to first processor's ISA   #
-   # * Switch to Hthreads naming convention using support_arch dictionary at top #
-   #   of the file.                                                              #
    #-----------------------------------------------------------------------------#
    host_compilation_isa = None
    host_index = 0
@@ -481,6 +479,8 @@ def main():
    #---------------------------------------------#
    # Create Slave/Resource Table with known data #
    #---------------------------------------------#
+   PROCESSORS = get_accelerators(hw_file_path, PROCESSORS)
+   # print PROCESSORS
    hetero_utils.create_slave_table(PROCESSORS, HEADER_FILE_PATH)
 
    #------------------------------------#
@@ -489,9 +489,9 @@ def main():
    subprocess.check_call('cat '+table_code_template_file+' >> '+HEADER_FILE_PATH, shell=True)
    
 
-   # ---------------------------------
-   # Insert "load_my_table()" function
-   # ---------------------------------
+   # ----------------------------------#
+   # Insert "load_my_table()" function #
+   # ----------------------------------#
    f = open(HEADER_FILE_PATH, 'a')
    f.write("\n\nvoid load_my_table() {\n")
   

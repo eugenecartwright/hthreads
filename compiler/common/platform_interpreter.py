@@ -7,6 +7,9 @@ import xml.etree.ElementTree as ET
 SUCCESS = 0
 FAILURE = 1
 
+# List of available accelerators. TODO: Update 
+# whenever adding new accelerators
+accelerators = ["crc", "vectoradd", "bubblesort", "mm", "vectormul"]
 
 #------------------------------------------#
 # A function responsible for extracting    #
@@ -152,7 +155,6 @@ def get_processors(hw_description_path):
 # accelerator in the system.               #
 # Author: Eugene Cartwright                #
 #------------------------------------------#
-#TODO: NOT IN USE YET
 def get_accelerators(hw_description_path, processors):
 
    # Parse XML document
@@ -168,20 +170,31 @@ def get_accelerators(hw_description_path, processors):
          # Pass the rest of this loop iter
          continue
      
-      # Get accelerator
-      accelerator = core.get('MODTYPE')
-      
+      # Determine if the module in question is a supported Accelerator
+      proposed_accelerator = core.get('MODTYPE')
+      is_acc_connected = False
+      for index, supported_accelerator in enumerate(accelerators):
+         if (proposed_accelerator != supported_accelerator):
+            continue
+         else:
+            is_acc_connected = True
+            break          
+         
+      # If we didn't find a supported accelerator for this
+      # Module (peripheral), continue to next module
+      if (is_acc_connected == False):
+         continue 
+
       # Assuming the user didn't connect an accelerator
       # to more than one processor instance, see what
       # it is connected to by reading its connections.
+      accelerator = proposed_accelerator
       for connection in core.iter('CONNECTION'):
          instance = connection.get('INSTANCE')
          for index, processor in enumerate(processors):
             if (instance == processor['NAME']):
-               # Debug info, remove later
-               print processor['NAME'] + " is connected to " + accelerator
-            
                # add to this processor's list
+               accelerator = accelerator.upper()
                processors[index]['ACCELERATOR'] = accelerator
                break
              

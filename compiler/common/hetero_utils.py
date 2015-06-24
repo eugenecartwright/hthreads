@@ -228,14 +228,17 @@ def create_hwti_array(base_addr, offset, num_of_processors, header_file):
 # ------------------------------------------------ #
 # This function automatically creates the slave    #
 # (resource) table using information found at      #
-# compile time such as processor type (ISA).       #
+# compile time such as processor type (ISA) and    #
+# accelerators attached to processors.             #
+# TODO: Error checking on key index lookup as it's #
+# assumed the dictionary has the requested keys.   #
 # ------------------------------------------------ #
 def create_slave_table(processors, header_file):
    
    with open(header_file,"a") as infile:
       infile.write("slave_t slave_table[NUM_AVAILABLE_HETERO_CPUS] = {")
       for index in xrange(0,len(processors)):
-         infile.write("{0," + processors[index]['HEADERFILE_ISA'] + "}")
+         infile.write("{" + processors[index]['ACCELERATOR'] + "," + processors[index]['HEADERFILE_ISA'] + "}")
          if (index  != (len(processors)-1)):
             infile.write(",")
       

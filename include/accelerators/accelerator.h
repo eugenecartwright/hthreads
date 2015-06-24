@@ -18,9 +18,13 @@
 // -------------------------------------------------------------- //
 //                   Accelerator Enumeration                      //
 // -------------------------------------------------------------- //
-#define CRC     0
-#define SORT    1
-#define VECTOR  2
+#define CRC          0
+#define BUBBLESORT   1
+#define SORT         1  // TODO: Clean this up later
+#define VECTORADD    2
+#define VECTOR       2  // TODO: Clean this up later
+//#define VECTORMUL    3
+//#define MM           4
 
 // -------------------------------------------------------------- //
 //             Get's index size for given data size               //
