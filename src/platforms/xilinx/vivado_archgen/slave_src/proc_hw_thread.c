@@ -39,7 +39,7 @@ void initialize_interface( proc_interface_t * iface, int * baseAddr)
     iface->first_used_ptr           = (int*)(baseAddr + 15);
     iface->last_used_accelerator    = (int*)(baseAddr + 16);
     iface->last_used_ptr            = (int*)(baseAddr + 17);
-    iface->accelerator_list_ptr     = (int*)(baseAddr + 18);
+    iface->pr_files_ptr             = (int*)(baseAddr + 18);
     iface->icap_mutex_ptr           = (int*)(baseAddr + 19);
     iface->icap_struct_ptr          = (int*)(baseAddr + 20);
     iface->tuning_table_ptr         = (int*)(baseAddr + 21);
@@ -47,11 +47,7 @@ void initialize_interface( proc_interface_t * iface, int * baseAddr)
     iface->acc_hw_counter           = (int*)(baseAddr + 23);
     iface->acc_sw_counter           = (int*)(baseAddr + 24);
     iface->acc_pr_counter           = (int*)(baseAddr + 25);
-    iface->processor_type           = (int*)(baseAddr + 26);
 
-    // Register Processor Type
-    *(iface->processor_type) = (int) TYPE_MB;
-    
     // Register this slave as not having any accelerators
     // and no PR capabilities.
     *(iface->accelerator_flags) = 0x0;

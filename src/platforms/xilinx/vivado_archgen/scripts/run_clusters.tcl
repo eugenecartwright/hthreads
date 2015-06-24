@@ -171,7 +171,7 @@ if  {  ([expr $N * $C]>12) } \
 reset_run synth_1
 
 #Writing the DCP file for PR flow
-launch_runs synth_1 -jobs 8
+launch_runs synth_1 -jobs 4
 wait_on_run  synth_1
 
 if { $PR == "y"} \
@@ -184,10 +184,15 @@ source ./pr.tcl
 }\
 else \
 {
-launch_runs impl_1 -to_step write_bitstream -jobs 8 -email_to [list sadeghia@uark.edu dandrews@uark.edu]
-#wait_on_run  impl_1
+launch_runs impl_1 -to_step route_design -jobs 4
+wait_on_run  impl_1
 open_run impl_1
+
+write_hwdef -file ./$project_dir/system_wrapper.hwdef
 write_bmm  -force  ./$project_dir/system_wrapper.bmm
-#write_bitstream   -file ./$project_dir/system_wrapper.bit
-#write_sysdef  -force -hwdef ./$project_dir/design.runs/synth_1/system_wrapper.hwdef -bitfile ./$project_dir/system_wrapper.bit -meminfo ./$project_dir/system_wrapper.bmm -file  ./$project_dir/design.runs/impl_1/system_wrapper.sysdef
+write_bitstream   -file ./$project_dir/system_wrapper.bit
+
+write_sysdef  -force -hwdef ./$project_dir/system_wrapper.hwdef -bitfile ./$project_dir/system_wrapper.bit -meminfo ./$project_dir/system_wrapper.bmm -file  ./$project_dir/design.runs/impl_1/system_wrapper.sysdef
+
+exit
 }
