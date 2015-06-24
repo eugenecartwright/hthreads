@@ -19,4 +19,4 @@ hal/src/platforms/xilinx/
 src/platforms/xilinx/vivado_archgen/config/Jamrules
 hal/config/settings
 *.jou
-
+hal/config/settings
