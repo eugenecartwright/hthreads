@@ -4,6 +4,9 @@
 #include <hthread.h>
 #include "config.h"
 #ifdef ICAP
+#include "xbasic_types.h"
+#include "xil_types.h"
+#include "xil_assert.h"
 #include "xhwicap_i.h"
 #include "xhwicap.h"
 
