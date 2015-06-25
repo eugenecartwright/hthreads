@@ -7,7 +7,7 @@ import xml.etree.ElementTree as ET
 SUCCESS = 0
 FAILURE = 1
 
-# List of available accelerators. TODO: Update 
+# List of available (HLS) accelerators. TODO: Update 
 # whenever adding new accelerators
 accelerators = ["crc", "vectoradd", "bubblesort", "mm", "vectormul"]
 
