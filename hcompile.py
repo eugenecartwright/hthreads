@@ -401,6 +401,10 @@ def main():
             execute_cmd("rm -f " + SRC_FILE_PATH)
             # Exit immediately
             sys.exit(1)
+         else:
+            # On successful build, remove copied source
+            file_to_remove = hetero_build_dir + SRC_FILE
+            execute_cmd("rm -f " + file_to_remove)
          
 
          #-----------------------------------------------------------------------------#
@@ -559,9 +563,17 @@ def main():
    print "\t-----------------------------------"
    print "\t\t -> Header file created, compiling source file for Host processor(s)..."
    # Recompile host code that will not include the auto-generated header
-   execute_cmd(run_build)
-   print "\t\t -> The compilation was successful."
-
+   host_build_status = execute_cmd(run_build, exit_if_error=False)
+   if (host_build_status != SUCCESS):
+      print "\t\t" + host_processor['NAME']
+      print "\t\t -> Build Unsuccessful. Rolling back..."
+      # Undo changes you made such as copying the source files
+      execute_cmd("rm -f " + SRC_FILE_PATH)
+      # Exit immediately
+      sys.exit(1)
+   else:
+      print "\t\t -> The compilation was successful."
+         
 
    # *****************************************************************************
    # Remove copied heterogeneous application from src/test/system/ and its
