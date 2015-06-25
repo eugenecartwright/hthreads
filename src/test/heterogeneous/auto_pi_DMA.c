@@ -152,12 +152,7 @@ void * pi_thread_no_fpu (void * arg)
     //return (void*)id;
 }
 
-#ifdef HETERO_COMPILATION
-int main()
-{
-    return 0;
-}
-#else
+#ifndef HETERO_COMPILATION
 
 int run_tests()
 {
