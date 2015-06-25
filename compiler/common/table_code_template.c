@@ -198,7 +198,7 @@ void init_PR_data() {
         // -------------------------------------------------------------- //
         //         Write extra parameters for PR functionality            //
         // -------------------------------------------------------------- //
-        _hwti_set_accelerator_ptr((Huint) hwti_array[i], (Huint)&pr_file_list[i]);
+        _hwti_set_pr_files_ptr((Huint) hwti_array[i], (Huint)&pr_file_list[i]);
 
         // Write the ICAP Mutex
         _hwti_set_icap_mutex( (Huint) hwti_array[i], (Huint) &icap_mutex);

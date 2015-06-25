@@ -19,6 +19,11 @@ accelerators = ["crc", "vectoradd", "bubblesort", "mm", "vectormul"]
 #------------------------------------------#
 def get_hardware_file(platform_path, debugging=False):
 
+   # create a temporary folder to unzip the hardware platform file
+   tmp_folder = platform_path + "/design/.tmp"
+   execute_cmd("rm -rf " + tmp_folder)
+   execute_cmd("mkdir " + tmp_folder)
+
    matches = []
    for root, dirnames, filenames in os.walk(platform_path+"/design"):
       for filename in fnmatch.filter(filenames,'*.sysdef'):
@@ -33,11 +38,8 @@ def get_hardware_file(platform_path, debugging=False):
       return FAILURE, matches
   
    platform_file_path = matches[0]
-
-   # create a temporary folder to unzip the hardware platform file
-   tmp_folder = platform_path + "/design/.tmp"
-   execute_cmd("rm -rf " + tmp_folder)
-   execute_cmd("mkdir " + tmp_folder)
+   
+   # Copy and unzip system definition file into temporary folder
    platform_file = os.path.basename(platform_file_path)
    execute_cmd("cp " + platform_file_path + " " + tmp_folder)
    execute_cmd("unzip " + tmp_folder + "/" + platform_file + " -d " + tmp_folder)
