@@ -35,7 +35,7 @@ def get_hardware_file(platform_path, debugging=False):
    platform_file_path = matches[0]
 
    # create a temporary folder to unzip the hardware platform file
-   tmp_folder = platform_path + "/.tmp"
+   tmp_folder = platform_path + "/design/.tmp"
    execute_cmd("rm -rf " + tmp_folder)
    execute_cmd("mkdir " + tmp_folder)
    platform_file = os.path.basename(platform_file_path)
@@ -48,14 +48,14 @@ def get_hardware_file(platform_path, debugging=False):
    # if deubbing, display board information
    if debugging:
       # Check for the sysdef.xml file before reading board info from it.
-      if os.path.isfile(platform_path + "/.tmp/sysdef.xml") == False:
+      if os.path.isfile(tmp_folder + "/sysdef.xml") == False:
          print "ERROR (get_hardware_file()): No sysdef.xml file found!"
          return FAILURE, matches
       
       # Parse Board/Project information file. NOTE: I assume only one
       # project version as this file supports multiple versions, and
       # hence, can support multiple *.hwh files. 
-      tree = ET.parse(platform_path + "/.tmp/sysdef.xml")
+      tree = ET.parse(tmp_folder + "/sysdef.xml")
       root = tree.getroot()
 
       system_info = root.find('SYSTEMINFO')
@@ -73,11 +73,11 @@ def get_hardware_file(platform_path, debugging=False):
 
    # Check for the system.hwh file. NOTE: I assume it is called
    # system.hwh but can verify based on the *.xml file above.
-   if os.path.isfile(platform_path + "/.tmp/system.hwh") == False:
+   if os.path.isfile(tmp_folder + "/system.hwh") == False:
       print "No system hardware definition file found"
       return FAILURE, matches
    else:
-      platform_file_path = platform_path + "/.tmp/system.hwh"
+      platform_file_path = tmp_folder + "/system.hwh"
    
    return SUCCESS, platform_file_path
 
