@@ -23,7 +23,7 @@
 #define VECTORADD    2
 #define VECTOR       2  // TODO: Clean this up later
 #define VECTORMUL    3
-//#define MM           4
+#define MM           4
 
 // -------------------------------------------------------------- //
 //                       Accelerator Flags                        //
