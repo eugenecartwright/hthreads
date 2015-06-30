@@ -18,6 +18,7 @@
 // -------------------------------------------------------------- //
 //                   Accelerator Enumeration                      //
 // -------------------------------------------------------------- //
+#define NO_ACC       -1
 #define CRC          0
 #define BUBBLESORT   1
 #define SORT         1  // TODO: Clean this up later

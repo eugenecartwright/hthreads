@@ -159,6 +159,10 @@ def get_processors(hw_description_path):
 #------------------------------------------#
 def get_accelerators(hw_description_path, processors):
 
+   # Initialize all processors accelerator field with 'NO_ACC' 
+   for index, processor in enumerate(processors):
+      processors[index]['ACCELERATOR'] = 'NO_ACC'
+
    # Parse XML document
    tree = ET.parse(hw_description_path)
    root = tree.getroot()
