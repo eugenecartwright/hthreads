@@ -27,14 +27,18 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ######################################################################################
 
-Hybridthreads v0.5.0 - Prerequisites
+Hybridthreads v0.6.0 - Prerequisites
 ------------------------------------------------------------------------------
 The Hthreads system depends on the following tools during the build process.
-    * Xilinx ISE (http://www.xilinx.com)
+    * Xilinx Vivado (http://www.xilinx.com)
         This is required to build the Hthreads system for target systems
         which include Xilinx based FPGAs
 
-    * Xilinx EDK (http://www.xilinx.com)
+    * Xilinx Vivado HLS (http://www.xilinx.com)
+        This is required to build any IP cores that come bundled with Hthreads
+         systems
+    
+   * Xilinx SDK (http://www.xilinx.com)
         This is required to build the Hthreads system for target systems
         which include Xilinx based FPGAs
 
@@ -69,6 +73,10 @@ The Hthreads system depends on the following tools during the build process.
         it not included with the distribution.
 
 The Hthreads system is only tested on the following target systems:
+   * Xilinx Virtex-7 VC707
+
+Older versions of Hthreads (Pre-Vivado implementation) can be found in
+the repository. A list of supported systems under Xilinx EDK tools are:
     * Xilinx Virtex-5 Pro ML507
     * Xilinx Virtex-6 Pro ML605
     * Xilinx Virtex-II Pro ML310
@@ -79,13 +87,19 @@ In addition, the following host systems have been used:
     * Redhat Enterprise Linux 5.0
     * CentOS 5.8
     * Ubuntu 10.04
+    * Ubuntu 14.04
+    * Linux Mint 17.1
 
 If you have success in using the Hthreads system on other systems please
-contact the Hthreads group at hthreads@ittc.ku.edu.
+contact the Hthreads group at dandrews@uark.edu.
 
 
 Hybridthreads v0.5.0 - Installation Procedures
 ------------------------------------------------------------------------------
+It is required that your sh shell point to the bash shell. Hthreads has been
+tested against this shell and other shells such as dash, may not behave 
+properly.
+
 The Hthreads system does not install any files on the host operating system.
 When building Hthreads a set of executable files are created for the target
 system. These executables are meant to be downloaded to the target system and
@@ -93,11 +107,35 @@ executed there.
 
 Hybridthreads v0.5.0 - Build Procedures
 ------------------------------------------------------------------------------
+Hthreads features two build flows: A) One for the host (or an SMP configuration)
+and B) another for master-slave (heterogeneous) multiprocessor systems. 
+
+Hybridthreads v0.5.0 - Build Procedures - A
+------------------------------------------------------------------------------
 To build the Hthreads system simply invoke the jam build system from the top
 level directory. This command will recurse through the Hthreads source tree and
 build the entire system. An example is given below:
     > jam
 
+Hybridthreads v0.5.0 - Build Procedures - B
+------------------------------------------------------------------------------
+To build a multiprocessor Hthreads system configured in a master-slave model
+simply invoke the hcompile python script from the top level directory. This 
+command will copy your source file to the appropriate folder (src/test/system)
+and then proceed to build it. A generated headerfile is produced and copied 
+back to your original source file location. It's encouraged for your source
+files to reside in either the src/test/heterogeneous directory, or anywhere
+outside of the hthreads directory tree. More information on this build
+proceedure can be found at 
+http://hthreads.csce.uark.edu/wiki/Heterogeneous_Threads#Advanced_Compilation
+
+To run this build proceedure, simply invoke hcompile.py and point to the 
+targetted source file
+    > ./hcompile.py <source file>
+
+
+Hybridthreads v0.5.0 - Build Information
+------------------------------------------------------------------------------
 The Hthreads build process uses a set of configuration files to control the
 build process. These user modifiable files are located in "config". The file
 "settings" contains most of the user modifiable build parameters. Another file
@@ -111,6 +149,6 @@ create executables.  The test directory contains all of the pre-built
 executables for the target system. These executables can be downloaded to the
 target system and executed.
 
-In addition to this, many host tool will be built and installed into "bin".
+In addition to this, many host tools will be built and installed into "bin".
 Please look at the README in the "bin" directory to learn more about the host
 tools.
