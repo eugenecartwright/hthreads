@@ -76,7 +76,7 @@ Hint sort (void * list_ptr, Huint size, Huint * done) {
         Huint index = get_index(size);
 
         // Look up the the correct chunk number in table
-        Huint chunks = tuning_table[SORT*NUM_SIZES + index].chunks;
+        Huint chunks = tuning_table[SORT*NUM_OF_SIZES + index].chunks;
 
         // Call Pipeline sort with chunk number
         pipeline_sort( chunks, (int *) list_ptr, size);

@@ -48,24 +48,24 @@ Huint get_index(Huint size)
 {
     
     if (size > ((BRAM_SIZE + (BRAM_SIZE/2)) / 2)) {
-        return NUM_SIZES-1;
+        return NUM_OF_SIZES-1;
     } 
     if (size > ((BRAM_SIZE/2 + (BRAM_SIZE/4)) / 2)) {
-        return NUM_SIZES-2;
+        return NUM_OF_SIZES-2;
     } 
     if (size > ((BRAM_SIZE/4 + (BRAM_SIZE/8)) / 2)) {
-        return NUM_SIZES-3;
+        return NUM_OF_SIZES-3;
     } 
     if (size > ((BRAM_SIZE/8 + (BRAM_SIZE/16)) / 2)) {
-        return NUM_SIZES-4;
+        return NUM_OF_SIZES-4;
     } 
     if (size > ((BRAM_SIZE/16 + (BRAM_SIZE/32)) / 2)) {
-        return NUM_SIZES-5;
+        return NUM_OF_SIZES-5;
     } 
     if (size > ((BRAM_SIZE/32 + (BRAM_SIZE/64)) / 2)) {
-        return NUM_SIZES-6;
+        return NUM_OF_SIZES-6;
     } 
-    return NUM_SIZES-7;
+    return NUM_OF_SIZES-7;
 }
 
 // -------------------------------------------------------------- //
@@ -128,7 +128,7 @@ Hbool useHW(Huint accelerator_type, Huint size) {
         // into the table and evaluating the software and hardware
         // execution times, taking into account PR overhead.
         Huint index = get_index(size);
-        if ((tuning_table[accelerator_type*NUM_SIZES + index].hw_time + PR_OVERHEAD) < tuning_table[accelerator_type*NUM_SIZES +index].sw_time) {
+        if ((tuning_table[accelerator_type*NUM_OF_SIZES + index].hw_time + PR_OVERHEAD) < tuning_table[accelerator_type*NUM_OF_SIZES +index].sw_time) {
             // TODO: Yes, PR is worth it ...but by how much?
             
             // ----Begin loading the accelerator----//

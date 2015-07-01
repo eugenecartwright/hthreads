@@ -71,7 +71,7 @@ Hint crc (void * list_ptr, Huint size, Huint * done) {
             Huint index = get_index(size);
             
             // Look up the the correct chunk number in table
-            Huint chunks = tuning_table[CRC*NUM_SIZES + index].chunks;
+            Huint chunks = tuning_table[CRC*NUM_OF_SIZES + index].chunks;
 
             // Call Pipeline crc with chunk number
             pipeline_crc( chunks, (int *) new_list_ptr, new_size);

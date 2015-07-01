@@ -71,7 +71,7 @@ Hint vector(void * a_ptr, void * b_ptr, void * c_ptr, Huint size, Huint op_code)
             Huint index = get_index(size);
             
             // Look up the the correct chunk number in table
-            Huint chunks = tuning_table[VECTOR*NUM_SIZES + index].chunks;
+            Huint chunks = tuning_table[VECTOR*NUM_OF_SIZES + index].chunks;
 
             // Call Pipeline vector with chunk number
             pipeline_vector( chunks, (int *) new_a_ptr, (int *) new_b_ptr, (int *) new_c_ptr, new_size);
