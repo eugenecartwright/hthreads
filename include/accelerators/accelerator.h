@@ -11,7 +11,7 @@
 #define ACC_BIT_FILE_LENGTH         (45071)
 
 #define NUM_OF_ACCELERATORS         (3)
-#define NUM_OF_SIZES                (7)
+#define NUM_OF_SIZES                (7) //64, 128, 256, 512, 1k, 2k, 4k bytes
 #define PR_OVERHEAD                 (500)
 #define BRAM_SIZE                   (4096)
 

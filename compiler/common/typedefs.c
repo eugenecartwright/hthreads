@@ -1,11 +1,3 @@
-
-// Accelerator Profile
-typedef struct {
-    unsigned char * crc;
-    unsigned char * sort;
-    unsigned char * vector;
-} accelerator_list_t;
-
 // Tuning table
 typedef struct {
     unsigned char chunks;

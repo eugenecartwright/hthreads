@@ -88,24 +88,14 @@ hthread_mutex_t icap_mutex;
 #ifdef ICAP
 // Icap structures
 XHwIcap HwIcap;
-#endif
-
-#ifdef ICAP
-// Accelerator Bit Pointers
-unsigned char * crc_bit[NUM_AVAILABLE_HETERO_CPUS];
-unsigned char * sort_bit[NUM_AVAILABLE_HETERO_CPUS];
-unsigned char * vector_bit[NUM_AVAILABLE_HETERO_CPUS];
-#endif
-
-
-#ifdef ICAP
-
 
 // Creating an accelerator profile for each slave. This profile
 // (structure) will be used to point to the accelerators specific
 // for each slave. That is, for slave #5, the crc pointer will
 // point to the crc partial bit file for slave #5's PR region.
 accelerator_list_t pr_file_list[NUM_AVAILABLE_HETERO_CPUS];
+
+#endif
 
 // This is the tuning table used to keep track of profiling data
 // for slave execution.
@@ -121,19 +111,6 @@ accelerator_list_t pr_file_list[NUM_AVAILABLE_HETERO_CPUS];
     {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1},
     {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}
     };
-#endif
-
-void set_accelerator_structure(accelerator_list_t * pr_file_list, unsigned int slave_num) {
-
-    // Check if valid slave
-    assert(check_valid_slave_num(slave_num));
-
-    // Set the specific accelerator bit files 
-    // specific for that slave processor.
-    pr_file_list->crc    = (unsigned char *) crc_bit[slave_num];
-    pr_file_list->sort   = (unsigned char *) sort_bit[slave_num];
-    pr_file_list->vector = (unsigned char *) vector_bit[slave_num];
-}
 #endif
 
 
@@ -163,7 +140,7 @@ void init_PR_data() {
         printf("Error initializing the ICAP\n");
         while(1);
     }
-
+/*
     // Initialize the pointers
     // init CRC
     crc_bit[0] = (unsigned char *) (&crc0_bit[0]);
@@ -188,7 +165,7 @@ void init_PR_data() {
     vector_bit[3] = (unsigned char *) (&vector3_bit[0]);
     vector_bit[4] = (unsigned char *) (&vector4_bit[0]);
     vector_bit[5] = (unsigned char *) (&vector5_bit[0]);
-
+*/
     // Create accelerate profiles - containers that hold
     // pointers to each accelerator specific for each slave.
     unsigned int i;

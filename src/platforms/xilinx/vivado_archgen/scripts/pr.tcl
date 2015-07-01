@@ -99,15 +99,15 @@ foreach module $list_acc \
 #pr_verify system_vector.dcp system_crc.dcp 
 
 #---------------------------------------------------------------------------------------------------
-#scripts to create one big header file  containg all partial bitstreams
+# Append all partial bitstreams into one header file: "bitstream.h"
 #---------------------------------------------------------------------------------------------------
 
 foreach module $list_acc \
 {
    for {set j 0} {$j < $N * $C} {incr j} \
     {
-       mv [expr {$module}]_pr_[expr $j ]_partial.bit [expr {$module}]_[expr $j ].bit
-       xxd -i -c 4 [expr {$module}]_[expr $j ].bit  [expr {$module}]_[expr $j ].h
+       exec mv [expr {$module}]_pr_[expr $j ]_partial.bit [expr {$module}]_[expr $j ].bit
+       exec xxd -i -c 4 [expr {$module}]_[expr $j ].bit  [expr {$module}]_[expr $j ].h
     }
 }    
 
@@ -115,6 +115,57 @@ eval exec cat [glob ./*.h] > ./partial
 eval exec rm [glob ./*.h]
 eval exec rm [glob ./*.bit]
 eval exec rm [glob ./*.dcp]
-mv ./partial ./bitstream.h
+eval exec mv ./partial ./bitstream.h
+
+#---------------------------------------------------------------------------------------------------
+# Adding in appropriate data structures and methods for such bitstreams
+# Author: Eugene Cartwright
+#---------------------------------------------------------------------------------------------------
+
+exec echo "" >> bitstream.h
+exec echo "#include <hthread.h>" >> bitstream.h
+exec echo "extern Hbool check_valid_slave_num(Huint slave_num);" >> bitstream.h
+exec echo "" >> bitstream.h
+
+# Adding in PR structures into this header file so the
+# generated hcompile header stays fairly system independent
+foreach module $list_acc \
+{
+   exec echo -n "unsigned char * [expr {$module}]_bit\[NUM_AVAILABLE_HETERO_CPUS\] = \{" >> bitstream.h
+   for {set j 0} {$j < $N * $C} {incr j} \
+   {
+      if {$j == 0} { 
+         exec echo -n "(&[expr {$module}]_[expr {$j}]_bit\[0\])" >> bitstream.h
+      } else {
+         exec echo -n ", (&[expr {$module}]_[expr {$j}]_bit\[0\])" >> bitstream.h
+      }
+   }
+   exec echo "\};" >> bitstream.h
+}
+exec echo "" >> bitstream.h
+
+# Adding in accelerator profile typedef
+exec echo "// Accelerator Profile" >> bitstream.h
+exec echo "typedef struct {" >> bitstream.h
+foreach module $list_acc {
+   exec echo -e "\tunsigned char * [expr {$module}];" >> bitstream.h
+}
+exec echo "} accelerator_list_t;" >> bitstream.h
+exec echo "" >> bitstream.h
+
+# Adding in set_accelerator_structure routine
+exec echo "void set_accelerator_structure(accelerator_list_t * pr_file_list, unsigned int slave_num) {" >> bitstream.h
+exec echo "" >> bitstream.h
+exec echo -e "\t// Check if valid slave" >> bitstream.h
+exec echo -e "\tassert(check_valid_slave_num(slave_num));" >> bitstream.h
+exec echo "" >> bitstream.h
+exec echo -e "\t// Set the specific accelerator bit files" >> bitstream.h
+exec echo -e "\t// specific for that slave processor." >> bitstream.h
+foreach module $list_acc {
+   exec echo -e "\tpr_file_list->[expr {$module}]\t = (unsigned char *) [expr {$module}]_bit\[slave_num\];" >> bitstream.h
+}
+exec echo "}" >> bitstream.h
+
+
 cd ../../scripts/
 
