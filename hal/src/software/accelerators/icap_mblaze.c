@@ -37,11 +37,11 @@ Hint perform_PR(Huint * bit_file_addr, Hint bit_file_len) {
 Hint XHwIcap_DRAM2Icap(XHwIcap * HwIcap, Huint * src_bit, Huint size) {
 
     Huint BitstreamLength;
-    Xuint32 *word;
+    u32 *word;
     XStatus Status;
 
     // Point to beginning of the data (skipping the header)
-    word = (Xuint32 *) src_bit + ((ICAP_HEADER_LENGTH +1) / 4);
+    word = (u32 *) src_bit + ((ICAP_HEADER_LENGTH +1) / 4);
 
     // Get size without header
     BitstreamLength = size-ICAP_HEADER_LENGTH;
