@@ -15,7 +15,7 @@ name=$4
 pr=$5
 
 
-vivado -nojournal -nolog -mode batch -source ./run_clusters.tcl -tclargs $N $C $board $name $pr
+vivado -nojournal -nolog -mode batch -source ./run_clusters.tcl -tclargs $N $C $board $name $pr && \
 
 
 ##=====================================================================

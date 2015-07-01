@@ -569,6 +569,9 @@ def main():
       print "\t\t -> Build Unsuccessful. Rolling back..."
       # Undo changes you made such as copying the source files
       execute_cmd("rm -f " + SRC_FILE_PATH)
+      # Copy the headerfile you created earlier for examining
+      print "\t\t NOTE: Moving generated headerfile to the path: " + OLD_SRC_FILE_PATH
+      execute_cmd(sys_mv + HEADER_FILE_PATH + " " + OLD_SRC_FILE_PATH)
       # Exit immediately
       sys.exit(1)
    else:
