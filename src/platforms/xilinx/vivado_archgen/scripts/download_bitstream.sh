@@ -27,9 +27,9 @@ mystring="./platforms/"
 mystring+=$name
 
 cd ..
-#rm design
+rm -f design
 
-ln -f -s "$mystring" design
+ln -s "$mystring" design
 
 
 #===============================================================
