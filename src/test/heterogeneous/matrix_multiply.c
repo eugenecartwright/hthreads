@@ -16,7 +16,7 @@
 //#define TIME_DMA
 //#define VERIFY
 #define NUM_TRIALS      (1)
-#define NUM_THREADS     (32)
+#define NUM_THREADS     (2)
 #define LOCAL_TIMER     (0x82000000)
 
 // define size of your matrix
@@ -34,7 +34,7 @@ typedef struct {
     int dest_row;
     int dest_col;
     int solution;
-    unsigned long long time;
+    hthread_time_t time;
     //unsigned int time;
 } data;
 
@@ -82,9 +82,8 @@ hthread_attr_t create_attr() {
 #endif
 void * worker_thread (void *arg) {
     data *targ = (data *) arg;
-    // Read local bus timer
-    volatile unsigned long long * timer1 = (unsigned long long *) (LOCAL_TIMER);
-    targ->time = *timer1; 
+    // Read timer
+    hthread_time_t start = hthread_time_get();
     
     // Calculate solution
     int  i = 0, size = targ->array_length, result = 0;
@@ -92,20 +91,16 @@ void * worker_thread (void *arg) {
         result += (targ->row[i] * targ->col[i]);
     targ->solution = result;
    
-    // Read local bus timer
-    targ->time = *timer1 - targ->time;
+    // Read timer
+    hthread_time_t stop = hthread_time_get();
+    targ->time = stop - start;
 
     // Return NULL to indicate to firmware
     // not to copy via ptr. back to DDR memory 
     return NULL;
 }
 
-#ifdef HETERO_COMPILATION
-int main ()
-{
-  return 0;
-}
-#else
+#ifndef HETERO_COMPILATION
 
 #include "matrix_multiply_prog.h"
 

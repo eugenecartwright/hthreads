@@ -111,6 +111,17 @@ int main(){
            printf("Thread %02d Result = %02d\n",i,ret[i]);
        }
    }
+
+   // Test Timer
+   for (i = 0; i < 25; i++) {
+      hthread_time_t start = hthread_time_get();
+      hthread_time_t stop = hthread_time_get();
+      hthread_time_t diff;
+      hthread_time_diff(diff, stop, start); 
+      printf("Time: = %f usec\n", hthread_time_usec(diff));
+      printf("Time: = %f nsec\n", hthread_time_nsec(diff));
+      printf("------------------------------\n");
+   }
    printf("END\n");
    return 0;
 }
