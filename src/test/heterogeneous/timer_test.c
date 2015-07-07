@@ -2,8 +2,9 @@
 #include <hthread.h>
 #include <stdio.h>
 #include <arch/htime.h>
-//#define HARDWARE_THREAD
-#define NUM_TRIALS          (10)
+#include "microblaze_sleep.h"
+#define HARDWARE_THREAD
+#define NUM_TRIALS          (5)
 //#define DEBUG_DISPATCH
 
 typedef struct
@@ -16,17 +17,13 @@ typedef struct
 } package;
 
 void wait(unsigned int seconds) {
-    hthread_time_t stop_time;
+   hthread_time_t stop_time, current_time;
    
-    stop_time = hthread_time_get() + CLOCKS_PER_SEC * seconds;
-
-    while(hthread_time_less(hthread_time_get(),stop_time)) {
-        int i;
-        int a = 0;
-        for(i = 0; i < 10000; i++) {
-            a = a + 1;
-        }
-    }
+   stop_time = hthread_time_get() + (hthread_time_t) CLOCKS_PER_SEC * seconds;
+   do {
+      current_time  = hthread_time_get();
+      //hthread_time_t diff = hthread_time_diff(diff, stop_time, current_time);
+   } while(current_time <  stop_time);
 }
 
 void * foo_thread(void * arg) 
@@ -125,13 +122,13 @@ int main(){
    // Test Timer
    printf("\n\nTesting timer from host\n");
    for (i = 0; i < 10; i++) {
+      printf("Waiting for %02d seconds...\n", i*10);
       hthread_time_t start = hthread_time_get();
-      wait(1);
+      wait(i*10);
       hthread_time_t stop = hthread_time_get();
       hthread_time_t diff;
       hthread_time_diff(diff, stop, start); 
-      printf("Time: = %f usec\n", hthread_time_usec(diff));
-      printf("Time: = %f nsec\n", hthread_time_nsec(diff));
+      printf("Time: = %f sec\n", hthread_time_sec(diff));
       printf("------------------------------\n");
    }
    printf("END\n");
