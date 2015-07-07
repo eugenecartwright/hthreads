@@ -88,18 +88,18 @@ int main(){
        printf("-------------Round %02d-------------------\n", j+1);
        for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) 
        {
-       ((thread_package+i)->arg4)++;
-#ifndef HARDWARE_THREAD
+           ((thread_package+i)->arg4)++;
+           #ifndef HARDWARE_THREAD
            if (hthread_create(&child[i],&attr[i],foo_thread, (void *)(thread_package+i))) 
            {
                printf("hthread_create error on HW THREAD %d\n", i);
                while(1);
            }
-#else
-           //microblaze_create(&child[i],&attr[i],foo_thread_FUNC_ID, (void *)(thread_package+i),i);
+           #else
            thread_create(&child[i],&attr[i],foo_thread_FUNC_ID, (void *)(thread_package+i),STATIC_HW0+i,0);
-#endif
+           #endif
        }
+   
       
        // Joining threads
        for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) 
@@ -110,17 +110,22 @@ int main(){
                printf("Error joining child thread\n");
                while(1);
            }
+
+           #ifdef HARDWARE_THREAD
+           hthread_time_t * slave_time = (hthread_time_t *) (attr[i].hardware_addr - HT_CMD_HWTI_COMMAND + HT_CMD_VHWTI_EXEC_TIME);
+           printf("Time reported by slave nano kernel #%02d = %f usec\n", i,hthread_time_usec(*slave_time));
+           #endif
        }
        
        // Print out return value from each Hardware thread
        for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++)
        {
-           printf("Thread %02d Calculation time = %f usec\n",i,hthread_time_usec(ret[i]));
+           printf("Thread %02d Calculation time recorded in thread = %f usec\n",i,hthread_time_usec(ret[i]));
        }
    }
 
    // Test Timer
-   printf("\n\nTesting timer from host\n");
+   printf("\n\nTesting timer from host and wait(sec) function\n");
    for (i = 0; i < 10; i++) {
       printf("Waiting for %02d seconds...\n", i*10);
       hthread_time_t start = hthread_time_get();

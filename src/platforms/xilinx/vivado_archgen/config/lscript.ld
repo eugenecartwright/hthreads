@@ -1,5 +1,3 @@
-/* Sen Ma Modify in on 7/26/2013 to use it in kc705 */
-
 _STACK_SIZE = DEFINED(_STACK_SIZE) ? _STACK_SIZE : 64k;
 _HEAP_SIZE = DEFINED(_HEAP_SIZE) ? _HEAP_SIZE : 250M;
 

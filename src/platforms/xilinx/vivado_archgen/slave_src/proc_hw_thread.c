@@ -57,9 +57,9 @@ void initialize_interface( proc_interface_t * iface, int * baseAddr)
 
 void delay()
 {
-    int x;
+    int x = 0;
     int y = 10 + x;
-	 int z;
+	 int z = 0;
 	 
 	 getpvr(1,z);
 	 
@@ -89,12 +89,11 @@ void wait_for_go_command( proc_interface_t * iface)
     // Clear out first used accelerator in case
     // this thread function I am about to run doesn't
     // use an accelerator.
-    *(iface->first_used_accelerator) = MAGIC_NUMBER;    
+    *(iface->first_used_accelerator) = NO_ACC;    
 
     // Get timestamp to for beginning of execution
-    //*(iface->execution_time) = (hthread_time_t) 0x0;
-    //volatile hthread_time_t * timer = (hthread_time_t *) LOCAL_TIMER;
-    //*(iface->execution_time) =  *timer;
+    *(iface->execution_time) = (hthread_time_t) 0;
+    *(iface->execution_time) =  hthread_time_get();
 
     // Reset command register
     *(iface->cmd_reg) = 0;
@@ -112,10 +111,9 @@ int proc_hw_thread_exit( proc_interface_t * iface, void * ret)
     int status;  
 
     // Store execution time - 
-    //volatile hthread_time_t * timer = (hthread_time_t *) LOCAL_TIMER;
-    //hthread_time_t stop = *timer;
-    //hthread_time_t start = *(iface->execution_time);
-    //*(iface->execution_time) = stop-start;
+    hthread_time_t stop = hthread_time_get();
+    hthread_time_t start = *(iface->execution_time);
+    *(iface->execution_time) = stop-start;
 
     // Return a value (if any) first
     if(ret != NULL) 
@@ -135,7 +133,7 @@ int proc_hw_thread_exit( proc_interface_t * iface, void * ret)
     // If there was an accelerator used, we need to update the
     // first use accelerator for this particular function it ran.
     // The host processor is responsible for writing the proper address.
-    if (*(iface->first_used_accelerator) != MAGIC_NUMBER) {
+    if (*(iface->first_used_accelerator) != NO_ACC) {
         volatile unsigned int * first_used_acc = (unsigned int *) *(iface->first_used_ptr);
         if (first_used_acc != NULL)
             *first_used_acc = *(iface->first_used_accelerator);
@@ -206,7 +204,7 @@ void* _bootstrap_thread( proc_interface_t * iface, thread_start_t func, void * a
     status = proc_hw_thread_exit(iface, ret );
 
     // This statement should never be reached
-    return 0;
+    return (void *) status;
 }
 
 void hthread_mutex_lock( int lock_number)

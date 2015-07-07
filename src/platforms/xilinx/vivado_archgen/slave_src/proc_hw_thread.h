@@ -9,11 +9,67 @@
 
 #include <xparameters.h>
 
-//#define LOCAL_TIMER     (0x82000000)
-//#define LOCAL_TIMER     (0x41C00000)
-#define MAGIC_NUMBER    (0xDEADBEEF)
+#define HTHREADS_TIMER_BASE         XPAR_TMRCTR_0_BASEADDR
+#define TIMER_COUNTER_OFFSET        (0x8)
+#define TIMER1_OFFSET               (0x10)
 
-typedef long long hthread_time_t;
+#define HTHREADS_TIMER0             (HTHREADS_TIMER_BASE)
+#define HTHREADS_TIMER1             (HTHREADS_TIMER_BASE + TIMER1_OFFSET)
+#define HTHREADS_TIMER_DATA_HI      (HTHREADS_TIMER1 + TIMER_COUNTER_OFFSET)
+#define HTHREADS_TIMER_DATA_LO      (HTHREADS_TIMER0 + TIMER_COUNTER_OFFSET)
+
+#define NO_ACC             (-1)
+
+typedef long long arch_clock_t;
+typedef arch_clock_t hthread_time_t;
+
+/**
+ * This struct allows us to treat the 64-bit timer value as an array of
+ * 32-bit values, for ease of use.
+ */
+typedef union {
+   arch_clock_t    time;
+   unsigned int help[2];
+} arch_clock_helper;
+
+/**
+   * Get the high 32 bits from the timer.
+    */
+static inline unsigned int timer_get_hi()
+{
+       return *(volatile unsigned int*)(HTHREADS_TIMER_DATA_HI);
+}
+
+/**
+ * Get the low 32 bits from the timer.
+ */
+static inline unsigned int timer_get_lo()
+{
+       return *(volatile unsigned int*)(HTHREADS_TIMER_DATA_LO);
+}
+
+/**
+ * Get a 64-bit value that counts the number of clock ticks since startup.
+ */
+static inline arch_clock_t _arch_get_time(void)
+{
+   arch_clock_helper d;
+
+   // Because we can't get the low and high bits as a single operation,
+   // the low value may have rolled over since we got the high value.
+   // Check the high value to make sure it hasn't changed, and try
+   // again if it has.
+   // Watch out for endianness! -Eugene
+   do
+   {
+      d.help[1] = timer_get_hi();
+      d.help[0] = timer_get_lo();
+   } while( d.help[1] != timer_get_hi() );
+
+   return d.time;
+}
+
+#define hthread_time_get()          _arch_get_time()
 
 // Used to keep track of last used accelerator
 unsigned int prev_last_used_accelerator;

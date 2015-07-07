@@ -10,9 +10,6 @@
 #include "xparameters.h"
 
 
-#define CMD_RESET       (0xA)
-#define RESET_REG       (0x100)
-
 // Macro to load GPRs for the MB
 #define mtgpr(rn, v)    ({  __asm__ __volatile__ (      \
                              "or\t" stringify(rn) ",r0,%0\n" :: "d" (v)    \
@@ -35,21 +32,20 @@ int main() {
     microblaze_invalidate_icache();
     microblaze_enable_icache();
     microblaze_invalidate_dcache();
-	microblaze_disable_dcache();
+    microblaze_disable_dcache();
 
     //Determine if uB is first on bus
     getpvr(0, cpu_id);
-
 
     // Set initial value for last accelerator used    
     initialize_interface(&hwti,(int*)(hwti_base));
 
     // Set this local variable to keep track of "previous"
     // last used accelerator
-    prev_last_used_accelerator = MAGIC_NUMBER;
+    prev_last_used_accelerator = NO_ACC;
     
     // Reset last used accelerator
-    *(hwti.last_used_accelerator) = MAGIC_NUMBER;
+    *(hwti.last_used_accelerator) = NO_ACC;
     
     // Clear out accelerator Flags
     *(hwti.accelerator_flags) = (0x00000000);
