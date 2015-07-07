@@ -15,15 +15,18 @@ typedef struct
     int arg4;
 } package;
 
-void * delay() {
-    
-    volatile int e, x = 0,y = 0;
-    for (e = 0; e < 1000000; e++) 
-    {
-        x+=y;
-        x+=2;
+void wait(unsigned int seconds) {
+    hthread_time_t stop_time;
+   
+    stop_time = hthread_time_get() + CLOCKS_PER_SEC * seconds;
+
+    while(hthread_time_less(hthread_time_get(),stop_time)) {
+        int i;
+        int a = 0;
+        for(i = 0; i < 10000; i++) {
+            a = a + 1;
+        }
     }
-    return (void *) 1;
 }
 
 void * foo_thread(void * arg) 
@@ -32,7 +35,7 @@ void * foo_thread(void * arg)
     int a,b,c,d,value=0;
     
     hthread_time_t start = hthread_time_get();
-    delay();
+    wait(1);
 
     a = *(p+0); //1
     b = *(p+1); //400
@@ -49,7 +52,7 @@ void * foo_thread(void * arg)
 }
 
 #ifndef HETERO_COMPILATION
-#include "ml605_test_prog.h"
+#include "timer_test_prog.h"
 
 int main(){
 
@@ -85,6 +88,7 @@ int main(){
    int j;
    for (j = 0; j < NUM_TRIALS; j++) 
    {
+       printf("-------------Round %02d-------------------\n", j+1);
        for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) 
        {
        ((thread_package+i)->arg4)++;
@@ -114,14 +118,15 @@ int main(){
        // Print out return value from each Hardware thread
        for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++)
        {
-           printf("Thread %02d Calculation time = %f\n",i,hthread_time_usec(ret[i]));
+           printf("Thread %02d Calculation time = %f usec\n",i,hthread_time_usec(ret[i]));
        }
    }
 
    // Test Timer
    printf("\n\nTesting timer from host\n");
-   for (i = 0; i < 25; i++) {
+   for (i = 0; i < 10; i++) {
       hthread_time_t start = hthread_time_get();
+      wait(1);
       hthread_time_t stop = hthread_time_get();
       hthread_time_t diff;
       hthread_time_diff(diff, stop, start); 
