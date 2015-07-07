@@ -15,8 +15,8 @@ SubDir TOP ;
 ################################################################################
 # Tell the build system that it can clean the lib and test directories
 ################################################################################
-#Hclean clobber : $(TOP)$(SLASH)lib ;
-#Hclean clobber : $(TOP)$(SLASH)test ;
+Hclean clobber : $(TOP)$(SLASH)lib ;
+Hclean clobber : $(TOP)$(SLASH)test ;
 Hclean clobber : $(TOP)$(SLASH)docs$(SLASH)hthreads ;
 Hclean clobber : $(TOP)$(SLASH)docs$(SLASH)internal ;
 

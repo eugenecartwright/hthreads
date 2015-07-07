@@ -401,10 +401,6 @@ def main():
             execute_cmd("rm -f " + SRC_FILE_PATH)
             # Exit immediately
             sys.exit(1)
-         else:
-            # On successful build, remove copied source
-            file_to_remove = hetero_build_dir + SRC_FILE
-            execute_cmd("rm -f " + file_to_remove)
          
 
          #-----------------------------------------------------------------------------#
@@ -429,6 +425,11 @@ def main():
       # Found other similar processors
       else:
          print "\t\tSkipping..."
+            
+
+   # Once all slave code has been compiled, remove copied source
+   file_to_remove = hetero_build_dir + SRC_FILE
+   execute_cmd("rm -f " + file_to_remove)
 
    # Append Host information to handle, init_function, and intermediate lists
    # Add function handles for the host (which is just the Symbols minus the '_HANDLE'

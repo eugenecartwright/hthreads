@@ -1,9 +1,10 @@
 /* Eugene Cartwright */
 #include <hthread.h>
 #include <stdio.h>
-#define HARDWARE_THREAD
+#include <arch/htime.h>
+//#define HARDWARE_THREAD
 #define NUM_TRIALS          (10)
-#define DEBUG_DISPATCH
+//#define DEBUG_DISPATCH
 
 typedef struct
 {
@@ -30,8 +31,9 @@ void * foo_thread(void * arg)
     int * p = (int *) arg;
     int a,b,c,d,value=0;
     
-    //delay();
-    
+    hthread_time_t start = hthread_time_get();
+    delay();
+
     a = *(p+0); //1
     b = *(p+1); //400
     value+=(a*b);
@@ -39,7 +41,11 @@ void * foo_thread(void * arg)
     d = *(p+3); //380
     value+=(c*d)+*(p+4);
     
-    return (void *) value;
+    hthread_time_t stop = hthread_time_get();
+    hthread_time_t diff;
+    hthread_time_diff(diff, stop, start); 
+    
+    return (void *) diff;
 }
 
 #ifndef HETERO_COMPILATION
@@ -108,11 +114,12 @@ int main(){
        // Print out return value from each Hardware thread
        for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++)
        {
-           printf("Thread %02d Result = %02d\n",i,ret[i]);
+           printf("Thread %02d Calculation time = %f\n",i,hthread_time_usec(ret[i]));
        }
    }
 
    // Test Timer
+   printf("\n\nTesting timer from host\n");
    for (i = 0; i < 25; i++) {
       hthread_time_t start = hthread_time_get();
       hthread_time_t stop = hthread_time_get();
