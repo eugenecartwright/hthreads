@@ -22,7 +22,6 @@ void wait(unsigned int seconds) {
    stop_time = hthread_time_get() + (hthread_time_t) CLOCKS_PER_SEC * seconds;
    do {
       current_time  = hthread_time_get();
-      //hthread_time_t diff = hthread_time_diff(diff, stop_time, current_time);
    } while(current_time <  stop_time);
 }
 

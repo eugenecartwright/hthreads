@@ -5,9 +5,8 @@ _HEAP_SIZE = DEFINED(_HEAP_SIZE) ? _HEAP_SIZE : 250M;
 
 MEMORY
 {
-   microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl : ORIGIN = 0x00000050, LENGTH = 0x0000FFB0
-   ddr3_sdram_S_AXI_BASEADDR : ORIGIN = 0x80000000, LENGTH = 0x40000000
-   //axi_bram_ctrl_0_S_AXI_BASEADDR : ORIGIN = 0xB0000000, LENGTH = 0x00004000
+   local : ORIGIN = 0x00000050, LENGTH = 0x0000FFB0
+   main_memory : ORIGIN = 0x80000000, LENGTH = 0x40000000
    thread : ORIGIN = 0x80000000, LENGTH = 1M
 }
 
@@ -40,15 +39,15 @@ SECTIONS
    *(.text)
    *(.text.*)
    *(.gnu.linkonce.t.*)
-} > ddr3_sdram_S_AXI_BASEADDR
+} > main_memory
 
 .init : {
    KEEP (*(.init))
-} > ddr3_sdram_S_AXI_BASEADDR
+} > main_memory
 
 .fini : {
    KEEP (*(.fini))
-} > ddr3_sdram_S_AXI_BASEADDR
+} > main_memory
 
 .ctors : {
    __CTOR_LIST__ = .;
@@ -59,7 +58,7 @@ SECTIONS
    KEEP (*(.ctors))
    __CTOR_END__ = .;
    ___CTORS_END___ = .;
-} > ddr3_sdram_S_AXI_BASEADDR
+} > main_memory
 
 .dtors : {
    __DTOR_LIST__ = .;
@@ -70,7 +69,7 @@ SECTIONS
    KEEP (*(.dtors))
    PROVIDE(__DTOR_END__ = .);
    PROVIDE(___DTORS_END___ = .);
-} > ddr3_sdram_S_AXI_BASEADDR
+} > main_memory
 
 .rodata : {
    __rodata_start = .;
@@ -78,7 +77,7 @@ SECTIONS
    *(.rodata.*)
    *(.gnu.linkonce.r.*)
    __rodata_end = .;
-} > ddr3_sdram_S_AXI_BASEADDR
+} > main_memory
 
 .sdata2 : {
    . = ALIGN(8);
@@ -88,7 +87,7 @@ SECTIONS
    *(.gnu.linkonce.s2.*)
    . = ALIGN(8);
    __sdata2_end = .;
-} > ddr3_sdram_S_AXI_BASEADDR
+} > main_memory
 
 .sbss2 : {
    __sbss2_start = .;
@@ -96,7 +95,7 @@ SECTIONS
    *(.sbss2.*)
    *(.gnu.linkonce.sb2.*)
    __sbss2_end = .;
-} > ddr3_sdram_S_AXI_BASEADDR
+} > main_memory
 
 .data : {
    . = ALIGN(4);
@@ -105,31 +104,31 @@ SECTIONS
    *(.data.*)
    *(.gnu.linkonce.d.*)
    __data_end = .;
-} > ddr3_sdram_S_AXI_BASEADDR
+} > main_memory
 
 .got : {
    *(.got)
-} > ddr3_sdram_S_AXI_BASEADDR
+} > main_memory
 
 .got1 : {
    *(.got1)
-} > ddr3_sdram_S_AXI_BASEADDR
+} > main_memory
 
 .got2 : {
    *(.got2)
-} > ddr3_sdram_S_AXI_BASEADDR
+} > main_memory
 
 .eh_frame : {
    *(.eh_frame)
-} > ddr3_sdram_S_AXI_BASEADDR
+} > main_memory
 
 .jcr : {
    *(.jcr)
-} > ddr3_sdram_S_AXI_BASEADDR
+} > main_memory
 
 .gcc_except_table : {
    *(.gcc_except_table)
-} > ddr3_sdram_S_AXI_BASEADDR
+} > main_memory
 
 .sdata : {
    . = ALIGN(8);
@@ -138,7 +137,7 @@ SECTIONS
    *(.sdata.*)
    *(.gnu.linkonce.s.*)
    __sdata_end = .;
-} > ddr3_sdram_S_AXI_BASEADDR
+} > main_memory
 
 .sbss (NOLOAD) : {
    . = ALIGN(4);
@@ -148,7 +147,7 @@ SECTIONS
    *(.gnu.linkonce.sb.*)
    . = ALIGN(8);
    __sbss_end = .;
-} > ddr3_sdram_S_AXI_BASEADDR
+} > main_memory
 
 .tdata : {
    __tdata_start = .;
@@ -156,7 +155,7 @@ SECTIONS
    *(.tdata.*)
    *(.gnu.linkonce.td.*)
    __tdata_end = .;
-} > ddr3_sdram_S_AXI_BASEADDR
+} > main_memory
 
 .tbss : {
    __tbss_start = .;
@@ -164,7 +163,7 @@ SECTIONS
    *(.tbss.*)
    *(.gnu.linkonce.tb.*)
    __tbss_end = .;
-} > ddr3_sdram_S_AXI_BASEADDR
+} > main_memory
 
 .bss (NOLOAD) : {
    . = ALIGN(4);
@@ -175,7 +174,7 @@ SECTIONS
    *(COMMON)
    . = ALIGN(4);
    __bss_end = .;
-} > ddr3_sdram_S_AXI_BASEADDR
+} > main_memory
 
 _SDA_BASE_ = __sdata_start + ((__sbss_end - __sdata_start) / 2 );
 
@@ -189,7 +188,7 @@ _SDA2_BASE_ = __sdata2_start + ((__sbss2_end - __sdata2_start) / 2 );
    _heap_start = .;
    . += _HEAP_SIZE;
    _heap_end = .;
-} > ddr3_sdram_S_AXI_BASEADDR
+} > main_memory
 
 .stack (NOLOAD) : {
    _stack_end = .;
@@ -199,7 +198,7 @@ _SDA2_BASE_ = __sdata2_start + ((__sbss2_end - __sdata2_start) / 2 );
    . += _STACK_SIZE;
    . = ALIGN(8);
    __stack1 = .;
-} > ddr3_sdram_S_AXI_BASEADDR
+} > main_memory
 
 .thread : 
 {
@@ -207,6 +206,13 @@ _SDA2_BASE_ = __sdata2_start + ((__sbss2_end - __sdata2_start) / 2 );
     *(thread)
     __thread_end = .;
 } > thread
+
+.local : 
+{
+    __local_start = .;
+    *(local)
+    __local_end = .;
+} > local
 
 _end = .;
 }

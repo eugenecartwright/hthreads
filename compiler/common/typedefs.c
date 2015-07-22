@@ -1,3 +1,5 @@
+#define PRIVATE_MEMORY __attribute__ ((section ("local")))
+
 // Tuning table
 typedef struct {
     unsigned char chunks;
