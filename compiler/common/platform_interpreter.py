@@ -33,7 +33,7 @@ def get_hardware_file(platform_path, debugging=False):
          matches.append(match)
 
    if (len(matches) != 1):
-      print "Found more than one sysdef file in platform direction"
+      print "Found no sysdef file/more than one sysdef file in platform directory"
       print matches
       return FAILURE, matches
   
