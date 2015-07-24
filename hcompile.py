@@ -295,18 +295,21 @@ def main():
       tmp_list = []
    
       for inner_index, inner_processor in enumerate(PROCESSORS[:outer_index]):
-         # if compiler flags are the same
-         if COMPILER_FLAGS[outer_index] == COMPILER_FLAGS[inner_index]:
-            # if processor linkerscripts are the same
-            # NOTE: Only checks for files that are exactly the same.
-            # In the future, you can parse the linkerscript to compare.
-            inner_lscript = SDK_WORKSPACE + inner_processor['NAME']+"/src/lscript.ld"
-            outer_lscript = SDK_WORKSPACE + outer_processor['NAME']+"/src/lscript.ld"
-            if filecmp.cmp(inner_lscript, outer_lscript) == True:
-               tmp_list.append(inner_processor['NAME'])
-               new_isa = inner_processor['HEADERFILE_ISA']
-               # NOTE: I can break here and stop at first match if need be.
-               # break
+         # check if they are of the same isa and version/revision
+         if inner_processor['HTHREADS_ISA'] == outer_processor['HTHREADS_ISA']:
+            if inner_processor['HWVERSION'] == outer_processor['HWVERSION']:
+               # if compiler flags are the same
+               if COMPILER_FLAGS[outer_index] == COMPILER_FLAGS[inner_index]:
+                  # if processor linkerscripts are the same
+                  # NOTE: Only checks for files that are exactly the same.
+                  # In the future, you can parse the linkerscript to compare.
+                  inner_lscript = SDK_WORKSPACE + inner_processor['NAME']+"/src/lscript.ld"
+                  outer_lscript = SDK_WORKSPACE + outer_processor['NAME']+"/src/lscript.ld"
+                  if filecmp.cmp(inner_lscript, outer_lscript) == True:
+                     tmp_list.append(inner_processor['NAME'])
+                     new_isa = inner_processor['HEADERFILE_ISA']
+                     # NOTE: I can break here and stop at first match if need be.
+                     # break
    
       # if no similar processors found, then we found a new ISA.
       if len(tmp_list) == 0:
