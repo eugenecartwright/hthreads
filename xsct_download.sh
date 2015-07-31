@@ -28,8 +28,12 @@ touch $tempName
 
 # Write file contents
 echo "xsdb  connect" > $tempName
-echo "xsdb  targets 3" >> $tempName
+echo "xsdb  targets 2" >> $tempName
+echo "xsdb  rst" >> $tempName
+echo "xsdb  con" >> $tempName
 
+# Connect to Host which should be the 3rd target
+echo "xsdb  targets 3" >> $tempName
 echo "xsdb  dow $execName" >> $tempName
 echo "xsdb  con" >> $tempName
 echo "exit" >> $tempName
