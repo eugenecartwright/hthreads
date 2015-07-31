@@ -96,7 +96,7 @@ for (( j=0; j<$N; j++ ))
 do
    for (( i=0; i<$C; i++ ))
    do
-        temp=" -bd ./design/design.sdk/group_"$j"_slave_"$i"_microblaze_1/Debug/group_"$j"_slave_"$i"_microblaze_1.elf tag system_i_group_"$j"_slave_"$i"_microblaze_1"
+        temp=" -bd ./design/design.sdk/group_"$j"_slave_"$i"_microblaze_1/Release/group_"$j"_slave_"$i"_microblaze_1.elf tag system_i_group_"$j"_slave_"$i"_microblaze_1"
         cmd=$cmd$temp 
    done
 done
