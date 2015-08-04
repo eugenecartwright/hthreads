@@ -180,7 +180,6 @@ void merge_sort(int x, int n, int * src , int * des){
 /* ---------------------------------------------- *
  * Software routine for performing sort. Function *
  * simply performs quick-sort.                    *
- * Author: Abazar                                 *
  * ---------------------------------------------- */
 void sw_quicksort(Huint * startPtr, Huint * endPtr ) {
     

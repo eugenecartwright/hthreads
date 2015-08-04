@@ -17,7 +17,6 @@ Hint sort(void * list_ptr, Huint size) {
 /* ---------------------------------------------- *
  * Software routine for performing sort. Function *
  * simply performs quick-sort.                    *
- * Author: Abazar                                 *
  * ---------------------------------------------- */
 void quickSort(Huint * startPtr, Huint * endPtr) {
 
