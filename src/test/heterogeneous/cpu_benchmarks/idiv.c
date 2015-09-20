@@ -55,7 +55,8 @@ void * idivu_thread (void * arg) {
 
    Huint temp =  2U;   
    while(max > 0) {
-      max =(Huint) (max / temp);
+      if (temp != 0)
+         max =(Huint) (max / temp);
       temp++;
    }
 
@@ -68,7 +69,8 @@ void * idiv_thread (void * arg) {
 
    Hint temp =  -2;   
    do {
-      min = (Hint) (min / temp);
+      if (temp != 0)
+         min = (Hint) (min / temp);
       temp--;
    } while(min != 0);
 
