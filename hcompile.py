@@ -212,7 +212,7 @@ def main():
    PROCESSORS = get_processors(hw_file_path)
    print "\t\tFound " + str(len(PROCESSORS)) + " processors"
    for index,processor in enumerate(PROCESSORS):
-      print "\t\t\t " +str(index)+": " + processor['NAME']
+      print "\t\t " +str(index)+": " + processor['NAME']
    print "\n"
    
    if (len(PROCESSORS) == 1):
@@ -411,6 +411,7 @@ def main():
          #-----------------------------------------------------------------------------#
          # Form path to where the ELF image resides for this ISA
          elf_image = hetero_exec_dir+ SRC_FILE.rstrip('.c')
+         #var = input("Continue: ")         
 
          # Embed this ISA
          init_fcn_list, func_list, handle_list = \
