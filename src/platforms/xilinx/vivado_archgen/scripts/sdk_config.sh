@@ -84,7 +84,7 @@ done
 echo "sdk build_project -type all " >> ./sdk.tcl  
 echo "exit " >> ./sdk.tcl      
 
-xsct -s sdk.tcl    
+xsct sdk.tcl    
  
 
 
@@ -104,6 +104,8 @@ done
 cmd+="  -o b ./design/design.sdk/system_wrapper_hw_platform_0/download.bit "
 
 data2mem $cmd
+
+# Alternatively, you may be able to run 'updatemem -force -meminfo file.bmm -bit file.bit -data file1.elf -proc group0/slave0/microblaze0 -out final.bit
 
 
 

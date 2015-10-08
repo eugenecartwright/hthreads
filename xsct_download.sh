@@ -40,7 +40,7 @@ echo "exit" >> $tempName
 
 # Invoke XMD
 echo "Downloading to $pnum..."
-xsct -s $tempName
+xsct $tempName
 echo "Complete"
 
 # Clean up after yourself
