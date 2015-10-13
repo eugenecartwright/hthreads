@@ -19,8 +19,8 @@ create_bd_cell -type ip -vlnv xilinx.com:ip:fifo_generator:12.0 $slave/fifo_gene
 
 
 #Which accelerator?
-#create_bd_cell -type ip -vlnv xilinx.com:hls:vectoradd:1.0 $slave/acc_0
-create_bd_cell -type ip -vlnv xilinx.com:hls:crc:1.0 $slave/acc_0 
+set acc_type [lindex $slaves [expr $j * $C + $i] 6]
+create_bd_cell -type ip -vlnv xilinx.com:hls:$acc_type:1.0 $slave/acc_0
 
 if {0} \
 {
@@ -72,7 +72,9 @@ set_property -dict [list CONFIG.SINGLE_PORT_BRAM {1} CONFIG.PROTOCOL {AXI4}]  [g
 
 set_property -dict [list CONFIG.C_M_AXI_MAX_BURST_LEN {256} CONFIG.C_INCLUDE_SG {0}]  [get_bd_cells  $slave/local_dma] 
 
-set_property -dict [list  CONFIG.C_FSL_LINKS {1} CONFIG.C_D_AXI {1} CONFIG.C_USE_BARREL {1} CONFIG.C_PVR {2} CONFIG.C_PVR_USER2 {0xC0000000}  CONFIG.C_PVR_USER1 0x[format "%02x" [expr $j * $C + $i]]  CONFIG.C_USE_ICACHE {1} CONFIG.C_DEBUG_ENABLED {1}]  [get_bd_cells $slave/microblaze_1] 
+set_property -dict [list  CONFIG.C_FSL_LINKS {1} CONFIG.C_D_AXI {1}     CONFIG.C_USE_BARREL [lindex $slaves [expr $j * $C + $i] 0] CONFIG.C_USE_HW_MUL [lindex $slaves [expr $j * $C + $i] 1] CONFIG.C_USE_DIV [lindex $slaves [expr $j * $C + $i] 2]  CONFIG.C_USE_FPU [lindex $slaves [expr $j * $C + $i] 3] CONFIG.C_USE_PCMP_INSTR [lindex $slaves [expr $j * $C + $i] 4]   CONFIG.C_PVR {2} CONFIG.C_PVR_USER2 {0xC0000000}  CONFIG.C_PVR_USER1 0x[format "%02x" [expr $j * $C + $i]]  CONFIG.C_USE_ICACHE {1} CONFIG.C_CACHE_BYTE_SIZE [lindex $slaves [expr $j * $C + $i] 5] ]  [get_bd_cells $slave/microblaze_1] 
+
+ 
 
 #connecting internal ports
 connect_bd_intf_net [get_bd_intf_pins $slave/local_vhwti_cntrl/S_AXI]  -boundary_type upper [get_bd_intf_pins $slave/group1_bus/M03_AXI] 

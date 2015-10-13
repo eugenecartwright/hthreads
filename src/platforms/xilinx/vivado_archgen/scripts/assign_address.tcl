@@ -65,7 +65,7 @@ create_bd_addr_seg   -range 64k -offset   0x41200000 [get_bd_addr_spaces $module
      incr n 
 create_bd_addr_seg   -range 64k -offset   0x40600000 [get_bd_addr_spaces $module/Data] [get_bd_addr_segs peripherals/axi_uartlite_0/S_AXI/Reg] SEG[expr $n]
      incr n 
-create_bd_addr_seg   -range 64k -offset   0x40200000 [get_bd_addr_spaces $module/Data] [get_bd_addr_segs peripherals/axi_hwicap_0/S_AXI_LITE/Reg] SEG[expr $n]
+create_bd_addr_seg   -range 64k -offset   0x40200000 [get_bd_addr_spaces $module/Data] [get_bd_addr_segs peripherals/prc_0/S_AXI_reg/Reg] SEG[expr $n]
      incr n 
 create_bd_addr_seg   -range 64k -offset   0x41C00000 [get_bd_addr_spaces $module/Data] [get_bd_addr_segs peripherals/axi_timer_0/S_AXI/Reg] SEG[expr $n]
      incr n 
@@ -121,7 +121,7 @@ create_bd_addr_seg   -range 64k -offset   0x41200000 [get_bd_addr_spaces $module
   incr n 
 create_bd_addr_seg   -range 64k -offset   0x40600000 [get_bd_addr_spaces $module/Data] [get_bd_addr_segs peripherals/axi_uartlite_0/S_AXI/Reg] SEG[expr $n]
   incr n 
-create_bd_addr_seg   -range 64k -offset   0x40200000 [get_bd_addr_spaces $module/Data] [get_bd_addr_segs peripherals/axi_hwicap_0/S_AXI_LITE/Reg] SEG[expr $n]
+create_bd_addr_seg   -range 64k -offset   0x40200000 [get_bd_addr_spaces $module/Data] [get_bd_addr_segs peripherals/prc_0/S_AXI_reg/Reg] SEG[expr $n]
  incr n 
 create_bd_addr_seg   -range 64k -offset   0x41C00000 [get_bd_addr_spaces $module/Data] [get_bd_addr_segs peripherals/axi_timer_0/S_AXI/Reg] SEG[expr $n]
  incr n 
@@ -154,20 +154,20 @@ if  { $node == "hemps_smp" } \
 
       create_bd_addr_seg   -range 1G -offset    0x80000000 [get_bd_addr_spaces $module] [get_bd_addr_segs peripherals/mig_7series_0/memmap/memaddr ] SEG[expr $n]
       incr n 
-      create_bd_addr_seg   -range 16k -offset    0xE0000000 [get_bd_addr_spaces $module] [get_bd_addr_segs $group/$slave/axi_bram_ctrl_a/S_AXI/Mem0 ] SEG[expr $n]
+      create_bd_addr_seg   -range $bram_size -offset    0xE0000000 [get_bd_addr_spaces $module] [get_bd_addr_segs $group/$slave/axi_bram_ctrl_a/S_AXI/Mem0 ] SEG[expr $n]
       incr n 
-      create_bd_addr_seg   -range 16k -offset    0xE0010000 [get_bd_addr_spaces $module] [get_bd_addr_segs $group/$slave/axi_bram_ctrl_b/S_AXI/Mem0 ] SEG[expr $n]
+      create_bd_addr_seg   -range $bram_size -offset    0xE0010000 [get_bd_addr_spaces $module] [get_bd_addr_segs $group/$slave/axi_bram_ctrl_b/S_AXI/Mem0 ] SEG[expr $n]
       incr n
-      create_bd_addr_seg   -range 16k -offset    0xE0020000 [get_bd_addr_spaces $module] [get_bd_addr_segs $group/$slave/axi_bram_ctrl_result/S_AXI/Mem0 ] SEG[expr $n]
+      create_bd_addr_seg   -range $bram_size -offset    0xE0020000 [get_bd_addr_spaces $module] [get_bd_addr_segs $group/$slave/axi_bram_ctrl_result/S_AXI/Mem0 ] SEG[expr $n]
       incr n
       
       create_bd_addr_seg   -range 64k -offset    0xF1000000 [get_bd_addr_spaces $mb] [get_bd_addr_segs $group/$slave/local_dma/S_AXI_LITE/Reg ] SEG[expr $n]
       incr n 
-      create_bd_addr_seg   -range 16k -offset    0xE0000000 [get_bd_addr_spaces $mb] [get_bd_addr_segs $group/$slave/axi_bram_ctrl_a/S_AXI/Mem0 ] SEG[expr $n]
+      create_bd_addr_seg   -range $bram_size -offset    0xE0000000 [get_bd_addr_spaces $mb] [get_bd_addr_segs $group/$slave/axi_bram_ctrl_a/S_AXI/Mem0 ] SEG[expr $n]
       incr n 
-      create_bd_addr_seg   -range 16k -offset    0xE0010000 [get_bd_addr_spaces $mb] [get_bd_addr_segs $group/$slave/axi_bram_ctrl_b/S_AXI/Mem0 ] SEG[expr $n]
+      create_bd_addr_seg   -range $bram_size -offset    0xE0010000 [get_bd_addr_spaces $mb] [get_bd_addr_segs $group/$slave/axi_bram_ctrl_b/S_AXI/Mem0 ] SEG[expr $n]
       incr n
-      create_bd_addr_seg   -range 16k -offset    0xE0020000 [get_bd_addr_spaces $mb] [get_bd_addr_segs $group/$slave/axi_bram_ctrl_result/S_AXI/Mem0 ] SEG[expr $n]
+      create_bd_addr_seg   -range $bram_size -offset    0xE0020000 [get_bd_addr_spaces $mb] [get_bd_addr_segs $group/$slave/axi_bram_ctrl_result/S_AXI/Mem0 ] SEG[expr $n]
       incr n
 
 

@@ -4,7 +4,6 @@
 #---------------------------------------------------------------------------------------------------
 set list_acc { crc  bubblesort vectoradd vectormul mm  }
 
-
 #---------------------------------------------------------------------------------------------------
 #Defining the regions
 #---------------------------------------------------------------------------------------------------
@@ -46,9 +45,10 @@ cd $project_dir
     }
  }
 
-report_drc -name drc_1
+#report_drc -name drc_1
 opt_design
 place_design 
+
 route_design 
 #---------------------------------------------------------------------------------------------------
 #Creating the Static Configuration (static.dcp)
@@ -63,12 +63,31 @@ for {set j 0} {$j < $N} {incr j} \
 
 lock_design -level routing
 write_checkpoint -force  ./static.dcp
-write_bitstream   -file ./system_wrapper.bit
+
+exit
+
+
+#---------------------------------------------------------------------------------------------------
+#creating the blanking configuraiton from static.dcp
+#---------------------------------------------------------------------------------------------------
+for {set j 0} {$j < $N} {incr j} \
+    {     
+       for {set i 0} {$i < $C} {incr i} \
+       {   
+         update_design -buffer_ports -cell system_i/group_[expr $j]/slave_[expr $i]/acc_0 
+       }
+    }
+
+place_design
+route_design
+write_checkpoint -force ./blank.dcp
+write_bitstream  -bin -file ./system_wrapper.bit -force
 write_hwdef -file system_wrapper.hwdef
 write_bmm  -force  ./system_wrapper.bmm
 eval exec mkdir ./design.runs/impl_1
 write_sysdef  -force -hwdef ./system_wrapper.hwdef -bitfile ./system_wrapper.bit -meminfo ./system_wrapper.bmm -file  ./design.runs/impl_1/system_wrapper.sysdef
 close_project 
+
 
 
 
@@ -91,7 +110,9 @@ foreach module $list_acc \
    place_design 
    route_design 
    write_checkpoint  -force ./$module.dcp
-   write_bitstream -file ./$module.bit
+
+
+   write_bitstream  -bin -file ./$module.bit -force
    close_project 
 }
 
@@ -99,73 +120,24 @@ foreach module $list_acc \
 #pr_verify system_vector.dcp system_crc.dcp 
 
 #---------------------------------------------------------------------------------------------------
-# Append all partial bitstreams into one header file: "bitstream.h"
+#scripts to create one big header file  containg all partial bitstreams
 #---------------------------------------------------------------------------------------------------
 
 foreach module $list_acc \
 {
    for {set j 0} {$j < $N * $C} {incr j} \
     {
-       exec mv [expr {$module}]_pr_[expr $j ]_partial.bit [expr {$module}]_[expr $j ].bit
-       exec xxd -i -c 4 [expr {$module}]_[expr $j ].bit  [expr {$module}]_[expr $j ].h
+       eval exec mv [expr {$module}]_pr_[expr $j ]_partial.bin [expr {$module}]_[expr $j ].bin
+      eval exec xxd -i -c 4 [expr {$module}]_[expr $j ].bin  [expr {$module}]_[expr $j ].h
     }
 }    
 
 eval exec cat [glob ./*.h] > ./partial
-eval exec rm [glob ./*.h]
-eval exec rm [glob ./*.bit]
-eval exec rm [glob ./*.dcp]
+eval exec mkdir ./temp
+eval exec mv [glob ./*.h ]  ./temp
+eval exec mv [glob ./*.bit] ./temp
+eval exec mv [glob ./*.dcp] ./temp
+eval exec mv [glob ./*.bin] ./temp
 eval exec mv ./partial ./bitstream.h
-
-#---------------------------------------------------------------------------------------------------
-# Adding in appropriate data structures and methods for such bitstreams
-# Author: Eugene Cartwright
-#---------------------------------------------------------------------------------------------------
-
-exec echo "" >> bitstream.h
-exec echo "#include <hthread.h>" >> bitstream.h
-exec echo "extern Hbool check_valid_slave_num(Huint slave_num);" >> bitstream.h
-exec echo "" >> bitstream.h
-
-# Adding in PR structures into this header file so the
-# generated hcompile header stays fairly system independent
-foreach module $list_acc \
-{
-   exec echo -n "unsigned char * [expr {$module}]_bit\[NUM_AVAILABLE_HETERO_CPUS\] = \{" >> bitstream.h
-   for {set j 0} {$j < $N * $C} {incr j} \
-   {
-      if {$j == 0} { 
-         exec echo -n "(&[expr {$module}]_[expr {$j}]_bit\[0\])" >> bitstream.h
-      } else {
-         exec echo -n ", (&[expr {$module}]_[expr {$j}]_bit\[0\])" >> bitstream.h
-      }
-   }
-   exec echo "\};" >> bitstream.h
-}
-exec echo "" >> bitstream.h
-
-# Adding in accelerator profile typedef
-exec echo "// Accelerator Profile" >> bitstream.h
-exec echo "typedef struct {" >> bitstream.h
-foreach module $list_acc {
-   exec echo -e "\tunsigned char * [expr {$module}];" >> bitstream.h
-}
-exec echo "} accelerator_list_t;" >> bitstream.h
-exec echo "" >> bitstream.h
-
-# Adding in set_accelerator_structure routine
-exec echo "void set_accelerator_structure(accelerator_list_t * pr_file_list, unsigned int slave_num) {" >> bitstream.h
-exec echo "" >> bitstream.h
-exec echo -e "\t// Check if valid slave" >> bitstream.h
-exec echo -e "\tassert(check_valid_slave_num(slave_num));" >> bitstream.h
-exec echo "" >> bitstream.h
-exec echo -e "\t// Set the specific accelerator bit files" >> bitstream.h
-exec echo -e "\t// specific for that slave processor." >> bitstream.h
-foreach module $list_acc {
-   exec echo -e "\tpr_file_list->[expr {$module}]\t = (unsigned char *) [expr {$module}]_bit\[slave_num\];" >> bitstream.h
-}
-exec echo "}" >> bitstream.h
-
-
 cd ../../scripts/
 

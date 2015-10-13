@@ -5,7 +5,7 @@ if  { $C > 1 } \
       {
          set group group_$i
          set main S[format "%02d" [expr $i+1]]_AXI
-         set ddr S[format "%02d" [expr $i+4]]_AXI
+         set ddr S[format "%02d" [expr $i+5]]_AXI
          set dma S[format "%02d" [expr $i]]_AXI
          set vhwti_host  M[format "%02d" [expr $i+1]]_AXI
          set vhwti_cores M[format "%02d" [expr $i+1]]_AXI
@@ -27,7 +27,7 @@ else \
       {
          set group group_$i
          set main S[format "%02d" [expr $i+1]]_AXI
-         set ddr S[format "%02d" [expr $i+4]]_AXI
+         set ddr S[format "%02d" [expr $i+5]]_AXI
          set vhwti  M[format "%02d" [expr $i]]_AXI
          set dma S[format "%02d" [expr $i]]_AXI
          connect_bd_intf_net -boundary_type upper [get_bd_intf_pins $group/slave_0/group1_bus/M00_AXI]       [get_bd_intf_pins main_bus/$main]
