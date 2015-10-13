@@ -43,9 +43,6 @@ set_property board_part xilinx.com:$board:part0:1.0 [current_project]
 #Add system bd
 create_bd_design "system"
 
-#create_bd_cell -type ip -vlnv xilinx.com:ip:mig_7series:2.1 mig_7series_0
-#create_bd_cell -type ip -vlnv xilinx.com:ip:microblaze:9.3 host
-
 create_bd_cell -type ip -vlnv xilinx.com:ip:mig_7series:2.3 mig_7series_0
 create_bd_cell -type ip -vlnv xilinx.com:ip:microblaze:9.5 host
 
@@ -53,7 +50,7 @@ create_bd_cell -type ip -vlnv xilinx.com:ip:microblaze:9.5 host
 #Run block automation for DDR controller + microblaze
 apply_bd_automation -rule xilinx.com:bd_rule:mig_7series -config {Board_Interface "ddr3_sdram" }  [get_bd_cells mig_7series_0] 
 apply_bd_automation -rule xilinx.com:bd_rule:microblaze -config {local_mem "64KB" ecc "None" cache "8KB" debug_module "Debug Only" axi_periph "Enabled" axi_intc "0" clk "/mig_7series_0/ui_clk (100 MHz)" }  [get_bd_cells host]
-set_property -dict [list CONFIG.C_DEBUG_ENABLED {2} CONFIG.C_USE_BARREL {1} CONFIG.C_PVR {2} CONFIG.C_USE_DCACHE {0} CONFIG.C_USE_DIV {1} CONFIG.C_USE_HW_MUL {2} CONFIG.C_USE_FPU {2}]  [get_bd_cells host ] 
+set_property -dict [list CONFIG.C_DEBUG_ENABLED {1} CONFIG.C_USE_BARREL {1} CONFIG.C_PVR {2} CONFIG.C_USE_DCACHE {0} CONFIG.C_USE_DIV {1} CONFIG.C_USE_HW_MUL {2} CONFIG.C_USE_FPU {2}]  [get_bd_cells host ] 
 
 #set_property ip_repo_paths  { $ip_rep_path }  [current_fileset] 
 

@@ -11,6 +11,7 @@ typedef struct {
 
 // --------------------------------------------------------- //
 //                  Slave free/busy table                    //
+// --------------------------------------------------------- //
 //                                                           //
 // Description: This table is meant to keep track of 1) the  //
 // processor type in the V-HWTIs, and 2) what is the         //     
@@ -30,14 +31,30 @@ typedef struct {
     Huint processor_type;
 } slave_t;
 
-// ---------------------------------------------------------------- //
-//                  Thread Table Structures                         //
-// ---------------------------------------------------------------- //
-// Table entry type
-//      id - function id number 
-//      handles - pointers to functions within ELF images
-//      intermediate_array - pointers to ELF images
-//      size - size of ELF images
+// --------------------------------------------------------- //
+//                  Thread profile structure                 //
+// --------------------------------------------------------- //
+//                                                           //
+// Description: The structure below holds information about  //
+// what accelerators the thread uses.                        //
+// --------------------------------------------------------- //
+typedef struct {
+    Hbool fpu;
+    Hbool mul32;
+    Hbool mul64;
+    Hbool idiv;
+    Hbool barrel;
+} thread_profile_t;
+
+// ----------------------------------------------------------------- //
+//                  Thread Table Structures                          //
+// ----------------------------------------------------------------- //
+// Table entry type                                                  //
+//      id - function id number                                      //
+//      handles - pointers to functions within ELF images            //
+//      intermediate_array - pointers to ELF images                  //
+//      size - size of ELF images                                    //
+// ----------------------------------------------------------------- //
 typedef struct {
     Huint id;
     void * handles[MAX_HANDLES_PER_ENTRY];

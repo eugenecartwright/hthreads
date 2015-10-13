@@ -113,7 +113,7 @@ architecture behavioral of master is
         GETDONE
     );
 
-    signal mst_cmplt    : std_logic;
+    signal mst_cmplt    : std_logic := '0';
 
     signal send_cs      : send_state;
     signal send_ns      : send_state;

@@ -11,7 +11,7 @@
 #       ml507_mpmc   - Compile hthreads for a Xilinx ML507 development board (Uses Multi-port memory controller)
 ################################################################################
 PLATFORM_VENDOR         = xilinx ;
-PLATFORM_BOARD	=	vivado_pr_6smp ;
+PLATFORM_BOARD	=	vivado_archgen ;
 ########################################################################
 # Setting for "reset" architecture
 #   yes  - old reset architecture

@@ -17,7 +17,7 @@ group_bd_cells peripherals [get_bd_cells mig_7series_0]  [get_bd_cells rst_mig_7
 
 #Custmoize IPs
 #set_property -dict [list CONFIG.C_MB_DBG_PORTS {2} CONFIG.C_USE_UART {1}]  [get_bd_cells peripherals/mdm_1] 
-set_property -dict [list CONFIG.C_MB_DBG_PORTS [expr $N * $C +1 ] CONFIG.C_USE_UART {1} CONFIG.C_DBG_REG_ACCESS {1}]  [get_bd_cells peripherals/mdm_1] 
+set_property -dict [list CONFIG.C_MB_DBG_PORTS [expr $N * $C +1 ] CONFIG.C_USE_UART {1}]  [get_bd_cells peripherals/mdm_1] 
 
 
 

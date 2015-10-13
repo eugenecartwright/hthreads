@@ -20,3 +20,4 @@ src/platforms/xilinx/vivado_archgen/config/Jamrules
 hal/config/settings
 *.jou
 hal/config/settings
+src/hardware/MyRepository/pcores/vivado_cores/hls_cores/*/*_prj
