@@ -3,10 +3,10 @@
 
 #include <httype.h>
 
-extern Hint sort(void * list_ptr, Huint size, Huint * done);
+extern Hint poly_bubblesort (void * list_ptr, Huint size, Huint * done);
+
 extern Hint sw_sort(void * list_ptr, Huint size);
 extern void sw_quicksort(Huint * startPtr, Huint * endPtr );
-extern void pipeline_sort(int x, int * start , int n);
-extern void merge_sort(int x, int n, int * src , int * des);
+extern void sw_bubblesort(Huint * startPtr, Hint n ); 
 
 #endif

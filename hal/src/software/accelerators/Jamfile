@@ -24,19 +24,15 @@ Hobject icap.o                  : icap_mblaze.c ;
 Hobject sort.o                  : sort_mblaze.c ;
 Hobject crc.o                   : crc_mblaze.c ;
 Hobject vector.o                : vector_mblaze.c ;
-}
-else if $(PLATFORM_ARCH) = "ppc440" 
-{
-Hobject sort.o                  : sort_ppc440.c ;
-Hobject crc.o                   : crc_ppc440.c ;
-Hobject vector.o                : vector_ppc440.c ;
+Hobject matrix.o                : matrix_mblaze.c ;
 }
 
 ########################################################################################
 # Add the object files to the hthreads library
 ########################################################################################
-if $(PLATFORM_ARCH) = "mblaze" { Hlib hthread : icap.o ; }
+Hlib hthread : icap.o ;
 Hlib hthread : sort.o ;
 Hlib hthread : crc.o ;
 Hlib hthread : vector.o ;
+Hlib hthread : matrix.o ;
 Hlib hthread : acc_common.o ;

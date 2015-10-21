@@ -13,6 +13,8 @@ C=$2
 name=$3
 let num_slaves=($N*$C)
 
+
+
 #===============================================================
 #create a soft link for design.
 #===============================================================
@@ -38,7 +40,7 @@ cp ./design/design.runs/impl_1/system_wrapper.sysdef ./design/design.sdk/system_
 #===============================================================
 #Getting rid of all ICAP definitions
 mystring=''
-mystring='/#define ICAP/c\'$mystring
+mystring='/#define PR  /c\'$mystring
 sed -i "$mystring" ./include/config.h
 
 
@@ -46,7 +48,7 @@ mystring='#define NUM_AVAILABLE_HETERO_CPUS '
 mystring+=$num_slaves
 if [ "$4" == "y" ]
 then
-mystring+='\n#define ICAP'
+mystring+='\n#define PR  '
 fi
 mystring='/#define NUM_AVAILABLE_HETERO_CPUS/c\'$mystring
  sed -i "$mystring" ./include/config.h 
@@ -84,10 +86,10 @@ done
 echo "sdk build_project -type all " >> ./sdk.tcl  
 echo "exit " >> ./sdk.tcl      
 
-xsct sdk.tcl    
+xsct -s sdk.tcl    
  
 
-
+echo "Now running the data2mem"
 #===============================================================
 #create the download.bit
 #===============================================================
@@ -96,24 +98,24 @@ for (( j=0; j<$N; j++ ))
 do
    for (( i=0; i<$C; i++ ))
    do
-        temp=" -bd ./design/design.sdk/group_"$j"_slave_"$i"_microblaze_1/Release/group_"$j"_slave_"$i"_microblaze_1.elf tag system_i_group_"$j"_slave_"$i"_microblaze_1"
+        temp=" -bd ./design/design.sdk/group_"$j"_slave_"$i"_microblaze_1/Debug/group_"$j"_slave_"$i"_microblaze_1.elf tag system_i_group_"$j"_slave_"$i"_microblaze_1"
         cmd=$cmd$temp 
    done
 done
 
 cmd+="  -o b ./design/design.sdk/system_wrapper_hw_platform_0/download.bit "
 
+
 data2mem $cmd
 
-# Alternatively, you may be able to run 'updatemem -force -meminfo file.bmm -bit file.bit -data file1.elf -proc group0/slave0/microblaze0 -out final.bit
-
-
+echo "Data2mem is completed"
 
 
 #===============================================================
 #some more cleaning
 #rm temp files.
 cp Jamfile ./design
+cp exception.h ./design
 #rm -f  ../../../../hal/src/test/system/*.c*  ../../../../src/test/system/*.c*   
 rm -fr ./scripts/.hw ./scripts/.Xil   
 #rm scripts/vivado_pid*

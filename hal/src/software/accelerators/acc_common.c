@@ -1,44 +1,65 @@
 #include <accelerator.h>
-#include <dma/dma.h>
+#include "xaxicdma.h"
 
-// Just for the Microblaze
-#ifdef MB_SLAVE
 #include <hwti/hwti.h>
 #include "fsl.h"
 #include "pvr.h"
 #include "icap.h"
-#endif
 
 // -------------------------------------------------------------- //
 //                     DMA Transfer Wrapper                       //
 // -------------------------------------------------------------- //
-int transfer_dma(dma_t * dma, void * src, void * des, int size) {
-    dma_reset(dma);        
-    dma_transfer(dma, src, des, size, DMA_SIZE_WORD, DMA_SOURCE_INC, DMA_DESTINATION_INC);
+static Hbool initialized = 0;
 
-    // Wait until done
-    while(!dma_getdone(dma));
+Hint transfer_dma(void * src, void * des, int size) {
+   XAxiCdma *dma;
+   if (!initiliazed) {
+      Hint status = dma_create(dma,SLAVE_LOCAL_DMA_DEVICE_ID);
+      if (!status)
+         return FAILURE;
+      else
+         initialized = 1;
+   }
 
-    // Check for any errors
-    if (dma_geterror(dma))
-        return FAILURE;
-    else
-        return SUCCESS;
+   dma_reset(dma);        
+   dma_transfer(dma, src, des, size);
+
+   // Wait until done
+   while(!dma_getdone(dma));
+
+   // Check for any errors
+   if (dma_geterror(dma))
+      return FAILURE;
+   else
+      return SUCCESS;
+
 }
 
-#ifdef MB_SLAVE
 // -------------------------------------------------------------- //
-//                    Reset and Clear FIFOS                       //
+//     Initialization routine for all polymorphic functions       //
 // -------------------------------------------------------------- //
-void reset_accelerator(unsigned char fifo_depth) {
+Hbool poly_init(Hint acc) {
+   
+   // Get VHWTI
+   Huint vhwti_base = 0;
+   
+   // Get VHWTI from PVRs 
+   getpvr(1,vhwti_base);
 
-    // Reset the accelerator
-    putfslx( 0, 1, FSL_DEFAULT);
+   // Use Accelerator?
+   Hbool use_accelerator = useHW(acc,size);
 
-    // Clean up any junk data between slave and Acc FIFO
-    register unsigned char i, j;
-    for (i = 0; i < fifo_depth; i++)
-        getfslx(j, 0, FSL_NONBLOCKING);
+   if (use_accelerator) {
+       // Increment HW counter 
+       Huint hw_counter = _hwti_get_accelerator_hw_counter( vhwti_base );
+       _hwti_set_accelerator_hw_counter( vhwti_base, ++hw_counter);
+   } else {
+       // Increment SW counter 
+       Huint sw_counter = _hwti_get_accelerator_sw_counter( vhwti_base );
+       _hwti_set_accelerator_sw_counter( vhwti_base, ++sw_counter);
+   }
+
+   return use_accelerator;
 }
 
 // -------------------------------------------------------------- //
@@ -87,24 +108,20 @@ Hbool useHW(Huint accelerator_type, Huint size) {
     // if this is the first accelerator used for this function
     // (if the first_accelerator_used field in VHWTI is MAGIC_NUMBER), 
     // update this field.
+    // TODO: Should this be NO_ACC or MAGIC_NUMBER?
     if (_hwti_get_first_accelerator(vhwti_base) == MAGIC_NUMBER)
         _hwti_set_first_accelerator(vhwti_base, accelerator_type);
-
 
     // What is the current accelerator loaded?
     Huint current_accelerator = _hwti_get_last_accelerator(vhwti_base);
     
     // if the accelerator I want is already loaded 
     if (current_accelerator == accelerator_type) {
-
-        // Reset the core    
-        reset_accelerator(16);
-
         // Return immediately indicating to use HW/accelerator
         return 1;
     }
 
-#ifdef ICAP
+#ifdef PR
     // get accelerator profile associated for this Slave
     // Accelerator profile is simply a list of pointers to each
     // of the accelerator bit files specific for this PR region.
@@ -116,8 +133,6 @@ Hbool useHW(Huint accelerator_type, Huint size) {
     //      char * sort_bit_file_ptr;
     //      char * vector_bit_file_ptr;
     //      ...
-    accelerator_list_t * accelerator_list = (accelerator_list_t *) _hwti_get_accelerator_ptr(vhwti_base);
-
 
     // Does this processor have PR capabilities?
     if (accelerator_flags & PR_FLAG) {
@@ -132,26 +147,20 @@ Hbool useHW(Huint accelerator_type, Huint size) {
             // TODO: Yes, PR is worth it ...but by how much?
             
             // ----Begin loading the accelerator----//
-            // Setup transfer addresses and lengths
-
-            Huint * source_addr = (Huint *) *((Huint *) accelerator_list + accelerator_type);
-           
             // If performing PR failed, fallback to software
             // execution. So return false.
-            if (perform_PR(source_addr, ACC_BIT_FILE_LENGTH))  
-                return 0;
+            unsigned char id;
+            getpvr(0, id);
+            if (perform_PR(id, accelerator_type))  
+               return 0;
            
             // Increment PR counter 
             Huint pr_counter = _hwti_get_accelerator_pr_counter( vhwti_base );
             _hwti_set_accelerator_pr_counter( vhwti_base, ++pr_counter);
 
-
             // always update last_accelerator field
             _hwti_set_last_accelerator(vhwti_base, accelerator_type);
             
-            // Reset the core    
-            reset_accelerator(16);
-           
             // Return immediately indicating to use HW/accelerator
             return 1;
         }
@@ -163,4 +172,3 @@ Hbool useHW(Huint accelerator_type, Huint size) {
     return 0;
 }
 
-#endif

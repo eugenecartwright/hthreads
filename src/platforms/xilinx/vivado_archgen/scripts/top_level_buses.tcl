@@ -6,7 +6,7 @@ set_property -dict [list CONFIG.NUM_SI [expr $N+1 ]  CONFIG.NUM_MI {3} CONFIG.EN
 
 set_property -dict [list CONFIG.NUM_SI {1} CONFIG.NUM_MI [expr $N +1] CONFIG.ENABLE_ADVANCED_OPTIONS {1} CONFIG.XBAR_DATA_WIDTH.VALUE_SRC USER  CONFIG.XBAR_DATA_WIDTH {32} CONFIG.STRATEGY {1} ]  [get_bd_cells host_bus] 
 
-set_property -dict [list CONFIG.NUM_SI [expr $N+4 ]  CONFIG.NUM_MI {1} CONFIG.ENABLE_ADVANCED_OPTIONS {1} CONFIG.XBAR_DATA_WIDTH.VALUE_SRC USER  CONFIG.XBAR_DATA_WIDTH {32}  ]  [get_bd_cells ddr_bus] 
+set_property -dict [list CONFIG.NUM_SI [expr $N+5 ]  CONFIG.NUM_MI {1} CONFIG.ENABLE_ADVANCED_OPTIONS {1} CONFIG.XBAR_DATA_WIDTH.VALUE_SRC USER  CONFIG.XBAR_DATA_WIDTH {32}  ]  [get_bd_cells ddr_bus] 
 
 
      create_bd_cell -type ip -vlnv  xilinx.com:ip:axi_interconnect:2.1 dma_bus

@@ -1,19 +1,30 @@
 #*****************************************************************************************************************
 ##Host &memory & top level buses
 #*****************************************************************************************************************
+set N             [lindex $argv 0]   
+set C             [lindex $argv 1]   
+set board         [lindex $argv 2]
+set name          [lindex $argv 3]
+set PR            [lindex $argv 4]
+set bram_size     [lindex $argv 5]
+set uartBaud_rate [lindex $argv 6]
+set uartBits      [lindex $argv 7]
+set uartParity    [lindex $argv 8]
+set hostBS     [lindex $argv 9]
+set hostMul    [lindex $argv 10]
+set hostDiv    [lindex $argv 11]
+set hostFPU    [lindex $argv 12]
+set hostPCMP   [lindex $argv 13]
+set hostICache [lindex $argv 14]
 
-#number of groups
-set N   [lindex $argv 0]
-#number of cpus per group
-set C   [lindex $argv 1]
+set slaves {}
+for {set i 0} {$i< $N*$C} {incr i} {
+    set fields [split [lindex $argv [expr $i+15 ]] "-" ]
+    lappend slaves $fields
+}
 
-set board [lindex $argv 2]
 
-set name  [lindex $argv 3]
-
-set PR  [lindex $argv 4]
 set node hemps_smp
-
 
 set project_dir ../platforms/$name
 
@@ -50,7 +61,9 @@ create_bd_cell -type ip -vlnv xilinx.com:ip:microblaze:9.5 host
 #Run block automation for DDR controller + microblaze
 apply_bd_automation -rule xilinx.com:bd_rule:mig_7series -config {Board_Interface "ddr3_sdram" }  [get_bd_cells mig_7series_0] 
 apply_bd_automation -rule xilinx.com:bd_rule:microblaze -config {local_mem "64KB" ecc "None" cache "8KB" debug_module "Debug Only" axi_periph "Enabled" axi_intc "0" clk "/mig_7series_0/ui_clk (100 MHz)" }  [get_bd_cells host]
-set_property -dict [list CONFIG.C_DEBUG_ENABLED {1} CONFIG.C_USE_BARREL {1} CONFIG.C_PVR {2} CONFIG.C_USE_DCACHE {0} CONFIG.C_USE_DIV {1} CONFIG.C_USE_HW_MUL {2} CONFIG.C_USE_FPU {2}]  [get_bd_cells host ] 
+set_property -dict [list   CONFIG.C_USE_PCMP_INSTR $hostPCMP    CONFIG.C_USE_BARREL $hostBS  CONFIG.C_USE_DIV $hostDiv CONFIG.C_USE_HW_MUL $hostMul CONFIG.C_USE_FPU $hostFPU       CONFIG.C_PVR {2} CONFIG.C_USE_DCACHE {0} CONFIG.C_CACHE_BYTE_SIZE $hostICache ]  [get_bd_cells host ] 
+
+
 
 #set_property ip_repo_paths  { $ip_rep_path }  [current_fileset] 
 
@@ -168,7 +181,7 @@ if  {  ([expr $N * $C]>12) } \
 reset_run synth_1
 
 #Writing the DCP file for PR flow
-launch_runs synth_1 -jobs 4
+launch_runs synth_1 -jobs 8
 wait_on_run  synth_1
 
 if { $PR == "y"} \
@@ -181,7 +194,7 @@ source ./pr.tcl
 }\
 else \
 {
-launch_runs impl_1 -to_step route_design -jobs 4
+launch_runs impl_1 -to_step route_design -jobs 8 -email_to [list sadeghia@uark.edu dandrews@uark.edu]
 wait_on_run  impl_1
 open_run impl_1
 
