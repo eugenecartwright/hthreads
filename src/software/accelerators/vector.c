@@ -1,32 +1,37 @@
+#include <accelerator.h>
 #include <vector.h>
 #include <htconst.h>
 
-Hint vector(void * a_ptr, void * b_ptr, void * c_ptr, Huint size, Huint op_code) {
+Hint poly_vector(void * a_ptr, void * b_ptr, void * c_ptr, Huint size, Huint op_code) {
 
-    Huint * a = (Huint *) a_ptr;
-    Huint * b = (Huint *) b_ptr;
-    Huint * c = (Huint *) c_ptr;
-    Huint i = 0;
-    for (i = 0; i < size; i++) {
-        c[i] = a[i] + b[i];
-    }
-
-    return SUCCESS;
+   Huint * a = (Huint *) a_ptr;
+   Huint * b = (Huint *) b_ptr;
+   Huint * c = (Huint *) c_ptr;
+   Huint i = 0;
+   for (i = 0; i < size; i++) {
+     switch(op_code) {
+      case 0: c[i] = a[i] + b[i];
+      case 1: c[i] = a[i] - b[i];
+      case 2: c[i] = a[i] * b[i];
+      case 3: if (b[i] != 0) c[i] = a[i] / b[i];
+      default: return FAILURE;
+     } 
+   }
+   return SUCCESS;
 }
 
-Hint vector_add(void * a_ptr, void * b_ptr, void * c_ptr, Huint size) {
-    
-    return (vector(a_ptr, b_ptr, c_ptr, size, 0));
-
-}
-Hint vector_multiply(void * a_ptr, void * b_ptr, void * c_ptr, Huint size) {
-
-    return (vector(a_ptr, b_ptr, c_ptr, size, 1));
-
+Hint poly_vectoradd (void * a_ptr, void * b_ptr, void * c_ptr, Huint size) {
+    return (poly_vector(a_ptr, b_ptr, c_ptr, size, 0));
 }
 
-Hint vector_innerProduct(void * a_ptr, void * b_ptr, void * c_ptr, Huint size) {
+Hint poly_vectorsub (void * a_ptr, void * b_ptr, void * c_ptr, Huint size) {
+    return (poly_vector(a_ptr, b_ptr, c_ptr, size, 1));
+}
 
-    return (vector(a_ptr, b_ptr, c_ptr, size, 2));
+Hint poly_vectormul (void * a_ptr, void * b_ptr, void * c_ptr, Huint size) {
+    return (poly_vector(a_ptr, b_ptr, c_ptr, size, 2));
+}
 
+Hint poly_vectordivide (void * a_ptr, void * b_ptr, void * c_ptr, Huint size) {
+    return (poly_vector(a_ptr, b_ptr, c_ptr, size, 3));
 }

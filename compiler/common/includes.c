@@ -12,8 +12,8 @@
 #include <sys/core.h>
 #include <dma/dma.h>
 #include <accelerator.h>
-#ifdef ICAP
-#include "xhwicap.h"
-#include "xhwicap_i.h"
+#ifdef PR
+//#include "xhwicap.h"
+//#include "xhwicap_i.h"
 #include <bitstream.h>
 #endif

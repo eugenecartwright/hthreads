@@ -75,27 +75,6 @@ Huint best_slaves_num;
 // ---------------------------------------------------------------- //
 //        Partial Reconfiguration Shared Data structures            //
 // ---------------------------------------------------------------- //
-// If we have an ICAP in the system...
-#ifdef ICAP
-    #define ICAP_BASEADDR               (XPAR_HWICAP_0_BASEADDR)
-#else
-    #define ICAP_BASEADDR               (0x0)
-#endif
-
-// Mutex for ICAP
-hthread_mutex_t icap_mutex;
-
-#ifdef ICAP
-// Icap structures
-XHwIcap HwIcap;
-
-// Creating an accelerator profile for each slave. This profile
-// (structure) will be used to point to the accelerators specific
-// for each slave. That is, for slave #5, the crc pointer will
-// point to the crc partial bit file for slave #5's PR region.
-accelerator_list_t pr_file_list[NUM_AVAILABLE_HETERO_CPUS];
-
-#endif
 
 // This is the tuning table used to keep track of profiling data
 // for slave execution.
@@ -113,76 +92,16 @@ accelerator_list_t pr_file_list[NUM_AVAILABLE_HETERO_CPUS];
     };
 #endif
 
+#ifdef PR
+Hbool pr_initialized = false;
 
 // Initialize all of the PR data
 void init_PR_data() {
-    // Initialize the ICAP
-    hthread_mutexattr_t attr;
-    if (hthread_mutexattr_init(&attr)) {
-        printf("Error intializing mutex attribute\n");
-        while(1);
-    }
-
-    // Set MID to maximum ID allowed    
-    if (hthread_mutexattr_setnum(&attr,(Huint) HT_SEM_MAXNUM)) {
-        printf("Error setting MID (%u) for mutex attribute\n", HT_SEM_MAXNUM);
-        while(1);
-    }
     
-    if(hthread_mutex_init(&icap_mutex, &attr)) {
-        printf("error initializing icap mutex\n");
-        while(1);
-    }
-
-    #ifdef ICAP
-    // Initialize the ICAP
-    if(XHwIcap_CfgInitialize(&HwIcap, (XHwIcap_Config *) 0x1, ICAP_BASEADDR)) {
-        printf("Error initializing the ICAP\n");
-        while(1);
-    }
-/*
-    // Initialize the pointers
-    // init CRC
-    crc_bit[0] = (unsigned char *) (&crc0_bit[0]);
-    crc_bit[1] = (unsigned char *) (&crc1_bit[0]);
-    crc_bit[2] = (unsigned char *) (&crc2_bit[0]);
-    crc_bit[3] = (unsigned char *) (&crc3_bit[0]);
-    crc_bit[4] = (unsigned char *) (&crc4_bit[0]);
-    crc_bit[5] = (unsigned char *) (&crc5_bit[0]);
-
-    // init sort
-    sort_bit[0] = (unsigned char *) (&sort0_bit[0]);
-    sort_bit[1] = (unsigned char *) (&sort1_bit[0]);
-    sort_bit[2] = (unsigned char *) (&sort2_bit[0]);
-    sort_bit[3] = (unsigned char *) (&sort3_bit[0]);
-    sort_bit[4] = (unsigned char *) (&sort4_bit[0]);
-    sort_bit[5] = (unsigned char *) (&sort5_bit[0]);
-    
-    // init vector
-    vector_bit[0] = (unsigned char *) (&vector0_bit[0]);
-    vector_bit[1] = (unsigned char *) (&vector1_bit[0]);
-    vector_bit[2] = (unsigned char *) (&vector2_bit[0]);
-    vector_bit[3] = (unsigned char *) (&vector3_bit[0]);
-    vector_bit[4] = (unsigned char *) (&vector4_bit[0]);
-    vector_bit[5] = (unsigned char *) (&vector5_bit[0]);
-*/
     // Create accelerate profiles - containers that hold
     // pointers to each accelerator specific for each slave.
     unsigned int i;
     for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) { 
-        set_accelerator_structure((accelerator_list_t *) &pr_file_list[i], i);
-
-        // -------------------------------------------------------------- //
-        //         Write extra parameters for PR functionality            //
-        // -------------------------------------------------------------- //
-        _hwti_set_pr_files_ptr((Huint) hwti_array[i], (Huint)&pr_file_list[i]);
-
-        // Write the ICAP Mutex
-        _hwti_set_icap_mutex( (Huint) hwti_array[i], (Huint) &icap_mutex);
-
-        // Write the ICAP Data Strucutre
-        _hwti_set_icap_struct_ptr( (Huint) hwti_array[i], (Huint) &HwIcap);
-
         // Write pointer for last_used_accelerator so slave can update the table
         _hwti_set_last_accelerator_ptr( (Huint) hwti_array[i], (Huint) &slave_table[i].last_used_acc);
             
@@ -190,7 +109,6 @@ void init_PR_data() {
         _hwti_set_tuning_table_ptr((Huint) hwti_array[i], (Huint) &tuning_table);
 
     }
-    #endif
    
     // Reset thread create statistical data 
     no_free_slaves_num = 0;

@@ -6,12 +6,13 @@
  * ***************************************************************/
 
 #include <accelerator.h>
+#include <sort.h>
 #include "fsl.h"
 #include "pvr.h"
 #include <hwti/hwti.h>
-#include <icap.h>
 
-Hint poly_bubblesort (void * list_ptr, Huint size, Huint * done) {
+Hint poly_bubblesort (void * list_ptr, Huint size) 
+{
     
    Hint result = SUCCESS;
     
@@ -48,11 +49,11 @@ Hint poly_bubblesort (void * list_ptr, Huint size, Huint * done) {
  * Software routine for performing sort. Function *
  * simply performs quick-sort.                    *
  * ---------------------------------------------- */
-void sw_quicksort(Huint * startPtr, Huint * endPtr ) {
+void sw_quicksort(Hint * startPtr, Hint * endPtr ) {
     
-    Huint pivot;
-	Huint * leftPtr, * rightPtr;
-	Huint temp, * tempPtr;
+   Hint pivot;
+	Hint * leftPtr, * rightPtr;
+	Hint temp, * tempPtr;
 
 	if ( startPtr == endPtr ) { return; }
 
@@ -99,22 +100,23 @@ void sw_quicksort(Huint * startPtr, Huint * endPtr ) {
     return;
 }
 
-void sw_bubblesort(Huint * startPtr, Hint n ) 
+void sw_bubblesort(void * list_ptr, Huint size) 
 {
-
-int c, d,swap;
-for (c = 0 ; c < ( n - 1 ); c++)
-  {
-    for (d = 0 ; d < n - c - 1; d++)
-    {
-      if (startPtr[d] > startPtr[d+1]) /* For decreasing order use < */
-      {
-        swap       = startPtr[d];
-        startPtr[d]   = startPtr[d+1];
-        startPtr[d+1] = swap;
+   Hint * startPtr = (Hint *) list_ptr;
+   Huint c, d
+   Hint swap;
+   for (c = 0 ; c < ( size - 1 ); c++)
+   {
+      for (d = 0 ; d < size - c - 1; d++)
+      { 
+         /* For decreasing order use < */
+         if (startPtr[d] > startPtr[d+1])
+         {
+            swap       = startPtr[d];
+            startPtr[d]   = startPtr[d+1];
+            startPtr[d+1] = swap;
+         }
       }
-    }
-  }
-
+   }
 }  
 

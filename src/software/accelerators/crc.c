@@ -1,7 +1,8 @@
+#include <accelerator.h>
 #include <crc.h>
 #include <htconst.h>
 
-Hint crc(void * list_ptr, Huint size) {
+Hint poly_crc(void * list_ptr, Huint size) {
 
     Hint *array = (Hint *) list_ptr;
 

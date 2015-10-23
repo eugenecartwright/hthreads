@@ -3,7 +3,7 @@
 
 #include <httype.h>
 
-extern Hint poly_crc (void * list_ptr, Huint size, Huint * done);
+extern Hint poly_crc (void * list_ptr, Huint size);
 extern Hint sw_crc(void * list_ptr, Huint size);
 extern Hint gen_crc( Hint input);
 

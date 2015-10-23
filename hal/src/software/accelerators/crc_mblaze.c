@@ -6,16 +6,13 @@
  * ***************************************************************/
  
 #include <accelerator.h>
+#include <crc.h>
 #include "fsl.h"
 #include "pvr.h"
 #include <hwti/hwti.h>
-#include <icap.h>
 
-Hint poly_crc (void * list_ptr, Huint size, Huint * done) 
+Hint poly_crc (void * list_ptr, Huint size) 
 {
-   // TODO: done variable not used for slave accelerator calls
-   // Fix with macro definition later
-   
    Hint result = SUCCESS;
    
    // Use Accelerator?

@@ -6,16 +6,14 @@
  * ***************************************************************/
  
 #include <accelerator.h>
+#include <vector.h>
 #include "fsl.h"
 #include "pvr.h"
 #include <hwti/hwti.h>
-#include <icap.h>
 
 Hint poly_vector (void * a_ptr, void * b_ptr, void * c_ptr, Huint size, Huint op_code, Hint acc)
 {     
 
-   // done variable not used for slave accelerator calls
-    
    Hint result = SUCCESS;
     
    // Use Accelerator?

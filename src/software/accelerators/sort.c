@@ -1,25 +1,36 @@
+#include <accelerator.h>
 #include <sort.h>
 #include <htconst.h>
 
 
-Hint sort(void * list_ptr, Huint size) {
+Hint poly_bubblesort(void *list_ptr, Huint size ) 
+{
+   Hint * startPrt = (Hint *) list_ptr;
+   Huint c, d
+   Hint swap;
+   for (c = 0 ; c < ( size - 1 ); c++)
+   {
+      for (d = 0 ; d < size - c - 1; d++)
+      { 
+         /* For decreasing order use < */
+         if (startPtr[d] > startPtr[d+1])
+         {
+            swap       = startPtr[d];
+            startPtr[d]   = startPtr[d+1];
+            startPtr[d+1] = swap;
+         }
+      }
+   }
 
-    Huint * startPtr = (Huint *) list_ptr;
-    Huint * endPtr = (Huint *) (startPtr + size-1);
-
-    quickSort(startPtr, endPtr);
-
-    return SUCCESS;
-}
-
-            
+   return SUCCESS;
+}  
 
 /* ---------------------------------------------- *
  * Software routine for performing sort. Function *
  * simply performs quick-sort.                    *
  * Author: Abazar                                 *
  * ---------------------------------------------- */
-void quickSort(Huint * startPtr, Huint * endPtr) {
+Hint poly_quickSort(Huint * startPtr, Huint * endPtr) {
 
 	Huint pivot;
 	Huint * leftPtr, * rightPtr;
@@ -68,5 +79,5 @@ void quickSort(Huint * startPtr, Huint * endPtr) {
 	quickSort( rightPtr, endPtr );
 	quickSort( startPtr, leftPtr );
 
-    return;
+   return SUCCESS;
 }

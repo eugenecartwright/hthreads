@@ -142,7 +142,9 @@ then
    mv *.bit ./temp
    mv *.dcp ./temp
    mv *.bin ./temp
-   mv ./partial ./bitstream.h
+   echo "#ifndef  _BITSTREAM_H" > bitstream.h
+   echo "#define  _BITSTREAM_H" >> bitstream.h
+   cat ./partial >> ./bitstream.h
    rm -f webtalk*
 fi
 
@@ -150,57 +152,31 @@ fi
 # Adding in appropriate data structures and methods for such bitstreams
 # Author: Eugene Cartwright
 #---------------------------------------------------------------------------------------------------
-if [ $pr="y" ]
-then
-   echo "" >> bitstream.h
-   echo "#include <hthread.h>" >> bitstream.h
-   echo "extern Hbool check_valid_slave_num(Huint slave_num);" >> bitstream.h
-   echo "" >> bitstream.h
+if [ $pr="y" ]; then
 
    # Adding in PR structures into this header file so the
    # generated hcompile header stays fairly system independent
-   #foreach module $list_acc \
-   for module in  "${list_acc[@]}"
-   do
-      echo -n "unsigned char * ${module}_bit[NUM_AVAILABLE_HETERO_CPUS] = {" >> bitstream.h
+   num_accelerators=$(expr ${#list_acc[@]})
+   echo "unsigned char * accelerators_bit[${num_accelerators}][NUM_AVAILABLE_HETERO_CPUS] = {" >> bitstream.h
+   j=0
+   for module in  "${list_acc[@]}"; do
       i=0
-      while [ $i -lt $(($N * $C)) ];
-      do
-         if [ $i == 0 ];
-         then 
-            echo -n "(&${module}_${i}_bit[0])" >> bitstream.h
+      while [ $i -lt $(($N * $C)) ]; do
+         if [ $i == 0 ]; then
+            echo -n -e "\t{(&${module}_${i}_bit[0])" >> bitstream.h
          else 
             echo -n ", (&${module}_${i}_bit[0])" >> bitstream.h
          fi
          let i=i+1
       done
-      echo "};" >> bitstream.h
+      let j=j+1
+      if [ $j == $num_accelerators ]; then
+         echo "}" >> bitstream.h
+      else
+         echo "}," >> bitstream.h
+      fi
    done
-   echo "" >> bitstream.h
-
-   # Adding in accelerator profile typedef
-   echo "// Accelerator Profile" >> bitstream.h
-   echo "typedef struct {" >> bitstream.h
-   for module in "${list_acc[@]}"
-   do
-      echo -e "\tunsigned char * ${module};" >> bitstream.h
-   done
-   echo "} accelerator_list_t;" >> bitstream.h
-   echo "" >> bitstream.h
-
-   # Adding in set_accelerator_structure routine
-   echo "void set_accelerator_structure(accelerator_list_t * pr_file_list, unsigned int slave_num) {" >> bitstream.h
-   echo "" >> bitstream.h
-   echo -e "\t// Check if valid slave" >> bitstream.h
-   echo -e "\tassert(check_valid_slave_num(slave_num));" >> bitstream.h
-   echo "" >> bitstream.h
-   echo -e "\t// Set the specific accelerator bit files" >> bitstream.h
-   echo -e "\t// specific for that slave processor." >> bitstream.h
-   for module in "${list_acc[@]}" 
-   do
-      echo -e "\tpr_file_list->${module}\t = (unsigned char *) ${module}_bit[slave_num];" >> bitstream.h
-   done
-   echo "}" >> bitstream.h
+   echo "};" >> bitstream.h
    echo "" >> bitstream.h
 
    #---------------------------------------------------------------------------------------------------
@@ -211,9 +187,9 @@ then
    echo "void pr_config_mb() {" >> bitstream.h
    # Loop over all processors
    while [ $i -lt $(($N * $C)) ]; do
-      echo -e "\n\t/* ------------------------------------------------------------------ */" >> bitstream.h
-      printf  "\t/*                          MicroBlaze %02d                             */\n" $i >> bitstream.h
-      echo -e "\t/* ------------------------------------------------------------------ */\n" >> bitstream.h
+      echo -e "\n\t/* ------------------------------------------------------------------ *" >> bitstream.h
+      printf  "\t *                          MicroBlaze %02d                             *\n" $i >> bitstream.h
+      echo -e "\t * ------------------------------------------------------------------ */\n" >> bitstream.h
       echo -e "\t// Placing PRC in Shutdown mode..." >> bitstream.h
       echo -e "\tXil_Out32(MB_${i}_CONTROL,0);" >> bitstream.h
       echo -e "\twhile(!(Xil_In32(MB_${i}_STATUS)&0x80));" >> bitstream.h
@@ -245,7 +221,8 @@ then
    
       let i=i+1
    done
-  
+   echo "}" >> bitstream.h
+   echo "#endif" >> bitstream.h
 fi
 
 cd ../../scripts/
@@ -255,3 +232,4 @@ cd ../../scripts/
 ##SDK launcning
 ##=====================================================================
 ./sdk_config.sh $N  $C $name $pr
+

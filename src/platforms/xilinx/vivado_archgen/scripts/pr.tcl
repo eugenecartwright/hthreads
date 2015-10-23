@@ -2,7 +2,7 @@
 #Maybe we just start from here, with start.dcp file + all dcp files for accelerators that users selected.
 #In a folder named PR, we will have all these dcp files.
 #---------------------------------------------------------------------------------------------------
-set list_acc { crc  bubblesort vectoradd vectormul mm  }
+#set list_acc { crc bubblesort vectoradd vectormul matrix_mul  }
 
 #---------------------------------------------------------------------------------------------------
 #Defining the regions
@@ -65,79 +65,3 @@ lock_design -level routing
 write_checkpoint -force  ./static.dcp
 
 exit
-
-
-#---------------------------------------------------------------------------------------------------
-#creating the blanking configuraiton from static.dcp
-#---------------------------------------------------------------------------------------------------
-for {set j 0} {$j < $N} {incr j} \
-    {     
-       for {set i 0} {$i < $C} {incr i} \
-       {   
-         update_design -buffer_ports -cell system_i/group_[expr $j]/slave_[expr $i]/acc_0 
-       }
-    }
-
-place_design
-route_design
-write_checkpoint -force ./blank.dcp
-write_bitstream  -bin -file ./system_wrapper.bit -force
-write_hwdef -file system_wrapper.hwdef
-write_bmm  -force  ./system_wrapper.bmm
-eval exec mkdir ./design.runs/impl_1
-write_sysdef  -force -hwdef ./system_wrapper.hwdef -bitfile ./system_wrapper.bit -meminfo ./system_wrapper.bmm -file  ./design.runs/impl_1/system_wrapper.sysdef
-close_project 
-
-
-
-
-#---------------------------------------------------------------------------------------------------
-#FCreating the other  Configurations  
-#---------------------------------------------------------------------------------------------------
-#foreach module [lrange $list_acc 1 [llength $list_acc]-1] 
-foreach module $list_acc \
-{
-   open_checkpoint ./static.dcp
-   for {set j 0} {$j < $N} {incr j} \
-    {     
-       for {set i 0} {$i < $C} {incr i} \
-       {   
-         read_checkpoint -cell system_i/group_[expr $j]/slave_[expr $i]/acc_0 ../../pr/acc/$module.dcp
-       }
-    }
-  
-   opt_design
-   place_design 
-   route_design 
-   write_checkpoint  -force ./$module.dcp
-
-
-   write_bitstream  -bin -file ./$module.bit -force
-   close_project 
-}
-
-
-#pr_verify system_vector.dcp system_crc.dcp 
-
-#---------------------------------------------------------------------------------------------------
-#scripts to create one big header file  containg all partial bitstreams
-#---------------------------------------------------------------------------------------------------
-
-foreach module $list_acc \
-{
-   for {set j 0} {$j < $N * $C} {incr j} \
-    {
-       eval exec mv [expr {$module}]_pr_[expr $j ]_partial.bin [expr {$module}]_[expr $j ].bin
-      eval exec xxd -i -c 4 [expr {$module}]_[expr $j ].bin  [expr {$module}]_[expr $j ].h
-    }
-}    
-
-eval exec cat [glob ./*.h] > ./partial
-eval exec mkdir ./temp
-eval exec mv [glob ./*.h ]  ./temp
-eval exec mv [glob ./*.bit] ./temp
-eval exec mv [glob ./*.dcp] ./temp
-eval exec mv [glob ./*.bin] ./temp
-eval exec mv ./partial ./bitstream.h
-cd ../../scripts/
-
