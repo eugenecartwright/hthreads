@@ -194,7 +194,7 @@ source ./pr.tcl
 }\
 else \
 {
-launch_runs impl_1 -to_step route_design -jobs 8 -email_to [list sadeghia@uark.edu dandrews@uark.edu]
+launch_runs impl_1 -to_step route_design -jobs 8 
 wait_on_run  impl_1
 open_run impl_1
 

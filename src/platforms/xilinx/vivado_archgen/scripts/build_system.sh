@@ -89,7 +89,7 @@ mv "$1".bk   "$1"
 ##=====================================================================
 vivado -nolog -nojournal -mode batch -source ./run_clusters.tcl -tclargs $N $C $board $name $pr $bram_size $uart $host $mb0 $mb1 $mb2 $mb3 $mb4 $mb5  $mb6 $mb7 $mb8 $mb9 $mb10 $mb11 $mb12 $mb13 $mb14 $mb15 $mb16 $mb17 $mb18 $mb19 $mb20 $mb21 $mb22 $mb23 $mb24 $mb25 $mb26 $mb27 $mb28 $mb29 $mb30 $mb31 #Static System
 
-# echo return code from last command
+# (Eugene 10/22/2015): echo return code from last command
 rc=$?; 
 if [[ $rc != 0 ]]; 
 then
@@ -102,10 +102,20 @@ if [ $pr="y" ]
 then
    for moudle in  "${list_acc[@]}"
    do
-       vivado -nolog -nojournal -mode batch -source ./pr_acc_config.tcl -tclargs $N $C $moudle $name &   #PR for each accelerator
+      echo -e "----------------------------------------------------------------\n\n"
+      echo "Building $module PR file"
+      vivado -nolog -nojournal -verbose -mode batch -source ./pr_acc_config.tcl -tclargs $N $C $moudle $name &   #PR for each accelerator
    done 
-   vivado -nolog -nojournal -mode batch -source ./pr_blank_config.tcl -tclargs $N $C $name    #Blank PR
+   vivado -nolog -nojournal -verbose -mode batch -source ./pr_blank_config.tcl -tclargs $N $C $name    #Blank PR
    wait
+fi
+
+# (Eugene 10/22/2015): echo return code from last command
+rc=$?; 
+if [[ $rc != 0 ]]; 
+then
+   echo "Vivado PR Failed!!!" 
+   exit $rc; 
 fi
 
 ##=====================================================================
@@ -115,13 +125,13 @@ fi
 if [ $pr="y" ]
 then
    cd ../platforms/$name 
-   for var in  "${list_acc[@]}"
+   for module in  "${list_acc[@]}"
    do
-      module=$var    
-      for (( i=0; i<$N *$C; i++ ))
+      for (( j=0; j<$N *$C; j++ ))
       do
-         j=$i
          cp ${module}_pr_${j}_partial.bin ${module}_${j}.bin
+         # Eugene (11/21/2016): Change from little to Big endian
+         mb-objcopy -I binary -O binary --reverse-bytes=4 ${module}_${j}.bin ${module}_${j}.bin
          xxd -i -c 4 ${module}_${j}.bin  ${module}_${j}.bin.h
       done
    done   
@@ -133,9 +143,113 @@ then
    mv *.dcp ./temp
    mv *.bin ./temp
    mv ./partial ./bitstream.h
-   rm webtalk*
-   cd ../../scripts/
+   rm -f webtalk*
 fi
+
+#---------------------------------------------------------------------------------------------------
+# Adding in appropriate data structures and methods for such bitstreams
+# Author: Eugene Cartwright
+#---------------------------------------------------------------------------------------------------
+if [ $pr="y" ]
+then
+   echo "" >> bitstream.h
+   echo "#include <hthread.h>" >> bitstream.h
+   echo "extern Hbool check_valid_slave_num(Huint slave_num);" >> bitstream.h
+   echo "" >> bitstream.h
+
+   # Adding in PR structures into this header file so the
+   # generated hcompile header stays fairly system independent
+   #foreach module $list_acc \
+   for module in  "${list_acc[@]}"
+   do
+      echo -n "unsigned char * ${module}_bit[NUM_AVAILABLE_HETERO_CPUS] = {" >> bitstream.h
+      i=0
+      while [ $i -lt $(($N * $C)) ];
+      do
+         if [ $i == 0 ];
+         then 
+            echo -n "(&${module}_${i}_bit[0])" >> bitstream.h
+         else 
+            echo -n ", (&${module}_${i}_bit[0])" >> bitstream.h
+         fi
+         let i=i+1
+      done
+      echo "};" >> bitstream.h
+   done
+   echo "" >> bitstream.h
+
+   # Adding in accelerator profile typedef
+   echo "// Accelerator Profile" >> bitstream.h
+   echo "typedef struct {" >> bitstream.h
+   for module in "${list_acc[@]}"
+   do
+      echo -e "\tunsigned char * ${module};" >> bitstream.h
+   done
+   echo "} accelerator_list_t;" >> bitstream.h
+   echo "" >> bitstream.h
+
+   # Adding in set_accelerator_structure routine
+   echo "void set_accelerator_structure(accelerator_list_t * pr_file_list, unsigned int slave_num) {" >> bitstream.h
+   echo "" >> bitstream.h
+   echo -e "\t// Check if valid slave" >> bitstream.h
+   echo -e "\tassert(check_valid_slave_num(slave_num));" >> bitstream.h
+   echo "" >> bitstream.h
+   echo -e "\t// Set the specific accelerator bit files" >> bitstream.h
+   echo -e "\t// specific for that slave processor." >> bitstream.h
+   for module in "${list_acc[@]}" 
+   do
+      echo -e "\tpr_file_list->${module}\t = (unsigned char *) ${module}_bit[slave_num];" >> bitstream.h
+   done
+   echo "}" >> bitstream.h
+   echo "" >> bitstream.h
+
+   #---------------------------------------------------------------------------------------------------
+   # Adding in PR initialization routines
+   # Author: Eugene Cartwright
+   #---------------------------------------------------------------------------------------------------
+   i=0
+   echo "void pr_config_mb() {" >> bitstream.h
+   # Loop over all processors
+   while [ $i -lt $(($N * $C)) ]; do
+      echo -e "\n\t/* ------------------------------------------------------------------ */" >> bitstream.h
+      printf  "\t/*                          MicroBlaze %02d                             */\n" $i >> bitstream.h
+      echo -e "\t/* ------------------------------------------------------------------ */\n" >> bitstream.h
+      echo -e "\t// Placing PRC in Shutdown mode..." >> bitstream.h
+      echo -e "\tXil_Out32(MB_${i}_CONTROL,0);" >> bitstream.h
+      echo -e "\twhile(!(Xil_In32(MB_${i}_STATUS)&0x80));" >> bitstream.h
+
+      j=0
+      echo -e "\n\t// Initializing RM bitstream address and size registers" >> bitstream.h
+      for module in "${list_acc[@]}"; do 
+         echo -e "\tXil_Out32(MB_${i}_BS_ADDRESS${j},(unsigned char *) (&${module}_${i}_bin[0]));" >> bitstream.h
+         echo -e "\tXil_Out32(MB_${i}_BS_SIZE${j},${module}_${i}_bin_len);" >> bitstream.h
+         let j=j+1
+      done
+      
+      j=0
+      echo -e "\n\t// Initializing RM trigger ID registers" >> bitstream.h
+      for module in "${list_acc[@]}"; do 
+         echo -e "\tXil_Out32(MB_${i}_TRIGGER${j},${j});" >> bitstream.h
+         let j=j+1
+      done
+      
+      j=0
+      echo -e "\n\t// Initializing RM address and control registers" >> bitstream.h
+      for module in "${list_acc[@]}"; do 
+         echo -e "\tXil_Out32(MB_${i}_RM_BS_INDEX${j},${j});" >> bitstream.h
+         let j=j+1
+      done
+
+      echo -e "\n\t// Placing PRC in 'Restart with Status' Mode" >> bitstream.h
+      echo -e "\tXil_Out32(MB_${i}_CONTROL,2);" >> bitstream.h
+   
+      let i=i+1
+   done
+  
+fi
+
+cd ../../scripts/
+
 
 ##=====================================================================
 ##SDK launcning

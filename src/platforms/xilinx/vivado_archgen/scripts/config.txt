@@ -3,7 +3,7 @@ No. Nodes in each Group      :2
 Board                        :vc707
 Name of the System           :archgen_12
 PR                           :y
-Acc                          :['crc', 'matrix_m', 'bubblesort', 'vectoradd', 'vectormul']
+Acc                          :['crc', 'bubblesort', 'vectoradd', 'vectormul', 'matrix_mul']
 BRAM size for Acc            :16k
 UART settings                :9600  8  0
 ===================================================================================  

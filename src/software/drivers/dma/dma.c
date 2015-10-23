@@ -1,167 +1,81 @@
+#include <config.h>
 #include <dma/dma.h>
 #include <stdlib.h>
 #include <debug.h>
 
-Hint dma_create( dma_t *dma, dma_config_t *config )
+Hint  dma_create(XAxiCdma * dma, u16 DeviceId)
 {
-    dma->reset       = (Huint*)(config->base + DMA_RESET);
-    dma->control     = (Huint*)(config->base + DMA_CONTROL);
-    dma->source      = (Huint*)(config->base + DMA_SOURCE);
-    dma->destination = (Huint*)(config->base + DMA_DESTINATION);
-    dma->length      = (Huint*)(config->base + DMA_LENGTH);
-    dma->status      = (Huint*)(config->base + DMA_STATUS);
-    dma->isr         = (Huint*)(config->base + DMA_INTERRUPT_STATUS);
-    dma->ier         = (Huint*)(config->base + DMA_INTERRUPT_ENABLE);
-    dma->intr        = 0;
+   XAxiCdma_Config * CdmaCfgPtr;
 
-    dma_reset(dma);
-    return SUCCESS;
+   CdmaCfgPtr-> DeviceId   =  GLOBAL_DMA_DEVICE_ID;  
+   CdmaCfgPtr->BaseAddress =  GLOBAL_DMA_BASEADDR;    
+   CdmaCfgPtr->HasDRE      =  GLOBAL_DMA_INCLUDE_DRE;
+   CdmaCfgPtr->IsLite      =  GLOBAL_DMA_USE_DATAMOVER_LITE;
+   CdmaCfgPtr->DataWidth   =  GLOBAL_DMA_M_AXI_DATA_WIDTH;
+   CdmaCfgPtr->BurstLen    =  GLOBAL_DMA_M_AXI_MAX_BURST_LEN;
+
+
+   // Initialize the DMA driver and reset the dma device (done in Initialize)
+   Hint Status = XAxiCdma_CfgInitialize(dmar, CdmaCfgPtr, CdmaCfgPtr->BaseAddress);
+   if (Status != XST_SUCCESS)
+      return FAILURE;
+   
+   XAxiCdma_IntrDisable(dma, XAXICDMA_XR_IRQ_ALL_MASK);
+      
+   return SUCCESS;
 }
 
-Hint dma_destroy( dma_t *dma )
+void  dma_reset(XAxiCdma * dma)
 {
-    dma->reset       = (Huint*)NULL;
-    dma->control     = (Huint*)NULL;
-    dma->source      = (Huint*)NULL;
-    dma->destination = (Huint*)NULL;
-    dma->length      = (Huint*)NULL;
-    dma->status      = (Huint*)NULL;
-    dma->isr         = (Huint*)NULL;
-    dma->ier         = (Huint*)NULL;
+   // Perform reset
+   XAxiCdma_Reset(dma);
 
-    return SUCCESS;
+   // Wait for it to complete
+   while (!XAxiCdma_ResetIsDone(dma));
 }
 
-void dma_reset( dma_t *dma )
+
+Hbool dma_getbusy(XAxiCdma *dma)
 {
-    *dma->reset = DMA_RESET_DATA;
+   return (Hbool) (XAxiCdma_IsBusy(dma));
 }
 
-Huint dma_getid( dma_t *dma )
+/*  0 = no error */
+Hint dma_geterror( XAxiCdma *dma )
 {
-    return *dma->reset;
+   return (XAxiCdma_GetError(dma));
 }
 
-Hbool dma_getbusy( dma_t *dma )
+/* Function will spin until dma is done. On error, reset device */
+Hbool dma_getdone( XAxiCdma *dma )
 {
-    return (*dma->status & DMA_STATUS_BUSY);
+   return (Hbool) (XAxiCdma_IsBusy(dma));
 }
 
-Hbool dma_geterror( dma_t *dma )
+
+Hint dma_transfer(XAxiCdma *dma, Huint SrcAddr, Huint DstAddr, Hint byte_Length)
 {
-    return (*dma->status & DMA_STATUS_ERROR);
-}
-
-Hbool dma_gettimeout( dma_t *dma )
-{
-    return (*dma->status & DMA_STATUS_TIMEOUT);
-}
-
-Hbool dma_getdone( dma_t *dma )
-{
-    return (*dma->isr & DMA_ISR_DONE);
-}
-
-Hbool dma_getfailed( dma_t *dma )
-{
-    return (*dma->isr & DMA_ISR_ERROR);
-}
-
-void dma_enabledone( dma_t *dma )
-{
-    dma->intr |= DMA_IER_DONE;
-    *dma->ier = dma->intr;
-}
-
-void dma_disabledone( dma_t *dma )
-{
-    dma->intr &= ~DMA_IER_DONE;
-    *dma->ier = dma->intr;
-}
-
-void dma_cleardone( dma_t *dma )
-{
-    *dma->isr = DMA_IER_DONE;
-}
-
-void dma_enablefailed( dma_t *dma )
-{
-    dma->intr |= DMA_IER_ERROR;
-    *dma->ier = dma->intr;
-}
-
-void dma_disablefailed( dma_t *dma )
-{
-    dma->intr &= ~DMA_IER_ERROR;
-    *dma->ier = dma->intr;
-}
-
-void dma_clearfailed( dma_t *dma )
-{
-    *dma->isr = DMA_IER_ERROR;
-}
-
-void* dma_malloc( Huint size )
-{
-    Huint   alloc;
-    Huint   buffer;
-    Hubyte  *off;
-
-    // Allocate the buffer, we include extra space in case we need to align the memory
-    alloc = (Huint)malloc( size+4 );
-
-    // Align the buffer to a 4-byte boundary
-    buffer = alloc + 4 - (alloc % 4);
-
-    // Store the offset in the previous byte
-    off = (Hubyte*)(buffer-1);
-    *off = 4 - alloc % 4;
     
-    return (void*)buffer;
-}
+   Hint Status, CDMA_Status;
 
-void dma_free( void *mem )
-{
-    Huint   alloc;
-    Huint   buffer;
-    Hubyte  *off;
+   // Wait for the dma controller to not be busy
+   while(dma_getbusy(dma));
 
-    // Cast the pointer to an integer
-    buffer = (Huint)mem;
+   Status = XAxiCdma_SimpleTransfer(dma, SrcAddr, DstAddr, byte_Length, NULL, NULL);
 
-    // Get the offset that was used during alignment
-    off = (Hubyte*)(buffer-1);
-
-    // Retreive the orignally allocated buffer
-    alloc = buffer - *off;
-
-    // Free the original buffer
-    free( (void*)alloc );
-}
-
-Hint dma_transfer( dma_t *dma, void *src, void *dst, Huint len, Huint cs, Hbool si, Hbool di )
-{
-    Huint   cmd;
-    
-    if( cs != DMA_SIZE_BYTE && cs != DMA_SIZE_HALFWORD && cs != DMA_SIZE_WORD )
-    {
-        //TRACE_PRINTF( TRACE_ERR, TRACE_DMA, "DMA: (ERROR=Chunk Size Invalid) (CS=%u)\n", cs );
-        return FAILURE;
-    }
-
-    // For the command to send to the DMA control register
-    cmd = cs;
-    if( si )    cmd |= DMA_SOURCE_INC;
-    if( di )    cmd |= DMA_DESTINATION_INC;
-
-    // Wait for the dma controller to not be busy
-    while( dma_getbusy(dma) );
-
-    // Send the dma transfer commands
-    *dma->control       = cmd;
-    *dma->source        = (Huint)src;
-    *dma->destination   = (Huint)dst;
-    *dma->length        = len;
-
-    return SUCCESS;
+   if (Status != SUCCESS)
+   {
+      CDMA_Status = dma_geterror(dma);
+      if (CDMA_Status != SUCCESS) 
+      {
+         TRACE_PRINTF( TRACE_ERR, TRACE_DMA, "DMA ERROR: (CDMA Status=0x%08x)\n", CDMA_Status );
+         // Reset the device
+         dma_reset(dma);
+      }
+      else
+         TRACE_PRINTF( TRACE_ERR, TRACE_DMA, "DMA ERROR: (Perhaps an existing transfer ongoing?)\n");
+      return FAILURE;
+   }
+   
+   return SUCCESS;
 }
