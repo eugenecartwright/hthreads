@@ -6,7 +6,7 @@
 #include <httype.h>
 #include "xaxicdma.h"
 
-#define NUM_OF_ACCELERATORS         (5)
+#define NUM_ACCELERATORS            (5)
 #define NUM_OF_SIZES                (7) 
 #define PR_OVERHEAD                 (1300)
 #define BRAM_SIZE                   (4096)
