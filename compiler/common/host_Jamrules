@@ -14,6 +14,7 @@ USER_LIBS   += -Wl,--start-group -lhthread -lm -lc -lgcc -Wl,--end-group -lhthre
 ################################################################################
 HDRS += $(TOP)$(SLASH)src$(SLASH)platforms$(SLASH)$(PLATFORM_VENDOR)$(SLASH)$(PLATFORM_BOARD)$(SLASH)include ;
 HDRS += $(TOP)$(SLASH)src$(SLASH)platforms$(SLASH)$(PLATFORM_VENDOR)$(SLASH)$(PLATFORM_BOARD)$(SLASH)design$(SLASH)design.sdk$(SLASH)DEADBEEF_bsp$(SLASH)DEADBEEF$(SLASH)include ;
+HDRS += $(TOP)$(SLASH)src$(SLASH)platforms$(SLASH)$(PLATFORM_VENDOR)$(SLASH)$(PLATFORM_BOARD)$(SLASH)design ;
 
 ################################################################################
 # Add Microblaze flags to the compiler and linker
