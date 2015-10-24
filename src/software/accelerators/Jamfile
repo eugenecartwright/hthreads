@@ -19,7 +19,7 @@ LOCATE_TARGET = software$(SLASH)accelerators ;
 Hobject sort.o                          : sort.c ;
 Hobject crc.o                           : crc.c ;
 Hobject vector.o                        : vector.c ;
-Hobject pr.o                          : pr.c ;
+Hobject pr.o                            : pr.c ;
 Hobject acc_common.o                    : acc_common.c ;
 
 

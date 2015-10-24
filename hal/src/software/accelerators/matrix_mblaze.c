@@ -21,7 +21,7 @@ Hint poly_matrix_mul (void * a_ptr, void * b_ptr, void * c_ptr, Huint a_rows, Hu
    // Start transferring data to BRAM
    if(!transfer_dma( (void *) a_ptr, (void *) ACC_BRAMA, a_rows * a_cols *4))
       return FAILURE;
-   if(!transfer_dma( (void *) b_ptr, (void *) ACC_BRAMB, b_rows * b_cols *4))
+   if(!transfer_dma( (void *) b_ptr, (void *) ACC_BRAMB, a_cols * b_cols *4))
       return FAILURE;
 
 	//computation		
@@ -32,18 +32,17 @@ Hint poly_matrix_mul (void * a_ptr, void * b_ptr, void * c_ptr, Huint a_rows, Hu
 		putfslx( a_cols, 0,FSL_DEFAULT);
 		getfslx(e, 0, FSL_DEFAULT);
 	}else
-	   sw_matrix_multiply(BRAMA,BRAMB,  BRAMC, a_rows, a_cols , a_cols , b_cols);
+	   sw_matrix_multiply((Hint *)ACC_BRAMA, (Hint *) ACC_BRAMB, (Hint *)ACC_BRAMC, a_rows, a_cols , a_cols , b_cols);
 	   
    // Start transferring data from BRAM
    if(!transfer_dma( (void *) ACC_BRAMC, (void *) c_ptr, a_rows * b_cols *4))
       return FAILURE;
 
-#endif
    return result;
    
 }
 
-void	sw_matrix_multiply(int * a, int * b, int * c,  char a_rows, char a_cols ,  char b_rows , char b_cols)
+void	sw_matrix_multiply(Hint * a, Hint * b, Hint * c,  char a_rows, char a_cols ,  char b_rows , char b_cols)
 {
   assert( a_cols == b_rows);
   	char i, j, k=0;

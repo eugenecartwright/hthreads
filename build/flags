@@ -14,7 +14,7 @@
 ################################################################################
 # Flags for compilation of source files
 ################################################################################
-CCFLAGS += -Wall -Winline -pipe -Wno-inline -Wno-unused-but-set-variable -Wno-unused-function ;
+CCFLAGS += -Wall -Winline -pipe -Wno-inline -Wno-unused-but-set-variable -Wno-unused-function -Wno-cpp ;
 
 ################################################################################
 # Defined symbols during compilation

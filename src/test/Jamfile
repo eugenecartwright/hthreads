@@ -51,7 +51,7 @@ if $(PLATFORM_VENDOR) != "pthreads"
     #SubInclude TOP src test timing ;
     #SubInclude TOP src test regress ;
     #SubInclude TOP src test tcpip ;
-    SubInclude TOP src test drivers ;
+    #SubInclude TOP src test drivers ;
     #SubInclude TOP src test video ;
     #SubInclude TOP src test mpeg ;
 }

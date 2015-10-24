@@ -7,15 +7,13 @@
 Hint perform_PR(Huint mb, Huint accelerator_type) {
    
    volatile Huint * SWtrigger = (volatile Huint *) SW_triggers[mb];
-   volatile Hint * Status    = (volatile Hint *) MB_status[mb];
-
-   Hint Status = *SWtrigger;
+   volatile Hint * StatusReg    = (volatile Hint *) MB_status[mb];
 
    // is there anything pending for this socket??
-   if(!(Status&0x8000)) 
+   if(!(*SWtrigger&0x8000)) 
       *SWtrigger = accelerator_type;
 
-   while  ((*Swtrigger & 0x07) != 7);        
+   while  ((*StatusReg & 0x07) != 7);        
 
    return SUCCESS;
 

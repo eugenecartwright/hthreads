@@ -29,7 +29,7 @@ Hint poly_crc (void * list_ptr, Huint size)
      getfslx(e, 0, FSL_DEFAULT);
    } else {
       // Run crc in software
-      result =  (sw_crc((void *) BRAMC, size));
+      result =  (sw_crc((void *) ACC_BRAMC, size));
    }
 
    // Start transferring data from BRAM
@@ -74,17 +74,17 @@ Hint gen_crc( Hint input)
 Hint sw_crc(void * list_ptr, Huint size) {
     
     // Transfer List A to local BRAM A using local dma
-    if(transfer_dma((void *) list_ptr, (void *) ACC_BRAM_A, size*4))
+    if(transfer_dma((void *) list_ptr, (void *) ACC_BRAMA, size*4))
         return FAILURE;
     
-    Hint *array = (Hint *) ACC_BRAM_A;
+    Hint *array = (Hint *) ACC_BRAMA;
 
-    for (array = (Hint *) ACC_BRAM_A; array < (Hint *) ACC_BRAM_A + size; array++) {
+    for (array = (Hint *) ACC_BRAMA; array < (Hint *) ACC_BRAMA + size; array++) {
         *array = gen_crc(*array);
     }
 
     // Transfer results back
-    if(transfer_dma((void *) ACC_BRAM_A, (void *) list_ptr, size*4))
+    if(transfer_dma((void *) ACC_BRAMA, (void *) list_ptr, size*4))
         return FAILURE;
     else
         return SUCCESS;

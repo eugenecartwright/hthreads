@@ -38,19 +38,19 @@ Hint poly_vector (void * a_ptr, void * b_ptr, void * c_ptr, Huint size, Huint op
 		getfslx(e, 0, FSL_DEFAULT); 
    } else {
       // TODO: Turn on data caching if bram addr is in cacheable range
-	   Hint * brama = (Hint *) BRAMA;
-      Hint * bramb = (Hint *) BRAMB;
-      Hint * bramc = (Hint *) BRAMC;
+	   Hint * brama = (Hint *) ACC_BRAMA;
+      Hint * bramb = (Hint *) ACC_BRAMB;
+      Hint * bramc = (Hint *) ACC_BRAMC;
       if (acc == VECTOR_ADD_SUB) {      
 	      if (op_code == 1)
 	         for (e = 0; e < size; e++)     bramc[e] = brama[e] + bramb[e];	
 	      else if (op_code == 2)
 	         for (e = 0; e < size; e++)     bramc[e] = brama[e] - bramb[e];
-      } else if (acc = VECTOR_MUL_DIVIDE) {
+      } else if (acc == VECTOR_MUL_DIVIDE) {
 	      if (op_code == 1)
 	         for (e = 0; e < size; e++)     bramc[e] = brama[e] * bramb[e];	
 	      else if (op_code == 2)
-	         for (e = 0; e < size; e++) { if (bramb[e] != 0) bramc[e] = brama[e] / bramb[e] };
+	         for (e = 0; e < size; e++) if (bramb[e] != 0) bramc[e] = brama[e] / bramb[e];
       }
       // TODO: Turn off data caching
 	}

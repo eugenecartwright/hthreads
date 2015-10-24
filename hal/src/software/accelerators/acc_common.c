@@ -2,33 +2,34 @@
 #include "xaxicdma.h"
 
 #include <hwti/hwti.h>
+#include <dma/dma.h>
 #include "fsl.h"
 #include "pvr.h"
-#include "icap.h"
+#include "pr.h"
 
 // -------------------------------------------------------------- //
 //                     DMA Transfer Wrapper                       //
 // -------------------------------------------------------------- //
 static Hbool initialized = 0;
 
-Hint transfer_dma(void * src, void * des, int size) {
-   XAxiCdma *dma;
-   if (!initiliazed) {
-      Hint status = dma_create(dma,SLAVE_LOCAL_DMA_DEVICE_ID);
+Hint transfer_dma(void * src, void * des, Hint size) {
+   XAxiCdma dma;
+   if (!initialized) {
+      Hint status = dma_create(&dma,SLAVE_LOCAL_DMA_DEVICE_ID);
       if (!status)
          return FAILURE;
       else
          initialized = 1;
    }
 
-   dma_reset(dma);        
-   dma_transfer(dma, src, des, size);
+   dma_reset(&dma);        
+   dma_transfer(&dma, (Huint) src, (Huint) des, size);
 
    // Wait until done
-   while(!dma_getdone(dma));
+   while(!dma_getdone(&dma));
 
    // Check for any errors
-   if (dma_geterror(dma))
+   if (dma_geterror(&dma))
       return FAILURE;
    else
       return SUCCESS;
@@ -38,7 +39,7 @@ Hint transfer_dma(void * src, void * des, int size) {
 // -------------------------------------------------------------- //
 //     Initialization routine for all polymorphic functions       //
 // -------------------------------------------------------------- //
-Hbool poly_init(Hint acc) {
+Hbool poly_init(Hint acc, Huint size) {
    
    // Get VHWTI
    Huint vhwti_base = 0;

@@ -72,7 +72,7 @@ ln -s "$mystring" design
 #change Num_available_hetero_cpus in include/config.h
 #===============================================================
 mystring=''
-mystring='/#define ICAP/c\'$mystring
+mystring='/#define PR /c\'$mystring
 sed -i "$mystring" ./include/config.h
 
 
@@ -80,7 +80,7 @@ mystring='#define NUM_AVAILABLE_HETERO_CPUS '
 mystring+=$num_slaves
 if [ "$4" == "y" ]
 then
-mystring+='\n#define ICAP'
+mystring+='\n#define PR '
 fi
 mystring='/#define NUM_AVAILABLE_HETERO_CPUS/c\'$mystring
  sed -i "$mystring" ./include/config.h 

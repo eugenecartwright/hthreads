@@ -2,7 +2,7 @@
 #include <vector.h>
 #include <htconst.h>
 
-Hint poly_vector(void * a_ptr, void * b_ptr, void * c_ptr, Huint size, Huint op_code) {
+Hint poly_vector(void * a_ptr, void * b_ptr, void * c_ptr, Huint size, Huint op_code, Hint acc) {
 
    Huint * a = (Huint *) a_ptr;
    Huint * b = (Huint *) b_ptr;
@@ -21,17 +21,17 @@ Hint poly_vector(void * a_ptr, void * b_ptr, void * c_ptr, Huint size, Huint op_
 }
 
 Hint poly_vectoradd (void * a_ptr, void * b_ptr, void * c_ptr, Huint size) {
-    return (poly_vector(a_ptr, b_ptr, c_ptr, size, 0));
+    return (poly_vector(a_ptr, b_ptr, c_ptr, size, 0,0));
 }
 
 Hint poly_vectorsub (void * a_ptr, void * b_ptr, void * c_ptr, Huint size) {
-    return (poly_vector(a_ptr, b_ptr, c_ptr, size, 1));
+    return (poly_vector(a_ptr, b_ptr, c_ptr, size, 1,0));
 }
 
 Hint poly_vectormul (void * a_ptr, void * b_ptr, void * c_ptr, Huint size) {
-    return (poly_vector(a_ptr, b_ptr, c_ptr, size, 2));
+    return (poly_vector(a_ptr, b_ptr, c_ptr, size, 2,0));
 }
 
 Hint poly_vectordivide (void * a_ptr, void * b_ptr, void * c_ptr, Huint size) {
-    return (poly_vector(a_ptr, b_ptr, c_ptr, size, 3));
+    return (poly_vector(a_ptr, b_ptr, c_ptr, size, 3,0));
 }

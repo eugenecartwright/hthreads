@@ -79,13 +79,13 @@ Huint best_slaves_num;
 // This is the tuning table used to keep track of profiling data
 // for slave execution.
 #ifdef TUNING
-    tuning_table_t tuning_table[NUM_OF_ACCELERATORS*NUM_OF_SIZES] = {
+    tuning_table_t tuning_table[NUM_ACCELERATORS*NUM_OF_SIZES] = {
     {2,54,259,2}, {4,77,504,2}, {4,121,994,2}, {8,207,1975,2}, {8,377,3936,2}, {16,714,7855,2}, {16,1383,15716,2},
     {4,114,345,1}, {4,250,741,2}, {8,604,1537,2}, {8,1510,3238,2}, {16,3983,7053,2}, {16,10548,14703,2}, {16,30558,30894,2},
     {1,52,85,2}, {1,65,150,2}, {1,90,283,2}, {2,133,548,2}, {2,215,1079,2}, {2,380,2146,2}, {2,705,4294,2}
     };
 #else
-    tuning_table_t tuning_table[NUM_OF_ACCELERATORS*NUM_OF_SIZES] = {
+    tuning_table_t tuning_table[NUM_ACCELERATORS*NUM_OF_SIZES] = {
     {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1},
     {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1},
     {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}
@@ -93,7 +93,7 @@ Huint best_slaves_num;
 #endif
 
 #ifdef PR
-Hbool pr_initialized = false;
+Hbool pr_initialized = 0;
 
 // Initialize all of the PR data
 void init_PR_data() {
@@ -115,7 +115,7 @@ void init_PR_data() {
     possible_slaves_num = 0;
     best_slaves_num = 0;
 }
-
+#endif
 
 // ---------------------------------------------------------------- //
 //                      Debugging Functions                         //

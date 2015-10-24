@@ -32,7 +32,7 @@ Hint poly_bubblesort (void * list_ptr, Huint size)
 		getfslx(e, 0, FSL_DEFAULT);
    } else {
       // Run sort in software
-      sw_bubblesort(BRAMC, size) ;
+      sw_bubblesort((void *) ACC_BRAMC, size) ;
    }
    
    // Start transferring data from BRAM
@@ -103,7 +103,7 @@ void sw_quicksort(Hint * startPtr, Hint * endPtr ) {
 void sw_bubblesort(void * list_ptr, Huint size) 
 {
    Hint * startPtr = (Hint *) list_ptr;
-   Huint c, d
+   Huint c, d;
    Hint swap;
    for (c = 0 ; c < ( size - 1 ); c++)
    {

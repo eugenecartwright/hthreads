@@ -46,7 +46,7 @@ typedef struct {
 // -------------------------------------------------------------- //
 //                     DMA Transfer Wrapper                       //
 // -------------------------------------------------------------- //
-extern int transfer_dma(void * src, void * des, int size);
+extern int transfer_dma(void * src, void * des, Hint size);
 
 // -------------------------------------------------------------- //
 //             Get's index size for given data size               //
@@ -61,5 +61,5 @@ extern Hbool useHW(Huint accelerator_type, Huint size);
 // -------------------------------------------------------------- //
 //                 Polymorphic init function                      //
 // -------------------------------------------------------------- //
-extern Hbool poly_init(Hint acc);
+extern Hbool poly_init(Hint acc, Huint size);
 #endif

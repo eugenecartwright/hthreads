@@ -13,7 +13,6 @@
 #include <dma/dma.h>
 #include <accelerator.h>
 #ifdef PR
-//#include "xhwicap.h"
-//#include "xhwicap_i.h"
+#include <pr.h>
 #include <bitstream.h>
 #endif

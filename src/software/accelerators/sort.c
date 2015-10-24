@@ -5,8 +5,8 @@
 
 Hint poly_bubblesort(void *list_ptr, Huint size ) 
 {
-   Hint * startPrt = (Hint *) list_ptr;
-   Huint c, d
+   Hint * startPtr = (Hint *) list_ptr;
+   Huint c, d;
    Hint swap;
    for (c = 0 ; c < ( size - 1 ); c++)
    {
@@ -37,7 +37,7 @@ Hint poly_quickSort(Huint * startPtr, Huint * endPtr) {
 	Huint temp, * tempPtr;
 
 	//fflush( stdout );
-	if ( startPtr == endPtr ) { return; }
+	if ( startPtr == endPtr ) { return SUCCESS; }
 
 	leftPtr = startPtr;
 	rightPtr = endPtr;
@@ -76,8 +76,8 @@ Hint poly_quickSort(Huint * startPtr, Huint * endPtr) {
 		}
 	}
 	
-	quickSort( rightPtr, endPtr );
-	quickSort( startPtr, leftPtr );
+	poly_quickSort( rightPtr, endPtr );
+	poly_quickSort( startPtr, leftPtr );
 
    return SUCCESS;
 }

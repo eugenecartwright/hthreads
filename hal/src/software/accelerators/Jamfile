@@ -20,7 +20,7 @@ Hobject acc_common.o            : acc_common.c ;
 
 if $(PLATFORM_ARCH) = "mblaze"
 {
-Hobject icap.o                  : icap_mblaze.c ;
+Hobject pr.o                    : pr_mblaze.c ;
 Hobject sort.o                  : sort_mblaze.c ;
 Hobject crc.o                   : crc_mblaze.c ;
 Hobject vector.o                : vector_mblaze.c ;
@@ -30,7 +30,7 @@ Hobject matrix.o                : matrix_mblaze.c ;
 ########################################################################################
 # Add the object files to the hthreads library
 ########################################################################################
-Hlib hthread : icap.o ;
+Hlib hthread : pr.o ;
 Hlib hthread : sort.o ;
 Hlib hthread : crc.o ;
 Hlib hthread : vector.o ;

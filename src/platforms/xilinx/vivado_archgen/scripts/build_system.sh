@@ -200,9 +200,9 @@ if [ $pr="y" ]; then
       i=0
       while [ $i -lt $(($N * $C)) ]; do
          if [ $i == 0 ]; then
-            echo -n -e "\t{(&${module}_${i}_bit[0])" >> bitstream.h
+            echo -n -e "\t{(&${module}_${i}_bin[0])" >> bitstream.h
          else 
-            echo -n ", (&${module}_${i}_bit[0])" >> bitstream.h
+            echo -n ", (&${module}_${i}_bin[0])" >> bitstream.h
          fi
          let i=i+1
       done
@@ -233,7 +233,7 @@ if [ $pr="y" ]; then
       j=0
       echo -e "\n\t// Initializing RM bitstream address and size registers" >> bitstream.h
       for module in "${list_acc[@]}"; do 
-         echo -e "\tXil_Out32(MB_${i}_BS_ADDRESS${j},(unsigned char *) (&${module}_${i}_bin[0]));" >> bitstream.h
+         echo -e "\tXil_Out32(MB_${i}_BS_ADDRESS${j},(Huint) (&${module}_${i}_bin[0]));" >> bitstream.h
          echo -e "\tXil_Out32(MB_${i}_BS_SIZE${j},${module}_${i}_bin_len);" >> bitstream.h
          let j=j+1
       done
