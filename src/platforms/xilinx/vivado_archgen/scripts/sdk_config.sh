@@ -74,20 +74,18 @@ cp ./design/design.runs/impl_1/system_wrapper.sysdef ./design/design.sdk/system_
 #===============================================================
 #change Num_available_hetero_cpus in include/config.h
 #===============================================================
-#Getting rid of all ICAP definitions
-mystring=''
-mystring='/#define PR  /c\'$mystring
-sed -i "$mystring" ./include/config.h
-
+# Eugene (10/29/2015): Added regular expressions to sed commands
+#Getting rid of all PR definitions
+sed -i "/#define *PR *$/d" ./include/config.
 
 mystring='#define NUM_AVAILABLE_HETERO_CPUS '
 mystring+=$num_slaves
 if [ "$4" == "y" ]
 then
-mystring+='\n#define PR  '
+mystring+='\n#define PR/'
 fi
-mystring='/#define NUM_AVAILABLE_HETERO_CPUS/c\'$mystring
- sed -i "$mystring" ./include/config.h 
+mystring='s/#define *NUM_AVAILABLE_HETERO_CPUS.*/'$mystring
+sed -i "$mystring" ./include/config.h 
 
 
  
