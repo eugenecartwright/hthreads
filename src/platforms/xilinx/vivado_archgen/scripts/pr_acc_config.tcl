@@ -49,12 +49,12 @@ cd ../platforms/$name
 eval exec cp static.dcp [expr {$module}]_static.dcp
 
 
-open_checkpoint [expr {$module}]_static.dcp
+open_checkpoint -verbose [expr {$module}]_static.dcp
    for {set j 0} {$j < $N} {incr j} \
     {     
        for {set i 0} {$i < $C} {incr i} \
        {   
-         read_checkpoint -cell system_i/group_[expr $j]/slave_[expr $i]/acc_0 ../../pr/acc/$module.dcp
+         read_checkpoint -verbose -cell system_i/group_[expr $j]/slave_[expr $i]/acc_0 ../../pr/acc/$module.dcp
        }
     }
   

@@ -136,11 +136,17 @@ fi
 
 if [ $pr="y" ]
 then
-   for moudle in  "${list_acc[@]}"
+   for module in  "${list_acc[@]}"
    do
       echo -e "----------------------------------------------------------------\n\n"
       echo "Building $module PR file"
-      vivado -nolog -nojournal -verbose -mode batch -source ./pr_acc_config.tcl -tclargs $N $C $moudle $name &   #PR for each accelerator
+      vivado -nolog -nojournal -verbose -mode batch -source ./pr_acc_config.tcl -tclargs $N $C $module $name    #PR for each accelerator
+      rc=$?; 
+      if [[ $rc != 0 ]]; 
+      then
+         echo "Failed to build PR regionds for $module" 
+         exit $rc; 
+      fi
    done 
    vivado -nolog -nojournal -verbose -mode batch -source ./pr_blank_config.tcl -tclargs $N $C $name    #Blank PR
    wait
@@ -183,13 +189,12 @@ then
    echo "#define  _BITSTREAM_H" >> bitstream.h
    cat ./partial >> ./bitstream.h
    rm -f webtalk*
-fi
 
 #---------------------------------------------------------------------------------------------------
 # Adding in appropriate data structures and methods for such bitstreams
 # Author: Eugene Cartwright
 #---------------------------------------------------------------------------------------------------
-if [ $pr="y" ]; then
+   echo "#include <accelerator.h>" >> bitstream.h
 
    # Adding in PR structures into this header file so the
    # generated hcompile header stays fairly system independent

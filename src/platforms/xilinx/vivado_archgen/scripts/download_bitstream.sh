@@ -73,7 +73,7 @@ ln -s "$mystring" design
 #===============================================================
 # Eugene (10/29/2015): Added regular expressions to sed commands
 #Getting rid of all PR definitions
-sed -i "/#define *PR *$/d" ./include/config.
+sed -i "/#define *PR *$/d" ./include/config.h
 
 mystring='#define NUM_AVAILABLE_HETERO_CPUS '
 mystring+=$num_slaves
