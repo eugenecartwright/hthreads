@@ -74,11 +74,10 @@ static inline arch_clock_t _arch_get_time(void)
 // Used to keep track of last used accelerator
 unsigned int prev_last_used_accelerator;
 
-//---------------------------//
-//      Accelerator Flags    //
-//---------------------------//
-#define ACCELERATOR_FLAG    (0x80000000)
-#define PR_FLAG             (0x40000000)
+//-----------------//
+//      PR Flag    //
+//-----------------//
+#define PR_FLAG             (0x1)
 
 // *******************************************
 // Thread Manager Functions
@@ -383,20 +382,11 @@ typedef struct{
     // Pointer to "virtual" last_used_ptr field
     volatile int * last_used_ptr;
     
-    // Pointer to "virtual" accelerator list field
-    volatile int * pr_files_ptr;
-    
-    // Pointer to "virtual" ICAP mutex field
-    volatile int * icap_mutex_ptr;
-    
-    // Pointer to "virtual" ICAP Structure field
-    volatile int * icap_struct_ptr;
-    
     // Pointer to "virtual" tuning table field
     volatile int * tuning_table_ptr;
 
     // Pointer to "virtual" accelerator flags field
-    volatile int * accelerator_flags;
+    volatile int * has_PR;
     
     // Pointer to "virtual" accelerator hardware counter field
     volatile int * acc_hw_counter;

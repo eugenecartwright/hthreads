@@ -5,11 +5,15 @@
 #include <config.h>
 #include <httype.h>
 #include "xaxicdma.h"
+#ifdef PR
+#include <pr.h>
+#endif
 
 #define NUM_ACCELERATORS            (5)
 #define NUM_OF_SIZES                (7) 
 #define PR_OVERHEAD                 (1300)
 #define BRAM_SIZE                   (4096)
+#define PR_FLAG                     (0x1)
 
 #define MAGIC_NUMBER                (0xDEADBEEF)
 // -------------------------------------------------------------- //
@@ -21,12 +25,6 @@
 #define VECTOR_ADD_SUB     2
 #define VECTOR_MUL_DIVIDE  3
 #define MATRIXMUL          4
-
-// -------------------------------------------------------------- //
-//                       Accelerator Flags                        //
-// -------------------------------------------------------------- //
-#define ACCELERATOR_FLAG    (0x80000000)
-#define PR_FLAG             (0x40000000)
 
 // -------------------------------------------------------------- //
 //                   Accelerator Header Files                     //

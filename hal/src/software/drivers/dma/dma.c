@@ -7,17 +7,16 @@ Hint  dma_create(XAxiCdma * dma, u16 DeviceId)
 {
    XAxiCdma_Config CdmaCfgPtr;
 
-   CdmaCfgPtr.DeviceId   =  SLAVE_LOCAL_DMA_DEVICE_ID;  
+   CdmaCfgPtr.DeviceId    =  SLAVE_LOCAL_DMA_DEVICE_ID;  
    CdmaCfgPtr.BaseAddress =  SLAVE_LOCAL_DMA_BASEADDR;    
    CdmaCfgPtr.HasDRE      =  SLAVE_LOCAL_DMA_INCLUDE_DRE; 
    CdmaCfgPtr.IsLite      =  SLAVE_LOCAL_DMA_USE_DATAMOVER_LITE;
    CdmaCfgPtr.DataWidth   =  SLAVE_LOCAL_DMA_M_AXI_DATA_WIDTH; 
    CdmaCfgPtr.BurstLen    =  SLAVE_LOCAL_DMA_M_AXI_MAX_BURST_LEN;
 
-
    // Initialize the DMA driver and reset the dma device (done in Initialize)
    Hint Status = XAxiCdma_CfgInitialize(dma, (XAxiCdma_Config *) &CdmaCfgPtr, CdmaCfgPtr.BaseAddress);
-   if (Status != XST_SUCCESS)
+   if (Status != XST_SUCCESS) 
       return FAILURE;
    
    XAxiCdma_IntrDisable(dma, XAXICDMA_XR_IRQ_ALL_MASK);

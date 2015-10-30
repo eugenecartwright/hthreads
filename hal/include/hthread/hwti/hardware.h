@@ -218,7 +218,7 @@ static inline Hulong _hwti_get_execution_time( Huint base )
 {
     Huint cmd;
 
-    cmd = hwti_cmd(base, HT_CMD_VHWTI_EXEC_TIME);
+    cmd = hwti_cmd(base, HT_CMD_VHWTI_EXEC_TIME_HI);
     return read_reg64(cmd);
 }
 
@@ -229,54 +229,6 @@ static inline Huint _hwti_get_last_function( Huint base )
 
     cmd = hwti_cmd(base, HT_CMD_HWTI_FUNC_PTR);
     return read_reg(cmd);
-}
-
-static inline Huint _hwti_get_icap_mutex( Huint base )
-{
-    Huint cmd;
-
-    cmd = hwti_cmd(base, HT_CMD_VHWTI_ICAP_MUTEX_PTR);
-    return read_reg(cmd);
-}
-
-static inline void _hwti_set_icap_mutex( Huint base, Huint icap_mutex_addr )
-{
-    Huint cmd;
-    
-    cmd = hwti_cmd(base, HT_CMD_VHWTI_ICAP_MUTEX_PTR);
-    write_reg(cmd, icap_mutex_addr);
-}
-
-static inline Huint _hwti_get_icap_struct_ptr( Huint base )
-{
-    Huint cmd;
-
-    cmd = hwti_cmd(base, HT_CMD_VHWTI_ICAP_STRUCT_PTR);
-    return read_reg(cmd);
-}
-
-static inline void _hwti_set_icap_struct_ptr( Huint base, Huint icap_struct_addr )
-{
-    Huint cmd;
-    
-    cmd = hwti_cmd(base, HT_CMD_VHWTI_ICAP_STRUCT_PTR);
-    write_reg(cmd, icap_struct_addr);
-}
-
-static inline Huint _hwti_get_pr_files_ptr( Huint base )
-{
-    Huint cmd;
-
-    cmd = hwti_cmd(base, HT_CMD_VHWTI_PR_FILES_PTR);
-    return read_reg(cmd);
-}
-
-static inline void _hwti_set_pr_files_ptr( Huint base, Huint pr_files_ptr )
-{
-    Huint cmd;
-    
-    cmd = hwti_cmd(base, HT_CMD_VHWTI_PR_FILES_PTR);
-    write_reg(cmd, pr_files_ptr);
 }
 
 static inline Huint _hwti_get_tuning_table_ptr( Huint base )
@@ -295,20 +247,20 @@ static inline void _hwti_set_tuning_table_ptr( Huint base, Huint tuning_table_pt
     write_reg(cmd, tuning_table_ptr);
 }
 
-static inline Huint _hwti_get_accelerator_flags( Huint base )
+static inline Huint _hwti_get_PR_flag( Huint base )
 {
     Huint cmd;
 
-    cmd = hwti_cmd(base, HT_CMD_VHWTI_ACC_FLAGS);
+    cmd = hwti_cmd(base, HT_CMD_VHWTI_HAS_PR);
     return read_reg(cmd);
 }
 
-static inline void _hwti_set_accelerator_flags( Huint base, Huint accelerator_flags )
+static inline void _hwti_set_PR_flag( Huint base, Huint pr_flag )
 {
     Huint cmd;
     
-    cmd = hwti_cmd(base, HT_CMD_VHWTI_ACC_FLAGS);
-    write_reg(cmd, accelerator_flags);
+    cmd = hwti_cmd(base, HT_CMD_VHWTI_HAS_PR);
+    write_reg(cmd, pr_flag);
 }
 
 static inline Huint _hwti_get_accelerator_hw_counter( Huint base )

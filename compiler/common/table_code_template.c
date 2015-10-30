@@ -86,36 +86,49 @@ Huint best_slaves_num;
     };
 #else
     tuning_table_t tuning_table[NUM_ACCELERATORS*NUM_OF_SIZES] = {
-    {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1},
-    {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1},
-    {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}, {1, 1, 1000,1}
+    {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1},
+    {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1},
+    {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}
     };
 #endif
 
-#ifdef PR
 Hbool pr_initialized = 0;
 
 // Initialize all of the PR data
-void init_PR_data() {
+void init_slaves() {
     
-    // Create accelerate profiles - containers that hold
-    // pointers to each accelerator specific for each slave.
-    unsigned int i;
-    for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) { 
-        // Write pointer for last_used_accelerator so slave can update the table
-        _hwti_set_last_accelerator_ptr( (Huint) hwti_array[i], (Huint) &slave_table[i].last_used_acc);
-            
-        // Write pointer to tuning_table
-        _hwti_set_tuning_table_ptr((Huint) hwti_array[i], (Huint) &tuning_table);
+   // Create accelerate profiles - containers that hold
+   // pointers to each accelerator specific for each slave.
+   unsigned int i;
+   for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) { 
+      // Write pointer for last_used_accelerator so slave can update the table
+      _hwti_set_last_accelerator_ptr( (Huint) hwti_array[i], (Huint) &slave_table[i].last_used_acc);
+      
+      // Write which accelerator the slave has in last_used/currently loaded.
+      _hwti_set_last_accelerator((Huint) hwti_array[i], slave_table[i].last_used_acc);
+             
+      // Write pointer to tuning_table
+      _hwti_set_tuning_table_ptr((Huint) hwti_array[i], (Huint) &tuning_table);
 
-    }
+      #ifdef PR
+      // If PR is defined, write to slave that they have PR capability
+      _hwti_set_PR_flag((Huint) hwti_array[i], PR_FLAG);
+      #else
+      _hwti_set_PR_flag((Huint) hwti_array[i], 0);
+      #endif
+   }
+   #ifdef PR
+   xil_printf("Initializing PR..\n\r");
+   // Set up PR controller
+   pr_config_mb();
+   xil_printf("Done..\n\r");
+   #endif
    
-    // Reset thread create statistical data 
-    no_free_slaves_num = 0;
-    possible_slaves_num = 0;
-    best_slaves_num = 0;
+   // Reset thread create statistical data 
+   no_free_slaves_num = 0;
+   possible_slaves_num = 0;
+   best_slaves_num = 0;
 }
-#endif
 
 // ---------------------------------------------------------------- //
 //                      Debugging Functions                         //
@@ -344,11 +357,7 @@ Huint software_create (
         // Init function-to-accelerator table
         init_func_2_acc_table();
 
-        #ifdef ICAP
-        // Initialize mutexes, ICAP, and bitfiles
-        // for Partial Reconfiguration.
-        init_PR_data();
-        #endif
+        init_slaves();
     }
 
     #ifdef DEBUG_DISPATCH
@@ -492,9 +501,9 @@ Huint thread_create(
         // Init function-to-accelerator table
         init_func_2_acc_table();
        
-        // Initialize mutexes, ICAP, and bitfiles
+        // Initialize mutexes, PR, and bitfiles
         // for Partial Reconfiguration.
-        init_PR_data();
+        init_slaves();
     }
 
     // Check if we have not passed our threshold

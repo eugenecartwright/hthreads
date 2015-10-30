@@ -47,10 +47,7 @@
 #include <config.h>
 
 #define HT_CMD_HWTI_SETID                   0x0000
-
 #define HT_CMD_HWTI_TIMER                   0x0004
-#define HT_CMD_HWTI_UTILIZED                0x0004
-
 #define HT_CMD_HWTI_STATUS                  0x0008
 #define HT_CMD_HWTI_COMMAND                 0x000C
 #define HT_CMD_HWTI_SETARG                  0x0010
@@ -72,35 +69,32 @@
 #define HT_CMD_HWTI_RPC_MUTEXCONVAR         0x0044
 #define HT_CMD_HWTI_RPC_T_ADDRESS           0x0048
 #define HT_HWTI_RESET                       0x0002
+#define HT_HWTI_GO                          0x0001
 #define HT_HWTI_COMMAND_OFFSET              0x000C
 
 // New Commands - Adding from Jason's repo
+#define HT_CMD_HWTI_UTILIZED                0x0004
 #define HT_CMD_HWTI_STACK_BASE              0x0020
 #define HT_CMD_HWTI_CONTEXT_BASE            0x0024
 #define HT_CMD_HWTI_CONTEXT_TABLE_BASE      0x0028
 #define HT_CMD_HWTI_BOOTSTRAP               0x002C
 
 // New commands - Added by Eugene
-#define HT_CMD_VHWTI_EXEC_TIME              0x0030
-//#define HT_CMD_VHWTI_EXEC2_TIME             0x0034
+#define HT_CMD_VHWTI_EXEC_TIME_HI           0x0030
+#define HT_CMD_VHWTI_EXEC_TIME_LO           0x0034
 #define HT_CMD_VHWTI_FIRST_USED             0x0038
 #define HT_CMD_VHWTI_FIRST_USED_PTR         0x003C
 #define HT_CMD_VHWTI_LAST_USED              0x0040
 #define HT_CMD_VHWTI_LAST_USED_PTR          0x0044
-#define HT_CMD_VHWTI_PR_FILES_PTR           0x0048
-#define HT_CMD_VHWTI_ICAP_MUTEX_PTR         0x004C
-#define HT_CMD_VHWTI_ICAP_STRUCT_PTR        0x0050
-#define HT_CMD_VHWTI_TUNING_TABLE_PTR       0x0054
-#define HT_CMD_VHWTI_ACC_FLAGS              0x0058
-#define HT_CMD_VHWTI_ACC_HW_COUNTER         0x005C
-#define HT_CMD_VHWTI_ACC_SW_COUNTER         0x0060
-#define HT_CMD_VHWTI_ACC_PR_COUNTER         0x0064
+#define HT_CMD_VHWTI_TUNING_TABLE_PTR       0x0048
+#define HT_CMD_VHWTI_HAS_PR                 0x004C
+#define HT_CMD_VHWTI_ACC_HW_COUNTER         0x0050
+#define HT_CMD_VHWTI_ACC_SW_COUNTER         0x0054
+#define HT_CMD_VHWTI_ACC_PR_COUNTER         0x0058
 
 // Utilization Flag(s)
 #define FLAG_HWTI_UTILIZED                  0x0001
 #define FLAG_HWTI_FREE                      0x0000
-
-
 
 #define hwti_cmd(base,cmd)           (base | cmd)
     

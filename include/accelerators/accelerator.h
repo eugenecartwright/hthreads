@@ -10,6 +10,8 @@
 #define NUM_OF_SIZES                (7)
 #define PR_OVERHEAD                 (1300)
 #define BRAM_SIZE                   (4096)
+#define PR_FLAG                     (0x1)
+
 
 
 // -------------------------------------------------------------- //

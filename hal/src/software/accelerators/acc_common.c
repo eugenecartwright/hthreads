@@ -5,35 +5,32 @@
 #include <dma/dma.h>
 #include "fsl.h"
 #include "pvr.h"
-#include "pr.h"
+#ifdef PR
+#include <pr.h> 
+#endif
 
 // -------------------------------------------------------------- //
 //                     DMA Transfer Wrapper                       //
 // -------------------------------------------------------------- //
-static Hbool initialized = 0;
 
 Hint transfer_dma(void * src, void * des, Hint size) {
    XAxiCdma dma;
-   if (!initialized) {
-      Hint status = dma_create(&dma,SLAVE_LOCAL_DMA_DEVICE_ID);
-      if (!status)
-         return FAILURE;
-      else
-         initialized = 1;
-   }
+   Hint status = dma_create(&dma,SLAVE_LOCAL_DMA_DEVICE_ID);
+   if (status != SUCCESS)
+      return FAILURE;
 
-   dma_reset(&dma);        
-   dma_transfer(&dma, (Huint) src, (Huint) des, size);
+   // Reset DMA   
+   dma_reset(&dma);    
+   
+   status = dma_transfer(&dma, (Huint) src, (Huint) des, size);
+   if (status != SUCCESS)
+      return FAILURE;
 
    // Wait until done
-   while(!dma_getdone(&dma));
+   while(dma_getbusy(&dma));
 
    // Check for any errors
-   if (dma_geterror(&dma))
-      return FAILURE;
-   else
-      return SUCCESS;
-
+   return (dma_geterror(&dma));
 }
 
 // -------------------------------------------------------------- //
@@ -95,50 +92,39 @@ Huint get_index(Huint size)
 // -------------------------------------------------------------- //
 Hbool useHW(Huint accelerator_type, Huint size) {
 
-    // Grab the VHWTI base
-    Huint vhwti_base = 0;
-    getpvr(1,vhwti_base);
+   // Grab the VHWTI base
+   Huint vhwti_base = 0;
+   getpvr(1,vhwti_base);
 
-    // Grab accelerator flags
-    Huint accelerator_flags = (Huint) _hwti_get_accelerator_flags(vhwti_base); 
+   // Get currently loaded accelerator
+   Huint current_accelerator = _hwti_get_last_accelerator(vhwti_base);
 
-    // Do we use the accelerator? 
-    if (!(accelerator_flags & ACCELERATOR_FLAG))
-        return 0;
+   // Determine whether this slave has PR
+   Hbool has_PR = (Huint) _hwti_get_PR_flag(vhwti_base); 
+
+   // Immediately return 0 if slave has no PR, and has no
+   // access to the specified "accelerator_type"
+   if (has_PR != PR_FLAG) {
+      if (current_accelerator == NO_ACC)
+         return 0;
+      else if(current_accelerator != accelerator_type)
+         return 0;
+   }
+
+   // Update the first used accelerator (slaves init this to NO_ACC)
+   if (_hwti_get_first_accelerator(vhwti_base) == NO_ACC)
+      _hwti_set_first_accelerator(vhwti_base, accelerator_type);
     
-    // if this is the first accelerator used for this function
-    // (if the first_accelerator_used field in VHWTI is MAGIC_NUMBER), 
-    // update this field.
-    // TODO: Should this be NO_ACC or MAGIC_NUMBER?
-    if (_hwti_get_first_accelerator(vhwti_base) == MAGIC_NUMBER)
-        _hwti_set_first_accelerator(vhwti_base, accelerator_type);
-
-    // What is the current accelerator loaded?
-    Huint current_accelerator = _hwti_get_last_accelerator(vhwti_base);
-    
-    // if the accelerator I want is already loaded 
-    if (current_accelerator == accelerator_type) {
-        // Return immediately indicating to use HW/accelerator
-        return 1;
-    }
+   // if the loaded accelerator matches the specified accelerator, return 1
+   // FIXME: Is hardware faster always?
+   if (current_accelerator == accelerator_type) 
+      return 1;
 
 #ifdef PR
-    // get accelerator profile associated for this Slave
-    // Accelerator profile is simply a list of pointers to each
-    // of the accelerator bit files specific for this PR region.
-    // For example, the accelerator profile is a structure that
-    // looks as follows:
-    //
-    //      ...
-    //      char * crc_bit_file_ptr;
-    //      char * sort_bit_file_ptr;
-    //      char * vector_bit_file_ptr;
-    //      ...
-
-    // Does this processor have PR capabilities?
-    if (accelerator_flags & PR_FLAG) {
-        // Get tuning table pointer.
-        tuning_table_t * tuning_table = (tuning_table_t *) _hwti_get_tuning_table_ptr(vhwti_base);
+   // Does this processor have PR capabilities?
+   if (has_PR) {
+      // Get tuning table pointer.
+      tuning_table_t * tuning_table = (tuning_table_t *) _hwti_get_tuning_table_ptr(vhwti_base);
 
         // Calculate if PR is worth it by indexing appropriately 
         // into the table and evaluating the software and hardware
@@ -152,7 +138,7 @@ Hbool useHW(Huint accelerator_type, Huint size) {
             // execution. So return false.
             unsigned char id;
             getpvr(0, id);
-            if (perform_PR(id, accelerator_type))  
+            if (perform_PR(id, accelerator_type) != SUCCESS)  
                return 0;
            
             // Increment PR counter 
