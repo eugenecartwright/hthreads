@@ -19,7 +19,7 @@ Hint poly_crc (void * list_ptr, Huint size)
    Hbool use_accelerator = poly_init(CRC, size);
 
    // Start transferring data to BRAM
-   if(!transfer_dma( (void *) list_ptr, (void *) ACC_BRAMC, size *4))
+   if(transfer_dma( (void *) list_ptr, (void *) ACC_BRAMC, size *4))
       return FAILURE;
    
    if (use_accelerator) {
@@ -33,7 +33,7 @@ Hint poly_crc (void * list_ptr, Huint size)
    }
 
    // Start transferring data from BRAM
-   if(!transfer_dma( (void *) ACC_BRAMC, (void *) list_ptr, size *4))
+   if(transfer_dma( (void *) ACC_BRAMC, (void *) list_ptr, size *4))
       return FAILURE;
 
    return result;

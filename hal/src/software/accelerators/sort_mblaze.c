@@ -14,14 +14,13 @@
 Hint poly_bubblesort (void * list_ptr, Huint size) 
 {
     
-   Hint result = SUCCESS;
-    
    // Use Accelerator?
    Hbool use_accelerator = poly_init(BUBBLESORT, size);
 
    // Start transferring data to BRAM
-   if(!transfer_dma( (void *) list_ptr, (void *) ACC_BRAMC, size *4))
+   if(transfer_dma( (void *) list_ptr, (void *) ACC_BRAMC, size *4)) 
       return FAILURE;
+
 
    if (use_accelerator) {
       int e;
@@ -34,12 +33,12 @@ Hint poly_bubblesort (void * list_ptr, Huint size)
       // Run sort in software
       sw_bubblesort((void *) ACC_BRAMC, size) ;
    }
-   
+
    // Start transferring data from BRAM
-   if(!transfer_dma( (void *) ACC_BRAMC, (void *) list_ptr, size *4))
+   if(transfer_dma( (void *) ACC_BRAMC, (void *) list_ptr, size *4))
       return FAILURE;
 
-   return result;
+   return SUCCESS;
 }
 
 
