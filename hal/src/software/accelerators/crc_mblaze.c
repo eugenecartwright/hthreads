@@ -73,20 +73,12 @@ Hint gen_crc( Hint input)
 
 Hint sw_crc(void * list_ptr, Huint size) {
     
-    // Transfer List A to local BRAM A using local dma
-    if(transfer_dma((void *) list_ptr, (void *) ACC_BRAMA, size*4))
-        return FAILURE;
-    
-    Hint *array = (Hint *) ACC_BRAMA;
+    Hint *array = (Hint *) list_ptr;
 
     for (array = (Hint *) ACC_BRAMA; array < (Hint *) ACC_BRAMA + size; array++) {
         *array = gen_crc(*array);
     }
 
-    // Transfer results back
-    if(transfer_dma((void *) ACC_BRAMA, (void *) list_ptr, size*4))
-        return FAILURE;
-    else
-        return SUCCESS;
+    return SUCCESS;
 }
 
