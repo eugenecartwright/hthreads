@@ -119,11 +119,67 @@ length=$(expr ${#list_acc[@]} - 1)
 mv "$1".bk   "$1"
 
 
+#---------------------------------------------------------------------------------------------------
+# Build all of the hls cores based on the board
+#---------------------------------------------------------------------------------------------------
+# Determine part here
+part=" "
+if [ $board="kc705" ]; then
+   part=xc7k325tffg900-2
+elif [ $board="ac701" ]; then
+   part=xc7a200tfbg676-2
+elif [ $board="vc709" ]; then
+   part=xc7vx690tffg1761-2
+elif [ $board="zc702" ]; then
+   part=xc7z020clg484-1
+elif [ $board="zc706" ]; then
+   part=xc7z045ffg900-2
+elif [ $board="microzed" ]; then
+   part=xc7z010clg400-1
+elif [ $board="zed" ]; then
+   part=xc7z020clg484-1
+elif [ $board="vc707" ]; then
+   part=xc7vx485tffg1761-2
+fi
+
+echo "Determined this part: $part"
+
+   
+# Navigate to hls cores
+pushd .  # save current directory
+cd ../../../../../src/hardware/MyRepository/pcores/vivado_cores/hls_cores
+
+# Go into each directory
+ls -1 | while read d
+do
+   # test whether this is a folder
+   test -d "$d" || continue # skip
+   # Change directory into folder
+   echo "Found HLS directory: $d"
+   cd $d
+
+   # Now run vivado_hls with specific part
+   echo "Running command: vivado_hls run_hls.tcl $part"
+   vivado_hls run_hls.tcl $part
+
+   # Check return code and stop building if necessary
+   rc=$?
+   if [[ $rc != 0 ]]; then
+      echo "Failed to build HLS core $d"
+      exit $rc
+   fi
+
+   # Return to previous folder
+   cd -   
+done
+
+# Return back to scripts folder
+popd
 
 ##=====================================================================
 ##PR flow
 ##=====================================================================
-vivado -nolog -nojournal -mode batch -source ./run_clusters.tcl -tclargs $N $C $board $name $pr $bram_size $uart $host $mb0 $mb1 $mb2 $mb3 $mb4 $mb5  $mb6 $mb7 $mb8 $mb9 $mb10 $mb11 $mb12 $mb13 $mb14 $mb15 $mb16 $mb17 $mb18 $mb19 $mb20 $mb21 $mb22 $mb23 $mb24 $mb25 $mb26 $mb27 $mb28 $mb29 $mb30 $mb31 #Static System
+vivado -nolog -nojournal -mode batch -source ./run_clusters.tcl -tclargs $N $C $board $part $name $pr $bram_size $uart $host $mb0 $mb1 $mb2 $mb3 $mb4 $mb5  $mb6 $mb7 $mb8 $mb9 $mb10 $mb11 $mb12 $mb13 $mb14 $mb15 $mb16 $mb17 $mb18 $mb19 $mb20 $mb21 $mb22 $mb23 $mb24 $mb25 $mb26 $mb27 $mb28 $mb29 $mb30 $mb31  #Static System
 
 # (Eugene 10/22/2015): echo return code from last command
 rc=$?; 

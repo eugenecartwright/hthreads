@@ -1,5 +1,6 @@
 ##############################################
 # Project settings
+set part [lindex $argv 0]
 
 # Create a project
 open_project	-reset resetgen_prj
@@ -19,8 +20,8 @@ open_solution -reset solution1
 # Specify a Xilinx device and clock period
 # - Do not specify a clock uncertainty (margin)
 # - Let the  margin to default to 12.5% of clock period
-set_part  {xc7vx485tffg1761-2}  
-    
+#set_part  {xc7vx485tffg1761-2}  
+set_part $part   
 create_clock -period 10
 #set_clock_uncertainty 1.25
 

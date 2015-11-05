@@ -22,21 +22,6 @@ create_bd_cell -type ip -vlnv xilinx.com:ip:fifo_generator:12.0 $slave/fifo_gene
 set acc_type [lindex $slaves [expr $j * $C + $i] 6]
 create_bd_cell -type ip -vlnv xilinx.com:hls:$acc_type:1.0 $slave/acc_0
 
-if {0} \
-{
-   if {$i == 0} {
-       create_bd_cell -type ip -vlnv xilinx.com:hls:vectoradd:1.0 $slave/acc_0
-   } elseif {$i == 1} {
-       create_bd_cell -type ip -vlnv xilinx.com:hls:vectormul:1.0 $slave/acc_0
-   } elseif {$i == 2} {
-       create_bd_cell -type ip -vlnv user.org:user:hw_acc_vector:1.0 $slave/acc_0
-   } elseif {$i == 3} {
-       create_bd_cell -type ip -vlnv user.org:user:hw_acc_bubblesort:1.0 $slave/acc_0
-    } elseif {$i == 4} {
-       create_bd_cell -type ip -vlnv user.org:user:hw_acc_quicksort:1.0 $slave/acc_0     
-       
-   }    
-}
 
 
 create_bd_cell -type ip -vlnv xilinx.com:ip:axi_bram_ctrl:4.0 $slave/axi_bram_ctrl_a

@@ -41,22 +41,23 @@
 set N             [lindex $argv 0]   
 set C             [lindex $argv 1]   
 set board         [lindex $argv 2]
-set name          [lindex $argv 3]
-set PR            [lindex $argv 4]
-set bram_size     [lindex $argv 5]
-set uartBaud_rate [lindex $argv 6]
-set uartBits      [lindex $argv 7]
-set uartParity    [lindex $argv 8]
-set hostBS     [lindex $argv 9]
-set hostMul    [lindex $argv 10]
-set hostDiv    [lindex $argv 11]
-set hostFPU    [lindex $argv 12]
-set hostPCMP   [lindex $argv 13]
-set hostICache [lindex $argv 14]
+set part          [lindex $argv 3]
+set name          [lindex $argv 4]
+set PR            [lindex $argv 5]
+set bram_size     [lindex $argv 6]
+set uartBaud_rate [lindex $argv 7]
+set uartBits      [lindex $argv 8]
+set uartParity    [lindex $argv 9]
+set hostBS     [lindex $argv 10]
+set hostMul    [lindex $argv 11]
+set hostDiv    [lindex $argv 12]
+set hostFPU    [lindex $argv 13]
+set hostPCMP   [lindex $argv 14]
+set hostICache [lindex $argv 15]
 
 set slaves {}
 for {set i 0} {$i< $N*$C} {incr i} {
-    set fields [split [lindex $argv [expr $i+15 ]] "-" ]
+    set fields [split [lindex $argv [expr $i+16 ]] "-" ]
     lappend slaves $fields
 }
 
@@ -65,23 +66,23 @@ set node hemps_smp
 
 set project_dir ../platforms/$name
 
-if {$board == "kc705"} {
-       set part xc7k325tffg900-2
-   } elseif {$board == "ac701"} {
-      set part xc7a200tfbg676-2
-   } elseif {$board == "vc709"} {
-       set part xc7vx690tffg1761-2
-   } elseif {$board == "zc702"} {
-       set part xc7z020clg484-1
-   } elseif {$board == "zc706"} {
-       set part xc7z045ffg900-2  
-   } elseif {$board == "microzed"} {
-       set part xc7z010clg400-1
-   } elseif {$board == "zed"} {
-       set part  xc7z020clg484-1
-   } elseif {$board == "vc707"} {
-       set part xc7vx485tffg1761-2 
-   }    
+#if {$board == "kc705"} {
+#       set part xc7k325tffg900-2
+#   } elseif {$board == "ac701"} {
+#      set part xc7a200tfbg676-2
+#   } elseif {$board == "vc709"} {
+#       set part xc7vx690tffg1761-2
+#   } elseif {$board == "zc702"} {
+#       set part xc7z020clg484-1
+#   } elseif {$board == "zc706"} {
+#       set part xc7z045ffg900-2  
+#   } elseif {$board == "microzed"} {
+#       set part xc7z010clg400-1
+#   } elseif {$board == "zed"} {
+#       set part  xc7z020clg484-1
+#   } elseif {$board == "vc707"} {
+#       set part xc7vx485tffg1761-2 
+#   }    
 
 #Create the project
 create_project design $project_dir -part $part
