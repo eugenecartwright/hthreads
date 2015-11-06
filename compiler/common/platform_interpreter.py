@@ -9,7 +9,7 @@ FAILURE = 1
 
 # List of available (HLS) accelerators. TODO: Update 
 # whenever adding new accelerators OR read from PR directory?
-accelerators = ["crc", "vectoradd", "bubblesort", "matrix_mul", "vectormul"]
+accelerators = ["crc", "vector_add_sub", "bubblesort", "matrix_mul", "vector_mul_divide"]
 
 #------------------------------------------#
 # A function responsible for extracting    #
