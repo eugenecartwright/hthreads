@@ -49,7 +49,7 @@ using namespace std;
 #define MAX_ARRAY_SIZE 4096
 
 
-void matrix_m ( volatile int *cmd, volatile int *resp, int a[MAX_ARRAY_SIZE], int b[MAX_ARRAY_SIZE], int result[MAX_ARRAY_SIZE]  ) {
+void matrix_mul ( volatile int *cmd, volatile int *resp, int a[MAX_ARRAY_SIZE], int b[MAX_ARRAY_SIZE], int result[MAX_ARRAY_SIZE]  ) {
 
 #pragma HLS INTERFACE ap_ctrl_none port=return
 #pragma HLS INTERFACE axis port=cmd

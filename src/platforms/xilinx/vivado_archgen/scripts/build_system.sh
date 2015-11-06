@@ -121,24 +121,35 @@ mv "$1".bk   "$1"
 
 #---------------------------------------------------------------------------------------------------
 # Build all of the hls cores based on the board
+# Author: Eugene Cartwright
+# Date: 11/5/2015
 #---------------------------------------------------------------------------------------------------
+# First, check if HTHREADS_DIR is define
+echo "Checking if variable HTHREADS_DIR is defined..."
+printenv | grep -e "^HTHREADS_DIR="
+rc=$?
+if [[ $rc != 0 ]]; then
+   echo "HTHREADS_DIR is not defined. Please define it by pointing to Hthreads root directory!"
+   exit $rc
+fi
+
 # Determine part here
 part=" "
-if [ $board="kc705" ]; then
+if [ $board == "kc705" ]; then
    part=xc7k325tffg900-2
-elif [ $board="ac701" ]; then
+elif [ $board == "ac701" ]; then
    part=xc7a200tfbg676-2
-elif [ $board="vc709" ]; then
+elif [ $board == "vc709" ]; then
    part=xc7vx690tffg1761-2
-elif [ $board="zc702" ]; then
+elif [ $board == "zc702" ]; then
    part=xc7z020clg484-1
-elif [ $board="zc706" ]; then
+elif [ $board == "zc706" ]; then
    part=xc7z045ffg900-2
-elif [ $board="microzed" ]; then
+elif [ $board == "microzed" ]; then
    part=xc7z010clg400-1
-elif [ $board="zed" ]; then
+elif [ $board == "zed" ]; then
    part=xc7z020clg484-1
-elif [ $board="vc707" ]; then
+elif [ $board == "vc707" ]; then
    part=xc7vx485tffg1761-2
 fi
 
@@ -147,20 +158,21 @@ echo "Determined this part: $part"
    
 # Navigate to hls cores
 pushd .  # save current directory
-cd ../../../../../src/hardware/MyRepository/pcores/vivado_cores/hls_cores
+cd $HTHREADS_DIR/src/hardware/MyRepository/pcores/vivado_cores/hls_cores
 
 # Go into each directory
 ls -1 | while read d
 do
    # test whether this is a folder
    test -d "$d" || continue # skip
+   
    # Change directory into folder
    echo "Found HLS directory: $d"
    cd $d
 
    # Now run vivado_hls with specific part
    echo "Running command: vivado_hls run_hls.tcl $part"
-   vivado_hls run_hls.tcl $part
+   vivado_hls run_hls.tcl $part $pr 
 
    # Check return code and stop building if necessary
    rc=$?
@@ -169,9 +181,21 @@ do
       exit $rc
    fi
 
-   # Return to previous folder
+   # Return to root HLS core directory
    cd -   
 done
+
+# Find DCP files generated to IP folder only if PR is yes.
+# We only build the IP catalog if PR=no, and both IP catalog
+# and DCP files if PR=yes
+if [ $pr == "y" ]; then
+   find . -maxdepth 1 -name "*.dcp" | while read dcp
+   do
+      # Move dcp file
+      echo "Moving DCP file: $dcp"
+      mv $dcp $HTHREADS_DIR/src/platforms/xilinx/vivado_archgen/pr/acc/
+   done
+fi
 
 # Return back to scripts folder
 popd
