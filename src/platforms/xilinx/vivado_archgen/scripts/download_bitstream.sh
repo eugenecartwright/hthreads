@@ -79,9 +79,9 @@ mystring='#define NUM_AVAILABLE_HETERO_CPUS '
 mystring+=$num_slaves
 if [ "$4" == "y" ]
 then
-mystring+='\n#define PR/'
+mystring+='\n#define PR'
 fi
-mystring='s/#define *NUM_AVAILABLE_HETERO_CPUS.*/'$mystring
+mystring='s/#define *NUM_AVAILABLE_HETERO_CPUS.*/'$mystring'/'
 sed -i "$mystring" ./include/config.h 
 
 

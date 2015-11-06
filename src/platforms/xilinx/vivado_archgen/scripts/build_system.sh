@@ -214,7 +214,7 @@ then
 fi
 
 
-if [ $pr="y" ]
+if [ $pr == "y" ]
 then
    for module in  "${list_acc[@]}"
    do
@@ -230,21 +230,21 @@ then
    done 
    vivado -nolog -nojournal -verbose -mode batch -source ./pr_blank_config.tcl -tclargs $N $C $name    #Blank PR
    wait
+   # (Eugene 10/22/2015): echo return code from last command if failure
+   rc=$?; 
+   if [[ $rc != 0 ]]; 
+   then
+      echo "Vivado PR Failed!!!" 
+      exit $rc; 
+   fi
 fi
 
-# (Eugene 10/22/2015): echo return code from last command if failure
-rc=$?; 
-if [[ $rc != 0 ]]; 
-then
-   echo "Vivado PR Failed!!!" 
-   exit $rc; 
-fi
 
 ##=====================================================================
 ##Generating Headers
 ##=====================================================================
 
-if [ $pr="y" ]
+if [ $pr == "y" ]
 then
    cd ../platforms/$name 
    for module in  "${list_acc[@]}"
