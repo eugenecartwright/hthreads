@@ -25,6 +25,9 @@ Hint poly_bubblesort(void *list_ptr, Huint size )
    return SUCCESS;
 }  
 
+Hint sw_bubblesort(void *list_ptr, Huint size ) {
+  return poly_bubblesort(list_ptr, size);
+} 
 /* ---------------------------------------------- *
  * Software routine for performing sort. Function *
  * simply performs quick-sort.                    *

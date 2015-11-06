@@ -3,6 +3,8 @@
  * Description: Code provided for interaction with the crc core.
  * Also, a software version of crc is provided to do some 
  * comparisons, if desired.
+ * FIXME: Use powers of 2 for size of data, except 4096. Also, 
+ * input data numbers should be divisible by 8.
  * ***************************************************************/
  
 #include <accelerator.h>
@@ -21,12 +23,13 @@ Hint poly_crc (void * list_ptr, Huint size)
    // Start transferring data to BRAM
    if(transfer_dma( (void *) list_ptr, (void *) ACC_BRAMC, size *4))
       return FAILURE;
-   
+
    if (use_accelerator) {
-     int e;
+     int e = 0;
      putfslx( size, 0, FSL_DEFAULT);//send end address
      putfslx( 0, 0, FSL_DEFAULT); //send start address
      getfslx(e, 0, FSL_DEFAULT);
+     if (e != 1) return FAILURE;
    } else {
       // Run crc in software
       result =  (sw_crc((void *) ACC_BRAMC, size));
@@ -73,9 +76,9 @@ Hint gen_crc( Hint input)
 
 Hint sw_crc(void * list_ptr, Huint size) {
     
-    Hint *array = (Hint *) list_ptr;
+    Hint *array;
 
-    for (array = (Hint *) ACC_BRAMA; array < (Hint *) ACC_BRAMA + size; array++) {
+    for (array = (Hint *) list_ptr; array < (Hint *) list_ptr + size; array++) {
         *array = gen_crc(*array);
     }
 

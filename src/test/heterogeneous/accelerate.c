@@ -6,71 +6,86 @@
 #include <hthread.h>
 #include <stdio.h>
 #include <accelerator.h>
+
+// Create on slaves? define it...
 #define HARDWARE_THREAD
+// Dynamically choose which slave? define it...
 //#define DYNAMIC
-#define NUM_TRIALS          (1)
-#define LIST_LENGTH         (10)
-#define DEBUG_DISPATCH
+//#define TUNING
+//#define DEBUG_DISPATCH
 
-#define TUNING
 
-// Define only one at a time please
-#define USER_SORT
+#define NUM_TRIALS          (100)
+
+// For sort
+#define LIST_LENGTH        16
+
+// For crc and vector
+#define ARRAY_SIZE         2048
+// For matrix
+#define MATRIX_SIZE        64
+
+/* Enable/disable tests */
+#define TEST_PR
+//#define USER_SORT
+#define USER_VECTORADD
+#define USER_VECTORSUB
+#define USER_VECTORMUL
+#define USER_VECTORDIV
 //#define USER_CRC
-//#define USER_VECTOR
+//#define USER_MATRIXMUL
 
 //====================================================================================
 // Author: Abazar
-#define G_INPUT_WIDTH   32
-#define G_DIVISOR_WIDTH 4
-#define ARRAY_SIZE      4092
 
 typedef struct {
-    Huint * startAddr;
-    Huint * endAddr;    
+    Hint * startAddr;
+    Hint * endAddr;    
 } Data;
 
-#ifdef USER_VECTOR
 typedef struct {
-	Huint * startAddr1;
-	Huint * endAddr1;
-	Huint * startAddr2;
-	Huint * endAddr2;
-	Huint * startAddr3;
-	Huint * endAddr3;	
+   Hint * dataA;
+   Hint * dataB; 
+   Hint * dataC;  
+   Huint size;  //The size of vector for crc,sort, vectoradd and vectormul. For Matrix Multiply, it's the size of the dimension of the squre matrix.
+}data;
+
+typedef struct {
+	Hint * startAddr1;
+	Hint * endAddr1;
+	Hint * startAddr2;
+	Hint * endAddr2;
+	Hint * startAddr3;
+	Hint * endAddr3;	
 } Data3;
-#endif
+
 //====================================================================================
-#ifdef USER_SORT
 void * sort_thread(void * arg) 
 {
-    // Get size of list
-    unsigned int size = LIST_LENGTH;
-    // Call sort
-    if (sort(arg, (Huint) size))
-        return (void *) FAILURE;
-    else
-        return (void *) SUCCESS;
-}
-#endif
 
-#ifdef USER_CRC
+   // Get size of list
+   unsigned int size = LIST_LENGTH;
+   // Call sort
+   //sw_bubblesort(arg, (Huint) size);
+   //return (void *) SUCCESS;
+   return (void *) (poly_bubblesort(arg, (Huint) size));
+}
+
 void * crc_thread(void * arg) 
 {
-    Data * package = (Data *) arg;
-
     // Get size of list
     unsigned int size = ARRAY_SIZE;
-    
-    // Call sort
-    if (crc((void *) package->startAddr, (Huint) size))
-        return (void *) FAILURE;
-    else
-        return (void *) SUCCESS;
+   
+    // Call crc
+    return (void *) (poly_crc(arg, (Huint) size));
 }
-#endif
 
-#ifdef USER_VECTOR
+void * matrix_multiply_thread(void * arg) 
+{
+	data * package = (data *) arg;
+   return (void *) poly_matrix_mul (package->dataA,  package->dataB, package->dataC, package->size,package->size,package->size);  
+}
+
 void * vector_add_thread(void * arg) 
 {
     Data3 * package = (Data3 *) arg;
@@ -79,295 +94,610 @@ void * vector_add_thread(void * arg)
     unsigned int size = ARRAY_SIZE;
     
     // Call sort
-    if (vector_add((void *) package->startAddr1,(void *) package->startAddr2, (void *) package->startAddr3, (Huint) size))
-        return (void *) FAILURE;
-    else
-        return (void *) SUCCESS;
+    return (void *) (poly_vectoradd((void *) package->startAddr1,(void *) package->startAddr2, (void *) package->startAddr3, (Huint) size));
 }
-#endif
 
+void * vector_sub_thread(void * arg) 
+{
+    Data3 * package = (Data3 *) arg;
+
+    // Get size of list
+    unsigned int size = ARRAY_SIZE;
+    
+    // Call sort
+    return (void *) (poly_vectorsub((void *) package->startAddr1,(void *) package->startAddr2, (void *) package->startAddr3, (Huint) size));
+}
+
+void * vector_multiply_thread(void * arg) 
+{
+    Data3 * package = (Data3 *) arg;
+
+    // Get size of list
+    unsigned int size = ARRAY_SIZE;
+    
+    // Call sort
+    return (void *) (poly_vectormul((void *) package->startAddr1,(void *) package->startAddr2, (void *) package->startAddr3, (Huint) size));
+}
+
+void * vector_divide_thread(void * arg) 
+{
+    Data3 * package = (Data3 *) arg;
+
+    // Get size of list
+    unsigned int size = ARRAY_SIZE;
+    
+    // Call sort
+    return (void *) (poly_vectordiv((void *) package->startAddr1,(void *) package->startAddr2, (void *) package->startAddr3, (Huint) size));
+}
+
+#include <arch/arch.h>
+#include <pr.h>
+#include "pvr.h"
+void * test_PR_thread(void * arg)
+{
+   Hint success = 0, i, trials = (int) arg;
+   unsigned char cpuid;
+   getpvr(0,cpuid);
+   for (i = 0; i < (int) trials; i++) {
+      success = perform_PR(cpuid, CRC);
+      success += perform_PR(cpuid, BUBBLESORT);
+      success += perform_PR(cpuid, VECTOR_ADD_SUB);
+      success += perform_PR(cpuid, VECTOR_MUL_DIVIDE);
+      success += perform_PR(cpuid, MATRIXMUL);
+   
+      #ifndef HETERO_COMPILATION
+      printf("[Trial %d]: Failed\n", i);
+      #endif
+   }
+   return (void *) success;
+}
 
 
 #ifndef HETERO_COMPILATION
 #include "accelerate_prog.h"
 #include <arch/htime.h>
-#endif
 
-#ifdef HETERO_COMPILATION
-int main() { return 0; }
-#else
 int main(){
 
-    printf("HOST: START\n");
-    int i = 0; unsigned int j = 0;
-    int ret[NUM_AVAILABLE_HETERO_CPUS];
-
-    printf("HOST: Creating thread & attribute structures\n");
-    hthread_t * child = (hthread_t *) malloc(sizeof(hthread_t) * NUM_AVAILABLE_HETERO_CPUS);
-    hthread_attr_t * attr = (hthread_attr_t *) malloc(sizeof(hthread_attr_t) * NUM_AVAILABLE_HETERO_CPUS);
-
-    printf("HOST: Setting up data package\n");
-    
-#ifdef USER_SORT
-    int list[NUM_AVAILABLE_HETERO_CPUS][LIST_LENGTH];
-
-    // initialized the list (would be nice for randomness)
-    unsigned int index = 0, h = 0;
-    for (h = 0; h < NUM_AVAILABLE_HETERO_CPUS; h++) {
-        index = 0;
-        for (i = LIST_LENGTH -1; i > -1; i--) {
-            list[h][index++] = i;
-        }
-    }
-
-    printf("&List[0] = 0x%08x\n", (unsigned int) &list[0]);
-    printf("Printing original lists\n");
-    for (h = 0; h < NUM_AVAILABLE_HETERO_CPUS; h++) {
-        printf("List[%d]: ", h);
-        for (i = 0; i < LIST_LENGTH; i++) {
-            printf("..%d", list[h][i]);
-        }
-        printf("\n");
-    }
-#endif
-#ifdef USER_CRC
-    // =======================================================================
-    // CRC setup
-    // Author: Abazar
-    Data input;
-	input.startAddr = (Huint*) malloc(ARRAY_SIZE * sizeof(Huint)); 
-	input.endAddr = input.startAddr + ARRAY_SIZE - 1;
-
-    Huint * ptr;
-    for( ptr = input.startAddr; ptr <= input.endAddr; ptr++ ){*ptr = (rand() % 1000)*8;	}
-    Huint * temp = (Huint*) malloc(ARRAY_SIZE * sizeof(Huint)); 
-    for ( j=0 ; j< ARRAY_SIZE;  j++){  
-        *(temp+j) = gen_crc(*(input.startAddr+j));	
-    }
-#endif
-#ifdef USER_VECTOR
-    // =======================================================================
-    // VECTOR setup
-    // Author: Abazar
-    Huint * ptr;
+   printf("HOST: START\n");
+   int i = 0; unsigned int j = 0, h, k;
+   int ret[NUM_AVAILABLE_HETERO_CPUS];
+   Hint * ptr;
 	Data3 input3[NUM_AVAILABLE_HETERO_CPUS];
-    for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
-        input3[i].startAddr1 = (Huint*) malloc(ARRAY_SIZE * sizeof(Huint)); 	
-        input3[i].endAddr1 = input3[i].startAddr1 + ARRAY_SIZE - 1;
-        input3[i].startAddr2 = (Huint*) malloc(ARRAY_SIZE * sizeof(Huint)); 	
-        input3[i].endAddr2 = input3[i].startAddr2 + ARRAY_SIZE - 1;
-        input3[i].startAddr3 = (Huint*) malloc(ARRAY_SIZE * sizeof(Huint)); 	
-        input3[i].endAddr3 = input3[i].startAddr3 + ARRAY_SIZE - 1;
-        
-        for( ptr = input3[i].startAddr1; ptr <= input3[i].endAddr1; ptr++ ){*ptr = rand() % 1000;	/* printf( " %i \n",*ptr );*/} 
-        for( ptr = input3[i].startAddr2; ptr <= input3[i].endAddr2; ptr++ ){*ptr = rand() % 1000;	/* printf( " %i \n",*ptr );*/}
-    }    
-#endif
 
-    // Set up attributes for a hardware thread
-    printf("HOST: Setting up Attributes\n");
-    for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++)
-    { 
-        hthread_attr_init(&attr[i]);
-        hthread_attr_setdetachstate( &attr[i], HTHREAD_CREATE_JOINABLE);
-    }
-    
+   printf("HOST: Creating thread & attribute structures\n");
+   hthread_t * child = (hthread_t *) malloc(sizeof(hthread_t) * NUM_AVAILABLE_HETERO_CPUS);
+   hthread_attr_t * attr = (hthread_attr_t *) malloc(sizeof(hthread_attr_t) * NUM_AVAILABLE_HETERO_CPUS);
+   assert (child != NULL);
+   assert (attr != NULL);
 
-    // -----------------------------SORT--------------------------//
-#ifdef USER_SORT
-    // Creating threads
-   printf("Creating threads...\n");
-   for (j = 0; j < NUM_TRIALS; j++) 
-   {
-       for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) 
-       {
-#ifndef HARDWARE_THREAD
-           if (thread_create (&child[i],
-                       &attr[i],
-                       sort_thread_FUNC_ID, 
-                       (void *)(&list[i][0]),
-                       SOFTWARE_THREAD,
-                       0)) 
-          {
-               printf("hthread_create error on HW THREAD %d\n", i);
-               while(1);
-           }
-#else
-    #ifdef  DYNAMIC
-           thread_create(
-                   &child[i],
-                   &attr[i],
-                   sort_thread_FUNC_ID, 
-                   (void *)(&list[i][0]),
-                   DYNAMIC_HW,
-                   (Huint) 0);
-    #else
-           thread_create(
-                   &child[i],
-                   &attr[i],
-                   sort_thread_FUNC_ID, 
-                   (void *)(&list[i][0]),
-                   STATIC_HW0 + i,
-                   0);
-    #endif
-#endif
-       }
-#endif
-   
-    // -----------------------------CRC--------------------------//
-#ifdef USER_CRC
-    // Creating threads
-    printf("Creating threads...\n");
-    for (j = 0; j < NUM_TRIALS; j++) 
-    {
-        for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) 
-        {
-#ifndef HARDWARE_THREAD
-            if (thread_create (&child[i],
-                        &attr[i],
-                        crc_thread_FUNC_ID, 
-                        (void *)(&input),
-                        SOFTWARE_THREAD,
-                        0)) 
-            {
-                printf("hthread_create error on HW THREAD %d\n", i);
-                while(1);
-            }
-#else
-    #ifdef  DYNAMIC
-            thread_create(
-                   &child[i],
-                   &attr[i],
-                   crc_thread_FUNC_ID, 
-                   (void *)(&input),
-                   DYNAMIC_HW,
-                   0);
-    #else
-            thread_create(
-                   &child[i],
-                   &attr[i],
-                   crc_thread_FUNC_ID, 
-                   (void *)(&input),
-                   STATIC_HW0 + i,
-                   0);
-    #endif
-#endif
-        
-       }
-#endif
-        // -----------------------------VECTOR--------------------------//
-#ifdef USER_VECTOR
-    // Creating threads
-    printf("Creating threads...\n");
-    for (j = 0; j < NUM_TRIALS; j++) 
-    {
-        for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) 
-        {
-#ifndef HARDWARE_THREAD
-            if (thread_create (&child[i],
-                        &attr[i],
-                        vector_add_thread_FUNC_ID, 
-                        (void *)(&input3[i]),
-                        SOFTWARE_THREAD,
-                        0)) 
-            {
-                printf("hthread_create error on HW THREAD %d\n", i);
-                while(1);
-            }
-#else
-    #ifdef  DYNAMIC
-            thread_create(
-                   &child[i],
-                   &attr[i],
-                   vector_add_thread_FUNC_ID, 
-                   (void *)(&input3[i]),
-                   DYNAMIC_HW,
-                   0);
-    #else
-            thread_create(
-                   &child[i],
-                   &attr[i],
-                   vector_add_thread_FUNC_ID, 
-                   (void *)(&input3[i]),
-                   STATIC_HW0 + i,
-                   0);
-    #endif
-#endif
-        
-       }
-#endif
-        
-       // Joining threads
-       for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) 
-       {
-           // Join on child thread
-           if( hthread_join(child[i], (void *) &ret[i]))
-           {
-               printf("Error joining child thread\n");
-               while(1);
-           }
-           //printf("Thread %02d Result = %d\n",i,ret[i]);
-           printf("Thread %02d Result = 0x%08x\n",i,(unsigned int) ret[i]);
-       }
-       
-	
-#ifdef USER_CRC
-      // For CRC Results
-              
-       Huint passed=0;
-       for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++)
-       {
-           for ( j=0 ; j< ARRAY_SIZE;  j++) { 
-               if ( *(input.startAddr+j)   !=   *(temp+j) )  {
-                   passed=1;
-                }
-           } //the crc'ed of crce'd data sould be 0;
-           if (!passed)
-               printf( "CRC    on microblaze %i , passed\n", i);
-           else
-               printf( "CRC    on microblaze %i , failed\n", i);
-       }
-       free(input.startAddr);
-#endif
-
-#ifdef USER_VECTOR
-       Huint passed=0;
-       //Huint error_count = 0;
-       for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++)
-       {
-           for ( j=0 ; j< ARRAY_SIZE;  j++) {
-               if ( (input3[i].startAddr3[j])   !=   (input3[i].startAddr1[j] + input3[i].startAddr2[j])  )  {
-                   passed=1;
-                   //error_count++;
-                }
-           } //the crc'ed of crce'd data sould be 0;
-           if (!passed)
-               printf( "VECTOR ADD   on microblaze %i , passed\n", i);
-           else
-               printf( "VECTOR ADD   on microblaze %i , failed\n", i);
-           free(input3[i].startAddr1);
-           free(input3[i].startAddr2);
-           free(input3[i].startAddr3);
-       }
-       //printf("Amount of errors = %u\n", error_count);
-       
-#endif
-
-#ifdef USER_SORT 
-       index = 0; h = 0;
-    
-       printf("Now checking the lists\n");
-       for (h = 0; h < NUM_AVAILABLE_HETERO_CPUS; h++) {
-           printf("List[%d]: ", h);
-           for (i = 0; i < LIST_LENGTH; i++) {
-               printf("..%d", list[h][i]);
-           }
-           printf("\n");
-       }
-#endif
-
+#ifdef TEST_PR
+   printf("------------------------------------\n");
+   printf("HOST: Testing PR\n");
+      
+   // Set up attributes for a hardware thread
+   for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) { 
+      hthread_attr_init(&attr[i]);
+      hthread_attr_setdetachstate( &attr[i], HTHREAD_CREATE_JOINABLE);
    }
+
+   // Creating threads
+   for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+      if (thread_create (&child[i], &attr[i],test_PR_thread_FUNC_ID, (void *)(NUM_TRIALS),
+                     #ifndef HARDWARE_THREAD
+                       SOFTWARE_THREAD,
+                     #else
+                       STATIC_HW0 + i,
+                     #endif
+                       0))
+      {
+         printf("hthread_create error on HW THREAD %d\n", i);
+         while(1);
+      }
+   }
+
+   // Joining threads
+   for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+      // Join on child thread
+      if( hthread_join(child[i], (void *) &ret[i])) {
+         printf("Error joining child thread\n");
+         while(1);
+      }
+      if (ret[i] != SUCCESS)
+         printf("Thread %02d Failed:  %d\n",i, ret[i]);
+   }
+   printf("HOST: Done\n");
+#endif
+
+    
+#ifdef USER_SORT
+   int list[NUM_AVAILABLE_HETERO_CPUS][LIST_LENGTH];
+   printf("------------------------------------\n");
+   printf("HOST: Testing SORT\n");
+   // initialized the list 
+   for (j = 0; j < NUM_TRIALS; j++) {
+
+      for (h = 0; h < NUM_AVAILABLE_HETERO_CPUS; h++) {
+         for (i = 0; i < LIST_LENGTH; i++) {
+            list[h][i] = rand() % 1000;
+         }
+      }
+
+      
+      printf("Printing original lists\n");
+      for (h = 0; h < NUM_AVAILABLE_HETERO_CPUS; h++) {
+         printf("List[%d]: ", h);
+         for (i = 0; i < LIST_LENGTH; i++) {
+            printf("..%d", list[h][i]);
+         }
+         printf("\n");
+      }
+      
+
+      // Set up attributes for a hardware thread
+      printf("HOST: Setting up Attributes\n");
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) { 
+         hthread_attr_init(&attr[i]);
+         hthread_attr_setdetachstate( &attr[i], HTHREAD_CREATE_JOINABLE);
+      }
+
+      // Creating threads
+      printf("Creating threads...\n");
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         if (thread_create (&child[i], &attr[i],sort_thread_FUNC_ID, (void *)(&list[i][0]),
+                     #ifndef HARDWARE_THREAD
+                       SOFTWARE_THREAD,
+                     #elif DYNAMIC
+                       DYNAMIC_HW,
+                     #else
+                       STATIC_HW0 + i,
+                     #endif
+                       0)) 
+         {
+            printf("hthread_create error on HW THREAD %d\n", i);
+            while(1);
+         }
+       }
+
+      // Joining threads
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         // Join on child thread
+         if( hthread_join(child[i], (void *) &ret[i])) {
+            printf("Error joining child thread\n");
+            while(1);
+         }
+         //printf("Thread %02d Result = %d\n",i,ret[i]);
+      }
+
+      // Check results
+      //printf("Now checking the lists\n");
+      for (h = 0; h < NUM_AVAILABLE_HETERO_CPUS; h++) {
+         printf("List[%d]: ", h);
+         //for (i = LIST_LENGTH - (LIST_LENGTH-1); i < LIST_LENGTH; i++) {
+         for (i = 0; i < LIST_LENGTH-1; i++) {
+            printf("..%d", list[h][i]);
+            if (list[h][i] > list[h][i+1]) {
+               printf("*");
+               //printf("[TRIAL %d, Slave %d] Sort failed!\n", j, h);
+               //i = LIST_LENGTH;
+            }
+         }
+         printf("\n");
+      }
+   }
+   printf("HOST: Done\n");
+#endif
+
+
+#ifdef USER_CRC
+   printf("------------------------------------\n");
+   printf("HOST: Testing CRC\n");
    
+   Hint * input;
+   Hint * check, index = 0;
+   for (j = 0; j < NUM_TRIALS; j++) {
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         input = (Hint*) malloc(ARRAY_SIZE * sizeof(Hint));
+         check = (Hint *) malloc(ARRAY_SIZE * sizeof(Hint)); 
+         assert(input != NULL);
+         assert(check != NULL);
+
+         // Initializing the data
+         ptr = input;
+         for(index = 0; index < ARRAY_SIZE; index++) {
+            *ptr = (rand() % 1000)*8;	
+            *(check+index) = *ptr;
+            ptr++;
+         }
+     
+         // Generating the CRC of that data
+         if (poly_crc(check, ARRAY_SIZE)) {
+            printf("Host failed to generate CRC check of data\n");
+            while(1);
+         }
+         
+         // Set up attributes for a hardware thread
+         hthread_attr_init(&attr[i]);
+         hthread_attr_setdetachstate( &attr[i], HTHREAD_CREATE_JOINABLE);
+
+
+         // Creating threads
+         if (thread_create (&child[i], &attr[i], crc_thread_FUNC_ID, (void *)input,
+                        #ifndef HARDWARE_THREAD
+                           SOFTWARE_THREAD,
+                        #elif DYNAMIC
+                           DYNAMIC_HW,
+                        #else
+                           STATIC_HW0 + i,
+                        #endif
+                        0)) 
+         {
+            printf("hthread_create error on HW THREAD %d\n", i);
+            while(1);
+         }
+      
+         // Join on child thread
+         int status;
+         status = hthread_join(child[i], (void *) &ret[i]); 
+         if (status) {
+            printf("Error joining child thread: %d\n", status);
+            while(1);
+         }
+         //printf("Thread %02d Result = %d\n",i,ret[i]);
+
+         // For CRC Results
+         for ( h = 0; h < ARRAY_SIZE; h++) {
+            if (*(input+h) != *(check+h) )  {
+               printf("[TRIAL %d, Slave %d] CRC failed!\n", j, i);
+               h = ARRAY_SIZE;
+            }
+         } 
+         // Release memory
+         free(input);
+         free(check);
+      }
+   }
+   printf("HOST: Done\n");
+#endif
+
+#ifdef USER_MATRIXMUL
+   printf("------------------------------------\n");
+   printf("HOST: Testing MatrixMul\n");
+
+   data package[NUM_AVAILABLE_HETERO_CPUS];
+   for (j = 0; j < NUM_TRIALS; j++) {
+   
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         package[i].dataA = (Hint*) malloc(MATRIX_SIZE * sizeof(Hint)); 	
+         package[i].dataB = (Hint*) malloc(MATRIX_SIZE * sizeof(Hint)); 	
+         package[i].dataC = (Hint*) malloc(MATRIX_SIZE * sizeof(Hint)); 	
+         for (k = 0; k < MATRIX_SIZE; k++) {
+            package[i].dataA[k] = (Hint) rand() % 100;
+            package[i].dataB[k] = (Hint) rand() % 100;
+            package[i].dataC[k] = 0;
+         }
+      }
+
+      // Set up attributes for a hardware thread
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) { 
+         hthread_attr_init(&attr[i]);
+         hthread_attr_setdetachstate( &attr[i], HTHREAD_CREATE_JOINABLE);
+      }
+
+      // Creating threads
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         if (thread_create (&child[i], &attr[i], matrix_multiply_thread_FUNC_ID, (void *)(&package[i]),
+                           #ifndef HARDWARE_THREAD
+                              SOFTWARE_THREAD,
+                           #elif DYNAMIC
+                              DYNAMIC_HW,
+                           #else
+                              STATIC_HW0 + i,
+                           #endif
+                           0)) 
+         {
+            printf("hthread_create error on HW THREAD %d\n", i);
+            while(1);
+         }
+      }
+      
+      // Joining threads
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         // Join on child thread
+         if( hthread_join(child[i], (void *) &ret[i])) {
+            printf("Error joining child thread\n");
+            while(1);
+         }
+      }
+      
+      // Check results
+      Hint temp[MATRIX_SIZE][MATRIX_SIZE];
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         poly_matrix_mul(package[i].dataA, package[i].dataB, &temp, MATRIX_SIZE, MATRIX_SIZE, MATRIX_SIZE);
+         int r, c;
+         for (r=0 ; r < MATRIX_SIZE; r++) {
+            for (c=0 ; c < MATRIX_SIZE; c++) {
+               if ( temp[r][c] != package[i].dataC[r*MATRIX_SIZE + c])  {
+                  printf("[TRIAL %d, Slave %d] Matrix Mul failed!\n", j, i);
+                  r = c = MATRIX_SIZE;
+               }
+            }
+         }
+         
+         // Release memory
+         free(package[i].dataA); 
+         free(package[i].dataB); 
+         free(package[i].dataC); 
+      }
+   }
+   printf("HOST: Done\n");
+#endif
+
+#ifdef USER_VECTORSUB
+   printf("------------------------------------\n");
+   printf("HOST: Testing VectorSub\n");
+   
+   for (j = 0; j < NUM_TRIALS; j++) {
+   
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         input3[i].startAddr1 = (Hint*) malloc(ARRAY_SIZE * sizeof(Hint)); 	
+         input3[i].endAddr1 = input3[i].startAddr1 + ARRAY_SIZE - 1;
+         input3[i].startAddr2 = (Hint*) malloc(ARRAY_SIZE * sizeof(Hint)); 	
+         input3[i].endAddr2 = input3[i].startAddr2 + ARRAY_SIZE - 1;
+         input3[i].startAddr3 = (Hint*) malloc(ARRAY_SIZE * sizeof(Hint)); 	
+         input3[i].endAddr3 = input3[i].startAddr3 + ARRAY_SIZE - 1;
+         
+         for( ptr = input3[i].startAddr1; ptr <= input3[i].endAddr1; ptr++ ){*ptr = (Hint) rand() % 1000;	/* printf( " %i \n",*ptr );*/} 
+         for( ptr = input3[i].startAddr2; ptr <= input3[i].endAddr2; ptr++ ){*ptr = (Hint) rand() % 1000;	/* printf( " %i \n",*ptr );*/}
+      }    
+      
+      // Set up attributes for a hardware thread
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) { 
+         hthread_attr_init(&attr[i]);
+         hthread_attr_setdetachstate( &attr[i], HTHREAD_CREATE_JOINABLE);
+      }
+
+      // Creating threads
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         if (thread_create (&child[i], &attr[i], vector_sub_thread_FUNC_ID, (void *)(&input3[i]),
+                           #ifndef HARDWARE_THREAD
+                              SOFTWARE_THREAD,
+                           #elif DYNAMIC
+                              DYNAMIC_HW,
+                           #else
+                              STATIC_HW0 + i,
+                           #endif
+                           0)) 
+         {
+            printf("hthread_create error on HW THREAD %d\n", i);
+            while(1);
+         }
+      }
+      
+      // Joining threads
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         // Join on child thread
+         if( hthread_join(child[i], (void *) &ret[i])) {
+            printf("Error joining child thread\n");
+            while(1);
+         }
+      }
+      
+      // Check results
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         for (h=0 ; h < ARRAY_SIZE; h++) {
+            if ( (input3[i].startAddr3[h]) != (input3[i].startAddr1[h] - input3[i].startAddr2[h]))  {
+               printf("[TRIAL %d, Slave %d] Vector Sub failed!\n", j, i);
+               h = ARRAY_SIZE;
+            }
+         }
+         
+         // Release memory
+         free(input3[i].startAddr1); free(input3[i].startAddr2); free(input3[i].startAddr3);
+      }
+   }
+   printf("HOST: Done\n");
+#endif
+
+#ifdef USER_VECTORADD
+   printf("------------------------------------\n");
+   printf("HOST: Testing VectorAdd\n");
+   
+   for (j = 0; j < NUM_TRIALS; j++) {
+   
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         input3[i].startAddr1 = (Hint*) malloc(ARRAY_SIZE * sizeof(Hint)); 	
+         input3[i].endAddr1 = input3[i].startAddr1 + ARRAY_SIZE - 1;
+         input3[i].startAddr2 = (Hint*) malloc(ARRAY_SIZE * sizeof(Hint)); 	
+         input3[i].endAddr2 = input3[i].startAddr2 + ARRAY_SIZE - 1;
+         input3[i].startAddr3 = (Hint*) malloc(ARRAY_SIZE * sizeof(Hint)); 	
+         input3[i].endAddr3 = input3[i].startAddr3 + ARRAY_SIZE - 1;
+         
+         for( ptr = input3[i].startAddr1; ptr <= input3[i].endAddr1; ptr++ ){*ptr = (Hint) rand() % 1000;	/* printf( " %i \n",*ptr );*/} 
+         for( ptr = input3[i].startAddr2; ptr <= input3[i].endAddr2; ptr++ ){*ptr = (Hint) rand() % 1000;	/* printf( " %i \n",*ptr );*/}
+      }    
+      
+      // Set up attributes for a hardware thread
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) { 
+         hthread_attr_init(&attr[i]);
+         hthread_attr_setdetachstate( &attr[i], HTHREAD_CREATE_JOINABLE);
+      }
+
+      // Creating threads
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         if (thread_create (&child[i], &attr[i], vector_add_thread_FUNC_ID, (void *)(&input3[i]),
+                           #ifndef HARDWARE_THREAD
+                              SOFTWARE_THREAD,
+                           #elif DYNAMIC
+                              DYNAMIC_HW,
+                           #else
+                              STATIC_HW0 + i,
+                           #endif
+                           0)) 
+         {
+            printf("hthread_create error on HW THREAD %d\n", i);
+            while(1);
+         }
+      }
+      
+      // Joining threads
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         // Join on child thread
+         if( hthread_join(child[i], (void *) &ret[i])) {
+            printf("Error joining child thread\n");
+            while(1);
+         }
+      }
+      
+      // Check results
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         for (h=0 ; h < ARRAY_SIZE; h++) {
+            if ( (input3[i].startAddr3[h]) != (input3[i].startAddr1[h] + input3[i].startAddr2[h]))  {
+               printf("[TRIAL %d, Slave %d] Vector Add failed!\n", j, i);
+               h = ARRAY_SIZE;
+            }
+         }
+         
+         // Release memory
+         free(input3[i].startAddr1); free(input3[i].startAddr2); free(input3[i].startAddr3);
+      }
+   }
+   printf("HOST: Done\n");
+#endif
+
+#ifdef USER_VECTORMUL
+   printf("------------------------------------\n");
+   printf("HOST: Testing VectorMultiply\n");
+   
+   for (j = 0; j < NUM_TRIALS; j++) {
+   
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         input3[i].startAddr1 = (Hint*) malloc(ARRAY_SIZE * sizeof(Hint)); 	
+         input3[i].endAddr1 = input3[i].startAddr1 + ARRAY_SIZE - 1;
+         input3[i].startAddr2 = (Hint*) malloc(ARRAY_SIZE * sizeof(Hint)); 	
+         input3[i].endAddr2 = input3[i].startAddr2 + ARRAY_SIZE - 1;
+         input3[i].startAddr3 = (Hint*) malloc(ARRAY_SIZE * sizeof(Hint)); 	
+         input3[i].endAddr3 = input3[i].startAddr3 + ARRAY_SIZE - 1;
+         
+         for( ptr = input3[i].startAddr1; ptr <= input3[i].endAddr1; ptr++ ){*ptr = (Hint) rand() % 1000;	/* printf( " %i \n",*ptr );*/} 
+         for( ptr = input3[i].startAddr2; ptr <= input3[i].endAddr2; ptr++ ){*ptr = (Hint) rand() % 1000;	/* printf( " %i \n",*ptr );*/}
+      }    
+      
+      // Set up attributes for a hardware thread
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) { 
+         hthread_attr_init(&attr[i]);
+         hthread_attr_setdetachstate( &attr[i], HTHREAD_CREATE_JOINABLE);
+      }
+
+      // Creating threads
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         if (thread_create (&child[i], &attr[i], vector_multiply_thread_FUNC_ID, (void *)(&input3[i]),
+                           #ifndef HARDWARE_THREAD
+                              SOFTWARE_THREAD,
+                           #elif DYNAMIC
+                              DYNAMIC_HW,
+                           #else
+                              STATIC_HW0 + i,
+                           #endif
+                           0)) 
+         {
+            printf("hthread_create error on HW THREAD %d\n", i);
+            while(1);
+         }
+      }
+      
+      // Joining threads
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         // Join on child thread
+         if( hthread_join(child[i], (void *) &ret[i])) {
+            printf("Error joining child thread\n");
+            while(1);
+         }
+      }
+      
+      // Check results
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         for (h=0 ; h < ARRAY_SIZE; h++) {
+            if ( (input3[i].startAddr3[h]) != (input3[i].startAddr1[h] * input3[i].startAddr2[h]))  {
+               printf("[TRIAL %d, Slave %d] Vector Add failed!\n", j, i);
+               h = ARRAY_SIZE;
+            }
+         }
+         
+         // Release memory
+         free(input3[i].startAddr1); free(input3[i].startAddr2); free(input3[i].startAddr3);
+      }
+   }
+   printf("HOST: Done\n");
+#endif
+
+#ifdef USER_VECTORDIV
+   printf("------------------------------------\n");
+   printf("HOST: Testing VectorDivide\n");
+   
+   for (j = 0; j < NUM_TRIALS; j++) {
+   
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         input3[i].startAddr1 = (Hint*) malloc(ARRAY_SIZE * sizeof(Hint)); 	
+         input3[i].endAddr1 = input3[i].startAddr1 + ARRAY_SIZE - 1;
+         input3[i].startAddr2 = (Hint*) malloc(ARRAY_SIZE * sizeof(Hint)); 	
+         input3[i].endAddr2 = input3[i].startAddr2 + ARRAY_SIZE - 1;
+         input3[i].startAddr3 = (Hint*) malloc(ARRAY_SIZE * sizeof(Hint)); 	
+         input3[i].endAddr3 = input3[i].startAddr3 + ARRAY_SIZE - 1;
+         
+         for( ptr = input3[i].startAddr1; ptr <= input3[i].endAddr1; ptr++ ){*ptr = (Hint) rand() % 1000;	/* printf( " %i \n",*ptr );*/} 
+         for( ptr = input3[i].startAddr2; ptr <= input3[i].endAddr2; ptr++ ){*ptr = (Hint) (rand() % 1000) + 1;	/* printf( " %i \n",*ptr );*/}
+      }    
+      
+      // Set up attributes for a hardware thread
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) { 
+         hthread_attr_init(&attr[i]);
+         hthread_attr_setdetachstate( &attr[i], HTHREAD_CREATE_JOINABLE);
+      }
+
+      // Creating threads
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         if (thread_create (&child[i], &attr[i], vector_divide_thread_FUNC_ID, (void *)(&input3[i]),
+                           #ifndef HARDWARE_THREAD
+                              SOFTWARE_THREAD,
+                           #elif DYNAMIC
+                              DYNAMIC_HW,
+                           #else
+                              STATIC_HW0 + i,
+                           #endif
+                           0)) 
+         {
+            printf("hthread_create error on HW THREAD %d\n", i);
+            while(1);
+         }
+      }
+      
+      // Joining threads
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         // Join on child thread
+         if( hthread_join(child[i], (void *) &ret[i])) {
+            printf("Error joining child thread\n");
+            while(1);
+         }
+      }
+      
+      // Check results
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         for (h=0 ; h < ARRAY_SIZE; h++) {
+            // dividend was generated to be a non-zero number above. Hence, no need to check for / 0
+            if ( (input3[i].startAddr3[h]) != (input3[i].startAddr1[h] / input3[i].startAddr2[h]))  {
+               printf("[TRIAL %d, Slave %d] Vector Add failed!\n", j, i);
+               h = ARRAY_SIZE;
+            }
+         }
+         
+         // Release memory
+         free(input3[i].startAddr1); free(input3[i].startAddr2); free(input3[i].startAddr3);
+      }
+   }
+   printf("HOST: Done\n");
+#endif
+        
    printf("END\n");
    return 0;
 }

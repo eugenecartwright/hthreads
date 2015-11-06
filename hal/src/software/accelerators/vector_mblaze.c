@@ -75,7 +75,7 @@ Hint poly_vectormul (void * a_ptr, void * b_ptr, void * c_ptr, Huint size) {
    return poly_vector(a_ptr,b_ptr, c_ptr, size, 1, VECTOR_MUL_DIVIDE);
 }
 
-Hint poly_vectordivide (void * a_ptr, void * b_ptr, void * c_ptr, Huint size) {
+Hint poly_vectordiv (void * a_ptr, void * b_ptr, void * c_ptr, Huint size) {
    return poly_vector(a_ptr,b_ptr, c_ptr, size, 2, VECTOR_MUL_DIVIDE);
 }
 

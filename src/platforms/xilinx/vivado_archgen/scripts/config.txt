@@ -1,7 +1,7 @@
 No. Groups                   :1
 No. Nodes in each Group      :5
-Board                        :vc707
-Name of the System           :archgen_15
+Board                        :kc705
+Name of the System           :kintex_15
 PR                           :y
 Acc                          :['crc', 'bubblesort', 'vectoradd', 'vectormul', 'matrix_mul']
 BRAM size for Acc            :16k

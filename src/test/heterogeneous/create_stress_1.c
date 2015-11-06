@@ -25,7 +25,7 @@
 #define FINAL_JOIN_ERROR                    8
 #define TEST_FAILED                         9
 #define MALLOC_ERROR                        10
-
+#define DEBUG_DISPATCH
 #ifndef HETERO_COMPILATION
 #define PRINT_ERROR(x)                      printf("%d\n",x); \
                                             printf("END\n"); \
@@ -66,15 +66,12 @@ void * foo3_thread( void * arg) {
 }
 
 
-#ifdef HETERO_COMPILATION
-int main(){ return 0;}
-
-#else
+#ifndef HETERO_COMPILATION
 #include "create_stress_1_prog.h"
 int main() {
     unsigned int i = 0;
 	int retVal;
-    
+
     // Allocate NUM_THREADS threads
     hthread_t * tid = NULL; tid = (hthread_t *) malloc(sizeof(hthread_t) * NUM_THREADS);
     hthread_attr_t * attr = NULL; attr = (hthread_attr_t *) malloc(sizeof(hthread_attr_t) * NUM_AVAILABLE_HETERO_CPUS);
@@ -104,8 +101,8 @@ int main() {
             failed = 1;
             PRINT_ERROR(THREAD_HARDWARE_JOIN_FAILED);
         }
-        // Make sure the return value is equal to base_array[i]
-        if (base_array[i] != ((unsigned int) retVal - HT_CMD_HWTI_COMMAND)) {
+        // Make sure the return value is equal to hwti_array[i]
+        if (hwti_array[i] != ((unsigned int) retVal - HT_CMD_HWTI_COMMAND)) {
             failed = 1;
             PRINT_ERROR(THREAD_HARDWARE_INCORRECT_RETURN);
         }
@@ -183,50 +180,6 @@ int main() {
         }
     }
 
-#ifdef SPLIT_BRAM
-    // Test microblaze_create_DMA, Transfer instructions only
-    for (i =0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
-        // Create threads
-        if (microblaze_create_DMA( &tid[i], &attr[i], foo3_thread_FUNC_ID, (void *) i, 0,0, i) ) {
-            failed = 1;
-            PRINT_ERROR(THREAD_HARDWARE_CREATE_FAILED);
-        }
-    }
-    // Clean up- Join on the threads.
-    for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
-        // If it fails
-	    if (hthread_join(tid[i], (void *) &retVal )) {
-            failed = 1;
-            PRINT_ERROR(FINAL_JOIN_ERROR);
-        }
-        if (retVal != tid[i]) {
-            failed = 1;
-            PRINT_ERROR(THREAD_HARDWARE_INCORRECT_RETURN);
-        }
-    }
-    
-    // Test dynamic_create_smart_DMA, Transfer instructions only
-    for (i =0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
-        // Create threads
-        if (dynamic_create_smart_DMA( &tid[i], &attr[i], foo3_thread_FUNC_ID, (void *) i, 0,0) ) {
-            failed = 1;
-            PRINT_ERROR(THREAD_HARDWARE_CREATE_FAILED);
-        }
-    }
-    // Clean up- Join on the threads.
-    for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
-        // If it fails
-	    if (hthread_join(tid[i], (void *) &retVal )) {
-            failed = 1;
-            PRINT_ERROR(FINAL_JOIN_ERROR);
-        }
-        if (retVal != tid[i]) {
-            failed = 1;
-            PRINT_ERROR(THREAD_HARDWARE_INCORRECT_RETURN);
-        }
-    }
-        
-#endif
     
     if (failed) {
         PRINT_ERROR(TEST_FAILED);

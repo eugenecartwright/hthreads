@@ -9,9 +9,12 @@
 #include <matrix.h>
 #include <htconst.h>
 
-Hint	poly_matrix_mul(int * a, int * b, int * c,  char a_rows, char a_cols ,  char b_rows , char b_cols)
+Hint  poly_matrix_mul (void * a_ptr, void * b_ptr, void * c_ptr, Huint a_rows, Huint a_cols, Huint b_cols)
 {
-   assert( a_cols == b_rows);
+   Hint * a = a_ptr;
+   Hint * b = b_ptr;
+   Hint * c = c_ptr;
+   assert( a_cols == a_rows);
   	char i, j, k=0;
   	int sum= 0;
    for (i=0; i<a_rows; i++){

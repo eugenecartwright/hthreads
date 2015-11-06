@@ -13,6 +13,10 @@ Hint poly_crc(void * list_ptr, Huint size) {
     return SUCCESS;
 }
 
+Hint sw_crc(void * list_ptr, Huint size) {
+   return (poly_crc(list_ptr, size));
+}
+
 
 //====================================================================================
 // Author: Abazar

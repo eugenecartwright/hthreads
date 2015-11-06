@@ -3,6 +3,7 @@
  * Description: Code provided for interaction with the sort core.
  * Also, a software version of sort is provided to do some 
  * comparisons, if desired.
+ * FIXME: Use powers of 2 for size of data, except 4096. 
  * ***************************************************************/
 
 #include <accelerator.h>
@@ -14,6 +15,7 @@
 Hint poly_bubblesort (void * list_ptr, Huint size) 
 {
     
+   Hint result = SUCCESS;
    // Use Accelerator?
    Hbool use_accelerator = poly_init(BUBBLESORT, size);
 
@@ -31,14 +33,14 @@ Hint poly_bubblesort (void * list_ptr, Huint size)
 		getfslx(e, 0, FSL_DEFAULT);
    } else {
       // Run sort in software
-      sw_bubblesort((void *) ACC_BRAMC, size) ;
+      result = sw_bubblesort((void *) ACC_BRAMC, size) ;
    }
 
    // Start transferring data from BRAM
    if(transfer_dma( (void *) ACC_BRAMC, (void *) list_ptr, size *4))
       return FAILURE;
 
-   return SUCCESS;
+   return result;
 }
 
 
@@ -99,7 +101,7 @@ void sw_quicksort(Hint * startPtr, Hint * endPtr ) {
     return;
 }
 
-void sw_bubblesort(void * list_ptr, Huint size) 
+Hint sw_bubblesort(void * list_ptr, Huint size) 
 {
    Hint * startPtr = (Hint *) list_ptr;
    Huint c, d;
@@ -117,5 +119,6 @@ void sw_bubblesort(void * list_ptr, Huint size)
          }
       }
    }
+   return SUCCESS;
 }  
 
