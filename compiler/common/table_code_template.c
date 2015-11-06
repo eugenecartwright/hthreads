@@ -118,10 +118,8 @@ void init_slaves() {
       #endif
    }
    #ifdef PR
-   xil_printf("Initializing PR..\n\r");
    // Set up PR controller
    pr_config_mb();
-   xil_printf("Done..\n\r");
    #endif
    
    // Reset thread create statistical data 

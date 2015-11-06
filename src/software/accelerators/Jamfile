@@ -16,6 +16,7 @@ LOCATE_TARGET = software$(SLASH)accelerators ;
 ########################################################################################
 # Add the user code sources to the Hthreads library
 ########################################################################################
+Hobject matrix.o                        : matrix.c ;
 Hobject sort.o                          : sort.c ;
 Hobject crc.o                           : crc.c ;
 Hobject vector.o                        : vector.c ;
@@ -26,6 +27,7 @@ Hobject acc_common.o                    : acc_common.c ;
 ########################################################################################
 # Add the object files to the hthreads library
 ########################################################################################
+Hlib hthread : matrix.o ;
 Hlib hthread : sort.o ;
 Hlib hthread : crc.o ;
 Hlib hthread : vector.o ;
