@@ -66,27 +66,18 @@ set node hemps_smp
 
 set project_dir ../platforms/$name
 
-#if {$board == "kc705"} {
-#       set part xc7k325tffg900-2
-#   } elseif {$board == "ac701"} {
-#      set part xc7a200tfbg676-2
-#   } elseif {$board == "vc709"} {
-#       set part xc7vx690tffg1761-2
-#   } elseif {$board == "zc702"} {
-#       set part xc7z020clg484-1
-#   } elseif {$board == "zc706"} {
-#       set part xc7z045ffg900-2  
-#   } elseif {$board == "microzed"} {
-#       set part xc7z010clg400-1
-#   } elseif {$board == "zed"} {
-#       set part  xc7z020clg484-1
-#   } elseif {$board == "vc707"} {
-#       set part xc7vx485tffg1761-2 
-#   }    
 
 #Create the project
 create_project design $project_dir -part $part
-set_property board_part xilinx.com:$board:part0:1.0 [current_project] 
+if { $board == "zed"} \
+{
+set_property board_part em.avnet.com:$board:part0:1.3 [current_project] 
+} \
+else \
+{
+#set_property board_part xilinx.com:$board:part0:1.0 [current_project] 
+set_property board_part xilinx.com:$board:part0:1.2 [current_project] 
+}
 
 
 #Add system bd
@@ -97,6 +88,7 @@ create_bd_cell -type ip -vlnv xilinx.com:ip:microblaze:9.5 host
 
 
 #Run block automation for DDR controller + microblaze
+# TODO: Doesn't work with Zedboard - Eugene
 apply_bd_automation -rule xilinx.com:bd_rule:mig_7series -config {Board_Interface "ddr3_sdram" }  [get_bd_cells mig_7series_0] 
 apply_bd_automation -rule xilinx.com:bd_rule:microblaze -config {local_mem "64KB" ecc "None" cache "8KB" debug_module "Debug Only" axi_periph "Enabled" axi_intc "0" clk "/mig_7series_0/ui_clk (100 MHz)" }  [get_bd_cells host]
 set_property -dict [list   CONFIG.C_USE_PCMP_INSTR $hostPCMP    CONFIG.C_USE_BARREL $hostBS  CONFIG.C_USE_DIV $hostDiv CONFIG.C_USE_HW_MUL $hostMul CONFIG.C_USE_FPU $hostFPU       CONFIG.C_PVR {2} CONFIG.C_USE_DCACHE {0} CONFIG.C_CACHE_BYTE_SIZE $hostICache ]  [get_bd_cells host ] 

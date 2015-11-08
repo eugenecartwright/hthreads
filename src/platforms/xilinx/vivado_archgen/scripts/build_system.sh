@@ -137,16 +137,6 @@ fi
 part=" "
 if [ $board == "kc705" ]; then
    part=xc7k325tffg900-2
-elif [ $board == "ac701" ]; then
-   part=xc7a200tfbg676-2
-elif [ $board == "vc709" ]; then
-   part=xc7vx690tffg1761-2
-elif [ $board == "zc702" ]; then
-   part=xc7z020clg484-1
-elif [ $board == "zc706" ]; then
-   part=xc7z045ffg900-2
-elif [ $board == "microzed" ]; then
-   part=xc7z010clg400-1
 elif [ $board == "zed" ]; then
    part=xc7z020clg484-1
 elif [ $board == "vc707" ]; then
@@ -351,5 +341,6 @@ fi
 ##SDK launcning
 ##=====================================================================
 cd ../../scripts/
+rm -f *.log *.jou
 ./sdk_config.sh $N  $C $name $pr
 
