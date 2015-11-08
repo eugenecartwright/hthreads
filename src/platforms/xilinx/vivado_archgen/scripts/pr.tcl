@@ -50,14 +50,8 @@
 #boarddependent 
    if {$board== "vc707"} {
        source  ./vc707.tcl
-   } elseif {$board== "zedborad"} {
-       source ./zedboard.tcl
-   } elseif {$board== "artix7"} {
-      source ./artix7.tcl
-   } elseif {$board== "zynq7"} {
-       source ./zynq7.tcl
-   } elseif {$board== "kintex7"} {
-       source ./kintex7.tcl         
+   } elseif {$board== "kc705"} {
+       source ./kc705.tcl         
    }    
 
 
