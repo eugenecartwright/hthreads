@@ -78,7 +78,7 @@ int main() {
 
    for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
       hthread_join(tid[i], &ret[i]);
-      hthread_time_t * slave_time = (hthread_time_t *) (attr[i].hardware_addr - HT_CMD_HWTI_COMMAND + HT_CMD_VHWTI_EXEC_TIME);
+      hthread_time_t * slave_time = (hthread_time_t *) (attr[i].hardware_addr - HT_CMD_HWTI_COMMAND + HT_CMD_VHWTI_EXEC_TIME_HI);
       printf("Time reported by slave nano kernel #%02d = %f usec\n", i,hthread_time_usec(*slave_time));
    }
 
