@@ -89,16 +89,19 @@ def embed(elf_path, header_file, isa, processor_type):
    # Return these three lists as callee will be
    # responsible for wrapping things up after embedding
    # all of the different ISA in header_file
-   return init_fcn_list, func_list, handle_list
+   return init_fcn_list, func_list, handle_list, symbols
 
 
 # ------------------------------------------------ #
 # This function simply cals 'architecture-nm' to   #
 # obtain sybmol information. What is returned is   #
 # tuples containing each line of STDOUT. The '\n'  #
-# character is stripped for convenience.           #
+# character is stripped for convenience. The       #
+# optional parameter, 'threads_only', directs      #
+# symbol output consisting only of thread symbols  #
+# as opposed to ALL symbols.                       #
 # ------------------------------------------------ #
-def extract_symbol_info(executable, isa):
+def extract_symbol_info(executable, isa, threads_only=True):
    # Check if the executable file exists
    if (os.path.isfile(executable) == False):
        print 'Extract Symbol Information: '+executable+' does not exist!'
@@ -114,29 +117,14 @@ def extract_symbol_info(executable, isa):
    # Split into a list, using delimeter '\n'
    symbols = symbols.split('\n')
 
-   # Return the symbol information
-   return symbols
-        
-# ------------------------------------------------ #
-# Given a list of symbols (and their extra meta-   #
-# data) for a particular ELF image, this function  #
-# inserts the symbol in a formatted C code         #
-# structure directly into a C header file.         #
-# ------------------------------------------------ #
-def insert_function_info(symbols, executable, header, processor_type, intermediate):
-   init_fcn_list = []
-   fcn_name_list = []
-   handle_name_list = []
-  
-   # Open file in append mode, for writing into
-   with open(header,"a") as infile:
-      # Iterate over all symbols
+   # Extract threads from symbols only
+   if (threads_only == True):
+      thread_symbols = []
       for index, line in enumerate(symbols):
          # Clean up both ends of any spaces
          line = line.strip(' ')
          # Replace spaces with exactly one space
-         # Line may have more than 1 consecutive spaces.
-         line = re.sub('\s\s+', ' ', line)
+         line = re.sub('\s+', ' ', line)
          # Split line on spaces
          splitUp = line.split(' ')
          # Fast check to see if the line is worth
@@ -152,7 +140,62 @@ def insert_function_info(symbols, executable, header, processor_type, intermedia
          # Check to see if the symbol type is of interest (text section, no leading underscore)
          if (sym_type == "T"):
             # Run regex to only find threads functions
-            match = re.search('_thread', sym_name)
+            match = re.search('_thread$', sym_name)
+            # If the symbol name does not begin
+            # with "_" and there was a match.
+            if ((sym_name[0] != "_") and (match > -1)):
+               thread_symbols.append(splitUp);
+      return thread_symbols
+
+   # Return the symbol information
+   return symbols
+
+# ------------------------------------------------ #
+# This function is responsible for flagging the    #
+# ELF file for certain co-processor op-codes.      #
+# ------------------------------------------------ #
+def opcode_tagging(symbols, isa):
+
+   # First, I need to copy elf file to binary format
+   #mb-objdump -I elf32-microblaze -O binary ELF_FILE  output_FILE
+   #execute_cmd(elf_copy+' -I '+elf_arch+' -O binary '+elf_path+' '+intermediate)
+   
+   # Next, reverse the bytes if this was Microblaze, it was
+   # compiled in little endian and I find it easier to 
+   # work in big endian
+   #mb-objcopy -I binary -O binary --reverse-bytes=4 output_FILE output_FILE
+
+   # Now you can xxd, seeking to that specific place, with a given length
+   #xxd -c4 -s 0x348 -l 0x18 test_big_endian
+
+   print "Hello"
+        
+# ------------------------------------------------ #
+# Given a list of symbols (and their extra meta-   #
+# data) for a particular ELF image, this function  #
+# inserts the symbol in a formatted C code         #
+# structure directly into a C header file.         #
+# ------------------------------------------------ #
+def insert_function_info(symbols, executable, header, processor_type, intermediate):
+   init_fcn_list = []
+   fcn_name_list = []
+   handle_name_list = []
+   
+    
+   # Open file in append mode, for writing into
+   with open(header,"a") as infile:
+      # Iterate over all symbols
+      for index, line in enumerate(symbols):
+         # Grab the different fields
+         offset      = line[0]
+         sym_length  = line[1]
+         sym_type    = line[2]
+         sym_name    = line[3]
+
+         # Check to see if the symbol type is of interest (text section, no leading underscore)
+         if (sym_type == "T"):
+            # Run regex to only find threads functions
+            match = re.search('_thread$', sym_name)
             # If the symbol name does not begin
             # with "_" and there was a match.
             if ((sym_name[0] != "_") and (match > -1)):

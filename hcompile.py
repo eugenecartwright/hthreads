@@ -334,7 +334,7 @@ def main():
    #  * Compile!                                                                 #
    #-----------------------------------------------------------------------------#
    # For Embedding purposes later
-   SYMBOLS = []   # Everyone is assumed to have same _thread symbols
+   FUNCTION_NAMES = []   # Everyone is assumed to have same _thread symbols
    HANDLE_LIST = {}
    INIT_FUNC_LIST = {}
    INTERMEDIATES = {}
@@ -414,12 +414,14 @@ def main():
          #var = input("Continue: ")         
 
          # Embed this ISA
-         init_fcn_list, func_list, handle_list = \
+         init_fcn_list, func_list, handle_list,symbol_meta_data = \
                hetero_utils.embed(elf_image,HEADER_FILE_PATH,slave_isa,processor['HEADERFILE_ISA'])
+
+         print symbol_meta_data
 
          # Grab the lists and append it to top level lists
          # TODO: Check to make sure func_list match 
-         SYMBOLS = func_list
+         FUNCTION_NAMES = func_list
          HANDLE_LIST[processor['HEADERFILE_ISA']] = handle_list
          INIT_FUNC_LIST[processor['HEADERFILE_ISA']] = init_fcn_list
          INTERMEDIATES[processor['HEADERFILE_ISA']] = processor['HEADERFILE_ISA']+'_intermediate'
@@ -436,8 +438,8 @@ def main():
    execute_cmd("rm -f " + file_to_remove)
 
    # Append Host information to handle, init_function, and intermediate lists
-   # Add function handles for the host (which is just the Symbols minus the '_HANDLE'
-   HANDLE_LIST[host_processor['HEADERFILE_ISA']] = SYMBOLS
+   # Add function handles for the host (which is just the Symbols minus the '_HANDLE')
+   HANDLE_LIST[host_processor['HEADERFILE_ISA']] = FUNCTION_NAMES
    INIT_FUNC_LIST[host_processor['HEADERFILE_ISA']] = []
    INTERMEDIATES[host_processor['HEADERFILE_ISA']] = 'NULL'
    INTERMEDIATES_SIZE[host_processor['HEADERFILE_ISA']] = '0'
@@ -454,9 +456,9 @@ def main():
    # The number of architectures we are targetting 
    f.write("#define MAX_HANDLES_PER_ENTRY\t"+str(len(HEADERFILE_ISAs))+"\n")
    # TODO: Assuming that all of the ISA types had the same number of thread functions
-   f.write("#define MAX_ENTRIES_PER_TABLE\t"+str(len(SYMBOLS))+"\n")
+   f.write("#define MAX_ENTRIES_PER_TABLE\t"+str(len(FUNCTION_NAMES))+"\n")
    f.write("\n// Function IDs:\n")
-   for index, func_id in enumerate(SYMBOLS):
+   for index, func_id in enumerate(FUNCTION_NAMES):
       # Append _FUNC_ID, and write to file
       f.write("#define "+func_id+"_FUNC_ID\t"+str(index)+"\n")
    f.close()
@@ -521,7 +523,7 @@ def main():
          else:
             pass # No init handle func for Host
          # Write code for inserting this symbol into global_thread_table
-         f.write("\tinsert_table_entry(&global_thread_table, "+SYMBOLS[j]+"_FUNC_ID, "+processor_type+\
+         f.write("\tinsert_table_entry(&global_thread_table, "+FUNCTION_NAMES[j]+"_FUNC_ID, "+processor_type+\
                ", (void*)"+handle+", "+temp_intermediate+", " +intermediate_size+");\n")
    f.write("}\n\n")
    f.close()
