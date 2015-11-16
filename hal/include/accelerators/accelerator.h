@@ -22,8 +22,8 @@
 #define NO_ACC             -1
 #define CRC                0
 #define BUBBLESORT         1
-#define VECTOR_ADD_SUB     2
-#define VECTOR_MUL_DIVIDE  3
+#define VECTORADD          2
+#define VECTORMUL          3
 #define MATRIXMUL          4
 
 // -------------------------------------------------------------- //

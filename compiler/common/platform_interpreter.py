@@ -9,7 +9,7 @@ FAILURE = 1
 
 # List of available (HLS) accelerators. TODO: Update 
 # whenever adding new accelerators OR read from PR directory?
-accelerators = ["crc", "vector_add_sub", "bubblesort", "matrix_mul", "vector_mul_divide"]
+accelerators = ["crc", "vectoradd", "bubblesort", "matrix_mul", "vectormul"]
 
 #------------------------------------------#
 # A function responsible for extracting    #
@@ -178,6 +178,7 @@ def get_accelerators(hw_description_path, processors):
      
       # Determine if the module in question is a supported Accelerator
       proposed_accelerator = core.get('MODTYPE')
+      print proposed_accelerator
       is_acc_connected = False
       for index, supported_accelerator in enumerate(accelerators):
          if (proposed_accelerator != supported_accelerator):
