@@ -5,11 +5,11 @@
       <PARAMETER NAME="HWVERSION">
          <OPTION VALUE="9.5" FLAG="-mcpu=v9.5"/>
       </PARAMETER> 
-      <PARAMETER NAME="C_USE_DIV" VALUE="1" OPCODE="010010">
+      <PARAMETER NAME="C_USE_DIV" VALUE="1" OPCODE="010010" STRUCT_ENTRY="idiv">
          <OPTION VALUE="idiv"/>
          <OPTION VALUE="idivu"/>
       </PARAMETER>
-      <PARAMETER NAME="C_USE_FPU" VALUE="1" OPCODE="010110">
+      <PARAMETER NAME="C_USE_FPU" VALUE="1" OPCODE="010110" STRUCT_ENTRY="fpu">
          <OPTION VALUE="fadd"/>
          <OPTION VALUE="frsub"/>
          <OPTION VALUE="fsub"/>
@@ -28,15 +28,15 @@
          <OPTION VALUE="flt"/>
          <OPTION VALUE="fint"/>
       </PARAMETER>
-      <PARAMETER NAME="C_USE_BARREL" VALUE="1" OPCODE="010001">
+      <PARAMETER NAME="C_USE_BARREL" VALUE="1" OPCODE="010001" STRUCT_ENTRY="barrel">
          <OPTION VALUE="bsrl"/>
          <OPTION VALUE="bsra"/>
          <OPTION VALUE="bsll"/>
       </PARAMETER>
-      <PARAMETER NAME="C_USE_HW_MUL" VALUE="1" OPCODE="010000">
+      <PARAMETER NAME="C_USE_HW_MUL" VALUE="1" OPCODE="010000" STRUCT_ENTRY="mul32">
          <OPTION VALUE="mul"/>
       </PARAMETER>
-      <PARAMETER NAME="C_USE_HW_MUL" VALUE="2" OPCODE="010000">
+      <PARAMETER NAME="C_USE_HW_MUL" VALUE="2" OPCODE="010000" STRUCT_ENTRY="mul64">
          <OPTION VALUE="mulh"/>
          <OPTION VALUE="mulhu"/>
          <OPTION VALUE="mulhsu"/>

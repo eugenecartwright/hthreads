@@ -417,7 +417,12 @@ def main():
          init_fcn_list, func_list, handle_list,symbol_meta_data = \
                hetero_utils.embed(elf_image,HEADER_FILE_PATH,slave_isa,processor['HEADERFILE_ISA'])
 
-         print symbol_meta_data
+         symbol_preferred_list = {}
+         for symbol in symbol_meta_data:
+            print hetero_utils.opcode_tagging(symbol, processor, elf_image)
+
+         print symbol_preferred_list
+    
 
          # Grab the lists and append it to top level lists
          # TODO: Check to make sure func_list match 

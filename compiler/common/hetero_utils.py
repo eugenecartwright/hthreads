@@ -6,6 +6,7 @@
 import sys, os, re, commands, pprint, subprocess
 from string import Template
 from execute import *
+import xml.etree.ElementTree as ET
 
 #-----------------------------------------------------------#
 #_______________________Module Variables_____________________
@@ -154,21 +155,67 @@ def extract_symbol_info(executable, isa, threads_only=True):
 # This function is responsible for flagging the    #
 # ELF file for certain co-processor op-codes.      #
 # ------------------------------------------------ #
-def opcode_tagging(symbols, isa):
+def opcode_tagging(symbol, processor, elf_path):
+
+   isa = processor['HTHREADS_ISA'] 
+
+   # Grab appropriate ELF copy tool and architecture
+   elf_copy = objcopy_tool[isa]
+   elf_arch = objcopy_arch[isa]
+   
+   # Grab symbol metadata      
+   offset      = symbol[0]
+   sym_length  = symbol[1]
+   sym_type    = symbol[2]
+   sym_name    = symbol[3]
 
    # First, I need to copy elf file to binary format
    #mb-objdump -I elf32-microblaze -O binary ELF_FILE  output_FILE
-   #execute_cmd(elf_copy+' -I '+elf_arch+' -O binary '+elf_path+' '+intermediate)
+   execute_cmd(elf_copy+' -I '+elf_arch+' -O binary '+elf_path+' _opcode.bin')
    
    # Next, reverse the bytes if this was Microblaze, it was
    # compiled in little endian and I find it easier to 
    # work in big endian
-   #mb-objcopy -I binary -O binary --reverse-bytes=4 output_FILE output_FILE
+   if (isa == 'mblaze'):
+      execute_cmd(elf_copy+' -I binary -O binary --reverse-bytes=4 _opcode.bin _opcode.bin')
+   else:
+      print "Opcode Taggin: Unsupported feature!"
 
    # Now you can xxd, seeking to that specific place, with a given length
-   #xxd -c4 -s 0x348 -l 0x18 test_big_endian
+   execute_cmd("xxd -c4 -s 0x" + offset + " -l 0x" + sym_length + " _opcode.bin | awk '{printf (\"%.2s\\n\", $2)}' > _opcode")
 
-   print "Hello"
+   # Now read in the temporary file, checking for opcodes
+   with open('_opcode', 'r') as infile:
+      lines = infile.readlines()
+  
+   # Parse XML document. TODO: I don't check processor version/hwversion
+   tree = ET.parse('./compiler/'+isa+'/instructions.xml')
+   root = tree.getroot()
+
+   temp_list = {}
+   temp_list[processor['NAME']] = 0
+   for line in lines:
+      # Mask off lower 2 bits
+      opcode = int(line, 16) & 0xFC
+      
+      for core in root.iter('PARAMETER'):
+         # Use parameter name to index to processor's
+         # value for that parameter
+         name = core.get('NAME')
+         value = core.get('VALUE')
+         if (processor[name] == value):
+            target_opcode = core.get('OPCODE')
+            # pad the end with 2 zeros to make it 8 bytes
+            target_opcode+="00"
+            # Compare opcode value with the target opcode
+            if (int(target_opcode,2) == opcode):
+               temp_list[processor['NAME']] += 1
+   
+   # File cleanup
+   execute_cmd("rm -f _opcode") 
+   execute_cmd("rm -f _opcode.bin") 
+   
+   return temp_list
         
 # ------------------------------------------------ #
 # Given a list of symbols (and their extra meta-   #
@@ -277,14 +324,67 @@ def create_hwti_array(base_addr, offset, num_of_processors, header_file):
 # assumed the dictionary has the requested keys.   #
 # ------------------------------------------------ #
 def create_slave_table(processors, header_file):
-   
+  
    with open(header_file,"a") as infile:
-      infile.write("slave_t slave_table[NUM_AVAILABLE_HETERO_CPUS] = {")
+      infile.write("#ifdef PR\n");
+      infile.write("slave_t slave_table[NUM_AVAILABLE_HETERO_CPUS] = {\n")
       for index in xrange(0,len(processors)):
-         infile.write("{" + processors[index]['ACCELERATOR'] + "," + processors[index]['HEADERFILE_ISA'] + "}")
+         infile.write("//" + processors[index]['NAME'] + "\n") 
+         # Get processor configuration (that matches struct thread_profile_t)
+         string = create_processor_configuration_profile(processors[index])
+
+         infile.write("{" + processors[index]['ACCELERATOR'] + "," + processors[index]['HEADERFILE_ISA'] + 
+            ",HWTI_BASEADDR"+ str(index) + ", 1, " + string +"}")
+         if (index  != (len(processors)-1)):
+            infile.write(",")
+         infile.write("\n")
+      infile.write("};\n")
+      
+      infile.write("#else\n");
+
+      infile.write("slave_t slave_table[NUM_AVAILABLE_HETERO_CPUS] = {\n")
+      for index in xrange(0,len(processors)):
+         infile.write("//" + processors[index]['NAME'] + "\n") 
+         # Get processor configuration (that matches struct thread_profile_t)
+         string = create_processor_configuration_profile(processors[index])
+
+         infile.write("{" + processors[index]['ACCELERATOR'] + "," + processors[index]['HEADERFILE_ISA'] + 
+            ",HWTI_BASEADDR"+ str(index) + ", 0, " + string +"}")
          if (index  != (len(processors)-1)):
             infile.write(",")
       
+         infile.write("\n"
+)
       infile.write("};\n")
+      infile.write("#endif\n");
    infile.close()
+
+# ------------------------------------------------ #
+# This function is responsible for creating        #
+# processor configuration data structure.          #
+# ------------------------------------------------ #
+def create_processor_configuration_profile(processor):
+ 
+   isa = processor['HTHREADS_ISA']
+
+   # Parse XML document. TODO: I don't check processor version/hwversion
+   tree = ET.parse('./compiler/'+isa+'/instructions.xml')
+   root = tree.getroot()
+
+   string = "{"
+      
+   for core in root.iter('PARAMETER'):
+      # Use parameter name to index to processor's
+      # value for that parameter
+      name = core.get('NAME')
+      value = core.get('VALUE')
+      if (core.get('STRUCT_ENTRY') != None):
+         if (processor[name] >= value):
+            string+= "1,"
+         else:
+            string+="0,"
+   # Append ratios (init to 0) and closing curly brace
+   string += "0,0,0,0,0}"
+   
+   return string
 

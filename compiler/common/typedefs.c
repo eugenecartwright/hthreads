@@ -8,6 +8,29 @@ typedef struct {
     unsigned char optimal_thread_num;
 } tuning_table_t;
 
+// --------------------------------------------------------- //
+//          Thread/Processor profile structure               //
+// --------------------------------------------------------- //
+//                                                           //
+// Description: The structure below holds information about  //
+// what accelerators the thread uses/processor has.          //
+// --------------------------------------------------------- //
+typedef struct {
+   // Ordering must match 
+   // instruction.xml for now
+   Hbool idiv;
+   Hbool fpu;
+   Hbool barrel;
+   Hbool mul32;
+   Hbool mul64;
+   
+   // Reserved for future use 
+   Hbool fpu_ratio;
+   Hbool mul32_ratio;
+   Hbool mul64_ratio;
+   Hbool idiv_ratio;
+   Hbool barrel_ratio;
+} thread_profile_t;
 
 // --------------------------------------------------------- //
 //                  Slave free/busy table                    //
@@ -27,24 +50,13 @@ typedef struct {
 //                                                           //
 // --------------------------------------------------------- //
 typedef struct {
-    Huint last_used_acc;
-    Huint processor_type;
+    Huint acc;
+    Huint isa;
+    Huint vhwti_address;
+    Hbool pr;
+    thread_profile_t configuration;
 } slave_t;
 
-// --------------------------------------------------------- //
-//                  Thread profile structure                 //
-// --------------------------------------------------------- //
-//                                                           //
-// Description: The structure below holds information about  //
-// what accelerators the thread uses.                        //
-// --------------------------------------------------------- //
-typedef struct {
-    Hbool fpu;
-    Hbool mul32;
-    Hbool mul64;
-    Hbool idiv;
-    Hbool barrel;
-} thread_profile_t;
 
 // ----------------------------------------------------------------- //
 //                  Thread Table Structures                          //

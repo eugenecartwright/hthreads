@@ -102,10 +102,10 @@ void init_slaves() {
    unsigned int i;
    for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) { 
       // Write pointer for last_used_accelerator so slave can update the table
-      _hwti_set_last_accelerator_ptr( (Huint) hwti_array[i], (Huint) &slave_table[i].last_used_acc);
+      _hwti_set_last_accelerator_ptr( (Huint) hwti_array[i], (Huint) &slave_table[i].acc);
       
       // Write which accelerator the slave has in last_used/currently loaded.
-      _hwti_set_last_accelerator((Huint) hwti_array[i], slave_table[i].last_used_acc);
+      _hwti_set_last_accelerator((Huint) hwti_array[i], slave_table[i].acc);
              
       // Write pointer to tuning_table
       _hwti_set_tuning_table_ptr((Huint) hwti_array[i], (Huint) &tuning_table);
@@ -426,7 +426,7 @@ Huint find_best_match(Huint func_id) {
             // have not reached a free slave that ran this same    //
             // function.                                           //
             // ----------------------------------------------------//
-            if (func_2_acc_table[func_id] == slave_table[slave_num].last_used_acc)
+            if (func_2_acc_table[func_id] == slave_table[slave_num].acc)
             {
                 #ifdef DEBUG_DISPATCH
                 printf("We found the best match!\n");
@@ -543,7 +543,7 @@ Huint thread_create(
             ret = software_create(tid, NULL, func_id, arg);
         } else {
             // Grab the function handle according to the processor type.
-            func = lookup_handle(&global_thread_table, func_id, slave_table[slave_num].processor_type);
+            func = lookup_handle(&global_thread_table, func_id, slave_table[slave_num].isa);
             #ifdef DEBUG_DISPATCH
             printf("Creating Hetero Thread (CPU#%d)!\n",slave_num);
             #endif
@@ -600,7 +600,7 @@ Huint thread_create(
             _hwti_set_first_accelerator_ptr( (Huint) hwti_array[slave_num], (Huint) &func_2_acc_table[func_id]);
 
             // Grab the function according to the processor type
-            func = lookup_handle(&global_thread_table, func_id, slave_table[slave_num].processor_type);
+            func = lookup_handle(&global_thread_table, func_id, slave_table[slave_num].isa);
             
             // -------------------------------------------------------------- //
             //         Create the hardware thread using slave num             //
@@ -706,7 +706,7 @@ Huint dynamic_create_smart(
     {
          
         // Create a heterogeneous thread
-        func = lookup_handle(&global_thread_table, func_id, slave_table[found].processor_type);
+        func = lookup_handle(&global_thread_table, func_id, slave_table[found].isa);
         if (func == (void*)TABLE_INIT)
         {
             ret =  TABLE_INIT;
@@ -785,7 +785,7 @@ Huint microblaze_create(
     else
     {
         // Create a heterogeneous thread
-        func = lookup_handle(&global_thread_table, func_id, slave_table[ublaze].processor_type);
+        func = lookup_handle(&global_thread_table, func_id, slave_table[ublaze].isa);
         if (func == (void*)TABLE_INIT)
         {
             ret =  TABLE_INIT;

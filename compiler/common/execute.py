@@ -41,6 +41,8 @@ def execute_cmd(cmd_list, debugging=False, exit_if_error=True):
          print "Executing Command: " + cmd
       try:
          stdout = subprocess.check_output(cmd,stderr=subprocess.STDOUT, shell=True)
+         if debugging:
+            print stdout
          # -------------------------------------#
          # Determine if there were any warnings #
          # -------------------------------------#
