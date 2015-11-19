@@ -4,7 +4,7 @@
 #
 #                           Authors: Jason Agron, Eugene Cartwright
 # *****************************************************************************
-import sys, os, re, commands, subprocess, filecmp
+import sys, os, re, commands, subprocess, filecmp, collections
 from string import Template
 from compiler.common.execute import *
 from compiler.common.platform_interpreter import *
@@ -62,6 +62,9 @@ host_name = "host"
 # V-HWTI addresses
 VHWTI_base = "0xC0000000"
 VHWTI_offset = "0x00010000"
+
+# Number of entries in thread_profile_t minus ratios   
+num_of_profile_entries = 4
 
 #-----------------------------------------------------------------------------#
 #                             Main program                                    #
@@ -339,6 +342,8 @@ def main():
    INIT_FUNC_LIST = {}
    INTERMEDIATES = {}
    INTERMEDIATES_SIZE = {}
+   processor_weights = {} 
+   MASTER_symbol_preferred_list = collections.OrderedDict()
 
    for index, processor in enumerate(PROCESSORS):
       # Embedding list for this processor
@@ -417,12 +422,22 @@ def main():
          init_fcn_list, func_list, handle_list,symbol_meta_data = \
                hetero_utils.embed(elf_image,HEADER_FILE_PATH,slave_isa,processor['HEADERFILE_ISA'])
 
-         symbol_preferred_list = {}
+         # Preferred co-processors for symbols/threads
          for symbol in symbol_meta_data:
-            print hetero_utils.opcode_tagging(symbol, processor, elf_image)
+            temp = hetero_utils.opcode_tagging(symbol, processor, elf_image)
+            symbol_name = symbol[-1]
+            for key in temp:
+               try:
+                  processor_weights[(symbol_name,index)] += temp[key]
+               except KeyError, e:
+                  processor_weights[(symbol_name,index)] = temp[key]
+               # ---- Not sure what I will be using this for yet ----#
+               try:
+                  MASTER_symbol_preferred_list[(symbol_name, key)] |= temp[key]
+               except KeyError, e:
+                  MASTER_symbol_preferred_list[(symbol_name, key)] = temp[key]
+               # ---- ------------------------------------------ ----#
 
-         print symbol_preferred_list
-    
 
          # Grab the lists and append it to top level lists
          # TODO: Check to make sure func_list match 
@@ -435,9 +450,11 @@ def main():
       
       # Found other similar processors
       else:
+         # copy previous processor weights to current processor weights
+         for symbol in FUNCTION_NAMES:
+            processor_weights[(symbol,index)] = processor_weights[(symbol,(index-1))] 
          print "\t\tSkipping..."
             
-
    # Once all slave code has been compiled, remove copied source
    file_to_remove = hetero_build_dir + SRC_FILE
    execute_cmd("rm -f " + file_to_remove)
@@ -462,6 +479,7 @@ def main():
    f.write("#define MAX_HANDLES_PER_ENTRY\t"+str(len(HEADERFILE_ISAs))+"\n")
    # TODO: Assuming that all of the ISA types had the same number of thread functions
    f.write("#define MAX_ENTRIES_PER_TABLE\t"+str(len(FUNCTION_NAMES))+"\n")
+   f.write("#define NUM_OF_THREADS\t"+str(len(FUNCTION_NAMES))+"\n")
    f.write("\n// Function IDs:\n")
    for index, func_id in enumerate(FUNCTION_NAMES):
       # Append _FUNC_ID, and write to file
@@ -496,15 +514,66 @@ def main():
    # Create Slave/Resource Table with known data #
    #---------------------------------------------#
    PROCESSORS = get_accelerators(hw_file_path, PROCESSORS)
-   # print PROCESSORS
-   hetero_utils.create_slave_table(PROCESSORS, HEADER_FILE_PATH)
+   
+   COPROCESSORS = hetero_utils.create_slave_table(PROCESSORS, HEADER_FILE_PATH)
+   
+   #-------------------------------------------------#
+   # Create Thread profile table, and preferred list #
+   #-------------------------------------------------#
+   thread_preferred_list = {} 
+   with open(HEADER_FILE_PATH,"a") as infile:
+      infile.write("// Thread function's preferred list based on coprocessors \n")
+      infile.write("// only (sorted by most preferred to least)\n")
+      infile.write("Huint thread_affinity[NUM_OF_THREADS][NUM_AVAILABLE_HETERO_CPUS] = {\n")
+      for i, function_name in enumerate(FUNCTION_NAMES):
+         if (i != 0):
+            infile.write(",\n")
+         infile.write("// " + function_name + "\n")
+         infile.write("{")
+         # Create dictionary for this function_name only
+         temp = {}
+         for index, processor in enumerate(PROCESSORS):
+            temp[index] = processor_weights[function_name,index]
+
+         import operator
+         # Now sort processors based on weights in descending order. Tuples are
+         # arranged as (processor #, weight)
+         sorted_list = sorted(temp.items(), key=operator.itemgetter(1), reverse=True)
+
+         for index, value in enumerate(sorted_list):
+            if (index != 0):
+               infile.write(",")
+            infile.write(str(sorted_list[index][0]))
+         infile.write("}")
+      infile.write("\n};\n")
+
+            
+   with open(HEADER_FILE_PATH,"a") as infile:
+      infile.write("thread_profile_t thread_profile[NUM_OF_THREADS] = {\n");
+      for index, key_tuple in enumerate(MASTER_symbol_preferred_list):
+         if (index % num_of_profile_entries == 0):
+            infile.write("// " + key_tuple[0] + "\n")
+            infile.write("{")
+         infile.write(str(MASTER_symbol_preferred_list[key_tuple]))
+         if ((index+1) % num_of_profile_entries == 0):
+            # Add in ratios and close
+            infile.write(",0,0,0,0},\n")
+         else:
+            infile.write(",")
+   
+      infile.write("};\n\n")
+   
+   # ------------------------------------------------------------ #
+   # Now create thread preferred list on configured co-processors #
+   # ------------------------------------------------------------ #
+   
 
    #------------------------------------#
    # Now write table_code_template_file #
    #------------------------------------#
    subprocess.check_call('cat '+table_code_template_file+' >> '+HEADER_FILE_PATH, shell=True)
-   
 
+   
    # ----------------------------------#
    # Insert "load_my_table()" function #
    # ----------------------------------#
@@ -527,6 +596,10 @@ def main():
             temp_intermediate = "(void *) &" + intermediate
          else:
             pass # No init handle func for Host
+         # --------------------------------------------------------------- #
+         # Generate preferred_processor list for this handle/symbol/thread #
+         # --------------------------------------------------------------- #
+         
          # Write code for inserting this symbol into global_thread_table
          f.write("\tinsert_table_entry(&global_thread_table, "+FUNCTION_NAMES[j]+"_FUNC_ID, "+processor_type+\
                ", (void*)"+handle+", "+temp_intermediate+", " +intermediate_size+");\n")

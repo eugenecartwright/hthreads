@@ -2,9 +2,6 @@
    <!-- Processor ISA is in Hthreads naming convention ('mblaze' as opposed to 'microblaze') -->
    <PROCESSOR HTHREADS_ISA="mblaze" HWVERSION="9.5">
       <DOCUMENT SOURCE="http://www.xilinx.com/support/documentation/sw_manuals/xilinx2015_1/ug984-vivado-microblaze-ref.pdf"/>
-      <PARAMETER NAME="HWVERSION">
-         <OPTION VALUE="9.5" FLAG="-mcpu=v9.5"/>
-      </PARAMETER> 
       <PARAMETER NAME="C_USE_DIV" VALUE="1" OPCODE="010010" STRUCT_ENTRY="idiv">
          <OPTION VALUE="idiv"/>
          <OPTION VALUE="idivu"/>
@@ -22,8 +19,7 @@
          <OPTION VALUE="fcmp.ne"/>
          <OPTION VALUE="fcmp.ge"/>
          <OPTION VALUE="fcmp.un"/>
-      </PARAMETER>
-      <PARAMETER NAME="C_USE_FPU" VALUE="2" OPCODE="010110">
+         <!-- C_USE_FPU = 2 -->
          <OPTION VALUE="fsqrt"/>
          <OPTION VALUE="flt"/>
          <OPTION VALUE="fint"/>
@@ -33,10 +29,9 @@
          <OPTION VALUE="bsra"/>
          <OPTION VALUE="bsll"/>
       </PARAMETER>
-      <PARAMETER NAME="C_USE_HW_MUL" VALUE="1" OPCODE="010000" STRUCT_ENTRY="mul32">
+      <PARAMETER NAME="C_USE_HW_MUL" VALUE="1" OPCODE="010000" STRUCT_ENTRY="mul">
          <OPTION VALUE="mul"/>
-      </PARAMETER>
-      <PARAMETER NAME="C_USE_HW_MUL" VALUE="2" OPCODE="010000" STRUCT_ENTRY="mul64">
+         <!-- C_USE_HW_MUL = 2 -->
          <OPTION VALUE="mulh"/>
          <OPTION VALUE="mulhu"/>
          <OPTION VALUE="mulhsu"/>

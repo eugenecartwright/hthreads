@@ -163,9 +163,9 @@ void init_thread_table (thread_table_t * tb)
         tb->table[e].id = (Huint) TABLE_INIT;
         for (t = 0; t < MAX_HANDLES_PER_ENTRY; t++)
         {
-            tb->table[e].handles[t] = (void*)TABLE_INIT;
-            tb->table[e].intermediate_array[t] = (void*)TABLE_INIT;
-            tb->table[e].size[t] = 0;
+            tb->table[e].threads[t] = (void*)TABLE_INIT;
+            tb->table[e].binary[t] = (void*)TABLE_INIT;
+            tb->table[e].binary_size[t] = 0;
         }
     }
 }
@@ -181,8 +181,8 @@ void insert_table_entry (
         thread_table_t * t, 
         Huint func_id, 
         Huint type, 
-        void * handle, 
-        void * intermediate_Array, 
+        void * thread_handle, 
+        void * binary, 
         Huint intermediate_size)
 {
     // Get a pointer to the current entry
@@ -192,27 +192,27 @@ void insert_table_entry (
     // * Always write function ID (overwrite doesn't matter)
     // * Add in handle to appropriate index
     e->id = func_id;
-    e->handles[type] = handle;
-    e->intermediate_array[type] = intermediate_Array;
-    e->size[type] = intermediate_size;
+    e->threads[type] = thread_handle;
+    e->binary[type] = binary;
+    e->binary_size[type] = intermediate_size;
 }
 
-// Lookup the handle for a given func_id and type/processor architecture
-void * lookup_handle (thread_table_t * t, Huint func_id, Huint type)
+// Lookup the thread handle/ptr for a given func_id and type/processor architecture
+void * lookup_thread (thread_table_t * t, Huint func_id, Huint type)
 {
-    return t->table[func_id].handles[type];
+    return t->table[func_id].threads[type];
 }
 
-// Lookup the intermediate_array for a given func_id and type/processor architecture
-void * lookup_intermediate (thread_table_t * t, Huint func_id, Huint type)
+// Lookup the binary for a given func_id and type/processor architecture
+void * lookup_binary (thread_table_t * t, Huint func_id, Huint type)
 {
-    return t->table[func_id].intermediate_array[type];
+    return t->table[func_id].binary[type];
 }
 
-// Lookup the intermediate_size for a given func_id
+// Lookup the binary_size for a given func_id
 Huint lookup_size (thread_table_t * t, Huint func_id, Huint type)
 {
-    return t->table[func_id].size[type];
+    return t->table[func_id].binary_size[type];
 }
 
 // Lookup the processor type of a given handle
@@ -226,7 +226,7 @@ Huint lookup_type (thread_table_t * tb, void * handle)
     {
         for (t = 0; t < MAX_HANDLES_PER_ENTRY; t++)
         {
-            if (handle == tb->table[e].handles[t])
+            if (handle == tb->table[e].threads[t])
             {
                 found = 1;
                 found_type = t;
@@ -363,7 +363,7 @@ Huint software_create (
     #endif
 
     // Create a native/software thread on the host processor
-    func = lookup_handle(&global_thread_table, func_id, TYPE_HOST);
+    func = lookup_thread(&global_thread_table, func_id, TYPE_HOST);
   
     // Increment thread counter
     thread_counter++; 
@@ -543,7 +543,7 @@ Huint thread_create(
             ret = software_create(tid, NULL, func_id, arg);
         } else {
             // Grab the function handle according to the processor type.
-            func = lookup_handle(&global_thread_table, func_id, slave_table[slave_num].isa);
+            func = lookup_thread(&global_thread_table, func_id, slave_table[slave_num].isa);
             #ifdef DEBUG_DISPATCH
             printf("Creating Hetero Thread (CPU#%d)!\n",slave_num);
             #endif
@@ -600,7 +600,7 @@ Huint thread_create(
             _hwti_set_first_accelerator_ptr( (Huint) hwti_array[slave_num], (Huint) &func_2_acc_table[func_id]);
 
             // Grab the function according to the processor type
-            func = lookup_handle(&global_thread_table, func_id, slave_table[slave_num].isa);
+            func = lookup_thread(&global_thread_table, func_id, slave_table[slave_num].isa);
             
             // -------------------------------------------------------------- //
             //         Create the hardware thread using slave num             //
@@ -685,7 +685,7 @@ Huint dynamic_create_smart(
     if (found == NOT_FOUND)
     {
         // Create a native/software thread on MB
-        func = lookup_handle(&global_thread_table, func_id, TYPE_HOST);
+        func = lookup_thread(&global_thread_table, func_id, TYPE_HOST);
         if (func == (void*)TABLE_INIT)
         {
             ret =  TABLE_INIT;
@@ -706,7 +706,7 @@ Huint dynamic_create_smart(
     {
          
         // Create a heterogeneous thread
-        func = lookup_handle(&global_thread_table, func_id, slave_table[found].isa);
+        func = lookup_thread(&global_thread_table, func_id, slave_table[found].isa);
         if (func == (void*)TABLE_INIT)
         {
             ret =  TABLE_INIT;
@@ -764,7 +764,7 @@ Huint microblaze_create(
     {
         // Create a native thread
         printf("Microblaze %d is either not Free or does not exist!\n",ublaze);
-        func = lookup_handle(&global_thread_table, func_id, TYPE_HOST);
+        func = lookup_thread(&global_thread_table, func_id, TYPE_HOST);
         if (func == (void*)TABLE_INIT)
         {
             ret =  TABLE_INIT;
@@ -785,7 +785,7 @@ Huint microblaze_create(
     else
     {
         // Create a heterogeneous thread
-        func = lookup_handle(&global_thread_table, func_id, slave_table[ublaze].isa);
+        func = lookup_thread(&global_thread_table, func_id, slave_table[ublaze].isa);
         if (func == (void*)TABLE_INIT)
         {
             ret =  TABLE_INIT;

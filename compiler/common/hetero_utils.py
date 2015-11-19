@@ -3,7 +3,7 @@
 # This will be a module.... 
 # ------------------------------------------------------------------ #
 
-import sys, os, re, commands, pprint, subprocess
+import sys, os, re, commands, pprint, subprocess, collections
 from string import Template
 from execute import *
 import xml.etree.ElementTree as ET
@@ -184,6 +184,8 @@ def opcode_tagging(symbol, processor, elf_path):
    # Now you can xxd, seeking to that specific place, with a given length
    execute_cmd("xxd -c4 -s 0x" + offset + " -l 0x" + sym_length + " _opcode.bin | awk '{printf (\"%.2s\\n\", $2)}' > _opcode")
 
+   # ------------------------------------------------------------------------------------------------------------------------- #
+
    # Now read in the temporary file, checking for opcodes
    with open('_opcode', 'r') as infile:
       lines = infile.readlines()
@@ -191,9 +193,12 @@ def opcode_tagging(symbol, processor, elf_path):
    # Parse XML document. TODO: I don't check processor version/hwversion
    tree = ET.parse('./compiler/'+isa+'/instructions.xml')
    root = tree.getroot()
+   # Initialize an empty dictionary   
+   temp_list = collections.OrderedDict()
+   for core in root.iter('PARAMETER'):
+      struct_entry = core.get('STRUCT_ENTRY')
+      temp_list[struct_entry] = 0
 
-   temp_list = {}
-   temp_list[processor['NAME']] = 0
    for line in lines:
       # Mask off lower 2 bits
       opcode = int(line, 16) & 0xFC
@@ -203,13 +208,14 @@ def opcode_tagging(symbol, processor, elf_path):
          # value for that parameter
          name = core.get('NAME')
          value = core.get('VALUE')
-         if (processor[name] == value):
+         struct_entry = core.get('STRUCT_ENTRY')
+         if (processor[name] >= value):
             target_opcode = core.get('OPCODE')
             # pad the end with 2 zeros to make it 8 bytes
             target_opcode+="00"
             # Compare opcode value with the target opcode
             if (int(target_opcode,2) == opcode):
-               temp_list[processor['NAME']] += 1
+               temp_list[struct_entry] = 1
    
    # File cleanup
    execute_cmd("rm -f _opcode") 
@@ -324,7 +330,8 @@ def create_hwti_array(base_addr, offset, num_of_processors, header_file):
 # assumed the dictionary has the requested keys.   #
 # ------------------------------------------------ #
 def create_slave_table(processors, header_file):
-  
+
+   processor_configuration = {}  
    with open(header_file,"a") as infile:
       infile.write("#ifdef PR\n");
       infile.write("slave_t slave_table[NUM_AVAILABLE_HETERO_CPUS] = {\n")
@@ -332,6 +339,7 @@ def create_slave_table(processors, header_file):
          infile.write("//" + processors[index]['NAME'] + "\n") 
          # Get processor configuration (that matches struct thread_profile_t)
          string = create_processor_configuration_profile(processors[index])
+         processor_configuration[index] = string
 
          infile.write("{" + processors[index]['ACCELERATOR'] + "," + processors[index]['HEADERFILE_ISA'] + 
             ",HWTI_BASEADDR"+ str(index) + ", 1, " + string +"}")
@@ -353,11 +361,12 @@ def create_slave_table(processors, header_file):
          if (index  != (len(processors)-1)):
             infile.write(",")
       
-         infile.write("\n"
-)
+         infile.write("\n")
       infile.write("};\n")
-      infile.write("#endif\n");
+      infile.write("#endif\n\n");
    infile.close()
+   
+   return processor_configuration
 
 # ------------------------------------------------ #
 # This function is responsible for creating        #
@@ -384,7 +393,7 @@ def create_processor_configuration_profile(processor):
          else:
             string+="0,"
    # Append ratios (init to 0) and closing curly brace
-   string += "0,0,0,0,0}"
+   string += "0,0,0,0}"
    
    return string
 

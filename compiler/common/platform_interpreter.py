@@ -178,7 +178,7 @@ def get_accelerators(hw_description_path, processors):
      
       # Determine if the module in question is a supported Accelerator
       proposed_accelerator = core.get('MODTYPE')
-      print proposed_accelerator
+     
       is_acc_connected = False
       for index, supported_accelerator in enumerate(accelerators):
          if (proposed_accelerator != supported_accelerator):

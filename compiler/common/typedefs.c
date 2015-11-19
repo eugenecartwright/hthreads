@@ -21,15 +21,13 @@ typedef struct {
    Hbool idiv;
    Hbool fpu;
    Hbool barrel;
-   Hbool mul32;
-   Hbool mul64;
+   Hbool mul;
    
    // Reserved for future use 
-   Hbool fpu_ratio;
-   Hbool mul32_ratio;
-   Hbool mul64_ratio;
    Hbool idiv_ratio;
+   Hbool fpu_ratio;
    Hbool barrel_ratio;
+   Hbool mul_ratio;
 } thread_profile_t;
 
 // --------------------------------------------------------- //
@@ -68,13 +66,15 @@ typedef struct {
 //      size - size of ELF images                                    //
 // ----------------------------------------------------------------- //
 typedef struct {
-    Huint id;
-    void * handles[MAX_HANDLES_PER_ENTRY];
-    void * intermediate_array[MAX_HANDLES_PER_ENTRY];
-    Huint size[MAX_HANDLES_PER_ENTRY];
+   Huint id;
+   void * threads[MAX_HANDLES_PER_ENTRY];
+   void * binary[MAX_HANDLES_PER_ENTRY];
+   Huint binary_size[MAX_HANDLES_PER_ENTRY];
+   thread_profile_t configuration;
+   Huint preferred_processors[NUM_AVAILABLE_HETERO_CPUS];
 } thread_entry_t;
 
 // Table type/processor architecture
 typedef struct {
-    thread_entry_t table[MAX_ENTRIES_PER_TABLE];    
+   thread_entry_t table[MAX_ENTRIES_PER_TABLE];    
 } thread_table_t;
