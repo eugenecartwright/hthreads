@@ -72,8 +72,12 @@ The Hthreads system depends on the following tools during the build process.
         system. This is a commonly used code documentation tool and
         it not included with the distribution.
 
+The following system variables must be defined
+   * HTHREADS_DIR = Directory should point to Hthreads root folder.
+
 The Hthreads system is only tested on the following target systems:
    * Xilinx Virtex-7 VC707
+   * Xiling Kintex-7 KC705
 
 Older versions of Hthreads (Pre-Vivado implementation) can be found in
 the repository. A list of supported systems under Xilinx EDK tools are:
