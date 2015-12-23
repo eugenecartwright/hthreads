@@ -44,7 +44,7 @@ void * pi_thread_no_fpu (void * arg);
 #include <stdio.h>
 #include <stdlib.h>
 #include <util/rops.h>
-#include "auto_pi_prog.h"
+#include "pi_prog.h"
 #endif
 
 typedef struct
