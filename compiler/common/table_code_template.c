@@ -393,6 +393,91 @@ Huint get_num_free_slaves() {
 // function ID. This function was written in a generic way to allow
 // it to be called for Static accelerator based systems, PR-configured
 // systems, or non-accelerator, non-PR based systems.
+// TODO: What if nothing is available?
+Huint find_best_match(Huint func_id) {
+    
+    //Hint possible_target = MAGIC_NUMBER;
+    Huint slave_num, index;
+
+   // For all slaves.
+   for (index = 0; index < NUM_AVAILABLE_HETERO_CPUS; index++) {
+
+#ifdef OPCODE_FLAGGING
+      // Get most preferred slave according to co-processor support  
+      slave_num = thread_affinity[func_id][index];
+#else
+      slave_num = index;
+#endif
+
+      // Is this slave available?
+      if (_hwti_get_utilized_flag(hwti_array[slave_num]) == FLAG_HWTI_FREE) {
+         return slave_num;
+      }
+   }
+   
+   return 0;
+     
+#if 0 
+      // If there is a free slave
+        if (_hwti_get_utilized_flag(hwti_array[slave_num]) == FLAG_HWTI_FREE) {
+          
+            // If we still don't know what accelerator type associated with
+            // this function id, break as soon as possible. This is similar to
+            // breaking out of this loop as soon as possible for systems that 
+            // do not have an accelerator or PR capabilities.
+            if (func_2_acc_table[func_id] == MAGIC_NUMBER) {
+                #ifdef DEBUG_DISPATCH
+                printf("No known accelerator type matched with Func ID %d\n", func_id);
+                #endif
+                // Increment possible slaves_num
+                possible_slaves_num++;
+                return slave_num;
+            }
+            
+            // ----------------------------------------------------//
+            // For this function, does the first_accelerator_used  //
+            // match what is currently PR'ed at this slave? If so, //
+            // schedule it here! This is the best-case scenario.   //
+            // If the first accelerator used is NULL, this means   //
+            // the function did not use any accelerators, or we    //
+            // have not reached a free slave that ran this same    //
+            // function.                                           //
+            // ----------------------------------------------------//
+            if (func_2_acc_table[func_id] == slave_table[slave_num].acc)
+            {
+                #ifdef DEBUG_DISPATCH
+                printf("We found the best match!\n");
+                #endif
+                // Increment best_slaves_num
+                best_slaves_num++;
+                // schedule on this slave
+                return slave_num;
+            
+            // else if possible_target has not been updated
+            // to reflect a possible target.
+            } else if (possible_target == MAGIC_NUMBER)
+                possible_target = slave_num;
+
+        } // End check for if this slave (slave_num) is free
+    }
+    // If we did not find any free slaves
+    if (possible_target == MAGIC_NUMBER)
+        no_free_slaves_num++;
+    else
+        possible_slaves_num++;
+
+    return possible_target;
+#endif
+
+}
+
+#if 0
+// Function: find_best_match()
+// Description: This function loops through all of the free
+// slave processors to determine the best match for a particular
+// function ID. This function was written in a generic way to allow
+// it to be called for Static accelerator based systems, PR-configured
+// systems, or non-accelerator, non-PR based systems.
 Huint find_best_match(Huint func_id) {
     
     Hint possible_target = MAGIC_NUMBER;
@@ -451,8 +536,9 @@ Huint find_best_match(Huint func_id) {
 
     return possible_target;
 }
+#endif
 
-#define SW_THREAD_COUNT 6
+//#define SW_THREAD_COUNT 6
 
 //--------------------------------------------------------------------------------------------//
 //  Thread Create 

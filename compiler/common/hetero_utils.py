@@ -141,7 +141,7 @@ def extract_symbol_info(executable, isa, threads_only=True):
          # Check to see if the symbol type is of interest (text section, no leading underscore)
          if (sym_type == "T"):
             # Run regex to only find threads functions
-            match = re.search('_thread$', sym_name)
+            match = re.search('_thread.*', sym_name)
             # If the symbol name does not begin
             # with "_" and there was a match.
             if ((sym_name[0] != "_") and (match > -1)):
@@ -233,7 +233,7 @@ def insert_function_info(symbols, executable, header, processor_type, intermedia
    init_fcn_list = []
    fcn_name_list = []
    handle_name_list = []
-   
+  
     
    # Open file in append mode, for writing into
    with open(header,"a") as infile:
@@ -248,7 +248,7 @@ def insert_function_info(symbols, executable, header, processor_type, intermedia
          # Check to see if the symbol type is of interest (text section, no leading underscore)
          if (sym_type == "T"):
             # Run regex to only find threads functions
-            match = re.search('_thread$', sym_name)
+            match = re.search('_thread.*', sym_name)
             # If the symbol name does not begin
             # with "_" and there was a match.
             if ((sym_name[0] != "_") and (match > -1)):

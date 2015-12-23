@@ -26,27 +26,25 @@
 * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ************************************************************************************/
-// Modified by Eugene to include DMA, use of floating point instructions, local timer reads
+// Modified by Eugene to use floating point instructions and local timer reads
 
 #include <hthread.h>
 #include <arch/htime.h>
 
 #define MAX_THREAD      (32)
-#define NUM_THREADS     (6)
-#define NUM_INTERVALS   (100)
+#define NUM_THREADS     (NUM_AVAILABLE_HETERO_CPUS)
+#define NUM_INTERVALS   (1000)
 #define NUM_TRIALS      (1)
 #define USE_FPU
-#define LOCAL_TIMER     (0x82000000)
 
 void * pi_thread_fpu (void * arg);
 void * pi_thread_no_fpu (void * arg);
-int main(void);
 
 #ifndef HETERO_COMPILATION
 #include <stdio.h>
 #include <stdlib.h>
 #include <util/rops.h>
-#include "auto_pi_DMA_prog.h"
+#include "auto_pi_prog.h"
 #endif
 
 typedef struct
@@ -56,21 +54,20 @@ typedef struct
     float data;
     float * pi;    
     hthread_mutex_t * pi_mutex;
-    unsigned long long start;
-    unsigned long long stop;
+    hthread_time_t start;
+    hthread_time_t stop;
 } targ_t;
 
 // Make use of 32-bit FPU
 void * pi_thread_fpu (void * arg)
 {
-    volatile unsigned long long * timer = (unsigned long long *) (LOCAL_TIMER);
     targ_t * targ = (targ_t *)(arg);
-    targ->start = *timer;
-    int id;
+    targ->start = hthread_time_get();
     float threads;
     float intervals;
 
     // Get TID
+    //int id;
     //id = hthread_self();
 
     // Extract arguments
@@ -100,7 +97,7 @@ void * pi_thread_fpu (void * arg)
     *(targ->pi) += localsum;
     hthread_mutex_unlock(targ->pi_mutex);
 
-    targ->stop = *timer;
+    targ->stop = hthread_time_get();
     return NULL;
     //return (void*)id;
 }
@@ -110,14 +107,13 @@ void * pi_thread_fpu (void * arg)
 // yet sizeof(float) reveals 4 bytes.
 void * pi_thread_no_fpu (void * arg)
 {
-    volatile unsigned long long * timer = (unsigned long long *) (LOCAL_TIMER);
     targ_t * targ = (targ_t *)(arg);
-    targ->start = *timer;
-    int id;
+    targ->start = hthread_time_get();
     float threads;
     float intervals;
 
     // Get TID
+    //int id;
     //id = hthread_self();
 
     // Extract arguments
@@ -147,7 +143,7 @@ void * pi_thread_no_fpu (void * arg)
     *(targ->pi) += localsum;
     hthread_mutex_unlock(targ->pi_mutex);
 
-    targ->stop = *timer;
+    targ->stop = hthread_time_get();
     return NULL;
     //return (void*)id;
 }
@@ -209,25 +205,12 @@ int run_tests()
 
                 // Create the worker threads
 
-// NO SPLIT_BRAM
-#ifndef SPLIT_BRAM
 #ifndef USE_FPU
                 sta[i] = microblaze_create( &tid[i], &attr[i], (void *) (pi_thread_no_fpu_FUNC_ID), (void*)&thread_arg[i],i );
 #else
                 sta[i] = microblaze_create( &tid[i], &attr[i], (void *) (pi_thread_fpu_FUNC_ID), (void*)&thread_arg[i],i );
 #endif
 
-#else
-// SPLIT BRAM
-#ifndef USE_FPU
-                //sta[i] = microblaze_create( &tid[i], &attr[i],(void *) (pi_thread_no_fpu_FUNC_ID), (void*)&thread_arg[i],i );
-                sta[i] = microblaze_create_DMA( &tid[i], &attr[i],(void *) (pi_thread_no_fpu_FUNC_ID), (void*)&thread_arg[i],sizeof(targ_t),0,i );
-#else
-                //sta[i] = microblaze_create( &tid[i], &attr[i],(void *) (pi_thread_fpu_FUNC_ID), (void*)&thread_arg[i],i );
-                sta[i] = microblaze_create_DMA( &tid[i], &attr[i],(void *) (pi_thread_fpu_FUNC_ID), (void*)&thread_arg[i],sizeof(targ_t),0,i );
-#endif
-
-#endif
             }
 
             // Get time stamp before joining
@@ -237,12 +220,7 @@ int run_tests()
             //printf( "Waiting for thread(s) to complete... \n" );
             for (i = 0; i < n; i++)
             {
-#ifndef SPLIT_BRAM
                 hthread_join( tid[i], &retval[i] );
-#else
-                hthread_join_DMA( tid[i], &retval[i], (void *)&thread_arg[i], sizeof(targ_t), 0);
-#endif
-
             }
 
             time_stop = hthread_time_get();
@@ -267,7 +245,7 @@ int run_tests()
                 hthread_time_diff(diff_thread_calc, thread_arg[i].stop, thread_arg[i].start);
                 temp_diff_thread_calc += diff_thread_calc;
             }
-            temp_diff_thread_calc /= (n * 1.0);
+            temp_diff_thread_calc /= (n * 1.0f);
             
             // OS create threads overhead = time_stamp of last thread's start time stamp - time_create
             //hthread_time_t os_create_overhead, diff_os_create_overhead;
@@ -286,17 +264,17 @@ int run_tests()
             total_diff_total += diff_total;
         } // NUM_TRIALS LOOP
        
-        total_diff_os_overhead  /=  (NUM_TRIALS * 1.0); 
-        total_diff_thread_calc  /=  (NUM_TRIALS * 1.0); 
-        total_diff_total        /=  (NUM_TRIALS * 1.0); 
+        total_diff_os_overhead  /=  (NUM_TRIALS * 1.0f); 
+        total_diff_thread_calc  /=  (NUM_TRIALS * 1.0f); 
+        total_diff_total        /=  (NUM_TRIALS * 1.0f); 
         
         printf("*******************************************\n");
         //printf("Average OS Overhead time    = %.3f us\n", hthread_time_usec(total_diff_os_overhead));
         //printf("Average Calculation time    = %.3f us\n",hthread_time_usec(total_diff_thread_calc));
         //printf("Total Time                  = %.3f us\n\n",hthread_time_usec(total_diff_total));
         //printf("Average OS Overhead time    = %.3f ms\n", hthread_time_msec(total_diff_os_overhead));
+        printf("Average Calculation time    = %.3f us\n",hthread_time_usec(total_diff_thread_calc));
         printf("Average Calculation time    = %.3f ms\n",hthread_time_msec(total_diff_thread_calc));
-        printf("Average Calculation time    = %.3f s\n",hthread_time_sec(total_diff_thread_calc));
         //printf("Total Time                  = %.3f ms\n\n",hthread_time_msec(total_diff_total));
         
     }// BIG LOOP
@@ -317,13 +295,8 @@ int run_tests()
 
 int main()
 {
-    load_my_table();
+    run_tests();
 
-    int x;
-    //for (x = 0; x < 2; x++)
-    {
-        run_tests();
-    }
     return 0;
 }
 #endif

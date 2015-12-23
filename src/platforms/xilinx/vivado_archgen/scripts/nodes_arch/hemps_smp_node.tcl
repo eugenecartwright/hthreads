@@ -57,7 +57,7 @@ set_property -dict [list CONFIG.SINGLE_PORT_BRAM {1} CONFIG.PROTOCOL {AXI4}]  [g
 
 set_property -dict [list CONFIG.C_M_AXI_MAX_BURST_LEN {256} CONFIG.C_INCLUDE_SG {0}]  [get_bd_cells  $slave/local_dma] 
 
-set_property -dict [list  CONFIG.C_FSL_LINKS {1} CONFIG.C_D_AXI {1}     CONFIG.C_USE_BARREL [lindex $slaves [expr $j * $C + $i] 0] CONFIG.C_USE_HW_MUL [lindex $slaves [expr $j * $C + $i] 1] CONFIG.C_USE_DIV [lindex $slaves [expr $j * $C + $i] 2]  CONFIG.C_USE_FPU [lindex $slaves [expr $j * $C + $i] 3] CONFIG.C_USE_PCMP_INSTR [lindex $slaves [expr $j * $C + $i] 4]   CONFIG.C_PVR {2} CONFIG.C_PVR_USER2 {0xC0000000}  CONFIG.C_PVR_USER1 0x[format "%02x" [expr $j * $C + $i]]  CONFIG.C_USE_ICACHE {1} CONFIG.C_CACHE_BYTE_SIZE [lindex $slaves [expr $j * $C + $i] 5] ]  [get_bd_cells $slave/microblaze_1] 
+set_property -dict [list  CONFIG.C_FSL_LINKS {1} CONFIG.C_D_AXI {1} CONFIG.C_DEBUG_ENABLED {2} CONFIG.C_DEBUG_EVENT_COUNTERS {8} CONFIG.C_DEBUG_LATENCY_COUNTERS {2}   CONFIG.C_USE_BARREL [lindex $slaves [expr $j * $C + $i] 0] CONFIG.C_USE_HW_MUL [lindex $slaves [expr $j * $C + $i] 1] CONFIG.C_USE_DIV [lindex $slaves [expr $j * $C + $i] 2]  CONFIG.C_USE_FPU [lindex $slaves [expr $j * $C + $i] 3] CONFIG.C_USE_PCMP_INSTR [lindex $slaves [expr $j * $C + $i] 4]   CONFIG.C_PVR {2} CONFIG.C_PVR_USER2 {0xC0000000}  CONFIG.C_PVR_USER1 0x[format "%02x" [expr $j * $C + $i]]  CONFIG.C_USE_ICACHE {1} CONFIG.C_CACHE_BYTE_SIZE [lindex $slaves [expr $j * $C + $i] 5] ]  [get_bd_cells $slave/microblaze_1] 
 
  
 

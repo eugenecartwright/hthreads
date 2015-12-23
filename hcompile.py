@@ -579,6 +579,10 @@ def main():
    # ----------------------------------#
    f = open(HEADER_FILE_PATH, 'a')
    f.write("\n\nvoid load_my_table() {\n")
+   # TODO: this flag indicates several tables initialized.
+   # So calling load_my_table() isn't sufficient.
+   #f.write("\t// Set table initialized flag\n")
+   #f.write("\ttable_initialized_flag = 1;\n\n")
   
    # For all ISAs, #NOTE: Assuming each ISA/Type has same number of handles
    for i, processor_type in enumerate(HEADERFILE_ISAs):

@@ -15,7 +15,7 @@
 //#define DEBUG_DISPATCH
 
 
-#define NUM_TRIALS          (100)
+#define NUM_TRIALS          (10)
 
 // For sort
 #define LIST_LENGTH        16
@@ -26,7 +26,7 @@
 #define MATRIX_SIZE        64
 
 /* Enable/disable tests */
-#define TEST_PR
+//#define TEST_PR
 //#define USER_SORT
 #define USER_VECTORADD
 #define USER_VECTORSUB
@@ -141,8 +141,8 @@ void * test_PR_thread(void * arg)
    for (i = 0; i < (int) trials; i++) {
       success = perform_PR(cpuid, CRC);
       success += perform_PR(cpuid, BUBBLESORT);
-      success += perform_PR(cpuid, VECTOR_ADD_SUB);
-      success += perform_PR(cpuid, VECTOR_MUL_DIVIDE);
+      success += perform_PR(cpuid, VECTORADD);
+      success += perform_PR(cpuid, VECTORMUL);
       success += perform_PR(cpuid, MATRIXMUL);
    
       #ifndef HETERO_COMPILATION

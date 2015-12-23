@@ -43,9 +43,10 @@ void * foo_thread(void * arg)
     hthread_time_t stop = hthread_time_get();
     hthread_time_t diff;
     hthread_time_diff(diff, stop, start); 
-   
+      
    // FIXME: diff is 64-bits, but returning a 32-bit field
    // Therefore, slaves won't report the correct time past 43secs
+   // @ 100Mhz
     return (void *) diff;
 }
 

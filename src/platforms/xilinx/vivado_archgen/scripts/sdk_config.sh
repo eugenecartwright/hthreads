@@ -120,7 +120,8 @@ done
 echo "sdk build_project -type all " >> ./sdk.tcl  
 echo "exit " >> ./sdk.tcl      
 
-xsct -s sdk.tcl    
+# Run xsct with generated TCL script
+xsct sdk.tcl    
  
 
 echo "Now running the data2mem"
