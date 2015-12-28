@@ -14,6 +14,7 @@ typedef struct
     int arg2;
     int arg3;
     int arg4;
+    hthread_time_t diff;
 } package;
 
 void wait(unsigned int seconds) {
@@ -28,10 +29,13 @@ void wait(unsigned int seconds) {
 void * foo_thread(void * arg) 
 {
     int * p = (int *) arg;
+    package * test = (package *) arg;
     int a,b,c,d,value=0;
     
     hthread_time_t start = hthread_time_get();
-    wait(1);
+    // Wait for 50 seconds to test if 64-bit timer
+    // is working from thread
+    wait(50);
 
     a = *(p+0); //1
     b = *(p+1); //400
@@ -43,11 +47,9 @@ void * foo_thread(void * arg)
     hthread_time_t stop = hthread_time_get();
     hthread_time_t diff;
     hthread_time_diff(diff, stop, start); 
-      
-   // FIXME: diff is 64-bits, but returning a 32-bit field
-   // Therefore, slaves won't report the correct time past 43secs
-   // @ 100Mhz
-    return (void *) diff;
+     
+   test->diff = diff;
+    return (void *) SUCCESS;
 }
 
 #ifndef HETERO_COMPILATION
@@ -114,15 +116,15 @@ int main(){
            }
 
            #ifdef HARDWARE_THREAD
-           hthread_time_t * slave_time = (hthread_time_t *) (attr[i].hardware_addr - HT_CMD_HWTI_COMMAND + HT_CMD_VHWTI_EXEC_TIME);
-           printf("Time reported by slave nano kernel #%02d = %f usec\n", i,hthread_time_usec(*slave_time));
+           hthread_time_t * slave_time = (hthread_time_t *) (attr[i].hardware_addr - HT_CMD_HWTI_COMMAND + HT_CMD_VHWTI_EXEC_TIME_HI);
+           printf("Time reported by slave nano kernel #%02d = %f sec\n", i,hthread_time_sec(*slave_time));
            #endif
        }
        
        // Print out return value from each Hardware thread
        for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++)
        {
-           printf("Thread %02d Calculation time recorded in thread = %f usec\n",i,hthread_time_usec(ret[i]));
+           printf("Thread %02d Calculation time recorded in thread = %f sec\n",i,hthread_time_sec(thread_package[i].diff));
        }
    }
 
