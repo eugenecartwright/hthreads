@@ -623,9 +623,9 @@ Huint thread_create(
 
         // If we did not find any processors available.
         if (slave_num == MAGIC_NUMBER) {
-            #ifdef DEBUG_DISPATCH
+            //#ifdef DEBUG_DISPATCH
             printf("No Free Slaves:Creating software thread\n");
-            #endif
+            //#endif
             ret = software_create(tid, NULL, func_id, arg);
         } else {
             // Grab the function handle according to the processor type.
@@ -658,18 +658,18 @@ Huint thread_create(
         // Check if valid slave number. Since 'slave_num' is 
         // and unsigned int, it cannot be negative, right?
         if (slave_num >= NUM_AVAILABLE_HETERO_CPUS) {
-            #ifdef DEBUG_DISPATCH
+            //#ifdef DEBUG_DISPATCH
             printf("Invalid slave number: %d\n", slave_num);
             printf("Creating a software thread instead\n");
-            #endif
+            //#endif
             ret = software_create(tid, NULL, func_id, arg);
         }
 
         // If that slave number exists, is it Free?
         if (_hwti_get_utilized_flag(hwti_array[slave_num]) == FLAG_HWTI_UTILIZED) { 
-            #ifdef DEBUG_DISPATCH
+            //#ifdef DEBUG_DISPATCH
             printf("Slave number %d is busy! Creating software thread\n", slave_num);
-            #endif
+            //#endif
             ret = software_create(tid, NULL, func_id, arg);
         }
         else {
@@ -696,6 +696,23 @@ Huint thread_create(
         }
     }
     return ret;
+}
+
+#include <manager/manager.h>
+Hint thread_join(hthread_t th, void **retval, hthread_time_t *exec_time) {
+   
+   // Check to see if thread has exited
+   Huint status = 0;
+   do {
+      status = _read_thread_status( th );
+      #ifdef DEBUG_DISPATCH
+      printf("Checking status of thread %d = 0x%08x\n", th, status);
+      #endif
+   } while (!status || status != HT_ALREADY_EXITED);
+
+   *exec_time = threads[th].execution_time;
+
+   return hthread_join(th, retval);
 }
 
 

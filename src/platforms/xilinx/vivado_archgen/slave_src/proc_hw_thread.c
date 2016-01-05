@@ -121,6 +121,7 @@ int proc_hw_thread_exit( proc_interface_t * iface, void * ret)
         volatile hthread_thread_t * tcb_array = (hthread_thread_t*) *(iface->gctx_ptr);
         Huint tid = *(iface->tid_reg);
         tcb_array[tid].retval = ret;
+        tcb_array[tid].execution_time = stop-start;
     }
 
     // If there was an accelerator used, we need to update the

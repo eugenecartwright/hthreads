@@ -50,8 +50,16 @@ void* _bootstrap_thread( hthread_start_t func, void *arg )
     while(!_release_syscall_lock());
 #endif
 
+    // Get start time
+    hthread_time_t start = hthread_time_get();
+
     // Invoke  the start function and grab the return value
     ret = func( arg );
+
+    // Get stop time and write execution time in TCB structure
+    hthread_time_t stop = hthread_time_get();
+    Huint tid = hthread_self();
+    threads[tid].execution_time = stop-start;
 
     // Decrement the counter. It is safer to do this 
     // after hthread_exit but since we don't return

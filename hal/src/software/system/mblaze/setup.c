@@ -48,6 +48,7 @@
 #define THREAD_DATA __attribute__ ((section ("thread")))
 hthread_thread_t threads[ MAX_THREADS ] THREAD_DATA;
 #else
+// TODO: This needs to be a pointer, pointed to the host's threads structure
 hthread_thread_t threads[ MAX_THREADS ];
 #endif
 
@@ -125,6 +126,12 @@ Huint _setup_thread( Huint tid, hthread_attr_t *attr, hthread_start_t start, voi
 
     // Setup the thread to be a new thread
     threads[ tid ].newthread = Htrue;
+    
+    // Initialize retval to be NULL
+    threads[ tid ].retval = NULL;
+    
+    // Initialize execution time to 0
+    threads[ tid ].execution_time = 0;
 
     // Determine if the new thread is a hardware thread
     if( attr->hardware != Htrue )

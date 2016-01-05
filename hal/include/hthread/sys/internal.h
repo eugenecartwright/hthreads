@@ -43,6 +43,7 @@
 #define _HYBRID_THREADS_INTERNAL_H_
 
 #include <hthread.h>
+#include <arch/htime.h>
 
 /** \internal
   * \brief	The internal structure used to keep track of all threads.
@@ -74,6 +75,9 @@ typedef struct
 
     /** \brief  A value indicating if the threads is a hardware thread */
     Huint               hardware;
+    
+    /** \brief  Execution results of a thread. */
+    hthread_time_t      execution_time;
 } hthread_thread_t;
 
 /** \internal

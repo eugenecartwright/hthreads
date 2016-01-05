@@ -125,6 +125,9 @@ Huint _setup_thread( Huint tid, hthread_attr_t *attr, hthread_start_t start, voi
 
     // Initialize retval to be NULL
     threads[ tid ].retval = NULL;
+    
+    // Initialize execution time to 0
+    threads[ tid ].execution_time = 0;
 
     // Determine if the new thread is a hardware thread
     if( attr->hardware != Htrue )
