@@ -44,6 +44,9 @@
 #include <config.h>
 #include "xaxicdma.h"
 
+// DMA Driver debug information
+#define TRACE_DMA            1
+
 extern Hint  dma_create(XAxiCdma * dma, u16 DeviceId);
 extern void  dma_reset(XAxiCdma * dma);
 extern Hbool dma_getbusy(XAxiCdma *dma);
