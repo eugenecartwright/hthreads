@@ -116,7 +116,7 @@ Huint _arch_setup_thread( Huint th, hthread_thread_t *thread,
 }
 
 /**
- * No action is needed to destroy a thread.
+ * No action is needed to destroy a thread. TCB was statically declared.
  */
 Huint _arch_destroy_thread( Huint th, hthread_thread_t *thread, Huint id )
 {

@@ -362,7 +362,7 @@ Hint _syscall_join( hthread_t th, void **retval )
 		// the thread has not yet exited then we will release the proccessor
 		// without adding ourself back onto the ready-to-run queue. The thread
 		// we are joining will add us back to the queue once it has exited.
-        exited = extract_error( status );
+      exited = extract_error( status );
 		if( exited != HT_ALREADY_EXITED )
         {
             DEBUG_PRINTF( "JOIN ERROR=0x%8.8x\n", exited );
@@ -377,7 +377,7 @@ Hint _syscall_join( hthread_t th, void **retval )
     {
         _run_sched( Htrue );
     }
-    
+   
 	// At this point the thread we are joining is guaranteed to have exited.
 	// We should store the return value of the thread into the retval
 	// variable. We then destroy and clear the thread so that some other
@@ -387,10 +387,7 @@ Hint _syscall_join( hthread_t th, void **retval )
         // Commented out, as fast V-HWTI re-usage via smart dispatch will re-use a V-HWTI as soon as a thread is exited,
         // thus causing the return value to be overwritten.  The new HAL bootloop copies the return value to the threads.retval location
         // just as SW threads do, so hardware thread's return values can be retrieved from the same place (as they are now preserved)
-        //if( threads[ th ].hardware != 0 )   *retval = (void**)_hwti_results( threads[th].hardware - HT_HWTI_COMMAND_OFFSET );
-
-        if( threads[ th ].hardware != 0 )   *retval = threads[th].retval;
-        else                                *retval = threads[th].retval;
+        *retval = threads[th].retval;
     }
 
 	// Deallocate the software side structures used to keep track of the

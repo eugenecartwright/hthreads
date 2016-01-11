@@ -185,11 +185,13 @@ Huint _destroy_thread( Huint id )
     _arch_destroy_thread( id, &threads[id], id );
 
     // Deallocate the stack that the thread is using
+    // FIXME: Stack is statically declared, so no need
+#if 0
     if( threads[id].stack != NULL )
     {
-        //free( threads[ id ].stack );
-        // Static allocation doesn't require free
+        free( threads[ id ].stack );
     }
+#endif
 
     // The stack pointer now points at nothing
     threads[ id ].stack = NULL;

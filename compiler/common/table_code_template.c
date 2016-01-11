@@ -701,18 +701,14 @@ Huint thread_create(
 #include <manager/manager.h>
 Hint thread_join(hthread_t th, void **retval, hthread_time_t *exec_time) {
    
-   // Check to see if thread has exited
-   Huint status = 0;
-   do {
-      status = _read_thread_status( th );
-      #ifdef DEBUG_DISPATCH
-      printf("Checking status of thread %d = 0x%08x\n", th, status);
-      #endif
-   } while (!status || status != HT_ALREADY_EXITED);
-
+   // Attempt to join on thread and grab execution time.
+   // FIXME: Grabbing execution time should be done first 
+   // (once thread has exited), in case parent is preempted
+   // while joining on child thread.
+   Huint status = hthread_join(th, retval);
    *exec_time = threads[th].execution_time;
 
-   return hthread_join(th, retval);
+   return status;
 }
 
 
