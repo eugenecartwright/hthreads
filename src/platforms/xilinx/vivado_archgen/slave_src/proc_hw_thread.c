@@ -102,11 +102,17 @@ int proc_hw_thread_exit( proc_interface_t * iface, void * ret)
 {
     volatile int * cmd;
     int status;  
+    volatile hthread_thread_t * tcb_array = (hthread_thread_t*) *(iface->gctx_ptr);
 
     // Store execution time - 
     hthread_time_t stop = hthread_time_get();
     hthread_time_t start = *(iface->execution_time);
     *(iface->execution_time) = stop-start;
+    
+    // Get TID for storing return value (if any) and
+    // execution time back in TCB[tid].    
+    Huint tid = *(iface->tid_reg);
+    tcb_array[tid].execution_time = stop-start;
 
     // Return a value (if any) first
     if(ret != NULL) 
@@ -114,14 +120,9 @@ int proc_hw_thread_exit( proc_interface_t * iface, void * ret)
         // Setup return value in V-HWTI
         *(iface->res_reg) = (int)ret;
         
-        // Place return value in global TCB array for safe-keeping 
-        // (V-HWTI return reg is too volatile when using dynamic APIs)
-        // IMPORTANT - as V-HWTI may be re-used by a smart function, then move return value
-        //to global data struct "threads" retval location
-        volatile hthread_thread_t * tcb_array = (hthread_thread_t*) *(iface->gctx_ptr);
-        Huint tid = *(iface->tid_reg);
+        // Place return value in global TCB for safe-keeping before scheduling
+        // another thread onto this slave (and using it's V-HWTI registers).
         tcb_array[tid].retval = ret;
-        tcb_array[tid].execution_time = stop-start;
     }
 
     // If there was an accelerator used, we need to update the
