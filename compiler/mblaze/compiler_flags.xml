@@ -9,7 +9,7 @@
       <PARAMETER NAME="C_USE_FPU">
          <OPTION VALUE="0" FLAG="-msoft-float"/>
          <OPTION VALUE="1" FLAG="-mhard-float"/>
-         <OPTION VALUE="2" FLAG="-mhard-float -mxl-float-convert -mxl-float-sqrt -fno-math-errno"/>
+         <OPTION VALUE="2" FLAG="-mhard-float -mxl-float-convert -mxl-float-sqrt"/> 
       </PARAMETER>
       <PARAMETER NAME="C_USE_BARREL">
          <OPTION VALUE="0" FLAG="-mno-xl-barrel-shift"/>
@@ -56,7 +56,7 @@
       <PARAMETER NAME="C_USE_FPU">
          <OPTION VALUE="0" FLAG="-msoft-float"/>
          <OPTION VALUE="1" FLAG="-mhard-float"/>
-         <OPTION VALUE="2" FLAG="-mhard-float -mxl-float-convert -mxl-float-sqrt -fno-math-errno"/>
+         <OPTION VALUE="2" FLAG="-mhard-float -mxl-float-convert -mxl-float-sqrt"/>
       </PARAMETER>
       <PARAMETER NAME="C_USE_BARREL">
          <OPTION VALUE="0" FLAG="-mno-xl-barrel-shift"/>
@@ -103,7 +103,7 @@
       <PARAMETER NAME="C_USE_FPU">
          <OPTION VALUE="0" FLAG="-msoft-float"/>
          <OPTION VALUE="1" FLAG="-mhard-float"/>
-         <OPTION VALUE="2" FLAG="-mhard-float -mxl-float-convert -mxl-float-sqrt -fno-math-errno"/>
+         <OPTION VALUE="2" FLAG="-mhard-float -mxl-float-convert -mxl-float-sqrt"/>
       </PARAMETER>
       <PARAMETER NAME="C_USE_BARREL">
          <OPTION VALUE="0" FLAG="-mno-xl-barrel-shift"/>

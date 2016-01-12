@@ -416,7 +416,7 @@ def main():
          #-----------------------------------------------------------------------------#
          # Form path to where the ELF image resides for this ISA
          elf_image = hetero_exec_dir+ SRC_FILE.rstrip('.c')
-         #var = input("Continue: ")         
+         #var = input("Enter a number to continue: ")         
 
          # Embed this ISA
          init_fcn_list, func_list, handle_list,symbol_meta_data = \
