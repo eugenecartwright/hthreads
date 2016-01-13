@@ -524,7 +524,7 @@ def main():
    with open(HEADER_FILE_PATH,"a") as infile:
       infile.write("// Thread function's preferred list based on coprocessors \n")
       infile.write("// only (sorted by most preferred to least)\n")
-      infile.write("Huint thread_affinity[NUM_OF_THREADS][NUM_AVAILABLE_HETERO_CPUS] = {\n")
+      infile.write("Huint thread_affinity[NUM_OF_THREADS][NUM_AVAILABLE_HETERO_CPUS] PRIVATE_MEMORY = {\n")
       for i, function_name in enumerate(FUNCTION_NAMES):
          if (i != 0):
             infile.write(",\n")
@@ -549,7 +549,7 @@ def main():
 
             
    with open(HEADER_FILE_PATH,"a") as infile:
-      infile.write("thread_profile_t thread_profile[NUM_OF_THREADS] = {\n");
+      infile.write("thread_profile_t thread_profile[NUM_OF_THREADS] PRIVATE_MEMORY = {\n");
       for index, key_tuple in enumerate(MASTER_symbol_preferred_list):
          if (index % num_of_profile_entries == 0):
             infile.write("// " + key_tuple[0] + "\n")

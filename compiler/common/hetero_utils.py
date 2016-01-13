@@ -312,7 +312,7 @@ def create_hwti_array(base_addr, offset, num_of_processors, header_file):
       infile.write("#endif\n")
 
       # create hwti_array (once called base_array)
-      infile.write("Huint hwti_array[NUM_AVAILABLE_HETERO_CPUS] = {")
+      infile.write("Huint hwti_array[NUM_AVAILABLE_HETERO_CPUS] PRIVATE_MEMORY = {")
       for index in xrange(0,num_of_processors):
          address = hex(base_addr_int + offset_int*index) + "\n"
          infile.write("HWTI_BASEADDR" + str(index))

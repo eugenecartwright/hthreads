@@ -65,13 +65,17 @@
 // Function Prototypes
 void load_my_table(void);
 Hbool check_valid_slave_num (Huint slave_num);
+void init_host_tables();
+
+// OS instrumentation data structure
+hthread_time_t os_overhead PRIVATE_MEMORY = 0;
 
 // Global variables used to provide statistics of
 // finding the best match when doing thread_create.
 // find_best_match() uses these variables.
-Huint no_free_slaves_num;
-Huint possible_slaves_num;
-Huint best_slaves_num;
+Huint no_free_slaves_num PRIVATE_MEMORY;
+Huint possible_slaves_num PRIVATE_MEMORY;
+Huint best_slaves_num PRIVATE_MEMORY;
 // ---------------------------------------------------------------- //
 //        Partial Reconfiguration Shared Data structures            //
 // ---------------------------------------------------------------- //
@@ -92,7 +96,7 @@ Huint best_slaves_num;
     };
 #endif
 
-Hbool pr_initialized = 0;
+Hbool pr_initialized PRIVATE_MEMORY = 0;
 
 // Initialize all of the PR data
 void init_slaves() {
@@ -149,7 +153,7 @@ Hbool check_valid_slave_num (Huint slave_num) {
 thread_table_t global_thread_table;
 
 // Global Variable to indicate if tables were initialized.
-unsigned int table_initialized_flag = 0;
+unsigned int table_initialized_flag PRIVATE_MEMORY = 0;
 
 
 // Initialize all table entries to magic number
@@ -322,26 +326,15 @@ void init_func_2_acc_table() {
     }
 }
 
+//----------------------------------------------//
+// Function to initialize anything host         //
+// related. These tables need to be initialized //
+// once, and we don't want to include those     //
+// overheads when timing our application.       //
+//----------------------------------------------//
+void init_host_tables() {
 
-//------------------------------------------//
-// Software_Create                          //
-// Description: Function used to create     //
-// software threads only. Used if creating  //
-// a hardware thread fails.                 //
-//------------------------------------------//
-Huint software_create (
-        hthread_t * tid,
-        hthread_attr_t * attr,
-        Huint func_id,
-        void * arg)
-{
-    
-    void * func;
-
-    // ---------------------------------------------
-    // Make sure tables are setup
-    // ---------------------------------------------
-    if (!table_initialized_flag) {
+   if (!table_initialized_flag) {
         
         // Assert flag
         table_initialized_flag = 1;
@@ -357,6 +350,28 @@ Huint software_create (
 
         init_slaves();
     }
+}
+
+//------------------------------------------//
+// Software_Create                          //
+// Description: Function used to create     //
+// software threads only. Used if creating  //
+// a hardware thread fails.                 //
+//------------------------------------------//
+Huint software_create (
+        hthread_t * tid,
+        hthread_attr_t * attr,
+        Huint func_id,
+        void * arg)
+{
+   hthread_time_t start = hthread_time_get();
+   void * func;
+
+    // ---------------------------------------------
+    // Make sure tables are setup
+    // ---------------------------------------------
+    if (!table_initialized_flag) 
+         init_host_tables();
 
     #ifdef DEBUG_DISPATCH
     printf("Software thread\n");
@@ -367,8 +382,14 @@ Huint software_create (
   
     // Increment thread counter
     thread_counter++; 
-        
-    return (hthread_create(tid, attr, func, arg));
+       
+    Huint status = hthread_create(tid, attr, func, arg);
+    
+    hthread_time_t stop = hthread_time_get();
+    hthread_time_t diff = hthread_time_diff(diff,stop,start);
+    os_overhead += diff;
+
+    return (status);
 }
 
 // Function: Get_num_free_slaves()
@@ -563,6 +584,7 @@ Huint thread_create(
         Huint dma_length)
 {
 
+    hthread_time_t start = hthread_time_get();
     Huint ret;
     void * func;
 
@@ -571,24 +593,8 @@ Huint thread_create(
     // ---------------------------------------------
     // Make sure tables are initialized
     // ---------------------------------------------
-    if (!table_initialized_flag) {
-        
-        // Assert flag
-        table_initialized_flag = 1;
-
-        // Init thread table
-        init_thread_table(&global_thread_table);
-
-        // Load entries with app-specific data
-        load_my_table();
-
-        // Init function-to-accelerator table
-        init_func_2_acc_table();
-       
-        // Initialize mutexes, PR, and bitfiles
-        // for Partial Reconfiguration.
-        init_slaves();
-    }
+    if (!table_initialized_flag) 
+         init_host_tables();
 
     // Check if we have not passed our threshold
     // TODO: Remove?
@@ -695,18 +701,28 @@ Huint thread_create(
             ret = hthread_create(tid, attr, func, arg);
         }
     }
+
+    hthread_time_t stop = hthread_time_get();
+    hthread_time_t diff = hthread_time_diff(diff,stop,start);
+    os_overhead += diff;
+
     return ret;
 }
 
 #include <manager/manager.h>
 Hint thread_join(hthread_t th, void **retval, hthread_time_t *exec_time) {
-   
+  
+   hthread_time_t start = hthread_time_get(); 
    // Attempt to join on thread and grab execution time.
    // FIXME: Grabbing execution time should be done first 
    // (once thread has exited), in case parent is preempted
    // while joining on child thread.
    Huint status = hthread_join(th, retval);
    *exec_time = threads[th].execution_time;
+
+   hthread_time_t stop = hthread_time_get();
+   hthread_time_t diff = hthread_time_diff(diff,stop,start);
+   os_overhead += diff;
 
    return status;
 }
@@ -730,179 +746,3 @@ void clear_utilized_flags()
        _hwti_set_free(hwti_array[i]);
     }
 }
-
-// (SMART) Dynamic thread creation function
-Huint dynamic_create_smart(
-        hthread_t * tid,
-        hthread_attr_t * attr,
-        Huint func_id,
-        void * arg)
-{
-
-    Huint ret;
-    void * func;
-   
-    // Efficient NULL pointer check
-    assert(attr!=NULL); 
-
-    // ---------------------------------------------
-    // Make sure tables are initialized
-    // ---------------------------------------------
-    if (table_initialized_flag == 0) {
-        
-        // Assert flag
-        table_initialized_flag = 1;
-
-        // Init thread table
-        init_thread_table(&global_thread_table);
-
-        // Load entries with app-specific data
-        load_my_table();
-
-        // Init function-to-accelerator table
-        init_func_2_acc_table();
-    }
-
-    // ---------------------------------------------
-    // Look for any free heterogeneous processors
-    // ---------------------------------------------
-    int i = 0;
-    int found = NOT_FOUND;
-    for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++)
-    {
-       if( get_utilized_flags((void *) &i))
-       {
-            // Mark CPU that was found, and break out of loop
-           found = i;
-           break;
-       }
-    }
-
-    // ---------------------------------------------
-    // Create a native thread if no hetero CPUs are free
-    // ---------------------------------------------
-    if (found == NOT_FOUND)
-    {
-        // Create a native/software thread on MB
-        func = lookup_thread(&global_thread_table, func_id, TYPE_HOST);
-        if (func == (void*)TABLE_INIT)
-        {
-            ret =  TABLE_INIT;
-        }
-        else
-        {
-            // Ignore passed in attribute
-#ifdef DEBUG_DISPATCH
-            printf("Creating Native Thread!\n");
-#endif
-            ret = hthread_create(tid, NULL, func, arg);
-        }
-    }
-    // ---------------------------------------------
-    // Otherwise create a hetero thread
-    // ---------------------------------------------
-    else
-    {
-         
-        // Create a heterogeneous thread
-        func = lookup_thread(&global_thread_table, func_id, slave_table[found].isa);
-        if (func == (void*)TABLE_INIT)
-        {
-            ret =  TABLE_INIT;
-        }
-        else
-        {
-            // Create thread hetero using V-HWTI[found]
-#ifdef DEBUG_DISPATCH
-            printf("Creating Hetero Thread (CPU#%d)!\n",found);
-#endif
-            hthread_attr_init(attr);
-            hthread_attr_sethardware( attr, (void*)hwti_array[found] );
-            ret = hthread_create(tid, attr, func, arg);
-        }
-    }
-    
-    return ret;
-}
-
-Huint microblaze_create(
-        hthread_t * tid,
-        hthread_attr_t * attr,
-        Huint func_id,
-        void * arg,
-        Huint ublaze)
-{
-
-    Huint ret;
-    void * func;
-
-    assert(attr!=NULL); // Efficient NULL pointer check
-    // ---------------------------------------------
-    // Make sure tables are initialized
-    // ---------------------------------------------
-    if (table_initialized_flag == 0) {
-        
-        // Assert flag
-        table_initialized_flag = 1;
-
-        // Init thread table
-        init_thread_table(&global_thread_table);
-
-        // Load entries with app-specific data
-        load_my_table();
-
-        // Init function-to-accelerator table
-        init_func_2_acc_table();
-    }
-    
-
-    // ---------------------------------------------
-    // Check if that specific MB is free
-    // ---------------------------------------------
-    if( !get_utilized_flags((void *) hwti_array[ublaze])) 
-    {
-        // Create a native thread
-        printf("Microblaze %d is either not Free or does not exist!\n",ublaze);
-        func = lookup_thread(&global_thread_table, func_id, TYPE_HOST);
-        if (func == (void*)TABLE_INIT)
-        {
-            ret =  TABLE_INIT;
-        }
-        else
-        {
-            // Ignore passed in attribute
-#ifdef DEBUG_DISPATCH
-            printf("Creating Native Thread!\n");
-#endif
-            ret = hthread_create(tid, NULL, func, arg);
-        }
-
-    }
-    // ---------------------------------------------
-    // Otherwise create a hetero thread
-    // ---------------------------------------------
-    else
-    {
-        // Create a heterogeneous thread
-        func = lookup_thread(&global_thread_table, func_id, slave_table[ublaze].isa);
-        if (func == (void*)TABLE_INIT)
-        {
-            ret =  TABLE_INIT;
-        }
-        else
-        {
-            // Create thread hetero using V-HWTI[found]
-#ifdef DEBUG_DISPATCH
-            printf("Creating Hetero Thread (CPU#%d)!\n",ublaze);
-#endif
-            hthread_attr_init(attr);
-            hthread_attr_sethardware( attr, (void*)hwti_array[ublaze] );
-            ret = hthread_create(tid, attr, func, arg);
-
-        }
-    }
-    
-    return ret;
-}
-
-

@@ -1,4 +1,5 @@
 #define PRIVATE_MEMORY __attribute__ ((section ("local")))
+#define GLOBAL_MEMORY __attribute__ ((section ("main_memory")))
 
 // Tuning table
 typedef struct {

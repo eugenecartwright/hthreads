@@ -7,6 +7,7 @@
 #include <config.h>
 #include <hwti/hwti.h>
 #include <mutex/hardware.h>
+#include <arch/htime.h>
 
 // For accessing the threads structure
 #include <sys/core.h>
