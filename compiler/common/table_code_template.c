@@ -68,7 +68,8 @@ Hbool check_valid_slave_num (Huint slave_num);
 void init_host_tables();
 
 // OS instrumentation data structure
-hthread_time_t os_overhead PRIVATE_MEMORY = 0;
+hthread_time_t create_overhead PRIVATE_MEMORY = 0;
+hthread_time_t join_overhead PRIVATE_MEMORY = 0;
 
 // Global variables used to provide statistics of
 // finding the best match when doing thread_create.
@@ -387,7 +388,7 @@ Huint software_create (
     
     hthread_time_t stop = hthread_time_get();
     hthread_time_t diff = hthread_time_diff(diff,stop,start);
-    os_overhead += diff;
+    create_overhead += diff;
 
     return (status);
 }
@@ -704,7 +705,7 @@ Huint thread_create(
 
     hthread_time_t stop = hthread_time_get();
     hthread_time_t diff = hthread_time_diff(diff,stop,start);
-    os_overhead += diff;
+    create_overhead += diff;
 
     return ret;
 }
@@ -722,7 +723,7 @@ Hint thread_join(hthread_t th, void **retval, hthread_time_t *exec_time) {
 
    hthread_time_t stop = hthread_time_get();
    hthread_time_t diff = hthread_time_diff(diff,stop,start);
-   os_overhead += diff;
+   join_overhead += diff;
 
    return status;
 }

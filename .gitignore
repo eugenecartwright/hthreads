@@ -6,7 +6,7 @@ src/platforms/xilinx/vivado_archgen/include/config.h
 src/platforms/xilinx/vivado_archgen/config/Jamfile
 *.pyc
 objs/
-test/
+test/**
 *.swp
 .Xil/
 src/platforms/xilinx/vivado_archgen/design
@@ -22,3 +22,4 @@ hal/config/settings
 hal/config/settings
 src/hardware/MyRepository/pcores/vivado_cores/hls_cores/*/*_prj
 *.dcp
+*_prog.h

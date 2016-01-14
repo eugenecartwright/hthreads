@@ -215,7 +215,7 @@ def opcode_tagging(symbol, processor, elf_path):
             target_opcode+="00"
             # Compare opcode value with the target opcode
             if (int(target_opcode,2) == opcode):
-               temp_list[struct_entry] = 1
+               temp_list[struct_entry] += 1
    
    # File cleanup
    execute_cmd("rm -f _opcode") 
