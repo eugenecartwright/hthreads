@@ -46,15 +46,16 @@ void * shift_thread(void * arg);
 #include "shift_prog.h"
 #endif
 
-
 void * shift_thread (void * arg) {
    Huint shift_num = (Huint) arg;
-   Hlong i = 0xCAFEBABE,j = 0xCAFEBABE,k = 0xCAFEBABE,l = 0xCAFEBABE; 
-
-   i = i >> shift_num;
-   j = j >> 25;
-   k = k << shift_num;
-   l = l << 25;
+   volatile Hlong i = 0xCAFEBABE,j = 0xCAFEBABE,k = 0xCAFEBABE,l = 0xCAFEBABE; 
+  
+   for ( ; shift_num > 0; shift_num--) { 
+      i = i >> shift_num;
+      j = j >> shift_num;
+      k = k << shift_num;
+      l = l << shift_num;
+   }
    
    return (void *) ((Hint) i);
 }
@@ -73,7 +74,7 @@ int main() {
    Huint i = 0;
    for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
       hthread_attr_init(&attr[i]);
-      thread_create(&tid[i], &attr[i], shift_thread_FUNC_ID, (void *) 5000, STATIC_HW0+i, 0);
+      thread_create(&tid[i], &attr[i], shift_thread_FUNC_ID, (void *) 1200, STATIC_HW0+i, 0);
    }
 
    for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {

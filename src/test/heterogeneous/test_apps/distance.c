@@ -30,6 +30,8 @@
   * \brief     Calculates distances between two points
   *
   * \author    Unknown
+  *            Modified by Eugene Cartwright
+  * 
   */
 
 #include <hthread.h>
@@ -44,7 +46,7 @@ void * distance_thread(void * arg);
 #include "distance_prog.h"
 #endif
 
-#define ARR_LENGTH      (512)
+#define ARR_LENGTH      (500)
 #define NUM_THREADS     (NUM_AVAILABLE_HETERO_CPUS)
 
 
@@ -91,17 +93,18 @@ void * distance_thread (void * arg)
 }
 
 #ifndef HETERO_COMPILATION
-int run_tests()
+hthread_time_t exec_time[NUM_THREADS] PRIVATE_MEMORY;
+hthread_t tid[NUM_THREADS] PRIVATE_MEMORY;
+hthread_attr_t attr[NUM_THREADS] PRIVATE_MEMORY;
+void * ret[NUM_THREADS] PRIVATE_MEMORY;
+Huint sta[NUM_THREADS] PRIVATE_MEMORY;
+int main()
 {
   
     // Timer variables
     hthread_time_t time_create, time_start, time_stop,diff;
 
     // Thread attribute structures
-    Huint           sta[NUM_THREADS];
-    void*           retval[NUM_THREADS];
-    hthread_t       tid[NUM_THREADS];
-    hthread_attr_t  attr[NUM_THREADS];
     targ_t thread_arg[NUM_THREADS];
 
     float vals_x0[ARR_LENGTH];
@@ -109,6 +112,7 @@ int run_tests()
 
     float vals_y0[ARR_LENGTH];
     float vals_y1[ARR_LENGTH];
+
     float vals_ds[ARR_LENGTH];
 
     int j = 0;
@@ -163,13 +167,10 @@ int run_tests()
             sta[j] =  thread_create( &tid[j], &attr[j], distance_thread_FUNC_ID, (void *) &thread_arg[j], STATIC_HW0+j, 0);
         }
 
-        // Allow created threads to begin running and start timer
-        time_start = hthread_time_get();
-
         // Join on all threads
-        for (j = 0; j < NUM_THREADS; j++)
-        {
-            hthread_join( tid[j], &retval[j] );
+        for (j = 0; j < NUM_THREADS; j++) {
+            if (thread_join(tid[j], &ret[j], &exec_time[j]))
+               printf("Join error!\n");
         }
 
         // Grab stop time
@@ -178,24 +179,17 @@ int run_tests()
         // Print out status
         for (j = 0; j < NUM_THREADS; j++)
         {
-            printf("TID[%d] = 0x%08x, status = 0x%08x, retval = 0x%08x\n",j,tid[j],sta[j],(unsigned int)retval[j]);
+            printf("TID[%d] = 0x%08x, status = 0x%08x, ret = 0x%08x\n",j,tid[j],sta[j],(unsigned int)ret[j]);
         }
 
-        printf("*********************************\n");
-        printf("Create time  = %llu\n",time_create);
-        printf("Start time   = %llu\n",time_start);
-        printf("Stop time    = %llu\n",time_stop);
-        printf("*********************************\n");
-        hthread_time_diff(diff,time_start, time_create);
-        printf("Creation time (|Start - Create|) usec = %f\n",hthread_time_usec(diff));
-        hthread_time_diff(diff,time_stop, time_start);
-        printf("Elapsed time  (|Stop  - Start|)  usec = %f\n",hthread_time_usec(diff));
         hthread_time_diff(diff,time_stop, time_create);
         printf("Total time    (|Create - Stop|)  usec = %f\n",hthread_time_usec(diff));
 
        for (j = 0; j < NUM_THREADS; j++) {
-         hthread_time_t * slave_time = (hthread_time_t *) (attr[j].hardware_addr - HT_CMD_HWTI_COMMAND + HT_CMD_VHWTI_EXEC_TIME);
-         printf("Time reported by slave nano kernel #0 = %f usec\n", hthread_time_usec(*slave_time));
+         // Determine which slave ran this thread based on address
+         Huint base = attr[j].hardware_addr - HT_HWTI_COMMAND_OFFSET;
+         Huint slave_num = (base & 0x00FF0000) >> 16;
+         printf("Execution time (TID : %d, Slave : %d)  = %f usec\n", tid[j], slave_num, hthread_time_usec(exec_time[j]));
        }
 
     }
@@ -215,17 +209,7 @@ int run_tests()
 
     printf ("-- Complete --\n");
 
-    // Return from main
     return 0;
 }
 
-int main()
-{
-    int x;
-    for (x = 0; x < 1; x++)
-    {
-        run_tests();
-    }
-    return 0;
-}
 #endif

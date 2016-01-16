@@ -49,7 +49,8 @@ void * idiv_thread(void * arg);
 void * idivu_thread(void * arg);
 
 //#define DEBUG_DISPATCH
-//#define OPCODE_FLAGGING
+#define OPCODE_FLAGGING
+#define HOMOGENEOUS_TASK
 
 #ifndef HETERO_COMPILATION
 #include <stdio.h>
@@ -86,12 +87,14 @@ void * fpu_thread (void * arg) {
 
 void * shift_thread (void * arg) {
    Huint shift_num = (Huint) arg;
-   Hlong i = 0xCAFEBABE,j = 0xCAFEBABE,k = 0xCAFEBABE,l = 0xCAFEBABE; 
-
-   i = i >> shift_num;
-   j = j >> 25;
-   k = k << shift_num;
-   l = l << 25;
+   volatile Hlong i = 0xCAFEBABE,j = 0xCAFEBABE,k = 0xCAFEBABE,l = 0xCAFEBABE; 
+  
+   for ( ; shift_num > 0; shift_num--) { 
+      i = i >> shift_num;
+      j = j >> shift_num;
+      k = k << shift_num;
+      l = l << shift_num;
+   }
    
    return (void *) ((Hint) i);
 }
@@ -170,6 +173,11 @@ int main() {
 #else
    printf("Opcode flagging disabled\n");
 #endif
+#ifdef HOMOGENEOUS_TASK
+   printf("Homogeneous Load\n");
+#else
+   printf("Heterogeneous Load\n");
+#endif
    // Initialize various host tables once.
    init_host_tables();
 
@@ -178,24 +186,42 @@ int main() {
       hthread_attr_init(&attr[i]);
 
    hthread_time_t start = hthread_time_get();
-   
+
+#ifdef HOMOGENEOUS_TASK
+   // Create a homogeneous load
+   for (i = 0; i < NUM_THREADS; i++) {
+      // Shift
+      thread_create(&tid[i], &attr[i], shift_thread_FUNC_ID, (void *) 200, DYNAMIC_HW, 0);
+      
+      // Floating point
+      //thread_create(&tid[i], &attr[i], fpu_thread_FUNC_ID, (void *) 48, DYNAMIC_HW, 0);
+
+      // Unsigned integer divide
+     // thread_create(&tid[i], &attr[i], idivu_thread_FUNC_ID, (void *) (HUINT_MAX/6), DYNAMIC_HW, 0);
+      
+      // Mul32
+      //thread_create(&tid[i], &attr[i], mul32_thread_FUNC_ID, (void *) 1200, DYNAMIC_HW, 0);
+
+      // Mul64
+      //thread_create(&tid[i], &attr[i], mul64_thread_FUNC_ID, (void *) 600, DYNAMIC_HW, 0);
+   }
+#else
    // Shift
-   thread_create(&tid[0], &attr[0], shift_thread_FUNC_ID, (void *) 5000, DYNAMIC_HW, 0);
+   thread_create(&tid[0], &attr[0], shift_thread_FUNC_ID, (void *) 1200, DYNAMIC_HW, 0);
    
    // Floating point
-   thread_create(&tid[1], &attr[1], fpu_thread_FUNC_ID, (void *) 50, DYNAMIC_HW, 0);
+   thread_create(&tid[1], &attr[1], fpu_thread_FUNC_ID, (void *) 288, DYNAMIC_HW, 0);
 
    // Unsigned integer divide
    thread_create(&tid[2], &attr[2], idivu_thread_FUNC_ID, (void *) HUINT_MAX, DYNAMIC_HW, 0);
    
-   // Signed integer divide
-   thread_create(&tid[3], &attr[3], idiv_thread_FUNC_ID, (void *) HINT_MIN, DYNAMIC_HW, 0);
-
-   // Mul32
-   thread_create(&tid[4], &attr[4], mul32_thread_FUNC_ID, (void *) 200, DYNAMIC_HW, 0);
-
    // Mul64
-   //thread_create(&tid[5], &attr[5], mul64_thread_FUNC_ID, (void *) 100, DYNAMIC_HW, 0);
+   thread_create(&tid[3], &attr[3], mul64_thread_FUNC_ID, (void *) 3600, DYNAMIC_HW, 0);
+   
+   // Mul32
+   thread_create(&tid[4], &attr[4], mul32_thread_FUNC_ID, (void *) 7200, DYNAMIC_HW, 0);
+
+#endif
    
    for (i = 0; i < NUM_THREADS; i++) {
       if (thread_join(tid[i], &ret[i], &exec_time[i]))
@@ -221,13 +247,6 @@ int main() {
    // Display overall time
    hthread_time_t diff; hthread_time_diff(diff, stop, start);
    printf("Total time = %f usec\n", hthread_time_usec(diff));
-
-   start = hthread_time_get();
-   hthread_yield();
-   stop = hthread_time_get();
-   hthread_time_diff(diff, stop, start);
-   printf("Total time for context switch = %f usec\n", hthread_time_usec(diff));
-   puts("This is a test...\n");
 
    printf("--- Done ---\n");
       
