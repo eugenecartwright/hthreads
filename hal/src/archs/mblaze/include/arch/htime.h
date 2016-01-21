@@ -2,9 +2,9 @@
   * \file       htime.h
   * \brief      The definition of Hthreads time grabbing routines.
   *
-  * \author     Seth Warn <swarn@uark.edu>
+  * \author     Eugene Cartwright <eugene@uark.edu>
   *
-  * Based on earlier work by Wesley Peck
+  * Based on earlier work by Wesley Peck and Seth Warn
   *
   * This file defines the architecture-specific interface to a 64-bit
   * cycle counter.  Because the MicroBlaze has no such counter, this is
@@ -56,7 +56,7 @@ typedef struct {
    Huint ENALL:1; // Enable all Timers 
    Huint CASC:1;  // Enable Cascade Mode of timers
    Huint reserved:20;
-} CTRL_STATUS_REG;
+} volatile CTRL_STATUS_REG;
 
 typedef long long arch_clock_t;
 typedef arch_clock_t hthread_time_t;

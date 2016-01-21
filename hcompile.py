@@ -415,7 +415,7 @@ def main():
          # Append each ISA ELF into existing Header file                               #
          #-----------------------------------------------------------------------------#
          # Form path to where the ELF image resides for this ISA
-         elf_image = hetero_exec_dir+ SRC_FILE.rstrip('.c')
+         elf_image = hetero_exec_dir+ os.path.splitext(SRC_FILE)[0]
          #var = input("Enter a number to continue: ")         
 
          # Embed this ISA

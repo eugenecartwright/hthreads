@@ -97,6 +97,7 @@ hthread_t tid[NUM_THREADS] PRIVATE_MEMORY;
 hthread_attr_t attr[NUM_THREADS] PRIVATE_MEMORY;
 void * ret[NUM_THREADS] PRIVATE_MEMORY;
 
+hthread_time_t start, stop;
 int main() {
    
    printf("--- Mandelbrot set benchmark ---\n"); 
@@ -115,7 +116,7 @@ int main() {
    for (i = 0; i < NUM_THREADS; i++) 
       hthread_attr_init(&attr[i]);
 
-   hthread_time_t start = hthread_time_get();
+   start = hthread_time_get();
    
    for (i = 0; i < NUM_THREADS; i++) 
       thread_create(&tid[i], &attr[i], mandel_thread_FUNC_ID, (void *) MAX_ITERATIONS, DYNAMIC_HW, 0);
@@ -125,7 +126,7 @@ int main() {
          printf("Join error!\n");
    }
    
-   hthread_time_t stop = hthread_time_get();
+   stop = hthread_time_get();
   
    // Display thread times
    for (i = 0; i < NUM_THREADS; i++) { 
