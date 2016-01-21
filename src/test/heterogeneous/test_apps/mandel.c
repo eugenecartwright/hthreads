@@ -97,7 +97,7 @@ hthread_t tid[NUM_THREADS] PRIVATE_MEMORY;
 hthread_attr_t attr[NUM_THREADS] PRIVATE_MEMORY;
 void * ret[NUM_THREADS] PRIVATE_MEMORY;
 
-hthread_time_t start, stop;
+hthread_time_t start PRIVATE_MEMORY, stop PRIVATE_MEMORY;
 int main() {
    
    printf("--- Mandelbrot set benchmark ---\n"); 
