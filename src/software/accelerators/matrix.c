@@ -1,16 +1,18 @@
 /* ***************************************************************
  * Filename: matrix.c
- * Description: Code provided for interaction with the crc core.
- * Also, a software version of crc is provided to do some 
- * comparisons, if desired.
+ * Description: Matrix Multiply code for Host.
+ * Author: Unknown
  * ***************************************************************/
  
 #include <accelerator.h>
 #include <matrix.h>
 #include <htconst.h>
 
-Hint  poly_matrix_mul (void * a_ptr, void * b_ptr, void * c_ptr, Huint a_rows, Huint a_cols, Huint b_cols)
-{
+Hint  poly_matrix_mul (void * a_ptr, void * b_ptr, void * c_ptr, Huint a_rows, Huint a_cols, Huint b_cols) {
+   return sw_matrix_multiply (a_ptr, b_ptr, c_ptr, a_rows, a_cols, b_cols);
+}	
+
+Hint  sw_matrix_multiply (void * a_ptr, void * b_ptr, void * c_ptr, Huint a_rows, Huint a_cols, Huint b_cols) {
    Hint * a = a_ptr;
    Hint * b = b_ptr;
    Hint * c = c_ptr;
@@ -27,5 +29,4 @@ Hint  poly_matrix_mul (void * a_ptr, void * b_ptr, void * c_ptr, Huint a_rows, H
       }
    }	  
    return SUCCESS;
-}	
-
+}

@@ -45,6 +45,11 @@ Hint perform_PR(Huint mb, Huint accelerator_type) {
          return FAILURE;
       }
    } while((ReadStatus & 0x07) != 7);
+            
+   // always update last_accelerator field
+   Huint vhwti_base = 0;
+   getpvr(1,vhwti_base);
+   _hwti_set_last_accelerator(vhwti_base, accelerator_type);
         
    return SUCCESS;
 

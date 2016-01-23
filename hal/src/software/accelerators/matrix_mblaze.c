@@ -1,8 +1,7 @@
 /* ***************************************************************
  * Filename: matrix_mblaze.c
- * Description: Code provided for interaction with the crc core.
- * Also, a software version of crc is provided to do some 
- * comparisons, if desired.
+ * Description: Code provided for interaction with the matrix 
+ * multiply core.
  * ***************************************************************/
  
 #include <accelerator.h>
