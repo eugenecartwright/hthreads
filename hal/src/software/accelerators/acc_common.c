@@ -100,7 +100,7 @@ Hbool useHW(Huint accelerator_type, Huint size) {
    Huint current_accelerator = _hwti_get_last_accelerator(vhwti_base);
 
    // Determine whether this slave has PR
-   Hbool has_PR = (Huint) _hwti_get_PR_flag(vhwti_base); 
+   Hbool has_PR = (Huint) _hwti_get_PR_flag(vhwti_base);
 
    // Immediately return 0 if slave has no PR, and has no
    // access to the specified "accelerator_type"
@@ -117,8 +117,9 @@ Hbool useHW(Huint accelerator_type, Huint size) {
     
    // if the loaded accelerator matches the specified accelerator, return 1
    // FIXME: Is hardware faster always?
-   if (current_accelerator == accelerator_type) 
-      return 1;
+   if (current_accelerator == accelerator_type) {
+     return 1;
+   }
 
 #ifdef PR
    // Does this processor have PR capabilities?
@@ -132,12 +133,13 @@ Hbool useHW(Huint accelerator_type, Huint size) {
         Huint index = get_index(size);
         if ((tuning_table[accelerator_type*NUM_OF_SIZES + index].hw_time + PR_OVERHEAD) < tuning_table[accelerator_type*NUM_OF_SIZES +index].sw_time) {
             // TODO: Yes, PR is worth it ...but by how much?
-            
+ 
             // ----Begin loading the accelerator----//
             // If performing PR failed, fallback to software
             // execution. So return false.
             unsigned char id;
             getpvr(0, id);
+            // Perform PR (which updates last used accelerator)
             if (perform_PR(id, accelerator_type) != SUCCESS)  
                return 0;
            
@@ -145,9 +147,6 @@ Hbool useHW(Huint accelerator_type, Huint size) {
             Huint pr_counter = _hwti_get_accelerator_pr_counter( vhwti_base );
             _hwti_set_accelerator_pr_counter( vhwti_base, ++pr_counter);
 
-            // always update last_accelerator field
-            _hwti_set_last_accelerator(vhwti_base, accelerator_type);
-            
             // Return immediately indicating to use HW/accelerator
             return 1;
         }

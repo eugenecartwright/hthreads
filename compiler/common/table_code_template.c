@@ -83,21 +83,22 @@ Huint best_slaves_num PRIVATE_MEMORY;
 
 // This is the tuning table used to keep track of profiling data
 // for slave execution.
-#ifdef TUNING
+//#ifdef TUNING
+#if 0
     tuning_table_t tuning_table[NUM_ACCELERATORS*NUM_OF_SIZES] = {
     {2,54,259,2}, {4,77,504,2}, {4,121,994,2}, {8,207,1975,2}, {8,377,3936,2}, {16,714,7855,2}, {16,1383,15716,2},
     {4,114,345,1}, {4,250,741,2}, {8,604,1537,2}, {8,1510,3238,2}, {16,3983,7053,2}, {16,10548,14703,2}, {16,30558,30894,2},
     {1,52,85,2}, {1,65,150,2}, {1,90,283,2}, {2,133,548,2}, {2,215,1079,2}, {2,380,2146,2}, {2,705,4294,2}
     };
-#else
+#endif
     tuning_table_t tuning_table[NUM_ACCELERATORS*NUM_OF_SIZES] = {
+    {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1},
+    {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1},
     {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1},
     {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1},
     {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}
     };
-#endif
-
-Hbool pr_initialized PRIVATE_MEMORY = 0;
+//#endif
 
 // Initialize all of the PR data
 void init_slaves() {
@@ -118,13 +119,27 @@ void init_slaves() {
       #ifdef PR
       // If PR is defined, write to slave that they have PR capability
       _hwti_set_PR_flag((Huint) hwti_array[i], PR_FLAG);
+
       #else
       _hwti_set_PR_flag((Huint) hwti_array[i], 0);
       #endif
    }
+
    #ifdef PR
    // Set up PR controller
    pr_config_mb();
+   
+   // Now run self-test on PR regions.
+   for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) { 
+      unsigned int accelerator_type = 0U;
+      for (accelerator_type = 0U; accelerator_type < NUM_ACCELERATORS; accelerator_type++) {
+         if (perform_PR(i, accelerator_type)) {
+            printf("Failed to perform PR as part of the PR selftest\n");
+            printf("\tAccelerator ID = %d, slave %d\n", accelerator_type, i);
+            while(1);
+         }
+      }
+   }
    #endif
    
    // Reset thread create statistical data 

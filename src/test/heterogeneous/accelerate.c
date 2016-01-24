@@ -15,10 +15,10 @@
 //#define DEBUG_DISPATCH
 
 
-#define NUM_TRIALS          (10)
+#define NUM_TRIALS          (500)
 
 // For sort
-#define LIST_LENGTH        16
+#define LIST_LENGTH        1024
 
 // For crc and vector
 #define ARRAY_SIZE         2048
@@ -27,13 +27,13 @@
 
 /* Enable/disable tests */
 //#define TEST_PR
-//#define USER_SORT
+#define USER_SORT
 #define USER_VECTORADD
 #define USER_VECTORSUB
 #define USER_VECTORMUL
 #define USER_VECTORDIV
-//#define USER_CRC
-//#define USER_MATRIXMUL
+#define USER_CRC
+#define USER_MATRIXMUL
 
 //====================================================================================
 // Author: Abazar
@@ -48,7 +48,7 @@ typedef struct {
    Hint * dataB; 
    Hint * dataC;  
    Huint size;  //The size of vector for crc,sort, vectoradd and vectormul. For Matrix Multiply, it's the size of the dimension of the squre matrix.
-}data;
+} data;
 
 typedef struct {
 	Hint * startAddr1;
@@ -66,8 +66,7 @@ void * sort_thread(void * arg)
    // Get size of list
    unsigned int size = LIST_LENGTH;
    // Call sort
-   //sw_bubblesort(arg, (Huint) size);
-   //return (void *) SUCCESS;
+   //return (void *) sw_bubblesort(arg, (Huint) size);
    return (void *) (poly_bubblesort(arg, (Huint) size));
 }
 
@@ -84,6 +83,7 @@ void * matrix_multiply_thread(void * arg)
 {
 	data * package = (data *) arg;
    return (void *) poly_matrix_mul (package->dataA,  package->dataB, package->dataC, package->size,package->size,package->size);  
+   //return (void *) sw_matrix_multiply(package->dataA,  package->dataB, package->dataC, package->size,package->size,package->size);  
 }
 
 void * vector_add_thread(void * arg) 
@@ -136,19 +136,17 @@ void * vector_divide_thread(void * arg)
 void * test_PR_thread(void * arg)
 {
    Hint success = 0, i, trials = (int) arg;
+#ifdef PR
    unsigned char cpuid;
    getpvr(0,cpuid);
-   for (i = 0; i < (int) trials; i++) {
-      success = perform_PR(cpuid, CRC);
+   for (i = 0; i < trials; i++) {
+      success += perform_PR(cpuid, CRC);
       success += perform_PR(cpuid, BUBBLESORT);
       success += perform_PR(cpuid, VECTORADD);
       success += perform_PR(cpuid, VECTORMUL);
       success += perform_PR(cpuid, MATRIXMUL);
-   
-      #ifndef HETERO_COMPILATION
-      printf("[Trial %d]: Failed\n", i);
-      #endif
    }
+#endif
    return (void *) success;
 }
 
@@ -160,7 +158,10 @@ void * test_PR_thread(void * arg)
 int main(){
 
    printf("HOST: START\n");
-   int i = 0; unsigned int j = 0, h, k;
+   // Initialize various host tables once.
+   init_host_tables();
+
+   int i = 0; unsigned int j = 0, h,k;
    int ret[NUM_AVAILABLE_HETERO_CPUS];
    Hint * ptr;
 	Data3 input3[NUM_AVAILABLE_HETERO_CPUS];
@@ -219,11 +220,12 @@ int main(){
 
       for (h = 0; h < NUM_AVAILABLE_HETERO_CPUS; h++) {
          for (i = 0; i < LIST_LENGTH; i++) {
-            list[h][i] = rand() % 1000;
+            //list[h][i] = rand() % 1000;
+            list[h][i] = LIST_LENGTH-i;
          }
       }
 
-      
+      #if 0 
       printf("Printing original lists\n");
       for (h = 0; h < NUM_AVAILABLE_HETERO_CPUS; h++) {
          printf("List[%d]: ", h);
@@ -232,17 +234,15 @@ int main(){
          }
          printf("\n");
       }
-      
+      #endif
 
       // Set up attributes for a hardware thread
-      printf("HOST: Setting up Attributes\n");
       for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) { 
          hthread_attr_init(&attr[i]);
          hthread_attr_setdetachstate( &attr[i], HTHREAD_CREATE_JOINABLE);
       }
 
       // Creating threads
-      printf("Creating threads...\n");
       for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
          if (thread_create (&child[i], &attr[i],sort_thread_FUNC_ID, (void *)(&list[i][0]),
                      #ifndef HARDWARE_THREAD
@@ -272,17 +272,19 @@ int main(){
       // Check results
       //printf("Now checking the lists\n");
       for (h = 0; h < NUM_AVAILABLE_HETERO_CPUS; h++) {
-         printf("List[%d]: ", h);
+         //printf("List[%d]: ", h);
          //for (i = LIST_LENGTH - (LIST_LENGTH-1); i < LIST_LENGTH; i++) {
          for (i = 0; i < LIST_LENGTH-1; i++) {
-            printf("..%d", list[h][i]);
+            //printf("..%d", list[h][i]);
             if (list[h][i] > list[h][i+1]) {
                printf("*");
-               //printf("[TRIAL %d, Slave %d] Sort failed!\n", j, h);
-               //i = LIST_LENGTH;
+               printf("[TRIAL %d, Slave %d] Sort failed!\n", j, h);
+               i = LIST_LENGTH;
             }
          }
-         printf("\n");
+         // Print last element
+         //printf("..%d", list[h][i]);
+         //printf("\n");
       }
    }
    printf("HOST: Done\n");
@@ -368,24 +370,52 @@ int main(){
    for (j = 0; j < NUM_TRIALS; j++) {
    
       for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
-         package[i].dataA = (Hint*) malloc(MATRIX_SIZE * sizeof(Hint)); 	
-         package[i].dataB = (Hint*) malloc(MATRIX_SIZE * sizeof(Hint)); 	
-         package[i].dataC = (Hint*) malloc(MATRIX_SIZE * sizeof(Hint)); 	
+         package[i].dataA = (Hint*) malloc(MATRIX_SIZE * MATRIX_SIZE * sizeof(Hint)); 	
+         package[i].dataB = (Hint*) malloc(MATRIX_SIZE * MATRIX_SIZE * sizeof(Hint)); 	
+         package[i].dataC = (Hint*) malloc(MATRIX_SIZE * MATRIX_SIZE * sizeof(Hint));
+         assert(package[i].dataA != NULL);   
+         assert(package[i].dataB != NULL);   
+         assert(package[i].dataC != NULL);
+         Huint l;   
          for (k = 0; k < MATRIX_SIZE; k++) {
-            package[i].dataA[k] = (Hint) rand() % 100;
-            package[i].dataB[k] = (Hint) rand() % 100;
-            package[i].dataC[k] = 0;
+            for (l = 0; l < MATRIX_SIZE; l++) {
+               package[i].dataA[k*MATRIX_SIZE + l] = k;
+               package[i].dataB[k*MATRIX_SIZE + l] = l;
+               package[i].dataC[k*MATRIX_SIZE + l] = 0;
+            }
          }
-      }
+         package[i].size = MATRIX_SIZE;
+         unsigned int row, col;
+#if 0
+         printf("Original Matrix A: 0x%08x\n", package[i].dataA);
+         for (row=0 ; row < MATRIX_SIZE; row++) {
+            for (col=0 ; col < MATRIX_SIZE; col++) {
+               printf("%02d ", package[i].dataA[row*MATRIX_SIZE+col]);
+            }
+            printf("\n");
+         }
+         printf("Original Matrix B: 0x%08x\n", package[i].dataB);
+         for (row=0 ; row < MATRIX_SIZE; row++) {
+            for (col=0 ; col < MATRIX_SIZE; col++) {
+               printf("%02d ", package[i].dataB[row*MATRIX_SIZE+col]);
+            }
+            printf("\n");
+         }
 
-      // Set up attributes for a hardware thread
-      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) { 
+         printf("Original Matrix C: 0x%08x\n", package[i].dataC);
+         for (row=0 ; row < MATRIX_SIZE; row++) {
+            for (col=0 ; col < MATRIX_SIZE; col++) {
+               printf("%02d ", package[i].dataC[row*MATRIX_SIZE+col]);
+            }
+            printf("\n");
+         }
+#endif    
+
+         // Set up attributes for a hardware thread
          hthread_attr_init(&attr[i]);
          hthread_attr_setdetachstate( &attr[i], HTHREAD_CREATE_JOINABLE);
-      }
 
-      // Creating threads
-      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         // Creating threads
          if (thread_create (&child[i], &attr[i], matrix_multiply_thread_FUNC_ID, (void *)(&package[i]),
                            #ifndef HARDWARE_THREAD
                               SOFTWARE_THREAD,
@@ -399,20 +429,25 @@ int main(){
             printf("hthread_create error on HW THREAD %d\n", i);
             while(1);
          }
-      }
       
-      // Joining threads
-      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
          // Join on child thread
          if( hthread_join(child[i], (void *) &ret[i])) {
             printf("Error joining child thread\n");
             while(1);
          }
-      }
-      
-      // Check results
-      Hint temp[MATRIX_SIZE][MATRIX_SIZE];
-      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         if (ret[i] != SUCCESS)
+            printf("Return value for thread indicates an error!\n");
+         #if 0 
+         printf("New Matrix C:\n");
+         for (row=0 ; row < MATRIX_SIZE; row++) {
+            for (col=0 ; col < MATRIX_SIZE; col++) {
+               printf("%02d ", package[i].dataC[row*MATRIX_SIZE+col]);
+            }
+            printf("\n");
+         }
+         #endif
+         // Check results
+         Hint temp[MATRIX_SIZE][MATRIX_SIZE];
          poly_matrix_mul(package[i].dataA, package[i].dataB, &temp, MATRIX_SIZE, MATRIX_SIZE, MATRIX_SIZE);
          int r, c;
          for (r=0 ; r < MATRIX_SIZE; r++) {
@@ -427,7 +462,7 @@ int main(){
          // Release memory
          free(package[i].dataA); 
          free(package[i].dataB); 
-         free(package[i].dataC); 
+         free(package[i].dataC);
       }
    }
    printf("HOST: Done\n");
