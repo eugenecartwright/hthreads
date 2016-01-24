@@ -18,9 +18,9 @@ Hint poly_matrix_mul (void * a_ptr, void * b_ptr, void * c_ptr, Huint a_rows, Hu
    Hbool use_accelerator = poly_init(MATRIXMUL, a_rows * b_cols);
     
    // Start transferring data to BRAM
-   if(!transfer_dma( (void *) a_ptr, (void *) ACC_BRAMA, a_rows * a_cols *4))
+   if(transfer_dma( (void *) a_ptr, (void *) ACC_BRAMA, a_rows * a_cols *4))
       return FAILURE;
-   if(!transfer_dma( (void *) b_ptr, (void *) ACC_BRAMB, a_cols * b_cols *4))
+   if(transfer_dma( (void *) b_ptr, (void *) ACC_BRAMB, a_cols * b_cols *4))
       return FAILURE;
 
 	//computation		
@@ -34,7 +34,7 @@ Hint poly_matrix_mul (void * a_ptr, void * b_ptr, void * c_ptr, Huint a_rows, Hu
 	   result = sw_matrix_multiply((Hint *)ACC_BRAMA, (Hint *) ACC_BRAMB, (Hint *)ACC_BRAMC, a_rows, a_cols , b_cols);
 	   
    // Start transferring data from BRAM
-   if(!transfer_dma( (void *) ACC_BRAMC, (void *) c_ptr, a_rows * b_cols *4))
+   if(transfer_dma( (void *) ACC_BRAMC, (void *) c_ptr, a_rows * b_cols *4))
       return FAILURE;
 
    return result;
