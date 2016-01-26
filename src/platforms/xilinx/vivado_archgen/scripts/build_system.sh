@@ -268,7 +268,7 @@ then
 
    # Adding in PR structures into this header file so the
    # generated hcompile header stays fairly system independent
-   #num_accelerators=$(expr ${#list_acc[@]})
+   num_accelerators=$(expr ${#list_acc[@]})
    echo "unsigned char * accelerators_bit[NUM_ACCELERATORS][NUM_AVAILABLE_HETERO_CPUS] = {" >> bitstream.h
    j=0
    for module in  "${list_acc[@]}"; do
@@ -282,7 +282,7 @@ then
          let i=i+1
       done
       let j=j+1
-      if [ $j == $num_accelerators ]; then
+      if [ $j == "$num_accelerators" ]; then
          echo "}" >> bitstream.h
       else
          echo "}," >> bitstream.h
