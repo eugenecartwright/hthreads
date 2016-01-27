@@ -42,8 +42,8 @@ create_bd_cell -type ip -vlnv user.org:user:axi_cond_vars:1.0 hthread_core/axi_c
 create_bd_cell -type ip -vlnv user.org:user:axi_sync_manager:1.0 hthread_core/axi_sync_manager_0
 create_bd_cell -type ip -vlnv user.org:user:axi_thread_manager:1.0 hthread_core/axi_thread_manager_0
 create_bd_cell -type ip -vlnv user.org:user:axi_hthread_reset_core:1.0 hthread_core/axi_hthread_reset_core_0
-create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 hthread_core/core_bus_master
-create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 hthread_core/core_bus_slave
+create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:* hthread_core/core_bus_master
+create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:* hthread_core/core_bus_slave
 
 
 #Customize IPs

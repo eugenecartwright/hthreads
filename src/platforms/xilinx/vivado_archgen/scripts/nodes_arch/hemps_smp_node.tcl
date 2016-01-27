@@ -2,17 +2,17 @@ set slave $group/slave_$i
  
 create_bd_cell -type hier $slave
 
-create_bd_cell -type ip -vlnv xilinx.com:ip:microblaze:9.5 $slave/microblaze_1
-create_bd_cell -type ip -vlnv xilinx.com:ip:axi_bram_ctrl:4.0 $slave/global_vhwti_cntrl_[expr $j * $C + $i]
-create_bd_cell -type ip -vlnv xilinx.com:ip:axi_bram_ctrl:4.0 $slave/local_vhwti_cntrl
-create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.2 $slave/blk_mem_gen_0
-create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 $slave/group1_bus
+create_bd_cell -type ip -vlnv xilinx.com:ip:microblaze:* $slave/microblaze_1
+create_bd_cell -type ip -vlnv xilinx.com:ip:axi_bram_ctrl:* $slave/global_vhwti_cntrl_[expr $j * $C + $i]
+create_bd_cell -type ip -vlnv xilinx.com:ip:axi_bram_ctrl:* $slave/local_vhwti_cntrl
+create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:* $slave/blk_mem_gen_0
+create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:* $slave/group1_bus
 copy_bd_objs $slave  [get_bd_cells {host_local_memory}] 
 set_property name microblaze_0_local_memory [get_bd_cells $slave/host_local_memory]
-create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 $slave/dma_bus
-create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 $slave/tmp_dma_bus
-create_bd_cell -type ip -vlnv xilinx.com:ip:axi_cdma:4.1 $slave/local_dma
-create_bd_cell -type ip -vlnv xilinx.com:ip:fifo_generator:12.0 $slave/fifo_generator_0
+create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:* $slave/dma_bus
+create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:* $slave/tmp_dma_bus
+create_bd_cell -type ip -vlnv xilinx.com:ip:axi_cdma:* $slave/local_dma
+create_bd_cell -type ip -vlnv xilinx.com:ip:fifo_generator:* $slave/fifo_generator_0
 
 
 
@@ -24,12 +24,12 @@ create_bd_cell -type ip -vlnv xilinx.com:hls:$acc_type:1.0 $slave/acc_0
 
 
 
-create_bd_cell -type ip -vlnv xilinx.com:ip:axi_bram_ctrl:4.0 $slave/axi_bram_ctrl_a
-create_bd_cell -type ip -vlnv xilinx.com:ip:axi_bram_ctrl:4.0 $slave/axi_bram_ctrl_b
-create_bd_cell -type ip -vlnv xilinx.com:ip:axi_bram_ctrl:4.0 $slave/axi_bram_ctrl_result
-create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.2 $slave/blk_mem_a
-create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.2 $slave/blk_mem_b
-create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.2 $slave/blk_mem_result
+create_bd_cell -type ip -vlnv xilinx.com:ip:axi_bram_ctrl:* $slave/axi_bram_ctrl_a
+create_bd_cell -type ip -vlnv xilinx.com:ip:axi_bram_ctrl:* $slave/axi_bram_ctrl_b
+create_bd_cell -type ip -vlnv xilinx.com:ip:axi_bram_ctrl:* $slave/axi_bram_ctrl_result
+create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:* $slave/blk_mem_a
+create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:* $slave/blk_mem_b
+create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:* $slave/blk_mem_result
 
 
 

@@ -36,14 +36,14 @@
 #  FIXME: Add description
 
 
-create_bd_cell -type ip -vlnv xilinx.com:ip:axi_cdma:4.1 central_dma
-create_bd_cell -type ip -vlnv xilinx.com:ip:axi_uartlite:2.0 axi_uartlite_0
-create_bd_cell -type ip -vlnv xilinx.com:ip:axi_timer:2.0 axi_timer_0
-create_bd_cell -type ip -vlnv xilinx.com:ip:axi_intc:4.1 axi_intc_0
-create_bd_cell -type ip -vlnv xilinx.com:ip:xlconcat:2.1 xlconcat_0
-create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 peripheral_interconnect_0
+create_bd_cell -type ip -vlnv xilinx.com:ip:axi_cdma:* central_dma
+create_bd_cell -type ip -vlnv xilinx.com:ip:axi_uartlite:* axi_uartlite_0
+create_bd_cell -type ip -vlnv xilinx.com:ip:axi_timer:* axi_timer_0
+create_bd_cell -type ip -vlnv xilinx.com:ip:axi_intc:* axi_intc_0
+create_bd_cell -type ip -vlnv xilinx.com:ip:xlconcat:* xlconcat_0
+create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:* peripheral_interconnect_0
 
-create_bd_cell -type ip -vlnv xilinx.com:ip:prc:1.0 prc_0
+create_bd_cell -type ip -vlnv xilinx.com:ip:prc:* prc_0
 create_bd_cell -type ip -vlnv user.org:user:myicap:1.0 myicap_0
 
 

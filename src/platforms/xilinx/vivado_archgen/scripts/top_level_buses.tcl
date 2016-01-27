@@ -35,9 +35,9 @@
 # 
 #  FIXME: Add description
 
-create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 main_bus
-create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 ddr_bus
-create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 host_bus
+create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:* main_bus
+create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:* ddr_bus
+create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:* host_bus
 
 set_property -dict [list CONFIG.NUM_SI [expr $N+1 ]  CONFIG.NUM_MI {3} CONFIG.ENABLE_ADVANCED_OPTIONS {1} CONFIG.XBAR_DATA_WIDTH.VALUE_SRC USER  CONFIG.XBAR_DATA_WIDTH {32} CONFIG.STRATEGY {1}   ]  [get_bd_cells main_bus] 
 
@@ -46,7 +46,7 @@ set_property -dict [list CONFIG.NUM_SI {1} CONFIG.NUM_MI [expr $N +1] CONFIG.ENA
 set_property -dict [list CONFIG.NUM_SI [expr $N+5 ]  CONFIG.NUM_MI {1} CONFIG.ENABLE_ADVANCED_OPTIONS {1} CONFIG.XBAR_DATA_WIDTH.VALUE_SRC USER  CONFIG.XBAR_DATA_WIDTH {32}  ]  [get_bd_cells ddr_bus] 
 
 
-     create_bd_cell -type ip -vlnv  xilinx.com:ip:axi_interconnect:2.1 dma_bus
+     create_bd_cell -type ip -vlnv  xilinx.com:ip:axi_interconnect:* dma_bus
      set_property -dict [list CONFIG.NUM_SI [expr $N ] CONFIG.NUM_MI {1} CONFIG.STRATEGY {1} CONFIG.ENABLE_ADVANCED_OPTIONS {1}  CONFIG.XBAR_DATA_WIDTH.VALUE_SRC USER  CONFIG.XBAR_DATA_WIDTH {32}] [get_bd_cells dma_bus]  
      
   
@@ -54,7 +54,7 @@ set_property -dict [list CONFIG.NUM_SI [expr $N+5 ]  CONFIG.NUM_MI {1} CONFIG.EN
 if  { $C == 1 } \
   {
 
-   create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 vhwti_bus
+   create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:* vhwti_bus
    set_property -dict [list CONFIG.NUM_SI {2} CONFIG.NUM_MI [expr $N ] CONFIG.ENABLE_ADVANCED_OPTIONS {1} CONFIG.XBAR_DATA_WIDTH.VALUE_SRC USER  CONFIG.XBAR_DATA_WIDTH {32}  CONFIG.STRATEGY {1}]  [get_bd_cells vhwti_bus] 
      
  }

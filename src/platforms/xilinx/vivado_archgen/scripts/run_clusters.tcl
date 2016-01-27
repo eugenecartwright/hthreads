@@ -83,8 +83,8 @@ set_property board_part xilinx.com:$board:part0:1.2 [current_project]
 #Add system bd
 create_bd_design "system"
 
-create_bd_cell -type ip -vlnv xilinx.com:ip:mig_7series:2.3 mig_7series_0
-create_bd_cell -type ip -vlnv xilinx.com:ip:microblaze:9.5 host
+create_bd_cell -type ip -vlnv xilinx.com:ip:mig_7series:* mig_7series_0
+create_bd_cell -type ip -vlnv xilinx.com:ip:microblaze:* host
 
 
 #Run block automation for DDR controller + microblaze

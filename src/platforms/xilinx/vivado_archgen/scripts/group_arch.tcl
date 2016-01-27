@@ -63,9 +63,9 @@ for {set j 0} {$j < $N} {incr j} \
    if  { $C > 1 } \
    {
       #inside group buses & connections
-      create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 $group/vhwti_bus         
-      create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 $group/main_bus
-      create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 $group/ddr_bus
+      create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:* $group/vhwti_bus         
+      create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:* $group/main_bus
+      create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:* $group/ddr_bus
 
       set_property -dict [list CONFIG.NUM_SI [expr $C ]  CONFIG.NUM_MI {1} CONFIG.ENABLE_ADVANCED_OPTIONS {1} CONFIG.XBAR_DATA_WIDTH.VALUE_SRC USER  CONFIG.XBAR_DATA_WIDTH {32}  CONFIG.STRATEGY {1}]  [get_bd_cells $group/main_bus] 
 
@@ -74,7 +74,7 @@ for {set j 0} {$j < $N} {incr j} \
       set_property -dict [list CONFIG.NUM_SI [expr $C ]  CONFIG.NUM_MI {1} CONFIG.ENABLE_ADVANCED_OPTIONS {1} CONFIG.XBAR_DATA_WIDTH.VALUE_SRC USER  CONFIG.XBAR_DATA_WIDTH {32}  ]  [get_bd_cells $group/ddr_bus] 
 
       
-         create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 $group/dma_bus
+         create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:* $group/dma_bus
          set_property -dict [list CONFIG.NUM_SI [expr $C ]  CONFIG.NUM_MI {1} CONFIG.ENABLE_ADVANCED_OPTIONS {1} CONFIG.XBAR_DATA_WIDTH.VALUE_SRC USER  CONFIG.XBAR_DATA_WIDTH {32}  ]  [get_bd_cells $group/dma_bus]          
      
       #clk and reset for Top level buses
