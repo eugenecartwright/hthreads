@@ -50,7 +50,7 @@ void * idivu_thread(void * arg);
 
 //#define DEBUG_DISPATCH
 #define OPCODE_FLAGGING
-#define HOMOGENEOUS_TASK
+//#define HOMOGENEOUS_TASK
 
 #ifndef HETERO_COMPILATION
 #include <stdio.h>
@@ -104,14 +104,15 @@ void * mul32_thread (void * arg) {
    Hint multiplier = (Hint) arg;
    Hint i = (Hint) arg; 
    Hint temp;
-   
+   Huint count = 0; 
    do {
       temp = i * multiplier;
       i++;
       multiplier--;
+      count++;
    } while (temp > 0);
 
-   return (void *) multiplier;
+   return (void *) count;
 }
 
 // 64-bit integer multiplication
@@ -120,42 +121,44 @@ void * mul64_thread (void * arg) {
    Hlong multiplier = (Hlong) argument;
    Hlong i = (Hlong) argument; 
    Hlong temp;
+   Huint count = 0;
    
    do {
       temp = i * multiplier;
       i++;
       multiplier--;
+      count++;
    } while (temp > 0);
 
-   return (void *) ((Hint) multiplier);
+   return (void *) (count);
 }
 
 // Integer division (unsigned) micro-benchmark
 void * idivu_thread (void * arg) {
    Huint max = (Huint) arg;
-
-   Huint temp =  2U;   
+   Huint count = 0;
+   volatile Huint temp =  2U;   
    while(max > 0) {
       if (temp != 0)
          max =(Huint) (max / temp);
-      temp++;
+      count++;
    }
 
-   return (void *) temp;
+   return (void *) count;
 }
 
 // Integer division (signed) micro-benchmark
 void * idiv_thread (void * arg) {
    Hint min = (Huint) arg;
-
-   Hint temp =  -2;   
+   Huint count = 0;
+   volatile Hint temp =  -2;   
    do {
       if (temp != 0)
          min = (Hint) (min / temp);
-      temp--;
+      count++;
    } while(min != 0);
 
-   return (void *) temp;
+   return (void *) count;
 }
 
 
@@ -191,26 +194,26 @@ int main() {
    // Create a homogeneous load
    for (i = 0; i < NUM_THREADS; i++) {
       // Shift
-      thread_create(&tid[i], &attr[i], shift_thread_FUNC_ID, (void *) 200, DYNAMIC_HW, 0);
+      //thread_create(&tid[i], &attr[i], shift_thread_FUNC_ID, (void *) 240, DYNAMIC_HW, 0);
       
       // Floating point
-      //thread_create(&tid[i], &attr[i], fpu_thread_FUNC_ID, (void *) 48, DYNAMIC_HW, 0);
+      thread_create(&tid[i], &attr[i], fpu_thread_FUNC_ID, (void *) 48, DYNAMIC_HW, 0);
 
       // Unsigned integer divide
-     // thread_create(&tid[i], &attr[i], idivu_thread_FUNC_ID, (void *) (HUINT_MAX/6), DYNAMIC_HW, 0);
+      //thread_create(&tid[i], &attr[i], idivu_thread_FUNC_ID, (void *) (HUINT_MAX/5), DYNAMIC_HW, 0);
       
       // Mul32
       //thread_create(&tid[i], &attr[i], mul32_thread_FUNC_ID, (void *) 1200, DYNAMIC_HW, 0);
 
       // Mul64
-      //thread_create(&tid[i], &attr[i], mul64_thread_FUNC_ID, (void *) 600, DYNAMIC_HW, 0);
+      //thread_create(&tid[i], &attr[i], mul64_thread_FUNC_ID, (void *) 1440, DYNAMIC_HW, 0);
    }
 #else
    // Shift
    thread_create(&tid[0], &attr[0], shift_thread_FUNC_ID, (void *) 1200, DYNAMIC_HW, 0);
    
    // Floating point
-   thread_create(&tid[1], &attr[1], fpu_thread_FUNC_ID, (void *) 288, DYNAMIC_HW, 0);
+   thread_create(&tid[1], &attr[1], fpu_thread_FUNC_ID, (void *) 240, DYNAMIC_HW, 0);
 
    // Unsigned integer divide
    thread_create(&tid[2], &attr[2], idivu_thread_FUNC_ID, (void *) HUINT_MAX, DYNAMIC_HW, 0);
@@ -235,7 +238,7 @@ int main() {
       // Determine which slave ran this thread based on address
       Huint base = attr[i].hardware_addr - HT_HWTI_COMMAND_OFFSET;
       Huint slave_num = (base & 0x00FF0000) >> 16;
-      printf("Execution time (TID : %d, Slave : %d)  = %f usec\n", tid[i], slave_num, hthread_time_usec(exec_time[i]));
+      printf("Execution time (TID : %d, Slave : %d, Result = %d)  = %f usec\n", tid[i], slave_num, (unsigned int) ret[i], hthread_time_usec(exec_time[i]));
    }
 
    // Display OS overhead

@@ -654,7 +654,7 @@ int main(){
       for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
          for (h=0 ; h < ARRAY_SIZE; h++) {
             if ( (input3[i].startAddr3[h]) != (input3[i].startAddr1[h] * input3[i].startAddr2[h]))  {
-               printf("[TRIAL %d, Slave %d] Vector Add failed!\n", j, i);
+               printf("[TRIAL %d, Slave %d] Vector Multiply failed!\n", j, i);
                h = ARRAY_SIZE;
             }
          }
@@ -721,7 +721,7 @@ int main(){
          for (h=0 ; h < ARRAY_SIZE; h++) {
             // dividend was generated to be a non-zero number above. Hence, no need to check for / 0
             if ( (input3[i].startAddr3[h]) != (input3[i].startAddr1[h] / input3[i].startAddr2[h]))  {
-               printf("[TRIAL %d, Slave %d] Vector Add failed!\n", j, i);
+               printf("[TRIAL %d, Slave %d] Vector Divide failed!\n", j, i);
                h = ARRAY_SIZE;
             }
          }

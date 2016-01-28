@@ -35,15 +35,13 @@
 #include <accelerator.h>
 
 // Number of threads
-//#define NUM_THREADS  (NUM_AVAILABLE_HETERO_CPUS)
-#define NUM_THREADS  1
-#define NUM_TRIALS   (1)
+#define NUM_THREADS  (NUM_AVAILABLE_HETERO_CPUS)
 #define NUM_BINS     (8)
 
-#define OPCODE_TAGGING
+#define OPCODE_FLAGGING
 
 // Array size
-#define ARR_SIZE    2048
+#define ARR_SIZE    512
 
 // Used to initialize array
 // with elements 0 - (MOD_VAL-1)
@@ -52,7 +50,6 @@
 // Thread argument definition
 typedef struct
 {
-   hthread_time_t diff;
    int * array;
    int max_value;
    int min_value;
@@ -87,16 +84,15 @@ void * histogram_thread (void * arg) {
 
    // Create a pointer to thread argument
    volatile targ_t * targ = (targ_t *) arg;
-   int i = 0;
-   int bin = 0;
-   int val = 0;
-   int * data;
-   int * hist = targ->hist;
+   volatile int i = 0;
+   volatile int bin = 0;
+   volatile int val = 0;
+   volatile int * data;
+   volatile int * hist = targ->hist;
    for (i = 0; i < NUM_BINS; i++)
       hist[i] = 0;
 
    data = targ->array;
-   hthread_time_t start = hthread_time_get();
 
    // Calculate histogram
    int diff = (targ->max_value - targ->min_value);
@@ -105,28 +101,15 @@ void * histogram_thread (void * arg) {
     
    for (i = 0; i < ARR_SIZE; i++) {
       // Extract array value
-      val = data[i];
+      val = data[i]; // Load
 
       // Calculate bin number
       bin = val / divider;
 
       // Update histogram
-      //targ->hist[bin] = targ->hist[bin] + 1;
-      hist[bin]++;
+      hist[bin]++; // Load and store
     }
-   hthread_time_t stop = hthread_time_get();
-/*
-   for (i = 0; i < NUM_BINS; i++) {
-      // TODO: something is happening here
-      putnum(&targ->hist[i]);
-      targ->hist[i] = hist[i];
-   }
-*/
-   hthread_time_t diff1;
-   hthread_time_diff(diff1, stop, start);
-   targ->diff = diff1;
-   putnum(2);
-   
+  
    return (void*)(SUCCESS);
 }
 
@@ -137,16 +120,27 @@ void * histogram_thread (void * arg) {
 // TODO: Need to transfer data locally as
 // what governs execution time looks more like
 // memory I/O
+hthread_t        tid[NUM_THREADS] PRIVATE_MEMORY;
+hthread_attr_t   attr[NUM_THREADS] PRIVATE_MEMORY;
+hthread_time_t start PRIVATE_MEMORY, stop PRIVATE_MEMORY, diff;
+hthread_time_t exec_time[NUM_THREADS] PRIVATE_MEMORY;
+void * ret[NUM_THREADS] PRIVATE_MEMORY;
+Huint            sta[NUM_THREADS] PRIVATE_MEMORY;
+
 int main( int argc, char *argv[] ) 
 {
-   // Timer variables
-   hthread_time_t time_start, time_stop, diff;
+   printf("--- Histogram ---\n"); 
+   printf("Array Size: %d\n", ARR_SIZE);
+   printf("Number of Bins: %d\n", NUM_BINS);
+#ifdef OPCODE_FLAGGING
+   printf("-->Opcode flagging ENABLED\n");
+#else
+   printf("-->Opcode flagging DISABLED\n");
+#endif
+   // Initialize various host tables once.
+   init_host_tables();
 
    // Thread attribute structures
-   Huint            sta[NUM_THREADS];
-   int             retval[NUM_THREADS];
-   hthread_t        tid[NUM_THREADS];
-   hthread_attr_t   attr[NUM_THREADS];
    targ_t * thread_arg = (targ_t *) malloc(sizeof(targ_t) * NUM_THREADS);
    assert (thread_arg != NULL);
 
@@ -155,65 +149,64 @@ int main( int argc, char *argv[] )
    int my_hist[NUM_THREADS][NUM_BINS];
 
    int num_ops = 0, j = 0;;
-   printf( "\n****Main Thread****... \n" );
-
    // Initialize the attributes for the hardware threads
    for (j = 0; j < NUM_THREADS; j++) 
       hthread_attr_init( &attr[j]);
 
-   for( num_ops = 0; num_ops < NUM_TRIALS; num_ops++)
+   // Initialize array
+   for (j = 0; j < ARR_SIZE; j++) {
+      my_array[j] = j+num_ops % MOD_VAL;
+   }
+   // Initialize histograms
+   for (j = 0; j < NUM_THREADS; j++) {
+      int i;
+      for (i = 0; i < NUM_BINS; i++)
+         my_hist[j][i] = 0;
+   }
+
+
+   // Initialize thread argument
+   for (j = 0; j < NUM_THREADS; j++) 
    {
-      printf("******* Round %5d ********\n",num_ops);
-      
-      // Initialize array
-      for (j = 0; j < ARR_SIZE; j++) {
-         my_array[j] = j+num_ops % MOD_VAL;
-      }
-      // Initialize histograms
-      for (j = 0; j < NUM_THREADS; j++) {
-         int i;
-         for (i = 0; i < NUM_BINS; i++)
-            my_hist[j][i] = 0;
-      }
+      thread_arg[j].array = (int *)&my_array;
+      thread_arg[j].hist = (int *)&my_hist[j][0];
+      thread_arg[j].max_value = MOD_VAL - 1;
+      thread_arg[j].min_value = 0;
+   }
 
+   start = hthread_time_get();
 
-      // Initialize thread argument
-      for (j = 0; j < NUM_THREADS; j++) 
-      {
-         thread_arg[j].array = (int *)&my_array;
-         thread_arg[j].hist = (int *)&my_hist[j][0];
-         thread_arg[j].max_value = MOD_VAL - 1;
-         thread_arg[j].min_value = 0;
-         thread_arg[j].diff = 1;
-      }
+   // Create the histogram thread
+   for (j = 0; j < NUM_THREADS; j++) 
+      sta[j] = thread_create( &tid[j], &attr[j], histogram_thread_FUNC_ID, (void*)(&thread_arg[j]),DYNAMIC_HW,0 );
+      //sta[j] = thread_create( &tid[j], &attr[j], histogram_thread_FUNC_ID, (void*)(&thread_arg[j]),STATIC_HW0+j,0 );
 
-      time_start = hthread_time_get();
+   // Wait for the thread to exit
+   for (j = 0; j < NUM_THREADS; j++) {
+      if (thread_join( tid[j], ret[j], &exec_time[j] ))
+         printf("Failed to join on thread %d\n", tid[j]);
+   }
 
-      // Create the histogram thread
-      for (j = 0; j < NUM_THREADS; j++) 
-         //sta[j] = thread_create( &tid[j], &attr[j], histogram_thread_FUNC_ID, (void*)(&thread_arg[j]),DYNAMIC_HW,0 );
-         sta[j] = thread_create( &tid[j], &attr[j], histogram_thread_FUNC_ID, (void*)(&thread_arg[j]),STATIC_HW0+j,0 );
+   stop = hthread_time_get();
 
-	   // Wait for the thread to exit
-      for (j = 0; j < NUM_THREADS; j++) {
-	      if (hthread_join( tid[j], (void *) &retval[j] ))
-            printf("Failed to join on thread %d\n", tid[j]);
-      }
-   
-      time_stop = hthread_time_get();
+   // Display thread times
+   for (j = 0; j < NUM_THREADS; j++) { 
+      // Determine which slave ran this thread based on address
+      Huint base = attr[j].hardware_addr - HT_HWTI_COMMAND_OFFSET;
+      Huint slave_num = (base & 0x00FF0000) >> 16;
+      printf("Execution time (TID : %d, Slave : %d)  = %f usec\n", tid[j], slave_num, hthread_time_usec(exec_time[j]));
+   }
+
+   // Display OS overhead
+   printf("Total OS overhead (thread_create) = %f usec\n", hthread_time_usec(create_overhead));
+   printf("Total OS overhead (thread_join) = %f usec\n", hthread_time_usec(join_overhead));
+   create_overhead=0;
+   join_overhead=0;
+
+   // Display overall time
+   hthread_time_t diff; hthread_time_diff(diff, stop, start);
+   printf("Total time = %f usec\n", hthread_time_usec(diff));
     
-     printf("Displaying Results\n"); 
-      // Display total time
-      hthread_time_diff(diff, time_stop, time_start);
-      printf("HOST: Elapsed time     =  %f usec\n",hthread_time_usec(diff));
-      
-      for (j = 0; j < NUM_THREADS; j++) { 
-         hthread_time_t * slave_time = (hthread_time_t *) (attr[j].hardware_addr - HT_CMD_HWTI_COMMAND + HT_CMD_VHWTI_EXEC_TIME_HI);
-         printf("Elapsed time by slave nano kernel #%02d = %f usec\n", j,hthread_time_usec(*slave_time));
-         printf("SLAVE:Calculation time =  %f usec\n",hthread_time_usec(thread_arg[j].diff));
-      }
-
-    }
 
     // Clean up the attribute structures
     for (j = 0; j < NUM_THREADS; j++) 

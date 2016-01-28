@@ -42,6 +42,8 @@
 
 void * distance_thread(void * arg);
 
+#define OPCODE_FLAGGING
+
 #ifndef HETERO_COMPILATION
 #include "distance_prog.h"
 #endif
@@ -98,11 +100,23 @@ hthread_t tid[NUM_THREADS] PRIVATE_MEMORY;
 hthread_attr_t attr[NUM_THREADS] PRIVATE_MEMORY;
 void * ret[NUM_THREADS] PRIVATE_MEMORY;
 Huint sta[NUM_THREADS] PRIVATE_MEMORY;
+
+// Timer variables
+hthread_time_t start, stop;
+
 int main()
 {
   
-    // Timer variables
-    hthread_time_t time_create, time_start, time_stop,diff;
+   printf("--- Distance benchmark ---\n");
+   printf("Number of Points: %d\n", ARR_LENGTH);
+#ifdef OPCODE_FLAGGING
+   printf("-->Opcode flagging ENABLED\n");
+#else
+   printf("-->Opcode flagging DISABLED\n");
+#endif
+   // Initialize various host tables once.
+   init_host_tables();
+
 
     // Thread attribute structures
     targ_t thread_arg[NUM_THREADS];
@@ -133,66 +147,60 @@ int main()
     }
 
 
-    int num_ops = 0;
-    for( num_ops = 0; num_ops < 2; num_ops = num_ops + 1)
-    { 
+   for (j = 0; j < ARR_LENGTH; j++)
+   {
+      vals_x0[j]  = ARR_LENGTH - j;
+   }
 
-        printf("******* Round %d ********\n",num_ops);
+   // Initialize thread arguments
+   int num_items = ARR_LENGTH/NUM_THREADS;
+   int extra_items = ARR_LENGTH - (num_items*NUM_THREADS);
+   for ( j= 0; j < NUM_THREADS; j++)
+   {
+      thread_arg[j].x0s = &vals_x0[j*(num_items)];
+      thread_arg[j].y0s = &vals_y0[j*(num_items)];
+      thread_arg[j].x1s = &vals_x1[j*(num_items)];
+      thread_arg[j].y1s = &vals_y1[j*(num_items)];
+      thread_arg[j].distances = &vals_ds[j*(num_items)];
+      thread_arg[j].length = num_items;
+   }
+   // Add in extra items for the last thread if needed
+   thread_arg[j-1].length += extra_items;
 
-        for (j = 0; j < ARR_LENGTH; j++)
-        {
-            vals_x0[j]  = ARR_LENGTH - j;
-        }
+   start = hthread_time_get();
+   // Create threads
+   for (j = 0; j < NUM_THREADS; j++)
+   {
+      // Create the distance thread
+      //sta[j] =  thread_create( &tid[j], &attr[j], distance_thread_FUNC_ID, (void *) &thread_arg[j], STATIC_HW0+j, 0);
+      sta[j] =  thread_create( &tid[j], &attr[j], distance_thread_FUNC_ID, (void *) &thread_arg[j], DYNAMIC_HW, 0);
+   }
 
-        // Initialize thread arguments
-        int num_items = ARR_LENGTH/NUM_THREADS;
-        int extra_items = ARR_LENGTH - (num_items*NUM_THREADS);
-        for ( j= 0; j < NUM_THREADS; j++)
-        {
-            thread_arg[j].x0s = &vals_x0[j*(num_items)];
-            thread_arg[j].y0s = &vals_y0[j*(num_items)];
-            thread_arg[j].x1s = &vals_x1[j*(num_items)];
-            thread_arg[j].y1s = &vals_y1[j*(num_items)];
-            thread_arg[j].distances = &vals_ds[j*(num_items)];
-            thread_arg[j].length = num_items;
-        }
-        // Add in extra items for the last thread if needed
-        thread_arg[j-1].length += extra_items;
+   // Join on all threads
+   for (j = 0; j < NUM_THREADS; j++) {
+      if (thread_join(tid[j], &ret[j], &exec_time[j]))
+         printf("Join error!\n");
+   }
 
-        time_create = hthread_time_get();
-        // Create threads
-        for (j = 0; j < NUM_THREADS; j++)
-        {
-            // Create the distance thread
-            sta[j] =  thread_create( &tid[j], &attr[j], distance_thread_FUNC_ID, (void *) &thread_arg[j], STATIC_HW0+j, 0);
-        }
+   // Grab stop time
+   stop = hthread_time_get();
 
-        // Join on all threads
-        for (j = 0; j < NUM_THREADS; j++) {
-            if (thread_join(tid[j], &ret[j], &exec_time[j]))
-               printf("Join error!\n");
-        }
+   for (j = 0; j < NUM_THREADS; j++) {
+   // Determine which slave ran this thread based on address
+   Huint base = attr[j].hardware_addr - HT_HWTI_COMMAND_OFFSET;
+   Huint slave_num = (base & 0x00FF0000) >> 16;
+   printf("Execution time (TID : %d, Slave : %d)  = %f usec\n", tid[j], slave_num, hthread_time_usec(exec_time[j]));
+   }
 
-        // Grab stop time
-        time_stop = hthread_time_get();
+   // Display OS overhead
+   printf("Total OS overhead (thread_create) = %f usec\n", hthread_time_usec(create_overhead));
+   printf("Total OS overhead (thread_join) = %f usec\n", hthread_time_usec(join_overhead));
+   create_overhead=0;
+   join_overhead=0;
 
-        // Print out status
-        for (j = 0; j < NUM_THREADS; j++)
-        {
-            printf("TID[%d] = 0x%08x, status = 0x%08x, ret = 0x%08x\n",j,tid[j],sta[j],(unsigned int)ret[j]);
-        }
-
-        hthread_time_diff(diff,time_stop, time_create);
-        printf("Total time    (|Create - Stop|)  usec = %f\n",hthread_time_usec(diff));
-
-       for (j = 0; j < NUM_THREADS; j++) {
-         // Determine which slave ran this thread based on address
-         Huint base = attr[j].hardware_addr - HT_HWTI_COMMAND_OFFSET;
-         Huint slave_num = (base & 0x00FF0000) >> 16;
-         printf("Execution time (TID : %d, Slave : %d)  = %f usec\n", tid[j], slave_num, hthread_time_usec(exec_time[j]));
-       }
-
-    }
+   // Display overall time
+   hthread_time_t diff; hthread_time_diff(diff, stop, start);
+   printf("Total time = %f usec\n", hthread_time_usec(diff));
 
 #ifdef DEBUG_DISPATCH
     for (j = 0; j < ARR_LENGTH; j++)
@@ -207,7 +215,7 @@ int main()
         hthread_attr_destroy( &attr[j] );
     }
 
-    printf ("-- Complete --\n");
+   printf("--- Done ---\n");
 
     return 0;
 }
