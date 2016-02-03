@@ -39,8 +39,8 @@
 # Check arguments
 if [ $# -ne 3 ]
 then
-    echo "Correct Usage:"
-    echo " ./set_system.sh   <Num of processors>  <name of the system> <pr:Y,N> "
+    printf "Correct Usage:\n"
+    printf " ./set_system.sh   <Num of processors>  <name of the system> <pr:Y,N>\n"
     exit
 fi
 

@@ -39,8 +39,8 @@
 # Check arguments
 if [ $# -ne 4 ]
 then
-    echo "Correct Usage:"
-    echo " ./download_bitstream.sh   <Num of groups> <Num of Slaves> <The name of system> <Pr:Y,N>  "
+    printf "Correct Usage:\n"
+    printf " ./download_bitstream.sh   <Num of groups> <Num of Slaves> <The name of system> <Pr:Y,N> \n"
     exit
 fi
 

@@ -39,9 +39,8 @@
 # Check arguments
 if [ $# -ne 1 ]
 then
-    echo "Correct Usage:"
-    #echo " ./build_system.sh   <N. groups> <Nodes. Per group>  < board> <system's name> <PR:y,n>"
-    echo " ./build_system.sh   <Config.txt>"
+    printf "Correct Usage:\n"
+    printf "./build_system.sh   <Config.txt>\n"
     exit
 fi
 
@@ -125,11 +124,11 @@ mv "$1".bk   "$1"
 # Date: 11/5/2015
 #---------------------------------------------------------------------------------------------------
 # First, check if HTHREADS_DIR is define
-echo "Checking if variable HTHREADS_DIR is defined..."
+printf "Checking if variable HTHREADS_DIR is defined...\n"
 printenv | grep -e "^HTHREADS_DIR="
 rc=$?
 if [[ $rc != 0 ]]; then
-   echo "HTHREADS_DIR is not defined. Please define it by pointing to Hthreads root directory!"
+   printf "HTHREADS_DIR is not defined. Please define it by pointing to Hthreads root directory!\n"
    exit $rc
 fi
 
@@ -143,7 +142,7 @@ elif [ $board == "vc707" ]; then
    part=xc7vx485tffg1761-2
 fi
 
-echo "Determined this part: $part"
+printf "Determined this part: $part\n"
 
    
 # Navigate to hls cores
@@ -157,17 +156,17 @@ do
    test -d "$d" || continue # skip
    
    # Change directory into folder
-   echo "Found HLS directory: $d"
+   printf "Found HLS directory: $d\n"
    cd $d
 
    # Now run vivado_hls with specific part
-   echo "Running command: vivado_hls run_hls.tcl $part"
+   printf "Running command: vivado_hls run_hls.tcl $part\n"
    vivado_hls run_hls.tcl $part $pr 
 
    # Check return code and stop building if necessary
    rc=$?
    if [[ $rc != 0 ]]; then
-      echo "Failed to build HLS core $d"
+      printf "Failed to build HLS core $d\n"
       exit $rc
    fi
 
@@ -182,7 +181,7 @@ if [ $pr == "y" ]; then
    find . -maxdepth 1 -name "*.dcp" | while read dcp
    do
       # Move dcp file
-      echo "Moving DCP file: $dcp"
+      printf "Moving DCP file: $dcp\n"
       mv $dcp $HTHREADS_DIR/src/platforms/xilinx/vivado_archgen/pr/acc/
    done
 fi
@@ -195,11 +194,11 @@ popd
 ##=====================================================================
 vivado -nolog -nojournal -mode batch -source ./run_clusters.tcl -tclargs $N $C $board $part $name $pr $bram_size $uart $host $mb0 $mb1 $mb2 $mb3 $mb4 $mb5  $mb6 $mb7 $mb8 $mb9 $mb10 $mb11 $mb12 $mb13 $mb14 $mb15 $mb16 $mb17 $mb18 $mb19 $mb20 $mb21 $mb22 $mb23 $mb24 $mb25 $mb26 $mb27 $mb28 $mb29 $mb30 $mb31  #Static System
 
-# (Eugene 10/22/2015): echo return code from last command
+# (Eugene 10/22/2015): printf return code from last command
 rc=$?; 
 if [[ $rc != 0 ]]; 
 then
-   echo "Vivado Failed!!!" 
+   printf "Vivado Failed!!!\n" 
    exit $rc; 
 fi
 
@@ -208,23 +207,23 @@ if [ $pr == "y" ]
 then
    for module in  "${list_acc[@]}"
    do
-      echo -e "----------------------------------------------------------------\n\n"
-      echo "Building $module PR file"
+      printf "----------------------------------------------------------------\n\n"
+      printf "Building $module PR file\n"
       vivado -nolog -nojournal -verbose -mode batch -source ./pr_acc_config.tcl -tclargs $N $C $module $name    #PR for each accelerator
       rc=$?; 
       if [[ $rc != 0 ]]; 
       then
-         echo "Failed to build PR regionds for $module" 
+         printf "Failed to build PR regionds for $module\n" 
          exit $rc; 
       fi
    done 
    vivado -nolog -nojournal -verbose -mode batch -source ./pr_blank_config.tcl -tclargs $N $C $name    #Blank PR
    wait
-   # (Eugene 10/22/2015): echo return code from last command if failure
+   # (Eugene 10/22/2015): printf return code from last command if failure
    rc=$?; 
    if [[ $rc != 0 ]]; 
    then
-      echo "Vivado PR Failed!!!" 
+      printf "Vivado PR Failed!!!\n" 
       exit $rc; 
    fi
 fi
@@ -255,8 +254,8 @@ then
    mv *.dcp ./temp
    mv *.bin ./temp
    # Eugene (10/23/2016): Change from little to Big endian
-   echo "#ifndef  _BITSTREAM_H" > bitstream.h
-   echo "#define  _BITSTREAM_H" >> bitstream.h
+   printf "#ifndef  _BITSTREAM_H\n" > bitstream.h
+   printf "#define  _BITSTREAM_H\n" >> bitstream.h
    cat ./partial >> ./bitstream.h
    rm -f webtalk*
 
@@ -264,76 +263,76 @@ then
 # Adding in appropriate data structures and methods for such bitstreams
 # Author: Eugene Cartwright
 #---------------------------------------------------------------------------------------------------
-   echo "#include <accelerator.h>" >> bitstream.h
+   printf "#include <accelerator.h>\n" >> bitstream.h
 
    # Adding in PR structures into this header file so the
    # generated hcompile header stays fairly system independent
    num_accelerators=$(expr ${#list_acc[@]})
-   echo "unsigned char * accelerators_bit[NUM_ACCELERATORS][NUM_AVAILABLE_HETERO_CPUS] = {" >> bitstream.h
+   printf "unsigned char * accelerators_bit[NUM_ACCELERATORS][NUM_AVAILABLE_HETERO_CPUS] = {\n" >> bitstream.h
    j=0
    for module in  "${list_acc[@]}"; do
       i=0
       while [ $i -lt $(($N * $C)) ]; do
          if [ $i == 0 ]; then
-            echo -n -e "\t{(&${module}_${i}_bin[0])" >> bitstream.h
+            printf "\t{(&${module}_${i}_bin[0])" >> bitstream.h
          else 
-            echo -n ", (&${module}_${i}_bin[0])" >> bitstream.h
+            printf ", (&${module}_${i}_bin[0])" >> bitstream.h
          fi
          let i=i+1
       done
       let j=j+1
       if [ $j == "$num_accelerators" ]; then
-         echo "}" >> bitstream.h
+         printf "}\n" >> bitstream.h
       else
-         echo "}," >> bitstream.h
+         printf "},\n" >> bitstream.h
       fi
    done
-   echo "};" >> bitstream.h
-   echo "" >> bitstream.h
+   printf "};\n" >> bitstream.h
+   printf "\n" >> bitstream.h
 
    #---------------------------------------------------------------------------------------------------
    # Adding in PR initialization routines
    #---------------------------------------------------------------------------------------------------
    i=0
-   echo "void pr_config_mb() {" >> bitstream.h
+   printf "void pr_config_mb() {\n" >> bitstream.h
    # Loop over all processors
    while [ $i -lt $(($N * $C)) ]; do
-      echo -e "\n\t/* ------------------------------------------------------------------ *" >> bitstream.h
-      printf  "\t *                          MicroBlaze %02d                             *\n" $i >> bitstream.h
-      echo -e "\t * ------------------------------------------------------------------ */\n" >> bitstream.h
-      echo -e "\t// Placing PRC in Shutdown mode..." >> bitstream.h
-      echo -e "\tXil_Out32(MB_${i}_CONTROL,0);" >> bitstream.h
-      echo -e "\twhile(!(Xil_In32(MB_${i}_STATUS)&0x80));" >> bitstream.h
+      printf "\n\t/* ------------------------------------------------------------------ *\n" >> bitstream.h
+      printf   "\t *                          MicroBlaze %02d                             *\n" $i >> bitstream.h
+      printf   "\t * ------------------------------------------------------------------ */\n" >> bitstream.h
+      printf "\t// Placing PRC in Shutdown mode...\n" >> bitstream.h
+      printf "\tXil_Out32(MB_${i}_CONTROL,0);\n" >> bitstream.h
+      printf "\twhile(!(Xil_In32(MB_${i}_STATUS)&0x80));\n" >> bitstream.h
 
       j=0
-      echo -e "\n\t// Initializing RM bitstream address and size registers" >> bitstream.h
+      printf "\n\t// Initializing RM bitstream address and size registers\n" >> bitstream.h
       for module in "${list_acc[@]}"; do 
-         echo -e "\tXil_Out32(MB_${i}_BS_ADDRESS${j},(Huint) (&${module}_${i}_bin[0]));" >> bitstream.h
-         echo -e "\tXil_Out32(MB_${i}_BS_SIZE${j},${module}_${i}_bin_len);" >> bitstream.h
+         printf "\tXil_Out32(MB_${i}_BS_ADDRESS${j},(Huint) (&${module}_${i}_bin[0]));\n" >> bitstream.h
+         printf "\tXil_Out32(MB_${i}_BS_SIZE${j},${module}_${i}_bin_len);\n" >> bitstream.h
          let j=j+1
       done
       
       j=0
-      echo -e "\n\t// Initializing RM trigger ID registers" >> bitstream.h
+      printf "\n\t// Initializing RM trigger ID registers\n" >> bitstream.h
       for module in "${list_acc[@]}"; do 
-         echo -e "\tXil_Out32(MB_${i}_TRIGGER${j},${j});" >> bitstream.h
+         printf "\tXil_Out32(MB_${i}_TRIGGER${j},${j});\n" >> bitstream.h
          let j=j+1
       done
       
       j=0
-      echo -e "\n\t// Initializing RM address and control registers" >> bitstream.h
+      printf "\n\t// Initializing RM address and control registers\n" >> bitstream.h
       for module in "${list_acc[@]}"; do 
-         echo -e "\tXil_Out32(MB_${i}_RM_BS_INDEX${j},${j});" >> bitstream.h
+         printf "\tXil_Out32(MB_${i}_RM_BS_INDEX${j},${j});\n" >> bitstream.h
          let j=j+1
       done
 
-      echo -e "\n\t// Placing PRC in 'Restart with Status' Mode" >> bitstream.h
-      echo -e "\tXil_Out32(MB_${i}_CONTROL,2);" >> bitstream.h
+      printf "\n\t// Placing PRC in 'Restart with Status' Mode\n" >> bitstream.h
+      printf "\tXil_Out32(MB_${i}_CONTROL,2);\n" >> bitstream.h
    
       let i=i+1
    done
-   echo "}" >> bitstream.h
-   echo "#endif" >> bitstream.h
+   printf "}\n" >> bitstream.h
+   printf "#endif\n" >> bitstream.h
 fi
 
 
