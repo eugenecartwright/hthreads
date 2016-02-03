@@ -199,7 +199,7 @@ def Xil_to_Hthreads_ISA(xilinx_isa, exit_if_error=True):
 def create_Jamfile(template, compiler_flags, processor_name):
 
    # Write the appropriate flags to this copied Jamrules file
-   execute_cmd("echo -e 'CCFLAGS += " + compiler_flags + " ;' >> " + template)
+   execute_cmd('printf "CCFLAGS += ' + compiler_flags + ' ;" >> ' + template)
 
    # Update this template file to include processor specific paths 
    # to the SDK's generated libraries and include folders.

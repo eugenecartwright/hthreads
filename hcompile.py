@@ -157,7 +157,7 @@ def main():
    print "\t---------------------------------" 
    print "\t|+ Appending to HAL source file |"
    print "\t---------------------------------"
-   cmd = "echo -e 'int main() {\n\treturn 0;\n}' >> " + hetero_build_dir + "/" + SRC_FILE
+   cmd = 'printf "int main() {\n\treturn 0;\n}" >> ' + hetero_build_dir + "/" + SRC_FILE
    status = execute_cmd(cmd)
    if (status != 0):
       print "\t\t -> Unable to append 'int main()...' to HAL source ..."
