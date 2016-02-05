@@ -179,7 +179,7 @@ def opcode_tagging(symbol, processor, elf_path):
    if (isa == 'mblaze'):
       execute_cmd(elf_copy+' -I binary -O binary --reverse-bytes=4 _opcode.bin _opcode.bin')
    else:
-      print "Opcode Taggin: Unsupported feature!"
+      print "Opcode Tagging: Unsupported feature!"
 
    # Now you can xxd, seeking to that specific place, with a given length
    execute_cmd("xxd -c4 -s 0x" + offset + " -l 0x" + sym_length + " _opcode.bin | awk '{printf (\"%.2s\\n\", $2)}' > _opcode")
@@ -396,4 +396,38 @@ def create_processor_configuration_profile(processor):
    string += "0,0,0,0}"
    
    return string
+
+# ------------------------------------------------ #
+# This function is responsible for creating        #
+# processor configuration data structure.          #
+# ------------------------------------------------ #
+def generate_callGraph(isa,rtl_file):
+   print "\t\t" +isa.upper()+ ": Generating Call Graph..."
+    
+   callGraph = {}
+   with open(rtl_file,"r") as infile:
+      lines = infile.readlines()
+     
+   function_name = "g"
+   for line in lines:
+      # Search for start of function RTL dump
+      match = re.search("^;;\s+Function", line)
+     
+      if match > -1:
+         splitUp = line.split(' ')
+         function_name = splitUp[2]
+         # Create an entry in dictionary 
+         # and assign it an empty list
+         callGraph[function_name] = []
+         continue
+      
+      # If you are already in the RTL dump
+      # for a function, look for function calls
+      e = re.findall('".+"', line)
+      if len(e) == 1:
+         callGraph[function_name].append(e[0])
+   
+   return callGraph 
+    
+
 

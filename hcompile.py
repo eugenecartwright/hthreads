@@ -4,7 +4,7 @@
 #
 #                           Authors: Jason Agron, Eugene Cartwright
 # *****************************************************************************
-import sys, os, re, commands, subprocess, filecmp, collections
+import sys, os, re, commands, subprocess, filecmp, collections, glob
 from string import Template
 from compiler.common.execute import *
 from compiler.common.platform_interpreter import *
@@ -21,6 +21,25 @@ logo = "\
  |_|  |_|  |_|  |_|  |_|_|  \_\______/_/    \_\_____/|_____/ \n\
 "
                                                              
+polymorphic_functions = {
+   'poly_crc':'crc',
+   'poly_vectoradd':'vectoradd',
+   'poly_vectorsub':'vectoradd',
+   'poly_vectormul':'vectormul',
+   'poly_vectordiv':'vectormul',
+   'poly_matrix_mul':'matrix_mul',
+   'poly_bubblesort':'bubblesort'
+}
+
+accelerator_ids = {
+   'no_acc':"-1",
+   'crc': "0",
+   'bubblesort':"1",
+   'vectoradd':"2",
+   'vectormul':"3",
+   'matrixmul':"4"
+}
+   
                                                              
 
 
@@ -343,6 +362,7 @@ def main():
    INTERMEDIATES = {}
    INTERMEDIATES_SIZE = {}
    processor_weights = {} 
+   call_graph = {} 
    MASTER_symbol_preferred_list = collections.OrderedDict()
 
    for index, processor in enumerate(PROCESSORS):
@@ -437,7 +457,13 @@ def main():
                except KeyError, e:
                   MASTER_symbol_preferred_list[(symbol_name, key)] = temp[key]
                # ---- ------------------------------------------ ----#
-
+        
+         # Generate Call graph
+         rtl_dump_file =  glob.glob("hal/build/objs/"+slave_isa+"/test/system/"+SRC_FILE+".*.expand")
+         if len(rtl_dump_file) != 1:
+            print "Error with RTL dump: Found none or more than one for source file " + SRC_FILE
+            sys.exit(1)
+         call_graph = hetero_utils.generate_callGraph(slave_isa, rtl_dump_file[0]) 
 
          # Grab the lists and append it to top level lists
          # TODO: Check to make sure func_list match 
@@ -454,7 +480,7 @@ def main():
          for symbol in FUNCTION_NAMES:
             processor_weights[(symbol,index)] = processor_weights[(symbol,(index-1))] 
          print "\t\tSkipping..."
-            
+             
    # Once all slave code has been compiled, remove copied source
    file_to_remove = hetero_build_dir + SRC_FILE
    execute_cmd("rm -f " + file_to_remove)
@@ -517,6 +543,11 @@ def main():
    
    COPROCESSORS = hetero_utils.create_slave_table(PROCESSORS, HEADER_FILE_PATH)
    
+   #---------------------------------------------#
+   # Embed polymorphic function info into thread #
+   #---------------------------------------------#
+   #TODO: Assumes that the call graph is same for all slaves!
+
    #-------------------------------------------------#
    # Create Thread profile table, and preferred list #
    #-------------------------------------------------#
@@ -551,13 +582,41 @@ def main():
    with open(HEADER_FILE_PATH,"a") as infile:
       infile.write("thread_profile_t thread_profile[NUM_OF_THREADS] PRIVATE_MEMORY = {\n");
       for index, key_tuple in enumerate(MASTER_symbol_preferred_list):
+         symbol = key_tuple[0]
          if (index % num_of_profile_entries == 0):
-            infile.write("// " + key_tuple[0] + "\n")
+            infile.write("// " + symbol + "\n")
             infile.write("{")
          infile.write(str(MASTER_symbol_preferred_list[key_tuple]))
          if ((index+1) % num_of_profile_entries == 0):
             # Add in ratios and close
-            infile.write(",0,0,0,0},\n")
+            #infile.write(",0,0,0,0},\n")
+            infile.write(",0,0,0,0,")
+            # Get function calls made for this symbol
+            function_call_list = call_graph[symbol]
+
+            accelerator = None
+            PR_preferred = False
+            for function_call in function_call_list:
+               function_call = function_call.strip('"')
+               try:
+                  if (accelerator == None):
+                     accelerator = polymorphic_functions[function_call]
+                     # Determine accelerator for this call, and write in
+                     # first accelerator used entry for thread profile.
+                     infile.write(accelerator_ids[accelerator] + ",")
+                  else:
+                     # If you find that this is another polymorphic function call
+                     # and it is different from previous polymorphic call
+                     if (polymorphic_functions[function_call] != accelerator):
+                        # If you have made it here, that means there is
+                        # another valid  polymorphic call, PR preferred
+                        PR_preferred = True
+               except KeyError,e:
+                  continue
+            if (PR_preferred == True):
+               infile.write("1},\n")
+            else:
+               infile.write("0},\n")
          else:
             infile.write(",")
    

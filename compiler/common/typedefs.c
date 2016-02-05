@@ -29,6 +29,14 @@ typedef struct {
    Hbool fpu_ratio;
    Hbool barrel_ratio;
    Hbool mul_ratio;
+
+   // First possible accelerator, used
+   Hint first_accelerator;
+
+   // PR preference: valid if multiple 
+   // polymorphic functions called.
+   Hbool prefer_PR;
+
 } thread_profile_t;
 
 // --------------------------------------------------------- //
