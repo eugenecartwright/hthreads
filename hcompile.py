@@ -22,24 +22,15 @@ logo = "\
 "
                                                              
 polymorphic_functions = {
-   'poly_crc':'crc',
-   'poly_vectoradd':'vectoradd',
-   'poly_vectorsub':'vectoradd',
-   'poly_vectormul':'vectormul',
-   'poly_vectordiv':'vectormul',
-   'poly_matrix_mul':'matrix_mul',
-   'poly_bubblesort':'bubblesort'
+   'poly_crc':'CRC',
+   'poly_vectoradd':'VECTORADD',
+   'poly_vectorsub':'VECTORADD',
+   'poly_vectormul':'VECTORMUL',
+   'poly_vectordiv':'VECTORMUL',
+   'poly_matrix_mul':'MATRIXMUL',
+   'poly_bubblesort':'BUBBLESORT'
 }
 
-accelerator_ids = {
-   'no_acc':"-1",
-   'crc': "0",
-   'bubblesort':"1",
-   'vectoradd':"2",
-   'vectormul':"3",
-   'matrixmul':"4"
-}
-   
                                                              
 
 
@@ -604,7 +595,7 @@ def main():
                      accelerator = polymorphic_functions[function_call]
                      # Determine accelerator for this call, and write in
                      # first accelerator used entry for thread profile.
-                     infile.write(accelerator_ids[accelerator] + ",")
+                     infile.write(accelerator + ",")
                   else:
                      # If you find that this is another polymorphic function call
                      # and it is different from previous polymorphic call
@@ -614,6 +605,9 @@ def main():
                         PR_preferred = True
                except KeyError,e:
                   continue
+            # If we never wrote an entry for first accelerator used
+            if (accelerator == None):
+               infile.write("NO_ACC,")
             if (PR_preferred == True):
                infile.write("1},\n")
             else:
