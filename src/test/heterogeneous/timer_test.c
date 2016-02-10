@@ -2,7 +2,6 @@
 #include <hthread.h>
 #include <stdio.h>
 #include <arch/htime.h>
-#include "microblaze_sleep.h"
 #define HARDWARE_THREAD
 #define NUM_TRIALS          (5)
 //#define DEBUG_DISPATCH
@@ -52,12 +51,17 @@ void * foo_thread(void * arg)
     return (void *) SUCCESS;
 }
 
+
 #ifndef HETERO_COMPILATION
 #include "timer_test_prog.h"
+      
+hthread_time_t start PRIVATE_MEMORY;
+hthread_time_t stop PRIVATE_MEMORY;
 
 int main(){
 
     printf("HOST: START\n");
+    init_host_tables();
     int i = 0;
     int ret[NUM_AVAILABLE_HETERO_CPUS];
     printf("HOST: Creating thread & attribute structures\n");
@@ -127,14 +131,18 @@ int main(){
            printf("Thread %02d Calculation time recorded in thread = %f sec\n",i,hthread_time_sec(thread_package[i].diff));
        }
    }
+    
+   free(child);
+   free(attr);
+   free(thread_package);
 
    // Test Timer
    printf("\n\nTesting timer from host and wait(sec) function\n");
    for (i = 0; i < 10; i++) {
       printf("Waiting for %02d seconds...\n", i*10);
-      hthread_time_t start = hthread_time_get();
+      start = hthread_time_get();
       wait(i*10);
-      hthread_time_t stop = hthread_time_get();
+      stop = hthread_time_get();
       hthread_time_t diff;
       hthread_time_diff(diff, stop, start); 
       printf("Time: = %f sec\n", hthread_time_sec(diff));

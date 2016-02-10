@@ -66,6 +66,9 @@
 void load_my_table(void);
 Hbool check_valid_slave_num (Huint slave_num);
 void init_host_tables();
+Huint thread_create(hthread_t * tid, hthread_attr_t * attr, Huint func_id,void * arg, Huint type, Huint dma_length);
+Hint thread_join(hthread_t th, void **retval, hthread_time_t *exec_time);
+void init_tuning_table();
 
 // OS instrumentation data structure
 hthread_time_t create_overhead PRIVATE_MEMORY = 0;
@@ -84,21 +87,687 @@ Huint best_slaves_num PRIVATE_MEMORY;
 // This is the tuning table used to keep track of profiling data
 // for slave execution.
 //#ifdef TUNING
-#if 0
-    tuning_table_t tuning_table[NUM_ACCELERATORS*NUM_OF_SIZES] = {
-    {2,54,259,2}, {4,77,504,2}, {4,121,994,2}, {8,207,1975,2}, {8,377,3936,2}, {16,714,7855,2}, {16,1383,15716,2},
-    {4,114,345,1}, {4,250,741,2}, {8,604,1537,2}, {8,1510,3238,2}, {16,3983,7053,2}, {16,10548,14703,2}, {16,30558,30894,2},
-    {1,52,85,2}, {1,65,150,2}, {1,90,283,2}, {2,133,548,2}, {2,215,1079,2}, {2,380,2146,2}, {2,705,4294,2}
-    };
-#endif
-    tuning_table_t tuning_table[NUM_ACCELERATORS*NUM_OF_SIZES] = {
-    {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1},
-    {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1},
-    {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1},
-    {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1},
-    {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}, {1, 1, 100000,1}
-    };
+    //tuning_table_t tuning_table[NUM_ACCELERATORS*NUM_OF_SIZES] = {
+tuning_table_t tuning_table[NUM_AVAILABLE_HETERO_CPUS][NUM_ACCELERATORS][(BRAM_SIZE/BRAM_GRANULARITY_SIZE)] GLOBAL_MEMORY;
 //#endif
+
+#ifdef TUNING_TABLE_H
+#ifdef PR
+void init_tuning_table(){
+   hthread_time_t exec_time[NUM_AVAILABLE_HETERO_CPUS];
+   hthread_t child[NUM_AVAILABLE_HETERO_CPUS];
+   hthread_attr_t attr[NUM_AVAILABLE_HETERO_CPUS];
+   void * ret[NUM_AVAILABLE_HETERO_CPUS];
+   Huint i = 0; unsigned int j = 0;
+   Huint data_size;
+   Huint pr_flag[NUM_AVAILABLE_HETERO_CPUS];
+   Huint current_acc[NUM_AVAILABLE_HETERO_CPUS];
+
+   // Test sort
+#ifdef DEBUG_DISPATCH
+   printf("Initializing BUBBLESORT values in Tuning table...");
+#endif
+   for (data_size = BRAM_GRANULARITY_SIZE-1; data_size < _LIST_LENGTH; data_size+=BRAM_GRANULARITY_SIZE) {
+      _data package[NUM_AVAILABLE_HETERO_CPUS];
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         package[i].dataA = (Hint *) malloc(sizeof(Hint) * data_size);
+         assert(package[i].dataA != NULL);
+         package[i].size = data_size;
+
+         for (j = 0; j < data_size; j++) {
+            package[i].dataA[j] = rand() % 1000;
+         }
+         // Set up attributes for a hardware thread
+         hthread_attr_init(&attr[i]);
+         hthread_attr_setdetachstate( &attr[i], HTHREAD_CREATE_JOINABLE);
+
+         // Temporarily mark this slave as not having PR and no accelerator attached
+         pr_flag[i] = _hwti_get_PR_flag( (Huint) hwti_array[i]);
+         current_acc[i] = _hwti_get_last_accelerator( (Huint) hwti_array[i]);
+
+         _hwti_set_PR_flag((Huint) hwti_array[i], 0);
+         _hwti_set_last_accelerator((Huint) hwti_array[i], NO_ACC);
+        
+         // Creating thread
+         if (thread_create (&child[i], &attr[i],sort_thread_FUNC_ID, (void *)(&package[i]),
+                       STATIC_HW0+i,
+                       0)) 
+         {
+            printf("hthread_create error on HW THREAD\n");
+            while(1);
+         }
+      }
+         
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         // Join on child thread
+         if (thread_join(child[i], &ret[i], &exec_time[i])){
+            printf("Join error!\n");
+            while(1);
+         }
+
+         if (ret[i] != SUCCESS)
+            printf("Thread %02d Failed:  %d, Slave %d\n", (unsigned int) child[i], (unsigned int) ret, i);
+      }
+        
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         // Check results
+         #ifdef VERIFY
+         for (j = 0; j < data_size-1; j++) {
+            if (package[i].dataA[j] > package[i].dataA[j+1]) {
+               printf("[data Size = %d] Sort failed on Slave %d!\n", data_size, i);
+               break;
+            }
+         }
+         #endif
+      }
+
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         // Write software execution in tuning table
+         tuning_table[i][BUBBLESORT][(data_size/BRAM_GRANULARITY_SIZE)].sw_time = hthread_time_usec(exec_time[i]);
+
+         // Restore PR flag and Last accelerator
+         _hwti_set_PR_flag((Huint) hwti_array[i], pr_flag[i]);
+         _hwti_set_last_accelerator((Huint) hwti_array[i], current_acc[i]);
+
+         if (perform_PR(i,BUBBLESORT)) {
+            printf("ERROR (init_tuning_table): Unable to PR BUBBLE_SORT\n");
+            while(1);
+         }
+         
+         for (j = 0; j < data_size; j++) {
+            package[i].dataA[j] = rand() % 1000;
+         }
+
+         // Creating thread
+         if (thread_create (&child[i], &attr[i],sort_thread_FUNC_ID, (void *)(&package[i]),
+                       STATIC_HW0+i,
+                       0)) 
+         {
+            printf("hthread_create error on HW THREAD\n");
+            while(1);
+         }
+      }
+
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         // Join on child thread
+         if (thread_join(child[i], &ret[i], &exec_time[i])){
+            printf("Join error!\n");
+            while(1);
+         }
+
+         if (ret[i] != SUCCESS)
+            printf("Thread %02d Failed:  %d, Slave %d\n", (unsigned int) child[i], (unsigned int) ret[i], i);
+      }
+
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         // Check results
+         #ifdef VERIFY
+         for (j = 0; j < data_size-1; j++) {
+            if (package[i].dataA[j] > package[i].dataA[j+1]) {
+               printf("[data Size = %d] Sort failed on slave %d\n", data_size, i);
+               break;
+            }
+         }
+         #endif
+         
+         // Write hardware execution in tuning table
+         tuning_table[i][BUBBLESORT][(data_size/BRAM_GRANULARITY_SIZE)].hw_time = hthread_time_usec(exec_time[i]);
+         
+         free(package[i].dataA);
+      }
+   }
+#ifdef DEBUG_DISPATCH
+   printf("Done\n");
+   printf("Initializing CRC values in Tuning table...");
+#endif
+
+   // Test crc
+   for (data_size = BRAM_GRANULARITY_SIZE-1; data_size < _ARRAY_SIZE; data_size+=BRAM_GRANULARITY_SIZE) {
+      _data package[NUM_AVAILABLE_HETERO_CPUS];
+      Hint * check[NUM_AVAILABLE_HETERO_CPUS];
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+      
+         package[i].dataA = (Hint *) malloc(sizeof(Hint) * data_size);
+         assert(package[i].dataA != NULL);
+         package[i].size = data_size;
+         check[i] = (Hint *) malloc(data_size * sizeof(Hint));
+         assert(check[i] != NULL);
+
+         // Initializing the data
+         Hint * ptr = package[i].dataA;
+         Hint index;
+         for(index = 0; index < data_size; index++) {
+            *ptr = (rand() % 1000)*8;	
+            *(check[i]+index) = *ptr;
+            ptr++;
+         }
+ 
+         #ifdef VERIFY
+         // Generating the CRC of that data
+         if (poly_crc(check[i], data_size)) {
+            printf("Host failed to generate CRC check of data\n");
+            while(1);
+         }
+         #endif
+
+         // Set up attributes for a hardware thread
+         hthread_attr_init(&attr[i]);
+         hthread_attr_setdetachstate( &attr[i], HTHREAD_CREATE_JOINABLE);
+
+         // Temporarily mark this slave as not having PR and no accelerator attached
+         pr_flag[i] = _hwti_get_PR_flag( (Huint) hwti_array[i]);
+         current_acc[i] = _hwti_get_last_accelerator( (Huint) hwti_array[i]);
+
+         _hwti_set_PR_flag((Huint) hwti_array[i], 0);
+         _hwti_set_last_accelerator((Huint) hwti_array[i], NO_ACC);
+        
+         // Creating thread
+         if (thread_create (&child[i], &attr[i],crc_thread_FUNC_ID, (void *)(&package[i]),
+                       STATIC_HW0+i,
+                       0)) 
+         {
+            printf("hthread_create error on HW THREAD\n");
+            while(1);
+         }
+      }
+         
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         // Join on child thread
+         if (thread_join(child[i], &ret[i], &exec_time[i])){
+            printf("Join error!\n");
+            while(1);
+         }
+
+         if (ret[i] != SUCCESS)
+            printf("Thread %02d Failed:  %d, Slave %d\n", (unsigned int) child[i], (unsigned int) ret, i);
+      }
+        
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         #ifdef VERIFY
+         // For CRC Results
+         for ( j = 0; j < data_size; j++) {
+            if (*(package.dataA+j) != *(check[i]+j) )  {
+               printf("[Data size =  %d] CRC failed!\n", data_size);
+               j = data_size;
+            }
+         }
+         #endif 
+      }
+
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         // Write software execution in tuning table
+         tuning_table[i][CRC][(data_size/BRAM_GRANULARITY_SIZE)].sw_time = hthread_time_usec(exec_time[i]);
+
+         // Restore PR flag and Last accelerator
+         _hwti_set_PR_flag((Huint) hwti_array[i], pr_flag[i]);
+         _hwti_set_last_accelerator((Huint) hwti_array[i], current_acc[i]);
+
+         if (perform_PR(i,CRC)) {
+            printf("ERROR (init_tuning_table): Unable to PR CRC\n");
+            while(1);
+         }
+         
+         // Initializing the data
+         Hint * ptr = package[i].dataA;
+         Hint index;
+         for(index = 0; index < data_size; index++) {
+            *ptr = (rand() % 1000)*8;	
+            *(check[i]+index) = *ptr;
+            ptr++;
+         }
+         // Creating thread
+         if (thread_create (&child[i], &attr[i],crc_thread_FUNC_ID, (void *)(&package[i]),
+                       STATIC_HW0+i,
+                       0)) 
+         {
+            printf("hthread_create error on HW THREAD\n");
+            while(1);
+         }
+      }
+
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         // Join on child thread
+         if (thread_join(child[i], &ret[i], &exec_time[i])){
+            printf("Join error!\n");
+            while(1);
+         }
+
+         if (ret[i] != SUCCESS)
+            printf("Thread %02d Failed:  %d, Slave %d\n", (unsigned int) child[i], (unsigned int) ret[i], i);
+      }
+      
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         #ifdef VERIFY
+         // For CRC Results
+         for ( j = 0; j < data_size; j++) {
+            if (*(package.dataA+j) != *(check[i]+j) )  {
+               printf("[Data size =  %d] CRC failed!\n", data_size);
+               j = data_size;
+            }
+         }
+         #endif 
+
+         
+         // Write hardware execution in tuning table
+         tuning_table[i][CRC][(data_size/BRAM_GRANULARITY_SIZE)].hw_time = hthread_time_usec(exec_time[i]);
+         
+         free(package[i].dataA);
+         free(check[i]);
+      }
+   }
+
+#ifdef DEBUG_DISPATCH
+   printf("Done\n");
+   printf("Initializing VectorAdd/VectorSub values in Tuning table...");
+#endif
+   
+   // Test vectoradd/vectorsub
+   for (data_size = BRAM_GRANULARITY_SIZE-1; data_size < _ARRAY_SIZE; data_size+=BRAM_GRANULARITY_SIZE) {
+      _data package[NUM_AVAILABLE_HETERO_CPUS];
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         
+         package[i].dataA = (Hint*) malloc(data_size * sizeof(Hint)); 
+         package[i].dataB = (Hint*) malloc(data_size * sizeof(Hint)); 	
+         package[i].dataC = (Hint*) malloc(data_size * sizeof(Hint)); 	
+         assert(package[i].dataA != NULL);
+         assert(package[i].dataB != NULL);
+         assert(package[i].dataC != NULL);
+         package[i].size = data_size;
+
+         // Initializing the data
+         for (j=0 ; j < data_size; j++) {
+            package[i].dataA[j] = (Hint) (rand() % 1000);
+            package[i].dataB[j] = (Hint) (rand() % 1000);
+            package[i].dataC[j] = 0;
+         }
+      
+         // Set up attributes for a hardware thread
+         hthread_attr_init(&attr[i]);
+         hthread_attr_setdetachstate( &attr[i], HTHREAD_CREATE_JOINABLE);
+
+         // Temporarily mark this slave as not having PR and no accelerator attached
+         pr_flag[i] = _hwti_get_PR_flag( (Huint) hwti_array[i]);
+         current_acc[i] = _hwti_get_last_accelerator( (Huint) hwti_array[i]);
+
+         _hwti_set_PR_flag((Huint) hwti_array[i], 0);
+         _hwti_set_last_accelerator((Huint) hwti_array[i], NO_ACC);
+        
+         // Creating thread
+         if (thread_create (&child[i], &attr[i],vector_sub_thread_FUNC_ID, (void *)(&package[i]),
+                       STATIC_HW0+i,
+                       0)) 
+         {
+            printf("hthread_create error on HW THREAD\n");
+            while(1);
+         }
+      }
+         
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         // Join on child thread
+         if (thread_join(child[i], &ret[i], &exec_time[i])){
+            printf("Join error!\n");
+            while(1);
+         }
+
+         if (ret[i] != SUCCESS)
+            printf("Thread %02d Failed:  %d, Slave %d\n", (unsigned int) child[i], (unsigned int) ret, i);
+      }
+        
+      #ifdef VERIFY
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         // For VectorSub Results
+         for (j=0 ; j < data_size; j++) {
+            if ( (package[i].dataC[j]) != (package[i].dataA[j] - package[j].dataB[j]))  {
+               printf("[Data size =  %d] Vector Sub failed!\n", data_size);
+               h = data_size;
+            }
+         }
+      }
+      #endif 
+
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         // Write software execution in tuning table
+         tuning_table[i][VECTORSUB][(data_size/BRAM_GRANULARITY_SIZE)].sw_time = hthread_time_usec(exec_time[i]);
+
+         // Restore PR flag and Last accelerator
+         _hwti_set_PR_flag((Huint) hwti_array[i], pr_flag[i]);
+         _hwti_set_last_accelerator((Huint) hwti_array[i], current_acc[i]);
+
+         if (perform_PR(i,VECTORSUB)) {
+            printf("ERROR (init_tuning_table): Unable to PR VectorSub\n");
+            while(1);
+         }
+         
+         // Initializing the data
+         for (j=0 ; j < data_size; j++) {
+            package[i].dataA[j] = (Hint) (rand() % 1000);
+            package[i].dataB[j] = (Hint) (rand() % 1000);
+            package[i].dataC[j] = 0;
+         }
+         
+         // Creating thread
+         if (thread_create (&child[i], &attr[i],vector_sub_thread_FUNC_ID, (void *)(&package[i]),
+                       STATIC_HW0+i,
+                       0)) 
+         {
+            printf("hthread_create error on HW THREAD\n");
+            while(1);
+         }
+      }
+
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         // Join on child thread
+         if (thread_join(child[i], &ret[i], &exec_time[i])){
+            printf("Join error!\n");
+            while(1);
+         }
+
+         if (ret[i] != SUCCESS)
+            printf("Thread %02d Failed:  %d, Slave %d\n", (unsigned int) child[i], (unsigned int) ret[i], i);
+      }
+
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         #ifdef VERIFY
+         // For VectorSub Results
+         for (j=0 ; j < data_size; j++) {
+            if ( (package[i].dataC[j]) != (package[i].dataA[j] - package[j].dataB[j]))  {
+               printf("[Data size =  %d] Vector Sub failed!\n", data_size);
+               h = data_size;
+            }
+         }
+         #endif 
+         
+         // Write hardware execution in tuning table
+         tuning_table[i][VECTORSUB][(data_size/BRAM_GRANULARITY_SIZE)].hw_time = hthread_time_usec(exec_time[i]);
+         
+         free(package[i].dataA);
+         free(package[i].dataB);
+         free(package[i].dataC);
+      }
+   }
+
+#ifdef DEBUG_DISPATCH
+   printf("Done\n");
+   printf("Initializing VectorMul/VectorDiv values in Tuning table...");
+#endif
+   
+   // Test vectormul/vectordiv
+   for (data_size = BRAM_GRANULARITY_SIZE-1; data_size < _ARRAY_SIZE; data_size+=BRAM_GRANULARITY_SIZE) {
+      _data package[NUM_AVAILABLE_HETERO_CPUS];
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         
+         package[i].dataA = (Hint*) malloc(data_size * sizeof(Hint)); 
+         package[i].dataB = (Hint*) malloc(data_size * sizeof(Hint)); 	
+         package[i].dataC = (Hint*) malloc(data_size * sizeof(Hint)); 	
+         assert(package[i].dataA != NULL);
+         assert(package[i].dataB != NULL);
+         assert(package[i].dataC != NULL);
+         package[i].size = data_size;
+
+         // Initializing the data
+         for (j=0 ; j < data_size; j++) {
+            package[i].dataA[j] = (Hint) (rand() % 1000);
+            package[i].dataB[j] = (Hint) (rand() % 1000);
+            package[i].dataC[j] = 0;
+         }
+      
+         // Set up attributes for a hardware thread
+         hthread_attr_init(&attr[i]);
+         hthread_attr_setdetachstate( &attr[i], HTHREAD_CREATE_JOINABLE);
+
+         // Temporarily mark this slave as not having PR and no accelerator attached
+         pr_flag[i] = _hwti_get_PR_flag( (Huint) hwti_array[i]);
+         current_acc[i] = _hwti_get_last_accelerator( (Huint) hwti_array[i]);
+
+         _hwti_set_PR_flag((Huint) hwti_array[i], 0);
+         _hwti_set_last_accelerator((Huint) hwti_array[i], NO_ACC);
+        
+         // Creating thread
+         if (thread_create (&child[i], &attr[i],vector_multiply_thread_FUNC_ID, (void *)(&package[i]),
+                       STATIC_HW0+i,
+                       0)) 
+         {
+            printf("hthread_create error on HW THREAD\n");
+            while(1);
+         }
+      }
+         
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         // Join on child thread
+         if (thread_join(child[i], &ret[i], &exec_time[i])){
+            printf("Join error!\n");
+            while(1);
+         }
+
+         if (ret[i] != SUCCESS)
+            printf("Thread %02d Failed:  %d, Slave %d\n", (unsigned int) child[i], (unsigned int) ret, i);
+      }
+        
+      #ifdef VERIFY
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         // For VectorSub Results
+         for (j=0 ; j < data_size; j++) {
+            if ( (package[i].dataC[j]) != (package[i].dataA[j] * package[j].dataB[j]))  {
+               h = data_size;
+            }
+         }
+      }
+      #endif 
+
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         // Write software execution in tuning table
+         tuning_table[i][VECTORMUL][(data_size/BRAM_GRANULARITY_SIZE)].sw_time = hthread_time_usec(exec_time[i]);
+
+         // Restore PR flag and Last accelerator
+         _hwti_set_PR_flag((Huint) hwti_array[i], pr_flag[i]);
+         _hwti_set_last_accelerator((Huint) hwti_array[i], current_acc[i]);
+
+         if (perform_PR(i,VECTORMUL)) {
+            printf("ERROR (init_tuning_table): Unable to PR VectorSub\n");
+            while(1);
+         }
+         
+         // Initializing the data
+         for (j=0 ; j < data_size; j++) {
+            package[i].dataA[j] = (Hint) (rand() % 1000);
+            package[i].dataB[j] = (Hint) (rand() % 1000);
+            package[i].dataC[j] = 0;
+         }
+         
+         // Creating thread
+         if (thread_create (&child[i], &attr[i],vector_multiply_thread_FUNC_ID, (void *)(&package[i]),
+                       STATIC_HW0+i,
+                       0)) 
+         {
+            printf("hthread_create error on HW THREAD\n");
+            while(1);
+         }
+      }
+
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         // Join on child thread
+         if (thread_join(child[i], &ret[i], &exec_time[i])){
+            printf("Join error!\n");
+            while(1);
+         }
+
+         if (ret[i] != SUCCESS)
+            printf("Thread %02d Failed:  %d, Slave %d\n", (unsigned int) child[i], (unsigned int) ret[i], i);
+      }
+
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+         #ifdef VERIFY
+         // For VectorSub Results
+         for (j=0 ; j < data_size; j++) {
+            if ( (package[i].dataC[j]) != (package[i].dataA[j] * package[j].dataB[j]))  {
+               printf("[Data size =  %d] Vector Sub failed!\n", data_size);
+               h = data_size;
+            }
+         }
+         #endif 
+         
+         // Write hardware execution in tuning table
+         tuning_table[i][VECTORMUL][(data_size/BRAM_GRANULARITY_SIZE)].hw_time = hthread_time_usec(exec_time[i]);
+         
+         free(package[i].dataA);
+         free(package[i].dataB);
+         free(package[i].dataC);
+      }
+   }
+
+#ifdef DEBUG_DISPATCH
+   printf("Done\n");
+   printf("Initializing Matrix Multiply values in Tuning table...");
+#endif
+
+
+#if BRAM_GRANULARITY_SIZE != 64
+#error "ERROR: Matrix Multiplication tuning table entries will be incorrect as BRAM_GRANULARITY_SIZE != 64 (largest matrix size)!"
+#endif
+   // Test Matrix Multiply
+   // TODO: data_size and entry insertions are generic to BRAM_GRANULARITY_SIZE
+   _data package;
+   for (data_size = 2; data_size < _MATRIX_SIZE; data_size++) {
+      package.dataA = (Hint*) malloc(data_size * data_size *sizeof(Hint)); 
+      package.dataB = (Hint*) malloc(data_size * data_size *sizeof(Hint)); 
+      package.dataC = (Hint*) malloc(data_size * data_size *sizeof(Hint)); 
+      assert(package.dataA != NULL);
+      assert(package.dataB != NULL);
+      assert(package.dataC != NULL);
+      package.size = data_size;
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+
+         // Initializing the data
+         Huint l,k;   
+         for (k = 0; k < data_size; k++) {
+            for (l = 0; l < data_size; l++) {
+               package.dataA[k*data_size + l] = k;
+               package.dataB[k*data_size + l] = l;
+               package.dataC[k*data_size + l] = 0;
+            }
+         }
+      
+         // Set up attributes for a hardware thread
+         hthread_attr_init(&attr[i]);
+         hthread_attr_setdetachstate( &attr[i], HTHREAD_CREATE_JOINABLE);
+
+         // Temporarily mark this slave as not having PR and no accelerator attached
+         pr_flag[i] = _hwti_get_PR_flag( (Huint) hwti_array[i]);
+         current_acc[i] = _hwti_get_last_accelerator( (Huint) hwti_array[i]);
+
+         _hwti_set_PR_flag((Huint) hwti_array[i], 0);
+         _hwti_set_last_accelerator((Huint) hwti_array[i], NO_ACC);
+        
+         // Creating thread
+         if (thread_create (&child[i], &attr[i],matrix_multiply_thread_FUNC_ID, (void *)(&package),
+                       STATIC_HW0+i,
+                       0)) 
+         {
+            printf("hthread_create error on HW THREAD\n");
+            while(1);
+         }
+         
+         // Join on child thread
+         if (thread_join(child[i], &ret[i], &exec_time[i])){
+            printf("Join error!\n");
+            while(1);
+         }
+
+         if (ret[i] != SUCCESS)
+            printf("Thread %02d Failed:  %d, Slave %d\n", (unsigned int) child[i], (unsigned int) ret, i);
+        
+         #ifdef VERIFY
+         // Check results
+         Hint * temp = (Hint *) malloc(data_size * data_size * sizeof(Hint));
+         assert (temp != NULL);
+         poly_matrix_mul(package.dataA, package.dataB, temp, data_size, data_size, data_size);
+         int r, c;
+         for (r=0 ; r < data_size; r++) {
+            for (c=0 ; c < data_size; c++) {
+               if ( temp[r*data_size + c] != package.dataC[r*data_size + c])  {
+                  printf("[Slave %d] Matrix Mul failed!\n", i);
+                  r = c = data_size;
+               }
+            }
+         }
+         free(temp);
+         #endif 
+
+         // Write software execution in tuning table
+         tuning_table[i][MATRIXMUL][data_size].sw_time = hthread_time_usec(exec_time[i]);
+
+
+         // Restore PR flag and Last accelerator
+         _hwti_set_PR_flag((Huint) hwti_array[i], pr_flag[i]);
+         _hwti_set_last_accelerator((Huint) hwti_array[i], current_acc[i]);
+
+         if (perform_PR(i,MATRIXMUL)) {
+            printf("ERROR (init_tuning_table): Unable to PR VectorSub\n");
+            while(1);
+         }
+         
+         // Initializing the data
+         for (k = 0; k < data_size; k++) {
+            for (l = 0; l < data_size; l++) {
+               package.dataA[k*data_size + l] = k;
+               package.dataB[k*data_size + l] = l;
+               package.dataC[k*data_size + l] = 0;
+            }
+         }
+         
+         // Creating thread
+         if (thread_create (&child[i], &attr[i],matrix_multiply_thread_FUNC_ID, (void *)(&package),
+                       STATIC_HW0+i,
+                       0)) 
+         {
+            printf("hthread_create error on HW THREAD\n");
+            while(1);
+         }
+
+         // Join on child thread
+         if (thread_join(child[i], &ret[i], &exec_time[i])){
+            printf("Join error!\n");
+            while(1);
+         }
+
+         if (ret[i] != SUCCESS)
+            printf("Thread %02d Failed:  %d, Slave %d\n", (unsigned int) child[i], (unsigned int) ret[i], i);
+
+         #ifdef VERIFY
+         temp = (Hint *) malloc(data_size * data_size * sizeof(Hint));
+         assert (temp != NULL);
+         // Check results
+         poly_matrix_mul(package.dataA, package.dataB, temp, data_size, data_size, data_size);
+         int r, c;
+         for (r=0 ; r < data_size; r++) {
+            for (c=0 ; c < data_size; c++) {
+               if ( temp[r*data_size + c] != package.dataC[r*data_size + c])  {
+                  printf("[Slave %d] Matrix Mul failed!\n", i);
+                  r = c = data_size;
+               }
+            }
+         }
+         free(temp);
+         #endif 
+         
+         // Write hardware execution in tuning table
+         tuning_table[i][MATRIXMUL][data_size].hw_time = hthread_time_usec(exec_time[i]);
+
+      }
+      free(package.dataA);
+      free(package.dataB);
+      free(package.dataC);
+   }
+#ifdef DEBUG_DISPATCH
+   printf("Done\n");
+#endif
+   join_overhead = 0;;
+   create_overhead = 0;;
+}
+#else
+#error "ERROR: Trying to init tuning table on a non-PR system!"
+#endif
+#endif
 
 // Initialize all of the PR data
 void init_slaves() {
@@ -365,6 +1034,15 @@ void init_host_tables() {
         init_func_2_acc_table();
 
         init_slaves();
+
+        #ifdef TUNING_TABLE_H
+        // Initialize Tuning Table for PR-based systems
+        init_tuning_table();
+        #endif
+   
+        // Reset OS overhead running time
+        join_overhead = 0;;
+        create_overhead = 0;;
     }
 }
 
@@ -434,7 +1112,8 @@ Huint get_num_free_slaves() {
 Huint find_best_match(Huint func_id) {
     
     //Hint possible_target = MAGIC_NUMBER;
-    Huint slave_num, index;
+    Huint slave_num; 
+    Huint index;
 
    // For all slaves.
    for (index = 0; index < NUM_AVAILABLE_HETERO_CPUS; index++) {

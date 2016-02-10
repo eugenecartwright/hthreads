@@ -12,7 +12,6 @@
 // -------------------------------------------------------------- //
 //                     DMA Transfer Wrapper                       //
 // -------------------------------------------------------------- //
-
 Hint transfer_dma(void * src, void * des, Hint size) {
    XAxiCdma dma;
    Hint status = dma_create(&dma,SLAVE_LOCAL_DMA_DEVICE_ID);
@@ -60,32 +59,6 @@ Hbool poly_init(Hint acc, Huint size) {
    return use_accelerator;
 }
 
-// -------------------------------------------------------------- //
-//             Get's index size for given data size               //
-// -------------------------------------------------------------- //
-Huint get_index(Huint size) 
-{
-    
-    if (size > ((BRAM_SIZE + (BRAM_SIZE/2)) / 2)) {
-        return NUM_OF_SIZES-1;
-    } 
-    if (size > ((BRAM_SIZE/2 + (BRAM_SIZE/4)) / 2)) {
-        return NUM_OF_SIZES-2;
-    } 
-    if (size > ((BRAM_SIZE/4 + (BRAM_SIZE/8)) / 2)) {
-        return NUM_OF_SIZES-3;
-    } 
-    if (size > ((BRAM_SIZE/8 + (BRAM_SIZE/16)) / 2)) {
-        return NUM_OF_SIZES-4;
-    } 
-    if (size > ((BRAM_SIZE/16 + (BRAM_SIZE/32)) / 2)) {
-        return NUM_OF_SIZES-5;
-    } 
-    if (size > ((BRAM_SIZE/32 + (BRAM_SIZE/64)) / 2)) {
-        return NUM_OF_SIZES-6;
-    } 
-    return NUM_OF_SIZES-7;
-}
 
 // -------------------------------------------------------------- //
 //             Determine if we use HW, PR if necessary            //
@@ -105,9 +78,7 @@ Hbool useHW(Huint accelerator_type, Huint size) {
    // Immediately return 0 if slave has no PR, and has no
    // access to the specified "accelerator_type"
    if (has_PR != PR_FLAG) {
-      if (current_accelerator == NO_ACC)
-         return 0;
-      else if(current_accelerator != accelerator_type)
+      if(current_accelerator != accelerator_type)
          return 0;
    }
 
@@ -116,31 +87,41 @@ Hbool useHW(Huint accelerator_type, Huint size) {
       _hwti_set_first_accelerator(vhwti_base, accelerator_type);
     
    // if the loaded accelerator matches the specified accelerator, return 1
-   // FIXME: Is hardware faster always?
+   // Hardware is always faster given the accelerators we currently have
    if (current_accelerator == accelerator_type) {
      return 1;
    }
 
-#ifdef PR
+   #ifdef PR
    // Does this processor have PR capabilities?
    if (has_PR) {
       // Get tuning table pointer.
-      tuning_table_t * tuning_table = (tuning_table_t *) _hwti_get_tuning_table_ptr(vhwti_base);
+      tuning_table_t *** tuning_table = (tuning_table_t ***) _hwti_get_tuning_table_ptr(vhwti_base);
 
-        // Calculate if PR is worth it by indexing appropriately 
-        // into the table and evaluating the software and hardware
-        // execution times, taking into account PR overhead.
-        Huint index = get_index(size);
-        if ((tuning_table[accelerator_type*NUM_OF_SIZES + index].hw_time + PR_OVERHEAD) < tuning_table[accelerator_type*NUM_OF_SIZES +index].sw_time) {
-            // TODO: Yes, PR is worth it ...but by how much?
+      // Get Hardware execution time for this size
+      unsigned char slave_num;
+      getpvr(0, slave_num);
+      float hw_time, sw_time;
+      if (accelerator_type != MATRIXMUL) {
+         hw_time = tuning_table[slave_num][accelerator_type][size/BRAM_GRANULARITY_SIZE].hw_time;
+         sw_time = tuning_table[slave_num][accelerator_type][size/BRAM_GRANULARITY_SIZE].sw_time;
+      }
+      else {
+         // Matrix Multiplication entries are insertted in a different way than others
+         hw_time = tuning_table[slave_num][accelerator_type][size].hw_time;
+         sw_time = tuning_table[slave_num][accelerator_type][size].sw_time;
+      }
+      
+      // Calculate if PR is worth it by indexing appropriately 
+      // into the table and evaluating the software and hardware
+      // execution times, taking into account PR overhead.
+      if ((hw_time + PR_OVERHEAD + HW_SW_THRESHOLD) < sw_time) {
  
             // ----Begin loading the accelerator----//
             // If performing PR failed, fallback to software
             // execution. So return false.
-            unsigned char id;
-            getpvr(0, id);
             // Perform PR (which updates last used accelerator)
-            if (perform_PR(id, accelerator_type) != SUCCESS)  
+            if (perform_PR(slave_num, accelerator_type) != SUCCESS)  
                return 0;
            
             // Increment PR counter 
@@ -149,12 +130,14 @@ Hbool useHW(Huint accelerator_type, Huint size) {
 
             // Return immediately indicating to use HW/accelerator
             return 1;
-        }
-    }
-#endif
+      }
+      else
+         return 0;
+   }
+   #endif
 
-    // As a default, always return 0 
-    // indicating to run in software.
-    return 0;
+   // As a default, always return 0 
+   // indicating to run in software.
+   return 0;
 }
 

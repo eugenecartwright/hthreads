@@ -3,11 +3,9 @@
 
 // Tuning table
 typedef struct {
-    unsigned char chunks;
-    unsigned int hw_time;
-    unsigned int sw_time;
-    unsigned char optimal_thread_num;
-} tuning_table_t;
+    float hw_time;
+    float sw_time;
+} volatile tuning_table_t;
 
 // --------------------------------------------------------- //
 //          Thread/Processor profile structure               //

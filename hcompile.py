@@ -502,6 +502,7 @@ def main():
    f = open(HEADER_FILE_PATH, 'a')
    f.write("\n// Thread Table Code:\n")
    # The number of architectures we are targetting 
+   f.write("#define NUM_OF_ISAS\t"+str(len(HEADERFILE_ISAs))+"\n")
    f.write("#define MAX_HANDLES_PER_ENTRY\t"+str(len(HEADERFILE_ISAs))+"\n")
    # TODO: Assuming that all of the ISA types had the same number of thread functions
    f.write("#define MAX_ENTRIES_PER_TABLE\t"+str(len(FUNCTION_NAMES))+"\n")

@@ -10,9 +10,10 @@
 #endif
 
 #define NUM_ACCELERATORS            (5)
-#define NUM_OF_SIZES                (7) 
-#define PR_OVERHEAD                 (1300)
+#define PR_OVERHEAD                 (1000.0f)
+#define HW_SW_THRESHOLD             (75.0f)
 #define BRAM_SIZE                   (4096)
+#define BRAM_GRANULARITY_SIZE       (64)
 #define PR_FLAG                     (0x1)
 
 #define MAGIC_NUMBER                (0xDEADBEEF)
@@ -23,7 +24,9 @@
 #define CRC                0
 #define BUBBLESORT         1
 #define VECTORADD          2
+#define VECTORSUB          2
 #define VECTORMUL          3
+#define VECTORDIV          3
 #define MATRIXMUL          4
 
 // -------------------------------------------------------------- //
@@ -35,21 +38,14 @@
 #include <matrix.h>
 
 typedef struct {
-    unsigned char chunks;
-    unsigned int hw_time;
-    unsigned int sw_time;
-    unsigned char optimal_thread_num;
-} tuning_table_t;
+   float hw_time;
+   float sw_time;
+} volatile tuning_table_t;
 
 // -------------------------------------------------------------- //
 //                     DMA Transfer Wrapper                       //
 // -------------------------------------------------------------- //
 extern int transfer_dma(void * src, void * des, Hint size);
-
-// -------------------------------------------------------------- //
-//             Get's index size for given data size               //
-// -------------------------------------------------------------- //
-extern Huint get_index(Huint size);
 
 // -------------------------------------------------------------- //
 //             Determine if we use HW, PR if necessary            //
