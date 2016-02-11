@@ -77,9 +77,12 @@ hthread_time_t join_overhead PRIVATE_MEMORY = 0;
 // Global variables used to provide statistics of
 // finding the best match when doing thread_create.
 // find_best_match() uses these variables.
-Huint no_free_slaves_num PRIVATE_MEMORY;
-Huint possible_slaves_num PRIVATE_MEMORY;
-Huint best_slaves_num PRIVATE_MEMORY;
+Huint _index PRIVATE_MEMORY;
+Hint best_match PRIVATE_MEMORY;
+Hint better_match PRIVATE_MEMORY;
+Hint possible_match PRIVATE_MEMORY;
+Huint slave PRIVATE_MEMORY;
+
 // ---------------------------------------------------------------- //
 //        Partial Reconfiguration Shared Data structures            //
 // ---------------------------------------------------------------- //
@@ -235,10 +238,9 @@ void init_tuning_table(){
 
          // Initializing the data
          Hint * ptr = package[i].dataA;
-         Hint index;
-         for(index = 0; index < data_size; index++) {
+         for(_index = 0; _index < data_size; _index++) {
             *ptr = (rand() % 1000)*8;	
-            *(check[i]+index) = *ptr;
+            *(check[i]+_index) = *ptr;
             ptr++;
          }
  
@@ -286,7 +288,7 @@ void init_tuning_table(){
          #ifdef VERIFY
          // For CRC Results
          for ( j = 0; j < data_size; j++) {
-            if (*(package.dataA+j) != *(check[i]+j) )  {
+            if (*(package[i].dataA+j) != *(check[i]+j) )  {
                printf("[Data size =  %d] CRC failed!\n", data_size);
                j = data_size;
             }
@@ -309,12 +311,20 @@ void init_tuning_table(){
          
          // Initializing the data
          Hint * ptr = package[i].dataA;
-         Hint index;
-         for(index = 0; index < data_size; index++) {
+         for(_index = 0; _index < data_size; _index++) {
             *ptr = (rand() % 1000)*8;	
-            *(check[i]+index) = *ptr;
+            *(check[i]+_index) = *ptr;
             ptr++;
          }
+         
+         #ifdef VERIFY
+         // Generating the CRC of that data
+         if (poly_crc(check[i], data_size)) {
+            printf("Host failed to generate CRC check of data\n");
+            while(1);
+         }
+         #endif
+
          // Creating thread
          if (thread_create (&child[i], &attr[i],crc_thread_FUNC_ID, (void *)(&package[i]),
                        STATIC_HW0+i,
@@ -340,7 +350,7 @@ void init_tuning_table(){
          #ifdef VERIFY
          // For CRC Results
          for ( j = 0; j < data_size; j++) {
-            if (*(package.dataA+j) != *(check[i]+j) )  {
+            if (*(package[i].dataA+j) != *(check[i]+j) )  {
                printf("[Data size =  %d] CRC failed!\n", data_size);
                j = data_size;
             }
@@ -410,16 +420,16 @@ void init_tuning_table(){
          }
 
          if (ret[i] != SUCCESS)
-            printf("Thread %02d Failed:  %d, Slave %d\n", (unsigned int) child[i], (unsigned int) ret, i);
+            printf("Thread %02d Failed:  0x%08x, Slave %d\n", (unsigned int) child[i], (unsigned int) ret, i);
       }
         
       #ifdef VERIFY
       for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
          // For VectorSub Results
          for (j=0 ; j < data_size; j++) {
-            if ( (package[i].dataC[j]) != (package[i].dataA[j] - package[j].dataB[j]))  {
-               printf("[Data size =  %d] Vector Sub failed!\n", data_size);
-               h = data_size;
+            if ( (package[i].dataC[j]) != (package[i].dataA[j] - package[i].dataB[j]))  {
+               printf("%d: [Data size =  %d] Vector Sub failed!\n", i,data_size);
+               break;
             }
          }
       }
@@ -470,9 +480,9 @@ void init_tuning_table(){
          #ifdef VERIFY
          // For VectorSub Results
          for (j=0 ; j < data_size; j++) {
-            if ( (package[i].dataC[j]) != (package[i].dataA[j] - package[j].dataB[j]))  {
+            if ( (package[i].dataC[j]) != (package[i].dataA[j] - package[i].dataB[j]))  {
                printf("[Data size =  %d] Vector Sub failed!\n", data_size);
-               h = data_size;
+               break;
             }
          }
          #endif 
@@ -545,10 +555,11 @@ void init_tuning_table(){
         
       #ifdef VERIFY
       for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
-         // For VectorSub Results
+         // For VectorMul Results
          for (j=0 ; j < data_size; j++) {
-            if ( (package[i].dataC[j]) != (package[i].dataA[j] * package[j].dataB[j]))  {
-               h = data_size;
+            if ( (package[i].dataC[j]) != (package[i].dataA[j] * package[i].dataB[j]))  {
+               printf("Vector multiply incorrect!\n");
+               break;
             }
          }
       }
@@ -597,11 +608,11 @@ void init_tuning_table(){
 
       for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
          #ifdef VERIFY
-         // For VectorSub Results
+         // For VectorMul Results
          for (j=0 ; j < data_size; j++) {
-            if ( (package[i].dataC[j]) != (package[i].dataA[j] * package[j].dataB[j]))  {
-               printf("[Data size =  %d] Vector Sub failed!\n", data_size);
-               h = data_size;
+            if ( (package[i].dataC[j]) != (package[i].dataA[j] * package[i].dataB[j]))  {
+               printf("[Data size =  %d] Vector Mul failed!\n", data_size);
+               break;
             }
          }
          #endif 
@@ -738,7 +749,6 @@ void init_tuning_table(){
          assert (temp != NULL);
          // Check results
          poly_matrix_mul(package.dataA, package.dataB, temp, data_size, data_size, data_size);
-         int r, c;
          for (r=0 ; r < data_size; r++) {
             for (c=0 ; c < data_size; c++) {
                if ( temp[r*data_size + c] != package.dataC[r*data_size + c])  {
@@ -810,11 +820,6 @@ void init_slaves() {
       }
    }
    #endif
-   
-   // Reset thread create statistical data 
-   no_free_slaves_num = 0;
-   possible_slaves_num = 0;
-   best_slaves_num = 0;
 }
 
 // ---------------------------------------------------------------- //
@@ -1102,159 +1107,114 @@ Huint get_num_free_slaves() {
     return free;
 }
 
-// Function: find_best_match()
-// Description: This function loops through all of the free
-// slave processors to determine the best match for a particular
-// function ID. This function was written in a generic way to allow
-// it to be called for Static accelerator based systems, PR-configured
-// systems, or non-accelerator, non-PR based systems.
-// TODO: What if nothing is available?
-Huint find_best_match(Huint func_id) {
-    
-    //Hint possible_target = MAGIC_NUMBER;
-    Huint slave_num; 
-    Huint index;
+/**
+  * Function: find_best_match()
+  * Description: This function loops through all of the free
+  * slave processors to determine the best match for a particular
+  * function ID. This function was written in a generic way to allow
+  * it to be called for Static accelerator based systems, PR-configured
+  * systems, or non-accelerator, non-PR based systems.
+  * TODO: A linked list would be a better design, but that means the data
+  * will be on the heap, which is in global memory!
+  * NOTE: I don't need to check whether front >= back pointer
+  * as I iterate over a fixed amount of data.
+  **/
+
+Hint find_best_match(Huint func_id) {
+   // Reset match variables
+   best_match = -1;
+   better_match = -1;
+   possible_match = -1;
 
    // For all slaves.
-   for (index = 0; index < NUM_AVAILABLE_HETERO_CPUS; index++) {
+   for (_index = 0; _index < NUM_AVAILABLE_HETERO_CPUS; _index++) {
 
 #ifdef OPCODE_FLAGGING
       // Get most preferred slave according to co-processor support  
-      slave_num = thread_affinity[func_id][index];
+      slave = thread_affinity[func_id][_index];
 #else
-      slave_num = index;
+      slave = _index;
 #endif
-
       // Is this slave available?
-      if (_hwti_get_utilized_flag(hwti_array[slave_num]) == FLAG_HWTI_FREE) {
-         return slave_num;
+      if (_hwti_get_utilized_flag(hwti_array[slave]) == FLAG_HWTI_FREE) {
+#ifdef CHECK_FIRST_POLYMORPHIC
+         // Does this thread use an accelerator/Make polymorphic calls?
+         Huint first_used_accelerator = thread_profile[func_id].first_accelerator;
+         if (first_used_accelerator != NO_ACC) { // if Yes?
+            // Does this thread use PR?
+            if (thread_profile[func_id].prefer_PR) {
+               // Does this slave have PR?
+               if (slave_table[slave].pr) { 
+                  // Is the current accelerator = 1st called accelerator for thread?
+                  if (first_used_accelerator == slave_table[slave].acc)
+                     return slave;
+                  else {
+                     // We found a slave with PR capabilities that this thread
+                     // prefers, but its current accelerator != what this thread
+                     // first requests.
+                     if (best_match == -1) // If we have not set best match
+                        best_match = slave;
+                  }
+               }
+               else {
+                  // We found a slave without PR capabilities that this thread
+                  // prefers, but its current accelerator DOES equal what this 
+                  // thread first requests.
+                  if (first_used_accelerator == slave_table[slave].acc) {
+                     if (better_match == -1) // If we have not set better match
+                        better_match = slave;
+                  }
+                  else {
+                     // Maybe, in the future, check curr acc against all poly
+                     // calls of the thread, and give more weight over standard cpus.
+                     if (possible_match != -1) // If we have not set a possible match
+                        possible_match = slave;
+                  }
+               }
+            }
+            else {
+               // Is the current accelerator = 1st called accelerator for thread?
+               if (first_used_accelerator == slave_table[slave].acc)
+                  return slave;
+               else {
+                  // Does this slave have PR?
+                  if (slave_table[slave].pr) {
+                     // This slave has PR for a thread that doesn't need it.
+                     // We add this to better match as we want to give more
+                     // priority for slaves with PR to threads that make
+                     // heavy use of it/possible swap more than 1 acc.
+                     if (better_match != -1)
+                        better_match = slave; 
+                  }
+                  else {
+                     if (possible_match != -1) // If we have not set a possible match
+                        possible_match = slave;
+                  }
+               }
+            }
+         }
+         else  // Thread doesn't use any polymorphic calls
+            return slave;
+#else    
+         return slave;
+#endif
       }
    }
+
+   // If you have made it here without finding the perfect match, then check
+   // in this order, best, better, possible or else, just return FAILURE
+   if (best_match >= 0)
+      return best_match;
+   else if (better_match >= 0)
+      return better_match;
+   else if (possible_match >= 0)
+      return possible_match;
+   else
+      return FAILURE;
    
-   return 0;
-     
-#if 0 
-      // If there is a free slave
-        if (_hwti_get_utilized_flag(hwti_array[slave_num]) == FLAG_HWTI_FREE) {
-          
-            // If we still don't know what accelerator type associated with
-            // this function id, break as soon as possible. This is similar to
-            // breaking out of this loop as soon as possible for systems that 
-            // do not have an accelerator or PR capabilities.
-            if (func_2_acc_table[func_id] == MAGIC_NUMBER) {
-                #ifdef DEBUG_DISPATCH
-                printf("No known accelerator type matched with Func ID %d\n", func_id);
-                #endif
-                // Increment possible slaves_num
-                possible_slaves_num++;
-                return slave_num;
-            }
-            
-            // ----------------------------------------------------//
-            // For this function, does the first_accelerator_used  //
-            // match what is currently PR'ed at this slave? If so, //
-            // schedule it here! This is the best-case scenario.   //
-            // If the first accelerator used is NULL, this means   //
-            // the function did not use any accelerators, or we    //
-            // have not reached a free slave that ran this same    //
-            // function.                                           //
-            // ----------------------------------------------------//
-            if (func_2_acc_table[func_id] == slave_table[slave_num].acc)
-            {
-                #ifdef DEBUG_DISPATCH
-                printf("We found the best match!\n");
-                #endif
-                // Increment best_slaves_num
-                best_slaves_num++;
-                // schedule on this slave
-                return slave_num;
-            
-            // else if possible_target has not been updated
-            // to reflect a possible target.
-            } else if (possible_target == MAGIC_NUMBER)
-                possible_target = slave_num;
-
-        } // End check for if this slave (slave_num) is free
-    }
-    // If we did not find any free slaves
-    if (possible_target == MAGIC_NUMBER)
-        no_free_slaves_num++;
-    else
-        possible_slaves_num++;
-
-    return possible_target;
-#endif
-
+   // Return FAILURE by default
+   return FAILURE;
 }
-
-#if 0
-// Function: find_best_match()
-// Description: This function loops through all of the free
-// slave processors to determine the best match for a particular
-// function ID. This function was written in a generic way to allow
-// it to be called for Static accelerator based systems, PR-configured
-// systems, or non-accelerator, non-PR based systems.
-Huint find_best_match(Huint func_id) {
-    
-    Hint possible_target = MAGIC_NUMBER;
-    Huint slave_num;
-
-    // For all slaves.
-    for (slave_num = 0; slave_num < NUM_AVAILABLE_HETERO_CPUS; slave_num++) {
-
-        // If there is a free slave
-        if (_hwti_get_utilized_flag(hwti_array[slave_num]) == FLAG_HWTI_FREE) {
-          
-            // If we still don't know what accelerator type associated with
-            // this function id, break as soon as possible. This is similar to
-            // breaking out of this loop as soon as possible for systems that 
-            // do not have an accelerator or PR capabilities.
-            if (func_2_acc_table[func_id] == MAGIC_NUMBER) {
-                #ifdef DEBUG_DISPATCH
-                printf("No known accelerator type matched with Func ID %d\n", func_id);
-                #endif
-                // Increment possible slaves_num
-                possible_slaves_num++;
-                return slave_num;
-            }
-            
-            // ----------------------------------------------------//
-            // For this function, does the first_accelerator_used  //
-            // match what is currently PR'ed at this slave? If so, //
-            // schedule it here! This is the best-case scenario.   //
-            // If the first accelerator used is NULL, this means   //
-            // the function did not use any accelerators, or we    //
-            // have not reached a free slave that ran this same    //
-            // function.                                           //
-            // ----------------------------------------------------//
-            if (func_2_acc_table[func_id] == slave_table[slave_num].acc)
-            {
-                #ifdef DEBUG_DISPATCH
-                printf("We found the best match!\n");
-                #endif
-                // Increment best_slaves_num
-                best_slaves_num++;
-                // schedule on this slave
-                return slave_num;
-            
-            // else if possible_target has not been updated
-            // to reflect a possible target.
-            } else if (possible_target == MAGIC_NUMBER)
-                possible_target = slave_num;
-
-        } // End check for if this slave (slave_num) is free
-    }
-    // If we did not find any free slaves
-    if (possible_target == MAGIC_NUMBER)
-        no_free_slaves_num++;
-    else
-        possible_slaves_num++;
-
-    return possible_target;
-}
-#endif
-
-//#define SW_THREAD_COUNT 6
 
 //--------------------------------------------------------------------------------------------//
 //  Thread Create 
@@ -1323,7 +1283,7 @@ Huint thread_create(
         Hint slave_num = find_best_match(func_id);
 
         // If we did not find any processors available.
-        if (slave_num == MAGIC_NUMBER) {
+        if (slave_num == FAILURE) {
             //#ifdef DEBUG_DISPATCH
             printf("No Free Slaves:Creating software thread\n");
             //#endif
