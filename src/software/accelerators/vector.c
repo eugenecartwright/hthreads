@@ -10,10 +10,10 @@ Hint poly_vector(void * a_ptr, void * b_ptr, void * c_ptr, Huint size, Huint op_
    Huint i = 0;
    for (i = 0; i < size; i++) {
      switch(op_code) {
-      case 0: c[i] = a[i] + b[i];
-      case 1: c[i] = a[i] - b[i];
-      case 2: c[i] = a[i] * b[i];
-      case 3: if (b[i] != 0) c[i] = a[i] / b[i];
+      case 0: c[i] = a[i] + b[i]; break;
+      case 1: c[i] = a[i] - b[i]; break;
+      case 2: c[i] = a[i] * b[i]; break;
+      case 3: if (b[i] != 0) c[i] = a[i] / b[i]; break;
       default: return FAILURE;
      } 
    }
