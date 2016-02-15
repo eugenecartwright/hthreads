@@ -82,7 +82,7 @@ void * idiv_thread (void * arg) {
 int main() {
   
    printf("--- Integer Divide micro-benchmark ---\n"); 
-   load_my_table();
+   init_host_tables();
 
    hthread_t tid[NUM_AVAILABLE_HETERO_CPUS];
    hthread_attr_t attr[NUM_AVAILABLE_HETERO_CPUS];
