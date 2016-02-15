@@ -8,7 +8,7 @@
 
 #define NUM_ACCELERATORS            (5)
 #define PR_OVERHEAD                 (1000.0f)
-#define HW_SW_THRESHOLD             (75.0f)
+#define HW_SW_THRESHOLD             (15.0f)
 #define BRAM_SIZE                   (4096)
 #define BRAM_GRANULARITY_SIZE       (64)
 #define PR_FLAG                     (0x1)
@@ -34,5 +34,10 @@
 #include <crc.h>
 #include <vector.h>
 #include <matrix.h>
+
+// -------------------------------------------------------------- //
+//                     DMA Transfer Wrapper                       //
+// -------------------------------------------------------------- //
+extern int transfer_dma(void * src, void * des, Hint size);
 
 #endif
