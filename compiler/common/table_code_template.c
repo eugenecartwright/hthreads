@@ -97,12 +97,33 @@ tuning_table_t tuning_table[NUM_AVAILABLE_HETERO_CPUS][NUM_ACCELERATORS][(BRAM_S
 #ifdef TUNING_TABLE_H
 #ifdef PR
 void init_tuning_table(){
+
+   Huint i = 0; 
+   unsigned int j = 0;
+   Huint data_size;
+#ifdef FORCE_POLYMORPHIC_HW
+   for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+      for (j = 0; j < NUM_ACCELERATORS; j++) {
+         for (data_size = 0; data_size < BRAM_GRANULARITY_SIZE; data_size++) {
+            tuning_table[i][j][data_size].hw_time = HFLOAT_MIN;
+            tuning_table[i][j][data_size].sw_time = 0.0f;
+         }
+      }
+   }
+#elif defined (FORCE_POLYMORPHIC_SW)
+   for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+      for (j = 0; j < NUM_ACCELERATORS; j++) {
+         for (data_size = 0; data_size < BRAM_GRANULARITY_SIZE; data_size++) {
+            tuning_table[i][j][data_size].hw_time = 0.0f;
+            tuning_table[i][j][data_size].sw_time = HFLOAT_MIN;
+         }
+      }
+   }
+#else
    hthread_time_t exec_time[NUM_AVAILABLE_HETERO_CPUS];
    hthread_t child[NUM_AVAILABLE_HETERO_CPUS];
    hthread_attr_t attr[NUM_AVAILABLE_HETERO_CPUS];
    void * ret[NUM_AVAILABLE_HETERO_CPUS];
-   Huint i = 0; unsigned int j = 0;
-   Huint data_size;
    Huint pr_flag[NUM_AVAILABLE_HETERO_CPUS];
    Huint current_acc[NUM_AVAILABLE_HETERO_CPUS];
 
@@ -771,8 +792,9 @@ void init_tuning_table(){
 #ifdef DEBUG_DISPATCH
    printf("Done\n");
 #endif
-   join_overhead = 0;;
-   create_overhead = 0;;
+   join_overhead = 0;
+   create_overhead = 0;
+#endif
 }
 #else
 #error "ERROR: Trying to init tuning table on a non-PR system!"
@@ -798,9 +820,10 @@ void init_slaves() {
       #ifdef PR
       // If PR is defined, write to slave that they have PR capability
       _hwti_set_PR_flag((Huint) hwti_array[i], PR_FLAG);
-
+      slave_table[i].pr = PR_FLAG;
       #else
       _hwti_set_PR_flag((Huint) hwti_array[i], 0);
+      slave_table[i].pr = 0;
       #endif
    }
 
@@ -1125,7 +1148,6 @@ Hint find_best_match(Huint func_id) {
    best_match = -1;
    better_match = -1;
    possible_match = -1;
-
    // For all slaves.
    for (_index = 0; _index < NUM_AVAILABLE_HETERO_CPUS; _index++) {
 
@@ -1167,7 +1189,7 @@ Hint find_best_match(Huint func_id) {
                   else {
                      // Maybe, in the future, check curr acc against all poly
                      // calls of the thread, and give more weight over standard cpus.
-                     if (possible_match != -1) // If we have not set a possible match
+                     if (possible_match == -1) // If we have not set a possible match
                         possible_match = slave;
                   }
                }
@@ -1183,11 +1205,11 @@ Hint find_best_match(Huint func_id) {
                      // We add this to better match as we want to give more
                      // priority for slaves with PR to threads that make
                      // heavy use of it/possible swap more than 1 acc.
-                     if (better_match != -1)
+                     if (better_match == -1) 
                         better_match = slave; 
                   }
                   else {
-                     if (possible_match != -1) // If we have not set a possible match
+                     if (possible_match == -1)  // If we have not set a possible match
                         possible_match = slave;
                   }
                }

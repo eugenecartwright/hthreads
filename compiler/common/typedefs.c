@@ -55,12 +55,12 @@ typedef struct {
 //                                                           //
 // --------------------------------------------------------- //
 typedef struct {
-    Huint acc;
-    Huint isa;
-    Huint vhwti_address;
-    Hbool pr;
-    thread_profile_t configuration;
-} slave_t;
+   Huint acc;
+   Huint isa;
+   Huint vhwti_address;
+   Hbool pr;
+   thread_profile_t configuration;
+} volatile slave_t;
 
 
 // ----------------------------------------------------------------- //

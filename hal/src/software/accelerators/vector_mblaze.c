@@ -24,8 +24,8 @@ Hint poly_vector (void * a_ptr, void * b_ptr, void * c_ptr, Huint size, Huint op
       return FAILURE;
    if(transfer_dma( (void *) b_ptr, (void *) ACC_BRAMB, size *4))
       return FAILURE;
-
-  	int e;
+  	
+   int e;
    if (use_accelerator) {
       
 		int cmd =op_code; 
@@ -58,7 +58,7 @@ Hint poly_vector (void * a_ptr, void * b_ptr, void * c_ptr, Huint size, Huint op
    // Start transferring data from BRAM
    if(transfer_dma( (void *) ACC_BRAMC, (void *) c_ptr, size *4))
       return FAILURE;
-   
+
    return result;
 }
 

@@ -27,69 +27,95 @@
 * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ************************************************************************************/
 
-/** \file      fpu.c 
-  * \brief     Floating point (single precision)  micro-benchmark\n
-  *            Microblaze: Followed the 'Software support'\n
-  *            guide in Microblaze Reference Manual
+/** \file      test_dma.c 
+  * \brief     DMA test program\n
   *
   * \author    Eugene Cartwright <eugene@uark.edu>
   */
 
 #include <hthread.h>
 #include <arch/htime.h>
+#include <accelerator.h>
 #include <math.h>
 
-void * fpu_thread(void * arg);
+void * test_dma_thread(void * arg);
+#define SIZE   10
 
 #ifndef HETERO_COMPILATION
 #include <stdio.h>
 #include <stdlib.h>
-#include "fpu_prog.h"
+#include "test_dma_prog.h"
 #endif
 
+typedef struct {
+   int * A;
+   int * B;
+} volatile data_t;
 
-// single precision floating point micro-benchmark
-void * fpu_thread (void * arg) {
-   Huint max = (Huint) arg;
-   Huint i = 0;
-   float sum = 0.0F, temp = 2.0F;
-   
-   for (i = 0; i < max; i++) {
-   //while(temp < HFLOAT_MAX) {
-      // Test multiplication
-      temp *= temp;
-      // Test multiplication and addition
-      sum += temp;
-      // Test sqrt (C_USE_FPU = 2)
-      sum += sqrtf(sum);
-      // Test divide
-      sum /= temp;
-   }
+void * test_dma_thread(void * arg) {
 
-   return (void *) 0;
+   #ifdef HETERO_COMPILATION
+   data_t * test = (data_t *) arg;
+   // DRAM to DRAM (Host heap to Host heap)
+   if(transfer_dma( (void *) test->A, (void *) test->B, SIZE * 4))
+      return (void *) FAILURE;
+   else 
+      return (void *) SUCCESS;
+#else
+   return (void *) SUCCESS;
+#endif
 }
 
 
 #ifndef HETERO_COMPILATION
 int main() {
   
-   printf("--- FPU micro-benchmark ---\n"); 
+   printf("--- DMA test ---\n"); 
    init_host_tables();
 
    hthread_t tid[NUM_AVAILABLE_HETERO_CPUS];
    hthread_attr_t attr[NUM_AVAILABLE_HETERO_CPUS];
    void * ret[NUM_AVAILABLE_HETERO_CPUS];
    Huint i = 0;
+   Huint j;
 
+   data_t test[NUM_AVAILABLE_HETERO_CPUS]; 
+   for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+      test[i].A = (int *) malloc(sizeof(int) * SIZE);
+      test[i].B = (int *) malloc(sizeof(int) * SIZE);
+
+      assert(test[i].A != NULL);
+      assert(test[i].B != NULL);
+   }
+   for (j = 0; j < NUM_AVAILABLE_HETERO_CPUS; j++) {
+      for (i = 0; i < SIZE; i++) {
+         test[j].A[i] = i;
+         test[j].B[i] = 0;
+      }
+   }
+   
    for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
       hthread_attr_init(&attr[i]);
-      thread_create(&tid[i], &attr[i], fpu_thread_FUNC_ID, (void *) 50, STATIC_HW0+i, 0);
+      thread_create(&tid[i], &attr[i], test_dma_thread_FUNC_ID, (void *) &test[i], STATIC_HW0+i, 0);
    }
 
    for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
       hthread_join(tid[i], &ret[i]);
       hthread_time_t * slave_time = (hthread_time_t *) (attr[i].hardware_addr - HT_CMD_HWTI_COMMAND + HT_CMD_VHWTI_EXEC_TIME_HI);
       printf("Time reported by slave nano kernel #%02d = %f usec\n", i,hthread_time_usec(*slave_time));
+   }
+
+   // Print out results
+   for (j = 0; j < NUM_AVAILABLE_HETERO_CPUS; j++) {
+      printf("----------------Slave %d-------------------------\n", j);
+      for (i = 0; i < SIZE; i++) {
+         if (test[j].B[i] != test[j].A[i]) {
+            printf("Test FAILED!\n");
+            while(1);
+         }
+         printf("%d\t", test[j].B[i]);
+      }
+      printf("\n");
    }
 
    printf("--- Done ---\n");
