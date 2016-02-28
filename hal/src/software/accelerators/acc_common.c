@@ -1,13 +1,4 @@
 #include <accelerator.h>
-#include "xaxicdma.h"
-
-#include <hwti/hwti.h>
-#include <dma/dma.h>
-#include "fsl.h"
-#include "pvr.h"
-#ifdef PR
-#include <pr.h> 
-#endif
 
 // -------------------------------------------------------------- //
 //                     DMA Transfer Wrapper                       //
@@ -96,7 +87,7 @@ Hbool useHW(Huint accelerator_type, Huint size) {
    // Does this processor have PR capabilities?
    if (has_PR) {
       // Get tuning table pointer.
-      tuning_table_t *** tuning_table = (tuning_table_t ***) _hwti_get_tuning_table_ptr(vhwti_base);
+      tuning_table_t (*tuning_table)[NUM_ACCELERATORS][(BRAM_SIZE/BRAM_GRANULARITY_SIZE)] = (void *) _hwti_get_tuning_table_ptr(vhwti_base);
 
       // Get Hardware execution time for this size
       unsigned char slave_num;
@@ -111,27 +102,28 @@ Hbool useHW(Huint accelerator_type, Huint size) {
          hw_time = tuning_table[slave_num][accelerator_type][size].hw_time;
          sw_time = tuning_table[slave_num][accelerator_type][size].sw_time;
       }
-      
+     
       // Calculate if PR is worth it by indexing appropriately 
       // into the table and evaluating the software and hardware
       // execution times, taking into account PR overhead.
       if ((hw_time + PR_OVERHEAD + HW_SW_THRESHOLD) < sw_time) {
- 
-            // ----Begin loading the accelerator----//
-            // If performing PR failed, fallback to software
-            // execution. So return false.
-            // Perform PR (which updates last used accelerator)
-            if (perform_PR(slave_num, accelerator_type) != SUCCESS)  
-               return 0;
-           
-            // Increment PR counter 
-            Huint pr_counter = _hwti_get_accelerator_pr_counter( vhwti_base );
-            _hwti_set_accelerator_pr_counter( vhwti_base, ++pr_counter);
+         
+         // ----Begin loading the accelerator----//
+         // If performing PR failed, fallback to software
+         // execution. So return false.
+         // Perform PR (which updates last used accelerator)
+         if (perform_PR(slave_num, accelerator_type) != SUCCESS) {
+            return 0;
+         }
+         
+         // Increment PR counter 
+         Huint pr_counter = _hwti_get_accelerator_pr_counter( vhwti_base );
+         _hwti_set_accelerator_pr_counter( vhwti_base, ++pr_counter);
 
-            // Return immediately indicating to use HW/accelerator
-            return 1;
+         // Return immediately indicating to use HW/accelerator
+         return 1;
       }
-      else
+      else 
          return 0;
    }
    #endif

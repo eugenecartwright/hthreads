@@ -7,11 +7,7 @@
  * input data numbers should be divisible by 8.
  * ***************************************************************/
  
-#include <accelerator.h>
 #include <crc.h>
-#include "fsl.h"
-#include "pvr.h"
-#include <hwti/hwti.h>
 
 Hint poly_crc (void * list_ptr, Huint size) 
 {
@@ -31,8 +27,19 @@ Hint poly_crc (void * list_ptr, Huint size)
      getfslx(e, 0, FSL_DEFAULT);
      if (e != 1) return FAILURE;
    } else {
+      Huint vhwti_base = 0;
+   
+      // Get VHWTI from PVRs 
+      getpvr(1,vhwti_base);
+      hthread_time_t start = hthread_time_get();
       // Run crc in software
       result =  (sw_crc((void *) ACC_BRAMC, size));
+      hthread_time_t stop = hthread_time_get();
+      hthread_time_t diff;
+      hthread_time_diff(diff, stop,start);
+      volatile hthread_time_t * ptr = (hthread_time_t *) (vhwti_base + 0x100);
+      *ptr += diff;
+
    }
 
    // Start transferring data from BRAM

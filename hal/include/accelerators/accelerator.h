@@ -2,6 +2,11 @@
 #define _ACCELERATOR_H_
 
 #include <hthread.h>
+#include <hwti/hwti.h>
+#include <arch/htime.h>
+#include <dma/dma.h>
+#include "fsl.h"
+#include "pvr.h"
 #include <config.h>
 #include <httype.h>
 #include "xaxicdma.h"
@@ -11,7 +16,7 @@
 
 #define NUM_ACCELERATORS            (5)
 #define PR_OVERHEAD                 (1000.0f)
-#define HW_SW_THRESHOLD             (75.0f)
+#define HW_SW_THRESHOLD             (15.0f)
 #define BRAM_SIZE                   (4096)
 #define BRAM_GRANULARITY_SIZE       (64)
 #define PR_FLAG                     (0x1)
@@ -45,15 +50,15 @@ typedef struct {
 // -------------------------------------------------------------- //
 //                     DMA Transfer Wrapper                       //
 // -------------------------------------------------------------- //
-extern int transfer_dma(void * src, void * des, Hint size);
+int transfer_dma(void * src, void * des, Hint size);
 
 // -------------------------------------------------------------- //
 //             Determine if we use HW, PR if necessary            //
 // -------------------------------------------------------------- //
-extern Hbool useHW(Huint accelerator_type, Huint size);
+Hbool useHW(Huint accelerator_type, Huint size);
 
 // -------------------------------------------------------------- //
 //                 Polymorphic init function                      //
 // -------------------------------------------------------------- //
-extern Hbool poly_init(Hint acc, Huint size);
+Hbool poly_init(Hint acc, Huint size);
 #endif

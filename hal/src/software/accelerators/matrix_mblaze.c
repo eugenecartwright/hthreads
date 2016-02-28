@@ -4,11 +4,7 @@
  * multiply core.
  * ***************************************************************/
  
-#include <accelerator.h>
 #include <matrix.h>
-#include "fsl.h"
-#include "pvr.h"
-#include <hwti/hwti.h>
 
 Hint poly_matrix_mul (void * a_ptr, void * b_ptr, void * c_ptr, Huint a_rows, Huint a_cols, Huint b_cols) {
    
