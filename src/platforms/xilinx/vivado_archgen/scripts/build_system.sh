@@ -268,6 +268,8 @@ then
    # Adding in PR structures into this header file so the
    # generated hcompile header stays fairly system independent
    num_accelerators=$(expr ${#list_acc[@]})
+   #TODO: For some reason, you get compiler warning when only one slave (too many excessive 
+   # entries for this accelerators_bit array. Check it out later.
    printf "unsigned char * accelerators_bit[NUM_ACCELERATORS][NUM_AVAILABLE_HETERO_CPUS] = {\n" >> bitstream.h
    j=0
    for module in  "${list_acc[@]}"; do
