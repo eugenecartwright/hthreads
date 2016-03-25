@@ -275,6 +275,36 @@ def main():
       add_processor_parameter(host_processor,'HEADERFILE_ISA', 'TYPE_HOST')
    host_processor = modified_processor_parameters
    
+   print "\t--------------------------------------------------------------------------"
+   print "\t|+ Checking whether config.h has override for NUM_AVAILABLE_HETERO_CPUS. |"
+   print "\t--------------------------------------------------------------------------"
+   # Checking what was specified in config.h (in case of USER override)
+   user_num_processors = len(PROCESSORS)
+   with open(platform_path + "/include/config.h","r") as infile:
+      for line in infile:
+         # Search for defined number of available processors
+         match = re.search('^[^/]*\s*#define\s*NUM_AVAILABLE_HETERO_CPUS',line)
+         if (match > -1):   
+            # Remove all characters before the number
+            line = re.sub('^[^0-9]*','',line)
+            # Remove any characters + whitespace at end of line
+            line = re.sub('[^0-9]*\s*$','',line)
+            # store number
+            user_num_processors = int(line)
+
+   # Prune off processors   
+   if (user_num_processors != len(PROCESSORS)):
+      # Check to make sure processors specified is
+      # less than what hcompile automatically found
+      if (user_num_processors < len(PROCESSORS)):
+         print'\t\tUSER OVERRIDE: ' + str(user_num_processors) + ' processors'
+         PROCESSORS = PROCESSORS[0:user_num_processors]
+         COMPILER_FLAGS = COMPILER_FLAGS[0:user_num_processors]
+      else:
+         print "\t\tERROR:config.h File specifies " + str(user_num_processors) + " processors"
+         print "\t\t-->Hcompile found only " + str(len(PROCESSORS)) + " processors"
+         sys.exit(1)
+   print "\t\t...Done"
    
    #-----------------------------------------------------------------------------#
    # Determine similar processors based on compiler flags & linkerscript.        #
