@@ -39,9 +39,9 @@
 #define NUM_BINS     (8)
 
 #define OPCODE_FLAGGING
-
+#define CHECK_FIRST_POLYMORPHIC
 // Array size
-#define ARR_SIZE    512
+#define ARR_SIZE    1024
 
 // Used to initialize array
 // with elements 0 - (MOD_VAL-1)
@@ -178,8 +178,8 @@ int main( int argc, char *argv[] )
 
    // Create the histogram thread
    for (j = 0; j < NUM_THREADS; j++) 
-      sta[j] = thread_create( &tid[j], &attr[j], histogram_thread_FUNC_ID, (void*)(&thread_arg[j]),DYNAMIC_HW,0 );
-      //sta[j] = thread_create( &tid[j], &attr[j], histogram_thread_FUNC_ID, (void*)(&thread_arg[j]),STATIC_HW0+j,0 );
+      //sta[j] = thread_create( &tid[j], &attr[j], histogram_thread_FUNC_ID, (void*)(&thread_arg[j]),DYNAMIC_HW,0 );
+      sta[j] = thread_create( &tid[j], &attr[j], histogram_thread_FUNC_ID, (void*)(&thread_arg[j]),STATIC_HW0+j,0 );
 
    // Wait for the thread to exit
    for (j = 0; j < NUM_THREADS; j++) {
@@ -194,7 +194,7 @@ int main( int argc, char *argv[] )
       // Determine which slave ran this thread based on address
       Huint base = attr[j].hardware_addr - HT_HWTI_COMMAND_OFFSET;
       Huint slave_num = (base & 0x00FF0000) >> 16;
-      printf("Execution time (TID : %d, Slave : %d)  = %f usec\n", tid[j], slave_num, hthread_time_usec(exec_time[j]));
+      printf("Execution time (TID : %d, Slave : %d)  = %f msec\n", tid[j], slave_num, hthread_time_msec(exec_time[j]));
    }
 
    // Display OS overhead

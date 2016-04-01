@@ -43,12 +43,13 @@
 void * distance_thread(void * arg);
 
 #define OPCODE_FLAGGING
+#define CHECK_FIRST_POLYMORPHIC
 
 #ifndef HETERO_COMPILATION
 #include "distance_prog.h"
 #endif
 
-#define ARR_LENGTH      (500)
+#define ARR_LENGTH      (5000)
 #define NUM_THREADS     (NUM_AVAILABLE_HETERO_CPUS)
 
 
@@ -63,33 +64,30 @@ typedef struct
     unsigned int length;
 } targ_t;
 
-void distances(float * x0s, float * y0s, float * x1s, float * y1s, float * ds, int length)
-{
-  int i;
-  register float t1, t2;
-  for (i=0; i < length; i++)
-  {
-    t1 = (x0s[i] - x1s[i]);
-    t1 = t1*t1;
-
-    t2 = (y0s[i] - y1s[i]);
-    t2 = t2*t2;
-
-    ds[i] = sqrtf(t1 + t2); 
-  }
-}
-
-void calc_distances( targ_t * targ)
-{
-    distances(targ->x0s, targ->y0s, targ->x1s, targ->y1s, targ->distances, targ->length);
-}
-
 void * distance_thread (void * arg)
 {
-    targ_t * targ = (targ_t*)arg;
 
-    // Calculate distances
-    calc_distances(targ);
+   targ_t * targ = (targ_t*)arg;
+
+   // Calculate distances
+   int i;
+   float * x0s = targ->x0s;
+   float * x1s = targ->x1s;
+   float * y0s = targ->y0s;
+   float * y1s = targ->y1s;
+   float * ds  = targ->distances;
+   int length = targ->length;
+   register float t1, t2;
+   for (i=0; i < length; i++)
+   {
+     t1 = (x0s[i] - x1s[i]);
+     t1 = t1*t1;
+
+     t2 = (y0s[i] - y1s[i]);
+     t2 = t2*t2;
+
+     ds[i] = sqrtf(t1 + t2); 
+   }
 
     return (void*)(999);
 }
@@ -147,10 +145,6 @@ int main()
     }
 
 
-   for (j = 0; j < ARR_LENGTH; j++)
-   {
-      vals_x0[j]  = ARR_LENGTH - j;
-   }
 
    // Initialize thread arguments
    int num_items = ARR_LENGTH/NUM_THREADS;
@@ -172,8 +166,8 @@ int main()
    for (j = 0; j < NUM_THREADS; j++)
    {
       // Create the distance thread
-      //sta[j] =  thread_create( &tid[j], &attr[j], distance_thread_FUNC_ID, (void *) &thread_arg[j], STATIC_HW0+j, 0);
-      sta[j] =  thread_create( &tid[j], &attr[j], distance_thread_FUNC_ID, (void *) &thread_arg[j], DYNAMIC_HW, 0);
+      sta[j] =  thread_create( &tid[j], &attr[j], distance_thread_FUNC_ID, (void *) &thread_arg[j], STATIC_HW0+j, 0);
+      //sta[j] =  thread_create( &tid[j], &attr[j], distance_thread_FUNC_ID, (void *) &thread_arg[j], DYNAMIC_HW, 0);
    }
 
    // Join on all threads
@@ -189,7 +183,7 @@ int main()
    // Determine which slave ran this thread based on address
    Huint base = attr[j].hardware_addr - HT_HWTI_COMMAND_OFFSET;
    Huint slave_num = (base & 0x00FF0000) >> 16;
-   printf("Execution time (TID : %d, Slave : %d)  = %f usec\n", tid[j], slave_num, hthread_time_usec(exec_time[j]));
+   printf("Execution time (TID : %d, Slave : %d)  = %f msec\n", tid[j], slave_num, hthread_time_msec(exec_time[j]));
    }
 
    // Display OS overhead

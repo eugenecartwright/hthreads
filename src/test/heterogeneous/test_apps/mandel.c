@@ -119,7 +119,7 @@ int main() {
    start = hthread_time_get();
    
    for (i = 0; i < NUM_THREADS; i++) 
-      thread_create(&tid[i], &attr[i], mandel_thread_FUNC_ID, (void *) MAX_ITERATIONS, DYNAMIC_HW, 0);
+      thread_create(&tid[i], &attr[i], mandel_thread_FUNC_ID, (void *) MAX_ITERATIONS, STATIC_HW0+i, 0);
    
    for (i = 0; i < NUM_THREADS; i++) {
       if (thread_join(tid[i], &ret[i], &exec_time[i]))
@@ -133,7 +133,7 @@ int main() {
       // Determine which slave ran this thread based on address
       Huint base = attr[i].hardware_addr - HT_HWTI_COMMAND_OFFSET;
       Huint slave_num = (base & 0x00FF0000) >> 16;
-      printf("Execution time (TID : %d, Slave : %d)  = %f usec\n", tid[i], slave_num, hthread_time_usec(exec_time[i]));
+      printf("Execution time (TID : %d, Slave : %d)  = %f msec\n", tid[i], slave_num, hthread_time_msec(exec_time[i]));
    }
 
    // Display OS overhead

@@ -17,7 +17,8 @@
 
 #define NUM_THREADS  NUM_AVAILABLE_HETERO_CPUS
 #define N            15
-//#define OPCODE_FLAGGING
+#define OPCODE_FLAGGING
+#define CHECK_FIRST_POLYMORPHIC
 
 typedef struct {
    Huint n;
@@ -166,7 +167,7 @@ int main() {
       // Determine which slave ran this thread based on address
       Huint base = attr[i].hardware_addr - HT_HWTI_COMMAND_OFFSET;
       Huint slave_num = (base & 0x00FF0000) >> 16;
-      printf("Execution time (TID : %d, Slave : %d)  = %f usec\n", tid[i], slave_num, hthread_time_usec(exec_time[i]));
+      printf("Execution time (TID : %02d, Slave : %02d)  = %f usec\n", tid[i], slave_num, hthread_time_usec(exec_time[i]));
    }
 
    // Display OS overhead
