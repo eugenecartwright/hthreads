@@ -1,3 +1,12 @@
+#if 0
+   for (e = 0; e < @; e++) {
+      // Determine which slave ran this thread based on address
+      Huint base = attr[e].hardware_addr - HT_HWTI_COMMAND_OFFSET;
+      Huint slave_num = (base & 0x00FF0000) >> 16;
+      printf("Thread %03d -> Slave : %02d\n", e, slave_num);
+   }
+#endif
+
 int number_of_errors = 0;
 for (e = 0; e < @; e++) {
     // Check SORT for this package
@@ -19,7 +28,7 @@ for (e = 0; e < @; e++) {
         Hint * crc = (Hint *) package[e].crc_data;
         Hint * crc_check = (Hint *) package[e].crc_data_check;
 
-        _crc((void *) crc_check, package[e].crc_size);
+        poly_crc((void *) crc_check, package[e].crc_size);
 
         for (b = 0; b < package[e].crc_size; b++) {
             if (crc[b] != crc_check[b]) {
@@ -30,15 +39,45 @@ for (e = 0; e < @; e++) {
         }
     }
 
-    // Check Vector for this package
-    if (*(package[e].vector_valid)) {
+    // Check VectorAdd for this package
+    if (*(package[e].vectoradd_valid)) {
         unsigned int b = 0;
         Hint * A = (Hint *) package[e].dataA;
         Hint * B = (Hint *) package[e].dataB;
         Hint * C = (Hint *) package[e].dataC;
-        for (b = 0; b < package[e].vector_size; b++) {
+        for (b = 0; b < package[e].vectoradd_size; b++) {
             if (C[b] != A[b] +B[b]) { 
-                printf("\tVector: Package %u failed\n", e);
+                printf("\tVectorAdd: Package %u failed\n", e);
+                number_of_errors++;
+                break;
+            }
+        }
+    }
+    
+    // Check VectorSub for this package
+    if (*(package[e].vectorsub_valid)) {
+        unsigned int b = 0;
+        Hint * A = (Hint *) package[e].dataA;
+        Hint * B = (Hint *) package[e].dataB;
+        Hint * C = (Hint *) package[e].dataC;
+        for (b = 0; b < package[e].vectorsub_size; b++) {
+            if (C[b] != A[b] -B[b]) { 
+                printf("\tVectorSub: Package %u failed\n", e);
+                number_of_errors++;
+                break;
+            }
+        }
+    }
+
+    // Check VectorMul for this package
+    if (*(package[e].vectormul_valid)) {
+        unsigned int b = 0;
+        Hint * A = (Hint *) package[e].dataA;
+        Hint * B = (Hint *) package[e].dataB;
+        Hint * C = (Hint *) package[e].dataC;
+        for (b = 0; b < package[e].vectormul_size; b++) {
+            if (C[b] != A[b] *B[b]) { 
+                printf("\tVectorMul: Package %u failed\n", e);
                 number_of_errors++;
                 break;
             }

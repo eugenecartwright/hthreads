@@ -4,17 +4,21 @@ for ( k = 0; k < @; k++) {
     package[k].sort_data = (void *) malloc(sizeof(int) * package[k].sort_size);
     package[k].crc_data = (void *) malloc(sizeof(int) * package[k].crc_size);
     package[k].crc_data_check = (void *) malloc(sizeof(int) * package[k].crc_size);
-    package[k].dataA = (void *) malloc(sizeof(int) * package[k].vector_size);
-    package[k].dataB = (void *) malloc(sizeof(int) * package[k].vector_size);
-    package[k].dataC = (void *) malloc(sizeof(int) * package[k].vector_size);
+    package[k].dataA = (void *) malloc(sizeof(int) * package[k].vectoradd_size);
+    package[k].dataB = (void *) malloc(sizeof(int) * package[k].vectoradd_size);
+    package[k].dataC = (void *) malloc(sizeof(int) * package[k].vectoradd_size);
     package[k].sort_valid = (Huint *) malloc(sizeof(Huint));
     package[k].crc_valid = (Huint *) malloc(sizeof(Huint));
-    package[k].vector_valid = (Huint *) malloc(sizeof(Huint));
+    package[k].vectoradd_valid = (Huint *) malloc(sizeof(Huint));
+    package[k].vectorsub_valid = (Huint *) malloc(sizeof(Huint));
+    package[k].vectormul_valid = (Huint *) malloc(sizeof(Huint));
 
     // Check to see if we were able to allocate said memory
     assert(package[k].sort_valid != NULL);
     assert(package[k].crc_valid != NULL);
-    assert(package[k].vector_valid != NULL);
+    assert(package[k].vectoradd_valid != NULL);
+    assert(package[k].vectorsub_valid != NULL);
+    assert(package[k].vectormul_valid != NULL);
 
     assert(package[k].sort_data != NULL);
     assert(package[k].crc_data != NULL);
@@ -25,7 +29,9 @@ for ( k = 0; k < @; k++) {
     // Initialize all the valid signals to zero
     *(package[k].sort_valid) = 0;
     *(package[k].crc_valid) = 0;
-    *(package[k].vector_valid) = 0;
+    *(package[k].vectoradd_valid) = 0;
+    *(package[k].vectorsub_valid) = 0;
+    *(package[k].vectormul_valid) = 0;
 
     // Initialize the CRC data here
     for (e = 0; e < package[k].crc_size; e++) { 
@@ -35,7 +41,7 @@ for ( k = 0; k < @; k++) {
     }
     
     // Initialize Vector Data 
-    for (e = 0; e < package[k].vector_size; e++) {
+    for (e = 0; e < package[k].vectoradd_size; e++) {
         Hint * dataA = package[k].dataA;
         Hint * dataB = package[k].dataB;
         Hint * dataC = package[k].dataC;

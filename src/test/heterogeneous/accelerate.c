@@ -83,7 +83,6 @@ void * matrix_multiply_thread(void * arg)
 {
 	data * package = (data *) arg;
    return (void *) poly_matrix_mul (package->dataA,  package->dataB, package->dataC, package->size,package->size,package->size);  
-   //return (void *) sw_matrix_multiply(package->dataA,  package->dataB, package->dataC, package->size,package->size,package->size);  
 }
 
 void * vector_add_thread(void * arg) 

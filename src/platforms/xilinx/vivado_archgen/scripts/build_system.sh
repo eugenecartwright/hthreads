@@ -37,10 +37,10 @@
 #  FIXME: Add description
 
 # Check arguments
-if [ $# -ne 1 ]
+if [ $# -ne 2 ]
 then
     printf "Correct Usage:\n"
-    printf "./build_system.sh   <Config.txt>\n"
+    printf "./build_system.sh   <Config.txt> <build IP catalog?>\n"
     exit
 fi
 
@@ -144,7 +144,7 @@ fi
 
 printf "Determined this part: $part\n"
 
-   
+if [ $2 == "Y" ]; then   
 # Navigate to hls cores
 pushd .  # save current directory
 cd $HTHREADS_DIR/src/hardware/MyRepository/pcores/vivado_cores/hls_cores
@@ -188,7 +188,7 @@ fi
 
 # Return back to scripts folder
 popd
-
+fi
 ##=====================================================================
 ##PR flow
 ##=====================================================================

@@ -1,4 +1,4 @@
-/* combined.c program
+/* combined2.c program
  * Author: Eugene
  * Date: 3/20/2016
  *
@@ -14,15 +14,16 @@
 
 void * queue_thread(void * arg);
 //#define NUM_THREADS  NUM_AVAILABLE_HETERO_CPUS
-#define  PI_NUM_THREADS          5
-#define  MANDEL_NUM_THREADS      3
-#define  HISTOGRAM_NUM_THREADS   5
-#define  DISTANCE_NUM_THREADS    3
-#define  MATRIX_NUM_THREADS      4
-#define  FINDMAX_NUM_THREADS     5
+#define  PI_NUM_THREADS          15
+#define  MANDEL_NUM_THREADS      8
+#define  HISTOGRAM_NUM_THREADS   15
+#define  DISTANCE_NUM_THREADS    9
+#define  MATRIX_NUM_THREADS      18
+#define  FINDMAX_NUM_THREADS     13
 
 #define NUM_THREADS  (PI_NUM_THREADS + MANDEL_NUM_THREADS + HISTOGRAM_NUM_THREADS + DISTANCE_NUM_THREADS + MATRIX_NUM_THREADS + FINDMAX_NUM_THREADS)
 
+#define THREAD_QUEUE
 #define OPCODE_FLAGGING
 #define CHECK_FIRST_POLYMORPHIC
 
@@ -187,8 +188,8 @@ void * histogram_thread (void * arg) {
    volatile int val = 0;
    volatile int * data;
    volatile int * hist = targ->hist;
-   //for (i = 0; i < NUM_BINS; i++)
-   //   hist[i] = 0;
+   for (i = 0; i < NUM_BINS; i++)
+      hist[i] = 0;
 
    data = targ->array;
 
@@ -281,7 +282,7 @@ void * find_max_thread (void *arg)
 }
 
 #ifndef HETERO_COMPILATION
-#include "combined_prog.h"
+#include "combined2_prog.h"
 #endif
 
 void * queue_thread(void * arg) {
@@ -325,7 +326,7 @@ void * ret[NUM_THREADS] PRIVATE_MEMORY;
 
 int main() {
    
-   printf("--- Combined Kernel benchmark ---\n"); 
+   printf("--- combined2 Kernel benchmark ---\n"); 
    printf("Number of Slave processors: %d\n", NUM_AVAILABLE_HETERO_CPUS);
 #ifdef OPCODE_FLAGGING
    printf("-->Opcode flagging ENABLED\n");
@@ -343,9 +344,8 @@ int main() {
       printf("Error creating Queue thread\n");
       while(1);
    }
-   // Reset overhead counters
+   // Reset
    create_overhead = 0;
-   randomize_overhead = 0;
 
    Huint i = 0;
    // PI
@@ -452,61 +452,87 @@ int main() {
 
    hthread_time_t start = hthread_time_get();
 
-   thread_create( &tid[0], &attr[0], pi_thread_FUNC_ID, (void *) &thread_data[3], DYNAMIC_HW, 0);
-   thread_create( &tid[1], &attr[1], distance_thread_FUNC_ID, (void *) &distance_arg[2], DYNAMIC_HW, 0);
-   thread_create( &tid[2], &attr[2], mandel_thread_FUNC_ID, (void *) MANDEL_MAX_ITERATIONS, DYNAMIC_HW, 0);
-   thread_create( &tid[3], &attr[3], histogram_thread_FUNC_ID, (void*)(&thread_arg[1]),DYNAMIC_HW,0 );
-   thread_create( &tid[4], &attr[4], find_max_thread_FUNC_ID, (void *) &findmax_arg[2], DYNAMIC_HW, 0);
-   thread_create( &tid[5], &attr[5], find_max_thread_FUNC_ID, (void *) &findmax_arg[4], DYNAMIC_HW, 0);
-   thread_create( &tid[6], &attr[6], mandel_thread_FUNC_ID, (void *) MANDEL_MAX_ITERATIONS, DYNAMIC_HW, 0);
-   thread_create( &tid[7], &attr[7], find_max_thread_FUNC_ID, (void *) &findmax_arg[1], DYNAMIC_HW, 0);
-   thread_create( &tid[8], &attr[8], histogram_thread_FUNC_ID, (void*)(&thread_arg[1]),DYNAMIC_HW,0 );
-   thread_create( &tid[9], &attr[9], matrix_mult_thread_FUNC_ID, (void *) &matrix_arg[3], DYNAMIC_HW, 0);
-   thread_create( &tid[10], &attr[10], pi_thread_FUNC_ID, (void *) &thread_data[0], DYNAMIC_HW, 0);
-   thread_create( &tid[11], &attr[11], matrix_mult_thread_FUNC_ID, (void *) &matrix_arg[2], DYNAMIC_HW, 0);
-   thread_create( &tid[12], &attr[12], matrix_mult_thread_FUNC_ID, (void *) &matrix_arg[0], DYNAMIC_HW, 0);
-   thread_create( &tid[13], &attr[13], find_max_thread_FUNC_ID, (void *) &findmax_arg[0], DYNAMIC_HW, 0);
-   thread_create( &tid[14], &attr[14], histogram_thread_FUNC_ID, (void*)(&thread_arg[0]),DYNAMIC_HW,0 );
-   thread_create( &tid[15], &attr[15], pi_thread_FUNC_ID, (void *) &thread_data[2], DYNAMIC_HW, 0);
-   thread_create( &tid[16], &attr[16], histogram_thread_FUNC_ID, (void*)(&thread_arg[2]),DYNAMIC_HW,0 );
-   thread_create( &tid[17], &attr[17], distance_thread_FUNC_ID, (void *) &distance_arg[1], DYNAMIC_HW, 0);
-   thread_create( &tid[18], &attr[18], matrix_mult_thread_FUNC_ID, (void *) &matrix_arg[1], DYNAMIC_HW, 0);
-   thread_create( &tid[19], &attr[19], distance_thread_FUNC_ID, (void *) &distance_arg[0], DYNAMIC_HW, 0);
-   thread_create( &tid[20], &attr[20], find_max_thread_FUNC_ID, (void *) &findmax_arg[3], DYNAMIC_HW, 0);
-   thread_create( &tid[21], &attr[21], mandel_thread_FUNC_ID, (void *) MANDEL_MAX_ITERATIONS, DYNAMIC_HW, 0);
-   thread_create(&tid[22], &attr[22], pi_thread_FUNC_ID, (void *) &thread_data[1], DYNAMIC_HW, 0);
-   thread_create(&tid[23], &attr[23], pi_thread_FUNC_ID, (void *) &thread_data[4], DYNAMIC_HW, 0);
-   thread_create( &tid[24], &attr[24], histogram_thread_FUNC_ID, (void*)(&thread_arg[1]),DYNAMIC_HW,0 );
+   thread_create( &tid[0 ], &attr[0 ], distance_thread_FUNC_ID, (void *) &distance_arg[2], DYNAMIC_HW, 0);
+   thread_create( &tid[1 ], &attr[1 ], pi_thread_FUNC_ID, (void *) &thread_data[10], DYNAMIC_HW, 0);
+   thread_create( &tid[2 ], &attr[2 ], matrix_mult_thread_FUNC_ID, (void *) &matrix_arg[6], DYNAMIC_HW, 0);
+   thread_create( &tid[3 ], &attr[3 ], distance_thread_FUNC_ID, (void *) &distance_arg[0], DYNAMIC_HW, 0);
+   thread_create( &tid[4 ], &attr[4 ], distance_thread_FUNC_ID, (void *) &distance_arg[6], DYNAMIC_HW, 0);
+   thread_create( &tid[5 ], &attr[5 ], pi_thread_FUNC_ID, (void *) &thread_data[4], DYNAMIC_HW, 0);
+   thread_create( &tid[6 ], &attr[6 ], find_max_thread_FUNC_ID, (void *) &findmax_arg[9], DYNAMIC_HW, 0);
+   thread_create( &tid[7 ], &attr[7 ], pi_thread_FUNC_ID, (void *) &thread_data[12], DYNAMIC_HW, 0);
+   thread_create( &tid[8 ], &attr[8 ], matrix_mult_thread_FUNC_ID, (void *) &matrix_arg[0], DYNAMIC_HW, 0);
+   thread_create( &tid[9 ], &attr[9 ], histogram_thread_FUNC_ID, (void*)(&thread_arg[0]),DYNAMIC_HW,0 );
+   thread_create( &tid[10], &attr[10], find_max_thread_FUNC_ID, (void *) &findmax_arg[8], DYNAMIC_HW, 0);
+   thread_create( &tid[11], &attr[11], pi_thread_FUNC_ID, (void *) &thread_data[2], DYNAMIC_HW, 0);
+   thread_create( &tid[12], &attr[12], histogram_thread_FUNC_ID, (void*)(&thread_arg[0]),DYNAMIC_HW,0 );
+   thread_create( &tid[13], &attr[13], mandel_thread_FUNC_ID, (void *) MANDEL_MAX_ITERATIONS, DYNAMIC_HW, 0);
+   thread_create( &tid[14], &attr[14], distance_thread_FUNC_ID, (void *) &distance_arg[7], DYNAMIC_HW, 0);
+   thread_create( &tid[15], &attr[15], histogram_thread_FUNC_ID, (void*)(&thread_arg[0]),DYNAMIC_HW,0 );
+   thread_create( &tid[16], &attr[16], matrix_mult_thread_FUNC_ID, (void *) &matrix_arg[17], DYNAMIC_HW, 0);
+   thread_create( &tid[17], &attr[17], mandel_thread_FUNC_ID, (void *) MANDEL_MAX_ITERATIONS, DYNAMIC_HW, 0);
+   thread_create( &tid[18], &attr[18], find_max_thread_FUNC_ID, (void *) &findmax_arg[4], DYNAMIC_HW, 0);
+   thread_create( &tid[19], &attr[19], matrix_mult_thread_FUNC_ID, (void *) &matrix_arg[11], DYNAMIC_HW, 0);
+   thread_create( &tid[20], &attr[20], matrix_mult_thread_FUNC_ID, (void *) &matrix_arg[8], DYNAMIC_HW, 0);
+   thread_create( &tid[21], &attr[21], matrix_mult_thread_FUNC_ID, (void *) &matrix_arg[13], DYNAMIC_HW, 0);
+   thread_create( &tid[22], &attr[22], pi_thread_FUNC_ID, (void *) &thread_data[6], DYNAMIC_HW, 0);
+   thread_create( &tid[23], &attr[23], distance_thread_FUNC_ID, (void *) &distance_arg[4], DYNAMIC_HW, 0);
+   thread_create( &tid[24], &attr[24], histogram_thread_FUNC_ID, (void*)(&thread_arg[0]),DYNAMIC_HW,0 );
+   thread_create( &tid[25], &attr[25], distance_thread_FUNC_ID, (void *) &distance_arg[1], DYNAMIC_HW, 0);
+   thread_create( &tid[26], &attr[26], pi_thread_FUNC_ID, (void *) &thread_data[11], DYNAMIC_HW, 0);
+   thread_create( &tid[27], &attr[27], find_max_thread_FUNC_ID, (void *) &findmax_arg[3], DYNAMIC_HW, 0);
+   thread_create( &tid[28], &attr[28], matrix_mult_thread_FUNC_ID, (void *) &matrix_arg[15], DYNAMIC_HW, 0);
+   thread_create( &tid[29], &attr[29], distance_thread_FUNC_ID, (void *) &distance_arg[8], DYNAMIC_HW, 0);
+   thread_create( &tid[30], &attr[30], pi_thread_FUNC_ID, (void *) &thread_data[9], DYNAMIC_HW, 0);
+   thread_create( &tid[31], &attr[31], find_max_thread_FUNC_ID, (void *) &findmax_arg[10], DYNAMIC_HW, 0);
+   thread_create( &tid[32], &attr[32], mandel_thread_FUNC_ID, (void *) MANDEL_MAX_ITERATIONS, DYNAMIC_HW, 0);
+   thread_create( &tid[33], &attr[33], pi_thread_FUNC_ID, (void *) &thread_data[1], DYNAMIC_HW, 0);
+   thread_create( &tid[34], &attr[34], histogram_thread_FUNC_ID, (void*)(&thread_arg[1]),DYNAMIC_HW,0 );
+   thread_create( &tid[35], &attr[35], histogram_thread_FUNC_ID, (void*)(&thread_arg[0]),DYNAMIC_HW,0 );
+   thread_create( &tid[36], &attr[36], distance_thread_FUNC_ID, (void *) &distance_arg[5], DYNAMIC_HW, 0);
+   thread_create( &tid[37], &attr[37], mandel_thread_FUNC_ID, (void *) MANDEL_MAX_ITERATIONS, DYNAMIC_HW, 0);
+   thread_create( &tid[38], &attr[38], mandel_thread_FUNC_ID, (void *) MANDEL_MAX_ITERATIONS, DYNAMIC_HW, 0);
+   thread_create( &tid[39], &attr[39], histogram_thread_FUNC_ID, (void*)(&thread_arg[0]),DYNAMIC_HW,0 );
+   thread_create( &tid[40], &attr[40], histogram_thread_FUNC_ID, (void*)(&thread_arg[0]),DYNAMIC_HW,0 );
+   thread_create( &tid[41], &attr[41], pi_thread_FUNC_ID, (void *) &thread_data[0], DYNAMIC_HW, 0);
+   thread_create( &tid[42], &attr[42], pi_thread_FUNC_ID, (void *) &thread_data[14], DYNAMIC_HW, 0);
+   thread_create( &tid[43], &attr[43], matrix_mult_thread_FUNC_ID, (void *) &matrix_arg[12], DYNAMIC_HW, 0);
+   thread_create( &tid[44], &attr[44], histogram_thread_FUNC_ID, (void*)(&thread_arg[2]),DYNAMIC_HW,0 );
+   thread_create( &tid[45], &attr[45], matrix_mult_thread_FUNC_ID, (void *) &matrix_arg[3], DYNAMIC_HW, 0);
+   thread_create( &tid[46], &attr[46], histogram_thread_FUNC_ID, (void*)(&thread_arg[0]),DYNAMIC_HW,0 );
+   thread_create( &tid[47], &attr[47], distance_thread_FUNC_ID, (void *) &distance_arg[3], DYNAMIC_HW, 0);
+   thread_create( &tid[48], &attr[48], matrix_mult_thread_FUNC_ID, (void *) &matrix_arg[2], DYNAMIC_HW, 0);
+   thread_create( &tid[49], &attr[49], matrix_mult_thread_FUNC_ID, (void *) &matrix_arg[16], DYNAMIC_HW, 0);
+   thread_create( &tid[50], &attr[50], matrix_mult_thread_FUNC_ID, (void *) &matrix_arg[7], DYNAMIC_HW, 0);
+   thread_create( &tid[51], &attr[51], matrix_mult_thread_FUNC_ID, (void *) &matrix_arg[5], DYNAMIC_HW, 0);
+   thread_create( &tid[52], &attr[52], histogram_thread_FUNC_ID, (void*)(&thread_arg[0]),DYNAMIC_HW,0 );
+   thread_create( &tid[53], &attr[53], matrix_mult_thread_FUNC_ID, (void *) &matrix_arg[14], DYNAMIC_HW, 0);
+   thread_create( &tid[54], &attr[54], matrix_mult_thread_FUNC_ID, (void *) &matrix_arg[10], DYNAMIC_HW, 0);
+   thread_create( &tid[55], &attr[55], pi_thread_FUNC_ID, (void *) &thread_data[13], DYNAMIC_HW, 0);
+   thread_create( &tid[56], &attr[56], find_max_thread_FUNC_ID, (void *) &findmax_arg[12], DYNAMIC_HW, 0);
+   thread_create( &tid[57], &attr[57], pi_thread_FUNC_ID, (void *) &thread_data[8], DYNAMIC_HW, 0);
+   thread_create( &tid[58], &attr[58], find_max_thread_FUNC_ID, (void *) &findmax_arg[5], DYNAMIC_HW, 0);
+   thread_create( &tid[59], &attr[59], histogram_thread_FUNC_ID, (void*)(&thread_arg[0]),DYNAMIC_HW,0 );
+   thread_create( &tid[60], &attr[60], find_max_thread_FUNC_ID, (void *) &findmax_arg[1], DYNAMIC_HW, 0);
+   thread_create( &tid[61], &attr[61], find_max_thread_FUNC_ID, (void *) &findmax_arg[0], DYNAMIC_HW, 0);
+   thread_create( &tid[62], &attr[62], matrix_mult_thread_FUNC_ID, (void *) &matrix_arg[1], DYNAMIC_HW, 0);
+   thread_create( &tid[63], &attr[63], mandel_thread_FUNC_ID, (void *) MANDEL_MAX_ITERATIONS, DYNAMIC_HW, 0);
+   thread_create( &tid[64], &attr[64], pi_thread_FUNC_ID, (void *) &thread_data[7], DYNAMIC_HW, 0);
+   thread_create( &tid[65], &attr[65], find_max_thread_FUNC_ID, (void *) &findmax_arg[11], DYNAMIC_HW, 0);
+   thread_create( &tid[66], &attr[66], find_max_thread_FUNC_ID, (void *) &findmax_arg[6], DYNAMIC_HW, 0);
+   thread_create( &tid[67], &attr[67], find_max_thread_FUNC_ID, (void *) &findmax_arg[2], DYNAMIC_HW, 0);
+   thread_create( &tid[68], &attr[68], pi_thread_FUNC_ID, (void *) &thread_data[5], DYNAMIC_HW, 0);
+   thread_create( &tid[69], &attr[69], histogram_thread_FUNC_ID, (void*)(&thread_arg[1]),DYNAMIC_HW,0 );
+   thread_create( &tid[70], &attr[70], histogram_thread_FUNC_ID, (void*)(&thread_arg[0]),DYNAMIC_HW,0 );
+   thread_create( &tid[71], &attr[71], find_max_thread_FUNC_ID, (void *) &findmax_arg[7], DYNAMIC_HW, 0);
+   thread_create( &tid[72], &attr[72], pi_thread_FUNC_ID, (void *) &thread_data[3], DYNAMIC_HW, 0);
+   thread_create( &tid[73], &attr[73], mandel_thread_FUNC_ID, (void *) MANDEL_MAX_ITERATIONS, DYNAMIC_HW, 0);
+   thread_create( &tid[74], &attr[74], histogram_thread_FUNC_ID, (void*)(&thread_arg[0]),DYNAMIC_HW,0 );
+   thread_create( &tid[75], &attr[75], matrix_mult_thread_FUNC_ID, (void *) &matrix_arg[9], DYNAMIC_HW, 0);
+   thread_create( &tid[76], &attr[76], matrix_mult_thread_FUNC_ID, (void *) &matrix_arg[4], DYNAMIC_HW, 0);
+   thread_create( &tid[77], &attr[77], mandel_thread_FUNC_ID, (void *) MANDEL_MAX_ITERATIONS, DYNAMIC_HW, 0);
 
-#if 0   
-   thread_create( &tid[5], &attr[5], histogram_thread_FUNC_ID, (void*)(&thread_arg[0]),DYNAMIC_HW,0 );
-   thread_create( &tid[6], &attr[6], histogram_thread_FUNC_ID, (void*)(&thread_arg[1]),DYNAMIC_HW,0 );
-   thread_create( &tid[7], &attr[7], histogram_thread_FUNC_ID, (void*)(&thread_arg[2]),DYNAMIC_HW,0 );
-   thread_create( &tid[8], &attr[8], histogram_thread_FUNC_ID, (void*)(&thread_arg[3]),DYNAMIC_HW,0 );
-   thread_create( &tid[9], &attr[9], histogram_thread_FUNC_ID, (void*)(&thread_arg[4]),DYNAMIC_HW,0 );
-   thread_create( &tid[16], &attr[16], matrix_mult_thread_FUNC_ID, (void *) &matrix_arg[3], DYNAMIC_HW, 0);
-   thread_create( &tid[13], &attr[13], matrix_mult_thread_FUNC_ID, (void *) &matrix_arg[0], DYNAMIC_HW, 0);
-   thread_create(&tid[2], &attr[2], pi_thread_FUNC_ID, (void *) &thread_data[2], DYNAMIC_HW, 0);
-   //thread_create(&tid[23], &attr[23], mandel_thread_FUNC_ID, (void *) MANDEL_MAX_ITERATIONS, DYNAMIC_HW, 0);
-   thread_create( &tid[18], &attr[18], find_max_thread_FUNC_ID, (void *) &findmax_arg[1], DYNAMIC_HW, 0);
-   thread_create( &tid[21], &attr[21], find_max_thread_FUNC_ID, (void *) &findmax_arg[4], DYNAMIC_HW, 0);
-   thread_create( &tid[14], &attr[14], matrix_mult_thread_FUNC_ID, (void *) &matrix_arg[1], DYNAMIC_HW, 0);
-   thread_create( &tid[11], &attr[12], distance_thread_FUNC_ID, (void *) &distance_arg[1], DYNAMIC_HW, 0);
-   //thread_create(&tid[24], &attr[24], mandel_thread_FUNC_ID, (void *) MANDEL_MAX_ITERATIONS, DYNAMIC_HW, 0);
-   thread_create(&tid[1], &attr[1], pi_thread_FUNC_ID, (void *) &thread_data[1], DYNAMIC_HW, 0);
-   thread_create(&tid[4], &attr[4], pi_thread_FUNC_ID, (void *) &thread_data[4], DYNAMIC_HW, 0);
-   thread_create( &tid[12], &attr[11], distance_thread_FUNC_ID, (void *) &distance_arg[2], DYNAMIC_HW, 0);
-   thread_create( &tid[15], &attr[15], matrix_mult_thread_FUNC_ID, (void *) &matrix_arg[2], DYNAMIC_HW, 0);
-   thread_create( &tid[17], &attr[17], find_max_thread_FUNC_ID, (void *) &findmax_arg[0], DYNAMIC_HW, 0);
-   thread_create(&tid[3], &attr[3], pi_thread_FUNC_ID, (void *) &thread_data[3], DYNAMIC_HW, 0);
-   thread_create(&tid[0], &attr[0], pi_thread_FUNC_ID, (void *) &thread_data[0], DYNAMIC_HW, 0);
-   thread_create( &tid[10], &attr[10], distance_thread_FUNC_ID, (void *) &distance_arg[0], DYNAMIC_HW, 0);
-   thread_create( &tid[20], &attr[20], find_max_thread_FUNC_ID, (void *) &findmax_arg[3], DYNAMIC_HW, 0);
-   //thread_create(&tid[22], &attr[22], mandel_thread_FUNC_ID, (void *) MANDEL_MAX_ITERATIONS, DYNAMIC_HW, 0);
-   thread_create( &tid[19], &attr[19], find_max_thread_FUNC_ID, (void *) &findmax_arg[2], DYNAMIC_HW, 0);
-#endif
+
    // Wait until all threads are finished 
-	//while(get_num_free_slaves() < NUM_AVAILABLE_HETERO_CPUS);
 	while(get_num_free_slaves() < NUM_AVAILABLE_HETERO_CPUS || thread_entries != 0) {
       if (thread_entries != 0)
          hthread_yield();
@@ -565,7 +591,6 @@ int main() {
     printf("Total PR Counter / HW+SW Counter = %f\n", total_pr_count / (1.0 *(total_hw_count+total_sw_count)));
 #endif
     printf("Total OS overhead (thread_create) = %f msec\n", hthread_time_msec(create_overhead));
-    printf("Total Randomized overhead  = %f msec\n", hthread_time_msec(randomize_overhead));
 #if 0
     hthread_time_t software_time = 0;
     for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {

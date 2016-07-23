@@ -7,6 +7,17 @@ typedef struct {
     float sw_time;
 } volatile tuning_table_t;
 
+// Used as a Thread Queue
+// Later development should
+// focus on dependencies
+typedef struct {
+   hthread_t * tid;  
+   hthread_attr_t * attr;
+   Huint func_id;
+   void * arg;             
+   //void * next;
+} volatile Qnode_t;
+
 // --------------------------------------------------------- //
 //          Thread/Processor profile structure               //
 // --------------------------------------------------------- //

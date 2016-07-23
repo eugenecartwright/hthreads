@@ -422,7 +422,7 @@ void hthread_mutex_unlock( int lock_number);
 typedef void * (*thread_start_t)(void*);
 
 
-void * bootstrap_thread(
+void * _bootstrap_thread(
         proc_interface_t * iface,
         thread_start_t func,
         void * arg );

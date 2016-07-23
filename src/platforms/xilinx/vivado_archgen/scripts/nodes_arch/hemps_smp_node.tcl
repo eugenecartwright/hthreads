@@ -2,7 +2,7 @@ set slave $group/slave_$i
  
 create_bd_cell -type hier $slave
 
-create_bd_cell -type ip -vlnv xilinx.com:ip:microblaze:* $slave/microblaze_1
+create_bd_cell -type ip -vlnv xilinx.com:ip:microblaze:* $slave/microblaze_[expr $j]_$i
 create_bd_cell -type ip -vlnv xilinx.com:ip:axi_bram_ctrl:* $slave/global_vhwti_cntrl_[expr $j * $C + $i]
 create_bd_cell -type ip -vlnv xilinx.com:ip:axi_bram_ctrl:* $slave/local_vhwti_cntrl
 create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:* $slave/blk_mem_gen_0
@@ -57,7 +57,7 @@ set_property -dict [list CONFIG.SINGLE_PORT_BRAM {1} CONFIG.PROTOCOL {AXI4}]  [g
 
 set_property -dict [list CONFIG.C_M_AXI_MAX_BURST_LEN {256} CONFIG.C_INCLUDE_SG {0}]  [get_bd_cells  $slave/local_dma] 
 
-set_property -dict [list  CONFIG.C_FSL_LINKS {1} CONFIG.C_D_AXI {1} CONFIG.C_DEBUG_ENABLED {2} CONFIG.C_DEBUG_EVENT_COUNTERS {8} CONFIG.C_DEBUG_LATENCY_COUNTERS {2}   CONFIG.C_USE_BARREL [lindex $slaves [expr $j * $C + $i] 0] CONFIG.C_USE_HW_MUL [lindex $slaves [expr $j * $C + $i] 1] CONFIG.C_USE_DIV [lindex $slaves [expr $j * $C + $i] 2]  CONFIG.C_USE_FPU [lindex $slaves [expr $j * $C + $i] 3] CONFIG.C_USE_PCMP_INSTR [lindex $slaves [expr $j * $C + $i] 4]   CONFIG.C_PVR {2} CONFIG.C_PVR_USER2 {0xC0000000}  CONFIG.C_PVR_USER1 0x[format "%02x" [expr $j * $C + $i]]  CONFIG.C_USE_ICACHE {1} CONFIG.C_CACHE_BYTE_SIZE [lindex $slaves [expr $j * $C + $i] 5] ]  [get_bd_cells $slave/microblaze_1] 
+set_property -dict [list  CONFIG.C_FSL_LINKS {1} CONFIG.C_D_AXI {1} CONFIG.C_DEBUG_ENABLED {2} CONFIG.C_DEBUG_EVENT_COUNTERS {8} CONFIG.C_DEBUG_LATENCY_COUNTERS {2}   CONFIG.C_USE_BARREL [lindex $slaves [expr $j * $C + $i] 0] CONFIG.C_USE_HW_MUL [lindex $slaves [expr $j * $C + $i] 1] CONFIG.C_USE_DIV [lindex $slaves [expr $j * $C + $i] 2]  CONFIG.C_USE_FPU [lindex $slaves [expr $j * $C + $i] 3] CONFIG.C_USE_PCMP_INSTR [lindex $slaves [expr $j * $C + $i] 4]   CONFIG.C_PVR {2} CONFIG.C_PVR_USER2 {0xC0000000}  CONFIG.C_PVR_USER1 0x[format "%02x" [expr $j * $C + $i]]  CONFIG.C_USE_ICACHE {1} CONFIG.C_CACHE_BYTE_SIZE [lindex $slaves [expr $j * $C + $i] 5] ]  [get_bd_cells $slave/microblaze_[expr $j]_$i] 
 
  
 
@@ -65,9 +65,9 @@ set_property -dict [list  CONFIG.C_FSL_LINKS {1} CONFIG.C_D_AXI {1} CONFIG.C_DEB
 connect_bd_intf_net [get_bd_intf_pins $slave/local_vhwti_cntrl/S_AXI]  -boundary_type upper [get_bd_intf_pins $slave/group1_bus/M03_AXI] 
 connect_bd_intf_net [get_bd_intf_pins $slave/blk_mem_gen_0/BRAM_PORTA]  [get_bd_intf_pins $slave/global_vhwti_cntrl_[expr $j * $C + $i]/BRAM_PORTA] 
 connect_bd_intf_net [get_bd_intf_pins $slave/blk_mem_gen_0/BRAM_PORTB]  [get_bd_intf_pins $slave/local_vhwti_cntrl/BRAM_PORTA] 
-connect_bd_intf_net [get_bd_intf_pins $slave/microblaze_1/M_AXI_DP]  -boundary_type upper [get_bd_intf_pins $slave/group1_bus/S00_AXI] 
-connect_bd_intf_net [get_bd_intf_pins $slave/microblaze_1/DLMB]  -boundary_type upper [get_bd_intf_pins $slave/microblaze_0_local_memory/DLMB] 
-connect_bd_intf_net [get_bd_intf_pins $slave/microblaze_1/ILMB]  -boundary_type upper [get_bd_intf_pins $slave/microblaze_0_local_memory/ILMB] 
+connect_bd_intf_net [get_bd_intf_pins $slave/microblaze_[expr $j]_$i/M_AXI_DP]  -boundary_type upper [get_bd_intf_pins $slave/group1_bus/S00_AXI] 
+connect_bd_intf_net [get_bd_intf_pins $slave/microblaze_[expr $j]_$i/DLMB]  -boundary_type upper [get_bd_intf_pins $slave/microblaze_0_local_memory/DLMB] 
+connect_bd_intf_net [get_bd_intf_pins $slave/microblaze_[expr $j]_$i/ILMB]  -boundary_type upper [get_bd_intf_pins $slave/microblaze_0_local_memory/ILMB] 
 connect_bd_intf_net [get_bd_intf_pins $slave/axi_bram_ctrl_a/BRAM_PORTA]  [get_bd_intf_pins $slave/blk_mem_a/BRAM_PORTA] 
 connect_bd_intf_net [get_bd_intf_pins $slave/axi_bram_ctrl_b/BRAM_PORTA]  [get_bd_intf_pins $slave/blk_mem_b/BRAM_PORTA] 
 connect_bd_intf_net [get_bd_intf_pins $slave/axi_bram_ctrl_result/BRAM_PORTA]  [get_bd_intf_pins $slave/blk_mem_result/BRAM_PORTA] 
@@ -76,8 +76,8 @@ connect_bd_intf_net [get_bd_intf_pins $slave/axi_bram_ctrl_result/BRAM_PORTA]  [
 connect_bd_intf_net [get_bd_intf_pins $slave/acc_0/a_PORTA]  [get_bd_intf_pins $slave/blk_mem_a/BRAM_PORTB] 
 connect_bd_intf_net [get_bd_intf_pins $slave/acc_0/b_PORTA]  [get_bd_intf_pins $slave/blk_mem_b/BRAM_PORTB] 
 connect_bd_intf_net [get_bd_intf_pins $slave/acc_0/result_PORTA]  [get_bd_intf_pins $slave/blk_mem_result/BRAM_PORTB] 
-connect_bd_intf_net [get_bd_intf_pins $slave/acc_0/resp]  [get_bd_intf_pins $slave/microblaze_1/S0_AXIS] 
-connect_bd_intf_net [get_bd_intf_pins $slave/microblaze_1/M0_AXIS] [get_bd_intf_pins $slave/fifo_generator_0/S_AXIS]
+connect_bd_intf_net [get_bd_intf_pins $slave/acc_0/resp]  [get_bd_intf_pins $slave/microblaze_[expr $j]_$i/S0_AXIS] 
+connect_bd_intf_net [get_bd_intf_pins $slave/microblaze_[expr $j]_$i/M0_AXIS] [get_bd_intf_pins $slave/fifo_generator_0/S_AXIS]
 connect_bd_intf_net [get_bd_intf_pins $slave/fifo_generator_0/M_AXIS] [get_bd_intf_pins $slave/acc_0/cmd]
 
  
@@ -100,8 +100,8 @@ connect_bd_intf_net [get_bd_intf_pins $slave/axi_bram_ctrl_result/S_AXI] -bounda
 
 
 #clk and reset connections
-connect_bd_net [get_bd_pins $slave/microblaze_1/Clk] [get_bd_pins ddr_bus/ACLK]
-connect_bd_net [get_bd_pins $slave/microblaze_1/Reset] [get_bd_pins host/Reset]
+connect_bd_net [get_bd_pins $slave/microblaze_[expr $j]_$i/Clk] [get_bd_pins ddr_bus/ACLK]
+connect_bd_net [get_bd_pins $slave/microblaze_[expr $j]_$i/Reset] [get_bd_pins host/Reset]
 connect_bd_net [get_bd_pins $slave/microblaze_0_local_memory/SYS_Rst] [get_bd_pins host_local_memory/SYS_Rst]
 connect_bd_net [get_bd_pins $slave/global_vhwti_cntrl_[expr $j * $C + $i]/s_axi_aresetn] [get_bd_pins peripherals/peripheral_aresetn]
 connect_bd_net [get_bd_pins $slave/group1_bus/aresetn] [get_bd_pins peripherals/interconnect_aresetn] -boundary_type upper

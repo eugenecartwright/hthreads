@@ -97,10 +97,10 @@ sed -i "$mystring" ./include/config.h
 rm ./sdk.tcl
 touch ./sdk.tcl
 printf "#!/usr/bin/tclsh\n" >> ./sdk.tcl
-printf "sdk set_workspace ./design/design.sdk\n" >> ./sdk.tcl
-printf "sdk create_hw_project -name system_wrapper_hw_platform_0 -hwspec ./design/design.sdk/system_wrapper.hdf\n" >> ./sdk.tcl
-printf "sdk create_bsp_project -name host_bsp -proc host -hwproject system_wrapper_hw_platform_0 -os standalone\n" >> ./sdk.tcl
-printf "sdk create_app_project -name host -proc host -hwproject system_wrapper_hw_platform_0 -bsp host_bsp -app {Hello World}\n" >> ./sdk.tcl
+printf "sdk setws ./design/design.sdk\n" >> ./sdk.tcl
+printf "sdk createhw -name system_wrapper_hw_platform_0 -hwspec ./design/design.sdk/system_wrapper.hdf\n" >> ./sdk.tcl
+printf "sdk createbsp -name host_bsp -proc host -hwproject system_wrapper_hw_platform_0 -os standalone\n" >> ./sdk.tcl
+printf "sdk createapp -name host -proc host -hwproject system_wrapper_hw_platform_0 -bsp host_bsp -app {Hello World}\n" >> ./sdk.tcl
 
   
 
@@ -109,10 +109,10 @@ do
    for (( i=0; i<$C; i++ ))
    do
    
-     printf "sdk create_bsp_project -name group_"$j"_slave_"$i"_microblaze_1_bsp -proc group_"$j"_slave_"$i"_microblaze_1 -hwproject system_wrapper_hw_platform_0 -os standalone\n" >> ./sdk.tcl
-     printf "sdk create_app_project -name group_"$j"_slave_"$i"_microblaze_1 -proc group_"$j"_slave_"$i"_microblaze_1 -hwproject system_wrapper_hw_platform_0 -bsp group_"$j"_slave_"$i"_microblaze_1_bsp -app {Empty Application}\n" >> ./sdk.tcl     
+     printf "sdk createbsp -name group_"$j"_slave_"$i"_microblaze_"$j"_"$i"_bsp -proc group_"$j"_slave_"$i"_microblaze_"$j"_"$i" -hwproject system_wrapper_hw_platform_0 -os standalone\n" >> ./sdk.tcl
+     printf "sdk createapp -name group_"$j"_slave_"$i"_microblaze_"$j"_"$i" -proc group_"$j"_slave_"$i"_microblaze_"$j"_"$i" -hwproject system_wrapper_hw_platform_0 -bsp group_"$j"_slave_"$i"_microblaze_"$j"_"$i"_bsp -app {Empty Application}\n" >> ./sdk.tcl     
       
-       printf " sdk import_sources -name group_"$j"_slave_"$i"_microblaze_1 -path ./slave_src\n" >> ./sdk.tcl  
+       printf " sdk importsources -name group_"$j"_slave_"$i"_microblaze_"$j"_"$i" -path ./slave_src\n" >> ./sdk.tcl  
    done
 done   
     
@@ -133,7 +133,7 @@ for (( j=0; j<$N; j++ ))
 do
    for (( i=0; i<$C; i++ ))
    do
-        temp=" -bd ./design/design.sdk/group_"$j"_slave_"$i"_microblaze_1/Release/group_"$j"_slave_"$i"_microblaze_1.elf tag system_i_group_"$j"_slave_"$i"_microblaze_1"
+        temp=" -bd ./design/design.sdk/group_"$j"_slave_"$i"_microblaze_"$j"_"$i"/Release/group_"$j"_slave_"$i"_microblaze_"$j"_"$i".elf tag system_i_group_"$j"_slave_"$i"_microblaze_"$j"_"$i"" 
         cmd=$cmd$temp 
    done
 done

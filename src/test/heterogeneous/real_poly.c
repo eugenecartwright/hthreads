@@ -343,9 +343,8 @@ int main() {
       printf("Error creating Queue thread\n");
       while(1);
    }
-   // Reset overhead counters
+   // Reset
    create_overhead = 0;
-   randomize_overhead = 0;
 
    Huint i = 0;
    // PI
@@ -460,7 +459,7 @@ int main() {
    thread_create( &tid[5], &attr[5], find_max_thread_FUNC_ID, (void *) &findmax_arg[4], DYNAMIC_HW, 0);
    thread_create( &tid[6], &attr[6], mandel_thread_FUNC_ID, (void *) MANDEL_MAX_ITERATIONS, DYNAMIC_HW, 0);
    thread_create( &tid[7], &attr[7], find_max_thread_FUNC_ID, (void *) &findmax_arg[1], DYNAMIC_HW, 0);
-   thread_create( &tid[8], &attr[8], histogram_thread_FUNC_ID, (void*)(&thread_arg[1]),DYNAMIC_HW,0 );
+   thread_create( &tid[8], &attr[8], histogram_thread_FUNC_ID, (void*)(&thread_arg[4]),DYNAMIC_HW,0 );
    thread_create( &tid[9], &attr[9], matrix_mult_thread_FUNC_ID, (void *) &matrix_arg[3], DYNAMIC_HW, 0);
    thread_create( &tid[10], &attr[10], pi_thread_FUNC_ID, (void *) &thread_data[0], DYNAMIC_HW, 0);
    thread_create( &tid[11], &attr[11], matrix_mult_thread_FUNC_ID, (void *) &matrix_arg[2], DYNAMIC_HW, 0);
@@ -506,7 +505,6 @@ int main() {
    thread_create( &tid[19], &attr[19], find_max_thread_FUNC_ID, (void *) &findmax_arg[2], DYNAMIC_HW, 0);
 #endif
    // Wait until all threads are finished 
-	//while(get_num_free_slaves() < NUM_AVAILABLE_HETERO_CPUS);
 	while(get_num_free_slaves() < NUM_AVAILABLE_HETERO_CPUS || thread_entries != 0) {
       if (thread_entries != 0)
          hthread_yield();
@@ -565,7 +563,6 @@ int main() {
     printf("Total PR Counter / HW+SW Counter = %f\n", total_pr_count / (1.0 *(total_hw_count+total_sw_count)));
 #endif
     printf("Total OS overhead (thread_create) = %f msec\n", hthread_time_msec(create_overhead));
-    printf("Total Randomized overhead  = %f msec\n", hthread_time_msec(randomize_overhead));
 #if 0
     hthread_time_t software_time = 0;
     for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {

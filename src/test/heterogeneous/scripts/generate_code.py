@@ -82,10 +82,12 @@ def main():
     lines = infile.readlines()
     infile.close()
 
-    data_size_list = [40, 100, 200, 500, 1000, 2000, 4096, 10000]
+    data_size_list = [64, 512, 1024, 2048, 4095, 3500]
 
     for i in xrange(0, TOTAL_MAX):
         random.seed(None)
+        size = 0
+        count = 0
         for line in lines:
             # For every line, replace "#" with i
             line = re.sub("#", str(i), line)
@@ -94,11 +96,21 @@ def main():
             # to each. TODO: Later, you should remove hardcoding
             # this, and get loop through number of accelerators.
             # i.e. $0, $1, ... $(n-1)
-            match  = re.search("\$", line)
+            match  = re.search("\$3", line)
             if (match > -1):
-                index = random.randrange(0,len(data_size_list))
-                size = data_size_list[index]
-                line = re.sub("\$[0-9][0-9]*", str(size), line)
+               if count == 0:
+                  index = random.randrange(0,len(data_size_list))
+                  size = data_size_list[index]
+                  line = re.sub("\$[0-9]+", str(size), line)
+               else:
+                  line = re.sub("\$[0-9]+", str(size), line)
+               count += 1
+            else:
+               match  = re.search("\$[0-9]", line)
+               if (match > -1):
+                  index = random.randrange(0,len(data_size_list))
+                  size = data_size_list[index]
+                  line = re.sub("\$[0-9]+", str(size), line)
 
             outfile.write("\t" + line)
    
@@ -137,8 +149,7 @@ def main():
         NEW_CALL_LIST.append(CALL_LIST.pop(j))
 
     # Start timer
-    outfile.write("\tprintf(\"Starting Timer!\\n\");\n\n")
-    outfile.write("\ththread_time_t start = hthread_time_get();\n\n")
+    outfile.write("\tstart = hthread_time_get();\n\n")
 
     '''
         Now that we have a shuffled list of function calls, 
@@ -163,11 +174,10 @@ def main():
         outfile.write("\t" + call + "\n")
     
     # Write check for if active threads is still greater than > 0
-    outfile.write("\n\twhile((thread_counter + (NUM_AVAILABLE_HETERO_CPUS - get_num_free_slaves()) ) > 0);\n")
-    #outfile.write("\n\twhile((thread_counter + (NUM_AVAILABLE_HETERO_CPUS - get_num_free_slaves()) ) > 0) hthread_yield();\n")
+    outfile.write("\n\twhile(get_num_free_slaves() < NUM_AVAILABLE_HETERO_CPUS);\n")
 
     # Stop timer
-    outfile.write("\n\ththread_time_t stop = hthread_time_get();\n\n")
+    outfile.write("\n\tstop = hthread_time_get();\n\n")
 
     # Write checking for results code
     infile = open("check_results_template", "r")

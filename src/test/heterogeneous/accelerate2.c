@@ -15,7 +15,7 @@
 // Create on slaves? define it...
 #define HARDWARE_THREAD
 
-//#define PERFORM_PR
+#define PERFORM_PR
 //#define DEBUG_DISPATCH
 #define VERIFY
 

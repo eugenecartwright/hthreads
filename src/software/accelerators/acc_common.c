@@ -1,4 +1,5 @@
 #include <accelerator.h>
+#include <dma/dma.h>
 
 // -------------------------------------------------------------- //
 //                     DMA Transfer Wrapper                       //

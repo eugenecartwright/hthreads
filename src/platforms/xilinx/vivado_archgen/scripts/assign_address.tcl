@@ -38,6 +38,8 @@
 
 #num of segments
 set n 0
+create_bd_addr_seg   -range 1G -offset    0x80000000 [get_bd_addr_spaces peripherals/central_dma/Data] [get_bd_addr_segs peripherals/mig_7series_0/memmap/memaddr] SEG[expr $n]
+incr n
 
 ##=====================================================================
 ##Hthread cores
@@ -129,7 +131,7 @@ for {set i 0} {$i < $C} {incr i} \
 {
 set group group_$j 
 set slave slave_$i
-set module $group/$slave/microblaze_1
+set module $group/$slave/microblaze_[expr $j]_$i
 #Hthread cores
 create_bd_addr_seg   -range 16M -offset    0x12000000 [get_bd_addr_spaces  $module/Data] [get_bd_addr_segs hthread_core/axi_scheduler_0/S_AXI/reg0] SEG[expr $n]
  incr n 
@@ -188,7 +190,7 @@ if  { $node == "hemps_smp" } \
       set group group_$j 
       set slave slave_$i
       set module $group/$slave/local_dma/Data
-      set mb     $group/$slave/microblaze_1/Data
+      set mb     $group/$slave/microblaze_[expr $j]_$i/Data
 
       create_bd_addr_seg   -range 1G -offset    0x80000000 [get_bd_addr_spaces $module] [get_bd_addr_segs peripherals/mig_7series_0/memmap/memaddr ] SEG[expr $n]
       incr n 
@@ -225,7 +227,7 @@ if  { $node == "smp" } \
       set group group_$j 
       set slave slave_$i
       set module $group/$slave/local_dma/Data
-      set mb     $group/$slave/microblaze_1/Data
+      set mb     $group/$slave/microblaze_[expr $j]_$i/Data
 
       create_bd_addr_seg   -range 1G -offset    0x80000000 [get_bd_addr_spaces $module] [get_bd_addr_segs peripherals/mig_7series_0/memmap/memaddr ] SEG[expr $n]
       incr n 
@@ -254,7 +256,7 @@ if  { $node == "numa" } \
       set group group_$j 
       set slave slave_$i
       set module $group/$slave/local_dma/Data
-      set mb     $group/$slave/microblaze_1/Data
+      set mb     $group/$slave/microblaze_[expr $j]_$i/Data
 
       create_bd_addr_seg   -range 1G -offset    0x80000000 [get_bd_addr_spaces $module] [get_bd_addr_segs peripherals/mig_7series_0/memmap/memaddr ] SEG[expr $n]
       incr n 

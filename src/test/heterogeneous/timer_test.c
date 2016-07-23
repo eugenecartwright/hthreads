@@ -4,7 +4,7 @@
 #include <arch/htime.h>
 #define HARDWARE_THREAD
 #define NUM_TRIALS          (5)
-//#define DEBUG_DISPATCH
+#define DEBUG_DISPATCH
 
 typedef struct
 {
@@ -34,7 +34,7 @@ void * foo_thread(void * arg)
     hthread_time_t start = hthread_time_get();
     // Wait for 50 seconds to test if 64-bit timer
     // is working from thread
-    wait(50);
+    wait(5);
 
     a = *(p+0); //1
     b = *(p+1); //400

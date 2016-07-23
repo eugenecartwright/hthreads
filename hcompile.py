@@ -542,16 +542,16 @@ def main():
    for index, processor_type in enumerate(HEADERFILE_ISAs):
       f.write("#define " + processor_type + "\t("+ str(index) + ")\n")
    f.close()
+   
+   #-----------------------------------------#
+   # Append Typdef structures to header file #
+   #-----------------------------------------#
+   subprocess.check_call('cat '+typedef_file+' >> '+HEADER_FILE_PATH, shell=True)
 
    #--------------------------------#
    # Append includes to header file #
    #--------------------------------#
    subprocess.check_call('cat '+includes_file+' >> '+HEADER_FILE_PATH, shell=True)
-
-   #-----------------------------------------#
-   # Append Typdef structures to header file #
-   #-----------------------------------------#
-   subprocess.check_call('cat '+typedef_file+' >> '+HEADER_FILE_PATH, shell=True)
    
    #---------------------------------------#
    # Create processor array in header file #
@@ -577,7 +577,7 @@ def main():
    with open(HEADER_FILE_PATH,"a") as infile:
       infile.write("// Thread function's preferred list based on coprocessors \n")
       infile.write("// only (sorted by most preferred to least)\n")
-      infile.write("Huint thread_affinity[NUM_OF_THREADS][NUM_AVAILABLE_HETERO_CPUS] PRIVATE_MEMORY = {\n")
+      infile.write("Huint preferred_list[NUM_OF_THREADS][NUM_AVAILABLE_HETERO_CPUS] PRIVATE_MEMORY = {\n")
       for i, function_name in enumerate(FUNCTION_NAMES):
          if (i != 0):
             infile.write(",\n")
@@ -591,12 +591,48 @@ def main():
          import operator
          # Now sort processors based on weights in descending order. Tuples are
          # arranged as (processor #, weight)
+
          sorted_list = sorted(temp.items(), key=operator.itemgetter(1), reverse=True)
 
          for index, value in enumerate(sorted_list):
             if (index != 0):
                infile.write(",")
-            infile.write(str(sorted_list[index][0]))
+            # Write this processor, if weight != 0
+            if (sorted_list[index][1] != 0):
+               infile.write(str(sorted_list[index][0]))
+            # if weight == 0, don't write it to preferred list
+            else:
+               infile.write('-1')
+         infile.write("}")
+      infile.write("\n};\n")
+      infile.write("// Thread function's preferred list based on coprocessors \n")
+      infile.write("// only (sorted by most preferred to least)\n")
+      infile.write("Huint non_preferred_list[NUM_OF_THREADS][NUM_AVAILABLE_HETERO_CPUS] PRIVATE_MEMORY = {\n")
+      for i, function_name in enumerate(FUNCTION_NAMES):
+         if (i != 0):
+            infile.write(",\n")
+         infile.write("// " + function_name + "\n")
+         infile.write("{")
+         # Create dictionary for this function_name only
+         temp = {}
+         for index, processor in enumerate(PROCESSORS):
+            temp[index] = processor_weights[function_name,index]
+
+         import operator
+         # Now sort processors based on weights in descending order. Tuples are
+         # arranged as (processor #, weight)
+
+         sorted_list = sorted(temp.items(), key=operator.itemgetter(1), reverse=False)
+
+         for index, value in enumerate(sorted_list):
+            if (index != 0):
+               infile.write(",")
+            # Write this processor, if weight != 0
+            if (sorted_list[index][1] == 0):
+               infile.write(str(sorted_list[index][0]))
+            # if weight == 0, don't write it to preferred list
+            else:
+               infile.write('-1')
          infile.write("}")
       infile.write("\n};\n")
 

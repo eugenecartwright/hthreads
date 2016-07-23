@@ -133,7 +133,6 @@ int main() {
       // Specify which Processor (DEBUG Port) you are configuring
       mdm_cmd(0x61A07);
       *data = (1 << (i)); // Processor 0/Port 0 corresponds to Host
-      unsigned int temp = 1 << (i+1);
       //printf("Specifying processor with argument = %u\n",temp); // Processor 0/Port 0 corresponds to Host
       
       // Write to Performance Counter Command

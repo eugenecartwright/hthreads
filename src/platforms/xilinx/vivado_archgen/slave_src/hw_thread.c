@@ -50,13 +50,13 @@ int main() {
    // Clear out the first and last used accelerator pointers.
    *(hwti.first_used_ptr) = 0;
    *(hwti.last_used_ptr) = 0;
-
+      
+   // Clear out all counters
+   *(hwti.acc_hw_counter) = 0;
+   *(hwti.acc_sw_counter) = 0;
+   *(hwti.acc_pr_counter) = 0;
 
    while(1) {
-      // Clear out all counters
-      *(hwti.acc_hw_counter) = 0;
-      *(hwti.acc_sw_counter) = 0;
-      *(hwti.acc_pr_counter) = 0;
    
       // Reset first used accelerator
       *(hwti.first_used_accelerator) = NO_ACC;

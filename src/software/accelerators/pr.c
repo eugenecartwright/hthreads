@@ -50,7 +50,9 @@ Hint perform_PR(Huint mb, Huint accelerator_type) {
    extern Huint hwti_array[];
    Huint vhwti_base = hwti_array[mb];
    _hwti_set_last_accelerator(vhwti_base, accelerator_type);
-        
+
+   // TODO: Does not update slave table for host.
+
    return SUCCESS;
 
 }

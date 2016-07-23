@@ -27,7 +27,7 @@
 * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ************************************************************************************/
 
-/** \file      combined_test.c 
+/** \file      instruction_ratios.c 
   * \brief     Program that combines the floating point (single precision),\n
   *            integer division, multiply, and shift micro-benchmarks\n
   *            Followed the 'Software support'\n
@@ -42,7 +42,7 @@
 #include <math.h>
 #include <manager/manager.h>
    
-void * fpu_thread(void * arg);
+void * fpu_shift_thread(void * arg);
 void * shift_thread(void * arg);
 void * mul32_thread(void * arg);
 void * mul64_thread(void * arg);
@@ -51,12 +51,11 @@ void * idivu_thread(void * arg);
 
 //#define DEBUG_DISPATCH
 #define OPCODE_FLAGGING
-#define HOMOGENEOUS_TASK
 
 #ifndef HETERO_COMPILATION
 #include <stdio.h>
 #include <stdlib.h>
-#include "combined_test_prog.h"
+#include "instruction_ratios_prog.h"
 #endif
 
 #define NUM_THREADS  NUM_AVAILABLE_HETERO_CPUS
@@ -65,25 +64,36 @@ void * idivu_thread(void * arg);
 #error "This program only supports 5 threads to be created."
 #endif
 
+typedef struct {
+   Huint max;
+   Huint shift_num;
+} volatile fpu_shift_t;
+
 // single precision floating point micro-benchmark
-void * fpu_thread (void * arg) {
-   Huint max = (Huint) arg;
+void * fpu_shift_thread (void * arg) {
+   fpu_shift_t * data = (fpu_shift_t *) arg;
+   Huint max = data->max;
+   Huint shift_num = data->shift_num;
    Huint i = 0;
-   float sum = 0.0F, temp = 2.0F;
-   
+   volatile float sum = 0.0F, temp = 2.0F;
+
+   volatile Hlong m = 0x15, j = 0x22, k = 0x3,l = 0x7; 
+   m = m >> shift_num;
+   j = j >> shift_num;
+   k = k << shift_num;
+   l = l << shift_num;
+      
    for (i = 0; i < max; i++) {
-   //while(temp < HFLOAT_MAX) {
       // Test multiplication
       temp *= temp;
       // Test multiplication and addition
       sum += temp;
-      // Test sqrt (C_USE_FPU = 2)
-      sum += sqrtf(sum);
-      // Test divide
-      sum /= temp;
    }
 
-   return (void *) status;
+   volatile Huint success = poly_vectordiv(NULL, NULL, NULL, 0);
+   success = poly_vectoradd(NULL, NULL, NULL, 0);
+
+   return (void *) success;
 }
 
 void * shift_thread (void * arg) {
@@ -177,11 +187,6 @@ int main() {
 #else
    printf("Opcode flagging disabled\n");
 #endif
-#ifdef HOMOGENEOUS_TASK
-   printf("Homogeneous Load\n");
-#else
-   printf("Heterogeneous Load\n");
-#endif
    // Initialize various host tables once.
    init_host_tables();
 
@@ -189,58 +194,28 @@ int main() {
    for (i = 0; i < NUM_THREADS; i++) 
       hthread_attr_init(&attr[i]);
 
+   fpu_shift_t * temp = (fpu_shift_t *) malloc (sizeof(fpu_shift_t));
+   assert (temp != NULL);
+   temp->max = 240;
+   temp->shift_num = 1200;
+
    hthread_time_t start = hthread_time_get();
-
-#ifdef HOMOGENEOUS_TASK
-   // Create a homogeneous load
-   for (i = 0; i < NUM_THREADS; i++) {
-      // Shift
-      //thread_create(&tid[i], &attr[i], shift_thread_FUNC_ID, (void *) 240, DYNAMIC_HW, 0);
       
-      // Floating point
-      //thread_create(&tid[i], &attr[i], fpu_thread_FUNC_ID, (void *) 48, DYNAMIC_HW, 0);
-
-      // Unsigned integer divide
-      thread_create(&tid[i], &attr[i], idivu_thread_FUNC_ID, (void *) (HUINT_MAX/5), DYNAMIC_HW, 0);
-
-      // Mul32
-      //thread_create(&tid[i], &attr[i], mul32_thread_FUNC_ID, (void *) 1200, DYNAMIC_HW, 0);
-
-      // Mul64
-      //thread_create(&tid[i], &attr[i], mul64_thread_FUNC_ID, (void *) 1440, DYNAMIC_HW, 0);
-   }
-#else
-   // Shift
-   thread_create(&tid[0], &attr[0], shift_thread_FUNC_ID, (void *) 1200, DYNAMIC_HW, 0);
+   thread_create(&tid[0], &attr[0], fpu_shift_thread_FUNC_ID, (void *) temp, DYNAMIC_HW, 0);
+   //thread_create(&tid[0], &attr[0], fpu_shift_thread_FUNC_ID, (void *) temp, STATIC_HW0, 0);
    
-   // Floating point
-   thread_create(&tid[1], &attr[1], fpu_thread_FUNC_ID, (void *) 240, DYNAMIC_HW, 0);
+   if (thread_join(tid[0], &ret[0], &exec_time[0]))
+      printf("Join error!\n");
 
-   // Unsigned integer divide
-   thread_create(&tid[2], &attr[2], idivu_thread_FUNC_ID, (void *) HUINT_MAX, DYNAMIC_HW, 0);
-   
-   // Mul64
-   thread_create(&tid[3], &attr[3], mul64_thread_FUNC_ID, (void *) 3600, DYNAMIC_HW, 0);
-   
-   // Mul32
-   thread_create(&tid[4], &attr[4], mul32_thread_FUNC_ID, (void *) 7200, DYNAMIC_HW, 0);
-
-#endif
-   
-   for (i = 0; i < NUM_THREADS; i++) {
-      if (thread_join(tid[i], &ret[i], &exec_time[i]))
-         printf("Join error!\n");
-   }
    
    hthread_time_t stop = hthread_time_get();
-  
-   // Display thread times
-   for (i = 0; i < NUM_THREADS; i++) { 
-      // Determine which slave ran this thread based on address
-      Huint base = attr[i].hardware_addr - HT_HWTI_COMMAND_OFFSET;
-      Huint slave_num = (base & 0x00FF0000) >> 16;
-      printf("Execution time (TID : %d, Slave : %d, Result = %d)  = %f usec\n", tid[i], slave_num, (unsigned int) ret[i], hthread_time_usec(exec_time[i]));
-   }
+ 
+   free(temp); 
+   // Display thread time
+   // Determine which slave ran this thread based on address
+   Huint base = attr[0].hardware_addr - HT_HWTI_COMMAND_OFFSET;
+   Huint slave_num = (base & 0x00FF0000) >> 16;
+   printf("Execution time (TID : %d, Slave : %d, Result = %d)  = %f usec\n", tid[0], slave_num, (unsigned int) ret[0], hthread_time_usec(exec_time[0]));
 
    // Display OS overhead
    printf("Total OS overhead (thread_create) = %f usec\n", hthread_time_usec(create_overhead));

@@ -51,7 +51,8 @@ for {set j 0} {$j < $N} {incr j} \
       } elseif {$node == "hemps_numa"} {
            source ./nodes_arch/hemps_numa_node.tcl   
       }    
-
+   #set_property HDL_ATTRIBUTE.BMM_INFO_PROCESSOR "microblaze-le > system $group/slave_$i/axi_bram_ctrl_a system $group/slave_$i/axi_bram_ctrl_b system $group/slave_$i/local_vhwti_cntrl system $group/slave_$i/axi_bram_ctrl_result system $group/slave_$i/microblaze_0_local_memory/dlmb_bram_if_cntlr" [get_bd_cells /$group/slave_$i/microblaze_[expr $j]_$i]
+   #set_property HDL_ATTRIBUTE.KEEP_HIERARCHY "yes" [get_bd_cells /$group/slave_$i/microblaze_[expr $j]_$i]
    }
    
    
@@ -101,7 +102,7 @@ for {set j 0} {$j < $N} {incr j} \
          set vhwti M[format "%02d" $i]_AXI
          set dma S[format "%02d" $i]_AXI
          connect_bd_intf_net -boundary_type upper [get_bd_intf_pins $group/$slave/group1_bus/M00_AXI]       [get_bd_intf_pins $group/main_bus/$main]
-         connect_bd_intf_net [get_bd_intf_pins $group/$slave/microblaze_1/M_AXI_IC] -boundary_type upper    [get_bd_intf_pins $group/ddr_bus/$ddr]
+         connect_bd_intf_net [get_bd_intf_pins $group/$slave/microblaze_[expr $j]_$i/M_AXI_IC] -boundary_type upper    [get_bd_intf_pins $group/ddr_bus/$ddr]
          if { $node == "smp" || $node=="hemps_smp" } { 
               connect_bd_intf_net [get_bd_intf_pins $group/$slave/global_vhwti_cntrl_[expr $j * $C + $i]/S_AXI] -boundary_type upper [get_bd_intf_pins $group/vhwti_bus/$vhwti]
          } elseif { $node == "numa" || $node=="hemps_numa"} {

@@ -94,7 +94,7 @@ static inline void _hwti_set_free( Huint base )
 }
 
 // Added by Jason for MicroBlaze-based HW threads
-static inline Huint _hwti_get_utilized_flag( Huint base )
+volatile static inline Huint _hwti_get_utilized_flag( Huint base )
 {
     Huint cmd;
 

@@ -119,15 +119,10 @@ source ./peripherals.tcl
 ##=====================================================================
 source ./hthreads.tcl
 
-
-
-
 ##=====================================================================
 ##Creates  G groups. each group has C slaves in it.
 ##=====================================================================
 source ./group_arch.tcl
-
-
 
 ##=====================================================================
 ##External Connections between blocks
@@ -142,9 +137,12 @@ for {set j 0} {$j < $N} {incr j} \
    {   
    for {set i 0} {$i < $C} {incr i} \
    {
-      set group group_$j 
-      set slave slave_$i      
-      connect_bd_intf_net [get_bd_intf_pins $group/$slave/microblaze_1/DEBUG]   [get_bd_intf_pins peripherals/mdm_1/MBDEBUG_[expr $j * $C + $i +1]]     
+      if { $j*$i < 32} \
+      {
+         set group group_$j 
+         set slave slave_$i      
+         connect_bd_intf_net [get_bd_intf_pins $group/$slave/microblaze_[expr $j]_$i/DEBUG]   [get_bd_intf_pins peripherals/mdm_1/MBDEBUG_[expr $j * $C + $i +1]]
+      }
    }
    }
 
@@ -187,7 +185,6 @@ delete_bd_objs [get_bd_ports peripheral_reset]
 source ./assign_address.tcl
 
 
-
 ##=====================================================================
 ##Generate bitstream
 ##=====================================================================
@@ -198,17 +195,18 @@ generate_target all [get_files  ./$project_dir/design.srcs/sources_1/bd/system/s
 make_wrapper -files [get_files  ./$project_dir/design.srcs/sources_1/bd/system/system.bd]  -top
 add_files -norecurse ./$project_dir/design.srcs/sources_1/bd/system/hdl/system_wrapper.v
 update_compile_order -fileset sources_1
-update_compile_order -fileset sources_1
+#update_compile_order -fileset sources_1
 update_compile_order -fileset sim_1
 
 #For reducing Negative slack for big systems.
 #if  {  ( ($HEMPS==1)&& ([expr $N * $C]>12) ) || ([expr $N * $C]>36) } 
-if  {  ([expr $N * $C]>12) } \
-{
-  set_property strategy Performance_ExploreSLLs [get_runs impl_1]
-  set_property STEPS.POST_ROUTE_PHYS_OPT_DESIGN.IS_ENABLED true [get_runs impl_1]
-}
+#if  {  ([expr $N * $C]>12) } \
+#{
+#  #set_property strategy Performance_ExploreSLLs [get_runs impl_1]
+#  set_property STEPS.POST_ROUTE_PHYS_OPT_DESIGN.IS_ENABLED true [get_runs impl_1]
+#}
 reset_run synth_1
+
 
 #Writing the DCP file for PR flow
 launch_runs synth_1 -jobs 8
@@ -224,7 +222,7 @@ source ./pr.tcl
 }\
 else \
 {
-launch_runs impl_1 -to_step route_design -jobs 8 
+launch_runs impl_1 -to_step write_bitstream -jobs 8 
 wait_on_run  impl_1
 open_run impl_1
 

@@ -52,9 +52,16 @@ create_bd_cell -type ip -vlnv user.org:user:myicap:1.0 myicap_0
 group_bd_cells peripherals [get_bd_cells mig_7series_0]  [get_bd_cells rst_mig_7series_0_100M]  [get_bd_cells axi_intc_0]  [get_bd_cells mdm_1]  [get_bd_cells axi_uartlite_0]   [get_bd_cells axi_timer_0]  [get_bd_cells peripheral_interconnect_0]  [get_bd_cells xlconcat_0]  [get_bd_cells central_dma]  [get_bd_cells prc_0]  [get_bd_cells myicap_0] 
 
 #Custmoize IPs
-#set_property -dict [list CONFIG.C_MB_DBG_PORTS {2} CONFIG.C_USE_UART {1}]  [get_bd_cells peripherals/mdm_1] 
-set_property -dict [list CONFIG.C_MB_DBG_PORTS [expr $N * $C +1 ] CONFIG.C_USE_UART {1} CONFIG.C_DBG_REG_ACCESS {1}]  [get_bd_cells peripherals/mdm_1] 
 
+#MDM can only handle 32 slaves
+if { [expr $N*$C <= 32] } \
+{
+   set_property -dict [list CONFIG.C_MB_DBG_PORTS [expr $N * $C +1 ] CONFIG.C_USE_UART {1} CONFIG.C_DBG_REG_ACCESS {1}]  [get_bd_cells peripherals/mdm_1] 
+}\
+else \
+{
+   set_property -dict [list CONFIG.C_MB_DBG_PORTS {32} CONFIG.C_USE_UART {1} CONFIG.C_DBG_REG_ACCESS {1}]  [get_bd_cells peripherals/mdm_1] 
+}
 
 
 set_property -dict [list CONFIG.NUM_SI {1}  CONFIG.NUM_MI {6} CONFIG.ENABLE_ADVANCED_OPTIONS {1} CONFIG.XBAR_DATA_WIDTH.VALUE_SRC USER  CONFIG.XBAR_DATA_WIDTH {32} CONFIG.STRATEGY {1} ]  [get_bd_cells peripherals/peripheral_interconnect_0]

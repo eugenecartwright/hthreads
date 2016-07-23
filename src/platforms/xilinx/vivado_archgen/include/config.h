@@ -59,8 +59,7 @@
 #define THREAD_BITS             8
 #define MUTEX_BITS              6
 
-#define NUM_AVAILABLE_HETERO_CPUS 5
-#define PR
+#define NUM_AVAILABLE_HETERO_CPUS 16
 
 /*------------------- Slave DMA -------------------------*/
 #define SLAVE_LOCAL_DMA_DEVICE_ID 0

@@ -2,5 +2,7 @@
 // Initalize the size for this package
 package[#].sort_size = $1;
 package[#].crc_size = $2;
-package[#].vector_size = $3;
+package[#].vectoradd_size = $3;
+package[#].vectorsub_size = $3;
+package[#].vectormul_size = $3;
 

@@ -29,6 +29,11 @@
          <OPTION VALUE="bsra"/>
          <OPTION VALUE="bsll"/>
       </PARAMETER>
+      <PARAMETER NAME="C_USE_BARREL" VALUE="1" OPCODE="011001" STRUCT_ENTRY="barrel">
+         <OPTION VALUE="bsrli"/>
+         <OPTION VALUE="bsrai"/>
+         <OPTION VALUE="bslli"/>
+      </PARAMETER>
       <PARAMETER NAME="C_USE_HW_MUL" VALUE="1" OPCODE="010000" STRUCT_ENTRY="mul">
          <OPTION VALUE="mul"/>
          <!-- C_USE_HW_MUL = 2 -->

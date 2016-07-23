@@ -49,6 +49,14 @@
 #define STATIC_HW31     33
 #define STATIC_HW32     34
 
+// TODO: Remove above in favour of enums below
+#define STATIC_HW(i) STATIC_HW ## i
+typedef enum {
+   SOFTWARE_THREAD,
+   DYNAMIC_HW,
+   STATIC_HW
+} dunno_name_yet;
+
 #define STATIC_HW_OFFSET (-2)
 
 
@@ -61,38 +69,57 @@
 #define MAGIC_NUMBER    TABLE_INIT  
 
 #define NOT_FOUND                   (-1)
+#define ENQUEUE_THREAD              (-2)
+#define FREE_SLAVES_THRESHOLD       (0.30f * NUM_AVAILABLE_HETERO_CPUS)
 
 // Function Prototypes
 void load_my_table(void);
 Hbool check_valid_slave_num (Huint slave_num);
 void init_host_tables();
-Huint thread_create(hthread_t * tid, hthread_attr_t * attr, Huint func_id,void * arg, Huint type, Huint dma_length);
+Hint thread_create(hthread_t * tid, hthread_attr_t * attr, Huint func_id,void * arg, Huint type, Huint dma_length);
 Hint thread_join(hthread_t th, void **retval, hthread_time_t *exec_time);
 void init_tuning_table();
 
-// OS instrumentation data structure
-hthread_time_t create_overhead PRIVATE_MEMORY = 0;
-hthread_time_t join_overhead PRIVATE_MEMORY = 0;
+// OS overhead instrumentation data structure
+volatile hthread_time_t create_overhead PRIVATE_MEMORY = 0;
+volatile hthread_time_t join_overhead PRIVATE_MEMORY = 0;
+volatile hthread_time_t randomize_overhead PRIVATE_MEMORY = 0;
+volatile hthread_time_t START PRIVATE_MEMORY = 0;
+volatile hthread_time_t STOP PRIVATE_MEMORY = 0;
+volatile hthread_time_t DIFF PRIVATE_MEMORY = 0;
+volatile hthread_time_t START_RANDOM PRIVATE_MEMORY = 0;
+volatile hthread_time_t STOP_RANDOM PRIVATE_MEMORY = 0;
+volatile hthread_time_t DIFF_RANDOM PRIVATE_MEMORY = 0;
 
 // Global variables used to provide statistics of
 // finding the best match when doing thread_create.
 // find_best_match() uses these variables.
-Huint _index PRIVATE_MEMORY;
-Hint best_match PRIVATE_MEMORY;
-Hint better_match PRIVATE_MEMORY;
-Hint possible_match PRIVATE_MEMORY;
-Huint slave PRIVATE_MEMORY;
+volatile Huint _index PRIVATE_MEMORY;
+volatile Hint best_match PRIVATE_MEMORY;
+volatile Hint better_match PRIVATE_MEMORY;
+volatile Hint possible_match PRIVATE_MEMORY;
+volatile Huint slave PRIVATE_MEMORY;
 
-// ---------------------------------------------------------------- //
-//        Partial Reconfiguration Shared Data structures            //
-// ---------------------------------------------------------------- //
+volatile Huint total_calls PRIVATE_MEMORY = 0;
+volatile Huint perfect_match_counter PRIVATE_MEMORY = 0;
+volatile Huint best_match_counter PRIVATE_MEMORY = 0;
+volatile Huint better_match_counter PRIVATE_MEMORY = 0;
+volatile Huint possible_match_counter PRIVATE_MEMORY = 0;
 
-// This is the tuning table used to keep track of profiling data
-// for slave execution.
-//#ifdef TUNING
-    //tuning_table_t tuning_table[NUM_ACCELERATORS*NUM_OF_SIZES] = {
+// Create Queue - For testing purposes
+#define THREAD_QUEUE_MAX 100
+volatile Qnode_t ThreadQueue[THREAD_QUEUE_MAX] PRIVATE_MEMORY;
+volatile Qnode_t * head PRIVATE_MEMORY;
+volatile Qnode_t * tail PRIVATE_MEMORY;
+volatile Huint thread_head_index PRIVATE_MEMORY;
+volatile Huint thread_tail_index PRIVATE_MEMORY;
+volatile Huint thread_entries PRIVATE_MEMORY;
+
+// This is the tuning table used to keep track 
+// of profiling data for slave execution.
+#ifndef TUNING_TABLE_H
 tuning_table_t tuning_table[NUM_AVAILABLE_HETERO_CPUS][NUM_ACCELERATORS][(BRAM_SIZE/BRAM_GRANULARITY_SIZE)] GLOBAL_MEMORY;
-//#endif
+#endif
 
 #ifdef TUNING_TABLE_H
 #ifdef PR
@@ -101,25 +128,27 @@ void init_tuning_table(){
    Huint i = 0; 
    unsigned int j = 0;
    Huint data_size;
-#ifdef FORCE_POLYMORPHIC_HW
-   for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
-      for (j = 0; j < NUM_ACCELERATORS; j++) {
-         for (data_size = 0; data_size < BRAM_GRANULARITY_SIZE; data_size++) {
-            tuning_table[i][j][data_size].hw_time = HFLOAT_MIN;
-            tuning_table[i][j][data_size].sw_time = 0.0f;
-         }
-      }
-   }
-#elif defined (FORCE_POLYMORPHIC_SW)
+#ifdef FORCE_POLYMORPHIC_HW   // Slaves will prefer HW for poly functions
+   printf("Forcing POLYMORPHIC_HW\n");
    for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
       for (j = 0; j < NUM_ACCELERATORS; j++) {
          for (data_size = 0; data_size < BRAM_GRANULARITY_SIZE; data_size++) {
             tuning_table[i][j][data_size].hw_time = 0.0f;
-            tuning_table[i][j][data_size].sw_time = HFLOAT_MIN;
+            tuning_table[i][j][data_size].sw_time = 100.0f + PR_OVERHEAD + HW_SW_THRESHOLD;
          }
       }
    }
-#else
+   printf("Done\n");
+#elif defined (FORCE_POLYMORPHIC_SW) // Slaves will prefer SW for poly functions
+   for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+      for (j = 0; j < NUM_ACCELERATORS; j++) {
+         for (data_size = 0; data_size < BRAM_GRANULARITY_SIZE; data_size++) {
+            tuning_table[i][j][data_size].hw_time = 100.0f + HW_SW_THRESHOLD;
+            tuning_table[i][j][data_size].sw_time = 0.0f;
+         }
+      }
+   }
+#else // Exhaustively test HW vs SW, and store results for the given data size
    hthread_time_t exec_time[NUM_AVAILABLE_HETERO_CPUS];
    hthread_t child[NUM_AVAILABLE_HETERO_CPUS];
    hthread_attr_t attr[NUM_AVAILABLE_HETERO_CPUS];
@@ -127,7 +156,7 @@ void init_tuning_table(){
    Huint pr_flag[NUM_AVAILABLE_HETERO_CPUS];
    Huint current_acc[NUM_AVAILABLE_HETERO_CPUS];
 
-   // Test sort
+   // ------------------------------------ BUBBLESORT --------------------------------- //
 #ifdef DEBUG_DISPATCH
    printf("Initializing BUBBLESORT values in Tuning table...");
 #endif
@@ -197,6 +226,8 @@ void init_tuning_table(){
             printf("ERROR (init_tuning_table): Unable to PR BUBBLE_SORT\n");
             while(1);
          }
+         // Update Slave table
+         slave_table[i].acc = BUBBLESORT;
          
          for (j = 0; j < data_size; j++) {
             package[i].dataA[j] = rand() % 1000;
@@ -245,7 +276,7 @@ void init_tuning_table(){
    printf("Initializing CRC values in Tuning table...");
 #endif
 
-   // Test crc
+   // --------------------------------------- CRC ------------------------------------- //
    for (data_size = BRAM_GRANULARITY_SIZE-1; data_size < _ARRAY_SIZE; data_size+=BRAM_GRANULARITY_SIZE) {
       _data package[NUM_AVAILABLE_HETERO_CPUS];
       Hint * check[NUM_AVAILABLE_HETERO_CPUS];
@@ -329,6 +360,8 @@ void init_tuning_table(){
             printf("ERROR (init_tuning_table): Unable to PR CRC\n");
             while(1);
          }
+         // Update Slave table
+         slave_table[i].acc = CRC;
          
          // Initializing the data
          Hint * ptr = package[i].dataA;
@@ -392,7 +425,7 @@ void init_tuning_table(){
    printf("Initializing VectorAdd/VectorSub values in Tuning table...");
 #endif
    
-   // Test vectoradd/vectorsub
+   // --------------------------------------- VECTORADD/SUB ------------------------------------- //
    for (data_size = BRAM_GRANULARITY_SIZE-1; data_size < _ARRAY_SIZE; data_size+=BRAM_GRANULARITY_SIZE) {
       _data package[NUM_AVAILABLE_HETERO_CPUS];
       for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
@@ -468,6 +501,8 @@ void init_tuning_table(){
             printf("ERROR (init_tuning_table): Unable to PR VectorSub\n");
             while(1);
          }
+         // Update Slave table
+         slave_table[i].acc = VECTORSUB;
          
          // Initializing the data
          for (j=0 ; j < data_size; j++) {
@@ -522,7 +557,7 @@ void init_tuning_table(){
    printf("Initializing VectorMul/VectorDiv values in Tuning table...");
 #endif
    
-   // Test vectormul/vectordiv
+   // --------------------------------------- VECTORMUL/DIV ------------------------------------- //
    for (data_size = BRAM_GRANULARITY_SIZE-1; data_size < _ARRAY_SIZE; data_size+=BRAM_GRANULARITY_SIZE) {
       _data package[NUM_AVAILABLE_HETERO_CPUS];
       for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
@@ -598,6 +633,8 @@ void init_tuning_table(){
             printf("ERROR (init_tuning_table): Unable to PR VectorSub\n");
             while(1);
          }
+         // Update Slave table
+         slave_table[i].acc = VECTORMUL;
          
          // Initializing the data
          for (j=0 ; j < data_size; j++) {
@@ -656,7 +693,8 @@ void init_tuning_table(){
 #if BRAM_GRANULARITY_SIZE != 64
 #error "ERROR: Matrix Multiplication tuning table entries will be incorrect as BRAM_GRANULARITY_SIZE != 64 (largest matrix size)!"
 #endif
-   // Test Matrix Multiply
+   
+   // --------------------------------------- MATRIX MULTIPLY ------------------------------------- //
    // TODO: data_size and entry insertions are generic to BRAM_GRANULARITY_SIZE
    _data package;
    for (data_size = 2; data_size < _MATRIX_SIZE; data_size++) {
@@ -737,6 +775,8 @@ void init_tuning_table(){
             printf("ERROR (init_tuning_table): Unable to PR VectorSub\n");
             while(1);
          }
+         // Update Slave table
+         slave_table[i].acc = MATRIXMUL;
          
          // Initializing the data
          for (k = 0; k < data_size; k++) {
@@ -783,7 +823,6 @@ void init_tuning_table(){
          
          // Write hardware execution in tuning table
          tuning_table[i][MATRIXMUL][data_size].hw_time = hthread_time_usec(exec_time[i]);
-
       }
       free(package.dataA);
       free(package.dataB);
@@ -792,12 +831,37 @@ void init_tuning_table(){
 #ifdef DEBUG_DISPATCH
    printf("Done\n");
 #endif
-   join_overhead = 0;
-   create_overhead = 0;
 #endif
+   join_overhead = 0;
+   randomize_overhead = 0;
+   create_overhead = 0;
+   //   ----> For printing out tuning table and store in bitstream.h
+   int k;
+   // Print out tuning table
+   printf("tuning_table_t tuning_table[NUM_AVAILABLE_HETERO_CPUS][NUM_ACCELERATORS][(BRAM_SIZE/BRAM_GRANULARITY_SIZE)] = {\n");
+   for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+      printf("{");
+      for (j = 0; j < NUM_ACCELERATORS; j++) {
+         printf("{");
+         for (k = 0; k < BRAM_GRANULARITY_SIZE-1; k++) {
+            printf("{%f,%f},", tuning_table[i][j][k].hw_time, tuning_table[i][j][k].sw_time);
+         }
+         printf("{%f,%f}", tuning_table[i][j][k].hw_time, tuning_table[i][j][k].sw_time);
+         if (j != NUM_ACCELERATORS-1)
+            printf("},");
+         else
+            printf("}");
+
+      }
+      if (i != NUM_AVAILABLE_HETERO_CPUS-1)
+         printf("},\n");
+      else
+         printf("}\n");
+   }
+   printf("};");
 }
 #else
-#error "ERROR: Trying to init tuning table on a non-PR system!"
+#warning "WARNING: Trying to init tuning table on a non-PR system or you are including tuning_table.h!"
 #endif
 #endif
 
@@ -809,13 +873,13 @@ void init_slaves() {
    unsigned int i;
    for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) { 
       // Write pointer for last_used_accelerator so slave can update the table
-      _hwti_set_last_accelerator_ptr( (Huint) hwti_array[i], (Huint) &slave_table[i].acc);
+      _hwti_set_last_accelerator_ptr( (Huint) hwti_array[i], (Huint) &(slave_table[i].acc));
       
       // Write which accelerator the slave has in last_used/currently loaded.
       _hwti_set_last_accelerator((Huint) hwti_array[i], slave_table[i].acc);
              
       // Write pointer to tuning_table
-      _hwti_set_tuning_table_ptr((Huint) hwti_array[i], (Huint) &tuning_table);
+      _hwti_set_tuning_table_ptr((Huint) hwti_array[i], (Huint) tuning_table);
 
       #ifdef PR
       // If PR is defined, write to slave that they have PR capability
@@ -840,6 +904,8 @@ void init_slaves() {
             printf("\tAccelerator ID = %d, slave %d\n", accelerator_type, i);
             while(1);
          }
+         // Update slave table
+         slave_table[i].acc = accelerator_type;
       }
    }
    #endif
@@ -1049,29 +1115,52 @@ void init_host_tables() {
 
    if (!table_initialized_flag) {
         
-        // Assert flag
-        table_initialized_flag = 1;
+      // Assert flag
+      table_initialized_flag = 1;
 
-        // Init thread table
-        init_thread_table(&global_thread_table);
+      // Init thread table
+      init_thread_table(&global_thread_table);
 
-        // Load entries with app-specific data
-        load_my_table();
+      // Load entries with app-specific data
+      load_my_table();
 
-        // Init function-to-accelerator table
-        init_func_2_acc_table();
+      // Init function-to-accelerator table
+      init_func_2_acc_table();
 
-        init_slaves();
+      // Initialize slaves
+      init_slaves();
 
-        #ifdef TUNING_TABLE_H
-        // Initialize Tuning Table for PR-based systems
-        init_tuning_table();
-        #endif
+      #ifdef TUNING_TABLE_H
+      // Initialize Tuning Table for PR-based systems
+      //init_tuning_table();
+      #endif
    
-        // Reset OS overhead running time
-        join_overhead = 0;;
-        create_overhead = 0;;
-    }
+      // Reset OS overhead running time
+      join_overhead = 0;
+      randomize_overhead = 0;
+      create_overhead = 0;
+
+      // Reset slave counters
+      Huint i;
+      for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
+          _hwti_set_accelerator_hw_counter(hwti_array[i], 0);
+          _hwti_set_accelerator_sw_counter(hwti_array[i], 0);
+          _hwti_set_accelerator_pr_counter(hwti_array[i], 0);
+      }
+     
+      // Reset counters for find_best_match function 
+      total_calls = 0;
+      perfect_match_counter = 0;
+      best_match_counter = 0;
+      better_match_counter = 0;
+      possible_match_counter = 0;
+
+      head = &ThreadQueue[0];
+      tail = &ThreadQueue[0];
+      thread_head_index = 0;
+      thread_tail_index = 0;
+      thread_entries = 0;
+   }
 }
 
 //------------------------------------------//
@@ -1080,7 +1169,7 @@ void init_host_tables() {
 // software threads only. Used if creating  //
 // a hardware thread fails.                 //
 //------------------------------------------//
-Huint software_create (
+Hint software_create (
         hthread_t * tid,
         hthread_attr_t * attr,
         Huint func_id,
@@ -1120,7 +1209,7 @@ Huint software_create (
 // returns this amount back to the callee.
 Huint get_num_free_slaves() {
 
-    Huint free = 0, i = 0;
+    volatile Huint free = 0, i = 0;
 
     for (i = 0; i < NUM_AVAILABLE_HETERO_CPUS; i++) {
         if (_hwti_get_utilized_flag(hwti_array[i]) == FLAG_HWTI_FREE) 
@@ -1144,32 +1233,81 @@ Huint get_num_free_slaves() {
   **/
 
 Hint find_best_match(Huint func_id) {
+   total_calls++;
    // Reset match variables
    best_match = -1;
    better_match = -1;
    possible_match = -1;
+   Hbool hasPolyFunction = (thread_profile[func_id].first_accelerator != NO_ACC) ? 1 : 0;
    // For all slaves.
+//#ifdef CHECK_FIRST_POLYMORPHIC
    for (_index = 0; _index < NUM_AVAILABLE_HETERO_CPUS; _index++) {
+//#else
+//   //START_RANDOM = hthread_time_get();
+//   // Create some random assignment
+//   Huint randomized_slave_table[NUM_AVAILABLE_HETERO_CPUS];
+//   for (_index = 0; _index < NUM_AVAILABLE_HETERO_CPUS; _index++) {
+//      randomized_slave_table[_index] = _index;
+//   }
+//   // Shuffle 100 times?
+//   for (_index = 0; _index < 100; _index++) {
+//      Huint pos1 = rand() % NUM_AVAILABLE_HETERO_CPUS;
+//      Huint pos2 = rand() % NUM_AVAILABLE_HETERO_CPUS;
+//      Huint temp =  randomized_slave_table[pos1];
+//      randomized_slave_table[pos1] = randomized_slave_table[pos2];
+//      randomized_slave_table[pos2] = temp;
+//   }
+//   //STOP_RANDOM = hthread_time_get();
+//   //hthread_time_diff(DIFF_RANDOM,STOP_RANDOM,START_RANDOM);
+//   //randomize_overhead += DIFF_RANDOM;
+//   Huint pos = 0;
+//   for (pos = 0; pos < NUM_AVAILABLE_HETERO_CPUS; pos++) {
+//      _index = randomized_slave_table[pos];
+//#endif
+
 
 #ifdef OPCODE_FLAGGING
-      // Get most preferred slave according to co-processor support  
-      slave = thread_affinity[func_id][_index];
+      if (!hasPolyFunction) {
+         // If there is nothing in preferred list, go to non-preferred list
+         if (preferred_list[func_id][0] == -1) {
+            slave = non_preferred_list[func_id][_index];
+         }
+         else {
+            // Get most preferred slave according to co-processor support  
+            slave = preferred_list[func_id][_index];
+         }
+         // If you have reached far down the non/preferred_list, it means
+         // the non/preferred processors are busy, and you should append
+         // this thread
+         if (slave == -1)
+            return ENQUEUE_THREAD;
+      }
+      else { // If this thread has poly calls, allow it to do exploration
+         if (preferred_list[func_id][_index] == -1) {
+            slave = non_preferred_list[func_id][_index];
+         }
+         else {
+            slave = preferred_list[func_id][_index];
+         }
+      }
 #else
       slave = _index;
 #endif
       // Is this slave available?
       if (_hwti_get_utilized_flag(hwti_array[slave]) == FLAG_HWTI_FREE) {
-#ifdef CHECK_FIRST_POLYMORPHIC
          // Does this thread use an accelerator/Make polymorphic calls?
          Huint first_used_accelerator = thread_profile[func_id].first_accelerator;
+#ifdef CHECK_FIRST_POLYMORPHIC
          if (first_used_accelerator != NO_ACC) { // if Yes?
             // Does this thread use PR?
             if (thread_profile[func_id].prefer_PR) {
                // Does this slave have PR?
                if (slave_table[slave].pr) { 
                   // Is the current accelerator = 1st called accelerator for thread?
-                  if (first_used_accelerator == slave_table[slave].acc)
+                  if (first_used_accelerator == slave_table[slave].acc) {
+                     perfect_match_counter++;
                      return slave;
+                  }
                   else {
                      // We found a slave with PR capabilities that this thread
                      // prefers, but its current accelerator != what this thread
@@ -1189,15 +1327,26 @@ Hint find_best_match(Huint func_id) {
                   else {
                      // Maybe, in the future, check curr acc against all poly
                      // calls of the thread, and give more weight over standard cpus.
-                     if (possible_match == -1) // If we have not set a possible match
+                     if (possible_match == -1)  // If we have not set a possible match
                         possible_match = slave;
                   }
                }
             }
             else {
                // Is the current accelerator = 1st called accelerator for thread?
-               if (first_used_accelerator == slave_table[slave].acc)
-                  return slave;
+               if (first_used_accelerator == slave_table[slave].acc) {
+                  // Does this slave have PR?
+                  if (slave_table[slave].pr) {
+                     if (best_match == -1) 
+                        best_match = slave;
+                  }
+                  else {
+                     // This slave doesn't have PR. Great for threads
+                     // who don't need PR!
+                     perfect_match_counter++; 
+                     return slave;
+                  }
+               }
                else {
                   // Does this slave have PR?
                   if (slave_table[slave].pr) {
@@ -1218,6 +1367,63 @@ Hint find_best_match(Huint func_id) {
          else  // Thread doesn't use any polymorphic calls
             return slave;
 #else    
+         if (first_used_accelerator != NO_ACC) { // if Yes?
+            if (thread_profile[func_id].prefer_PR) {
+               // Does this slave have PR?
+               if (slave_table[slave].pr) { 
+                  // Is the current accelerator = 1st called accelerator for thread?
+                  if (first_used_accelerator == slave_table[slave].acc) {
+                     perfect_match_counter++;
+                  }
+                  else {
+                     // We found a slave with PR capabilities that this thread
+                     // prefers, but its current accelerator != what this thread
+                     // first requests.
+                     best_match_counter++;
+                  }
+               }
+               else {
+                  // We found a slave without PR capabilities that this thread
+                  // prefers, but its current accelerator DOES equal what this 
+                  // thread first requests.
+                  if (first_used_accelerator == slave_table[slave].acc) {
+                     better_match_counter++;
+                  }
+                  else {
+                        // Maybe, in the future, check curr acc against all poly
+                        // calls of the thread, and give more weight over standard cpus.
+                        possible_match_counter++;
+                  }
+               }
+            }
+            else {
+               // Is the current accelerator = 1st called accelerator for thread?
+               if (first_used_accelerator == slave_table[slave].acc) { 
+                  // Does this slave have PR?
+                  if (slave_table[slave].pr) {
+                     if (best_match == -1) 
+                        best_match_counter++;
+                  }
+                  else {
+                     // This slave doesn't have PR. Great for threads
+                     // who don't need PR!
+                     perfect_match_counter++; 
+                  }
+               }
+               else {
+                  // Does this slave have PR?
+                  if (slave_table[slave].pr) {
+                     // This slave has PR for a thread that doesn't need it.
+                     // We add this to better match as we want to give more
+                     // priority for slaves with PR to threads that make
+                     // heavy use of it/possible swap more than 1 acc.
+                     better_match_counter++; 
+                  }
+                  else 
+                     possible_match_counter++;
+               }
+            }
+         }
          return slave;
 #endif
       }
@@ -1225,15 +1431,26 @@ Hint find_best_match(Huint func_id) {
 
    // If you have made it here without finding the perfect match, then check
    // in this order, best, better, possible or else, just return FAILURE
-   if (best_match >= 0)
+   if (best_match >= 0) {
+      best_match_counter++;
       return best_match;
-   else if (better_match >= 0)
+   }
+   else if (better_match >= 0) {
+      better_match_counter++;
       return better_match;
-   else if (possible_match >= 0)
+   }
+   else if (possible_match >= 0) {
+      possible_match_counter++;
       return possible_match;
-   else
-      return FAILURE;
-   
+   }
+   else {
+      // Try again
+      //return FAILURE;
+      return ENQUEUE_THREAD;
+      //return find_best_match(func_id);
+   }
+  
+   printf("Should not get here\n"); 
    // Return FAILURE by default
    return FAILURE;
 }
@@ -1252,7 +1469,7 @@ Hint find_best_match(Huint func_id) {
 //
 //      NOTE: DMA LENGTH IS NOT USED AT THIS TIME.
 //--------------------------------------------------------------------------------------------//
-Huint thread_create(
+Hint thread_create(
         hthread_t * tid,        
         hthread_attr_t * attr,  
         Huint func_id,   
@@ -1261,7 +1478,7 @@ Huint thread_create(
         Huint dma_length)
 {
 
-    hthread_time_t start = hthread_time_get();
+    START = hthread_time_get();
     Huint ret;
     void * func;
 
@@ -1273,10 +1490,23 @@ Huint thread_create(
     if (!table_initialized_flag) 
          init_host_tables();
 
-    // Check if we have not passed our threshold
-    // TODO: Remove?
-    //while( (NUM_AVAILABLE_HETERO_CPUS - get_num_free_slaves() + thread_counter) >  (NUM_AVAILABLE_HETERO_CPUS + SW_THREAD_COUNT))
-        //hthread_yield();
+    if (type == DYNAMIC_HW) {
+       // Are all slaves busy? Proceed when we have X% of free slaves
+       //while(get_num_free_slaves() <= FREE_SLAVES_THRESHOLD);
+#ifdef BASE_SCHEDULER
+       while(get_num_free_slaves() == 0);
+#else
+       while(get_num_free_slaves() == 0) {
+         // Pause overhead recording
+         STOP = hthread_time_get();
+         hthread_time_diff(DIFF,STOP,START);
+         create_overhead += DIFF;
+         hthread_yield();
+         // Resume overhead count
+         START = hthread_time_get();
+       }
+#endif
+    }
 
     //--------------------------------
     // Is this a software thread?
@@ -1292,8 +1522,9 @@ Huint thread_create(
             printf(" you are creating a software thread!\n");
             #endif
             ret = FAILURE;
-        } else
+        } else {
             ret = software_create(tid, attr, func_id, arg);
+        }
     
     //------------------------------------------------------------
     // For hardware threads, should we dynamically schedule them?
@@ -1310,6 +1541,21 @@ Huint thread_create(
             printf("No Free Slaves:Creating software thread\n");
             //#endif
             ret = software_create(tid, NULL, func_id, arg);
+        } else if (slave_num == ENQUEUE_THREAD) {
+           // enqueue thread
+           tail->tid = tid;
+           tail->attr = attr;
+           tail->func_id = func_id;
+           tail->arg = arg;
+
+           // point tail to next slot
+           thread_tail_index = (thread_tail_index + 1) % THREAD_QUEUE_MAX;
+           tail = &ThreadQueue[thread_tail_index];
+
+           // Increase thread entries counter
+           thread_entries++;
+           ret = SUCCESS;
+
         } else {
             // Grab the function handle according to the processor type.
             func = lookup_thread(&global_thread_table, func_id, slave_table[slave_num].isa);
@@ -1379,9 +1625,9 @@ Huint thread_create(
         }
     }
 
-    hthread_time_t stop = hthread_time_get();
-    hthread_time_t diff = hthread_time_diff(diff,stop,start);
-    create_overhead += diff;
+    STOP = hthread_time_get();
+    hthread_time_diff(DIFF,STOP,START);
+    create_overhead += DIFF;
 
     return ret;
 }
@@ -1389,7 +1635,7 @@ Huint thread_create(
 #include <manager/manager.h>
 Hint thread_join(hthread_t th, void **retval, hthread_time_t *exec_time) {
   
-   hthread_time_t start = hthread_time_get(); 
+   START = hthread_time_get(); 
    // Attempt to join on thread and grab execution time.
    // FIXME: Grabbing execution time should be done first 
    // (once thread has exited), in case parent is preempted
@@ -1397,9 +1643,9 @@ Hint thread_join(hthread_t th, void **retval, hthread_time_t *exec_time) {
    Huint status = hthread_join(th, retval);
    *exec_time = threads[th].execution_time;
 
-   hthread_time_t stop = hthread_time_get();
-   hthread_time_t diff = hthread_time_diff(diff,stop,start);
-   join_overhead += diff;
+   STOP = hthread_time_get();
+   hthread_time_diff(DIFF,STOP,START);
+   join_overhead += DIFF;
 
    return status;
 }

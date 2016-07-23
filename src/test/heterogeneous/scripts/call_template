@@ -1,21 +1,39 @@
-crc(package[#].crc_data, package[#].crc_size, package[#].crc_valid);        0
-sort(package[#].sort_data, package[#].sort_size, package[#].sort_valid);    0 
-vector_add(package[#].dataA, package[#].dataB, package[#].dataC, package[#].vector_size, package[#].vector_valid);        0
-
-thread_create(&threads[#], &attr[#], worker_crc1_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0); 0
-thread_create(&threads[#], &attr[#], worker_sort1_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0); 0
-thread_create(&threads[#], &attr[#], worker_vector1_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0); 1
+thread_create(&threads[#], &attr[#], worker_crc_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0); 3
+thread_create(&threads[#], &attr[#], worker_sort_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0); 2
+thread_create(&threads[#], &attr[#], worker_vectoradd_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0); 5
+thread_create(&threads[#], &attr[#], worker_vectorsub_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0); 4
+thread_create(&threads[#], &attr[#], worker_vectormul_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0); 5
 
 thread_create(&threads[#], &attr[#], worker_sort_crc_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0);  0
-thread_create(&threads[#], &attr[#], worker_sort_vector_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0);  0
+thread_create(&threads[#], &attr[#], worker_sort_vectoradd_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0);  0
+thread_create(&threads[#], &attr[#], worker_sort_vectorsub_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0);  1
+thread_create(&threads[#], &attr[#], worker_sort_vectormul_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0);  0
 thread_create(&threads[#], &attr[#], worker_crc_sort_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0);  0
-thread_create(&threads[#], &attr[#], worker_crc_vector_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0);  0
-thread_create(&threads[#], &attr[#], worker_vector_crc_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0);  0
-thread_create(&threads[#], &attr[#], worker_vector_sort_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0);  0
+thread_create(&threads[#], &attr[#], worker_crc_vectoradd_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0);  0
+thread_create(&threads[#], &attr[#], worker_crc_vectorsub_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0);  0
+thread_create(&threads[#], &attr[#], worker_crc_vectormul_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0);  2
+thread_create(&threads[#], &attr[#], worker_vectoradd_crc_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0);  0
+thread_create(&threads[#], &attr[#], worker_vectorsub_crc_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0);  0
+thread_create(&threads[#], &attr[#], worker_vectormul_crc_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0);  0
+thread_create(&threads[#], &attr[#], worker_vectoradd_sort_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0);  0
+thread_create(&threads[#], &attr[#], worker_vectorsub_sort_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0);  4
+thread_create(&threads[#], &attr[#], worker_vectormul_sort_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0);  0
 
-thread_create(&threads[#], &attr[#], worker_vector_crc_sort_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0);  0
-thread_create(&threads[#], &attr[#], worker_vector_sort_crc_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0);  0
-thread_create(&threads[#], &attr[#], worker_crc_vector_sort_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0);  0
-thread_create(&threads[#], &attr[#], worker_crc_sort_vector_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0);  0
-thread_create(&threads[#], &attr[#], worker_sort_crc_vector_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0);  0
-thread_create(&threads[#], &attr[#], worker_sort_vector_crc_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0);  0
+thread_create(&threads[#], &attr[#], worker_vectoradd_crc_sort_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0); 0 
+thread_create(&threads[#], &attr[#], worker_vectorsub_crc_sort_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0); 0 
+thread_create(&threads[#], &attr[#], worker_vectormul_crc_sort_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0); 0 
+thread_create(&threads[#], &attr[#], worker_vectoradd_sort_crc_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0); 0 
+thread_create(&threads[#], &attr[#], worker_vectorsub_sort_crc_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0); 2 
+thread_create(&threads[#], &attr[#], worker_vectormul_sort_crc_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0); 0 
+thread_create(&threads[#], &attr[#], worker_crc_vectoradd_sort_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0); 0 
+thread_create(&threads[#], &attr[#], worker_crc_vectorsub_sort_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0); 1 
+thread_create(&threads[#], &attr[#], worker_crc_vectormul_sort_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0); 0 
+thread_create(&threads[#], &attr[#], worker_crc_sort_vectoradd_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0); 0 
+thread_create(&threads[#], &attr[#], worker_crc_sort_vectorsub_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0); 0 
+thread_create(&threads[#], &attr[#], worker_crc_sort_vectormul_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0); 0 
+thread_create(&threads[#], &attr[#], worker_sort_crc_vectoradd_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0); 2 
+thread_create(&threads[#], &attr[#], worker_sort_crc_vectorsub_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0); 0 
+thread_create(&threads[#], &attr[#], worker_sort_crc_vectormul_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0); 0 
+thread_create(&threads[#], &attr[#], worker_sort_vectoradd_crc_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0); 0 
+thread_create(&threads[#], &attr[#], worker_sort_vectorsub_crc_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0); 0 
+thread_create(&threads[#], &attr[#], worker_sort_vectormul_crc_thread_FUNC_ID, (void *) &package[#], DYNAMIC_HW, 0); 1 
