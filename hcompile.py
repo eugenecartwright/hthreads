@@ -90,6 +90,15 @@ def main():
    #  * Arugment list                                                            #
    #  * Compilation Tools                                                        #
    #-----------------------------------------------------------------------------#
+   
+   # Check if bash is installed, and whether sh -> bash
+   if (execute_cmd('which bash', exit_if_error=False) != SUCCESS):
+      print 'Bash is either not installed or there is no system environment path'
+      sys.exit(1)
+   elif (execute_cmd('ls -l `which sh`| grep `which bash`', exit_if_error=False) != SUCCESS):
+      print '"sh" needs to point to the "bash" shell path'
+      sys.exit(1)
+
    # Check for Jam build systyem
    execute_cmd('jam -v')
 
